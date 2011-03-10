@@ -1,0 +1,14 @@
+<xml>
+    <node id='1'>
+        <child id='2'/>
+    </node>
+    <node id='3'>
+        <child1 id='4'/>
+        <child2 id='5'/>
+        <child3 id='6'>
+            <grandchild id='7'>
+                <newborn id='8'/>
+            </grandchild>
+        </child3>
+    </node>
+</xml>

@@ -1,0 +1,40 @@
+<xml>
+    <!-- DO NOT CHANGE THE ORDER OF ELEMENTS IN THIS FILE, IF YOU WANT TO ADD ANYTHING, 
+        INCLUDING COMMENTS, APPEND IT TO THE END. -->
+    
+    <!-- Simple nodes, test for equality -->
+    <a id="node1"/>
+    <a id="node1"/>
+    
+    <!-- Simple nodes, test for inequality -->
+    <a id="node2"/>
+    <a id="node3"/>
+    
+    <a id="node4"/>
+    <b id="node4"/>
+    
+    <a id="node5"/>
+    <b id="node6"/>
+    
+    
+    <!-- Complex nodes, test for equality -->
+    <b id="node6" property="complex"/>
+    <b id="node6" property="complex"/>
+    
+    <!-- Complex nodes, test for inequality -->
+    
+    <a id="node8" property="complex"/>
+    <a id="node9" property="complex"/>
+    
+    <b id="node10" property="complex"/>
+    <b id="node10" property="morecomplex"/>
+    
+    <a id="node7" property="complex"/>
+    <b id="node7" property="complex"/>
+    
+    <a id="node11" property="complex"/>
+    <b id="node12" property="complex"/>
+    
+    
+
+</xml>

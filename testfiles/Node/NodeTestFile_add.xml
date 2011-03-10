@@ -1,0 +1,26 @@
+<xml>
+    <!-- DO NOT CHANGE THE ORDER OF ELEMENTS IN THIS FILE, IF YOU WANT TO ADD ANYTHING, 
+        INCLUDING COMMENTS, APPEND IT TO THE END. -->
+    
+    
+    <!-- Simple nodes, test addition -->
+    <a id="a"/>
+    <b id="b"/>
+    
+    
+    <!-- Complex nodes, test addition -->
+    <b id="a" property="a"/>
+    <b id="a" property="a"/>
+    
+    <ab id="abcde"/>
+    <cd id="abcde"/>
+
+    <a id="9"/>
+    <b id="a"/>
+    
+    <!-- Test adding the unit -->
+    
+    <a id="a"/>
+    <_ id="_"/>
+    
+</xml>

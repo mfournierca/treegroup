@@ -1,0 +1,17 @@
+<xml>
+    <!-- DO NOT CHANGE THE ORDER OF ELEMENTS IN THIS FILE, IF YOU WANT TO ADD ANYTHING, 
+        INCLUDING COMMENTS, APPEND IT TO THE END. -->
+    
+    
+    <!-- Simple nodes, test inverse -->
+    <a id="a"/>
+    
+    
+    <!-- Complex nodes, test inverse -->
+    <b id="a" property="a"/>
+    <ab id="abcde"/>
+    
+    <!-- Test inverting the unit -->
+    <_/>
+    
+</xml>

@@ -1,0 +1,14 @@
+<xml>
+    <a id='1'>
+        <b id='2'/>
+    </a>
+    <a id='3'>
+        <c1 id='4'/>
+        <c2 id='5'/>
+        <c3 id='6'>
+            <grandchild id='7'>
+                <newborn id='8'/>
+            </grandchild>
+        </c3>
+    </a>
+</xml>
