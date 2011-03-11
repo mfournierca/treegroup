@@ -5,7 +5,17 @@ import lxml.etree, logging
 from . import Tag, Attrib    
 
 def invert(element1):
-    """Invert the element, modify in place"""
+    """Invert the element, modify in place and return it.
+    
+    This function modifies the node in place to make ensure there are not 
+    too many copies created in complicated programs. 
+    
+    The reason this function also returns the element is to allow this function
+    to be used in compound statements, for example: 
+    
+        add(node1, invert(add(node2, node3)))
+        
+    """
     
 #    inverted = lxml.etree.Element(Tag._taginverse(element1.tag), )
     element1.tag = Tag._taginverse(element1.tag) 
@@ -15,7 +25,7 @@ def invert(element1):
     for j in newattribs:
         element1.set(j, newattribs[j])
         
-        
+    return element1
         
     
 def equal(element1, element2):
@@ -37,8 +47,20 @@ def equal(element1, element2):
         return False
 
 
+
+
+
+
 def add(element1, element2):
-    """Add element2 to element1, modify element1 in place"""
+    """Add element2 to element1, modify element1 in place and return it. 
+    
+    This function modifies the node in place to make ensure there are not 
+    too many copies created in complicated programs. 
+    
+    The reason this function also returns the element is to allow this function
+    to be used in compound statements, for example: 
+    
+        add(node1, invert(add(node2, node3)))"""
     
     newtag = Tag._addtags(element1.tag, element2.tag)
     
@@ -52,7 +74,11 @@ def add(element1, element2):
     for key in newattribs.keys():
         element1.set(key, newattribs[key])
     
-    
+    return element1
+
+
+
+
     
 def position(element1):
     """Return the position of the element in its parent tree. 

@@ -7,15 +7,40 @@ import Element.Element
 
 
 def invert(tree):
+    """Invert the tree. 
+    
+    Note that this function modifies the tree in place _and_ returns it. 
+    
+    Modifying the tree in place is important since it avoids multiple copies
+    of a tree being created in more complicated programs. 
+    
+    Returning the tree allows this function to be used in compound statements, such 
+    as
+        add(tree1, invert(add(tree2, tree1)))
+        
+    Remember that the tree itself is not returned, only a reference to it. 
+    """
     for element in tree.getroot().iter():
         Element.Element.invert(element)
 
-
+    return tree
 
 
 
 def add(tree1, tree2):
-    """Add tree2 to tree1, modify tree1 in place"""
+    """Add tree2 to tree1, modify tree1 in place.
+    
+    Note that this function modifies tree1 in place _and_ returns it. 
+    
+    Modifying the tree in place is important since it avoids multiple copies
+    of a tree being created in more complicated programs. 
+    
+    Returning the tree allows this function to be used in compound statements, such 
+    as
+        add(tree3, invert(add(tree1, tree2)))
+        
+    Remember that the tree itself is not returned, only a reference to it. 
+    """
     
     log = logging.getLogger()
     
@@ -126,7 +151,7 @@ def add(tree1, tree2):
         else:
             parent.remove(i)
 
-
+    return tree1
 
 
 
@@ -170,7 +195,7 @@ def ordering(tree):
 
 
 def getNode(tree, position):
-    """Get a node from the position"""
+    """Get a node from the position. Return the node."""
     
     if not position[0] == 1:
         #fail
