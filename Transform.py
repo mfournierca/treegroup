@@ -1,10 +1,79 @@
 """Transform a tree into dita using the functions in this module"""
 
-import logging, lxml.etree, sys, optparse, re
+import logging, lxml.etree, sys, optparse, re, copy
 
-import Tree
+import Tree, Element.Element
 
 import DitaTools.Tree.File.Dita
+
+
+class NoErrorMatchException(Exception):
+    def __init__(self, message):
+        self.text = "No matches found for: %s" % message
+    def __str__(self):
+        return repr(self.text)
+
+
+
+
+
+class DitaTransformer():
+    
+    def __init__(self, file):
+        """Initialize"""
+        self.log = logging.getLogger()
+        self.log.debug('Initializing')
+        self.file = file
+        self.tree = lxml.etree.parse(file)
+        self.operationstack = OperationStack()
+        self.validationerrors = DitaTools.Tree.File.Dita.v11_validate(self.tree) 
+        self.operandbuilder = OperandBuilder()
+
+    def Transform(self):
+        """Run the transformation"""
+        self.log.debug('running transformation')
+        
+        #master loop. 
+        #loop the transformation routine until the tree is transformed, or failure. 
+        #the only failure conditions are:
+        #    - an empty stack.
+        #    - an error does not match any pattern
+        #    - an element that cannot be found
+        #the only success condition is no validation errors
+        while len(self.validationerrors) > 0:# and len(self.operationstack) > 0:
+            
+            try:
+                stackitem = OperationStackItem(self.tree)
+            except NoErrorMatchException as e:
+                self.log.error(str(e))
+                self.log.error('aborting transformation')
+                return False
+            self.operationstack.insert(0, stackitem)
+            
+            #build operand
+            check = self.operandbuilder.buildOperand(stackitem)
+            if not check:
+                #no operand found, go back up the stack
+                pass
+            
+            #try operand
+            self.log.debug('trying operand: %s' % lxml.etree.tostring(stackitem.operand.tree))
+            Tree.add(self.tree, stackitem.operand.tree)
+            
+            #test distance
+        
+    def _moveUpStack(self):
+        #if stack is empty, transform failed
+        pass
+    
+    
+
+
+
+
+
+
+
 
 
 class OperationStack(list):
@@ -28,263 +97,233 @@ class OperationStack(list):
     
     
     
-    
-    
-    
-    
 class OperationStackItem():
-    def __init__(self):
-        self._dict = {
-                    'element':          None, 
-                    'error':            None, 
-                    'operation tree':   None,
-                    'cost':             None, 
-                    'operation index':  None
-                     }
+    """The OperationStackItem contains all the information about the operation - 
+    it's operand, the cost, the error it address and the element it targets"""
+    def __init__(self, tree):
         self.log = logging.getLogger()
+        self.element = None
+        self.error = None
+        self.operand = None
+        self.operationindex = None
+
+        #get first error, initialize error object. Any errors in initialization get passed back to 
+        #Transform()
+        error = ValidationError(tree)
+        self.element = tree.xpath(error.xpath)[0]
+        self.error = error
+        self.setOperationIndex(0)
         
+    #accessor methods
     def setError(self, error):
-        if not isinstance(error, str):
-            self.log.warning('attempted to assign non-string object to error key: %s' % str(error))
+        if not isinstance(error, ValidationError):
+            self.log.warning('attempted to assign ValidationError object to error key: %s' % str(error))
             return False
-        elif not re.search(r'.*', error):
+        elif not re.search(r'.*', error.message):
             #regex tests to make sure this is what we expect?
             pass
-        self._dict['error'] = error
-        
-    def getError(self):
-        return self._dict['error']
-    
+        self.error = error
+
     def setElement(self, element):
         if not isinstance(element, lxml.etree._Element):
             self.log.warning('attempted to assign non-element object to element key: %s' % str(element))
             return False
-        self._dict['element'] = element 
-    
-    def getElement(self):
-        return self._dict['element']
-    
+        self.element = element 
+
     def setOperationTree(self, operationtree):
         #store as lxml.etree._ElementTree, or string?
-        self._dict['operation tree'] = operationtree
-    
-    def getOperationTree(self):
-        return self._dict['operation tree']
-    
-    
-    
-    
-    
-    
-    
+        self.operationtree = operationtree
 
+    def setOperationIndex(self, index):
+        if not isinstance(index, int):
+            self.log.warning('attempted to assign non-integer to operation index key: %s' % str(index))
+            return False
+        self.operationindex = index
 
-class DitaTransformer():
     
-    def __init__(self, file):
-        """Initialize"""
+    
+    
+    
+    
+        
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+class ValidationError():
+    """The validation error object contains all the information about 
+    the validation error being addressed - the message, the element 
+    being addressed, the xpath to find that element and some hints for 
+    the Operand Builder"""
+    
+    def __init__(self, tree):
         self.log = logging.getLogger()
-        self.log.debug('Initializing')
-        self.file = file
-        self.tree = lxml.etree.parse(file)
-
-        self.attemptorder = [self._attemptRename, self._attemptAppendUp, self._attemptAppendDown, self._attemptUnwrap, self._attemptInsert]
+        self.log.debug('getting validation error and element')
+        #the following attributes can be retrieved by any other object
+        #and are mainly used by OperandBuilder as hints as to what it
+        #should do
+        self._suggestedrename = None
         
-        self.unittree = "<_/>"
-        
-        #operation stack
-        #[
-            #{element: None, 
-            #error: None, 
-            #operation tree: None,
-            #cost: None, 
-            #operation index: None
-            #}
-        #]
-        self.operationstack = []
-        
-        self.validationerrors = DitaTools.Tree.File.Dita.v11_validate(self.tree) 
-
-
-
-
-        
-    def Transform(self):
-        """Run the transformation"""
-        self.log.debug('running transformation')
-        
-        #master loop
-        #loop the transformation routine until the tree is transformed, or failure. 
-        #the only failure conditions are:
-        #    - an empty stack.
-        #    - an error does not match any pattern
-        #    - an element that cannot be found
-        #the only success condition is no validation errors
-        while len(self.validationerrors) > 0:# and len(self.operationstack) > 0:
-            
-            #initialize next stack item
-            if not self._initializeNextStackItem():
-                self.log.error('transformation failed')
-                return False
-            
-            #attempt operation. this runs through all the possible operations, takes 
-            #the first one that works and remembers where it left off for future reference. 
-            
-            #if operation failed, move up stack and try again
-            
-            #if operation passed, continue 
-    
-    
-    
-    
-    
-    
-    def _initializeNextStackItem(self):
-        """Append the next entry onto the operation stack. This means get the error message
-        that the operation will try to fix and the element it applies to. 
-        
-        The operation tree and tree are set to None and will be set by other functions. The
-        operation index is set to 0 no operations have been tried on this element yet"""
-        
-        #get the first invalid element and the error message 
-        element, error = self._getFirstInvalidElement()
-        if element is None: return None
-        
-        #add to stack with no tree, cost None and first operation index
-        newstackitem = OperationStackItem()
-        
-        return newstackitem
-    
-    
-    
-    
-    
-    
-    def _getFirstInvalidElement(self):
-        #return the first element in the tree that has a validation error, and return it with its error
-        self.log.debug('finding first invalid element')
-        self.validationerrors = DitaTools.Tree.File.Dita.v11_validate(self.tree)
-        if len(self.validationerrors) == 0:
+        #retrieve the first validation error message
+        validationerrors = DitaTools.Tree.File.Dita.v11_validate(tree)
+        if len(validationerrors) == 0:
             #this will stop the main loop in Transform()
+            self.log.debug('no errors found')
             raise StopIteration
-        firsterror = self.validationerrors[0]
+        self.message = validationerrors[0]
+        self.log.debug('message: %s' % self.message)    
         
-        #there are several patterns that an error can follow, all of which need to be
-        #interpreted differently in order to find the correct element. 
-        self.log.debug('first error: %s' % firsterror)
+        #try to parse the message, return if successful
+        if self._noDeclarationParser(): pass
+        elif self._ditaElementDoesNotFollowDTDParser(): pass
+        else:
+            self.log.error('message did not match any known errors, cannot initialize')
+            raise NoErrorMatchException(self.message)
+    
+    #there are several patterns that an error can follow, all of which need to be
+    #interpreted differently in order to find the correct element. 
+    #Every validation error message must match a parser here. 
+        
+    def _noDeclarationParser(self):
         pattern = r'.*?\:\d*\:\d*:ERROR:VALID:DTD_UNKNOWN_ELEM: No declaration for element (.*)'
-        match = re.search(pattern, firsterror)
+        match = re.search(pattern, self.message)
         if match:
-            self.log.debug('\tmatched pattern: %s' % pattern)
+            self.log.debug('\tmatched pattern: "%s"' % pattern)
             #in this case, "no declaration for element $1 means that this element should not 
             #appear in the tree at all, so every instance of this element will create an error, 
             #so the first instance of this element created first error. Therefore, we only need to 
             #find the first instance of this element
-            try: 
-                element = self.tree.xpath('//%s' % match.group(1))[0]
-            except IndexError:
-                self.log.error('element not found')
-                return None, None
-            return element, firsterror
+            self.xpath = '//%s' % match.group(1)
+            self.suggestedrename = 'dita'
+            return True
+        else: 
+            return False
+
+    def _ditaElementDoesNotFollowDTDParser(self):
+        pattern = r'.*?\:\d*\:\d*:ERROR:VALID:DTD_CONTENT_MODEL: Element dita content does not follow the DTD, expecting \(topic \| concept \| task \| reference \| glossentry\)\+, got \((.*?)\)'
+        match = re.search(pattern, self.message)
+        if match:
+            self.log.debug('\tmatched pattern: "%s"' % pattern)
+            tags = match.group(1).split(' ')
+            self.log.debug('found tags: %s' % str(tags))
+            for i in tags: 
+                if i in ['topic', 'task', 'concept', 'reference']:
+                    continue
+                else:
+                    tag = i
+                    break
+            self.xpath = '//%s' % tag
+            self.suggestedrename = 'topic'
+            return True
+        else: 
+            return False
+    
+    def _emptyTopicParser(self):
+        pattern = r'.*?\:\d*\:\d*:ERROR:VALID:DTD_CONTENT_MODEL: Element topic content does not follow the DTD, expecting \(topic \| concept \| task \| reference \| glossentry\)\+, got '
+        match = re.search(pattern, self.message)
+        if match:
+            self.log.debug('\tmatched pattern: "%s"' % pattern)
+            self.xpath = '//%s' % 'topic'
+            return True
+        else: 
+            return False
+    
+    
+    
+    
+    
+    
+class OperandBuilder():
+    def __init__(self):
+        #define costs
+        self.log = logging.getLogger()
+        self.attemptorder = [self._buildRename, self._buildAppendUp, self._buildAppendDown, self._buildUnwrap, self._buildInsert]
+        pass
+    
+    def buildOperand(self, stackitem):
+        self.log.debug('building operand')
+        for i in self.attemptorder[stackitem.operationindex:]:
+            operand = i(stackitem.error, stackitem.element)
+            if operand:
+                stackitem.operand = operand
+                break
+            
+    #The various operand building routines. Every movement to be performed on the tree must 
+    #be built here. 
+    
+    def _buildRename(self, error, element):
+        """Build an operand used to rename the element. This requires building
+        a tree of units down to the position of the element in its tree, and then
+        putting the correct rename node at the correct position in the operand tree"""
+        self.log.debug('building rename operand')
+        operand = Operand()
+        #set the cost of Rename
+        operand.cost = 1
+        
+        position = Element.Element.position(element)
+        if not position[0] == 1:
+            self.log.warning('invalid position received')
+            return False
+        current = operand.tree
+        #build a tree of units down to the position of element
+        for p in position[1:]:
+            for i in range(0, p):
+                new = lxml.etree.Element('_')
+                current.append(new)
+            current = new
+        if error.suggestedrename: 
+            #current is the unit node right now. 
+            #make current the node that will rename element
+            Element.Element.add(current, lxml.etree.Element(error.suggestedrename))
+            Element.Element.add(current, Element.Element.invert(lxml.etree.Element(element.tag)))
+            return operand
         else:
-            self.log.error('first error did not match any patterns, aborting')
-            return None, None
-        
-    
-    
-    
-    
-    def _attemptOperation(self):
-        
-
-        #while true
-    
-            #build attempt
+            #no idea where to start, no dice. 
+            return None
             
-            #if false, no more operations available. Return false. 
-            
-            #apply the operation
     
-            #"getting closer" test
-   
-            #if getting closer test failed, reverse and continue
-            
-            #if successful, return True
-        
+    def _buildAppendUp(self):
+        self.log.warning('this function is not yet written')
         pass
-        
-        
-        
-        
-        
-    def _buildAttempt(self):
-        
-        #look at the last entry of the stack
-        #get the current element and error message and operation index. 
-        
-        #build tree for current operation
-        
-        #if no more operations, attempt failed, return false
-        
-        #return the operation tree
+    
+    def _buildAppendDown(self):
+        self.log.warning('this function is not yet written')
         pass
-        
-        
-        
-        
-        
-    def _moveUpStack(self):
-        #if stack is empty, transform failed
+    
+    def _buildUnwrap(self):
+        self.log.warning('this function is not yet written')
+        pass
+    
+    def _buildInsert(self):
+        self.log.warning('this function is not yet written')
         pass
     
     
-    def _attemptRename(self):
-        pass
     
     
-    def _attemptAppendUp(self):
-        pass
-    
-    
-    def _attemptAppendDown(self):
-        pass
-    
-    
-    def _attemptUnwrap(self):
-        pass
-    
-    
-    def _attemptInsert(self):
-        pass
+class Operand():
+    def __init__(self):
+        #unit tree by defaul
+        self.tree = lxml.etree.fromstring('<_/>')
+        self.cost = None
     
     
 
 
 
-#function attempt order: [rename, appendDown, appendUp . . .]
 
-
-#initialize operations stack
-    #[target element, operand tree, cost, operation that created this operand (rename, append, etc)]
-
-
-
-
-
-#parse the tree
-
-#initialize stack, first entry is first invalid element
-
-
-#while True?
     
-    #all operations are applied to last entry in stack
-       
-    #attemptOperations()
     
-    #if operation successful, append next element to stack and continue
     
-    #if operation unsuccessful, take last element off stack and continue
+
+
+
 
 
 
@@ -296,6 +335,8 @@ if __name__ == "__main__":
     
     optparser.add_option("-i", "--input", type="string", dest="input", default='', 
     help="Path to the input file")
+    optparser.add_option("-o", "--output", type="string", dest="output", default='', 
+    help="Path to the input file")
     optparser.add_option("--debug", action="store_true", dest="debug",
     help="Turn this on to activate debug logging.")
     #optparser.add_option( "-t", "--tempdir", type="string", dest="tempdir", default=None, 
@@ -304,6 +345,7 @@ if __name__ == "__main__":
     (options, args) = optparser.parse_args()
     input = options.input
     debug = options.debug
+    output = options.output
     
     #this next block ensures that the user can pass the input as a positional
     #argument, without the -i
@@ -343,9 +385,7 @@ if __name__ == "__main__":
     #perform transformation
     transformer.Transform()
     
-    pass
-    
-    
+    DitaTools.Tree.File.Dita.write_tree_to_file(transformer.tree, output)
     
     
     

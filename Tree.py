@@ -48,60 +48,60 @@ def add(tree1, tree2):
     ordering1 = ordering(tree1)
     ordering2 = ordering(tree2)
     
-    log.debug('ordering1: %s' % str(ordering1))
-    log.debug('ordering2: %s' % str(ordering2))
+    #log.debug('ordering1: %s' % str(ordering1))
+    #log.debug('ordering2: %s' % str(ordering2))
     
     #iterate over ordering2, apply to ordering1
     for index, position2 in enumerate(ordering2):
-        log.debug('index: %s\tposition2: %s' % (str(index), str(position2)))
+        #log.debug('index: %s\tposition2: %s' % (str(index), str(position2)))
         
         node2 = getNode(tree2, position2)
         
         #if index greater then len(ordering1), append to appropriate node. 
         #if positions not equal, append to appropriate node 
         if index == len(ordering1):
-            log.debug('\tindex == len(ordering1)')
+            #log.debug('\tindex == len(ordering1)')
             
             node3 = lxml.etree.Element(node2.tag, node2.attrib) #copy.copy(node2)
-            log.debug('\tnode3: %s' % str(node3))
+            #log.debug('\tnode3: %s' % str(node3))
                       
             parent1 = getNode(tree1, position2[:-1])
-            log.debug('\tparent1: %s' % str(parent1))
+            #log.debug('\tparent1: %s' % str(parent1))
                 
             parent1.append(node3)
             
             position3 = Element.Element.position(node3)
-            log.debug('\tposition3: %s' % str(position3))
+            #log.debug('\tposition3: %s' % str(position3))
             
             if not position3 == position2:
-                log.debug('\t\tposition2 != position3, fail')
+                #log.debug('\t\tposition2 != position3, fail')
                 continue
             
             ordering1.insert(index, position3)
-            log.debug('\tordering1: %s' % str(ordering1))
+            #log.debug('\tordering1: %s' % str(ordering1))
             continue
  
  
         elif position2 != ordering1[index]:
-            log.debug('\tposition2 != ordering1[index]')
+            #log.debug('\tposition2 != ordering1[index]')
             
             node3 = lxml.etree.Element(node2.tag, node2.attrib) #copy.copy(node2)
-            log.debug('\tnode3: %s' % str(node3))
+            #log.debug('\tnode3: %s' % str(node3))
             
             parent1 = getNode(tree1, position2[:-1])
-            log.debug('\tparent1: %s' % str(parent1))
+            #log.debug('\tparent1: %s' % str(parent1))
                 
             parent1.append(node3)
             
             position3 = Element.Element.position(node3)
-            log.debug('\tposition3: %s' % str(position3))
+            #log.debug('\tposition3: %s' % str(position3))
             
             if not position3 == position2:
-                log.debug('\t\tposition2 != position3, fail')
+                #log.debug('\t\tposition2 != position3, fail')
                 continue
             
             ordering1.insert(index, position3)
-            log.debug('\tordering1: %s' % str(ordering1))
+            #log.debug('\tordering1: %s' % str(ordering1))
             continue
 
         
@@ -119,31 +119,31 @@ def add(tree1, tree2):
     #done. Now remove trailing units
     #easiest way to do this is to iterate over the tree in reverse. 
     reversed = []
-    log.debug('removing trailing unit nodes')
+    #log.debug('removing trailing unit nodes')
     for i in tree1.getroot().iter(): reversed.insert(0, i)
     for i in reversed:
-        log.debug('testing: %s' % str(i))
+        #log.debug('testing: %s' % str(i))
         if not (i.tag == '_'):
-            log.debug('\ttag is not _, skip')
+            #log.debug('\ttag is not _, skip')
             continue
         
         if not (i.attrib == {}):
-            log.debug('\tattributes not blank, skip')
+            #log.debug('\tattributes not blank, skip')
             continue
         
         if not (len(i) == 0):
-            log.debug('\tlength is not 0, skip')
+            #log.debug('\tlength is not 0, skip')
             continue
          
         if not (i.text is None or re.match(r'^\s*$', i.text)):
-            log.debug('\ttext is %s, skip' % str(i.text))
+            #log.debug('\ttext is %s, skip' % str(i.text))
             continue
         
         if not (i.tail is None or re.match(r'^\s*$', i.tail)):
-            log.debug('\ttail is %s, skip' % str(i.tail))
+            #log.debug('\ttail is %s, skip' % str(i.tail))
             continue
         
-        log.debug('removing unit node: %s' % str(i))
+        #log.debug('removing unit node: %s' % str(i))
         parent = i.getparent()
         if parent is None:
             #happens if i is the root
