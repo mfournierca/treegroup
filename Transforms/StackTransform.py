@@ -2,7 +2,9 @@
 
 import logging, lxml.etree, sys, optparse, re, copy
 
-import Tree, Element.Element
+sys.path.insert(0, os.path.join(os.path.dirname(__file__), '..'))
+
+import Tree.Tree, Element.Element
 
 import DitaTools.Tree.File.Dita
 

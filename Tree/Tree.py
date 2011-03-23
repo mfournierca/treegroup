@@ -1,6 +1,7 @@
 import lxml.etree
-import copy, logging, re
+import copy, logging, re, sys, os.path
 
+sys.path.insert(0, os.path.join(os.path.dirname(__file__), '..'))
 import Element.Element
 
 
