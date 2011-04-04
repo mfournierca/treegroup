@@ -1,0 +1,11 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE dita PUBLIC "-//OASIS//DTD DITA Composite//EN" "ditabase.dtd">
+<dita>
+    <topic id="1"/>
+    <topic id="2">
+        <title id="3">
+            <b id="4"/>
+        </title>
+        <body id="5"/>
+    </topic>
+</dita>
