@@ -12,9 +12,9 @@ class test_equal(unittest.TestCase):
     def setUp(self):
         """set up data used in the tests, called before each test function execution"""
         
-        self.testfile = os.path.join(os.path.dirname(__file__), 'testfiles', 'Tree', 'Equal', 'TreeTestFile_reference.xml')
-        self.testtree = lxml.etree.parse(self.testfile)
-
+        self.testfilesdir = os.path.join(os.path.dirname(__file__), '..', 'testfiles', 'Tree', 'Equal')
+        self.testtree = lxml.etree.parse(os.path.join(self.testfilesdir, 'TreeTestFile_reference.xml'))
+        self.log = logging.getLogger()
     
     def test_SameTree(self):
         testtreecopy = copy.deepcopy(self.testtree)
@@ -23,31 +23,31 @@ class test_equal(unittest.TestCase):
         
     
     def test_SeparateTrees(self):
-        comparetree = lxml.etree.parse(os.path.join(os.path.dirname(__file__), 'testfiles', 'Tree', 'Equal', 'TreeTestFile_equal1.xml'))
+        comparetree = lxml.etree.parse(os.path.join(self.testfilesdir, 'TreeTestFile_equal1.xml'))
         result = Tree.equal(self.testtree, comparetree)
         self.assertTrue(result, "equal() failed: expected %s, got %s" % (str(True), str(result)))
         
     
     def test_NotEqual_NoChildrenOfRoot(self):
-        comparetree = lxml.etree.parse(os.path.join(os.path.dirname(__file__), 'testfiles', 'Tree', 'Equal', 'TreeTestFile_notequal1.xml'))
+        comparetree = lxml.etree.parse(os.path.join(self.testfilesdir, 'TreeTestFile_notequal1.xml'))
         result = Tree.equal(self.testtree, comparetree)
         self.assertIs(result, False, "equal() failed: expected %s, got %s" % (str(False), str(result)))
         
         
     def test_NotEqual_NotNested(self):
-        comparetree = lxml.etree.parse(os.path.join(os.path.dirname(__file__), 'testfiles', 'Tree', 'Equal', 'TreeTestFile_notequal2.xml'))
+        comparetree = lxml.etree.parse(os.path.join(self.testfilesdir, 'TreeTestFile_notequal2.xml'))
         result = Tree.equal(self.testtree, comparetree)
         self.assertIs(result, False, "equal() failed: expected %s, got %s" % (str(False), str(result)))
     
     
     def test_NotEqual_IdsDiffer(self):
-        comparetree = lxml.etree.parse(os.path.join(os.path.dirname(__file__), 'testfiles', 'Tree', 'Equal', 'TreeTestFile_notequal3.xml'))
+        comparetree = lxml.etree.parse(os.path.join(self.testfilesdir, 'TreeTestFile_notequal3.xml'))
         result = Tree.equal(self.testtree, comparetree)
         self.assertIs(result, False, "equal() failed: expected %s, got %s" % (str(False), str(result)))
     
     
     def test_NotEqual_TagsDiffer(self):
-        comparetree = lxml.etree.parse(os.path.join(os.path.dirname(__file__), 'testfiles', 'Tree', 'Equal', 'TreeTestFile_notequal4.xml'))
+        comparetree = lxml.etree.parse(os.path.join(self.testfilesdir, 'TreeTestFile_notequal4.xml'))
         result = Tree.equal(self.testtree, comparetree)
         self.assertIs(result, False, "equal() failed: expected %s, got %s" % (str(False), str(result)))
 
@@ -59,7 +59,8 @@ class test_ordering(unittest.TestCase):
     """Test the ordering() function"""
     
     def setUp(self):
-        self.testfile = os.path.join(os.path.dirname(__file__), 'testfiles', 'Tree', 'Ordering', 'TreeTestFile_reference.xml')
+        self.log = logging.getLogger()
+        self.testfile = os.path.join(os.path.dirname(__file__), '..', 'testfiles', 'Tree', 'Ordering', 'TreeTestFile_reference.xml')
         self.testtree = lxml.etree.parse(self.testfile)
         
         self.ordering = Tree.ordering(self.testtree)
@@ -112,7 +113,7 @@ class test_ordering(unittest.TestCase):
 class test_getNode(unittest.TestCase):
     
     def setUp(self):
-        self.testfile = os.path.join(os.path.dirname(__file__), 'testfiles', 'Tree', 'GetNode', 'TreeTestFile_reference.xml')
+        self.testfile = os.path.join(os.path.dirname(__file__), '..', 'testfiles', 'Tree', 'GetNode', 'TreeTestFile_reference.xml')
         self.testtree = lxml.etree.parse(self.testfile)
     
     
@@ -151,7 +152,7 @@ class test_add(unittest.TestCase):
     
     def setUp(self):
         self.log = logging.getLogger()
-    
+        self.testfilesdir = os.path.join(os.path.dirname(__file__), '..', 'testfiles', 'Tree', 'Add')
     
     
     def test_SimpleTrees_EqualStructures(self):
@@ -162,8 +163,8 @@ class test_add(unittest.TestCase):
         
         expectedtree = lxml.etree.fromstring('<e> <g id="2"/> </e>')
         
-        tree1 = lxml.etree.parse(os.path.join(os.path.dirname(__file__), 'testfiles', 'Tree', 'Add', 'TreeTestFile_add1.xml'))
-        tree2 = lxml.etree.parse(os.path.join(os.path.dirname(__file__), 'testfiles', 'Tree', 'Add', 'TreeTestFile_add2.xml'))
+        tree1 = lxml.etree.parse(os.path.join(self.testfilesdir, 'TreeTestFile_add1.xml'))
+        tree2 = lxml.etree.parse(os.path.join(self.testfilesdir, 'TreeTestFile_add2.xml'))
     
         Tree.add(tree1, tree2)
         self.assertTrue(Tree.equal(tree1, expectedtree), "Add failed, created incorrect tree")
@@ -189,8 +190,8 @@ class test_add(unittest.TestCase):
                                         </c>
                                         """)
         
-        tree1 = lxml.etree.parse(os.path.join(os.path.dirname(__file__), 'testfiles', 'Tree', 'Add', 'TreeTestFile_add3.xml'))
-        tree2 = lxml.etree.parse(os.path.join(os.path.dirname(__file__), 'testfiles', 'Tree', 'Add', 'TreeTestFile_add4.xml'))
+        tree1 = lxml.etree.parse(os.path.join(self.testfilesdir, 'TreeTestFile_add3.xml'))
+        tree2 = lxml.etree.parse(os.path.join(self.testfilesdir, 'TreeTestFile_add4.xml'))
     
         Tree.add(tree1, tree2)
         self.assertTrue(Tree.equal(tree1, expectedtree), "Add failed, created incorrect tree")
@@ -216,8 +217,8 @@ class test_add(unittest.TestCase):
                                             </a>
                                             """)
         
-        tree1 = lxml.etree.parse(os.path.join(os.path.dirname(__file__), 'testfiles', 'Tree', 'Add', 'TreeTestFile_add3.xml'))
-        tree2 = lxml.etree.parse(os.path.join(os.path.dirname(__file__), 'testfiles', 'Tree', 'Add', 'TreeTestFile_unit.xml'))
+        tree1 = lxml.etree.parse(os.path.join(self.testfilesdir, 'TreeTestFile_add3.xml'))
+        tree2 = lxml.etree.parse(os.path.join(self.testfilesdir, 'TreeTestFile_unit.xml'))
         
         Tree.add(tree1, tree2)
         self.assertTrue(Tree.equal(tree1, expectedtree), "Add failed, created incorrect tree")
@@ -236,8 +237,8 @@ class test_add(unittest.TestCase):
                                                     <g id="1"/>
                                                 </b>""")
         
-        tree1 = lxml.etree.parse(os.path.join(os.path.dirname(__file__), 'testfiles', 'Tree', 'Add', 'TreeTestFile_add5.xml'))
-        tree2 = lxml.etree.parse(os.path.join(os.path.dirname(__file__), 'testfiles', 'Tree', 'Add', 'TreeTestFile_add6.xml'))
+        tree1 = lxml.etree.parse(os.path.join(self.testfilesdir, 'TreeTestFile_add5.xml'))
+        tree2 = lxml.etree.parse(os.path.join(self.testfilesdir, 'TreeTestFile_add6.xml'))
     
         Tree.add(tree1, tree2)
         self.assertTrue(Tree.equal(tree1, expectedtree), "Add failed, created incorrect tree")
@@ -267,8 +268,8 @@ class test_add(unittest.TestCase):
                                                 </c>
                                             """)
         
-        tree1 = lxml.etree.parse(os.path.join(os.path.dirname(__file__), 'testfiles', 'Tree', 'Add', 'TreeTestFile_add7.xml'))
-        tree2 = lxml.etree.parse(os.path.join(os.path.dirname(__file__), 'testfiles', 'Tree', 'Add', 'TreeTestFile_add8.xml'))
+        tree1 = lxml.etree.parse(os.path.join(self.testfilesdir, 'TreeTestFile_add7.xml'))
+        tree2 = lxml.etree.parse(os.path.join(self.testfilesdir, 'TreeTestFile_add8.xml'))
     
         Tree.add(tree1, tree2)
         self.assertTrue(Tree.equal(tree1, expectedtree), "Add failed, created incorrect tree. Expected %s, got %s" \
@@ -296,8 +297,8 @@ class test_add(unittest.TestCase):
                                                 </c>
                                             """)
         
-        tree1 = lxml.etree.parse(os.path.join(os.path.dirname(__file__), 'testfiles', 'Tree', 'Add', 'TreeTestFile_add9.xml'))
-        tree2 = lxml.etree.parse(os.path.join(os.path.dirname(__file__), 'testfiles', 'Tree', 'Add', 'TreeTestFile_add10.xml'))
+        tree1 = lxml.etree.parse(os.path.join(self.testfilesdir, 'TreeTestFile_add9.xml'))
+        tree2 = lxml.etree.parse(os.path.join(self.testfilesdir, 'TreeTestFile_add10.xml'))
     
         Tree.add(tree1, tree2)
         self.assertTrue(Tree.equal(tree1, expectedtree), "Add failed, created incorrect tree. Expected %s, got %s" \
@@ -324,8 +325,8 @@ class test_add(unittest.TestCase):
                                             </c>
                                             """)
                                                 
-        tree1 = lxml.etree.parse(os.path.join(os.path.dirname(__file__), 'testfiles', 'Tree', 'Add', 'TreeTestFile_add11.xml'))
-        tree2 = lxml.etree.parse(os.path.join(os.path.dirname(__file__), 'testfiles', 'Tree', 'Add', 'TreeTestFile_add12.xml'))
+        tree1 = lxml.etree.parse(os.path.join(self.testfilesdir, 'TreeTestFile_add11.xml'))
+        tree2 = lxml.etree.parse(os.path.join(self.testfilesdir, 'TreeTestFile_add12.xml'))
     
         Tree.add(tree1, tree2)
         self.assertTrue(Tree.equal(tree1, expectedtree), "Add failed, created incorrect tree. Expected %s, got %s" \
@@ -355,7 +356,7 @@ class test_invert(unittest.TestCase):
                                             </Z>
                                             """)
                                                 
-        tree = lxml.etree.parse(os.path.join(os.path.dirname(__file__), 'testfiles', 'Tree', 'Invert', 'TreeTestFile_invert1.xml'))
+        tree = lxml.etree.parse(os.path.join(os.path.dirname(__file__),  '..', 'testfiles', 'Tree', 'Invert', 'TreeTestFile_invert1.xml'))
         Tree.invert(tree)
         self.assertTrue(Tree.equal(tree, expectedtree), "invert() failed, created incorrect tree. Expected %s, got %s" \
                         % (lxml.etree.tostring(expectedtree, pretty_print=True), lxml.etree.tostring(tree, pretty_print=True)))
@@ -382,7 +383,7 @@ class test_invert(unittest.TestCase):
                                             </Z>
                                             """)
                                                 
-        tree = lxml.etree.parse(os.path.join(os.path.dirname(__file__), 'testfiles', 'Tree', 'Invert', 'TreeTestFile_invert2.xml'))
+        tree = lxml.etree.parse(os.path.join(os.path.dirname(__file__), '..', 'testfiles', 'Tree', 'Invert', 'TreeTestFile_invert2.xml'))
         Tree.invert(tree)
         self.assertTrue(Tree.equal(tree, expectedtree), "invert() failed, created incorrect tree. Expected %s, got %s" \
                         % (lxml.etree.tostring(expectedtree, pretty_print=True), lxml.etree.tostring(tree, pretty_print=True)))
@@ -400,7 +401,7 @@ class test_invert(unittest.TestCase):
                                             <_/>
                                             """)
                                                 
-        tree = lxml.etree.parse(os.path.join(os.path.dirname(__file__), 'testfiles', 'Tree', 'Invert', 'TreeTestFile_invert3.xml'))
+        tree = lxml.etree.parse(os.path.join(os.path.dirname(__file__),  '..', 'testfiles', 'Tree', 'Invert', 'TreeTestFile_invert3.xml'))
     
         Tree.invert(tree)
         self.assertTrue(Tree.equal(tree, expectedtree), "invert() failed, created incorrect tree. Expected %s, got %s" \
@@ -419,7 +420,7 @@ class test_invert(unittest.TestCase):
                                         <_/>
                                         """)
                                                 
-        tree1 = lxml.etree.parse(os.path.join(os.path.dirname(__file__), 'testfiles', 'Tree', 'Invert', 'TreeTestFile_invert2.xml'))
+        tree1 = lxml.etree.parse(os.path.join(os.path.dirname(__file__),  '..', 'testfiles', 'Tree', 'Invert', 'TreeTestFile_invert2.xml'))
         tree2 = copy.deepcopy(tree1)
         Tree.invert(tree1)
         Tree.add(tree1, tree2)
