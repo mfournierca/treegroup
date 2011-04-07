@@ -20,11 +20,17 @@ class test_equal(unittest.TestCase):
         testtreecopy = copy.deepcopy(self.testtree)
         result = Tree.equal(self.testtree, testtreecopy)
         self.assertTrue(result, "equal() failed: expected %s, got %s" % (str(True), str(result)))
+        #test elements
+        result = Tree.equal(self.testtree.getroot(), testtreecopy.getroot())
+        self.assertTrue(result, "equal() failed: expected %s, got %s" % (str(True), str(result)))
         
     
     def test_SeparateTrees(self):
         comparetree = lxml.etree.parse(os.path.join(self.testfilesdir, 'TreeTestFile_equal1.xml'))
         result = Tree.equal(self.testtree, comparetree)
+        self.assertTrue(result, "equal() failed: expected %s, got %s" % (str(True), str(result)))
+        #test elements
+        result = Tree.equal(self.testtree.getroot(), comparetree.getroot())
         self.assertTrue(result, "equal() failed: expected %s, got %s" % (str(True), str(result)))
         
     
@@ -32,29 +38,39 @@ class test_equal(unittest.TestCase):
         comparetree = lxml.etree.parse(os.path.join(self.testfilesdir, 'TreeTestFile_notequal1.xml'))
         result = Tree.equal(self.testtree, comparetree)
         self.assertIs(result, False, "equal() failed: expected %s, got %s" % (str(False), str(result)))
+        #test as elements
+        result = Tree.equal(self.testtree.getroot(), comparetree.getroot())
+        self.assertIs(result, False, "equal() failed: expected %s, got %s" % (str(False), str(result)))
         
         
     def test_NotEqual_NotNested(self):
         comparetree = lxml.etree.parse(os.path.join(self.testfilesdir, 'TreeTestFile_notequal2.xml'))
         result = Tree.equal(self.testtree, comparetree)
         self.assertIs(result, False, "equal() failed: expected %s, got %s" % (str(False), str(result)))
-    
+        #test as elements
+        result = Tree.equal(self.testtree.getroot(), comparetree.getroot())
+        self.assertIs(result, False, "equal() failed: expected %s, got %s" % (str(False), str(result)))
     
     def test_NotEqual_IdsDiffer(self):
         comparetree = lxml.etree.parse(os.path.join(self.testfilesdir, 'TreeTestFile_notequal3.xml'))
         result = Tree.equal(self.testtree, comparetree)
         self.assertIs(result, False, "equal() failed: expected %s, got %s" % (str(False), str(result)))
-    
+        #test as elements
+        result = Tree.equal(self.testtree.getroot(), comparetree.getroot())
+        self.assertIs(result, False, "equal() failed: expected %s, got %s" % (str(False), str(result)))
     
     def test_NotEqual_TagsDiffer(self):
         comparetree = lxml.etree.parse(os.path.join(self.testfilesdir, 'TreeTestFile_notequal4.xml'))
         result = Tree.equal(self.testtree, comparetree)
         self.assertIs(result, False, "equal() failed: expected %s, got %s" % (str(False), str(result)))
-
+        #test as elements
+        result = Tree.equal(self.testtree.getroot(), comparetree.getroot())
+        self.assertIs(result, False, "equal() failed: expected %s, got %s" % (str(False), str(result)))
+        
     def test_NotATree(self):
         result = Tree.equal(None, None)
         self.assertIs(result, False, "equal() failed: expected %s, got %s" % (str(False), str(result)))
-
+        
 
 
 

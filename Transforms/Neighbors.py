@@ -50,7 +50,7 @@ class RenameGenerator:
         if len(suggestedrenames) == 0:
             #if no names, and target element is root, generate rename to dita operand. Otherwise abort.    
             if self.sourcetree.getroot() is self.targetelement:
-                operand = Tree.Tree.add(lxml.etree.fromstring('<dita/>'), lxml.etree.Element(self.targetelement.tag, self.targetelement.attrib)) 
+                operand = Tree.Tree.add(lxml.etree.fromstring('<dita/>'), Tree.Tree.invert(lxml.etree.Element(self.targetelement.tag, self.targetelement.attrib))) 
                 return [operand]
             else:
                 return None

@@ -27,7 +27,7 @@ class test_RenameGenerator(unittest.TestCase):
         
         generator = Neighbors.RenameGenerator()
         result = generator.generateRenameOperands(tree, targetelement, errormessage)
-        self.assertTrue(Tree.Tree.equal(result, expectedtree), 'Rename() returned %s, expected %s' % (lxml.etree.tostring(result), lxml.etree.tostring(expectedtree)))
+        self.assertTrue(Tree.Tree.equal(result[0], expectedtree), 'Rename() returned %s, expected %s' % (lxml.etree.tostring(result), lxml.etree.tostring(expectedtree)))
 
         
 #    def test_2(self):

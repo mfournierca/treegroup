@@ -21,7 +21,12 @@ def invert(tree):
         
     Remember that the tree itself is not returned, only a reference to it. 
     """
-    for element in tree.getroot().iter():
+    
+    if isinstance(tree, lxml.etree._Element):
+        iterateover = tree
+    else:
+        iterateover = tree.getroot()
+    for element in iterateover.iter():
         Element.Element.invert(element)
 
     return tree
