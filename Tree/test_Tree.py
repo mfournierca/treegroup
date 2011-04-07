@@ -51,6 +51,9 @@ class test_equal(unittest.TestCase):
         result = Tree.equal(self.testtree, comparetree)
         self.assertIs(result, False, "equal() failed: expected %s, got %s" % (str(False), str(result)))
 
+    def test_NotATree(self):
+        result = Tree.equal(None, None)
+        self.assertIs(result, False, "equal() failed: expected %s, got %s" % (str(False), str(result)))
 
 
 

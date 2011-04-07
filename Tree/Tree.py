@@ -160,6 +160,16 @@ def equal(tree1, tree2):
     """Return True if the trees are equal, False otherwise"""
     #trees are equal if their orderings are of the same length, have the same 
     #positions in the same order, and point to equal nodes. 
+
+    #check that correct object is passed. 
+    #In lxml, ElementTrees are distinct from Elements in that ElementTrees have doc information
+    #like xml and dtd declaration, entity decalarations, etc. For our purposes of the Tree Group 
+    #theory, these differences are irrelevant, so we can treat lxml ElementTree and Element objects 
+    #the same. 
+    if not (isinstance(tree1, lxml.etree._ElementTree) or isinstance(tree1, lxml.etree._Element)):
+        return False
+    elif not (isinstance(tree2, lxml.etree._ElementTree) or isinstance(tree2, lxml.etree._Element)):
+        return False
     
     ordering1 = ordering(tree1)
     ordering2 = ordering(tree2)
