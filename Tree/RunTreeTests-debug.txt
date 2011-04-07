@@ -1,0 +1,33 @@
+test_Tre.        test_AddUnit     DEBUG		
+test_Tre.        test_AddUnit     DEBUG		
+test_Tre.        test_AddUnit     DEBUG		starting test_AddUnit
+test_Tre.test_ComplexTrees_Eq     DEBUG		
+test_Tre.test_ComplexTrees_Eq     DEBUG		
+test_Tre.test_ComplexTrees_Eq     DEBUG		starting test_ComplexTrees_EqualStructures
+test_Tre.test_ComplexTrees_Se     DEBUG		
+test_Tre.test_ComplexTrees_Se     DEBUG		
+test_Tre.test_ComplexTrees_Se     DEBUG		starting test_ComplexTrees_SeveralUnitsInOperand
+test_Tre.test_ComplexTrees_Tr     DEBUG		
+test_Tre.test_ComplexTrees_Tr     DEBUG		
+test_Tre.test_ComplexTrees_Tr     DEBUG		starting test_ComplexTrees_TrailingUnitsInResult
+test_Tre.test_ComplexTrees_Un     DEBUG		
+test_Tre.test_ComplexTrees_Un     DEBUG		
+test_Tre.test_ComplexTrees_Un     DEBUG		starting test_ComplexTrees_UnequalStructures
+test_Tre.test_SimpleTrees_Equ     DEBUG		
+test_Tre.test_SimpleTrees_Equ     DEBUG		
+test_Tre.test_SimpleTrees_Equ     DEBUG		starting test_SimpleTrees_EqualStructures
+test_Tre.test_SimpleTrees_Une     DEBUG		
+test_Tre.test_SimpleTrees_Une     DEBUG		
+test_Tre.test_SimpleTrees_Une     DEBUG		starting test_SimpleTrees_UnequalStructures
+test_Tre.    test_ComplexTree     DEBUG		
+test_Tre.    test_ComplexTree     DEBUG		
+test_Tre.    test_ComplexTree     DEBUG		starting test_ComplexTree
+test_Tre.test_InverseAddition     DEBUG		
+test_Tre.test_InverseAddition     DEBUG		
+test_Tre.test_InverseAddition     DEBUG		starting test_InverseAddition
+test_Tre.     test_SimpleTree     DEBUG		
+test_Tre.     test_SimpleTree     DEBUG		
+test_Tre.     test_SimpleTree     DEBUG		starting test_SimpleTree
+test_Tre.       test_UnitTree     DEBUG		
+test_Tre.       test_UnitTree     DEBUG		
+test_Tre.       test_UnitTree     DEBUG		starting test_UnitTree
