@@ -121,7 +121,13 @@ def add(tree1, tree2):
     #easiest way to do this is to iterate over the tree in reverse. 
     reversed = []
     #log.debug('removing trailing unit nodes')
-    for i in tree1.getroot().iter(): reversed.insert(0, i)
+    if isinstance(tree1, lxml.etree._ElementTree): 
+        for i in tree1.getroot().iter(): reversed.insert(0, i)
+    elif isinstance(tree1, lxml.etree._Element):
+        for i in tree1.iter(): reversed.insert(0, i)
+    else:
+        log.warning('tree1 is %s, expected lxml.etree._Element or lxml.etree._ElementTree' % str(tree1))
+        
     for i in reversed:
         #log.debug('testing: %s' % str(i))
         if not (i.tag == '_'):

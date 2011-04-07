@@ -1,11 +1,2 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE dita PUBLIC "-//OASIS//DTD DITA Composite//EN" "ditabase.dtd" []>
-<a>
-    <b id='1'/>
-    <b id='2'>
-        <c id='3'>
-            <d id='4'/>
-        </c>
-        <b id="5"/>
-    </b>
-</a>
+<a/>
