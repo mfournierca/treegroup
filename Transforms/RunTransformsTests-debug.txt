@@ -1,1 +1,0 @@
-Neighbor.   parseErrorMessage     DEBUG		testing pattern: .*?\:\d*\:\d*:ERROR:VALID:DTD_CONTENT_MODEL: Element (.*?) content does not follow the DTD, expecting (.*?)\+, got \((.*?)\)
