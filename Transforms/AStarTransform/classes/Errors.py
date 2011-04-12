@@ -30,7 +30,10 @@ class ErrorParser:
         
         #start testing patterns. Each parsing function must return a parent tag, an expectedTags and 
         #an actualTags list, or None if the pattern did not match. 
-        for f in [self._parsePattern1, self._parsePattern2]: 
+        #Note that the order of the parsing functions in the list below is important. Some parsers only
+        #create valid results on the assumption that other parsers have run before them, ie _parsePattern1
+        #and _parsePattern3. 
+        for f in [self._parsePattern1, self._parsePattern2, self._parsePattern3]: 
             self._parentTag, self._expectedTags, self._actualTags = f()
             if (not self._expectedTags is None) and (not self._actualTags is None):
                 break
@@ -54,30 +57,112 @@ class ErrorParser:
         #the links between the two lists are built. Now we can use this information to get the
         #targetElement and to build the acceptableTags list. We do this by iterating over the 
         #actualTags list and expectedTags lists separately and comparing the results. 
-        
-        #search the the actualTags list to get the targetElement and acceptableTags list. 
+        #This is done in the _getTargetAndAcceptableTagsFrom  . . . functions 
         self.log.debug('finding targetElement')
-        self._getTargetAndAcceptableTagsFromActualTags()
-#        self._getTargetAndAcceptableTagsFromExpectedTags()
+        targetCandidate1 = self._getTargetAndAcceptableTagsFromActualTags()
+        targetCandidate2 = self._getTargetAndAcceptableTagsFromExpectedTags()
 
-
-
-
+        #choose which targetCandidate to use. 
+        if targetCandidate2 is None: 
+            self.log.debug('targetCandidate2 is None, targetCandidate1 is targetElement: %s' % str(targetCandidate1))
+            self.targetElement = targetCandidate1
+            return True
+        elif targetCandidate1 is None: 
+            self.log.debug('targetCandidate1 is None, targetCandidate2 is targetElement: %s' % str(targetCandidate2))
+            self.targetElement = targetCandidate2
+            return True
+        
 
 
 
     #===========================================================================
-    # functions
+    # functions to process expectedTags
     #===========================================================================
     
+    def _getTargetAndAcceptableTagsFromExpectedTags(self):
+        #try and get the targetElemenet and accpetableTags by looking at the expectedTags list
+        targetTag, targetActualIndex = self._expectedTagsFindTargetTag()
+        if targetTag is None and targetActualIndex is None: 
+            self.log.debug('\ttargetTag and targetActualIndex not found in atualTags, therefore no targetCandidate')
+            return None
+        targetCandidate = self._findTargetTagFromActualIndex(targetActualIndex)
+##        acceptableTagsCandidate = self._expectedTagsFindAcceptableTags()
+        return targetCandidate
+       
+    
+    
+    def _expectedTagsFindTargetTag(self):
+        #examine the expectedTags list and get the targetTag and targetActualIndex, ie the tag
+        #of the targetElement and its index in the actualTags list.
+        #To do this, search the expectedTags list for any unlinked mandatory tags. If found, the 
+        #next linked entry in expectedTags will link to the target in actualTags
+        self.log.debug('searching expectedTags for target') 
+        targetExpectedIndex = None
+        breakOnNextLinked = False
+        for index, expected in enumerate(self._expectedTags):
+            self.log.debug('\ttesting %s' % str(expected))
+            if expected[1] is not None and breakOnNextLinked: 
+                targetExpectedIndex = index
+                break
+            elif expected[1] is not None: 
+                continue
+            else:
+                pass
+            tags = expected[0].strip()
+            if re.search(r'.*[\w\+]$', tags):
+                self.log.debug('\t\tthis is a required entry with no link') 
+                #in this case, the targetElement corresponds to the actualTags entry
+                #linked to by the next entry in the expectedTags list. 
+                breakOnNextLinked = True
+        else:
+            self.log.debug('target not found in expectedTags')
+            return None, None
+        actualIndex = self._expectedTags[targetExpectedIndex][1]
+        actualTag = self._actualTags[actualIndex][0]
+        self.log.debug('actualTag: %s\tactualIndex: %s' % (actualTag, actualIndex))
+        return actualTag, actualIndex
+            
+            
+            
+    #===========================================================================
+    # functions to process actualTags
+    #===========================================================================
+            
     def _getTargetAndAcceptableTagsFromActualTags(self):
+        #try to get the targetElement and acceptable tags by looking at the actualTags list. 
         targetTag, targetActualIndex = self._actualTagsFindTargetTag()
-        targetCandidate = self._actualTagsFindTargetElement(targetActualIndex)
+        if targetTag is None and targetActualIndex is None: 
+            self.log.debug('\ttargetTag and targetActualIndex not found in atualTags, therefore no targetCandidate')
+            return None
+        targetCandidate = self._findTargetTagFromActualIndex(targetActualIndex)
 #        self.acceptableTags = self._actualTagsFindAcceptableTags()
         return targetCandidate
     
+            
+    def _actualTagsFindTargetTag(self):
+        """search the actualTags list for the targetTag, the tag of the targetElement"""
+        targetTag = None
+        self.log.debug('searching actualTags')
+        for index, actual in enumerate(self._actualTags):
+            self.log.debug('\ttesting: %s' % str(actual)) 
+            if actual[1] is None: 
+                #this is the targetElement
+                self.log.debug('\ttargetTag found: %s' % actual[0])
+                targetTag = actual[0]
+                return targetTag, index
+            else:
+                continue
+        else:
+            self.log.debug('target not found in actualTags')
+            return None, None
+        
+        
+#===============================================================================
+#     functions 
+#===============================================================================
+          
                 
-    def _actualTagsFindTargetElement(self, targetActualIndex):
+    def _findTargetTagFromActualIndex(self, targetActualIndex):
         #now we need to find the targetElement in the tree, which can be tricky. 
         #there may be many elements with the targetTag, not all of which are invalid. 
         #We need to build an xpath expression that will get the targetElement precisely. 
@@ -85,18 +170,20 @@ class ErrorParser:
         #and the parent around the targetElement that makes it invalid. So we create an 
         #xpath to find that particular arrangement. 
         #If the parentTag is None, we know that the targetElement is the root. 
-        self.log.debug('finding targetElement')
+        self.log.debug('finding targetElement from actualTags')
         if self._parentTag is None:   # and len(actualTags) == 0: 
             self.log.debug('\tparentTag is None, targetElement is root')
-            self.targetElement = self.tree.getroot()
+            target = self.tree.getroot()
         else:
             xpath = self._buildXpathFromActualIndex(targetActualIndex)
-            self.targetElement = self.tree.xpath(xpath)[0]
-            
+            target = self.tree.xpath(xpath)[0]
+        self.log.debug('\tfound target: %s' % str(target))
+        return target
+                
                 
     def _buildXpathFromActualIndex(self, targetActualIndex):
         #build the xpath expression
-        self.log.debug('\tbuilding xpath expression')
+        self.log.debug('building xpath expression')
         xpath = '//%s/%s' % (self._parentTag, self._actualTags[targetActualIndex][0])
         self.log.debug('\txpath: %s' % xpath)
         #to build the xpath expression, we take each of the siblings in order and
@@ -130,24 +217,6 @@ class ErrorParser:
         xpath = xpath + precedingXpath + followingXpath
         self.log.debug('xpath: %s' % xpath)
         return xpath
-            
-            
-    def _actualTagsFindTargetTag(self):
-        """search the actualTags list for the targetTag, the tag of the targetElement"""
-        targetTag = None
-        self.log.debug('searching actualTags')
-        for index, actual in enumerate(self._actualTags):
-            self.log.debug('\ttesting: %s' % str(actual)) 
-            if actual[1] is None: 
-                self.log.debug('\ttargetTag found: %s' % actual[0])
-                #this is the targetElement
-                targetTag = actual[0]
-                return targetTag, index
-            else:
-                continue
-        else:
-            self.log.debug('target not found in actualTags')
-            pass
                 
         
     def _buildLinks(self):
@@ -220,7 +289,7 @@ class ErrorParser:
     #===========================================================================
     
     def _parsePattern1(self):
-        pattern = r'.*?\:\d*\:\d*:ERROR:VALID:DTD_CONTENT_MODEL: Element (.*?) content does not follow the DTD, expecting (.*), got \((.*?)\)'
+        pattern = r'.*?\:\d*\:\d*\:ERROR:VALID\:DTD_CONTENT_MODEL\: Element (.*?) content does not follow the DTD, expecting (.*), got \((.*?)\)'
         self.log.debug('testing pattern: %s' % str(pattern))
         match = re.search(pattern, self.errorMessage)
         if not match: return None, None, None
@@ -234,7 +303,7 @@ class ErrorParser:
         return parentTag, expectedTags, actualTags
 
     def _parsePattern2(self):
-        pattern = r'.*?\:\d*:\d*:ERROR:VALID:DTD_UNKNOWN_ELEM: No declaration for element (.*)'
+        pattern = r'.*?\:\d*\:\d*\:ERROR:VALID\:DTD_UNKNOWN_ELEM\: No declaration for element (.*)'
         self.log.debug('testing pattern: %s' % str(pattern))
         match = re.search(pattern, self.errorMessage)
         if not match: return None, None, None
@@ -251,7 +320,32 @@ class ErrorParser:
         self.log.debug('\tactualTags: %s' % str(actualTags))
         self.log.debug('\texpectedTags: %s' % str(expectedTags))
         #return None as parent because this is the root. 
-        return None, expectedTags, self._actualTags
+        return None, expectedTags, actualTags
         
-                
-     
+    def _parsePattern3(self):
+        pattern = r'.*?\:\d*\:\d*\:ERROR:VALID\:DTD_CONTENT_MODEL\: Element (.*?) content does not follow the DTD, expecting (.*), got '
+        self.log.debug('testing pattern: %s' % str(pattern))
+        match = re.search(pattern, self.errorMessage)
+        if not match: return None, None, None
+        #if this matched then the error is caused by an element that
+        #should have children, but doesn't. We've only got information about what 
+        #children that element was expected, not what it's parent was expecting. So the
+        #element in question should not be the targetElement because we can't build and 
+        #acceptableTags list for it. 
+        #Therefore, what do we do? We want the targetElement to be beneath the element in 
+        #question, but it does not have any children. 
+        #The solution is to append the unit element beneath the empty element. 
+        #The unit element then becomes the targetElement
+        expectedTags = match.group(2).split(',')
+        parentTag = match.group(1)
+        self.log.debug('pattern matched')
+        self.log.debug('no actualTags found. Appending unit node.')
+        unitnode = lxml.etree.Element('_')
+        #this xpath returns nodes with parentTag that have no children, of 
+        #which the element in question is the first. 
+        self.tree.xpath('//%s[not(*)]' % parentTag)[0].append(unitnode)
+        actualTags = ['_']
+        self.log.debug('\tparentTag: %s' % parentTag)
+        self.log.debug('\tactualTags: %s' % str(actualTags))
+        self.log.debug('\texpectedTags: %s' % str(expectedTags))
+        return parentTag, expectedTags, actualTags

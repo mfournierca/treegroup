@@ -2,16 +2,30 @@
 <dita>
     <topic id="id-1">
         <title/>
-        <a/>
+        <body>
+            <p/>
+            <section/>
+            <p/>
+            <a/>
+         </body>
+    </topic>
+    <topic id="id-2">
+        <title/>
+        <body>
+            <p/>
+            <section/>
+            <a/>
+        </body>
+    </topic>
+    <topic id="id-3">
+        <title/>
+        <body>
+            <p/>
+            <section/>
+            <p/>
+            <section/>
+            <a/>
+        </body>
     </topic>
 </dita>
 
-<!-- expecting
-    
-    <_>
-    <_>
-    <_/>
-    <aody/>
-    </_>
-    </_>
--->
