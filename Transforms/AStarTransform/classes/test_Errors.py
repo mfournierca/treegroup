@@ -29,7 +29,7 @@ class test_ErrorParser(unittest.TestCase):
         parser.parse()
         
         self.assertEqual(parser.errorMessage, expectederrormessage, 'ErrorParser parsed the wrong error. Expected %s, got %s' % (expectederrormessage, parser.errorMessage))
-        self.assertEqual(expecetedtags, parser.tags, 'ErrorParser parsed the wrong tags. Expected %s, got %s' % (expectedtags, parser.tags))
+        self.assertEqual(expectedtags, parser.acceptableTags, 'ErrorParser parsed the wrong tags. Expected %s, got %s' % (expectedtags, parser.acceptableTags))
         self.assertTrue(expectedtargetelement is parser.targetElement, 'ErrorParser parsed the wrong target element. Expected %s, got %s' % (expectedtargetelement, parser.targetElement))
     
     
