@@ -60,7 +60,7 @@ class ErrorParser:
         #This is done in the _getTargetAndAcceptableTagsFrom  . . . functions 
         self.log.debug('finding targetElement')
         targetCandidate1, acceptableTagsCandidate1 = self._getTargetAndAcceptableTagsFromActualTags()
-        targetCandidate2 = self._getTargetAndAcceptableTagsFromExpectedTags()
+        targetCandidate2, acceptableTagsCandidate2 = self._getTargetAndAcceptableTagsFromExpectedTags()
 
         #choose which targetCandidate to use. 
         if targetCandidate2 is None: 
@@ -71,6 +71,7 @@ class ErrorParser:
         elif targetCandidate1 is None: 
             self.log.debug('targetCandidate1 is None, targetCandidate2 is targetElement: %s' % str(targetCandidate2))
             self.targetElement = targetCandidate2
+            self.acceptableTags = acceptableTagsCandidate2
             return True
         
 
@@ -82,24 +83,33 @@ class ErrorParser:
     
     def _getTargetAndAcceptableTagsFromExpectedTags(self):
         #try and get the targetElemenet and accpetableTags by looking at the expectedTags list
-        targetTag, targetActualIndex = self._expectedTagsFindTargetTag()
+        self.log.debug('getting target and acceptableTags from expectedTags')
+        missingExpectedIndex, targetExpectedIndex = self._expectedTagsFindTargetIndices()
+        
+        if targetExpectedIndex is None: 
+            targetActualIndex = None
+            targetTag = None
+        else:
+            targetActualIndex = self._expectedTags[targetExpectedIndex][1]
+            targetTag = self._actualTags[targetActualIndex][0]
+
         if targetTag is None and targetActualIndex is None: 
             self.log.debug('\ttargetTag and targetActualIndex not found in atualTags, therefore no targetCandidate')
-            return None
-        targetCandidate = self._findTargetTagFromActualIndex(targetActualIndex)
-##        acceptableTagsCandidate = self._expectedTagsFindAcceptableTags()
-        return targetCandidate
-       
+            return None, None
+        targetCandidate = self._findTargetElementFromActualIndex(targetActualIndex)
+        acceptableTagsCandidate = self._buildAcceptableTagsCandidateFromList([self._expectedTags[missingExpectedIndex][0]])
+        return targetCandidate, acceptableTagsCandidate
     
     
-    def _expectedTagsFindTargetTag(self):
+    def _expectedTagsFindTargetIndices(self):
         #examine the expectedTags list and get the targetTag and targetActualIndex, ie the tag
         #of the targetElement and its index in the actualTags list.
         #To do this, search the expectedTags list for any unlinked mandatory tags. If found, the 
         #next linked entry in expectedTags will link to the target in actualTags
-        self.log.debug('')
+        
         self.log.debug('searching expectedTags for target') 
         targetExpectedIndex = None
+        missingExpectedIndex = None
         breakOnNextLinked = False
         for index, expected in enumerate(self._expectedTags):
             self.log.debug('\ttesting %s' % str(expected))
@@ -115,13 +125,11 @@ class ErrorParser:
                 #in this case, the targetElement corresponds to the actualTags entry
                 #linked to by the next entry in the expectedTags list. 
                 breakOnNextLinked = True
+                missingExpectedIndex = index
         else:
             self.log.debug('target not found in expectedTags')
             return None, None
-        actualIndex = self._expectedTags[targetExpectedIndex][1]
-        actualTag = self._actualTags[actualIndex][0]
-        self.log.debug('actualTag: %s\tactualIndex: %s' % (actualTag, actualIndex))
-        return actualTag, actualIndex
+        return missingExpectedIndex, targetExpectedIndex
             
             
             
@@ -129,13 +137,14 @@ class ErrorParser:
     # functions to process actualTags
     #===========================================================================
             
+            
     def _getTargetAndAcceptableTagsFromActualTags(self):
         #try to get the targetElement and acceptable tags by looking at the actualTags list. 
         targetTag, targetActualIndex = self._actualTagsFindTargetTag()
         if targetTag is None and targetActualIndex is None: 
             self.log.debug('\ttargetTag and targetActualIndex not found in actualTags, therefore no targetCandidate')
             return None, None
-        targetCandidate = self._findTargetTagFromActualIndex(targetActualIndex)
+        targetCandidate = self._findTargetElementFromActualIndex(targetActualIndex)
         acceptableTagsCandidate = self._actualTagsFindAcceptableTags(targetActualIndex)
         return targetCandidate, acceptableTagsCandidate
     
@@ -143,7 +152,7 @@ class ErrorParser:
     def _actualTagsFindTargetTag(self):
         """search the actualTags list for the targetTag, the tag of the targetElement"""
         targetTag = None
-        self.log.debug('')
+        
         self.log.debug('searching actualTags')
         for index, actual in enumerate(self._actualTags):
             self.log.debug('\ttesting: %s' % str(actual)) 
@@ -162,7 +171,7 @@ class ErrorParser:
     def _actualTagsFindAcceptableTags(self, targetActualIndex):
         #find the acceptableTags from the actualTags. 
         #get the last linked entry from actualTags
-        self.log.debug('')
+        
         self.log.debug('finding acceptableTags')
         self.log.debug('searching actualTags, starting index %i' % targetActualIndex)
         actualLastLinkedIndex = None
@@ -201,6 +210,18 @@ class ErrorParser:
         self.log.debug('got tags: %s' % str(tags))
         #now all that is left is to clean up the expectedTags
         self.log.debug('building acceptableTagsCandidate')
+        acceptableTagsCandidate = self._buildAcceptableTagsCandidateFromList(tags)
+        return acceptableTagsCandidate 
+
+        
+        
+#===============================================================================
+#     functions 
+#===============================================================================
+                  
+        
+    def _buildAcceptableTagsCandidateFromList(self, tags):
+        self.log.debug('building acceptableTags list from %s' % str(tags))
         acceptableTagsCandidate = []
         for i in tags:
             self.log.debug('\tprocessing: %s' % i)
@@ -213,20 +234,9 @@ class ErrorParser:
                 acceptableTagsCandidate.append(x)
         acceptableTagsCandidate.sort()
         return acceptableTagsCandidate
-        
-        
-    def _expectedEntryIsMandatory(self, entry):
-        if re.search(r'.*[\)\w\+]$', entry[0].strip()):
-            return True
-        else:
-            return False
-        
-#===============================================================================
-#     functions 
-#===============================================================================
-          
+  
                 
-    def _findTargetTagFromActualIndex(self, targetActualIndex):
+    def _findTargetElementFromActualIndex(self, targetActualIndex):
         #now we need to find the targetElement in the tree, which can be tricky. 
         #there may be many elements with the targetTag, not all of which are invalid. 
         #We need to build an xpath expression that will get the targetElement precisely. 
@@ -234,7 +244,7 @@ class ErrorParser:
         #and the parent around the targetElement that makes it invalid. So we create an 
         #xpath to find that particular arrangement. 
         #If the parentTag is None, we know that the targetElement is the root. 
-        self.log.debug('')
+        
         self.log.debug('finding targetElement from actualTags')
         if self._parentTag is None:   # and len(actualTags) == 0: 
             self.log.debug('\tparentTag is None, targetElement is root')
@@ -249,7 +259,7 @@ class ErrorParser:
                 
     def _buildXpathFromActualIndex(self, targetActualIndex):
         #build the xpath expression
-        self.log.debug('')
+        
 #        self.log.debug('building xpath expression')
         xpath = '//%s/%s' % (self._parentTag, self._actualTags[targetActualIndex][0])
 #        self.log.debug('\txpath: %s' % xpath)
@@ -343,7 +353,14 @@ class ErrorParser:
             else:
                 self.log.debug('\t%s -> %s: %s' % (entry[0], str(None), str(None)))   
 
-
+        
+    def _expectedEntryIsMandatory(self, entry):
+        if re.search(r'.*[\)\w\+]$', entry[0].strip()):
+            return True
+        else:
+            return False
+        
+        
 
 
 
