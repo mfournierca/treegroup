@@ -59,13 +59,14 @@ class ErrorParser:
         #actualTags list and expectedTags lists separately and comparing the results. 
         #This is done in the _getTargetAndAcceptableTagsFrom  . . . functions 
         self.log.debug('finding targetElement')
-        targetCandidate1 = self._getTargetAndAcceptableTagsFromActualTags()
+        targetCandidate1, acceptableTagsCandidate1 = self._getTargetAndAcceptableTagsFromActualTags()
         targetCandidate2 = self._getTargetAndAcceptableTagsFromExpectedTags()
 
         #choose which targetCandidate to use. 
         if targetCandidate2 is None: 
             self.log.debug('targetCandidate2 is None, targetCandidate1 is targetElement: %s' % str(targetCandidate1))
             self.targetElement = targetCandidate1
+            self.acceptableTags = acceptableTagsCandidate1
             return True
         elif targetCandidate1 is None: 
             self.log.debug('targetCandidate1 is None, targetCandidate2 is targetElement: %s' % str(targetCandidate2))
@@ -96,6 +97,7 @@ class ErrorParser:
         #of the targetElement and its index in the actualTags list.
         #To do this, search the expectedTags list for any unlinked mandatory tags. If found, the 
         #next linked entry in expectedTags will link to the target in actualTags
+        self.log.debug('')
         self.log.debug('searching expectedTags for target') 
         targetExpectedIndex = None
         breakOnNextLinked = False
@@ -108,8 +110,7 @@ class ErrorParser:
                 continue
             else:
                 pass
-            tags = expected[0].strip()
-            if re.search(r'.*[\w\+]$', tags):
+            if self._expectedEntryIsMandatory(expected):
                 self.log.debug('\t\tthis is a required entry with no link') 
                 #in this case, the targetElement corresponds to the actualTags entry
                 #linked to by the next entry in the expectedTags list. 
@@ -132,16 +133,17 @@ class ErrorParser:
         #try to get the targetElement and acceptable tags by looking at the actualTags list. 
         targetTag, targetActualIndex = self._actualTagsFindTargetTag()
         if targetTag is None and targetActualIndex is None: 
-            self.log.debug('\ttargetTag and targetActualIndex not found in atualTags, therefore no targetCandidate')
-            return None
+            self.log.debug('\ttargetTag and targetActualIndex not found in actualTags, therefore no targetCandidate')
+            return None, None
         targetCandidate = self._findTargetTagFromActualIndex(targetActualIndex)
-#        self.acceptableTags = self._actualTagsFindAcceptableTags()
-        return targetCandidate
+        acceptableTagsCandidate = self._actualTagsFindAcceptableTags(targetActualIndex)
+        return targetCandidate, acceptableTagsCandidate
     
             
     def _actualTagsFindTargetTag(self):
         """search the actualTags list for the targetTag, the tag of the targetElement"""
         targetTag = None
+        self.log.debug('')
         self.log.debug('searching actualTags')
         for index, actual in enumerate(self._actualTags):
             self.log.debug('\ttesting: %s' % str(actual)) 
@@ -157,6 +159,68 @@ class ErrorParser:
             return None, None
         
         
+    def _actualTagsFindAcceptableTags(self, targetActualIndex):
+        #find the acceptableTags from the actualTags. 
+        #get the last linked entry from actualTags
+        self.log.debug('')
+        self.log.debug('finding acceptableTags')
+        self.log.debug('searching actualTags, starting index %i' % targetActualIndex)
+        actualLastLinkedIndex = None
+        index = targetActualIndex
+        while index >= 0:
+            self.log.debug('\ttesting %i: %s' % (index, str(self._actualTags[index])))
+            if self._actualTags[index][1] is not None:
+                self.log.debug('\t\tfound last linked index: %i' % index)
+                actualStartingIndex = index + 1
+                #get the corresponding expectedTags index
+                expectedStartingIndex = self._actualTags[index][1] + 1
+                break
+            else:
+                index -= 1
+                continue
+        else:
+            #if not found in the loop, this goes all the way to the beginning
+            self.log.debug('last linked index not found, setting to 0')
+            actualStartingIndex = 0
+            expectedStartingIndex = 0
+
+        self.log.debug('actualStartingIndex: %i' % actualStartingIndex)
+        self.log.debug('expectedStartingIndex: %i' % expectedStartingIndex)
+        tags = []
+        self.log.debug('building tags')
+        for index, entry in enumerate(self._expectedTags[expectedStartingIndex:]):
+            if not entry[0] in tags: 
+                tags.append(entry[0])
+            if self._expectedEntryIsMandatory(entry):
+                expectedEndingIndex = index
+                break
+            else: 
+                continue
+        else: 
+            expectedEndingIndex = -1
+        self.log.debug('got tags: %s' % str(tags))
+        #now all that is left is to clean up the expectedTags
+        self.log.debug('building acceptableTagsCandidate')
+        acceptableTagsCandidate = []
+        for i in tags:
+            self.log.debug('\tprocessing: %s' % i)
+            i = i.replace('(', '').replace(')', '').replace('*', '').replace('?', '').replace('+', '').replace('|', '')
+            self.log.debug('\tnew string: %s' % i)
+            l = i.split(' ')
+            for x in l:
+                if (x is None) or (x == '') or (x == ' '): continue
+                self.log.debug('\tadding to acceptableTags: %s' % x)
+                acceptableTagsCandidate.append(x)
+        acceptableTagsCandidate.sort()
+        return acceptableTagsCandidate
+        
+        
+    def _expectedEntryIsMandatory(self, entry):
+        if re.search(r'.*[\)\w\+]$', entry[0].strip()):
+            return True
+        else:
+            return False
+        
 #===============================================================================
 #     functions 
 #===============================================================================
@@ -170,12 +234,14 @@ class ErrorParser:
         #and the parent around the targetElement that makes it invalid. So we create an 
         #xpath to find that particular arrangement. 
         #If the parentTag is None, we know that the targetElement is the root. 
+        self.log.debug('')
         self.log.debug('finding targetElement from actualTags')
         if self._parentTag is None:   # and len(actualTags) == 0: 
             self.log.debug('\tparentTag is None, targetElement is root')
             target = self.tree.getroot()
         else:
             xpath = self._buildXpathFromActualIndex(targetActualIndex)
+            self.log.debug('\txpath: %s' % xpath)
             target = self.tree.xpath(xpath)[0]
         self.log.debug('\tfound target: %s' % str(target))
         return target
@@ -183,39 +249,40 @@ class ErrorParser:
                 
     def _buildXpathFromActualIndex(self, targetActualIndex):
         #build the xpath expression
-        self.log.debug('building xpath expression')
+        self.log.debug('')
+#        self.log.debug('building xpath expression')
         xpath = '//%s/%s' % (self._parentTag, self._actualTags[targetActualIndex][0])
-        self.log.debug('\txpath: %s' % xpath)
+#        self.log.debug('\txpath: %s' % xpath)
         #to build the xpath expression, we take each of the siblings in order and
         #add them to the appropriate spot in the expression
       
         #add previous siblings first.
-        self.log.debug('\tbuilding expression for preceding siblings')
+#        self.log.debug('\tbuilding expression for preceding siblings')
         index = targetActualIndex - 1
         bracketCount = 0
         precedingXpath = ''
         while index >= 0:
-            self.log.debug('\t\tindex: %s\ttag: %s' % (str(index), self._actualTags[index][0]))
+#            self.log.debug('\t\tindex: %s\ttag: %s' % (str(index), self._actualTags[index][0]))
             precedingXpath = precedingXpath + '[preceding-sibling::*[1][self::%s]' % self._actualTags[index][0]
             index = index - 1
             bracketCount += 1
         for i in range(0, bracketCount): precedingXpath += ']'
-        self.log.debug('\t\tpreviousXpath: %s' % precedingXpath)
+#        self.log.debug('\t\tpreviousXpath: %s' % precedingXpath)
             
-        self.log.debug('\tbuildingexpression for following siblings')
+#        self.log.debug('\tbuildingexpression for following siblings')
         index = targetActualIndex + 1
         bracketCount = 0
         followingXpath = ''
         while index < len(self._actualTags) - 1:
-            self.log.debug('\t\tindex: %s\ttag: %s' % (str(index), self._actualTags[index][0]))
+#            self.log.debug('\t\tindex: %s\ttag: %s' % (str(index), self._actualTags[index][0]))
             followingXpath = followingXpath + '[following-sibling::*[1][self::%s]' % self._actualTags[index][0]
             index = index + 1
             bracketCount += 1
         for i in range(0, bracketCount): followingXpath += ']'
-        self.log.debug('\t\tfollowingXpath: %s' % followingXpath)
+#        self.log.debug('\t\tfollowingXpath: %s' % followingXpath)
         
         xpath = xpath + precedingXpath + followingXpath
-        self.log.debug('xpath: %s' % xpath)
+#        self.log.debug('xpath: %s' % xpath)
         return xpath
                 
         

@@ -42,13 +42,13 @@ class test_ErrorParser(unittest.TestCase):
         tree = lxml.etree.parse(testfile)
         expectedtargetelement = tree.getroot()[0]
         expectederrormessage = '/Users/matt/work/programs/dev_workspace/TreeGroup/Transforms/AStarTransform/classes/../../../testfiles/AStarTransform/Errors/ErrorTest2.xml:2:0:ERROR:VALID:DTD_CONTENT_MODEL: Element dita content does not follow the DTD, expecting (topic | concept | task | reference | glossentry)+, got (a )'
-        expectedtags = ['topic', 'concept', 'task', 'reference', 'glossentry']
+        expectedtags = ['concept', 'glossentry', 'reference', 'task', 'topic']
         
         parser = Errors.ErrorParser(tree)
         parser.parse()
         
         self.assertEqual(parser.errorMessage, expectederrormessage, 'ErrorParser parsed the wrong error. Expected %s, got %s' % (expectederrormessage, parser.errorMessage))
-#        self.assertEqual(expecetedtags, parser.tags, 'ErrorParser parsed the wrong tags. Expected %s, got %s' % (expectedtags, parser.tags))
+        self.assertEqual(expectedtags, parser.acceptableTags, 'ErrorParser parsed the wrong tags. Expected %s, got %s' % (expectedtags, parser.acceptableTags))
         self.assertTrue(expectedtargetelement is parser.targetElement, 'ErrorParser parsed the wrong target element. Expected %s, got %s' % (expectedtargetelement, parser.targetElement))
 
  
@@ -61,13 +61,13 @@ class test_ErrorParser(unittest.TestCase):
         tree = lxml.etree.parse(testfile)
         expectedtargetelement = tree.xpath('//a')[0]
         expectederrormessage = '/Users/matt/work/programs/dev_workspace/TreeGroup/Transforms/AStarTransform/classes/../../../testfiles/AStarTransform/Errors/ErrorTest3.xml:5:0:ERROR:VALID:DTD_CONTENT_MODEL: Element body content does not follow the DTD, expecting (p | lq | note | dl | parml | ul | ol | sl | pre | codeblock | msgblock | screen | lines | fig | syntaxdiagram | imagemap | image | object | table | simpletable | required-cleanup | data | data-about | foreign | unknown | section | example)*, got (p a p )'
-        expectedtags = ['p', 'lq', 'note', 'dl', 'parml', 'ul', 'ol', 'sl', 'pre', 'codeblock', 'msgblock', 'screen', 'lines', 'fig', 'syntaxdiagram', 'imagemap', 'image', 'object', 'table', 'simpletable', 'required-cleanup', 'data', 'data-about', 'foreign', 'unknown', 'section', 'example']
+        expectedtags = ['codeblock', 'data', 'data-about', 'dl', 'example', 'fig', 'foreign', 'image', 'imagemap', 'lines', 'lq', 'msgblock', 'note', 'object', 'ol', 'p', 'parml', 'pre', 'required-cleanup', 'screen', 'section', 'simpletable', 'sl', 'syntaxdiagram', 'table', 'ul', 'unknown']
         
         parser = Errors.ErrorParser(tree)
         parser.parse()
         
         self.assertEqual(parser.errorMessage, expectederrormessage, 'ErrorParser parsed the wrong error. Expected %s, got %s' % (expectederrormessage, parser.errorMessage))
-#        self.assertEqual(expecetedtags, parser.tags, 'ErrorParser parsed the wrong tags. Expected %s, got %s' % (expectedtags, parser.tags))
+        self.assertEqual(expectedtags, parser.acceptableTags, 'ErrorParser parsed the wrong tags. Expected %s, got %s' % (expectedtags, parser.acceptableTags))
         self.assertTrue(expectedtargetelement is parser.targetElement, 'ErrorParser parsed the wrong target element. Expected %s, got %s' % (expectedtargetelement, parser.targetElement))
   
     
@@ -80,13 +80,13 @@ class test_ErrorParser(unittest.TestCase):
         tree = lxml.etree.parse(testfile)
         expectedtargetelement = tree.xpath('//a')[0]
         expectederrormessage = '/Users/matt/work/programs/dev_workspace/TreeGroup/Transforms/AStarTransform/classes/../../../testfiles/AStarTransform/Errors/ErrorTest4.xml:3:0:ERROR:VALID:DTD_CONTENT_MODEL: Element topic content does not follow the DTD, expecting (title , titlealts? , (shortdesc | abstract)? , prolog? , body? , related-links? , (topic | concept | task | reference | glossentry)*), got (title a )'
-        expectedtags = ['titlealts' , 'shortdesc' , 'abstract' , 'prolog' , 'body' , 'related-links' , 'topic' , 'concept' , 'task' , 'reference' , 'glossentry']
+        expectedtags = ['abstract', 'body', 'concept', 'glossentry', 'prolog', 'reference', 'related-links', 'shortdesc', 'task', 'titlealts', 'topic']
         
         parser = Errors.ErrorParser(tree)
         parser.parse()
         
         self.assertEqual(parser.errorMessage, expectederrormessage, 'ErrorParser parsed the wrong error. Expected %s, got %s' % (expectederrormessage, parser.errorMessage))
-#        self.assertEqual(expecetedtags, parser.tags, 'ErrorParser parsed the wrong tags. Expected %s, got %s' % (expectedtags, parser.tags))
+        self.assertEqual(expectedtags, parser.acceptableTags, 'ErrorParser parsed the wrong tags. Expected %s, got %s' % (expectedtags, parser.acceptableTags))
         self.assertTrue(expectedtargetelement is parser.targetElement, 'ErrorParser parsed the wrong target element. Expected %s, got %s' % (expectedtargetelement, parser.targetElement))
 
 
@@ -105,7 +105,7 @@ class test_ErrorParser(unittest.TestCase):
         parser.parse()
         
         self.assertEqual(parser.errorMessage, expectederrormessage, 'ErrorParser parsed the wrong error. Expected %s, got %s' % (expectederrormessage, parser.errorMessage))
-#        self.assertEqual(expecetedtags, parser.tags, 'ErrorParser parsed the wrong tags. Expected %s, got %s' % (expectedtags, parser.tags))
+        self.assertEqual(expectedtags, parser.acceptableTags, 'ErrorParser parsed the wrong tags. Expected %s, got %s' % (expectedtags, parser.acceptableTags))
         self.assertTrue(expectedtargetelement is parser.targetElement, 'ErrorParser parsed the wrong target element. Expected %s, got %s' % (expectedtargetelement, parser.targetElement))
 
 
@@ -124,7 +124,7 @@ class test_ErrorParser(unittest.TestCase):
         parser.parse()
         
         self.assertEqual(parser.errorMessage, expectederrormessage, 'ErrorParser parsed the wrong error. Expected %s, got %s' % (expectederrormessage, parser.errorMessage))
-#        self.assertEqual(expecetedtags, parser.tags, 'ErrorParser parsed the wrong tags. Expected %s, got %s' % (expectedtags, parser.tags))
+        self.assertEqual(expectedtags, parser.acceptableTags, 'ErrorParser parsed the wrong tags. Expected %s, got %s' % (expectedtags, parser.acceptableTags))
         self.assertTrue(expectedtargetelement is parser.targetElement, 'ErrorParser parsed the wrong target element. Expected %s, got %s' % (expectedtargetelement, parser.targetElement))
 
 
@@ -137,13 +137,13 @@ class test_ErrorParser(unittest.TestCase):
         tree = lxml.etree.parse(testfile)
         expectedtargetelement = tree.xpath('//a')[0]
         expectederrormessage = '/Users/matt/work/programs/dev_workspace/TreeGroup/Transforms/AStarTransform/classes/../../../testfiles/AStarTransform/Errors/ErrorTest7.xml:2:0:ERROR:VALID:DTD_CONTENT_MODEL: Element dita content does not follow the DTD, expecting (topic | concept | task | reference | glossentry)+, got (a topic )'
-        expectedtags = ['title']
+        expectedtags = ['concept', 'glossentry', 'reference', 'task', 'topic']
         
         parser = Errors.ErrorParser(tree)
         parser.parse()
         
         self.assertEqual(parser.errorMessage, expectederrormessage, 'ErrorParser parsed the wrong error. Expected %s, got %s' % (expectederrormessage, parser.errorMessage))
-#        self.assertEqual(expecetedtags, parser.tags, 'ErrorParser parsed the wrong tags. Expected %s, got %s' % (expectedtags, parser.tags))
+        self.assertEqual(expectedtags, parser.acceptableTags, 'ErrorParser parsed the wrong tags. Expected %s, got %s' % (expectedtags, parser.acceptableTags))
         self.assertTrue(expectedtargetelement is parser.targetElement, 'ErrorParser parsed the wrong target element. Expected %s, got %s' % (expectedtargetelement, parser.targetElement))
 
 
@@ -163,5 +163,5 @@ class test_ErrorParser(unittest.TestCase):
         expectedtargetelement = tree.xpath('//task/_')[0]
         
         self.assertEqual(parser.errorMessage, expectederrormessage, 'ErrorParser parsed the wrong error. Expected %s, got %s' % (expectederrormessage, parser.errorMessage))
-#        self.assertEqual(expecetedtags, parser.tags, 'ErrorParser parsed the wrong tags. Expected %s, got %s' % (expectedtags, parser.tags))
+        self.assertEqual(expectedtags, parser.acceptableTags, 'ErrorParser parsed the wrong tags. Expected %s, got %s' % (expectedtags, parser.acceptableTags))
         self.assertTrue(expectedtargetelement is parser.targetElement, 'ErrorParser parsed the wrong target element. Expected %s, got %s' % (expectedtargetelement, parser.targetElement))
