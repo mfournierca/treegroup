@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dita>
+    <a/>
+    <topic id="id-1">
+        <body>
+            <p/>
+            <section/>
+            <p/>
+        </body>
+    </topic>
+</dita>
+<!--there are two errors in this file, the targetElement should be the a.-->
