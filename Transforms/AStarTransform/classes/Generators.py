@@ -30,11 +30,53 @@ class Operand:
         #position. Therefore, this is the targetElement that the operand will try to change
         self.target = current
         
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
 
 
 #===============================================================================
-# #Unwrap Generators
+# #Unwrap Generator
 #===============================================================================
+
+class UnwrapGenerator:
+    """Generate an unwrap operand"""
+    def __init__(self):
+        pass
+    
+    
+    def generateOperand(self, targetElement):
+        """generate the operand"""
+        if not isinstance(targetElement, lxml.etree._Element):
+            self.log.warning('targetElement must be lxml.etree._Element object, aborting')
+            return None
+        else:
+            pass
+        
+        self.log.debug('Generating unwrap operand for  %s' % str(targetElement))
+        operand = Operand(targetElement)
+        self.log.debug('created operand: %s' % str(self.operand))
+        
+        #create the operand
+        
+        return operand
+    
+    
+    
+
+
+
+
+
+
 
 
 
