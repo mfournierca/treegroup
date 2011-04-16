@@ -163,7 +163,22 @@ class test_getNode(unittest.TestCase):
                         % (expected.tag, str(expected.attrib), result.tag, str(result.attrib)))
     
     
-    
+    def test_NotLastSibling(self):
+        position = [1, 2, 2]
+        result = Tree.getNode(self.testtree, position)
+        expected = lxml.etree.Element('child2', {'id': '5'})
+        
+        self.assertTrue(Element.Element.equal(result, expected), 'getNode() returned the wrong node: expected %s %s, got %s %s' \
+                        % (expected.tag, str(expected.attrib), result.tag, str(result.attrib)))
+        
+        
+    def test_SecondChildOfRoot(self):
+        position = [1, 2]
+        result = Tree.getNode(self.testtree, position)
+        expected = lxml.etree.Element('node', {'id': '3'})
+        
+        self.assertTrue(Element.Element.equal(result, expected), 'getNode() returned the wrong node: expected %s %s, got %s %s' \
+                        % (expected.tag, str(expected.attrib), result.tag, str(result.attrib)))
     
     
 class test_add(unittest.TestCase):

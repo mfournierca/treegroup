@@ -219,10 +219,13 @@ def ordering(tree):
 def getNode(tree, position):
     """Get a node from the position. Return the node."""
     
+    log = logging.getLogger()
+    
     if not position[0] == 1:
-        #fail
+        #fail, this is a required property of te position
         return False
     
+    log.debug('position is: %s' % str(position))
     position = position[1:]
         
     if isinstance(tree, lxml.etree._ElementTree):
@@ -231,6 +234,8 @@ def getNode(tree, position):
         current = tree
         
     for i in position:
+        log.debug('current: %s' % str(current))
+        log.debug('index: %i' % i)
         if i == 0: 
             return current
         current = current[i - 1]

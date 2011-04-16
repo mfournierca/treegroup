@@ -1,33 +1,1714 @@
 test_Tre.        test_AddUnit     DEBUG		
 test_Tre.        test_AddUnit     DEBUG		
 test_Tre.        test_AddUnit     DEBUG		starting test_AddUnit
+    Tree.             getNode     DEBUG		position is: [1]
+    Tree.             getNode     DEBUG		position is: [1]
+    Tree.             getNode     DEBUG		position is: [1]
+    Tree.             getNode     DEBUG		position is: [1]
+    Tree.             getNode     DEBUG		position is: [1, 1]
+    Tree.             getNode     DEBUG		current: <Element a at 1625540>
+    Tree.             getNode     DEBUG		index: 1
+    Tree.             getNode     DEBUG		position is: [1, 1]
+    Tree.             getNode     DEBUG		current: <Element a at 167a6c0>
+    Tree.             getNode     DEBUG		index: 1
+    Tree.             getNode     DEBUG		position is: [1, 2]
+    Tree.             getNode     DEBUG		current: <Element a at 1625540>
+    Tree.             getNode     DEBUG		index: 2
+    Tree.             getNode     DEBUG		position is: [1, 2]
+    Tree.             getNode     DEBUG		current: <Element a at 167a6c0>
+    Tree.             getNode     DEBUG		index: 2
+    Tree.             getNode     DEBUG		position is: [1, 2, 1]
+    Tree.             getNode     DEBUG		current: <Element a at 1625540>
+    Tree.             getNode     DEBUG		index: 2
+    Tree.             getNode     DEBUG		current: <Element b at 1625600>
+    Tree.             getNode     DEBUG		index: 1
+    Tree.             getNode     DEBUG		position is: [1, 2, 1]
+    Tree.             getNode     DEBUG		current: <Element a at 167a6c0>
+    Tree.             getNode     DEBUG		index: 2
+    Tree.             getNode     DEBUG		current: <Element b at 1625660>
+    Tree.             getNode     DEBUG		index: 1
+    Tree.             getNode     DEBUG		position is: [1, 2, 1, 1]
+    Tree.             getNode     DEBUG		current: <Element a at 1625540>
+    Tree.             getNode     DEBUG		index: 2
+    Tree.             getNode     DEBUG		current: <Element b at 1625660>
+    Tree.             getNode     DEBUG		index: 1
+    Tree.             getNode     DEBUG		current: <Element c at 16256c0>
+    Tree.             getNode     DEBUG		index: 1
+    Tree.             getNode     DEBUG		position is: [1, 2, 1, 1]
+    Tree.             getNode     DEBUG		current: <Element a at 167a6c0>
+    Tree.             getNode     DEBUG		index: 2
+    Tree.             getNode     DEBUG		current: <Element b at 1625690>
+    Tree.             getNode     DEBUG		index: 1
+    Tree.             getNode     DEBUG		current: <Element c at 1625600>
+    Tree.             getNode     DEBUG		index: 1
+    Tree.             getNode     DEBUG		position is: [1, 2, 2]
+    Tree.             getNode     DEBUG		current: <Element a at 1625540>
+    Tree.             getNode     DEBUG		index: 2
+    Tree.             getNode     DEBUG		current: <Element b at 1625720>
+    Tree.             getNode     DEBUG		index: 2
+    Tree.             getNode     DEBUG		position is: [1, 2, 2]
+    Tree.             getNode     DEBUG		current: <Element a at 167a6c0>
+    Tree.             getNode     DEBUG		index: 2
+    Tree.             getNode     DEBUG		current: <Element b at 1625780>
+    Tree.             getNode     DEBUG		index: 2
+    Tree.             getNode     DEBUG		position is: [1]
+    Tree.             getNode     DEBUG		position is: [1]
+    Tree.             getNode     DEBUG		position is: [1]
+    Tree.             getNode     DEBUG		position is: [1]
+    Tree.             getNode     DEBUG		position is: [1, 1]
+    Tree.             getNode     DEBUG		current: <Element a at 16257e0>
+    Tree.             getNode     DEBUG		index: 1
+    Tree.             getNode     DEBUG		position is: [1, 1]
+    Tree.             getNode     DEBUG		current: <Element a at 167a6c0>
+    Tree.             getNode     DEBUG		index: 1
+    Tree.             getNode     DEBUG		position is: [1, 2]
+    Tree.             getNode     DEBUG		current: <Element a at 16257e0>
+    Tree.             getNode     DEBUG		index: 2
+    Tree.             getNode     DEBUG		position is: [1, 2]
+    Tree.             getNode     DEBUG		current: <Element a at 167a6c0>
+    Tree.             getNode     DEBUG		index: 2
+    Tree.             getNode     DEBUG		position is: [1, 2, 1]
+    Tree.             getNode     DEBUG		current: <Element a at 16257e0>
+    Tree.             getNode     DEBUG		index: 2
+    Tree.             getNode     DEBUG		current: <Element b at 1625870>
+    Tree.             getNode     DEBUG		index: 1
+    Tree.             getNode     DEBUG		position is: [1, 2, 1]
+    Tree.             getNode     DEBUG		current: <Element a at 167a6c0>
+    Tree.             getNode     DEBUG		index: 2
+    Tree.             getNode     DEBUG		current: <Element b at 16258a0>
+    Tree.             getNode     DEBUG		index: 1
+    Tree.             getNode     DEBUG		position is: [1, 2, 1, 1]
+    Tree.             getNode     DEBUG		current: <Element a at 16257e0>
+    Tree.             getNode     DEBUG		index: 2
+    Tree.             getNode     DEBUG		current: <Element b at 1625870>
+    Tree.             getNode     DEBUG		index: 1
+    Tree.             getNode     DEBUG		current: <Element c at 1625960>
+    Tree.             getNode     DEBUG		index: 1
+    Tree.             getNode     DEBUG		position is: [1, 2, 1, 1]
+    Tree.             getNode     DEBUG		current: <Element a at 167a6c0>
+    Tree.             getNode     DEBUG		index: 2
+    Tree.             getNode     DEBUG		current: <Element b at 16258a0>
+    Tree.             getNode     DEBUG		index: 1
+    Tree.             getNode     DEBUG		current: <Element c at 1625600>
+    Tree.             getNode     DEBUG		index: 1
+    Tree.             getNode     DEBUG		position is: [1, 2, 2]
+    Tree.             getNode     DEBUG		current: <Element a at 16257e0>
+    Tree.             getNode     DEBUG		index: 2
+    Tree.             getNode     DEBUG		current: <Element b at 1625870>
+    Tree.             getNode     DEBUG		index: 2
+    Tree.             getNode     DEBUG		position is: [1, 2, 2]
+    Tree.             getNode     DEBUG		current: <Element a at 167a6c0>
+    Tree.             getNode     DEBUG		index: 2
+    Tree.             getNode     DEBUG		current: <Element b at 16258a0>
+    Tree.             getNode     DEBUG		index: 2
 test_Tre.test_ComplexTrees_Eq     DEBUG		
 test_Tre.test_ComplexTrees_Eq     DEBUG		
 test_Tre.test_ComplexTrees_Eq     DEBUG		starting test_ComplexTrees_EqualStructures
+    Tree.             getNode     DEBUG		position is: [1]
+    Tree.             getNode     DEBUG		position is: [1]
+    Tree.             getNode     DEBUG		position is: [1, 1]
+    Tree.             getNode     DEBUG		current: <Element b at 1625990>
+    Tree.             getNode     DEBUG		index: 1
+    Tree.             getNode     DEBUG		position is: [1, 1]
+    Tree.             getNode     DEBUG		current: <Element c at 1625720>
+    Tree.             getNode     DEBUG		index: 1
+    Tree.             getNode     DEBUG		position is: [1, 2]
+    Tree.             getNode     DEBUG		current: <Element b at 1625990>
+    Tree.             getNode     DEBUG		index: 2
+    Tree.             getNode     DEBUG		position is: [1, 2]
+    Tree.             getNode     DEBUG		current: <Element c at 1625720>
+    Tree.             getNode     DEBUG		index: 2
+    Tree.             getNode     DEBUG		position is: [1, 2, 1]
+    Tree.             getNode     DEBUG		current: <Element b at 1625990>
+    Tree.             getNode     DEBUG		index: 2
+    Tree.             getNode     DEBUG		current: <Element c at 1625ae0>
+    Tree.             getNode     DEBUG		index: 1
+    Tree.             getNode     DEBUG		position is: [1, 2, 1]
+    Tree.             getNode     DEBUG		current: <Element c at 1625720>
+    Tree.             getNode     DEBUG		index: 2
+    Tree.             getNode     DEBUG		current: <Element e at 1625a80>
+    Tree.             getNode     DEBUG		index: 1
+    Tree.             getNode     DEBUG		position is: [1, 2, 1, 1]
+    Tree.             getNode     DEBUG		current: <Element b at 1625990>
+    Tree.             getNode     DEBUG		index: 2
+    Tree.             getNode     DEBUG		current: <Element c at 1625ae0>
+    Tree.             getNode     DEBUG		index: 1
+    Tree.             getNode     DEBUG		current: <Element d at 1625b10>
+    Tree.             getNode     DEBUG		index: 1
+    Tree.             getNode     DEBUG		position is: [1, 2, 1, 1]
+    Tree.             getNode     DEBUG		current: <Element c at 1625720>
+    Tree.             getNode     DEBUG		index: 2
+    Tree.             getNode     DEBUG		current: <Element e at 1625a80>
+    Tree.             getNode     DEBUG		index: 1
+    Tree.             getNode     DEBUG		current: <Element g at 1625b70>
+    Tree.             getNode     DEBUG		index: 1
+    Tree.             getNode     DEBUG		position is: [1, 2, 2]
+    Tree.             getNode     DEBUG		current: <Element b at 1625990>
+    Tree.             getNode     DEBUG		index: 2
+    Tree.             getNode     DEBUG		current: <Element c at 1625ae0>
+    Tree.             getNode     DEBUG		index: 2
+    Tree.             getNode     DEBUG		position is: [1, 2, 2]
+    Tree.             getNode     DEBUG		current: <Element c at 1625720>
+    Tree.             getNode     DEBUG		index: 2
+    Tree.             getNode     DEBUG		current: <Element e at 1625a80>
+    Tree.             getNode     DEBUG		index: 2
+    Tree.             getNode     DEBUG		position is: [1]
+    Tree.             getNode     DEBUG		position is: [1]
+    Tree.             getNode     DEBUG		position is: [1, 1]
+    Tree.             getNode     DEBUG		current: <Element c at 1625720>
+    Tree.             getNode     DEBUG		index: 1
+    Tree.             getNode     DEBUG		position is: [1, 1]
+    Tree.             getNode     DEBUG		current: <Element c at 16256f0>
+    Tree.             getNode     DEBUG		index: 1
+    Tree.             getNode     DEBUG		position is: [1, 2]
+    Tree.             getNode     DEBUG		current: <Element c at 1625720>
+    Tree.             getNode     DEBUG		index: 2
+    Tree.             getNode     DEBUG		position is: [1, 2]
+    Tree.             getNode     DEBUG		current: <Element c at 16256f0>
+    Tree.             getNode     DEBUG		index: 2
+    Tree.             getNode     DEBUG		position is: [1, 2, 1]
+    Tree.             getNode     DEBUG		current: <Element c at 1625720>
+    Tree.             getNode     DEBUG		index: 2
+    Tree.             getNode     DEBUG		current: <Element e at 1625a80>
+    Tree.             getNode     DEBUG		index: 1
+    Tree.             getNode     DEBUG		position is: [1, 2, 1]
+    Tree.             getNode     DEBUG		current: <Element c at 16256f0>
+    Tree.             getNode     DEBUG		index: 2
+    Tree.             getNode     DEBUG		current: <Element e at 1625cc0>
+    Tree.             getNode     DEBUG		index: 1
+    Tree.             getNode     DEBUG		position is: [1, 2, 1, 1]
+    Tree.             getNode     DEBUG		current: <Element c at 1625720>
+    Tree.             getNode     DEBUG		index: 2
+    Tree.             getNode     DEBUG		current: <Element e at 1625a80>
+    Tree.             getNode     DEBUG		index: 1
+    Tree.             getNode     DEBUG		current: <Element g at 1625b70>
+    Tree.             getNode     DEBUG		index: 1
+    Tree.             getNode     DEBUG		position is: [1, 2, 1, 1]
+    Tree.             getNode     DEBUG		current: <Element c at 16256f0>
+    Tree.             getNode     DEBUG		index: 2
+    Tree.             getNode     DEBUG		current: <Element e at 1625cc0>
+    Tree.             getNode     DEBUG		index: 1
+    Tree.             getNode     DEBUG		current: <Element g at 1625d20>
+    Tree.             getNode     DEBUG		index: 1
+    Tree.             getNode     DEBUG		position is: [1, 2, 2]
+    Tree.             getNode     DEBUG		current: <Element c at 1625720>
+    Tree.             getNode     DEBUG		index: 2
+    Tree.             getNode     DEBUG		current: <Element e at 1625a80>
+    Tree.             getNode     DEBUG		index: 2
+    Tree.             getNode     DEBUG		position is: [1, 2, 2]
+    Tree.             getNode     DEBUG		current: <Element c at 16256f0>
+    Tree.             getNode     DEBUG		index: 2
+    Tree.             getNode     DEBUG		current: <Element e at 1625cc0>
+    Tree.             getNode     DEBUG		index: 2
+    Tree.             getNode     DEBUG		position is: [1]
+    Tree.             getNode     DEBUG		position is: [1]
+    Tree.             getNode     DEBUG		position is: [1, 1]
+    Tree.             getNode     DEBUG		current: <Element b at 1625f00>
+    Tree.             getNode     DEBUG		index: 1
+    Tree.             getNode     DEBUG		position is: [1, 1]
+    Tree.             getNode     DEBUG		current: <Element c at 1625ea0>
+    Tree.             getNode     DEBUG		index: 1
+    Tree.             getNode     DEBUG		position is: [1, 2]
+    Tree.             getNode     DEBUG		current: <Element b at 1625f00>
+    Tree.             getNode     DEBUG		index: 2
+    Tree.             getNode     DEBUG		position is: [1, 2]
+    Tree.             getNode     DEBUG		current: <Element c at 1625ea0>
+    Tree.             getNode     DEBUG		index: 2
+    Tree.             getNode     DEBUG		position is: [1, 2, 1]
+    Tree.             getNode     DEBUG		current: <Element b at 1625f00>
+    Tree.             getNode     DEBUG		index: 2
+    Tree.             getNode     DEBUG		current: <Element c at 1625f90>
+    Tree.             getNode     DEBUG		index: 1
+    Tree.             getNode     DEBUG		position is: [1, 2, 1]
+    Tree.             getNode     DEBUG		current: <Element c at 1625ea0>
+    Tree.             getNode     DEBUG		index: 2
+    Tree.             getNode     DEBUG		current: <Element e at 1625fc0>
+    Tree.             getNode     DEBUG		index: 1
+    Tree.             getNode     DEBUG		position is: [1, 2, 1, 1]
+    Tree.             getNode     DEBUG		current: <Element b at 1625f00>
+    Tree.             getNode     DEBUG		index: 2
+    Tree.             getNode     DEBUG		current: <Element c at 1625f90>
+    Tree.             getNode     DEBUG		index: 1
+    Tree.             getNode     DEBUG		current: <Element d at 163e060>
+    Tree.             getNode     DEBUG		index: 1
+    Tree.             getNode     DEBUG		position is: [1, 2, 1, 1]
+    Tree.             getNode     DEBUG		current: <Element c at 1625ea0>
+    Tree.             getNode     DEBUG		index: 2
+    Tree.             getNode     DEBUG		current: <Element e at 1625fc0>
+    Tree.             getNode     DEBUG		index: 1
+    Tree.             getNode     DEBUG		current: <Element g at 163e0c0>
+    Tree.             getNode     DEBUG		index: 1
+    Tree.             getNode     DEBUG		position is: [1, 2, 2]
+    Tree.             getNode     DEBUG		current: <Element b at 1625f00>
+    Tree.             getNode     DEBUG		index: 2
+    Tree.             getNode     DEBUG		current: <Element c at 1625f90>
+    Tree.             getNode     DEBUG		index: 2
+    Tree.             getNode     DEBUG		position is: [1, 2, 2]
+    Tree.             getNode     DEBUG		current: <Element c at 1625ea0>
+    Tree.             getNode     DEBUG		index: 2
+    Tree.             getNode     DEBUG		current: <Element e at 1625fc0>
+    Tree.             getNode     DEBUG		index: 2
+    Tree.             getNode     DEBUG		position is: [1]
+    Tree.             getNode     DEBUG		position is: [1]
+    Tree.             getNode     DEBUG		position is: [1, 1]
+    Tree.             getNode     DEBUG		current: <Element c at 1625ea0>
+    Tree.             getNode     DEBUG		index: 1
+    Tree.             getNode     DEBUG		position is: [1, 1]
+    Tree.             getNode     DEBUG		current: <Element c at 16256f0>
+    Tree.             getNode     DEBUG		index: 1
+    Tree.             getNode     DEBUG		position is: [1, 2]
+    Tree.             getNode     DEBUG		current: <Element c at 1625ea0>
+    Tree.             getNode     DEBUG		index: 2
+    Tree.             getNode     DEBUG		position is: [1, 2]
+    Tree.             getNode     DEBUG		current: <Element c at 16256f0>
+    Tree.             getNode     DEBUG		index: 2
+    Tree.             getNode     DEBUG		position is: [1, 2, 1]
+    Tree.             getNode     DEBUG		current: <Element c at 1625ea0>
+    Tree.             getNode     DEBUG		index: 2
+    Tree.             getNode     DEBUG		current: <Element e at 1625fc0>
+    Tree.             getNode     DEBUG		index: 1
+    Tree.             getNode     DEBUG		position is: [1, 2, 1]
+    Tree.             getNode     DEBUG		current: <Element c at 16256f0>
+    Tree.             getNode     DEBUG		index: 2
+    Tree.             getNode     DEBUG		current: <Element e at 1625cc0>
+    Tree.             getNode     DEBUG		index: 1
+    Tree.             getNode     DEBUG		position is: [1, 2, 1, 1]
+    Tree.             getNode     DEBUG		current: <Element c at 1625ea0>
+    Tree.             getNode     DEBUG		index: 2
+    Tree.             getNode     DEBUG		current: <Element e at 1625fc0>
+    Tree.             getNode     DEBUG		index: 1
+    Tree.             getNode     DEBUG		current: <Element g at 163e0c0>
+    Tree.             getNode     DEBUG		index: 1
+    Tree.             getNode     DEBUG		position is: [1, 2, 1, 1]
+    Tree.             getNode     DEBUG		current: <Element c at 16256f0>
+    Tree.             getNode     DEBUG		index: 2
+    Tree.             getNode     DEBUG		current: <Element e at 1625cc0>
+    Tree.             getNode     DEBUG		index: 1
+    Tree.             getNode     DEBUG		current: <Element g at 1625d20>
+    Tree.             getNode     DEBUG		index: 1
+    Tree.             getNode     DEBUG		position is: [1, 2, 2]
+    Tree.             getNode     DEBUG		current: <Element c at 1625ea0>
+    Tree.             getNode     DEBUG		index: 2
+    Tree.             getNode     DEBUG		current: <Element e at 1625fc0>
+    Tree.             getNode     DEBUG		index: 2
+    Tree.             getNode     DEBUG		position is: [1, 2, 2]
+    Tree.             getNode     DEBUG		current: <Element c at 16256f0>
+    Tree.             getNode     DEBUG		index: 2
+    Tree.             getNode     DEBUG		current: <Element e at 1625cc0>
+    Tree.             getNode     DEBUG		index: 2
 test_Tre.test_ComplexTrees_Se     DEBUG		
 test_Tre.test_ComplexTrees_Se     DEBUG		
 test_Tre.test_ComplexTrees_Se     DEBUG		starting test_ComplexTrees_SeveralUnitsInOperand
+    Tree.             getNode     DEBUG		position is: [1]
+    Tree.             getNode     DEBUG		position is: [1]
+    Tree.             getNode     DEBUG		position is: [1, 1]
+    Tree.             getNode     DEBUG		current: <Element a at 1625d80>
+    Tree.             getNode     DEBUG		index: 1
+    Tree.             getNode     DEBUG		position is: [1, 1]
+    Tree.             getNode     DEBUG		current: <Element c at 1625c60>
+    Tree.             getNode     DEBUG		index: 1
+    Tree.             getNode     DEBUG		position is: [1, 1, 1]
+    Tree.             getNode     DEBUG		current: <Element a at 1625d80>
+    Tree.             getNode     DEBUG		index: 1
+    Tree.             getNode     DEBUG		current: <Element _ at 1625e10>
+    Tree.             getNode     DEBUG		index: 1
+    Tree.             getNode     DEBUG		position is: [1, 1, 1]
+    Tree.             getNode     DEBUG		current: <Element c at 1625c60>
+    Tree.             getNode     DEBUG		index: 1
+    Tree.             getNode     DEBUG		current: <Element b at 1625de0>
+    Tree.             getNode     DEBUG		index: 1
+    Tree.             getNode     DEBUG		position is: [1, 1, 1, 1]
+    Tree.             getNode     DEBUG		current: <Element a at 1625d80>
+    Tree.             getNode     DEBUG		index: 1
+    Tree.             getNode     DEBUG		current: <Element _ at 1625e10>
+    Tree.             getNode     DEBUG		index: 1
+    Tree.             getNode     DEBUG		current: <Element _ at 163e090>
+    Tree.             getNode     DEBUG		index: 1
+    Tree.             getNode     DEBUG		position is: [1, 1, 1]
+    Tree.             getNode     DEBUG		current: <Element c at 1625c60>
+    Tree.             getNode     DEBUG		index: 1
+    Tree.             getNode     DEBUG		current: <Element b at 1625de0>
+    Tree.             getNode     DEBUG		index: 1
+    Tree.             getNode     DEBUG		position is: [1, 1, 2]
+    Tree.             getNode     DEBUG		current: <Element a at 1625d80>
+    Tree.             getNode     DEBUG		index: 1
+    Tree.             getNode     DEBUG		current: <Element _ at 1625e10>
+    Tree.             getNode     DEBUG		index: 2
+    Tree.             getNode     DEBUG		position is: [1, 1]
+    Tree.             getNode     DEBUG		current: <Element c at 1625c60>
+    Tree.             getNode     DEBUG		index: 1
+    Tree.             getNode     DEBUG		position is: [1]
+    Tree.             getNode     DEBUG		position is: [1]
+    Tree.             getNode     DEBUG		position is: [1, 1]
+    Tree.             getNode     DEBUG		current: <Element c at 1625c60>
+    Tree.             getNode     DEBUG		index: 1
+    Tree.             getNode     DEBUG		position is: [1, 1]
+    Tree.             getNode     DEBUG		current: <Element c at 1625b40>
+    Tree.             getNode     DEBUG		index: 1
+    Tree.             getNode     DEBUG		position is: [1, 1, 1]
+    Tree.             getNode     DEBUG		current: <Element c at 1625c60>
+    Tree.             getNode     DEBUG		index: 1
+    Tree.             getNode     DEBUG		current: <Element b at 1625de0>
+    Tree.             getNode     DEBUG		index: 1
+    Tree.             getNode     DEBUG		position is: [1, 1, 1]
+    Tree.             getNode     DEBUG		current: <Element c at 1625b40>
+    Tree.             getNode     DEBUG		index: 1
+    Tree.             getNode     DEBUG		current: <Element b at 163e360>
+    Tree.             getNode     DEBUG		index: 1
+    Tree.             getNode     DEBUG		position is: [1, 1, 1, 1]
+    Tree.             getNode     DEBUG		current: <Element c at 1625c60>
+    Tree.             getNode     DEBUG		index: 1
+    Tree.             getNode     DEBUG		current: <Element b at 1625de0>
+    Tree.             getNode     DEBUG		index: 1
+    Tree.             getNode     DEBUG		current: <Element c at 163e1b0>
+    Tree.             getNode     DEBUG		index: 1
+    Tree.             getNode     DEBUG		position is: [1, 1, 1, 1]
+    Tree.             getNode     DEBUG		current: <Element c at 1625b40>
+    Tree.             getNode     DEBUG		index: 1
+    Tree.             getNode     DEBUG		current: <Element b at 163e360>
+    Tree.             getNode     DEBUG		index: 1
+    Tree.             getNode     DEBUG		current: <Element c at 163e390>
+    Tree.             getNode     DEBUG		index: 1
+    Tree.             getNode     DEBUG		position is: [1, 1, 2]
+    Tree.             getNode     DEBUG		current: <Element c at 1625c60>
+    Tree.             getNode     DEBUG		index: 1
+    Tree.             getNode     DEBUG		current: <Element b at 1625de0>
+    Tree.             getNode     DEBUG		index: 2
+    Tree.             getNode     DEBUG		position is: [1, 1, 2]
+    Tree.             getNode     DEBUG		current: <Element c at 1625b40>
+    Tree.             getNode     DEBUG		index: 1
+    Tree.             getNode     DEBUG		current: <Element b at 163e360>
+    Tree.             getNode     DEBUG		index: 2
+    Tree.             getNode     DEBUG		position is: [1, 2]
+    Tree.             getNode     DEBUG		current: <Element c at 1625c60>
+    Tree.             getNode     DEBUG		index: 2
+    Tree.             getNode     DEBUG		position is: [1, 2]
+    Tree.             getNode     DEBUG		current: <Element c at 1625b40>
+    Tree.             getNode     DEBUG		index: 2
+    Tree.             getNode     DEBUG		position is: [1]
+    Tree.             getNode     DEBUG		position is: [1]
+    Tree.             getNode     DEBUG		position is: [1, 1]
+    Tree.             getNode     DEBUG		current: <Element a at 163e5a0>
+    Tree.             getNode     DEBUG		index: 1
+    Tree.             getNode     DEBUG		position is: [1, 1]
+    Tree.             getNode     DEBUG		current: <Element c at 163e540>
+    Tree.             getNode     DEBUG		index: 1
+    Tree.             getNode     DEBUG		position is: [1, 1, 1]
+    Tree.             getNode     DEBUG		current: <Element a at 163e5a0>
+    Tree.             getNode     DEBUG		index: 1
+    Tree.             getNode     DEBUG		current: <Element _ at 163e630>
+    Tree.             getNode     DEBUG		index: 1
+    Tree.             getNode     DEBUG		position is: [1, 1, 1]
+    Tree.             getNode     DEBUG		current: <Element c at 163e540>
+    Tree.             getNode     DEBUG		index: 1
+    Tree.             getNode     DEBUG		current: <Element b at 163e5d0>
+    Tree.             getNode     DEBUG		index: 1
+    Tree.             getNode     DEBUG		position is: [1, 1, 1, 1]
+    Tree.             getNode     DEBUG		current: <Element a at 163e5a0>
+    Tree.             getNode     DEBUG		index: 1
+    Tree.             getNode     DEBUG		current: <Element _ at 163e630>
+    Tree.             getNode     DEBUG		index: 1
+    Tree.             getNode     DEBUG		current: <Element _ at 163e600>
+    Tree.             getNode     DEBUG		index: 1
+    Tree.             getNode     DEBUG		position is: [1, 1, 1]
+    Tree.             getNode     DEBUG		current: <Element c at 163e540>
+    Tree.             getNode     DEBUG		index: 1
+    Tree.             getNode     DEBUG		current: <Element b at 163e5d0>
+    Tree.             getNode     DEBUG		index: 1
+    Tree.             getNode     DEBUG		position is: [1, 1, 2]
+    Tree.             getNode     DEBUG		current: <Element a at 163e5a0>
+    Tree.             getNode     DEBUG		index: 1
+    Tree.             getNode     DEBUG		current: <Element _ at 163e630>
+    Tree.             getNode     DEBUG		index: 2
+    Tree.             getNode     DEBUG		position is: [1, 1]
+    Tree.             getNode     DEBUG		current: <Element c at 163e540>
+    Tree.             getNode     DEBUG		index: 1
+    Tree.             getNode     DEBUG		position is: [1]
+    Tree.             getNode     DEBUG		position is: [1]
+    Tree.             getNode     DEBUG		position is: [1, 1]
+    Tree.             getNode     DEBUG		current: <Element c at 163e540>
+    Tree.             getNode     DEBUG		index: 1
+    Tree.             getNode     DEBUG		position is: [1, 1]
+    Tree.             getNode     DEBUG		current: <Element c at 1625b40>
+    Tree.             getNode     DEBUG		index: 1
+    Tree.             getNode     DEBUG		position is: [1, 1, 1]
+    Tree.             getNode     DEBUG		current: <Element c at 163e540>
+    Tree.             getNode     DEBUG		index: 1
+    Tree.             getNode     DEBUG		current: <Element b at 163e5d0>
+    Tree.             getNode     DEBUG		index: 1
+    Tree.             getNode     DEBUG		position is: [1, 1, 1]
+    Tree.             getNode     DEBUG		current: <Element c at 1625b40>
+    Tree.             getNode     DEBUG		index: 1
+    Tree.             getNode     DEBUG		current: <Element b at 163e360>
+    Tree.             getNode     DEBUG		index: 1
+    Tree.             getNode     DEBUG		position is: [1, 1, 1, 1]
+    Tree.             getNode     DEBUG		current: <Element c at 163e540>
+    Tree.             getNode     DEBUG		index: 1
+    Tree.             getNode     DEBUG		current: <Element b at 163e5d0>
+    Tree.             getNode     DEBUG		index: 1
+    Tree.             getNode     DEBUG		current: <Element c at 163e6c0>
+    Tree.             getNode     DEBUG		index: 1
+    Tree.             getNode     DEBUG		position is: [1, 1, 1, 1]
+    Tree.             getNode     DEBUG		current: <Element c at 1625b40>
+    Tree.             getNode     DEBUG		index: 1
+    Tree.             getNode     DEBUG		current: <Element b at 163e360>
+    Tree.             getNode     DEBUG		index: 1
+    Tree.             getNode     DEBUG		current: <Element c at 163e390>
+    Tree.             getNode     DEBUG		index: 1
+    Tree.             getNode     DEBUG		position is: [1, 1, 2]
+    Tree.             getNode     DEBUG		current: <Element c at 163e540>
+    Tree.             getNode     DEBUG		index: 1
+    Tree.             getNode     DEBUG		current: <Element b at 163e5d0>
+    Tree.             getNode     DEBUG		index: 2
+    Tree.             getNode     DEBUG		position is: [1, 1, 2]
+    Tree.             getNode     DEBUG		current: <Element c at 1625b40>
+    Tree.             getNode     DEBUG		index: 1
+    Tree.             getNode     DEBUG		current: <Element b at 163e360>
+    Tree.             getNode     DEBUG		index: 2
+    Tree.             getNode     DEBUG		position is: [1, 2]
+    Tree.             getNode     DEBUG		current: <Element c at 163e540>
+    Tree.             getNode     DEBUG		index: 2
+    Tree.             getNode     DEBUG		position is: [1, 2]
+    Tree.             getNode     DEBUG		current: <Element c at 1625b40>
+    Tree.             getNode     DEBUG		index: 2
 test_Tre.test_ComplexTrees_Tr     DEBUG		
 test_Tre.test_ComplexTrees_Tr     DEBUG		
 test_Tre.test_ComplexTrees_Tr     DEBUG		starting test_ComplexTrees_TrailingUnitsInResult
+    Tree.             getNode     DEBUG		position is: [1]
+    Tree.             getNode     DEBUG		position is: [1]
+    Tree.             getNode     DEBUG		position is: [1, 1]
+    Tree.             getNode     DEBUG		current: <Element a at 163e270>
+    Tree.             getNode     DEBUG		index: 1
+    Tree.             getNode     DEBUG		position is: [1, 1]
+    Tree.             getNode     DEBUG		current: <Element c at 163e240>
+    Tree.             getNode     DEBUG		index: 1
+    Tree.             getNode     DEBUG		position is: [1, 1, 1]
+    Tree.             getNode     DEBUG		current: <Element a at 163e270>
+    Tree.             getNode     DEBUG		index: 1
+    Tree.             getNode     DEBUG		current: <Element Y at 163e780>
+    Tree.             getNode     DEBUG		index: 1
+    Tree.             getNode     DEBUG		position is: [1, 1, 1]
+    Tree.             getNode     DEBUG		current: <Element c at 163e240>
+    Tree.             getNode     DEBUG		index: 1
+    Tree.             getNode     DEBUG		current: <Element _ at 163e660>
+    Tree.             getNode     DEBUG		index: 1
+    Tree.             getNode     DEBUG		position is: [1, 1, 1, 1]
+    Tree.             getNode     DEBUG		current: <Element a at 163e270>
+    Tree.             getNode     DEBUG		index: 1
+    Tree.             getNode     DEBUG		current: <Element Y at 163e780>
+    Tree.             getNode     DEBUG		index: 1
+    Tree.             getNode     DEBUG		current: <Element _ at 163e450>
+    Tree.             getNode     DEBUG		index: 1
+    Tree.             getNode     DEBUG		position is: [1, 1, 1]
+    Tree.             getNode     DEBUG		current: <Element c at 163e240>
+    Tree.             getNode     DEBUG		index: 1
+    Tree.             getNode     DEBUG		current: <Element _ at 163e660>
+    Tree.             getNode     DEBUG		index: 1
+    Tree.             getNode     DEBUG		position is: [1, 1, 2]
+    Tree.             getNode     DEBUG		current: <Element a at 163e270>
+    Tree.             getNode     DEBUG		index: 1
+    Tree.             getNode     DEBUG		current: <Element Y at 163e780>
+    Tree.             getNode     DEBUG		index: 2
+    Tree.             getNode     DEBUG		position is: [1, 1]
+    Tree.             getNode     DEBUG		current: <Element c at 163e240>
+    Tree.             getNode     DEBUG		index: 1
+    Tree.             getNode     DEBUG		position is: [1, 2]
+    Tree.             getNode     DEBUG		current: <Element a at 163e270>
+    Tree.             getNode     DEBUG		index: 2
+    Tree.             getNode     DEBUG		position is: [1, 2]
+    Tree.             getNode     DEBUG		current: <Element c at 163e240>
+    Tree.             getNode     DEBUG		index: 2
+    Tree.             getNode     DEBUG		position is: [1, 2, 1]
+    Tree.             getNode     DEBUG		current: <Element a at 163e270>
+    Tree.             getNode     DEBUG		index: 2
+    Tree.             getNode     DEBUG		current: <Element V at 163e930>
+    Tree.             getNode     DEBUG		index: 1
+    Tree.             getNode     DEBUG		position is: [1, 2, 1]
+    Tree.             getNode     DEBUG		current: <Element c at 163e240>
+    Tree.             getNode     DEBUG		index: 2
+    Tree.             getNode     DEBUG		current: <Element _ at 163e840>
+    Tree.             getNode     DEBUG		index: 1
+    Tree.             getNode     DEBUG		position is: [1, 2, 1, 1]
+    Tree.             getNode     DEBUG		current: <Element a at 163e270>
+    Tree.             getNode     DEBUG		index: 2
+    Tree.             getNode     DEBUG		current: <Element V at 163e930>
+    Tree.             getNode     DEBUG		index: 1
+    Tree.             getNode     DEBUG		current: <Element U at 163e9c0>
+    Tree.             getNode     DEBUG		index: 1
+    Tree.             getNode     DEBUG		position is: [1, 2, 1, 1]
+    Tree.             getNode     DEBUG		current: <Element c at 163e240>
+    Tree.             getNode     DEBUG		index: 2
+    Tree.             getNode     DEBUG		current: <Element _ at 163e840>
+    Tree.             getNode     DEBUG		index: 1
+    Tree.             getNode     DEBUG		current: <Element _ at 163ea20>
+    Tree.             getNode     DEBUG		index: 1
+    Tree.             getNode     DEBUG		position is: [1, 2, 2]
+    Tree.             getNode     DEBUG		current: <Element a at 163e270>
+    Tree.             getNode     DEBUG		index: 2
+    Tree.             getNode     DEBUG		current: <Element V at 163e930>
+    Tree.             getNode     DEBUG		index: 2
+    Tree.             getNode     DEBUG		position is: [1, 2, 2]
+    Tree.             getNode     DEBUG		current: <Element c at 163e240>
+    Tree.             getNode     DEBUG		index: 2
+    Tree.             getNode     DEBUG		current: <Element _ at 163e840>
+    Tree.             getNode     DEBUG		index: 2
+    Tree.             getNode     DEBUG		position is: [1]
+    Tree.             getNode     DEBUG		position is: [1]
+    Tree.             getNode     DEBUG		position is: [1, 1]
+    Tree.             getNode     DEBUG		current: <Element c at 163e240>
+    Tree.             getNode     DEBUG		index: 1
+    Tree.             getNode     DEBUG		position is: [1, 1]
+    Tree.             getNode     DEBUG		current: <Element c at 163e150>
+    Tree.             getNode     DEBUG		index: 1
+    Tree.             getNode     DEBUG		position is: [1, 1, 1]
+    Tree.             getNode     DEBUG		current: <Element c at 163e240>
+    Tree.             getNode     DEBUG		index: 1
+    Tree.             getNode     DEBUG		current: <Element _ at 163e660>
+    Tree.             getNode     DEBUG		index: 1
+    Tree.             getNode     DEBUG		position is: [1, 1, 1]
+    Tree.             getNode     DEBUG		current: <Element c at 163e150>
+    Tree.             getNode     DEBUG		index: 1
+    Tree.             getNode     DEBUG		current: <Element _ at 163eb70>
+    Tree.             getNode     DEBUG		index: 1
+    Tree.             getNode     DEBUG		position is: [1, 1, 1, 1]
+    Tree.             getNode     DEBUG		current: <Element c at 163e240>
+    Tree.             getNode     DEBUG		index: 1
+    Tree.             getNode     DEBUG		current: <Element _ at 163e660>
+    Tree.             getNode     DEBUG		index: 1
+    Tree.             getNode     DEBUG		current: <Element c at 163e720>
+    Tree.             getNode     DEBUG		index: 1
+    Tree.             getNode     DEBUG		position is: [1, 1, 1, 1]
+    Tree.             getNode     DEBUG		current: <Element c at 163e150>
+    Tree.             getNode     DEBUG		index: 1
+    Tree.             getNode     DEBUG		current: <Element _ at 163eb70>
+    Tree.             getNode     DEBUG		index: 1
+    Tree.             getNode     DEBUG		current: <Element c at 163e960>
+    Tree.             getNode     DEBUG		index: 1
+    Tree.             getNode     DEBUG		position is: [1, 1, 2]
+    Tree.             getNode     DEBUG		current: <Element c at 163e240>
+    Tree.             getNode     DEBUG		index: 1
+    Tree.             getNode     DEBUG		current: <Element _ at 163e660>
+    Tree.             getNode     DEBUG		index: 2
+    Tree.             getNode     DEBUG		position is: [1, 1, 2]
+    Tree.             getNode     DEBUG		current: <Element c at 163e150>
+    Tree.             getNode     DEBUG		index: 1
+    Tree.             getNode     DEBUG		current: <Element _ at 163eb70>
+    Tree.             getNode     DEBUG		index: 2
+    Tree.             getNode     DEBUG		position is: [1]
+    Tree.             getNode     DEBUG		position is: [1]
+    Tree.             getNode     DEBUG		position is: [1, 1]
+    Tree.             getNode     DEBUG		current: <Element a at 163edb0>
+    Tree.             getNode     DEBUG		index: 1
+    Tree.             getNode     DEBUG		position is: [1, 1]
+    Tree.             getNode     DEBUG		current: <Element c at 163ed50>
+    Tree.             getNode     DEBUG		index: 1
+    Tree.             getNode     DEBUG		position is: [1, 1, 1]
+    Tree.             getNode     DEBUG		current: <Element a at 163edb0>
+    Tree.             getNode     DEBUG		index: 1
+    Tree.             getNode     DEBUG		current: <Element Y at 163eea0>
+    Tree.             getNode     DEBUG		index: 1
+    Tree.             getNode     DEBUG		position is: [1, 1, 1]
+    Tree.             getNode     DEBUG		current: <Element c at 163ed50>
+    Tree.             getNode     DEBUG		index: 1
+    Tree.             getNode     DEBUG		current: <Element _ at 163ee40>
+    Tree.             getNode     DEBUG		index: 1
+    Tree.             getNode     DEBUG		position is: [1, 1, 1, 1]
+    Tree.             getNode     DEBUG		current: <Element a at 163edb0>
+    Tree.             getNode     DEBUG		index: 1
+    Tree.             getNode     DEBUG		current: <Element Y at 163eea0>
+    Tree.             getNode     DEBUG		index: 1
+    Tree.             getNode     DEBUG		current: <Element _ at 163ee10>
+    Tree.             getNode     DEBUG		index: 1
+    Tree.             getNode     DEBUG		position is: [1, 1, 1]
+    Tree.             getNode     DEBUG		current: <Element c at 163ed50>
+    Tree.             getNode     DEBUG		index: 1
+    Tree.             getNode     DEBUG		current: <Element _ at 163ee40>
+    Tree.             getNode     DEBUG		index: 1
+    Tree.             getNode     DEBUG		position is: [1, 1, 2]
+    Tree.             getNode     DEBUG		current: <Element a at 163edb0>
+    Tree.             getNode     DEBUG		index: 1
+    Tree.             getNode     DEBUG		current: <Element Y at 163eea0>
+    Tree.             getNode     DEBUG		index: 2
+    Tree.             getNode     DEBUG		position is: [1, 1]
+    Tree.             getNode     DEBUG		current: <Element c at 163ed50>
+    Tree.             getNode     DEBUG		index: 1
+    Tree.             getNode     DEBUG		position is: [1, 2]
+    Tree.             getNode     DEBUG		current: <Element a at 163edb0>
+    Tree.             getNode     DEBUG		index: 2
+    Tree.             getNode     DEBUG		position is: [1, 2]
+    Tree.             getNode     DEBUG		current: <Element c at 163ed50>
+    Tree.             getNode     DEBUG		index: 2
+    Tree.             getNode     DEBUG		position is: [1, 2, 1]
+    Tree.             getNode     DEBUG		current: <Element a at 163edb0>
+    Tree.             getNode     DEBUG		index: 2
+    Tree.             getNode     DEBUG		current: <Element V at 163ef60>
+    Tree.             getNode     DEBUG		index: 1
+    Tree.             getNode     DEBUG		position is: [1, 2, 1]
+    Tree.             getNode     DEBUG		current: <Element c at 163ed50>
+    Tree.             getNode     DEBUG		index: 2
+    Tree.             getNode     DEBUG		current: <Element _ at 1644030>
+    Tree.             getNode     DEBUG		index: 1
+    Tree.             getNode     DEBUG		position is: [1, 2, 1, 1]
+    Tree.             getNode     DEBUG		current: <Element a at 163edb0>
+    Tree.             getNode     DEBUG		index: 2
+    Tree.             getNode     DEBUG		current: <Element V at 163ef60>
+    Tree.             getNode     DEBUG		index: 1
+    Tree.             getNode     DEBUG		current: <Element U at 16440c0>
+    Tree.             getNode     DEBUG		index: 1
+    Tree.             getNode     DEBUG		position is: [1, 2, 1, 1]
+    Tree.             getNode     DEBUG		current: <Element c at 163ed50>
+    Tree.             getNode     DEBUG		index: 2
+    Tree.             getNode     DEBUG		current: <Element _ at 1644030>
+    Tree.             getNode     DEBUG		index: 1
+    Tree.             getNode     DEBUG		current: <Element _ at 1644120>
+    Tree.             getNode     DEBUG		index: 1
+    Tree.             getNode     DEBUG		position is: [1, 2, 2]
+    Tree.             getNode     DEBUG		current: <Element a at 163edb0>
+    Tree.             getNode     DEBUG		index: 2
+    Tree.             getNode     DEBUG		current: <Element V at 163ef60>
+    Tree.             getNode     DEBUG		index: 2
+    Tree.             getNode     DEBUG		position is: [1, 2, 2]
+    Tree.             getNode     DEBUG		current: <Element c at 163ed50>
+    Tree.             getNode     DEBUG		index: 2
+    Tree.             getNode     DEBUG		current: <Element _ at 163ef60>
+    Tree.             getNode     DEBUG		index: 2
+    Tree.             getNode     DEBUG		position is: [1]
+    Tree.             getNode     DEBUG		position is: [1]
+    Tree.             getNode     DEBUG		position is: [1, 1]
+    Tree.             getNode     DEBUG		current: <Element c at 163ed50>
+    Tree.             getNode     DEBUG		index: 1
+    Tree.             getNode     DEBUG		position is: [1, 1]
+    Tree.             getNode     DEBUG		current: <Element c at 163e150>
+    Tree.             getNode     DEBUG		index: 1
+    Tree.             getNode     DEBUG		position is: [1, 1, 1]
+    Tree.             getNode     DEBUG		current: <Element c at 163ed50>
+    Tree.             getNode     DEBUG		index: 1
+    Tree.             getNode     DEBUG		current: <Element _ at 163ee40>
+    Tree.             getNode     DEBUG		index: 1
+    Tree.             getNode     DEBUG		position is: [1, 1, 1]
+    Tree.             getNode     DEBUG		current: <Element c at 163e150>
+    Tree.             getNode     DEBUG		index: 1
+    Tree.             getNode     DEBUG		current: <Element _ at 163eea0>
+    Tree.             getNode     DEBUG		index: 1
+    Tree.             getNode     DEBUG		position is: [1, 1, 1, 1]
+    Tree.             getNode     DEBUG		current: <Element c at 163ed50>
+    Tree.             getNode     DEBUG		index: 1
+    Tree.             getNode     DEBUG		current: <Element _ at 163ee40>
+    Tree.             getNode     DEBUG		index: 1
+    Tree.             getNode     DEBUG		current: <Element c at 163ecf0>
+    Tree.             getNode     DEBUG		index: 1
+    Tree.             getNode     DEBUG		position is: [1, 1, 1, 1]
+    Tree.             getNode     DEBUG		current: <Element c at 163e150>
+    Tree.             getNode     DEBUG		index: 1
+    Tree.             getNode     DEBUG		current: <Element _ at 163eea0>
+    Tree.             getNode     DEBUG		index: 1
+    Tree.             getNode     DEBUG		current: <Element c at 163ec90>
+    Tree.             getNode     DEBUG		index: 1
+    Tree.             getNode     DEBUG		position is: [1, 1, 2]
+    Tree.             getNode     DEBUG		current: <Element c at 163ed50>
+    Tree.             getNode     DEBUG		index: 1
+    Tree.             getNode     DEBUG		current: <Element _ at 163ee40>
+    Tree.             getNode     DEBUG		index: 2
+    Tree.             getNode     DEBUG		position is: [1, 1, 2]
+    Tree.             getNode     DEBUG		current: <Element c at 163e150>
+    Tree.             getNode     DEBUG		index: 1
+    Tree.             getNode     DEBUG		current: <Element _ at 163eea0>
+    Tree.             getNode     DEBUG		index: 2
 test_Tre.test_ComplexTrees_Un     DEBUG		
 test_Tre.test_ComplexTrees_Un     DEBUG		
 test_Tre.test_ComplexTrees_Un     DEBUG		starting test_ComplexTrees_UnequalStructures
+    Tree.             getNode     DEBUG		position is: [1]
+    Tree.             getNode     DEBUG		position is: [1]
+    Tree.             getNode     DEBUG		position is: [1, 1]
+    Tree.             getNode     DEBUG		current: <Element a at 163e9f0>
+    Tree.             getNode     DEBUG		index: 1
+    Tree.             getNode     DEBUG		position is: [1, 1]
+    Tree.             getNode     DEBUG		current: <Element c at 163e810>
+    Tree.             getNode     DEBUG		index: 1
+    Tree.             getNode     DEBUG		position is: [1, 2]
+    Tree.             getNode     DEBUG		current: <Element a at 163e9f0>
+    Tree.             getNode     DEBUG		index: 2
+    Tree.             getNode     DEBUG		position is: [1, 2]
+    Tree.             getNode     DEBUG		current: <Element c at 163e810>
+    Tree.             getNode     DEBUG		index: 2
+    Tree.             getNode     DEBUG		position is: [1, 2, 1]
+    Tree.             getNode     DEBUG		current: <Element a at 163e9f0>
+    Tree.             getNode     DEBUG		index: 2
+    Tree.             getNode     DEBUG		current: <Element b at 163ecc0>
+    Tree.             getNode     DEBUG		index: 1
+    Tree.             getNode     DEBUG		position is: [1, 2, 1]
+    Tree.             getNode     DEBUG		current: <Element c at 163e810>
+    Tree.             getNode     DEBUG		index: 2
+    Tree.             getNode     DEBUG		current: <Element e at 163eab0>
+    Tree.             getNode     DEBUG		index: 1
+    Tree.             getNode     DEBUG		position is: [1, 2, 1, 1]
+    Tree.             getNode     DEBUG		current: <Element a at 163e9f0>
+    Tree.             getNode     DEBUG		index: 2
+    Tree.             getNode     DEBUG		current: <Element b at 163ecc0>
+    Tree.             getNode     DEBUG		index: 1
+    Tree.             getNode     DEBUG		current: <Element c at 163ebd0>
+    Tree.             getNode     DEBUG		index: 1
+    Tree.             getNode     DEBUG		position is: [1, 2, 1]
+    Tree.             getNode     DEBUG		current: <Element c at 163e810>
+    Tree.             getNode     DEBUG		index: 2
+    Tree.             getNode     DEBUG		current: <Element e at 163eab0>
+    Tree.             getNode     DEBUG		index: 1
+    Tree.             getNode     DEBUG		position is: [1, 2, 2]
+    Tree.             getNode     DEBUG		current: <Element a at 163e9f0>
+    Tree.             getNode     DEBUG		index: 2
+    Tree.             getNode     DEBUG		current: <Element b at 163ecc0>
+    Tree.             getNode     DEBUG		index: 2
+    Tree.             getNode     DEBUG		position is: [1, 2, 2]
+    Tree.             getNode     DEBUG		current: <Element c at 163e810>
+    Tree.             getNode     DEBUG		index: 2
+    Tree.             getNode     DEBUG		current: <Element e at 163eab0>
+    Tree.             getNode     DEBUG		index: 2
+    Tree.             getNode     DEBUG		position is: [1, 3]
+    Tree.             getNode     DEBUG		current: <Element a at 163e9f0>
+    Tree.             getNode     DEBUG		index: 3
+    Tree.             getNode     DEBUG		position is: [1]
+    Tree.             getNode     DEBUG		position is: [1, 3, 1]
+    Tree.             getNode     DEBUG		current: <Element a at 163e9f0>
+    Tree.             getNode     DEBUG		index: 3
+    Tree.             getNode     DEBUG		current: <Element e at 163e300>
+    Tree.             getNode     DEBUG		index: 1
+    Tree.             getNode     DEBUG		position is: [1, 3]
+    Tree.             getNode     DEBUG		current: <Element c at 163e810>
+    Tree.             getNode     DEBUG		index: 3
+    Tree.             getNode     DEBUG		position is: [1, 3, 1, 1]
+    Tree.             getNode     DEBUG		current: <Element a at 163e9f0>
+    Tree.             getNode     DEBUG		index: 3
+    Tree.             getNode     DEBUG		current: <Element e at 163e300>
+    Tree.             getNode     DEBUG		index: 1
+    Tree.             getNode     DEBUG		current: <Element f at 163ef00>
+    Tree.             getNode     DEBUG		index: 1
+    Tree.             getNode     DEBUG		position is: [1, 3, 1]
+    Tree.             getNode     DEBUG		current: <Element c at 163e810>
+    Tree.             getNode     DEBUG		index: 3
+    Tree.             getNode     DEBUG		current: <Element e at 163ea50>
+    Tree.             getNode     DEBUG		index: 1
+    Tree.             getNode     DEBUG		position is: [1, 3, 2]
+    Tree.             getNode     DEBUG		current: <Element a at 163e9f0>
+    Tree.             getNode     DEBUG		index: 3
+    Tree.             getNode     DEBUG		current: <Element e at 163e300>
+    Tree.             getNode     DEBUG		index: 2
+    Tree.             getNode     DEBUG		position is: [1, 3]
+    Tree.             getNode     DEBUG		current: <Element c at 163e810>
+    Tree.             getNode     DEBUG		index: 3
+    Tree.             getNode     DEBUG		position is: [1]
+    Tree.             getNode     DEBUG		position is: [1]
+    Tree.             getNode     DEBUG		position is: [1, 1]
+    Tree.             getNode     DEBUG		current: <Element c at 163e810>
+    Tree.             getNode     DEBUG		index: 1
+    Tree.             getNode     DEBUG		position is: [1, 1]
+    Tree.             getNode     DEBUG		current: <Element c at 163e690>
+    Tree.             getNode     DEBUG		index: 1
+    Tree.             getNode     DEBUG		position is: [1, 2]
+    Tree.             getNode     DEBUG		current: <Element c at 163e810>
+    Tree.             getNode     DEBUG		index: 2
+    Tree.             getNode     DEBUG		position is: [1, 2]
+    Tree.             getNode     DEBUG		current: <Element c at 163e690>
+    Tree.             getNode     DEBUG		index: 2
+    Tree.             getNode     DEBUG		position is: [1, 2, 1]
+    Tree.             getNode     DEBUG		current: <Element c at 163e810>
+    Tree.             getNode     DEBUG		index: 2
+    Tree.             getNode     DEBUG		current: <Element e at 163eab0>
+    Tree.             getNode     DEBUG		index: 1
+    Tree.             getNode     DEBUG		position is: [1, 2, 1]
+    Tree.             getNode     DEBUG		current: <Element c at 163e690>
+    Tree.             getNode     DEBUG		index: 2
+    Tree.             getNode     DEBUG		current: <Element e at 163e930>
+    Tree.             getNode     DEBUG		index: 1
+    Tree.             getNode     DEBUG		position is: [1, 2, 1, 1]
+    Tree.             getNode     DEBUG		current: <Element c at 163e810>
+    Tree.             getNode     DEBUG		index: 2
+    Tree.             getNode     DEBUG		current: <Element e at 163eab0>
+    Tree.             getNode     DEBUG		index: 1
+    Tree.             getNode     DEBUG		current: <Element g at 163ee70>
+    Tree.             getNode     DEBUG		index: 1
+    Tree.             getNode     DEBUG		position is: [1, 2, 1, 1]
+    Tree.             getNode     DEBUG		current: <Element c at 163e690>
+    Tree.             getNode     DEBUG		index: 2
+    Tree.             getNode     DEBUG		current: <Element e at 163e930>
+    Tree.             getNode     DEBUG		index: 1
+    Tree.             getNode     DEBUG		current: <Element g at 163e900>
+    Tree.             getNode     DEBUG		index: 1
+    Tree.             getNode     DEBUG		position is: [1, 2, 2]
+    Tree.             getNode     DEBUG		current: <Element c at 163e810>
+    Tree.             getNode     DEBUG		index: 2
+    Tree.             getNode     DEBUG		current: <Element e at 163eab0>
+    Tree.             getNode     DEBUG		index: 2
+    Tree.             getNode     DEBUG		position is: [1, 2, 2]
+    Tree.             getNode     DEBUG		current: <Element c at 163e690>
+    Tree.             getNode     DEBUG		index: 2
+    Tree.             getNode     DEBUG		current: <Element e at 163e930>
+    Tree.             getNode     DEBUG		index: 2
+    Tree.             getNode     DEBUG		position is: [1, 3]
+    Tree.             getNode     DEBUG		current: <Element c at 163e810>
+    Tree.             getNode     DEBUG		index: 3
+    Tree.             getNode     DEBUG		position is: [1, 3]
+    Tree.             getNode     DEBUG		current: <Element c at 163e690>
+    Tree.             getNode     DEBUG		index: 3
+    Tree.             getNode     DEBUG		position is: [1, 3, 1]
+    Tree.             getNode     DEBUG		current: <Element c at 163e810>
+    Tree.             getNode     DEBUG		index: 3
+    Tree.             getNode     DEBUG		current: <Element e at 163e510>
+    Tree.             getNode     DEBUG		index: 1
+    Tree.             getNode     DEBUG		position is: [1, 3, 1]
+    Tree.             getNode     DEBUG		current: <Element c at 163e690>
+    Tree.             getNode     DEBUG		index: 3
+    Tree.             getNode     DEBUG		current: <Element e at 163e870>
+    Tree.             getNode     DEBUG		index: 1
+    Tree.             getNode     DEBUG		position is: [1, 3, 1, 1]
+    Tree.             getNode     DEBUG		current: <Element c at 163e810>
+    Tree.             getNode     DEBUG		index: 3
+    Tree.             getNode     DEBUG		current: <Element e at 163e510>
+    Tree.             getNode     DEBUG		index: 1
+    Tree.             getNode     DEBUG		current: <Element f at 163e7b0>
+    Tree.             getNode     DEBUG		index: 1
+    Tree.             getNode     DEBUG		position is: [1, 3, 1, 1]
+    Tree.             getNode     DEBUG		current: <Element c at 163e690>
+    Tree.             getNode     DEBUG		index: 3
+    Tree.             getNode     DEBUG		current: <Element e at 163e870>
+    Tree.             getNode     DEBUG		index: 1
+    Tree.             getNode     DEBUG		current: <Element f at 163e6f0>
+    Tree.             getNode     DEBUG		index: 1
+    Tree.             getNode     DEBUG		position is: [1, 3, 2]
+    Tree.             getNode     DEBUG		current: <Element c at 163e810>
+    Tree.             getNode     DEBUG		index: 3
+    Tree.             getNode     DEBUG		current: <Element e at 163e510>
+    Tree.             getNode     DEBUG		index: 2
+    Tree.             getNode     DEBUG		position is: [1, 3, 2]
+    Tree.             getNode     DEBUG		current: <Element c at 163e690>
+    Tree.             getNode     DEBUG		index: 3
+    Tree.             getNode     DEBUG		current: <Element e at 163e870>
+    Tree.             getNode     DEBUG		index: 2
+    Tree.             getNode     DEBUG		position is: [1]
+    Tree.             getNode     DEBUG		position is: [1]
+    Tree.             getNode     DEBUG		position is: [1, 1]
+    Tree.             getNode     DEBUG		current: <Element a at 163e420>
+    Tree.             getNode     DEBUG		index: 1
+    Tree.             getNode     DEBUG		position is: [1, 1]
+    Tree.             getNode     DEBUG		current: <Element c at 163e4b0>
+    Tree.             getNode     DEBUG		index: 1
+    Tree.             getNode     DEBUG		position is: [1, 2]
+    Tree.             getNode     DEBUG		current: <Element a at 163e420>
+    Tree.             getNode     DEBUG		index: 2
+    Tree.             getNode     DEBUG		position is: [1, 2]
+    Tree.             getNode     DEBUG		current: <Element c at 163e4b0>
+    Tree.             getNode     DEBUG		index: 2
+    Tree.             getNode     DEBUG		position is: [1, 2, 1]
+    Tree.             getNode     DEBUG		current: <Element a at 163e420>
+    Tree.             getNode     DEBUG		index: 2
+    Tree.             getNode     DEBUG		current: <Element b at 163e210>
+    Tree.             getNode     DEBUG		index: 1
+    Tree.             getNode     DEBUG		position is: [1, 2, 1]
+    Tree.             getNode     DEBUG		current: <Element c at 163e4b0>
+    Tree.             getNode     DEBUG		index: 2
+    Tree.             getNode     DEBUG		current: <Element e at 163e3c0>
+    Tree.             getNode     DEBUG		index: 1
+    Tree.             getNode     DEBUG		position is: [1, 2, 1, 1]
+    Tree.             getNode     DEBUG		current: <Element a at 163e420>
+    Tree.             getNode     DEBUG		index: 2
+    Tree.             getNode     DEBUG		current: <Element b at 163e210>
+    Tree.             getNode     DEBUG		index: 1
+    Tree.             getNode     DEBUG		current: <Element c at 163e360>
+    Tree.             getNode     DEBUG		index: 1
+    Tree.             getNode     DEBUG		position is: [1, 2, 1]
+    Tree.             getNode     DEBUG		current: <Element c at 163e4b0>
+    Tree.             getNode     DEBUG		index: 2
+    Tree.             getNode     DEBUG		current: <Element e at 163e3c0>
+    Tree.             getNode     DEBUG		index: 1
+    Tree.             getNode     DEBUG		position is: [1, 2, 2]
+    Tree.             getNode     DEBUG		current: <Element a at 163e420>
+    Tree.             getNode     DEBUG		index: 2
+    Tree.             getNode     DEBUG		current: <Element b at 163e210>
+    Tree.             getNode     DEBUG		index: 2
+    Tree.             getNode     DEBUG		position is: [1, 2, 2]
+    Tree.             getNode     DEBUG		current: <Element c at 163e4b0>
+    Tree.             getNode     DEBUG		index: 2
+    Tree.             getNode     DEBUG		current: <Element e at 163e3c0>
+    Tree.             getNode     DEBUG		index: 2
+    Tree.             getNode     DEBUG		position is: [1, 3]
+    Tree.             getNode     DEBUG		current: <Element a at 163e420>
+    Tree.             getNode     DEBUG		index: 3
+    Tree.             getNode     DEBUG		position is: [1]
+    Tree.             getNode     DEBUG		position is: [1, 3, 1]
+    Tree.             getNode     DEBUG		current: <Element a at 163e420>
+    Tree.             getNode     DEBUG		index: 3
+    Tree.             getNode     DEBUG		current: <Element e at 1625c00>
+    Tree.             getNode     DEBUG		index: 1
+    Tree.             getNode     DEBUG		position is: [1, 3]
+    Tree.             getNode     DEBUG		current: <Element c at 163e4b0>
+    Tree.             getNode     DEBUG		index: 3
+    Tree.             getNode     DEBUG		position is: [1, 3, 1, 1]
+    Tree.             getNode     DEBUG		current: <Element a at 163e420>
+    Tree.             getNode     DEBUG		index: 3
+    Tree.             getNode     DEBUG		current: <Element e at 1625c00>
+    Tree.             getNode     DEBUG		index: 1
+    Tree.             getNode     DEBUG		current: <Element f at 1625d50>
+    Tree.             getNode     DEBUG		index: 1
+    Tree.             getNode     DEBUG		position is: [1, 3, 1]
+    Tree.             getNode     DEBUG		current: <Element c at 163e4b0>
+    Tree.             getNode     DEBUG		index: 3
+    Tree.             getNode     DEBUG		current: <Element e at 1625de0>
+    Tree.             getNode     DEBUG		index: 1
+    Tree.             getNode     DEBUG		position is: [1, 3, 2]
+    Tree.             getNode     DEBUG		current: <Element a at 163e420>
+    Tree.             getNode     DEBUG		index: 3
+    Tree.             getNode     DEBUG		current: <Element e at 1625c00>
+    Tree.             getNode     DEBUG		index: 2
+    Tree.             getNode     DEBUG		position is: [1, 3]
+    Tree.             getNode     DEBUG		current: <Element c at 163e4b0>
+    Tree.             getNode     DEBUG		index: 3
+    Tree.             getNode     DEBUG		position is: [1]
+    Tree.             getNode     DEBUG		position is: [1]
+    Tree.             getNode     DEBUG		position is: [1, 1]
+    Tree.             getNode     DEBUG		current: <Element c at 163e4b0>
+    Tree.             getNode     DEBUG		index: 1
+    Tree.             getNode     DEBUG		position is: [1, 1]
+    Tree.             getNode     DEBUG		current: <Element c at 163e690>
+    Tree.             getNode     DEBUG		index: 1
+    Tree.             getNode     DEBUG		position is: [1, 2]
+    Tree.             getNode     DEBUG		current: <Element c at 163e4b0>
+    Tree.             getNode     DEBUG		index: 2
+    Tree.             getNode     DEBUG		position is: [1, 2]
+    Tree.             getNode     DEBUG		current: <Element c at 163e690>
+    Tree.             getNode     DEBUG		index: 2
+    Tree.             getNode     DEBUG		position is: [1, 2, 1]
+    Tree.             getNode     DEBUG		current: <Element c at 163e4b0>
+    Tree.             getNode     DEBUG		index: 2
+    Tree.             getNode     DEBUG		current: <Element e at 163e3c0>
+    Tree.             getNode     DEBUG		index: 1
+    Tree.             getNode     DEBUG		position is: [1, 2, 1]
+    Tree.             getNode     DEBUG		current: <Element c at 163e690>
+    Tree.             getNode     DEBUG		index: 2
+    Tree.             getNode     DEBUG		current: <Element e at 163e930>
+    Tree.             getNode     DEBUG		index: 1
+    Tree.             getNode     DEBUG		position is: [1, 2, 1, 1]
+    Tree.             getNode     DEBUG		current: <Element c at 163e4b0>
+    Tree.             getNode     DEBUG		index: 2
+    Tree.             getNode     DEBUG		current: <Element e at 163e3c0>
+    Tree.             getNode     DEBUG		index: 1
+    Tree.             getNode     DEBUG		current: <Element g at 163e090>
+    Tree.             getNode     DEBUG		index: 1
+    Tree.             getNode     DEBUG		position is: [1, 2, 1, 1]
+    Tree.             getNode     DEBUG		current: <Element c at 163e690>
+    Tree.             getNode     DEBUG		index: 2
+    Tree.             getNode     DEBUG		current: <Element e at 163e930>
+    Tree.             getNode     DEBUG		index: 1
+    Tree.             getNode     DEBUG		current: <Element g at 163e900>
+    Tree.             getNode     DEBUG		index: 1
+    Tree.             getNode     DEBUG		position is: [1, 2, 2]
+    Tree.             getNode     DEBUG		current: <Element c at 163e4b0>
+    Tree.             getNode     DEBUG		index: 2
+    Tree.             getNode     DEBUG		current: <Element e at 163e3c0>
+    Tree.             getNode     DEBUG		index: 2
+    Tree.             getNode     DEBUG		position is: [1, 2, 2]
+    Tree.             getNode     DEBUG		current: <Element c at 163e690>
+    Tree.             getNode     DEBUG		index: 2
+    Tree.             getNode     DEBUG		current: <Element e at 163e930>
+    Tree.             getNode     DEBUG		index: 2
+    Tree.             getNode     DEBUG		position is: [1, 3]
+    Tree.             getNode     DEBUG		current: <Element c at 163e4b0>
+    Tree.             getNode     DEBUG		index: 3
+    Tree.             getNode     DEBUG		position is: [1, 3]
+    Tree.             getNode     DEBUG		current: <Element c at 163e690>
+    Tree.             getNode     DEBUG		index: 3
+    Tree.             getNode     DEBUG		position is: [1, 3, 1]
+    Tree.             getNode     DEBUG		current: <Element c at 163e4b0>
+    Tree.             getNode     DEBUG		index: 3
+    Tree.             getNode     DEBUG		current: <Element e at 1625f60>
+    Tree.             getNode     DEBUG		index: 1
+    Tree.             getNode     DEBUG		position is: [1, 3, 1]
+    Tree.             getNode     DEBUG		current: <Element c at 163e690>
+    Tree.             getNode     DEBUG		index: 3
+    Tree.             getNode     DEBUG		current: <Element e at 163e870>
+    Tree.             getNode     DEBUG		index: 1
+    Tree.             getNode     DEBUG		position is: [1, 3, 1, 1]
+    Tree.             getNode     DEBUG		current: <Element c at 163e4b0>
+    Tree.             getNode     DEBUG		index: 3
+    Tree.             getNode     DEBUG		current: <Element e at 163e1e0>
+    Tree.             getNode     DEBUG		index: 1
+    Tree.             getNode     DEBUG		current: <Element f at 1625f00>
+    Tree.             getNode     DEBUG		index: 1
+    Tree.             getNode     DEBUG		position is: [1, 3, 1, 1]
+    Tree.             getNode     DEBUG		current: <Element c at 163e690>
+    Tree.             getNode     DEBUG		index: 3
+    Tree.             getNode     DEBUG		current: <Element e at 163e870>
+    Tree.             getNode     DEBUG		index: 1
+    Tree.             getNode     DEBUG		current: <Element f at 163e0c0>
+    Tree.             getNode     DEBUG		index: 1
+    Tree.             getNode     DEBUG		position is: [1, 3, 2]
+    Tree.             getNode     DEBUG		current: <Element c at 163e4b0>
+    Tree.             getNode     DEBUG		index: 3
+    Tree.             getNode     DEBUG		current: <Element e at 163e3c0>
+    Tree.             getNode     DEBUG		index: 2
+    Tree.             getNode     DEBUG		position is: [1, 3, 2]
+    Tree.             getNode     DEBUG		current: <Element c at 163e690>
+    Tree.             getNode     DEBUG		index: 3
+    Tree.             getNode     DEBUG		current: <Element e at 163e870>
+    Tree.             getNode     DEBUG		index: 2
 test_Tre.test_SimpleTrees_Equ     DEBUG		
 test_Tre.test_SimpleTrees_Equ     DEBUG		
 test_Tre.test_SimpleTrees_Equ     DEBUG		starting test_SimpleTrees_EqualStructures
+    Tree.             getNode     DEBUG		position is: [1]
+    Tree.             getNode     DEBUG		position is: [1]
+    Tree.             getNode     DEBUG		position is: [1, 1]
+    Tree.             getNode     DEBUG		current: <Element d at 163ea80>
+    Tree.             getNode     DEBUG		index: 1
+    Tree.             getNode     DEBUG		position is: [1, 1]
+    Tree.             getNode     DEBUG		current: <Element e at 163ef30>
+    Tree.             getNode     DEBUG		index: 1
+    Tree.             getNode     DEBUG		position is: [1]
+    Tree.             getNode     DEBUG		position is: [1]
+    Tree.             getNode     DEBUG		position is: [1, 1]
+    Tree.             getNode     DEBUG		current: <Element e at 163ef30>
+    Tree.             getNode     DEBUG		index: 1
+    Tree.             getNode     DEBUG		position is: [1, 1]
+    Tree.             getNode     DEBUG		current: <Element e at 163ede0>
+    Tree.             getNode     DEBUG		index: 1
+    Tree.             getNode     DEBUG		position is: [1]
+    Tree.             getNode     DEBUG		position is: [1]
+    Tree.             getNode     DEBUG		position is: [1, 1]
+    Tree.             getNode     DEBUG		current: <Element d at 163e750>
+    Tree.             getNode     DEBUG		index: 1
+    Tree.             getNode     DEBUG		position is: [1, 1]
+    Tree.             getNode     DEBUG		current: <Element e at 163e270>
+    Tree.             getNode     DEBUG		index: 1
+    Tree.             getNode     DEBUG		position is: [1]
+    Tree.             getNode     DEBUG		position is: [1]
+    Tree.             getNode     DEBUG		position is: [1, 1]
+    Tree.             getNode     DEBUG		current: <Element e at 163e270>
+    Tree.             getNode     DEBUG		index: 1
+    Tree.             getNode     DEBUG		position is: [1, 1]
+    Tree.             getNode     DEBUG		current: <Element e at 163ede0>
+    Tree.             getNode     DEBUG		index: 1
 test_Tre.test_SimpleTrees_Une     DEBUG		
 test_Tre.test_SimpleTrees_Une     DEBUG		
 test_Tre.test_SimpleTrees_Une     DEBUG		starting test_SimpleTrees_UnequalStructures
+    Tree.             getNode     DEBUG		position is: [1]
+    Tree.             getNode     DEBUG		position is: [1]
+    Tree.             getNode     DEBUG		position is: [1, 1]
+    Tree.             getNode     DEBUG		current: <Element a at 163e060>
+    Tree.             getNode     DEBUG		index: 1
+    Tree.             getNode     DEBUG		position is: [1, 1]
+    Tree.             getNode     DEBUG		current: <Element b at 163e0f0>
+    Tree.             getNode     DEBUG		index: 1
+    Tree.             getNode     DEBUG		position is: [1, 2]
+    Tree.             getNode     DEBUG		current: <Element a at 163e060>
+    Tree.             getNode     DEBUG		index: 2
+    Tree.             getNode     DEBUG		position is: [1]
+    Tree.             getNode     DEBUG		position is: [1]
+    Tree.             getNode     DEBUG		position is: [1]
+    Tree.             getNode     DEBUG		position is: [1, 1]
+    Tree.             getNode     DEBUG		current: <Element b at 163e0f0>
+    Tree.             getNode     DEBUG		index: 1
+    Tree.             getNode     DEBUG		position is: [1, 1]
+    Tree.             getNode     DEBUG		current: <Element b at 163e390>
+    Tree.             getNode     DEBUG		index: 1
+    Tree.             getNode     DEBUG		position is: [1, 2]
+    Tree.             getNode     DEBUG		current: <Element b at 163e0f0>
+    Tree.             getNode     DEBUG		index: 2
+    Tree.             getNode     DEBUG		position is: [1, 2]
+    Tree.             getNode     DEBUG		current: <Element b at 163e390>
+    Tree.             getNode     DEBUG		index: 2
+    Tree.             getNode     DEBUG		position is: [1]
+    Tree.             getNode     DEBUG		position is: [1]
+    Tree.             getNode     DEBUG		position is: [1, 1]
+    Tree.             getNode     DEBUG		current: <Element a at 163e6f0>
+    Tree.             getNode     DEBUG		index: 1
+    Tree.             getNode     DEBUG		position is: [1, 1]
+    Tree.             getNode     DEBUG		current: <Element b at 163e600>
+    Tree.             getNode     DEBUG		index: 1
+    Tree.             getNode     DEBUG		position is: [1, 2]
+    Tree.             getNode     DEBUG		current: <Element a at 163e6f0>
+    Tree.             getNode     DEBUG		index: 2
+    Tree.             getNode     DEBUG		position is: [1]
+    Tree.             getNode     DEBUG		position is: [1]
+    Tree.             getNode     DEBUG		position is: [1]
+    Tree.             getNode     DEBUG		position is: [1, 1]
+    Tree.             getNode     DEBUG		current: <Element b at 163e600>
+    Tree.             getNode     DEBUG		index: 1
+    Tree.             getNode     DEBUG		position is: [1, 1]
+    Tree.             getNode     DEBUG		current: <Element b at 163e390>
+    Tree.             getNode     DEBUG		index: 1
+    Tree.             getNode     DEBUG		position is: [1, 2]
+    Tree.             getNode     DEBUG		current: <Element b at 163e600>
+    Tree.             getNode     DEBUG		index: 2
+    Tree.             getNode     DEBUG		position is: [1, 2]
+    Tree.             getNode     DEBUG		current: <Element b at 163e390>
+    Tree.             getNode     DEBUG		index: 2
+    Tree.             getNode     DEBUG		position is: [1]
+    Tree.             getNode     DEBUG		position is: [1]
+    Tree.             getNode     DEBUG		position is: [1, 1]
+    Tree.             getNode     DEBUG		current: <Element xml at 163e7e0>
+    Tree.             getNode     DEBUG		index: 1
+    Tree.             getNode     DEBUG		position is: [1, 1]
+    Tree.             getNode     DEBUG		current: <Element xml at 163e990>
+    Tree.             getNode     DEBUG		index: 1
+    Tree.             getNode     DEBUG		position is: [1]
+    Tree.             getNode     DEBUG		position is: [1]
+    Tree.             getNode     DEBUG		position is: [1, 1]
+    Tree.             getNode     DEBUG		current: <Element xml at 163e7e0>
+    Tree.             getNode     DEBUG		index: 1
+    Tree.             getNode     DEBUG		position is: [1, 1]
+    Tree.             getNode     DEBUG		current: <Element xml at 163e990>
+    Tree.             getNode     DEBUG		index: 1
+    Tree.             getNode     DEBUG		position is: [1]
+    Tree.             getNode     DEBUG		position is: [1]
+    Tree.             getNode     DEBUG		position is: [1, 1]
+    Tree.             getNode     DEBUG		current: <Element xml at 163ec60>
+    Tree.             getNode     DEBUG		index: 1
+    Tree.             getNode     DEBUG		position is: [1, 1]
+    Tree.             getNode     DEBUG		current: <Element xml at 163eab0>
+    Tree.             getNode     DEBUG		index: 1
+    Tree.             getNode     DEBUG		position is: [1]
+    Tree.             getNode     DEBUG		position is: [1]
+    Tree.             getNode     DEBUG		position is: [1, 1]
+    Tree.             getNode     DEBUG		current: <Element xml at 163ec60>
+    Tree.             getNode     DEBUG		index: 1
+    Tree.             getNode     DEBUG		position is: [1, 1]
+    Tree.             getNode     DEBUG		current: <Element xml at 163eab0>
+    Tree.             getNode     DEBUG		index: 1
+    Tree.             getNode     DEBUG		position is: [1]
+    Tree.             getNode     DEBUG		position is: [1]
+    Tree.             getNode     DEBUG		position is: [1, 1]
+    Tree.             getNode     DEBUG		current: <Element xml at 163ee70>
+    Tree.             getNode     DEBUG		index: 1
+    Tree.             getNode     DEBUG		position is: [1, 1]
+    Tree.             getNode     DEBUG		current: <Element xml at 163ecc0>
+    Tree.             getNode     DEBUG		index: 1
+    Tree.             getNode     DEBUG		position is: [1, 1, 1]
+    Tree.             getNode     DEBUG		current: <Element xml at 163ee70>
+    Tree.             getNode     DEBUG		index: 1
+    Tree.             getNode     DEBUG		current: <Element node at 163ee10>
+    Tree.             getNode     DEBUG		index: 1
+    Tree.             getNode     DEBUG		position is: [1, 1, 1]
+    Tree.             getNode     DEBUG		current: <Element xml at 163ecc0>
+    Tree.             getNode     DEBUG		index: 1
+    Tree.             getNode     DEBUG		current: <Element node at 163e810>
+    Tree.             getNode     DEBUG		index: 1
+    Tree.             getNode     DEBUG		position is: [1, 2]
+    Tree.             getNode     DEBUG		current: <Element xml at 163ee70>
+    Tree.             getNode     DEBUG		index: 2
+    Tree.             getNode     DEBUG		position is: [1, 2]
+    Tree.             getNode     DEBUG		current: <Element xml at 163ecc0>
+    Tree.             getNode     DEBUG		index: 2
+    Tree.             getNode     DEBUG		position is: [1, 2, 1]
+    Tree.             getNode     DEBUG		current: <Element xml at 163ee70>
+    Tree.             getNode     DEBUG		index: 2
+    Tree.             getNode     DEBUG		current: <Element node at 163eed0>
+    Tree.             getNode     DEBUG		index: 1
+    Tree.             getNode     DEBUG		position is: [1, 2, 1]
+    Tree.             getNode     DEBUG		current: <Element xml at 163ecc0>
+    Tree.             getNode     DEBUG		index: 2
+    Tree.             getNode     DEBUG		current: <Element node at 163efc0>
+    Tree.             getNode     DEBUG		index: 1
+    Tree.             getNode     DEBUG		position is: [1, 2, 2]
+    Tree.             getNode     DEBUG		current: <Element xml at 163ee70>
+    Tree.             getNode     DEBUG		index: 2
+    Tree.             getNode     DEBUG		current: <Element node at 163eed0>
+    Tree.             getNode     DEBUG		index: 2
+    Tree.             getNode     DEBUG		position is: [1, 2, 2]
+    Tree.             getNode     DEBUG		current: <Element xml at 163ecc0>
+    Tree.             getNode     DEBUG		index: 2
+    Tree.             getNode     DEBUG		current: <Element node at 163efc0>
+    Tree.             getNode     DEBUG		index: 2
+    Tree.             getNode     DEBUG		position is: [1, 2, 3]
+    Tree.             getNode     DEBUG		current: <Element xml at 163ee70>
+    Tree.             getNode     DEBUG		index: 2
+    Tree.             getNode     DEBUG		current: <Element node at 163eed0>
+    Tree.             getNode     DEBUG		index: 3
+    Tree.             getNode     DEBUG		position is: [1, 2, 3]
+    Tree.             getNode     DEBUG		current: <Element xml at 163ecc0>
+    Tree.             getNode     DEBUG		index: 2
+    Tree.             getNode     DEBUG		current: <Element node at 163efc0>
+    Tree.             getNode     DEBUG		index: 3
+    Tree.             getNode     DEBUG		position is: [1, 2, 3, 1]
+    Tree.             getNode     DEBUG		current: <Element xml at 163ee70>
+    Tree.             getNode     DEBUG		index: 2
+    Tree.             getNode     DEBUG		current: <Element node at 163eed0>
+    Tree.             getNode     DEBUG		index: 3
+    Tree.             getNode     DEBUG		current: <Element child3 at 1625b40>
+    Tree.             getNode     DEBUG		index: 1
+    Tree.             getNode     DEBUG		position is: [1, 2, 3, 1]
+    Tree.             getNode     DEBUG		current: <Element xml at 163ecc0>
+    Tree.             getNode     DEBUG		index: 2
+    Tree.             getNode     DEBUG		current: <Element node at 163efc0>
+    Tree.             getNode     DEBUG		index: 3
+    Tree.             getNode     DEBUG		current: <Element child3 at 1625e10>
+    Tree.             getNode     DEBUG		index: 1
+    Tree.             getNode     DEBUG		position is: [1, 2, 3, 1, 1]
+    Tree.             getNode     DEBUG		current: <Element xml at 163ee70>
+    Tree.             getNode     DEBUG		index: 2
+    Tree.             getNode     DEBUG		current: <Element node at 163eed0>
+    Tree.             getNode     DEBUG		index: 3
+    Tree.             getNode     DEBUG		current: <Element child3 at 1625b40>
+    Tree.             getNode     DEBUG		index: 1
+    Tree.             getNode     DEBUG		current: <Element grandchild at 1625d50>
+    Tree.             getNode     DEBUG		index: 1
+    Tree.             getNode     DEBUG		position is: [1, 2, 3, 1, 1]
+    Tree.             getNode     DEBUG		current: <Element xml at 163ecc0>
+    Tree.             getNode     DEBUG		index: 2
+    Tree.             getNode     DEBUG		current: <Element node at 163efc0>
+    Tree.             getNode     DEBUG		index: 3
+    Tree.             getNode     DEBUG		current: <Element child3 at 1625e10>
+    Tree.             getNode     DEBUG		index: 1
+    Tree.             getNode     DEBUG		current: <Element grandchild at 1625c00>
+    Tree.             getNode     DEBUG		index: 1
+    Tree.             getNode     DEBUG		position is: [1]
+    Tree.             getNode     DEBUG		position is: [1]
+    Tree.             getNode     DEBUG		position is: [1, 1]
+    Tree.             getNode     DEBUG		current: <Element xml at 163ee70>
+    Tree.             getNode     DEBUG		index: 1
+    Tree.             getNode     DEBUG		position is: [1, 1]
+    Tree.             getNode     DEBUG		current: <Element xml at 163ecc0>
+    Tree.             getNode     DEBUG		index: 1
+    Tree.             getNode     DEBUG		position is: [1, 1, 1]
+    Tree.             getNode     DEBUG		current: <Element xml at 163ee70>
+    Tree.             getNode     DEBUG		index: 1
+    Tree.             getNode     DEBUG		current: <Element node at 163ee10>
+    Tree.             getNode     DEBUG		index: 1
+    Tree.             getNode     DEBUG		position is: [1, 1, 1]
+    Tree.             getNode     DEBUG		current: <Element xml at 163ecc0>
+    Tree.             getNode     DEBUG		index: 1
+    Tree.             getNode     DEBUG		current: <Element node at 163e810>
+    Tree.             getNode     DEBUG		index: 1
+    Tree.             getNode     DEBUG		position is: [1, 2]
+    Tree.             getNode     DEBUG		current: <Element xml at 163ee70>
+    Tree.             getNode     DEBUG		index: 2
+    Tree.             getNode     DEBUG		position is: [1, 2]
+    Tree.             getNode     DEBUG		current: <Element xml at 163ecc0>
+    Tree.             getNode     DEBUG		index: 2
+    Tree.             getNode     DEBUG		position is: [1, 2, 1]
+    Tree.             getNode     DEBUG		current: <Element xml at 163ee70>
+    Tree.             getNode     DEBUG		index: 2
+    Tree.             getNode     DEBUG		current: <Element node at 163eed0>
+    Tree.             getNode     DEBUG		index: 1
+    Tree.             getNode     DEBUG		position is: [1, 2, 1]
+    Tree.             getNode     DEBUG		current: <Element xml at 163ecc0>
+    Tree.             getNode     DEBUG		index: 2
+    Tree.             getNode     DEBUG		current: <Element node at 163efc0>
+    Tree.             getNode     DEBUG		index: 1
+    Tree.             getNode     DEBUG		position is: [1, 2, 2]
+    Tree.             getNode     DEBUG		current: <Element xml at 163ee70>
+    Tree.             getNode     DEBUG		index: 2
+    Tree.             getNode     DEBUG		current: <Element node at 163eed0>
+    Tree.             getNode     DEBUG		index: 2
+    Tree.             getNode     DEBUG		position is: [1, 2, 2]
+    Tree.             getNode     DEBUG		current: <Element xml at 163ecc0>
+    Tree.             getNode     DEBUG		index: 2
+    Tree.             getNode     DEBUG		current: <Element node at 163efc0>
+    Tree.             getNode     DEBUG		index: 2
+    Tree.             getNode     DEBUG		position is: [1, 2, 3]
+    Tree.             getNode     DEBUG		current: <Element xml at 163ee70>
+    Tree.             getNode     DEBUG		index: 2
+    Tree.             getNode     DEBUG		current: <Element node at 163eed0>
+    Tree.             getNode     DEBUG		index: 3
+    Tree.             getNode     DEBUG		position is: [1, 2, 3]
+    Tree.             getNode     DEBUG		current: <Element xml at 163ecc0>
+    Tree.             getNode     DEBUG		index: 2
+    Tree.             getNode     DEBUG		current: <Element node at 163efc0>
+    Tree.             getNode     DEBUG		index: 3
+    Tree.             getNode     DEBUG		position is: [1, 2, 3, 1]
+    Tree.             getNode     DEBUG		current: <Element xml at 163ee70>
+    Tree.             getNode     DEBUG		index: 2
+    Tree.             getNode     DEBUG		current: <Element node at 163eed0>
+    Tree.             getNode     DEBUG		index: 3
+    Tree.             getNode     DEBUG		current: <Element child3 at 1625b40>
+    Tree.             getNode     DEBUG		index: 1
+    Tree.             getNode     DEBUG		position is: [1, 2, 3, 1]
+    Tree.             getNode     DEBUG		current: <Element xml at 163ecc0>
+    Tree.             getNode     DEBUG		index: 2
+    Tree.             getNode     DEBUG		current: <Element node at 163efc0>
+    Tree.             getNode     DEBUG		index: 3
+    Tree.             getNode     DEBUG		current: <Element child3 at 1625e10>
+    Tree.             getNode     DEBUG		index: 1
+    Tree.             getNode     DEBUG		position is: [1, 2, 3, 1, 1]
+    Tree.             getNode     DEBUG		current: <Element xml at 163ee70>
+    Tree.             getNode     DEBUG		index: 2
+    Tree.             getNode     DEBUG		current: <Element node at 163eed0>
+    Tree.             getNode     DEBUG		index: 3
+    Tree.             getNode     DEBUG		current: <Element child3 at 1625b40>
+    Tree.             getNode     DEBUG		index: 1
+    Tree.             getNode     DEBUG		current: <Element grandchild at 1625d50>
+    Tree.             getNode     DEBUG		index: 1
+    Tree.             getNode     DEBUG		position is: [1, 2, 3, 1, 1]
+    Tree.             getNode     DEBUG		current: <Element xml at 163ecc0>
+    Tree.             getNode     DEBUG		index: 2
+    Tree.             getNode     DEBUG		current: <Element node at 163efc0>
+    Tree.             getNode     DEBUG		index: 3
+    Tree.             getNode     DEBUG		current: <Element child3 at 1625e10>
+    Tree.             getNode     DEBUG		index: 1
+    Tree.             getNode     DEBUG		current: <Element grandchild at 1625c00>
+    Tree.             getNode     DEBUG		index: 1
+    Tree.             getNode     DEBUG		position is: [1]
+    Tree.             getNode     DEBUG		position is: [1]
+    Tree.             getNode     DEBUG		position is: [1, 1]
+    Tree.             getNode     DEBUG		current: <Element xml at 163ecf0>
+    Tree.             getNode     DEBUG		index: 1
+    Tree.             getNode     DEBUG		position is: [1, 1]
+    Tree.             getNode     DEBUG		current: <Element xml at 1625f90>
+    Tree.             getNode     DEBUG		index: 1
+    Tree.             getNode     DEBUG		position is: [1, 1, 1]
+    Tree.             getNode     DEBUG		current: <Element xml at 163ecf0>
+    Tree.             getNode     DEBUG		index: 1
+    Tree.             getNode     DEBUG		current: <Element node at 1625db0>
+    Tree.             getNode     DEBUG		index: 1
+    Tree.             getNode     DEBUG		position is: [1, 1, 1]
+    Tree.             getNode     DEBUG		current: <Element xml at 1625f90>
+    Tree.             getNode     DEBUG		index: 1
+    Tree.             getNode     DEBUG		current: <Element node at 1625fc0>
+    Tree.             getNode     DEBUG		index: 1
+    Tree.             getNode     DEBUG		position is: [1, 2]
+    Tree.             getNode     DEBUG		current: <Element xml at 163ecf0>
+    Tree.             getNode     DEBUG		index: 2
+    Tree.             getNode     DEBUG		position is: [1, 2]
+    Tree.             getNode     DEBUG		current: <Element xml at 1625f90>
+    Tree.             getNode     DEBUG		index: 2
+    Tree.             getNode     DEBUG		position is: [1, 2, 1]
+    Tree.             getNode     DEBUG		current: <Element xml at 163ecf0>
+    Tree.             getNode     DEBUG		index: 2
+    Tree.             getNode     DEBUG		current: <Element node at 1625d20>
+    Tree.             getNode     DEBUG		index: 1
+    Tree.             getNode     DEBUG		position is: [1, 2, 1]
+    Tree.             getNode     DEBUG		current: <Element xml at 1625f90>
+    Tree.             getNode     DEBUG		index: 2
+    Tree.             getNode     DEBUG		current: <Element node at 1625cc0>
+    Tree.             getNode     DEBUG		index: 1
+    Tree.             getNode     DEBUG		position is: [1, 2, 2]
+    Tree.             getNode     DEBUG		current: <Element xml at 163ecf0>
+    Tree.             getNode     DEBUG		index: 2
+    Tree.             getNode     DEBUG		current: <Element node at 1625d20>
+    Tree.             getNode     DEBUG		index: 2
+    Tree.             getNode     DEBUG		position is: [1, 2, 2]
+    Tree.             getNode     DEBUG		current: <Element xml at 1625f90>
+    Tree.             getNode     DEBUG		index: 2
+    Tree.             getNode     DEBUG		current: <Element node at 1625cc0>
+    Tree.             getNode     DEBUG		index: 2
+    Tree.             getNode     DEBUG		position is: [1, 2, 3]
+    Tree.             getNode     DEBUG		current: <Element xml at 163ecf0>
+    Tree.             getNode     DEBUG		index: 2
+    Tree.             getNode     DEBUG		current: <Element node at 1625d20>
+    Tree.             getNode     DEBUG		index: 3
+    Tree.             getNode     DEBUG		position is: [1, 2, 3]
+    Tree.             getNode     DEBUG		current: <Element xml at 1625f90>
+    Tree.             getNode     DEBUG		index: 2
+    Tree.             getNode     DEBUG		current: <Element node at 1625cc0>
+    Tree.             getNode     DEBUG		index: 3
+    Tree.             getNode     DEBUG		position is: [1, 2, 3, 1]
+    Tree.             getNode     DEBUG		current: <Element xml at 163ecf0>
+    Tree.             getNode     DEBUG		index: 2
+    Tree.             getNode     DEBUG		current: <Element node at 1625d20>
+    Tree.             getNode     DEBUG		index: 3
+    Tree.             getNode     DEBUG		current: <Element child3 at 1625a80>
+    Tree.             getNode     DEBUG		index: 1
+    Tree.             getNode     DEBUG		position is: [1, 2, 3, 1]
+    Tree.             getNode     DEBUG		current: <Element xml at 1625f90>
+    Tree.             getNode     DEBUG		index: 2
+    Tree.             getNode     DEBUG		current: <Element node at 1625cc0>
+    Tree.             getNode     DEBUG		index: 3
+    Tree.             getNode     DEBUG		current: <Element child3 at 1625a50>
+    Tree.             getNode     DEBUG		index: 1
+    Tree.             getNode     DEBUG		position is: [1, 2, 3, 1, 1]
+    Tree.             getNode     DEBUG		current: <Element xml at 163ecf0>
+    Tree.             getNode     DEBUG		index: 2
+    Tree.             getNode     DEBUG		current: <Element node at 1625d20>
+    Tree.             getNode     DEBUG		index: 3
+    Tree.             getNode     DEBUG		current: <Element child3 at 1625a80>
+    Tree.             getNode     DEBUG		index: 1
+    Tree.             getNode     DEBUG		current: <Element grandchild at 16259f0>
+    Tree.             getNode     DEBUG		index: 1
+    Tree.             getNode     DEBUG		position is: [1, 2, 3, 1, 1]
+    Tree.             getNode     DEBUG		current: <Element xml at 1625f90>
+    Tree.             getNode     DEBUG		index: 2
+    Tree.             getNode     DEBUG		current: <Element node at 1625cc0>
+    Tree.             getNode     DEBUG		index: 3
+    Tree.             getNode     DEBUG		current: <Element child3 at 1625a50>
+    Tree.             getNode     DEBUG		index: 1
+    Tree.             getNode     DEBUG		current: <Element grandchild at 1625990>
+    Tree.             getNode     DEBUG		index: 1
+    Tree.             getNode     DEBUG		position is: [1]
+    Tree.             getNode     DEBUG		position is: [1]
+    Tree.             getNode     DEBUG		position is: [1, 1]
+    Tree.             getNode     DEBUG		current: <Element xml at 163ecf0>
+    Tree.             getNode     DEBUG		index: 1
+    Tree.             getNode     DEBUG		position is: [1, 1]
+    Tree.             getNode     DEBUG		current: <Element xml at 1625f90>
+    Tree.             getNode     DEBUG		index: 1
+    Tree.             getNode     DEBUG		position is: [1, 1, 1]
+    Tree.             getNode     DEBUG		current: <Element xml at 163ecf0>
+    Tree.             getNode     DEBUG		index: 1
+    Tree.             getNode     DEBUG		current: <Element node at 1625db0>
+    Tree.             getNode     DEBUG		index: 1
+    Tree.             getNode     DEBUG		position is: [1, 1, 1]
+    Tree.             getNode     DEBUG		current: <Element xml at 1625f90>
+    Tree.             getNode     DEBUG		index: 1
+    Tree.             getNode     DEBUG		current: <Element node at 1625fc0>
+    Tree.             getNode     DEBUG		index: 1
+    Tree.             getNode     DEBUG		position is: [1, 2]
+    Tree.             getNode     DEBUG		current: <Element xml at 163ecf0>
+    Tree.             getNode     DEBUG		index: 2
+    Tree.             getNode     DEBUG		position is: [1, 2]
+    Tree.             getNode     DEBUG		current: <Element xml at 1625f90>
+    Tree.             getNode     DEBUG		index: 2
+    Tree.             getNode     DEBUG		position is: [1, 2, 1]
+    Tree.             getNode     DEBUG		current: <Element xml at 163ecf0>
+    Tree.             getNode     DEBUG		index: 2
+    Tree.             getNode     DEBUG		current: <Element node at 1625d20>
+    Tree.             getNode     DEBUG		index: 1
+    Tree.             getNode     DEBUG		position is: [1, 2, 1]
+    Tree.             getNode     DEBUG		current: <Element xml at 1625f90>
+    Tree.             getNode     DEBUG		index: 2
+    Tree.             getNode     DEBUG		current: <Element node at 1625cc0>
+    Tree.             getNode     DEBUG		index: 1
+    Tree.             getNode     DEBUG		position is: [1, 2, 2]
+    Tree.             getNode     DEBUG		current: <Element xml at 163ecf0>
+    Tree.             getNode     DEBUG		index: 2
+    Tree.             getNode     DEBUG		current: <Element node at 1625d20>
+    Tree.             getNode     DEBUG		index: 2
+    Tree.             getNode     DEBUG		position is: [1, 2, 2]
+    Tree.             getNode     DEBUG		current: <Element xml at 1625f90>
+    Tree.             getNode     DEBUG		index: 2
+    Tree.             getNode     DEBUG		current: <Element node at 1625cc0>
+    Tree.             getNode     DEBUG		index: 2
+    Tree.             getNode     DEBUG		position is: [1, 2, 3]
+    Tree.             getNode     DEBUG		current: <Element xml at 163ecf0>
+    Tree.             getNode     DEBUG		index: 2
+    Tree.             getNode     DEBUG		current: <Element node at 1625d20>
+    Tree.             getNode     DEBUG		index: 3
+    Tree.             getNode     DEBUG		position is: [1, 2, 3]
+    Tree.             getNode     DEBUG		current: <Element xml at 1625f90>
+    Tree.             getNode     DEBUG		index: 2
+    Tree.             getNode     DEBUG		current: <Element node at 1625cc0>
+    Tree.             getNode     DEBUG		index: 3
+    Tree.             getNode     DEBUG		position is: [1, 2, 3, 1]
+    Tree.             getNode     DEBUG		current: <Element xml at 163ecf0>
+    Tree.             getNode     DEBUG		index: 2
+    Tree.             getNode     DEBUG		current: <Element node at 1625d20>
+    Tree.             getNode     DEBUG		index: 3
+    Tree.             getNode     DEBUG		current: <Element child3 at 1625a80>
+    Tree.             getNode     DEBUG		index: 1
+    Tree.             getNode     DEBUG		position is: [1, 2, 3, 1]
+    Tree.             getNode     DEBUG		current: <Element xml at 1625f90>
+    Tree.             getNode     DEBUG		index: 2
+    Tree.             getNode     DEBUG		current: <Element node at 1625cc0>
+    Tree.             getNode     DEBUG		index: 3
+    Tree.             getNode     DEBUG		current: <Element child3 at 1625a50>
+    Tree.             getNode     DEBUG		index: 1
+    Tree.             getNode     DEBUG		position is: [1, 2, 3, 1, 1]
+    Tree.             getNode     DEBUG		current: <Element xml at 163ecf0>
+    Tree.             getNode     DEBUG		index: 2
+    Tree.             getNode     DEBUG		current: <Element node at 1625d20>
+    Tree.             getNode     DEBUG		index: 3
+    Tree.             getNode     DEBUG		current: <Element child3 at 1625a80>
+    Tree.             getNode     DEBUG		index: 1
+    Tree.             getNode     DEBUG		current: <Element grandchild at 16259f0>
+    Tree.             getNode     DEBUG		index: 1
+    Tree.             getNode     DEBUG		position is: [1, 2, 3, 1, 1]
+    Tree.             getNode     DEBUG		current: <Element xml at 1625f90>
+    Tree.             getNode     DEBUG		index: 2
+    Tree.             getNode     DEBUG		current: <Element node at 1625cc0>
+    Tree.             getNode     DEBUG		index: 3
+    Tree.             getNode     DEBUG		current: <Element child3 at 1625a50>
+    Tree.             getNode     DEBUG		index: 1
+    Tree.             getNode     DEBUG		current: <Element grandchild at 1625990>
+    Tree.             getNode     DEBUG		index: 1
+    Tree.             getNode     DEBUG		position is: [1, 2, 3, 1, 1]
+    Tree.             getNode     DEBUG		current: <Element xml at 1625de0>
+    Tree.             getNode     DEBUG		index: 2
+    Tree.             getNode     DEBUG		current: <Element node at 1625cf0>
+    Tree.             getNode     DEBUG		index: 3
+    Tree.             getNode     DEBUG		current: <Element child3 at 1625630>
+    Tree.             getNode     DEBUG		index: 1
+    Tree.             getNode     DEBUG		current: <Element grandchild at 1625cf0>
+    Tree.             getNode     DEBUG		index: 1
+    Tree.             getNode     DEBUG		position is: [1, 1, 0, 0, 0]
+    Tree.             getNode     DEBUG		current: <Element xml at 1625b10>
+    Tree.             getNode     DEBUG		index: 1
+    Tree.             getNode     DEBUG		current: <Element node at 1625ae0>
+    Tree.             getNode     DEBUG		index: 0
+    Tree.             getNode     DEBUG		position is: [1, 2, 2]
+    Tree.             getNode     DEBUG		current: <Element xml at 1625960>
+    Tree.             getNode     DEBUG		index: 2
+    Tree.             getNode     DEBUG		current: <Element node at 1625870>
+    Tree.             getNode     DEBUG		index: 2
+    Tree.             getNode     DEBUG		position is: [1, 0, 0, 0, 0]
+    Tree.             getNode     DEBUG		current: <Element xml at 1625840>
+    Tree.             getNode     DEBUG		index: 0
 test_Tre.    test_ComplexTree     DEBUG		
 test_Tre.    test_ComplexTree     DEBUG		
 test_Tre.    test_ComplexTree     DEBUG		starting test_ComplexTree
+    Tree.             getNode     DEBUG		position is: [1]
+    Tree.             getNode     DEBUG		position is: [1]
+    Tree.             getNode     DEBUG		position is: [1, 1]
+    Tree.             getNode     DEBUG		current: <Element Z at 1625660>
+    Tree.             getNode     DEBUG		index: 1
+    Tree.             getNode     DEBUG		position is: [1, 1]
+    Tree.             getNode     DEBUG		current: <Element Z at 1625750>
+    Tree.             getNode     DEBUG		index: 1
+    Tree.             getNode     DEBUG		position is: [1, 2]
+    Tree.             getNode     DEBUG		current: <Element Z at 1625660>
+    Tree.             getNode     DEBUG		index: 2
+    Tree.             getNode     DEBUG		position is: [1, 2]
+    Tree.             getNode     DEBUG		current: <Element Z at 1625750>
+    Tree.             getNode     DEBUG		index: 2
+    Tree.             getNode     DEBUG		position is: [1, 3]
+    Tree.             getNode     DEBUG		current: <Element Z at 1625660>
+    Tree.             getNode     DEBUG		index: 3
+    Tree.             getNode     DEBUG		position is: [1, 3]
+    Tree.             getNode     DEBUG		current: <Element Z at 1625750>
+    Tree.             getNode     DEBUG		index: 3
+    Tree.             getNode     DEBUG		position is: [1, 3, 1]
+    Tree.             getNode     DEBUG		current: <Element Z at 1625660>
+    Tree.             getNode     DEBUG		index: 3
+    Tree.             getNode     DEBUG		current: <Element Y at 16440f0>
+    Tree.             getNode     DEBUG		index: 1
+    Tree.             getNode     DEBUG		position is: [1, 3, 1]
+    Tree.             getNode     DEBUG		current: <Element Z at 1625750>
+    Tree.             getNode     DEBUG		index: 3
+    Tree.             getNode     DEBUG		current: <Element Y at 1644270>
+    Tree.             getNode     DEBUG		index: 1
+    Tree.             getNode     DEBUG		position is: [1, 3, 1, 1]
+    Tree.             getNode     DEBUG		current: <Element Z at 1625660>
+    Tree.             getNode     DEBUG		index: 3
+    Tree.             getNode     DEBUG		current: <Element Y at 16440f0>
+    Tree.             getNode     DEBUG		index: 1
+    Tree.             getNode     DEBUG		current: <Element X at 16441b0>
+    Tree.             getNode     DEBUG		index: 1
+    Tree.             getNode     DEBUG		position is: [1, 3, 1, 1]
+    Tree.             getNode     DEBUG		current: <Element Z at 1625750>
+    Tree.             getNode     DEBUG		index: 3
+    Tree.             getNode     DEBUG		current: <Element Y at 1644270>
+    Tree.             getNode     DEBUG		index: 1
+    Tree.             getNode     DEBUG		current: <Element X at 1644150>
+    Tree.             getNode     DEBUG		index: 1
+    Tree.             getNode     DEBUG		position is: [1, 3, 2]
+    Tree.             getNode     DEBUG		current: <Element Z at 1625660>
+    Tree.             getNode     DEBUG		index: 3
+    Tree.             getNode     DEBUG		current: <Element Y at 16440f0>
+    Tree.             getNode     DEBUG		index: 2
+    Tree.             getNode     DEBUG		position is: [1, 3, 2]
+    Tree.             getNode     DEBUG		current: <Element Z at 1625750>
+    Tree.             getNode     DEBUG		index: 3
+    Tree.             getNode     DEBUG		current: <Element Y at 1644270>
+    Tree.             getNode     DEBUG		index: 2
 test_Tre.test_InverseAddition     DEBUG		
 test_Tre.test_InverseAddition     DEBUG		
 test_Tre.test_InverseAddition     DEBUG		starting test_InverseAddition
+    Tree.             getNode     DEBUG		position is: [1]
+    Tree.             getNode     DEBUG		position is: [1]
+    Tree.             getNode     DEBUG		position is: [1, 1]
+    Tree.             getNode     DEBUG		current: <Element a at 1644390>
+    Tree.             getNode     DEBUG		index: 1
+    Tree.             getNode     DEBUG		position is: [1, 1]
+    Tree.             getNode     DEBUG		current: <Element _ at 1644300>
+    Tree.             getNode     DEBUG		index: 1
+    Tree.             getNode     DEBUG		position is: [1, 2]
+    Tree.             getNode     DEBUG		current: <Element a at 1644390>
+    Tree.             getNode     DEBUG		index: 2
+    Tree.             getNode     DEBUG		position is: [1, 2]
+    Tree.             getNode     DEBUG		current: <Element _ at 1644300>
+    Tree.             getNode     DEBUG		index: 2
+    Tree.             getNode     DEBUG		position is: [1, 3]
+    Tree.             getNode     DEBUG		current: <Element a at 1644390>
+    Tree.             getNode     DEBUG		index: 3
+    Tree.             getNode     DEBUG		position is: [1, 3]
+    Tree.             getNode     DEBUG		current: <Element _ at 1644300>
+    Tree.             getNode     DEBUG		index: 3
+    Tree.             getNode     DEBUG		position is: [1, 3, 1]
+    Tree.             getNode     DEBUG		current: <Element a at 1644390>
+    Tree.             getNode     DEBUG		index: 3
+    Tree.             getNode     DEBUG		current: <Element b at 16445d0>
+    Tree.             getNode     DEBUG		index: 1
+    Tree.             getNode     DEBUG		position is: [1, 3, 1]
+    Tree.             getNode     DEBUG		current: <Element _ at 1644300>
+    Tree.             getNode     DEBUG		index: 3
+    Tree.             getNode     DEBUG		current: <Element _ at 1644420>
+    Tree.             getNode     DEBUG		index: 1
+    Tree.             getNode     DEBUG		position is: [1, 3, 1, 1]
+    Tree.             getNode     DEBUG		current: <Element a at 1644390>
+    Tree.             getNode     DEBUG		index: 3
+    Tree.             getNode     DEBUG		current: <Element b at 16445d0>
+    Tree.             getNode     DEBUG		index: 1
+    Tree.             getNode     DEBUG		current: <Element c at 1644510>
+    Tree.             getNode     DEBUG		index: 1
+    Tree.             getNode     DEBUG		position is: [1, 3, 1, 1]
+    Tree.             getNode     DEBUG		current: <Element _ at 1644300>
+    Tree.             getNode     DEBUG		index: 3
+    Tree.             getNode     DEBUG		current: <Element _ at 1644420>
+    Tree.             getNode     DEBUG		index: 1
+    Tree.             getNode     DEBUG		current: <Element _ at 1644450>
+    Tree.             getNode     DEBUG		index: 1
+    Tree.             getNode     DEBUG		position is: [1, 3, 2]
+    Tree.             getNode     DEBUG		current: <Element a at 1644390>
+    Tree.             getNode     DEBUG		index: 3
+    Tree.             getNode     DEBUG		current: <Element b at 16445d0>
+    Tree.             getNode     DEBUG		index: 2
+    Tree.             getNode     DEBUG		position is: [1, 3, 2]
+    Tree.             getNode     DEBUG		current: <Element _ at 1644300>
+    Tree.             getNode     DEBUG		index: 3
+    Tree.             getNode     DEBUG		current: <Element _ at 1644420>
+    Tree.             getNode     DEBUG		index: 2
+    Tree.             getNode     DEBUG		position is: [1]
+    Tree.             getNode     DEBUG		position is: [1]
 test_Tre.     test_SimpleTree     DEBUG		
 test_Tre.     test_SimpleTree     DEBUG		
 test_Tre.     test_SimpleTree     DEBUG		starting test_SimpleTree
+    Tree.             getNode     DEBUG		position is: [1]
+    Tree.             getNode     DEBUG		position is: [1]
+    Tree.             getNode     DEBUG		position is: [1, 1]
+    Tree.             getNode     DEBUG		current: <Element Z at 1644690>
+    Tree.             getNode     DEBUG		index: 1
+    Tree.             getNode     DEBUG		position is: [1, 1]
+    Tree.             getNode     DEBUG		current: <Element Z at 16444e0>
+    Tree.             getNode     DEBUG		index: 1
 test_Tre.       test_UnitTree     DEBUG		
 test_Tre.       test_UnitTree     DEBUG		
 test_Tre.       test_UnitTree     DEBUG		starting test_UnitTree
+    Tree.             getNode     DEBUG		position is: [1]
+    Tree.             getNode     DEBUG		position is: [1]
+    Tree.             getNode     DEBUG		position is: [1]
+    Tree.             getNode     DEBUG		position is: [1, 1]
+    Tree.             getNode     DEBUG		current: <Element xml at 1644930>
+    Tree.             getNode     DEBUG		index: 1
+    Tree.             getNode     DEBUG		position is: [1, 1, 1]
+    Tree.             getNode     DEBUG		current: <Element xml at 1644930>
+    Tree.             getNode     DEBUG		index: 1
+    Tree.             getNode     DEBUG		current: <Element node at 1644c00>
+    Tree.             getNode     DEBUG		index: 1
+    Tree.             getNode     DEBUG		position is: [1, 2]
+    Tree.             getNode     DEBUG		current: <Element xml at 1644930>
+    Tree.             getNode     DEBUG		index: 2
+    Tree.             getNode     DEBUG		position is: [1, 2, 1]
+    Tree.             getNode     DEBUG		current: <Element xml at 1644930>
+    Tree.             getNode     DEBUG		index: 2
+    Tree.             getNode     DEBUG		current: <Element node at 1644c90>
+    Tree.             getNode     DEBUG		index: 1
+    Tree.             getNode     DEBUG		position is: [1, 2, 2]
+    Tree.             getNode     DEBUG		current: <Element xml at 1644930>
+    Tree.             getNode     DEBUG		index: 2
+    Tree.             getNode     DEBUG		current: <Element node at 1644c90>
+    Tree.             getNode     DEBUG		index: 2
+    Tree.             getNode     DEBUG		position is: [1, 2, 3]
+    Tree.             getNode     DEBUG		current: <Element xml at 1644930>
+    Tree.             getNode     DEBUG		index: 2
+    Tree.             getNode     DEBUG		current: <Element node at 1644c90>
+    Tree.             getNode     DEBUG		index: 3
+    Tree.             getNode     DEBUG		position is: [1, 2, 3, 1]
+    Tree.             getNode     DEBUG		current: <Element xml at 1644930>
+    Tree.             getNode     DEBUG		index: 2
+    Tree.             getNode     DEBUG		current: <Element node at 1644c90>
+    Tree.             getNode     DEBUG		index: 3
+    Tree.             getNode     DEBUG		current: <Element child3 at 1644db0>
+    Tree.             getNode     DEBUG		index: 1
+    Tree.             getNode     DEBUG		position is: [1, 2, 3, 1, 1]
+    Tree.             getNode     DEBUG		current: <Element xml at 1644930>
+    Tree.             getNode     DEBUG		index: 2
+    Tree.             getNode     DEBUG		current: <Element node at 1644c90>
+    Tree.             getNode     DEBUG		index: 3
+    Tree.             getNode     DEBUG		current: <Element child3 at 1644db0>
+    Tree.             getNode     DEBUG		index: 1
+    Tree.             getNode     DEBUG		current: <Element grandchild at 1644de0>
+    Tree.             getNode     DEBUG		index: 1

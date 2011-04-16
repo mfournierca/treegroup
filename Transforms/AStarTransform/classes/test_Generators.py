@@ -4,7 +4,10 @@ import Tree.Tree
 from . import Generators
         
     
-    
+   
+#===============================================================================
+# test the rename generator 
+#===============================================================================
     
 class test_RenameGenerator(unittest.TestCase):
     """Test the RenameGenerator class """
@@ -101,3 +104,53 @@ class test_RenameGeneratorIterator(unittest.TestCase):
             self.assertTrue(Tree.Tree.equal(expectedTree, operand.tree), "RenameGenerator generated the wrong operand. Expected %s, got %s" % (lxml.etree.tostring(expectedTree), lxml.etree.tostring(operand.tree)))
             index += 1
     
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+#===============================================================================
+# test the unwrap generator
+#===============================================================================
+
+class test_UnwrapGenerator(unittest.TestCase):
+    
+    def setUp(self):
+        self.testfilesdir = os.path.join(os.path.dirname(__file__), '..', '..', '..', 'testfiles', 'AStarTransform', 'Unwrap')
+        self.log = logging.getLogger()
+        
+        
+    def test_UnwrapEmptyElement(self):
+        self.log.debug('')
+        self.log.debug('')
+        self.log.debug('running %s' % __name__)
+        testfile = os.path.join(self.testfilesdir, 'UnwrapTest1.xml')
+        tree = lxml.etree.parse(testfile)
+        targetElement = tree.getroot()[0]
+        expectedTree = lxml.etree.fromstring('''<dita></dita>''')
+        generator = Generators.UnwrapGenerator()
+        operand = generator.generateOperand(targetElement)
+        self.assertTrue(Tree.Tree.equal(expectedTree, Tree.Tree.add(tree, operand.tree)), "UnwrapGenerator generated the wrong operand. Operand results in %s, expected %s" % (lxml.etree.tostring(tree), lxml.etree.tostring(expectedTree)))
+    
+        
+    def test_UnwrapEmptyElementWithSibling(self):
+        self.log.debug('')
+        self.log.debug('')
+        self.log.debug('running %s' % __name__)
+        testfile = os.path.join(self.testfilesdir, 'UnwrapTest2.xml')
+        tree = lxml.etree.parse(testfile)
+        targetElement = tree.getroot()[0]
+        expectedTree = lxml.etree.fromstring('''<dita><b/></dita>''')
+        generator = Generators.UnwrapGenerator()
+        operand = generator.generateOperand(targetElement)
+        self.assertTrue(Tree.Tree.equal(expectedTree, Tree.Tree.add(tree, operand.tree)), "UnwrapGenerator generated the wrong operand. Operand results in %s, expected %s" % (lxml.etree.tostring(tree), lxml.etree.tostring(expectedTree)))
+    
+        
