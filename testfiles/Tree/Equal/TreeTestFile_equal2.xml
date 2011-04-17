@@ -1,0 +1,13 @@
+
+    <node id='3'>
+        <child1 id='4'/>
+        <child2 id='5'/>
+        <child3 id='6'>
+            <grandchild id='7'>
+                <newborn id='8'/>
+            </grandchild>
+        </child3>
+    </node>
+
+<!-- this tree is a subtree of the TreeTestFile_reference.xml file, and when tested against that
+    subtree, it should be found equal -->

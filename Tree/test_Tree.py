@@ -273,7 +273,7 @@ class test_add(unittest.TestCase):
         
         self.log.debug('')
         self.log.debug('')
-        self.log.debug('starting test_SimpleTrees_EqualStructures')
+        self.log.debug('starting %s' % __name__)
         
         expectedtree = lxml.etree.fromstring('<e> <g id="2"/> </e>')
         
@@ -295,7 +295,7 @@ class test_add(unittest.TestCase):
         
         self.log.debug('')
         self.log.debug('')
-        self.log.debug('starting test_ComplexTrees_EqualStructures')
+        self.log.debug('starting %s' % __name__)
         
         expectedtree = lxml.etree.fromstring("""
                                         <c>
@@ -326,7 +326,7 @@ class test_add(unittest.TestCase):
         
         self.log.debug('')
         self.log.debug('')
-        self.log.debug('starting test_AddUnit')
+        self.log.debug('starting %s' % __name__)
         
         expectedtree = lxml.etree.fromstring("""
                                             <a>
@@ -358,7 +358,7 @@ class test_add(unittest.TestCase):
         
         self.log.debug('')
         self.log.debug('')
-        self.log.debug('starting test_SimpleTrees_UnequalStructures')
+        self.log.debug('starting %s' % __name__)
         
         expectedtree = lxml.etree.fromstring("""<b> 
                                                     <d id="2"/> 
@@ -382,7 +382,7 @@ class test_add(unittest.TestCase):
         
         self.log.debug('')
         self.log.debug('')
-        self.log.debug('starting test_ComplexTrees_UnequalStructures')
+        self.log.debug('starting %s' % __name__)
         
         expectedtree = lxml.etree.fromstring("""<c>
                                                     <c id='a'/>
@@ -421,7 +421,7 @@ class test_add(unittest.TestCase):
                     
         self.log.debug('')
         self.log.debug('')
-        self.log.debug('starting test_ComplexTrees_SeveralUnitsInOperand')
+        self.log.debug('starting %s' % __name__)
         
         expectedtree = lxml.etree.fromstring("""
                                                 <c>
@@ -455,7 +455,7 @@ class test_add(unittest.TestCase):
                 
         self.log.debug('')
         self.log.debug('')
-        self.log.debug('starting test_ComplexTrees_TrailingUnitsInResult')
+        self.log.debug('starting %s' % __name__)
         
         expectedtree = lxml.etree.fromstring("""    
                                             <c>
@@ -482,14 +482,85 @@ class test_add(unittest.TestCase):
                         % (lxml.etree.tostring(expectedtree, pretty_print=True), lxml.etree.tostring(tree1, pretty_print=True)))
         
         
-#        def test_Subtrees(self):
-#            pass
-#        
-#        def test_SubtreeToTree(self):
-#            pass
-#        
-#        def test_TreeToSubtree(self):
-#            pass
+    def test_Subtrees(self):
+        self.log.debug('')
+        self.log.debug('')
+        self.log.debug('starting test_Subtrees')
+        
+        expectedtree = lxml.etree.fromstring("""
+                                            <_>
+                                                <c id='3'>
+                                                    <d id="4"/>
+                                                </c>
+                                                <c id="5"/>
+                                            </_>
+                                            """)
+                                                
+        tree1 = lxml.etree.parse(os.path.join(self.testfilesdir, 'TreeTestFile_add11.xml'))
+        tree2 = lxml.etree.parse(os.path.join(self.testfilesdir, 'TreeTestFile_add12.xml'))
+        Tree.add(tree1.getroot()[0], tree2.getroot()[0])
+        self.assertTrue(Tree.equal(tree1.getroot()[0], expectedtree), "Add failed, created incorrect tree. Expected %s, got %s" \
+                        % (lxml.etree.tostring(expectedtree, pretty_print=True), lxml.etree.tostring(tree1.getroot()[0], pretty_print=True)))
+            
+        
+        
+    def test_SubtreeToTree(self):
+        self.log.debug('')
+        self.log.debug('')
+        self.log.debug('starting test_SubtreeToTree')
+        
+        expectedtree = lxml.etree.fromstring("""
+                                            <_ id="a">
+                                                <b id='9'>
+                                                    <g id="X"/>
+                                                </b>
+                                                <h id='1'>
+                                                    <f id="7">
+                                                        <g id='8'/>
+                                                    </f>
+                                                    <f id="8"/>
+                                                </h>
+                                            </_>
+                                            """)
+                                                
+        tree1 = lxml.etree.parse(os.path.join(self.testfilesdir, 'TreeTestFile_add11.xml'))
+        tree2 = lxml.etree.parse(os.path.join(self.testfilesdir, 'TreeTestFile_add12.xml'))
+        Tree.add(tree1, tree2.getroot()[0])
+        self.assertTrue(Tree.equal(tree1, expectedtree), "Add failed, created incorrect tree. Expected %s, got %s" \
+                        % (lxml.etree.tostring(expectedtree, pretty_print=True), lxml.etree.tostring(tree1, pretty_print=True)))
+            
+        
+        
+        
+    def test_TreeToSubtree(self):
+        self.log.debug('')
+        self.log.debug('')
+        self.log.debug('starting test_TreeToSubtree')
+        
+        expectedtree = lxml.etree.fromstring("""
+                                            <_ id="a">
+                                                <b id='9'>
+                                                    <g id="X"/>
+                                                </b>
+                                                <h id='1'>
+                                                    <f id="7">
+                                                        <g id='8'/>
+                                                    </f>
+                                                    <f id="8"/>
+                                                </h>
+                                            </_>
+                                            """)
+                                                
+        tree1 = lxml.etree.parse(os.path.join(self.testfilesdir, 'TreeTestFile_add11.xml'))
+        tree2 = lxml.etree.parse(os.path.join(self.testfilesdir, 'TreeTestFile_add12.xml'))
+        Tree.add(tree2.getroot()[0], tree1)
+        self.assertTrue(Tree.equal(tree2.getroot()[0], expectedtree), "Add failed, created incorrect tree. Expected %s, got %s" \
+                        % (lxml.etree.tostring(expectedtree, pretty_print=True), lxml.etree.tostring(tree2.getroot()[0], pretty_print=True)))
+            
+            
+            
+            
+            
         
         
         
@@ -504,7 +575,7 @@ class test_invert(unittest.TestCase):
     def test_SimpleTree(self):
         self.log.debug('')
         self.log.debug('')
-        self.log.debug('starting test_SimpleTree')
+        self.log.debug('starting %s' % __name__)
         
         expectedtree = lxml.etree.fromstring("""    
                                             <Z>
@@ -524,7 +595,7 @@ class test_invert(unittest.TestCase):
     def test_ComplexTree(self):
         self.log.debug('')
         self.log.debug('')
-        self.log.debug('starting test_ComplexTree')
+        self.log.debug('starting %s' % __name__)
         
         expectedtree = lxml.etree.fromstring("""    
                                             <Z>
@@ -551,7 +622,7 @@ class test_invert(unittest.TestCase):
     def test_UnitTree(self):
         self.log.debug('')
         self.log.debug('')
-        self.log.debug('starting test_UnitTree')
+        self.log.debug('starting %s' % __name__)
         
         expectedtree = lxml.etree.fromstring("""    
                                             <_/>
@@ -570,7 +641,7 @@ class test_invert(unittest.TestCase):
     def test_InverseAddition(self):
         self.log.debug('')
         self.log.debug('')
-        self.log.debug('starting test_InverseAddition')
+        self.log.debug('starting %s' % __name__)
         
         unittree = lxml.etree.fromstring("""    
                                         <_/>
@@ -583,7 +654,26 @@ class test_invert(unittest.TestCase):
         self.assertTrue(Tree.equal(tree1, unittree), "invert() failed, created incorrect tree, did not add to unit")
     
     
-#    def test_Subtree(self):
-#        pass
+    
+    
+    def test_Subtree(self):
+        self.log.debug('')
+        self.log.debug('')
+        self.log.debug('starting %s' % __name__)
+        
+        expectedtree = lxml.etree.fromstring("""
+                                            <Y id='h'>
+                                                <X id='g'>
+                                                    <W id='f'/>
+                                                </X>
+                                                <X id="e"/>
+                                            </Y>
+                                            """)
+                                                
+        tree = lxml.etree.parse(os.path.join(os.path.dirname(__file__), '..', 'testfiles', 'Tree', 'Invert', 'TreeTestFile_invert2.xml'))
+        Tree.invert(tree.getroot()[2])
+        self.assertTrue(Tree.equal(tree.getroot()[2], expectedtree), "invert() failed, created incorrect tree. Expected %s, got %s" \
+                        % (lxml.etree.tostring(expectedtree, pretty_print=True), lxml.etree.tostring(tree.getroot()[2], pretty_print=True)))
+    
     
     
