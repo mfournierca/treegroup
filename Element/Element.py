@@ -80,7 +80,7 @@ def add(element1, element2):
 
 
     
-def position(element1):
+def position(element1, root=None):
     """Return the position of the element in its parent tree. 
     
     The position of a node is, essentially, the path to it from the root. 
@@ -90,12 +90,19 @@ def position(element1):
     
     Note that the numbers in the position are the index of each child + 1. 
     
+    You can specify another root node to use. The position generator will stop ascending
+    the tree and inserting entries into the position when it reaches this node. This is 
+    useful if you are trying to find the position of a node in a subtree, ie a tree
+    defined by an element in a tree. In this case, the element is the root of its subtree,
+    so you may not want to go up to the root of the tree as a whole. In this case, use the
+    root= option. 
+    
     The length of the position list is not relevant, we simply travel to the node
     represented by the last node in the list. """
     
     position = [] 
     current = element1
-    while current.getparent() is not None:
+    while (current.getparent() is not None) and (current is not root):
         parent = current.getparent()
         #find the index of current under parent
         index = 0

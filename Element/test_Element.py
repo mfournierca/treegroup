@@ -256,4 +256,16 @@ class test_position(unittest.TestCase):
         self.assertEqual(expected, result, 'position() failed: expected %s, got %s' % (str(expected), str(result)))
     
     
+    def test_DifferentRootNode_Grandchild(self):
+        expected = [1, 3, 1, 1]
+        result = Element.position(self.testtree.xpath('//newborn[@id="8"]')[0], root=self.testtree.getroot()[2])
+        self.assertEqual(expected, result, 'position() failed: expected %s, got %s' % (str(expected), str(result)))
+        
+        
+    def test_DifferentRootNode_RootNode(self):
+        expected = [1]
+        result = Element.position(self.testtree.getroot()[2], root=self.testtree.getroot()[2])
+        self.assertEqual(expected, result, 'position() failed: expected %s, got %s' % (str(expected), str(result)))
+        
+    
     

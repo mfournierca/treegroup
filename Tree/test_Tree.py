@@ -71,6 +71,27 @@ class test_equal(unittest.TestCase):
         result = Tree.equal(None, None)
         self.assertIs(result, False, "equal() failed: expected %s, got %s" % (str(False), str(result)))
         
+    def test_EqualSubtrees(self):
+        #TreeTestFile_equal2.xml is a subtree of TreeTestFile_reference.xml, ie self.testtree
+        #The matching subtree is at self.testtree.getroot()[1]
+        comparetree = lxml.etree.parse(os.path.join(self.testfilesdir, 'TreeTestFile_equal2.xml'))
+        result = Tree.equal(self.testtree.getroot()[1], comparetree)
+        self.assertIs(result, True, "equal() failed: expected %s, got %s" % (str(True), str(result)))
+        #test as elements
+        result = Tree.equal(self.testtree.getroot()[1], comparetree.getroot())
+        self.assertIs(result, True, "equal() failed: expected %s, got %s" % (str(True), str(result)))
+        
+    def test_UnequalSubtrees(self):
+        #TreeTestFile_equal2.xml is a subtree of TreeTestFile_reference.xml, ie self.testtree
+        #The matching subtree is at self.testtree.getroot()[1]. This test, however, uses [0]
+        comparetree = lxml.etree.parse(os.path.join(self.testfilesdir, 'TreeTestFile_equal2.xml'))
+        result = Tree.equal(self.testtree.getroot()[0], comparetree)
+        self.assertIs(result, False, "equal() failed: expected %s, got %s" % (str(False), str(result)))
+        #test as elements
+        result = Tree.equal(self.testtree.getroot()[0], comparetree.getroot())
+        self.assertIs(result, False, "equal() failed: expected %s, got %s" % (str(False), str(result)))
+        
+
 
 
 
@@ -82,9 +103,8 @@ class test_ordering(unittest.TestCase):
         self.testfile = os.path.join(os.path.dirname(__file__), '..', 'testfiles', 'Tree', 'Ordering', 'TreeTestFile_reference.xml')
         self.testtree = lxml.etree.parse(self.testfile)
         
-        self.ordering = Tree.ordering(self.testtree)
-        
-        self.expectedordering = [
+        self.treeOrdering = Tree.ordering(self.testtree)
+        self.expectedTreeOrdering = [
                                  [1],
                                  [1, 1],
                                  [1, 1, 1], 
@@ -96,16 +116,37 @@ class test_ordering(unittest.TestCase):
                                  [1, 2, 3, 1, 1],
                                 ]  
         
+        self.subtreeOrdering = Tree.ordering(self.testtree.getroot()[1])
+        self.expectedSubtreeOrdering =  [
+                                         [1],
+                                         [1, 1],
+                                         [1, 2], 
+                                         [1, 3], 
+                                         [1, 3, 1],
+                                         [1, 3, 1, 1]
+                                        ]
+        
         
     
     def test_Length(self):
-        self.assertEqual(len(self.ordering), len(self.expectedordering), 'ordering() returned an ordering with the wrong length: expected %i, got %i' \
-                         % (len(self.expectedordering), len(self.ordering)))
+        self.assertEqual(len(self.treeOrdering), len(self.expectedTreeOrdering), 'ordering() returned an ordering with the wrong length: expected %i, got %i' \
+                         % (len(self.expectedTreeOrdering), len(self.treeOrdering)))
+    
+    def test_SubtreeLength(self):
+        self.assertEqual(len(self.expectedSubtreeOrdering), len(self.subtreeOrdering), 'ordering() returned an ordering with the wrong length: expected %i, got %i' \
+                         % (len(self.expectedSubtreeOrdering), len(self.subtreeOrdering)))
+    
     
     def test_Positions(self):
-        for index, p in enumerate(self.ordering):
-            self.assertEqual(p, self.expectedordering[index], "ordering() returned a list with incorrect entry at index %i: expected %s, got %s" \
-                              % (index, str(self.expectedordering[index]), str(p)))
+        for index, p in enumerate(self.treeOrdering):
+            self.assertEqual(p, self.expectedTreeOrdering[index], "ordering() returned a list with incorrect entry at index %i: expected %s, got %s" \
+                              % (index, str(self.expectedTreeOrdering[index]), str(p)))
+    
+    def test_SubtreePositions(self):
+        for index, p in enumerate(self.subtreeOrdering):
+            self.assertEqual(self.expectedSubtreeOrdering[index], p, "ordering() returned a list with incorrect entry at index %i: expected %s, got %s" \
+                              % (index, str(self.expectedSubtreeOrdering[index]), str(p)))
+    
     
     def test_Nodes(self):
         expectednodes = [
@@ -120,10 +161,27 @@ class test_ordering(unittest.TestCase):
                          lxml.etree.Element('newborn', {'id': '8'}),
                         ]
         
-        for index, p in enumerate(self.ordering):
+        for index, p in enumerate(self.treeOrdering):
             result = Tree.getNode(self.testtree, p)
             self.assertTrue(Element.Element.equal(result, expectednodes[index]), 'ordering returned a list with incorrect node position at index %i: expected %s %s, got %s %s,' \
                             % (index, expectednodes[index].tag, str(expectednodes[index].attrib), result.tag, str(result.attrib)))
+
+
+    def test_SubtreeNodes(self):
+        expectednodes = [
+                         lxml.etree.Element('node', {'id': '3'}),
+                         lxml.etree.Element('child1', {'id': '4'}),
+                         lxml.etree.Element('child2', {'id': '5'}),
+                         lxml.etree.Element('child3', {'id': '6'}),
+                         lxml.etree.Element('grandchild', {'id': '7'}),
+                         lxml.etree.Element('newborn', {'id': '8'}),
+                        ]
+        
+        for index, p in enumerate(self.subtreeOrdering):
+            result = Tree.getNode(self.testtree.getroot()[1], p)
+            self.assertTrue(Element.Element.equal(result, expectednodes[index]), 'ordering returned a list with incorrect node position at index %i: expected %s %s, got %s %s,' \
+                            % (index, expectednodes[index].tag, str(expectednodes[index].attrib), result.tag, str(result.attrib)))
+
 
 
 
@@ -179,6 +237,28 @@ class test_getNode(unittest.TestCase):
         
         self.assertTrue(Element.Element.equal(result, expected), 'getNode() returned the wrong node: expected %s %s, got %s %s' \
                         % (expected.tag, str(expected.attrib), result.tag, str(result.attrib)))
+    
+    
+    def test_NodeFromSubtree(self):
+        position = [1, 3, 1, 1]
+        result = Tree.getNode(self.testtree.getroot()[1], position)
+        expected = lxml.etree.Element('newborn', {'id': '8'})
+        
+        self.assertTrue(Element.Element.equal(expected, result), 'getNode() returned the wrong node: expected %s %s, got %s %s' \
+                        % (expected.tag, str(expected.attrib), result.tag, str(result.attrib)))
+    
+    
+    def test_RootOfSubtree(self):
+        position = [1]
+        result = Tree.getNode(self.testtree.getroot()[1], position)
+        expected = lxml.etree.Element('node', {'id': '3'})
+        
+        self.assertTrue(Element.Element.equal(expected, result), 'getNode() returned the wrong node: expected %s %s, got %s %s' \
+                        % (expected.tag, str(expected.attrib), result.tag, str(result.attrib)))
+        
+    
+    
+    
     
     
 class test_add(unittest.TestCase):
@@ -402,6 +482,14 @@ class test_add(unittest.TestCase):
                         % (lxml.etree.tostring(expectedtree, pretty_print=True), lxml.etree.tostring(tree1, pretty_print=True)))
         
         
+#        def test_Subtrees(self):
+#            pass
+#        
+#        def test_SubtreeToTree(self):
+#            pass
+#        
+#        def test_TreeToSubtree(self):
+#            pass
         
         
         
@@ -495,5 +583,7 @@ class test_invert(unittest.TestCase):
         self.assertTrue(Tree.equal(tree1, unittree), "invert() failed, created incorrect tree, did not add to unit")
     
     
+#    def test_Subtree(self):
+#        pass
     
     

@@ -210,7 +210,7 @@ def ordering(tree):
         root = tree
     
     for i in root.iter():
-        result.append(Element.Element.position(i))
+        result.append(Element.Element.position(i, root=root))
     return result
 
 
@@ -225,7 +225,7 @@ def getNode(tree, position):
         #fail, this is a required property of te position
         return False
     
-    log.debug('position is: %s' % str(position))
+#    log.debug('position is: %s' % str(position))
     position = position[1:]
         
     if isinstance(tree, lxml.etree._ElementTree):
@@ -234,8 +234,8 @@ def getNode(tree, position):
         current = tree
         
     for i in position:
-        log.debug('current: %s' % str(current))
-        log.debug('index: %i' % i)
+#        log.debug('current: %s' % str(current))
+#        log.debug('index: %i' % i)
         if i == 0: 
             return current
         current = current[i - 1]
