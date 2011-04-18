@@ -1,17 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <dita>
     <a>
-        <b>
-            <c/>
-        </b>
-        <d>
-            <e>
-                <f/>
-            </e>
-        </d>
+        <b/>
+        <c/>
     </a>
-    <g>
-        <h/>
-    </g>
+    <d/>
 </dita>
 

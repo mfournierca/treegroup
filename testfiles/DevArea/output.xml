@@ -1,11 +1,37 @@
 <output>
-    <Y id="h">
-        <X id="g">
-            <W id="f"/>
-        </X>
-        <X id="e"/>
-    </Y>
+
+    <dita>
+        <b>
+            <X/>
+        </b>
+        <c/>
+    </dita>
+
+
+    <dita>
+        <b/>
+        <c/>
+
+    </dita>
+
+
+
+
+
+
+    <_>
+        <a>
+            <Y/>
+            <X/>
+        </a>
+        <c/>
+    </_>
     
+    <dita>
+        <a>
+            <b/>
+            <c/>
+        </a>
+    </dita>
     
-    <Y id="i"/>
 </output>

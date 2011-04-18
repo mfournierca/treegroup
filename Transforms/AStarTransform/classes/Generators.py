@@ -36,7 +36,55 @@ class Operand:
         
         
         
+
+#===============================================================================
+# Wrap Generator
+#===============================================================================
+
+
+class WrapGenerator:
+    """Generate a wrap operand"""
+    def __init__(self):
+        self.log = logging.getLogger()
+        pass
+    
+    
+    def generateOperand(self, targetElement, tag):
+        """generate the operand"""
+        if not isinstance(targetElement, lxml.etree._Element):
+            self.log.warning('targetElement must be lxml.etree._Element object, aborting')
+            return None
+        else:
+            pass
         
+        self.log.debug('Generating wrap operand for  %s' % str(targetElement))
+        operand = Operand(targetElement)
+        self.log.debug('created operand: %s' % str(operand))
+        
+        #
+        #create the operand
+        #
+        
+        self.log.debug('operand tree: %s' % lxml.etree.tostring(operand.tree))
+        self.log.debug('operand target: %s' % str(operand.target))
+        self.log.debug('operand target parent: %s' % str(operand.target.getparent()))
+        
+      
+      
+        #done creating the operand
+        self.log.debug('operand tree is: %s' % lxml.etree.tostring(operand.tree))
+        self.log.debug('done')
+        return operand
+    
+    
+    
+
+
+
+
+
+
+
         
         
         
@@ -94,12 +142,17 @@ class UnwrapGenerator:
         self.log.debug('adding target children.')
         self.log.debug('Target index is: %i. Target parent length is: %i' % (index, len(operand.target.getparent()))) 
         for child in targetElement:
+            #if you don't copy the child, it gets moved out of the target tree and into the operand, which may cause problems
+            #depending on what the user is doing. This function should not alter the target tree (that the user passes), 
+            #it should only create an operand. Therefore make a copy of the child before adding it to the operand, so that 
+            #the target tree does not change. 
+            child = copy.deepcopy(child)
             if len(operand.target.getparent()) > index:
-                Tree.Tree.add(operand.target.getparent[index], child)
+                Tree.Tree.add(operand.target.getparent()[index], child)
                 self.log.debug('\tadded child %s at index %i' % (str(child), index))
             else:
                 operand.target.getparent().append(child)
-                self.log.debug('\tindex is %i, parent length is %i, appended child' % (index, len(operand.target.getparent())))
+                self.log.debug('\tindex is %i, parent length is %i, appended child %s' % (index, len(operand.target.getparent()), str(child)))
             index += 1
 
         self.log.debug('added target children, tree is: %s' % lxml.etree.tostring(operand.tree))
@@ -108,6 +161,11 @@ class UnwrapGenerator:
         self.log.debug('adding target siblings')
         self.log.debug('Index is: %i. Target parent length is: %i' % (index, len(operand.target.getparent())))
         for sibling in targetElement.itersiblings():
+            #if you don't copy the sibling, it gets moved out of the target tree and into the operand, which may cause problems
+            #depending on what the user is doing. This function should not alter the target tree (that the user passes), 
+            #it should only create an operand. Therefore make a copy of the sibling before adding it to the operand, so that 
+            #the target tree does not change. 
+            sibling = copy.deepcopy(sibling)
             if len(operand.target.getparent()) > index:
                 self.log.debug('\tadding sibling %s at index %i' % (str(sibling), index))
                 Tree.Tree.add(operand.target.getparent()[index], sibling)

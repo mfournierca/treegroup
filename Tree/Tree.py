@@ -54,60 +54,60 @@ def add(tree1, tree2):
     ordering1 = ordering(tree1)
     ordering2 = ordering(tree2)
     
-    log.debug('ordering1: %s' % str(ordering1))
-    log.debug('ordering2: %s' % str(ordering2))
+    #log.debug('ordering1: %s' % str(ordering1))
+    #log.debug('ordering2: %s' % str(ordering2))
     
     #iterate over ordering2, apply to ordering1
     for index, position2 in enumerate(ordering2):
-        log.debug('index: %s\tposition2: %s' % (str(index), str(position2)))
+        #log.debug('index: %s\tposition2: %s' % (str(index), str(position2)))
         
         node2 = getNode(tree2, position2)
         
         #if index greater then len(ordering1), append to appropriate node. 
         #if positions not equal, append to appropriate node 
         if index == len(ordering1):
-            log.debug('\tindex == len(ordering1)')
+            #log.debug('\tindex == len(ordering1)')
             
             node3 = lxml.etree.Element(node2.tag, node2.attrib) #copy.copy(node2)
-            log.debug('\tnode3: %s' % str(node3))
+            #log.debug('\tnode3: %s' % str(node3))
                       
             parent1 = getNode(tree1, position2[:-1])
-            log.debug('\tparent1: %s' % str(parent1))
+            #log.debug('\tparent1: %s' % str(parent1))
                 
             parent1.append(node3)
             
             position3 = Element.Element.position(node3, root=tree1)
-            log.debug('\tposition3: %s' % str(position3))
+            #log.debug('\tposition3: %s' % str(position3))
             
             if not position3 == position2:
-                log.debug('\t\tposition2 != position3, fail')
+                #log.debug('\t\tposition2 != position3, fail')
                 continue
             
             ordering1.insert(index, position3)
-            log.debug('\tordering1: %s' % str(ordering1))
+            #log.debug('\tordering1: %s' % str(ordering1))
             continue
  
  
         elif position2 != ordering1[index]:
-            log.debug('\tposition2 != ordering1[index]')
+            #log.debug('\tposition2 != ordering1[index]')
             
             node3 = lxml.etree.Element(node2.tag, node2.attrib) #copy.copy(node2)
-            log.debug('\tnode3: %s' % str(node3))
+            #log.debug('\tnode3: %s' % str(node3))
             
             parent1 = getNode(tree1, position2[:-1])
-            log.debug('\tparent1: %s' % str(parent1))
+            #log.debug('\tparent1: %s' % str(parent1))
                 
             parent1.append(node3)
             
             position3 = Element.Element.position(node3, root=tree1)
-            log.debug('\tposition3: %s' % str(position3))
+            #log.debug('\tposition3: %s' % str(position3))
             
             if not position3 == position2:
-                log.debug('\t\tposition2 != position3, fail')
+                #log.debug('\t\tposition2 != position3, fail')
                 continue
             
             ordering1.insert(index, position3)
-            log.debug('\tordering1: %s' % str(ordering1))
+            #log.debug('\tordering1: %s' % str(ordering1))
             continue
 
         
@@ -225,7 +225,7 @@ def getNode(tree, position):
         #fail, this is a required property of te position
         return False
     
-#    log.debug('position is: %s' % str(position))
+    #log.debug('position is: %s' % str(position))
     position = position[1:]
         
     if isinstance(tree, lxml.etree._ElementTree):
@@ -234,8 +234,8 @@ def getNode(tree, position):
         current = tree
         
     for i in position:
-#        log.debug('current: %s' % str(current))
-#        log.debug('index: %i' % i)
+        #log.debug('current: %s' % str(current))
+        #log.debug('index: %i' % i)
         if i == 0: 
             return current
         current = current[i - 1]
