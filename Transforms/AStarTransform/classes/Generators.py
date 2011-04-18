@@ -68,9 +68,26 @@ class WrapGenerator:
         self.log.debug('operand tree: %s' % lxml.etree.tostring(operand.tree))
         self.log.debug('operand target: %s' % str(operand.target))
         self.log.debug('operand target parent: %s' % str(operand.target.getparent()))
+        self.log.debug('tag: %s' % tag)
         
-      
-      
+        #change operand.target to inverse of targetElement.
+        inversetarget = Tree.Tree.invert(copy.deepcopy(targetElement))
+        operand.target.getparent().replace(operand.target, inversetarget)
+        operand.target = inversetarget
+        
+        #add the wrap element
+        wrapElement = lxml.etree.Element(tag)
+        Tree.Tree.add(operand.target, wrapElement)
+        
+        #append the target element to the new wrap element. 
+        targetCopy = copy.deepcopy(targetElement)
+        if len(operand.target) == 0:
+            operand.target.append(targetCopy)
+            self.log.debug('appended targetCopy to wrapElement')
+        else:
+            Tree.Tree.add(operand.target[0], targetCopy)
+            self.log.debug('added targetCopy to wrapElement[0]')
+            
         #done creating the operand
         self.log.debug('operand tree is: %s' % lxml.etree.tostring(operand.tree))
         self.log.debug('done')
