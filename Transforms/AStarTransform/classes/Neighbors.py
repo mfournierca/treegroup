@@ -7,6 +7,14 @@ import Tree.Tree
 
 from . import Errors, Generators
 
+
+class Neighbor:
+    def __init__(self):
+        pass
+    
+    
+    
+    
 def findNeighbors_FirstValidationError(sourcetree):
     """Find Neighbors by fixing the first validation error. 
     
