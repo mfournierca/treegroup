@@ -86,8 +86,7 @@ class test_Iterator(unittest.TestCase):
         self.log = logging.getLogger()
         
         
-    def test_RenameBodyP(self):
-        """Rename an element in a body"""
+    def test_IteratorRenameBodyP(self):
         self.log.debug('')
         self.log.debug('')
         self.log.debug('running %s' % __name__)

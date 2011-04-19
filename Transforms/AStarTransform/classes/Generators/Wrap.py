@@ -19,19 +19,33 @@ class Generator:
     def __init__(self):
         self.log = logging.getLogger()
         pass
-    
-    
+            
     def generateOperand(self, targetElement, tag):
+        """Generate an operand for the targetElement and tag"""
+        if not isinstance(targetElement, lxml.etree._Element):
+            self.log.warning('targetElement must be lxml.etree._Element object, aborting')
+            return None
+        elif not isinstance(tag, str):
+            self.log.warning('tag must be str object, aborting')
+            return None
+        else:
+            pass
+        
+        self.log.debug('Generating wrap operand for  %s' % str(targetElement))
+        self.log.debug('wrap in: %s' % tag)
+        self.operand = Operand.Operand(targetElement)
+        self.log.debug('created operand: %s' % str(self.operand))
+        self._generateOperand(self.operand, targetElement, tag)
+        return self.operand
+    
+    def _generateOperand(self, operand, targetElement, tag):
         """generate the operand"""
         if not isinstance(targetElement, lxml.etree._Element):
             self.log.warning('targetElement must be lxml.etree._Element object, aborting')
             return None
         else:
             pass
-        
-        self.log.debug('Generating wrap operand for  %s' % str(targetElement))
-        operand = Operand.Operand(targetElement)
-        self.log.debug('created operand: %s' % str(operand))
+    
         
         #
         #create the operand
@@ -72,6 +86,46 @@ class Generator:
 
 
 class Iterator(Generator):
-    def __init__(self):
-        pass
+    """An iterator class for the wrap generator"""
+    
+    def __init__(self, targetElement, acceptableTags):       
+        self.log = logging.getLogger() 
+        if not isinstance(targetElement, lxml.etree._Element):
+            self.log.warning('targetElement must be lxml.etree._Element object, aborting')
+            #raise StopIteration #?
+            return None
+        elif not isinstance(acceptableTags, list):
+            self.log.warning('acceptableTags must be list object, aborting')
+            #raise StopIteration #?
+            return None
+        else:
+            pass
+        self.targetElement = targetElement
+        self.acceptableTags = acceptableTags
+        self.index = 0
+    
+        
+    def __iter__(self):
+        return self
+
+
+    def __next__(self):
+        """Generate and return a wrap operand. This function can be used for iteration
+        over the accpetableTags list"""
+        if self.index >= len(self.acceptableTags): 
+            self.log.debug('no more wraps to generate')
+            raise StopIteration
+        #if optimizing, you may want to copy the operand here instead of creating a new one each time. 
+        operand = Operand.Operand(self.targetElement)
+        self._generateOperand(operand, self.targetElement, self.acceptableTags[self.index])
+        self.index += 1
+        return operand
+
+
+
+
+
+
+
+
 

@@ -110,3 +110,27 @@ class test_Generator(unittest.TestCase):
     
     
     
+class test_Iterator(unittest.TestCase):
+    """Test the Unwrap Iterator class """
+    
+    def setUp(self):
+        self.testfilesdir = os.path.join(os.path.dirname(__file__), '..', '..', '..', '..', 'testfiles', 'AStarTransform', 'Unwrap')
+        self.log = logging.getLogger()
+        
+        
+    def test_IteratorUnwrapFirstElement(self):
+        self.log.debug('')
+        self.log.debug('')
+        self.log.debug('running %s' % __name__)
+        testfile = os.path.join(self.testfilesdir, 'UnwrapTest1.xml')
+        tree = lxml.etree.parse(testfile)
+        targetElement = tree.xpath('//a')[0]
+        expectedTrees = ['<dita/>'] 
+
+        iterator = Unwrap.Iterator(targetElement)
+        index = 0
+        for operand in iterator:
+            expectedTree = lxml.etree.fromstring(expectedTrees[index])
+            self.assertTrue(Tree.Tree.equal(expectedTree, Tree.Tree.add(operand.tree, tree)), "Wrap Generator generated the wrong operand. Expected %s, got %s" % (lxml.etree.tostring(expectedTree), lxml.etree.tostring(operand.tree)))
+            index += 1
+    

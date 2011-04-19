@@ -19,7 +19,7 @@ class Generator:
     
     
     def generateOperand(self, targetElement):
-        """generate the operand"""
+        """Generate an operand for the targetElement and tag"""
         if not isinstance(targetElement, lxml.etree._Element):
             self.log.warning('targetElement must be lxml.etree._Element object, aborting')
             return None
@@ -27,8 +27,24 @@ class Generator:
             pass
         
         self.log.debug('Generating unwrap operand for  %s' % str(targetElement))
-        operand = Operand.Operand(targetElement)
-        self.log.debug('created operand: %s' % str(operand))
+        self.operand = Operand.Operand(targetElement)
+        self.log.debug('created operand: %s' % str(self.operand))
+        self._generateOperand(self.operand, targetElement)
+        return self.operand
+    
+    
+    
+    def _generateOperand(self, operand, targetElement):
+        """generate the operand"""
+        if not isinstance(targetElement, lxml.etree._Element):
+            self.log.warning('targetElement must be lxml.etree._Element object, aborting')
+            return None
+        else:
+            pass
+        
+#        self.log.debug('Generating unwrap operand for  %s' % str(targetElement))
+#        operand = Operand.Operand(targetElement)
+#        self.log.debug('created operand: %s' % str(operand))
         
         #
         #create the operand
@@ -99,6 +115,41 @@ class Generator:
 
 
 
+
+
+
+
+
+
 class Iterator(Generator):
-    def __init__(self):
-        pass
+    """An iterator class for the unwrap generator"""
+    
+    def __init__(self, targetElement):       
+        self.log = logging.getLogger() 
+        if not isinstance(targetElement, lxml.etree._Element):
+            self.log.warning('targetElement must be lxml.etree._Element object, aborting')
+            #raise StopIteration #?
+            return None
+        else:
+            pass
+        self.targetElement = targetElement
+        self.index = 0
+    
+        
+    def __iter__(self):
+        return self
+
+
+    def __next__(self):
+        """Generate and return a unwrap operand. This function can be used for iteration"""
+        if self.index >= 1:
+            #there is only 1 unwrap operand that can be generated, obviously. So this iterator
+            #iterates once, and then stops. Not strictly necessary, but designed to be consistent
+            #with the other generators, which do need iterators. 
+            self.log.debug('no more unwraps to generate')
+            raise StopIteration 
+        operand = Operand.Operand(self.targetElement)
+        self._generateOperand(operand, self.targetElement)
+        self.index += 1
+        return operand
+
