@@ -58,8 +58,14 @@ class Generator:
         
         #change operand.target to inverse of targetElement.
         inversetarget = Tree.Tree.invert(copy.deepcopy(targetElement))
-        operand.target.getparent().replace(operand.target, inversetarget)
-        operand.target = inversetarget
+        if operand.target.getparent() is None:
+            #the operand is the root, create a new root. The tree and target become
+            #the root, then proceed.
+            operand.target = inversetarget
+            operand.tree = operand.target
+        else:
+            operand.target.getparent().replace(operand.target, inversetarget)
+            operand.target = inversetarget
         
         #add the wrap element
         wrapElement = lxml.etree.Element(tag)

@@ -1,0 +1,838 @@
+test_Ren.    test_RenameBodyP     DEBUG		
+test_Ren.    test_RenameBodyP     DEBUG		
+test_Ren.    test_RenameBodyP     DEBUG		running TreeGroup.Transforms.AStarTransform.classes.Generators.test_Rename
+  Rename.     generateOperand     DEBUG		Generating rename operand for  <Element a at 15a3a50>
+  Rename.     generateOperand     DEBUG		Rename to: p
+  Rename.     generateOperand     DEBUG		created operand: <TreeGroup.Transforms.AStarTransform.classes.Generators.Operand.Operand object at 0x159cd30>
+  Rename.    _generateOperand     DEBUG		generating rename operand tree
+  Rename.    _generateOperand     DEBUG		targetElement: <Element a at 15a3a50>
+  Rename.    _generateOperand     DEBUG		rename to: p
+  Rename.    _generateOperand     DEBUG		result: b'<_><_><_/><_><_/><o/></_></_></_>'
+test_Ren.test_RenameFirstLeve     DEBUG		
+test_Ren.test_RenameFirstLeve     DEBUG		
+test_Ren.test_RenameFirstLeve     DEBUG		running TreeGroup.Transforms.AStarTransform.classes.Generators.test_Rename
+  Rename.     generateOperand     DEBUG		Generating rename operand for  <Element a at 15a3de0>
+  Rename.     generateOperand     DEBUG		Rename to: topic
+  Rename.     generateOperand     DEBUG		created operand: <TreeGroup.Transforms.AStarTransform.classes.Generators.Operand.Operand object at 0x159cdb0>
+  Rename.    _generateOperand     DEBUG		generating rename operand tree
+  Rename.    _generateOperand     DEBUG		targetElement: <Element a at 15a3de0>
+  Rename.    _generateOperand     DEBUG		rename to: topic
+  Rename.    _generateOperand     DEBUG		result: b'<_><sopic/></_>'
+test_Ren.     test_RenameRoot     DEBUG		
+test_Ren.     test_RenameRoot     DEBUG		
+test_Ren.     test_RenameRoot     DEBUG		running TreeGroup.Transforms.AStarTransform.classes.Generators.test_Rename
+  Rename.     generateOperand     DEBUG		Generating rename operand for  <Element a at 15b7030>
+  Rename.     generateOperand     DEBUG		Rename to: dita
+  Rename.     generateOperand     DEBUG		created operand: <TreeGroup.Transforms.AStarTransform.classes.Generators.Operand.Operand object at 0x159cdd0>
+  Rename.    _generateOperand     DEBUG		generating rename operand tree
+  Rename.    _generateOperand     DEBUG		targetElement: <Element a at 15b7030>
+  Rename.    _generateOperand     DEBUG		rename to: dita
+  Rename.    _generateOperand     DEBUG		result: b'<cita/>'
+test_Ren.test_RenameTopicBody     DEBUG		
+test_Ren.test_RenameTopicBody     DEBUG		
+test_Ren.test_RenameTopicBody     DEBUG		running TreeGroup.Transforms.AStarTransform.classes.Generators.test_Rename
+  Rename.     generateOperand     DEBUG		Generating rename operand for  <Element a at 15b7270>
+  Rename.     generateOperand     DEBUG		Rename to: body
+  Rename.     generateOperand     DEBUG		created operand: <TreeGroup.Transforms.AStarTransform.classes.Generators.Operand.Operand object at 0x159cd10>
+  Rename.    _generateOperand     DEBUG		generating rename operand tree
+  Rename.    _generateOperand     DEBUG		targetElement: <Element a at 15b7270>
+  Rename.    _generateOperand     DEBUG		rename to: body
+  Rename.    _generateOperand     DEBUG		result: b'<_><_><_/><aody/></_></_>'
+test_Ren.test_IteratorRenameB     DEBUG		
+test_Ren.test_IteratorRenameB     DEBUG		
+test_Ren.test_IteratorRenameB     DEBUG		running TreeGroup.Transforms.AStarTransform.classes.Generators.test_Rename
+  Rename.    _generateOperand     DEBUG		generating rename operand tree
+  Rename.    _generateOperand     DEBUG		targetElement: <Element a at 15b7570>
+  Rename.    _generateOperand     DEBUG		rename to: topic
+  Rename.    _generateOperand     DEBUG		result: b'<_><sopic/></_>'
+  Rename.    _generateOperand     DEBUG		generating rename operand tree
+  Rename.    _generateOperand     DEBUG		targetElement: <Element a at 15b7570>
+  Rename.    _generateOperand     DEBUG		rename to: concept
+  Rename.    _generateOperand     DEBUG		result: b'<_><boncept/></_>'
+  Rename.    _generateOperand     DEBUG		generating rename operand tree
+  Rename.    _generateOperand     DEBUG		targetElement: <Element a at 15b7570>
+  Rename.    _generateOperand     DEBUG		rename to: task
+  Rename.    _generateOperand     DEBUG		result: b'<_><sask/></_>'
+  Rename.    _generateOperand     DEBUG		generating rename operand tree
+  Rename.    _generateOperand     DEBUG		targetElement: <Element a at 15b7570>
+  Rename.    _generateOperand     DEBUG		rename to: reference
+  Rename.    _generateOperand     DEBUG		result: b'<_><qeference/></_>'
+  Rename.    _generateOperand     DEBUG		generating rename operand tree
+  Rename.    _generateOperand     DEBUG		targetElement: <Element a at 15b7570>
+  Rename.    _generateOperand     DEBUG		rename to: glossentry
+  Rename.    _generateOperand     DEBUG		result: b'<_><flossentry/></_>'
+  Rename.    _generateOperand     DEBUG		generating rename operand tree
+  Rename.    _generateOperand     DEBUG		targetElement: <Element a at 15b7570>
+  Rename.    _generateOperand     DEBUG		rename to: glossgroup
+  Rename.    _generateOperand     DEBUG		result: b'<_><flossgroup/></_>'
+  Rename.            __next__     DEBUG		no more renames to generate
+test_Unw.test_UnwrapElementWi     DEBUG		
+test_Unw.test_UnwrapElementWi     DEBUG		
+test_Unw.test_UnwrapElementWi     DEBUG		running UnwrapElementWithChildren
+  Unwrap.     generateOperand     DEBUG		Generating unwrap operand for  <Element a at 15b7f90>
+  Unwrap.     generateOperand     DEBUG		created operand: <TreeGroup.Transforms.AStarTransform.classes.Generators.Operand.Operand object at 0x159cdb0>
+  Unwrap.    _generateOperand     DEBUG		operand tree: b'<_><_/></_>'
+  Unwrap.    _generateOperand     DEBUG		operand target: <Element _ at 1700240>
+  Unwrap.    _generateOperand     DEBUG		operand target parent: <Element _ at 17001e0>
+  Unwrap.    _generateOperand     DEBUG		inverted target, tree is: b'<_><Z>\n        <Y/>\n        <X/>\n    </Z>\n</_>'
+  Unwrap.    _generateOperand     DEBUG		inverted siblings, tree is: b'<_><Z>\n        <Y/>\n        <X/>\n    </Z>\n</_>'
+  Unwrap.    _generateOperand     DEBUG		adding target children.
+  Unwrap.    _generateOperand     DEBUG		Target index is: 0. Target parent length is: 1
+  Unwrap.    _generateOperand     DEBUG			added child <Element b at 1700330> at index 0
+  Unwrap.    _generateOperand     DEBUG			index is 1, parent length is 2, appended child <Element c at 1700360>
+  Unwrap.    _generateOperand     DEBUG		added target children, tree is: b'<_><a>\n        <Y/>\n        <X/>\n    </a>\n<c/>\n    </_>'
+  Unwrap.    _generateOperand     DEBUG		adding target siblings
+  Unwrap.    _generateOperand     DEBUG		Index is: 2. Target parent length is: 2
+  Unwrap.    _generateOperand     DEBUG		added target siblings, tree is: b'<_><a>\n        <Y/>\n        <X/>\n    </a>\n<c/>\n    </_>'
+  Unwrap.    _generateOperand     DEBUG		done
+test_Unw.test_UnwrapElementWi     DEBUG		test tree: b'<dita>\n    <a>\n        <b/>\n        <c/>\n    </a>\n</dita>'
+test_Unw.test_UnwrapElementWi     DEBUG		got operand tree: b'<_><a>\n        <Y/>\n        <X/>\n    </a>\n<c/>\n    </_>'
+test_Unw.test_UnwrapElementWi     DEBUG		addition result: b'<dita>\n    <b>\n        </b>\n<c/></dita>'
+test_Unw.test_UnwrapElementWi     DEBUG		
+test_Unw.test_UnwrapElementWi     DEBUG		
+test_Unw.test_UnwrapElementWi     DEBUG		running UnwrapElementWithChildrenAndSiblings
+  Unwrap.     generateOperand     DEBUG		Generating unwrap operand for  <Element a at 1700480>
+  Unwrap.     generateOperand     DEBUG		created operand: <TreeGroup.Transforms.AStarTransform.classes.Generators.Operand.Operand object at 0x15b6a50>
+  Unwrap.    _generateOperand     DEBUG		operand tree: b'<_><_/></_>'
+  Unwrap.    _generateOperand     DEBUG		operand target: <Element _ at 17005a0>
+  Unwrap.    _generateOperand     DEBUG		operand target parent: <Element _ at 1700540>
+  Unwrap.    _generateOperand     DEBUG		inverted target, tree is: b'<_><Z>\n        <Y/>\n        <X/>\n    </Z>\n    </_>'
+  Unwrap.    _generateOperand     DEBUG		inverted siblings, tree is: b'<_><Z>\n        <Y/>\n        <X/>\n    </Z>\n    <W/>\n</_>'
+  Unwrap.    _generateOperand     DEBUG		adding target children.
+  Unwrap.    _generateOperand     DEBUG		Target index is: 0. Target parent length is: 2
+  Unwrap.    _generateOperand     DEBUG			added child <Element b at 17006f0> at index 0
+  Unwrap.    _generateOperand     DEBUG			added child <Element c at 1700720> at index 1
+  Unwrap.    _generateOperand     DEBUG		added target children, tree is: b'<_><a>\n        <Y/>\n        <X/>\n    </a>\n    <Z/>\n</_>'
+  Unwrap.    _generateOperand     DEBUG		adding target siblings
+  Unwrap.    _generateOperand     DEBUG		Index is: 2. Target parent length is: 2
+  Unwrap.    _generateOperand     DEBUG			index is 2, parent length is 2, appending sibling
+  Unwrap.    _generateOperand     DEBUG		added target siblings, tree is: b'<_><a>\n        <Y/>\n        <X/>\n    </a>\n    <Z/>\n<d/>\n</_>'
+  Unwrap.    _generateOperand     DEBUG		done
+test_Unw.test_UnwrapElementWi     DEBUG		test tree: b'<dita>\n    <a>\n        <b/>\n        <c/>\n    </a>\n    <d/>\n</dita>'
+test_Unw.test_UnwrapElementWi     DEBUG		got operand tree: b'<_><a>\n        <Y/>\n        <X/>\n    </a>\n    <Z/>\n<d/>\n</_>'
+test_Unw.test_UnwrapElementWi     DEBUG		addition result: b'<dita>\n    <b>\n        </b>\n    <c/>\n<d/></dita>'
+test_Unw.test_UnwrapElementWi     DEBUG		
+test_Unw.test_UnwrapElementWi     DEBUG		
+test_Unw.test_UnwrapElementWi     DEBUG		running UnwrapElementWithChildrenAndSiblingsDeepHierarchy
+  Unwrap.     generateOperand     DEBUG		Generating unwrap operand for  <Element a at 17008d0>
+  Unwrap.     generateOperand     DEBUG		created operand: <TreeGroup.Transforms.AStarTransform.classes.Generators.Operand.Operand object at 0x15b6590>
+  Unwrap.    _generateOperand     DEBUG		operand tree: b'<_><_/></_>'
+  Unwrap.    _generateOperand     DEBUG		operand target: <Element _ at 17009f0>
+  Unwrap.    _generateOperand     DEBUG		operand target parent: <Element _ at 1700990>
+  Unwrap.    _generateOperand     DEBUG		inverted target, tree is: b'<_><Z>\n        <Y>\n            <X/>\n        </Y>\n        <W/>\n    </Z>\n    </_>'
+  Unwrap.    _generateOperand     DEBUG		inverted siblings, tree is: b'<_><Z>\n        <Y>\n            <X/>\n        </Y>\n        <W/>\n    </Z>\n    <V>\n        <U>\n            <T/>\n        </U>\n        <S/>\n    </V>\n</_>'
+  Unwrap.    _generateOperand     DEBUG		adding target children.
+  Unwrap.    _generateOperand     DEBUG		Target index is: 0. Target parent length is: 2
+  Unwrap.    _generateOperand     DEBUG			added child <Element b at 1700c00> at index 0
+  Unwrap.    _generateOperand     DEBUG			added child <Element d at 1700c60> at index 1
+  Unwrap.    _generateOperand     DEBUG		added target children, tree is: b'<_><a>\n        <a>\n            <X/>\n        </a>\n        <W/>\n    </a>\n    <Z>\n        <U>\n            <T/>\n        </U>\n        <S/>\n    </Z>\n</_>'
+  Unwrap.    _generateOperand     DEBUG		adding target siblings
+  Unwrap.    _generateOperand     DEBUG		Index is: 2. Target parent length is: 2
+  Unwrap.    _generateOperand     DEBUG			index is 2, parent length is 2, appending sibling
+  Unwrap.    _generateOperand     DEBUG		added target siblings, tree is: b'<_><a>\n        <a>\n            <X/>\n        </a>\n        <W/>\n    </a>\n    <Z>\n        <U>\n            <T/>\n        </U>\n        <S/>\n    </Z>\n<e>\n        <f>\n            <g/>\n        </f>\n        <h/>\n    </e>\n</_>'
+  Unwrap.    _generateOperand     DEBUG		done
+test_Unw.test_UnwrapElementWi     DEBUG		test tree: b'<dita>\n    <a>\n        <b>\n            <c/>\n        </b>\n        <d/>\n    </a>\n    <e>\n        <f>\n            <g/>\n        </f>\n        <h/>\n    </e>\n</dita>'
+test_Unw.test_UnwrapElementWi     DEBUG		got operand tree: b'<_><a>\n        <a>\n            <X/>\n        </a>\n        <W/>\n    </a>\n    <Z>\n        <U>\n            <T/>\n        </U>\n        <S/>\n    </Z>\n<e>\n        <f>\n            <g/>\n        </f>\n        <h/>\n    </e>\n</_>'
+test_Unw.test_UnwrapElementWi     DEBUG		addition result: b'<dita>\n    <b>\n        <c>\n            </c>\n        </b>\n    <d>\n        </d>\n<e><f><g/></f><h/></e></dita>'
+test_Unw.test_UnwrapEmptyElem     DEBUG		
+test_Unw.test_UnwrapEmptyElem     DEBUG		
+test_Unw.test_UnwrapEmptyElem     DEBUG		running UnwrapEmptyElement
+  Unwrap.     generateOperand     DEBUG		Generating unwrap operand for  <Element a at 17020f0>
+  Unwrap.     generateOperand     DEBUG		created operand: <TreeGroup.Transforms.AStarTransform.classes.Generators.Operand.Operand object at 0x15ba5f0>
+  Unwrap.    _generateOperand     DEBUG		operand tree: b'<_><_/></_>'
+  Unwrap.    _generateOperand     DEBUG		operand target: <Element _ at 1702210>
+  Unwrap.    _generateOperand     DEBUG		operand target parent: <Element _ at 17021b0>
+  Unwrap.    _generateOperand     DEBUG		inverted target, tree is: b'<_><Z/>\n</_>'
+  Unwrap.    _generateOperand     DEBUG		inverted siblings, tree is: b'<_><Z/>\n</_>'
+  Unwrap.    _generateOperand     DEBUG		adding target children.
+  Unwrap.    _generateOperand     DEBUG		Target index is: 0. Target parent length is: 1
+  Unwrap.    _generateOperand     DEBUG		added target children, tree is: b'<_><Z/>\n</_>'
+  Unwrap.    _generateOperand     DEBUG		adding target siblings
+  Unwrap.    _generateOperand     DEBUG		Index is: 0. Target parent length is: 1
+  Unwrap.    _generateOperand     DEBUG		added target siblings, tree is: b'<_><Z/>\n</_>'
+  Unwrap.    _generateOperand     DEBUG		done
+test_Unw.test_UnwrapEmptyElem     DEBUG		
+test_Unw.test_UnwrapEmptyElem     DEBUG		
+test_Unw.test_UnwrapEmptyElem     DEBUG		running UnwrapEmptyElementWithSibling
+  Unwrap.     generateOperand     DEBUG		Generating unwrap operand for  <Element a at 1702270>
+  Unwrap.     generateOperand     DEBUG		created operand: <TreeGroup.Transforms.AStarTransform.classes.Generators.Operand.Operand object at 0x15ba5d0>
+  Unwrap.    _generateOperand     DEBUG		operand tree: b'<_><_/></_>'
+  Unwrap.    _generateOperand     DEBUG		operand target: <Element _ at 1702390>
+  Unwrap.    _generateOperand     DEBUG		operand target parent: <Element _ at 1702330>
+  Unwrap.    _generateOperand     DEBUG		inverted target, tree is: b'<_><Z/>\n    </_>'
+  Unwrap.    _generateOperand     DEBUG		inverted siblings, tree is: b'<_><Z/>\n    <Y/>\n</_>'
+  Unwrap.    _generateOperand     DEBUG		adding target children.
+  Unwrap.    _generateOperand     DEBUG		Target index is: 0. Target parent length is: 2
+  Unwrap.    _generateOperand     DEBUG		added target children, tree is: b'<_><Z/>\n    <Y/>\n</_>'
+  Unwrap.    _generateOperand     DEBUG		adding target siblings
+  Unwrap.    _generateOperand     DEBUG		Index is: 0. Target parent length is: 2
+  Unwrap.    _generateOperand     DEBUG			adding sibling <Element b at 1702420> at index 0
+  Unwrap.    _generateOperand     DEBUG		added target siblings, tree is: b'<_><a/>\n    <Y/>\n</_>'
+  Unwrap.    _generateOperand     DEBUG		done
+test_Unw.     test_UnwrapRoot     DEBUG		
+test_Unw.     test_UnwrapRoot     DEBUG		
+test_Unw.     test_UnwrapRoot     DEBUG		running UnwrapRoot
+  Unwrap.     generateOperand     DEBUG		Generating unwrap operand for  <Element dita at 17024b0>
+  Unwrap.     generateOperand     DEBUG		created operand: <TreeGroup.Transforms.AStarTransform.classes.Generators.Operand.Operand object at 0x15ba570>
+  Unwrap.    _generateOperand     DEBUG		operand tree: b'<_/>'
+  Unwrap.    _generateOperand     DEBUG		operand target: <Element _ at 1702570>
+  Unwrap.    _generateOperand     DEBUG		operand target parent: None
+test_Unw.test_IteratorUnwrapF     DEBUG		
+test_Unw.test_IteratorUnwrapF     DEBUG		
+test_Unw.test_IteratorUnwrapF     DEBUG		running TreeGroup.Transforms.AStarTransform.classes.Generators.test_Unwrap
+  Unwrap.    _generateOperand     DEBUG		operand tree: b'<_><_/></_>'
+  Unwrap.    _generateOperand     DEBUG		operand target: <Element _ at 15a3c60>
+  Unwrap.    _generateOperand     DEBUG		operand target parent: <Element _ at 15a3cf0>
+  Unwrap.    _generateOperand     DEBUG		inverted target, tree is: b'<_><Z/>\n</_>'
+  Unwrap.    _generateOperand     DEBUG		inverted siblings, tree is: b'<_><Z/>\n</_>'
+  Unwrap.    _generateOperand     DEBUG		adding target children.
+  Unwrap.    _generateOperand     DEBUG		Target index is: 0. Target parent length is: 1
+  Unwrap.    _generateOperand     DEBUG		added target children, tree is: b'<_><Z/>\n</_>'
+  Unwrap.    _generateOperand     DEBUG		adding target siblings
+  Unwrap.    _generateOperand     DEBUG		Index is: 0. Target parent length is: 1
+  Unwrap.    _generateOperand     DEBUG		added target siblings, tree is: b'<_><Z/>\n</_>'
+  Unwrap.    _generateOperand     DEBUG		done
+  Unwrap.            __next__     DEBUG		no more unwraps to generate
+test_Wra.test_IteratorWrapFir     DEBUG		
+test_Wra.test_IteratorWrapFir     DEBUG		
+test_Wra.test_IteratorWrapFir     DEBUG		running TreeGroup.Transforms.AStarTransform.classes.Generators.test_Wrap
+    Wrap.    _generateOperand     DEBUG		operand tree: b'<_><_/></_>'
+    Wrap.    _generateOperand     DEBUG		operand target: <Element _ at 15a3b70>
+    Wrap.    _generateOperand     DEBUG		operand target parent: <Element _ at 15a3b40>
+    Wrap.    _generateOperand     DEBUG		tag: topic
+    Wrap.    _generateOperand     DEBUG		appended targetCopy to wrapElement
+    Wrap.    _generateOperand     DEBUG		operand tree is: b'<_><sopic><a/>\n</sopic>\n</_>'
+    Wrap.    _generateOperand     DEBUG		done
+    Wrap.    _generateOperand     DEBUG		operand tree: b'<_><_/></_>'
+    Wrap.    _generateOperand     DEBUG		operand target: <Element _ at 17024b0>
+    Wrap.    _generateOperand     DEBUG		operand target parent: <Element _ at 1702510>
+    Wrap.    _generateOperand     DEBUG		tag: concept
+    Wrap.    _generateOperand     DEBUG		appended targetCopy to wrapElement
+    Wrap.    _generateOperand     DEBUG		operand tree is: b'<_><boncept><a/>\n</boncept>\n</_>'
+    Wrap.    _generateOperand     DEBUG		done
+    Wrap.    _generateOperand     DEBUG		operand tree: b'<_><_/></_>'
+    Wrap.    _generateOperand     DEBUG		operand target: <Element _ at 1702210>
+    Wrap.    _generateOperand     DEBUG		operand target parent: <Element _ at 17022a0>
+    Wrap.    _generateOperand     DEBUG		tag: task
+    Wrap.    _generateOperand     DEBUG		appended targetCopy to wrapElement
+    Wrap.    _generateOperand     DEBUG		operand tree is: b'<_><sask><a/>\n</sask>\n</_>'
+    Wrap.    _generateOperand     DEBUG		done
+    Wrap.    _generateOperand     DEBUG		operand tree: b'<_><_/></_>'
+    Wrap.    _generateOperand     DEBUG		operand target: <Element _ at 1702240>
+    Wrap.    _generateOperand     DEBUG		operand target parent: <Element _ at 1702270>
+    Wrap.    _generateOperand     DEBUG		tag: reference
+    Wrap.    _generateOperand     DEBUG		appended targetCopy to wrapElement
+    Wrap.    _generateOperand     DEBUG		operand tree is: b'<_><qeference><a/>\n</qeference>\n</_>'
+    Wrap.    _generateOperand     DEBUG		done
+    Wrap.    _generateOperand     DEBUG		operand tree: b'<_><_/></_>'
+    Wrap.    _generateOperand     DEBUG		operand target: <Element _ at 1702720>
+    Wrap.    _generateOperand     DEBUG		operand target parent: <Element _ at 1702060>
+    Wrap.    _generateOperand     DEBUG		tag: glossentry
+    Wrap.    _generateOperand     DEBUG		appended targetCopy to wrapElement
+    Wrap.    _generateOperand     DEBUG		operand tree is: b'<_><flossentry><a/>\n</flossentry>\n</_>'
+    Wrap.    _generateOperand     DEBUG		done
+    Wrap.    _generateOperand     DEBUG		operand tree: b'<_><_/></_>'
+    Wrap.    _generateOperand     DEBUG		operand target: <Element _ at 1702900>
+    Wrap.    _generateOperand     DEBUG		operand target parent: <Element _ at 17028a0>
+    Wrap.    _generateOperand     DEBUG		tag: glossgroup
+    Wrap.    _generateOperand     DEBUG		appended targetCopy to wrapElement
+    Wrap.    _generateOperand     DEBUG		operand tree is: b'<_><flossgroup><a/>\n</flossgroup>\n</_>'
+    Wrap.    _generateOperand     DEBUG		done
+    Wrap.            __next__     DEBUG		no more wraps to generate
+test_Wra.test_WrapElementWith     DEBUG		
+test_Wra.test_WrapElementWith     DEBUG		
+test_Wra.test_WrapElementWith     DEBUG		running WrapElementWithChildren
+    Wrap.     generateOperand     DEBUG		Generating wrap operand for  <Element a at 1702ab0>
+    Wrap.     generateOperand     DEBUG		wrap in: topic
+    Wrap.     generateOperand     DEBUG		created operand: <TreeGroup.Transforms.AStarTransform.classes.Generators.Operand.Operand object at 0x17039b0>
+    Wrap.    _generateOperand     DEBUG		operand tree: b'<_><_/></_>'
+    Wrap.    _generateOperand     DEBUG		operand target: <Element _ at 1702bd0>
+    Wrap.    _generateOperand     DEBUG		operand target parent: <Element _ at 1702b70>
+    Wrap.    _generateOperand     DEBUG		tag: topic
+    Wrap.    _generateOperand     DEBUG		added targetCopy to wrapElement[0]
+    Wrap.    _generateOperand     DEBUG		operand tree is: b'<_><sopic>\n        <Z><b/><c/></Z>\n        <X/>\n    </sopic>\n</_>'
+    Wrap.    _generateOperand     DEBUG		done
+test_Wra.test_WrapElementWith     DEBUG		
+test_Wra.test_WrapElementWith     DEBUG		
+test_Wra.test_WrapElementWith     DEBUG		running test_WrapElementWithChildrenAndSibling
+    Wrap.     generateOperand     DEBUG		Generating wrap operand for  <Element a at 1702f90>
+    Wrap.     generateOperand     DEBUG		wrap in: topic
+    Wrap.     generateOperand     DEBUG		created operand: <TreeGroup.Transforms.AStarTransform.classes.Generators.Operand.Operand object at 0x1703a30>
+    Wrap.    _generateOperand     DEBUG		operand tree: b'<_><_/></_>'
+    Wrap.    _generateOperand     DEBUG		operand target: <Element _ at 170a0f0>
+    Wrap.    _generateOperand     DEBUG		operand target parent: <Element _ at 170a090>
+    Wrap.    _generateOperand     DEBUG		tag: topic
+    Wrap.    _generateOperand     DEBUG		added targetCopy to wrapElement[0]
+    Wrap.    _generateOperand     DEBUG		operand tree is: b'<_><sopic>\n        <Z><b/><c/></Z>\n        <X/>\n    </sopic>\n    </_>'
+    Wrap.    _generateOperand     DEBUG		done
+test_Wra.test_WrapElementWith     DEBUG		
+test_Wra.test_WrapElementWith     DEBUG		
+test_Wra.test_WrapElementWith     DEBUG		running test_WrapElementWithChildrenAndSiblingDeepHierarchy
+    Wrap.     generateOperand     DEBUG		Generating wrap operand for  <Element a at 170a510>
+    Wrap.     generateOperand     DEBUG		wrap in: topic
+    Wrap.     generateOperand     DEBUG		created operand: <TreeGroup.Transforms.AStarTransform.classes.Generators.Operand.Operand object at 0x1703d10>
+    Wrap.    _generateOperand     DEBUG		operand tree: b'<_><_/></_>'
+    Wrap.    _generateOperand     DEBUG		operand target: <Element _ at 170a630>
+    Wrap.    _generateOperand     DEBUG		operand target parent: <Element _ at 170a5d0>
+    Wrap.    _generateOperand     DEBUG		tag: topic
+    Wrap.    _generateOperand     DEBUG		added targetCopy to wrapElement[0]
+    Wrap.    _generateOperand     DEBUG		operand tree is: b'<_><sopic>\n        <Z>\n            <Z><c/></Z>\n        <d/></Z>\n        <W/>\n    </sopic>\n    </_>'
+    Wrap.    _generateOperand     DEBUG		done
+test_Wra.test_WrapElementWith     DEBUG		
+test_Wra.test_WrapElementWith     DEBUG		
+test_Wra.test_WrapElementWith     DEBUG		running WrapElementWithSibling
+    Wrap.     generateOperand     DEBUG		Generating wrap operand for  <Element a at 170ac30>
+    Wrap.     generateOperand     DEBUG		wrap in: topic
+    Wrap.     generateOperand     DEBUG		created operand: <TreeGroup.Transforms.AStarTransform.classes.Generators.Operand.Operand object at 0x1703c90>
+    Wrap.    _generateOperand     DEBUG		operand tree: b'<_><_/></_>'
+    Wrap.    _generateOperand     DEBUG		operand target: <Element _ at 170ad50>
+    Wrap.    _generateOperand     DEBUG		operand target parent: <Element _ at 170acf0>
+    Wrap.    _generateOperand     DEBUG		tag: topic
+    Wrap.    _generateOperand     DEBUG		appended targetCopy to wrapElement
+    Wrap.    _generateOperand     DEBUG		operand tree is: b'<_><sopic><a/>\n    </sopic>\n    </_>'
+    Wrap.    _generateOperand     DEBUG		done
+test_Wra.       test_WrapRoot     DEBUG		
+test_Wra.       test_WrapRoot     DEBUG		
+test_Wra.       test_WrapRoot     DEBUG		running WrapSimpleElement
+    Wrap.     generateOperand     DEBUG		Generating wrap operand for  <Element dita at 170af00>
+    Wrap.     generateOperand     DEBUG		wrap in: dita
+    Wrap.     generateOperand     DEBUG		created operand: <TreeGroup.Transforms.AStarTransform.classes.Generators.Operand.Operand object at 0x1703830>
+    Wrap.    _generateOperand     DEBUG		operand tree: b'<_/>'
+    Wrap.    _generateOperand     DEBUG		operand target: <Element _ at 170afc0>
+    Wrap.    _generateOperand     DEBUG		operand target parent: None
+    Wrap.    _generateOperand     DEBUG		tag: dita
+    Wrap.    _generateOperand     DEBUG		added targetCopy to wrapElement[0]
+    Wrap.    _generateOperand     DEBUG		operand tree is: b'<_>\n    <cita><a/></cita>\n</_>'
+    Wrap.    _generateOperand     DEBUG		done
+test_Wra.test_WrapSimpleEleme     DEBUG		
+test_Wra.test_WrapSimpleEleme     DEBUG		
+test_Wra.test_WrapSimpleEleme     DEBUG		running WrapSimpleElement
+    Wrap.     generateOperand     DEBUG		Generating wrap operand for  <Element a at 170b2a0>
+    Wrap.     generateOperand     DEBUG		wrap in: topic
+    Wrap.     generateOperand     DEBUG		created operand: <TreeGroup.Transforms.AStarTransform.classes.Generators.Operand.Operand object at 0x17037f0>
+    Wrap.    _generateOperand     DEBUG		operand tree: b'<_><_/></_>'
+    Wrap.    _generateOperand     DEBUG		operand target: <Element _ at 170b3c0>
+    Wrap.    _generateOperand     DEBUG		operand target parent: <Element _ at 170b360>
+    Wrap.    _generateOperand     DEBUG		tag: topic
+    Wrap.    _generateOperand     DEBUG		appended targetCopy to wrapElement
+    Wrap.    _generateOperand     DEBUG		operand tree is: b'<_><sopic><a/>\n</sopic>\n</_>'
+    Wrap.    _generateOperand     DEBUG		done
+test_Err.              test_1     DEBUG		
+test_Err.              test_1     DEBUG		
+test_Err.              test_1     DEBUG		running test test_1
+  Errors.               parse     DEBUG		validating tree with dita version 1.1
+  Errors.               parse     DEBUG		first error message: /Users/matt/work/programs/dev_workspace/TreeGroup/Transforms/AStarTransform/classes/../../../testfiles/AStarTransform/Errors/ErrorTest1.xml:2:0:ERROR:VALID:DTD_UNKNOWN_ELEM: No declaration for element a
+  Errors.      _parsePattern1     DEBUG		testing pattern: .*?\:\d*\:\d*\:ERROR:VALID\:DTD_CONTENT_MODEL\: Element (.*?) content does not follow the DTD, expecting (.*), got \((.*?)\)
+  Errors.      _parsePattern2     DEBUG		testing pattern: .*?\:\d*\:\d*\:ERROR:VALID\:DTD_UNKNOWN_ELEM\: No declaration for element (.*)
+  Errors.      _parsePattern2     DEBUG		pattern matched
+  Errors.      _parsePattern2     DEBUG			parentTag: None
+  Errors.      _parsePattern2     DEBUG			actualTags: ['a']
+  Errors.      _parsePattern2     DEBUG			expectedTags: ['dita']
+  Errors.         _buildLinks     DEBUG		building links
+  Errors.         _buildLinks     DEBUG			actualIndex: 0	actual: ['a', None]
+  Errors.         _buildLinks     DEBUG			expectedCutoff: 0	len(self._expectedTags): 1
+  Errors.         _buildLinks     DEBUG			attempting to match expected, pattern: [\s\(]a[^\w]
+  Errors.         _buildLinks     DEBUG				expectedIndex: 0	expected: dita
+  Errors.         _buildLinks     DEBUG			no match found
+  Errors.         _buildLinks     DEBUG		links built.
+  Errors.         _buildLinks     DEBUG		actualTags links:
+  Errors.         _buildLinks     DEBUG			a -> None: None
+  Errors.         _buildLinks     DEBUG		expectedTags links:
+  Errors.         _buildLinks     DEBUG			dita -> None: None
+  Errors.               parse     DEBUG		finding targetElement
+  Errors._actualTagsFindTarge     DEBUG		searching actualTags
+  Errors._actualTagsFindTarge     DEBUG			testing: ['a', None]
+  Errors._actualTagsFindTarge     DEBUG			targetTag found: a
+  Errors._findTargetElementFr     DEBUG		finding targetElement from actualTags
+  Errors._findTargetElementFr     DEBUG			parentTag is None, targetElement is root
+  Errors._findTargetElementFr     DEBUG			found target: <Element a at 170b510>
+  Errors._actualTagsFindAccep     DEBUG		finding acceptableTags
+  Errors._actualTagsFindAccep     DEBUG		searching actualTags, starting index 0
+  Errors._actualTagsFindAccep     DEBUG			testing 0: ['a', None]
+  Errors._actualTagsFindAccep     DEBUG		last linked index not found, setting to 0
+  Errors._actualTagsFindAccep     DEBUG		actualStartingIndex: 0
+  Errors._actualTagsFindAccep     DEBUG		expectedStartingIndex: 0
+  Errors._actualTagsFindAccep     DEBUG		building tags
+  Errors._actualTagsFindAccep     DEBUG		got tags: ['dita']
+  Errors._actualTagsFindAccep     DEBUG		building acceptableTagsCandidate
+  Errors._buildAcceptableTags     DEBUG		building acceptableTags list from ['dita']
+  Errors._buildAcceptableTags     DEBUG			processing: dita
+  Errors._buildAcceptableTags     DEBUG			new string: dita
+  Errors._buildAcceptableTags     DEBUG			adding to acceptableTags: dita
+  Errors._getTargetAndAccepta     DEBUG		getting target and acceptableTags from expectedTags
+  Errors._expectedTagsFindTar     DEBUG		searching expectedTags for target
+  Errors._expectedTagsFindTar     DEBUG			testing ['dita', None]
+  Errors._expectedTagsFindTar     DEBUG				this is a required entry with no link
+  Errors._expectedTagsFindTar     DEBUG		target not found in expectedTags
+  Errors._getTargetAndAccepta     DEBUG			targetTag and targetActualIndex not found in atualTags, therefore no targetCandidate
+  Errors.               parse     DEBUG		targetCandidate2 is None, targetCandidate1 is targetElement: <Element a at 170b510>
+test_Err.              test_2     DEBUG		
+test_Err.              test_2     DEBUG		
+test_Err.              test_2     DEBUG		running test test_2
+  Errors.               parse     DEBUG		validating tree with dita version 1.1
+  Errors.               parse     DEBUG		first error message: /Users/matt/work/programs/dev_workspace/TreeGroup/Transforms/AStarTransform/classes/../../../testfiles/AStarTransform/Errors/ErrorTest2.xml:2:0:ERROR:VALID:DTD_CONTENT_MODEL: Element dita content does not follow the DTD, expecting (topic | concept | task | reference | glossentry)+, got (a )
+  Errors.      _parsePattern1     DEBUG		testing pattern: .*?\:\d*\:\d*\:ERROR:VALID\:DTD_CONTENT_MODEL\: Element (.*?) content does not follow the DTD, expecting (.*), got \((.*?)\)
+  Errors.      _parsePattern1     DEBUG		pattern matched
+  Errors.      _parsePattern1     DEBUG			parentTag: dita
+  Errors.      _parsePattern1     DEBUG			actualTags: ['a']
+  Errors.      _parsePattern1     DEBUG			expectedTags: ['(topic | concept | task | reference | glossentry)+']
+  Errors.         _buildLinks     DEBUG		building links
+  Errors.         _buildLinks     DEBUG			actualIndex: 0	actual: ['a', None]
+  Errors.         _buildLinks     DEBUG			expectedCutoff: 0	len(self._expectedTags): 1
+  Errors.         _buildLinks     DEBUG			attempting to match expected, pattern: [\s\(]a[^\w]
+  Errors.         _buildLinks     DEBUG				expectedIndex: 0	expected: (topic | concept | task | reference | glossentry)+
+  Errors.         _buildLinks     DEBUG			no match found
+  Errors.         _buildLinks     DEBUG		links built.
+  Errors.         _buildLinks     DEBUG		actualTags links:
+  Errors.         _buildLinks     DEBUG			a -> None: None
+  Errors.         _buildLinks     DEBUG		expectedTags links:
+  Errors.         _buildLinks     DEBUG			(topic | concept | task | reference | glossentry)+ -> None: None
+  Errors.               parse     DEBUG		finding targetElement
+  Errors._actualTagsFindTarge     DEBUG		searching actualTags
+  Errors._actualTagsFindTarge     DEBUG			testing: ['a', None]
+  Errors._actualTagsFindTarge     DEBUG			targetTag found: a
+  Errors._findTargetElementFr     DEBUG		finding targetElement from actualTags
+  Errors._findTargetElementFr     DEBUG			xpath: //dita/a
+  Errors._findTargetElementFr     DEBUG			found target: <Element a at 170b5d0>
+  Errors._actualTagsFindAccep     DEBUG		finding acceptableTags
+  Errors._actualTagsFindAccep     DEBUG		searching actualTags, starting index 0
+  Errors._actualTagsFindAccep     DEBUG			testing 0: ['a', None]
+  Errors._actualTagsFindAccep     DEBUG		last linked index not found, setting to 0
+  Errors._actualTagsFindAccep     DEBUG		actualStartingIndex: 0
+  Errors._actualTagsFindAccep     DEBUG		expectedStartingIndex: 0
+  Errors._actualTagsFindAccep     DEBUG		building tags
+  Errors._actualTagsFindAccep     DEBUG		got tags: ['(topic | concept | task | reference | glossentry)+']
+  Errors._actualTagsFindAccep     DEBUG		building acceptableTagsCandidate
+  Errors._buildAcceptableTags     DEBUG		building acceptableTags list from ['(topic | concept | task | reference | glossentry)+']
+  Errors._buildAcceptableTags     DEBUG			processing: (topic | concept | task | reference | glossentry)+
+  Errors._buildAcceptableTags     DEBUG			new string: topic  concept  task  reference  glossentry
+  Errors._buildAcceptableTags     DEBUG			adding to acceptableTags: topic
+  Errors._buildAcceptableTags     DEBUG			adding to acceptableTags: concept
+  Errors._buildAcceptableTags     DEBUG			adding to acceptableTags: task
+  Errors._buildAcceptableTags     DEBUG			adding to acceptableTags: reference
+  Errors._buildAcceptableTags     DEBUG			adding to acceptableTags: glossentry
+  Errors._getTargetAndAccepta     DEBUG		getting target and acceptableTags from expectedTags
+  Errors._expectedTagsFindTar     DEBUG		searching expectedTags for target
+  Errors._expectedTagsFindTar     DEBUG			testing ['(topic | concept | task | reference | glossentry)+', None]
+  Errors._expectedTagsFindTar     DEBUG				this is a required entry with no link
+  Errors._expectedTagsFindTar     DEBUG		target not found in expectedTags
+  Errors._getTargetAndAccepta     DEBUG			targetTag and targetActualIndex not found in atualTags, therefore no targetCandidate
+  Errors.               parse     DEBUG		targetCandidate2 is None, targetCandidate1 is targetElement: <Element a at 170b5d0>
+test_Err.              test_3     DEBUG		
+test_Err.              test_3     DEBUG		
+test_Err.              test_3     DEBUG		running test test_3
+  Errors.               parse     DEBUG		validating tree with dita version 1.1
+  Errors.               parse     DEBUG		first error message: /Users/matt/work/programs/dev_workspace/TreeGroup/Transforms/AStarTransform/classes/../../../testfiles/AStarTransform/Errors/ErrorTest3.xml:5:0:ERROR:VALID:DTD_CONTENT_MODEL: Element body content does not follow the DTD, expecting (p | lq | note | dl | parml | ul | ol | sl | pre | codeblock | msgblock | screen | lines | fig | syntaxdiagram | imagemap | image | object | table | simpletable | required-cleanup | data | data-about | foreign | unknown | section | example)*, got (p a p )
+  Errors.      _parsePattern1     DEBUG		testing pattern: .*?\:\d*\:\d*\:ERROR:VALID\:DTD_CONTENT_MODEL\: Element (.*?) content does not follow the DTD, expecting (.*), got \((.*?)\)
+  Errors.      _parsePattern1     DEBUG		pattern matched
+  Errors.      _parsePattern1     DEBUG			parentTag: body
+  Errors.      _parsePattern1     DEBUG			actualTags: ['p', 'a', 'p']
+  Errors.      _parsePattern1     DEBUG			expectedTags: ['(p | lq | note | dl | parml | ul | ol | sl | pre | codeblock | msgblock | screen | lines | fig | syntaxdiagram | imagemap | image | object | table | simpletable | required-cleanup | data | data-about | foreign | unknown | section | example)*']
+  Errors.         _buildLinks     DEBUG		building links
+  Errors.         _buildLinks     DEBUG			actualIndex: 0	actual: ['p', None]
+  Errors.         _buildLinks     DEBUG			expectedCutoff: 0	len(self._expectedTags): 1
+  Errors.         _buildLinks     DEBUG			attempting to match expected, pattern: [\s\(]p[^\w]
+  Errors.         _buildLinks     DEBUG				expectedIndex: 0	expected: (p | lq | note | dl | parml | ul | ol | sl | pre | codeblock | msgblock | screen | lines | fig | syntaxdiagram | imagemap | image | object | table | simpletable | required-cleanup | data | data-about | foreign | unknown | section | example)*
+  Errors.         _buildLinks     DEBUG				matched actual
+  Errors.         _buildLinks     DEBUG			actualIndex: 1	actual: ['a', None]
+  Errors.         _buildLinks     DEBUG			expectedCutoff: 1	len(self._expectedTags): 2
+  Errors.         _buildLinks     DEBUG			attempting to match expected, pattern: [\s\(]a[^\w]
+  Errors.         _buildLinks     DEBUG				expectedIndex: 1	expected: (p | lq | note | dl | parml | ul | ol | sl | pre | codeblock | msgblock | screen | lines | fig | syntaxdiagram | imagemap | image | object | table | simpletable | required-cleanup | data | data-about | foreign | unknown | section | example)*
+  Errors.         _buildLinks     DEBUG			no match found
+  Errors.         _buildLinks     DEBUG			actualIndex: 2	actual: ['p', None]
+  Errors.         _buildLinks     DEBUG			expectedCutoff: 1	len(self._expectedTags): 2
+  Errors.         _buildLinks     DEBUG			attempting to match expected, pattern: [\s\(]p[^\w]
+  Errors.         _buildLinks     DEBUG				expectedIndex: 1	expected: (p | lq | note | dl | parml | ul | ol | sl | pre | codeblock | msgblock | screen | lines | fig | syntaxdiagram | imagemap | image | object | table | simpletable | required-cleanup | data | data-about | foreign | unknown | section | example)*
+  Errors.         _buildLinks     DEBUG				matched actual
+  Errors.         _buildLinks     DEBUG		links built.
+  Errors.         _buildLinks     DEBUG		actualTags links:
+  Errors.         _buildLinks     DEBUG			p -> 0: (p | lq | note | dl | parml | ul | ol | sl | pre | codeblock | msgblock | screen | lines | fig | syntaxdiagram | imagemap | image | object | table | simpletable | required-cleanup | data | data-about | foreign | unknown | section | example)*
+  Errors.         _buildLinks     DEBUG			a -> None: None
+  Errors.         _buildLinks     DEBUG			p -> 1: (p | lq | note | dl | parml | ul | ol | sl | pre | codeblock | msgblock | screen | lines | fig | syntaxdiagram | imagemap | image | object | table | simpletable | required-cleanup | data | data-about | foreign | unknown | section | example)*
+  Errors.         _buildLinks     DEBUG		expectedTags links:
+  Errors.         _buildLinks     DEBUG			(p | lq | note | dl | parml | ul | ol | sl | pre | codeblock | msgblock | screen | lines | fig | syntaxdiagram | imagemap | image | object | table | simpletable | required-cleanup | data | data-about | foreign | unknown | section | example)* -> 0: p
+  Errors.         _buildLinks     DEBUG			(p | lq | note | dl | parml | ul | ol | sl | pre | codeblock | msgblock | screen | lines | fig | syntaxdiagram | imagemap | image | object | table | simpletable | required-cleanup | data | data-about | foreign | unknown | section | example)* -> 2: p
+  Errors.         _buildLinks     DEBUG			(p | lq | note | dl | parml | ul | ol | sl | pre | codeblock | msgblock | screen | lines | fig | syntaxdiagram | imagemap | image | object | table | simpletable | required-cleanup | data | data-about | foreign | unknown | section | example)* -> None: None
+  Errors.               parse     DEBUG		finding targetElement
+  Errors._actualTagsFindTarge     DEBUG		searching actualTags
+  Errors._actualTagsFindTarge     DEBUG			testing: ['p', 0]
+  Errors._actualTagsFindTarge     DEBUG			testing: ['a', None]
+  Errors._actualTagsFindTarge     DEBUG			targetTag found: a
+  Errors._findTargetElementFr     DEBUG		finding targetElement from actualTags
+  Errors._findTargetElementFr     DEBUG			xpath: //body/a[preceding-sibling::*[1][self::p]]
+  Errors._findTargetElementFr     DEBUG			found target: <Element a at 170b5d0>
+  Errors._actualTagsFindAccep     DEBUG		finding acceptableTags
+  Errors._actualTagsFindAccep     DEBUG		searching actualTags, starting index 1
+  Errors._actualTagsFindAccep     DEBUG			testing 1: ['a', None]
+  Errors._actualTagsFindAccep     DEBUG			testing 0: ['p', 0]
+  Errors._actualTagsFindAccep     DEBUG				found last linked index: 0
+  Errors._actualTagsFindAccep     DEBUG		actualStartingIndex: 1
+  Errors._actualTagsFindAccep     DEBUG		expectedStartingIndex: 1
+  Errors._actualTagsFindAccep     DEBUG		building tags
+  Errors._actualTagsFindAccep     DEBUG		got tags: ['(p | lq | note | dl | parml | ul | ol | sl | pre | codeblock | msgblock | screen | lines | fig | syntaxdiagram | imagemap | image | object | table | simpletable | required-cleanup | data | data-about | foreign | unknown | section | example)*']
+  Errors._actualTagsFindAccep     DEBUG		building acceptableTagsCandidate
+  Errors._buildAcceptableTags     DEBUG		building acceptableTags list from ['(p | lq | note | dl | parml | ul | ol | sl | pre | codeblock | msgblock | screen | lines | fig | syntaxdiagram | imagemap | image | object | table | simpletable | required-cleanup | data | data-about | foreign | unknown | section | example)*']
+  Errors._buildAcceptableTags     DEBUG			processing: (p | lq | note | dl | parml | ul | ol | sl | pre | codeblock | msgblock | screen | lines | fig | syntaxdiagram | imagemap | image | object | table | simpletable | required-cleanup | data | data-about | foreign | unknown | section | example)*
+  Errors._buildAcceptableTags     DEBUG			new string: p  lq  note  dl  parml  ul  ol  sl  pre  codeblock  msgblock  screen  lines  fig  syntaxdiagram  imagemap  image  object  table  simpletable  required-cleanup  data  data-about  foreign  unknown  section  example
+  Errors._buildAcceptableTags     DEBUG			adding to acceptableTags: p
+  Errors._buildAcceptableTags     DEBUG			adding to acceptableTags: lq
+  Errors._buildAcceptableTags     DEBUG			adding to acceptableTags: note
+  Errors._buildAcceptableTags     DEBUG			adding to acceptableTags: dl
+  Errors._buildAcceptableTags     DEBUG			adding to acceptableTags: parml
+  Errors._buildAcceptableTags     DEBUG			adding to acceptableTags: ul
+  Errors._buildAcceptableTags     DEBUG			adding to acceptableTags: ol
+  Errors._buildAcceptableTags     DEBUG			adding to acceptableTags: sl
+  Errors._buildAcceptableTags     DEBUG			adding to acceptableTags: pre
+  Errors._buildAcceptableTags     DEBUG			adding to acceptableTags: codeblock
+  Errors._buildAcceptableTags     DEBUG			adding to acceptableTags: msgblock
+  Errors._buildAcceptableTags     DEBUG			adding to acceptableTags: screen
+  Errors._buildAcceptableTags     DEBUG			adding to acceptableTags: lines
+  Errors._buildAcceptableTags     DEBUG			adding to acceptableTags: fig
+  Errors._buildAcceptableTags     DEBUG			adding to acceptableTags: syntaxdiagram
+  Errors._buildAcceptableTags     DEBUG			adding to acceptableTags: imagemap
+  Errors._buildAcceptableTags     DEBUG			adding to acceptableTags: image
+  Errors._buildAcceptableTags     DEBUG			adding to acceptableTags: object
+  Errors._buildAcceptableTags     DEBUG			adding to acceptableTags: table
+  Errors._buildAcceptableTags     DEBUG			adding to acceptableTags: simpletable
+  Errors._buildAcceptableTags     DEBUG			adding to acceptableTags: required-cleanup
+  Errors._buildAcceptableTags     DEBUG			adding to acceptableTags: data
+  Errors._buildAcceptableTags     DEBUG			adding to acceptableTags: data-about
+  Errors._buildAcceptableTags     DEBUG			adding to acceptableTags: foreign
+  Errors._buildAcceptableTags     DEBUG			adding to acceptableTags: unknown
+  Errors._buildAcceptableTags     DEBUG			adding to acceptableTags: section
+  Errors._buildAcceptableTags     DEBUG			adding to acceptableTags: example
+  Errors._getTargetAndAccepta     DEBUG		getting target and acceptableTags from expectedTags
+  Errors._expectedTagsFindTar     DEBUG		searching expectedTags for target
+  Errors._expectedTagsFindTar     DEBUG			testing ['(p | lq | note | dl | parml | ul | ol | sl | pre | codeblock | msgblock | screen | lines | fig | syntaxdiagram | imagemap | image | object | table | simpletable | required-cleanup | data | data-about | foreign | unknown | section | example)*', 0]
+  Errors._expectedTagsFindTar     DEBUG			testing ['(p | lq | note | dl | parml | ul | ol | sl | pre | codeblock | msgblock | screen | lines | fig | syntaxdiagram | imagemap | image | object | table | simpletable | required-cleanup | data | data-about | foreign | unknown | section | example)*', 2]
+  Errors._expectedTagsFindTar     DEBUG			testing ['(p | lq | note | dl | parml | ul | ol | sl | pre | codeblock | msgblock | screen | lines | fig | syntaxdiagram | imagemap | image | object | table | simpletable | required-cleanup | data | data-about | foreign | unknown | section | example)*', None]
+  Errors._expectedTagsFindTar     DEBUG		target not found in expectedTags
+  Errors._getTargetAndAccepta     DEBUG			targetTag and targetActualIndex not found in atualTags, therefore no targetCandidate
+  Errors.               parse     DEBUG		targetCandidate2 is None, targetCandidate1 is targetElement: <Element a at 170b5d0>
+test_Err.              test_4     DEBUG		
+test_Err.              test_4     DEBUG		
+test_Err.              test_4     DEBUG		running test test_4
+  Errors.               parse     DEBUG		validating tree with dita version 1.1
+  Errors.               parse     DEBUG		first error message: /Users/matt/work/programs/dev_workspace/TreeGroup/Transforms/AStarTransform/classes/../../../testfiles/AStarTransform/Errors/ErrorTest4.xml:3:0:ERROR:VALID:DTD_CONTENT_MODEL: Element topic content does not follow the DTD, expecting (title , titlealts? , (shortdesc | abstract)? , prolog? , body? , related-links? , (topic | concept | task | reference | glossentry)*), got (title a )
+  Errors.      _parsePattern1     DEBUG		testing pattern: .*?\:\d*\:\d*\:ERROR:VALID\:DTD_CONTENT_MODEL\: Element (.*?) content does not follow the DTD, expecting (.*), got \((.*?)\)
+  Errors.      _parsePattern1     DEBUG		pattern matched
+  Errors.      _parsePattern1     DEBUG			parentTag: topic
+  Errors.      _parsePattern1     DEBUG			actualTags: ['title', 'a']
+  Errors.      _parsePattern1     DEBUG			expectedTags: ['(title ', ' titlealts? ', ' (shortdesc | abstract)? ', ' prolog? ', ' body? ', ' related-links? ', ' (topic | concept | task | reference | glossentry)*)']
+  Errors.         _buildLinks     DEBUG		building links
+  Errors.         _buildLinks     DEBUG			actualIndex: 0	actual: ['title', None]
+  Errors.         _buildLinks     DEBUG			expectedCutoff: 0	len(self._expectedTags): 7
+  Errors.         _buildLinks     DEBUG			attempting to match expected, pattern: [\s\(]title[^\w]
+  Errors.         _buildLinks     DEBUG				expectedIndex: 0	expected: (title 
+  Errors.         _buildLinks     DEBUG				matched actual
+  Errors.         _buildLinks     DEBUG			actualIndex: 1	actual: ['a', None]
+  Errors.         _buildLinks     DEBUG			expectedCutoff: 1	len(self._expectedTags): 7
+  Errors.         _buildLinks     DEBUG			attempting to match expected, pattern: [\s\(]a[^\w]
+  Errors.         _buildLinks     DEBUG				expectedIndex: 1	expected:  titlealts? 
+  Errors.         _buildLinks     DEBUG				expectedIndex: 2	expected:  (shortdesc | abstract)? 
+  Errors.         _buildLinks     DEBUG				expectedIndex: 3	expected:  prolog? 
+  Errors.         _buildLinks     DEBUG				expectedIndex: 4	expected:  body? 
+  Errors.         _buildLinks     DEBUG				expectedIndex: 5	expected:  related-links? 
+  Errors.         _buildLinks     DEBUG				expectedIndex: 6	expected:  (topic | concept | task | reference | glossentry)*)
+  Errors.         _buildLinks     DEBUG			no match found
+  Errors.         _buildLinks     DEBUG		links built.
+  Errors.         _buildLinks     DEBUG		actualTags links:
+  Errors.         _buildLinks     DEBUG			title -> 0: (title 
+  Errors.         _buildLinks     DEBUG			a -> None: None
+  Errors.         _buildLinks     DEBUG		expectedTags links:
+  Errors.         _buildLinks     DEBUG			(title  -> 0: title
+  Errors.         _buildLinks     DEBUG			 titlealts?  -> None: None
+  Errors.         _buildLinks     DEBUG			 (shortdesc | abstract)?  -> None: None
+  Errors.         _buildLinks     DEBUG			 prolog?  -> None: None
+  Errors.         _buildLinks     DEBUG			 body?  -> None: None
+  Errors.         _buildLinks     DEBUG			 related-links?  -> None: None
+  Errors.         _buildLinks     DEBUG			 (topic | concept | task | reference | glossentry)*) -> None: None
+  Errors.               parse     DEBUG		finding targetElement
+  Errors._actualTagsFindTarge     DEBUG		searching actualTags
+  Errors._actualTagsFindTarge     DEBUG			testing: ['title', 0]
+  Errors._actualTagsFindTarge     DEBUG			testing: ['a', None]
+  Errors._actualTagsFindTarge     DEBUG			targetTag found: a
+  Errors._findTargetElementFr     DEBUG		finding targetElement from actualTags
+  Errors._findTargetElementFr     DEBUG			xpath: //topic/a[preceding-sibling::*[1][self::title]]
+  Errors._findTargetElementFr     DEBUG			found target: <Element a at 15a3a80>
+  Errors._actualTagsFindAccep     DEBUG		finding acceptableTags
+  Errors._actualTagsFindAccep     DEBUG		searching actualTags, starting index 1
+  Errors._actualTagsFindAccep     DEBUG			testing 1: ['a', None]
+  Errors._actualTagsFindAccep     DEBUG			testing 0: ['title', 0]
+  Errors._actualTagsFindAccep     DEBUG				found last linked index: 0
+  Errors._actualTagsFindAccep     DEBUG		actualStartingIndex: 1
+  Errors._actualTagsFindAccep     DEBUG		expectedStartingIndex: 1
+  Errors._actualTagsFindAccep     DEBUG		building tags
+  Errors._actualTagsFindAccep     DEBUG		got tags: [' titlealts? ', ' (shortdesc | abstract)? ', ' prolog? ', ' body? ', ' related-links? ', ' (topic | concept | task | reference | glossentry)*)']
+  Errors._actualTagsFindAccep     DEBUG		building acceptableTagsCandidate
+  Errors._buildAcceptableTags     DEBUG		building acceptableTags list from [' titlealts? ', ' (shortdesc | abstract)? ', ' prolog? ', ' body? ', ' related-links? ', ' (topic | concept | task | reference | glossentry)*)']
+  Errors._buildAcceptableTags     DEBUG			processing:  titlealts? 
+  Errors._buildAcceptableTags     DEBUG			new string:  titlealts 
+  Errors._buildAcceptableTags     DEBUG			adding to acceptableTags: titlealts
+  Errors._buildAcceptableTags     DEBUG			processing:  (shortdesc | abstract)? 
+  Errors._buildAcceptableTags     DEBUG			new string:  shortdesc  abstract 
+  Errors._buildAcceptableTags     DEBUG			adding to acceptableTags: shortdesc
+  Errors._buildAcceptableTags     DEBUG			adding to acceptableTags: abstract
+  Errors._buildAcceptableTags     DEBUG			processing:  prolog? 
+  Errors._buildAcceptableTags     DEBUG			new string:  prolog 
+  Errors._buildAcceptableTags     DEBUG			adding to acceptableTags: prolog
+  Errors._buildAcceptableTags     DEBUG			processing:  body? 
+  Errors._buildAcceptableTags     DEBUG			new string:  body 
+  Errors._buildAcceptableTags     DEBUG			adding to acceptableTags: body
+  Errors._buildAcceptableTags     DEBUG			processing:  related-links? 
+  Errors._buildAcceptableTags     DEBUG			new string:  related-links 
+  Errors._buildAcceptableTags     DEBUG			adding to acceptableTags: related-links
+  Errors._buildAcceptableTags     DEBUG			processing:  (topic | concept | task | reference | glossentry)*)
+  Errors._buildAcceptableTags     DEBUG			new string:  topic  concept  task  reference  glossentry
+  Errors._buildAcceptableTags     DEBUG			adding to acceptableTags: topic
+  Errors._buildAcceptableTags     DEBUG			adding to acceptableTags: concept
+  Errors._buildAcceptableTags     DEBUG			adding to acceptableTags: task
+  Errors._buildAcceptableTags     DEBUG			adding to acceptableTags: reference
+  Errors._buildAcceptableTags     DEBUG			adding to acceptableTags: glossentry
+  Errors._getTargetAndAccepta     DEBUG		getting target and acceptableTags from expectedTags
+  Errors._expectedTagsFindTar     DEBUG		searching expectedTags for target
+  Errors._expectedTagsFindTar     DEBUG			testing ['(title ', 0]
+  Errors._expectedTagsFindTar     DEBUG			testing [' titlealts? ', None]
+  Errors._expectedTagsFindTar     DEBUG			testing [' (shortdesc | abstract)? ', None]
+  Errors._expectedTagsFindTar     DEBUG			testing [' prolog? ', None]
+  Errors._expectedTagsFindTar     DEBUG			testing [' body? ', None]
+  Errors._expectedTagsFindTar     DEBUG			testing [' related-links? ', None]
+  Errors._expectedTagsFindTar     DEBUG			testing [' (topic | concept | task | reference | glossentry)*)', None]
+  Errors._expectedTagsFindTar     DEBUG				this is a required entry with no link
+  Errors._expectedTagsFindTar     DEBUG		target not found in expectedTags
+  Errors._getTargetAndAccepta     DEBUG			targetTag and targetActualIndex not found in atualTags, therefore no targetCandidate
+  Errors.               parse     DEBUG		targetCandidate2 is None, targetCandidate1 is targetElement: <Element a at 15a3a80>
+test_Err.              test_5     DEBUG		
+test_Err.              test_5     DEBUG		
+test_Err.              test_5     DEBUG		running test test_5
+  Errors.               parse     DEBUG		validating tree with dita version 1.1
+  Errors.               parse     DEBUG		first error message: /Users/matt/work/programs/dev_workspace/TreeGroup/Transforms/AStarTransform/classes/../../../testfiles/AStarTransform/Errors/ErrorTest5.xml:3:0:ERROR:VALID:DTD_CONTENT_MODEL: Element topic content does not follow the DTD, expecting (title , titlealts? , (shortdesc | abstract)? , prolog? , body? , related-links? , (topic | concept | task | reference | glossentry)*), got (body )
+  Errors.      _parsePattern1     DEBUG		testing pattern: .*?\:\d*\:\d*\:ERROR:VALID\:DTD_CONTENT_MODEL\: Element (.*?) content does not follow the DTD, expecting (.*), got \((.*?)\)
+  Errors.      _parsePattern1     DEBUG		pattern matched
+  Errors.      _parsePattern1     DEBUG			parentTag: topic
+  Errors.      _parsePattern1     DEBUG			actualTags: ['body']
+  Errors.      _parsePattern1     DEBUG			expectedTags: ['(title ', ' titlealts? ', ' (shortdesc | abstract)? ', ' prolog? ', ' body? ', ' related-links? ', ' (topic | concept | task | reference | glossentry)*)']
+  Errors.         _buildLinks     DEBUG		building links
+  Errors.         _buildLinks     DEBUG			actualIndex: 0	actual: ['body', None]
+  Errors.         _buildLinks     DEBUG			expectedCutoff: 0	len(self._expectedTags): 7
+  Errors.         _buildLinks     DEBUG			attempting to match expected, pattern: [\s\(]body[^\w]
+  Errors.         _buildLinks     DEBUG				expectedIndex: 0	expected: (title 
+  Errors.         _buildLinks     DEBUG				expectedIndex: 1	expected:  titlealts? 
+  Errors.         _buildLinks     DEBUG				expectedIndex: 2	expected:  (shortdesc | abstract)? 
+  Errors.         _buildLinks     DEBUG				expectedIndex: 3	expected:  prolog? 
+  Errors.         _buildLinks     DEBUG				expectedIndex: 4	expected:  body? 
+  Errors.         _buildLinks     DEBUG				matched actual
+  Errors.         _buildLinks     DEBUG		links built.
+  Errors.         _buildLinks     DEBUG		actualTags links:
+  Errors.         _buildLinks     DEBUG			body -> 4:  body? 
+  Errors.         _buildLinks     DEBUG		expectedTags links:
+  Errors.         _buildLinks     DEBUG			(title  -> None: None
+  Errors.         _buildLinks     DEBUG			 titlealts?  -> None: None
+  Errors.         _buildLinks     DEBUG			 (shortdesc | abstract)?  -> None: None
+  Errors.         _buildLinks     DEBUG			 prolog?  -> None: None
+  Errors.         _buildLinks     DEBUG			 body?  -> 0: body
+  Errors.         _buildLinks     DEBUG			 related-links?  -> None: None
+  Errors.         _buildLinks     DEBUG			 (topic | concept | task | reference | glossentry)*) -> None: None
+  Errors.               parse     DEBUG		finding targetElement
+  Errors._actualTagsFindTarge     DEBUG		searching actualTags
+  Errors._actualTagsFindTarge     DEBUG			testing: ['body', 4]
+  Errors._actualTagsFindTarge     DEBUG		target not found in actualTags
+  Errors._getTargetAndAccepta     DEBUG			targetTag and targetActualIndex not found in actualTags, therefore no targetCandidate
+  Errors._getTargetAndAccepta     DEBUG		getting target and acceptableTags from expectedTags
+  Errors._expectedTagsFindTar     DEBUG		searching expectedTags for target
+  Errors._expectedTagsFindTar     DEBUG			testing ['(title ', None]
+  Errors._expectedTagsFindTar     DEBUG				this is a required entry with no link
+  Errors._expectedTagsFindTar     DEBUG			testing [' titlealts? ', None]
+  Errors._expectedTagsFindTar     DEBUG			testing [' (shortdesc | abstract)? ', None]
+  Errors._expectedTagsFindTar     DEBUG			testing [' prolog? ', None]
+  Errors._expectedTagsFindTar     DEBUG			testing [' body? ', 0]
+  Errors._findTargetElementFr     DEBUG		finding targetElement from actualTags
+  Errors._findTargetElementFr     DEBUG			xpath: //topic/body
+  Errors._findTargetElementFr     DEBUG			found target: <Element body at 15a3ab0>
+  Errors._buildAcceptableTags     DEBUG		building acceptableTags list from ['(title ']
+  Errors._buildAcceptableTags     DEBUG			processing: (title 
+  Errors._buildAcceptableTags     DEBUG			new string: title 
+  Errors._buildAcceptableTags     DEBUG			adding to acceptableTags: title
+  Errors.               parse     DEBUG		targetCandidate1 is None, targetCandidate2 is targetElement: <Element body at 15a3ab0>
+test_Err.              test_6     DEBUG		
+test_Err.              test_6     DEBUG		
+test_Err.              test_6     DEBUG		running test test_6
+  Errors.               parse     DEBUG		validating tree with dita version 1.1
+  Errors.               parse     DEBUG		first error message: /Users/matt/work/programs/dev_workspace/TreeGroup/Transforms/AStarTransform/classes/../../../testfiles/AStarTransform/Errors/ErrorTest6.xml:3:0:ERROR:VALID:DTD_CONTENT_MODEL: Element topic content does not follow the DTD, expecting (title , titlealts? , (shortdesc | abstract)? , prolog? , body? , related-links? , (topic | concept | task | reference | glossentry)*), got (body )
+  Errors.      _parsePattern1     DEBUG		testing pattern: .*?\:\d*\:\d*\:ERROR:VALID\:DTD_CONTENT_MODEL\: Element (.*?) content does not follow the DTD, expecting (.*), got \((.*?)\)
+  Errors.      _parsePattern1     DEBUG		pattern matched
+  Errors.      _parsePattern1     DEBUG			parentTag: topic
+  Errors.      _parsePattern1     DEBUG			actualTags: ['body']
+  Errors.      _parsePattern1     DEBUG			expectedTags: ['(title ', ' titlealts? ', ' (shortdesc | abstract)? ', ' prolog? ', ' body? ', ' related-links? ', ' (topic | concept | task | reference | glossentry)*)']
+  Errors.         _buildLinks     DEBUG		building links
+  Errors.         _buildLinks     DEBUG			actualIndex: 0	actual: ['body', None]
+  Errors.         _buildLinks     DEBUG			expectedCutoff: 0	len(self._expectedTags): 7
+  Errors.         _buildLinks     DEBUG			attempting to match expected, pattern: [\s\(]body[^\w]
+  Errors.         _buildLinks     DEBUG				expectedIndex: 0	expected: (title 
+  Errors.         _buildLinks     DEBUG				expectedIndex: 1	expected:  titlealts? 
+  Errors.         _buildLinks     DEBUG				expectedIndex: 2	expected:  (shortdesc | abstract)? 
+  Errors.         _buildLinks     DEBUG				expectedIndex: 3	expected:  prolog? 
+  Errors.         _buildLinks     DEBUG				expectedIndex: 4	expected:  body? 
+  Errors.         _buildLinks     DEBUG				matched actual
+  Errors.         _buildLinks     DEBUG		links built.
+  Errors.         _buildLinks     DEBUG		actualTags links:
+  Errors.         _buildLinks     DEBUG			body -> 4:  body? 
+  Errors.         _buildLinks     DEBUG		expectedTags links:
+  Errors.         _buildLinks     DEBUG			(title  -> None: None
+  Errors.         _buildLinks     DEBUG			 titlealts?  -> None: None
+  Errors.         _buildLinks     DEBUG			 (shortdesc | abstract)?  -> None: None
+  Errors.         _buildLinks     DEBUG			 prolog?  -> None: None
+  Errors.         _buildLinks     DEBUG			 body?  -> 0: body
+  Errors.         _buildLinks     DEBUG			 related-links?  -> None: None
+  Errors.         _buildLinks     DEBUG			 (topic | concept | task | reference | glossentry)*) -> None: None
+  Errors.               parse     DEBUG		finding targetElement
+  Errors._actualTagsFindTarge     DEBUG		searching actualTags
+  Errors._actualTagsFindTarge     DEBUG			testing: ['body', 4]
+  Errors._actualTagsFindTarge     DEBUG		target not found in actualTags
+  Errors._getTargetAndAccepta     DEBUG			targetTag and targetActualIndex not found in actualTags, therefore no targetCandidate
+  Errors._getTargetAndAccepta     DEBUG		getting target and acceptableTags from expectedTags
+  Errors._expectedTagsFindTar     DEBUG		searching expectedTags for target
+  Errors._expectedTagsFindTar     DEBUG			testing ['(title ', None]
+  Errors._expectedTagsFindTar     DEBUG				this is a required entry with no link
+  Errors._expectedTagsFindTar     DEBUG			testing [' titlealts? ', None]
+  Errors._expectedTagsFindTar     DEBUG			testing [' (shortdesc | abstract)? ', None]
+  Errors._expectedTagsFindTar     DEBUG			testing [' prolog? ', None]
+  Errors._expectedTagsFindTar     DEBUG			testing [' body? ', 0]
+  Errors._findTargetElementFr     DEBUG		finding targetElement from actualTags
+  Errors._findTargetElementFr     DEBUG			xpath: //topic/body
+  Errors._findTargetElementFr     DEBUG			found target: <Element body at 15a3c30>
+  Errors._buildAcceptableTags     DEBUG		building acceptableTags list from ['(title ']
+  Errors._buildAcceptableTags     DEBUG			processing: (title 
+  Errors._buildAcceptableTags     DEBUG			new string: title 
+  Errors._buildAcceptableTags     DEBUG			adding to acceptableTags: title
+  Errors.               parse     DEBUG		targetCandidate1 is None, targetCandidate2 is targetElement: <Element body at 15a3c30>
+test_Err.              test_7     DEBUG		
+test_Err.              test_7     DEBUG		
+test_Err.              test_7     DEBUG		running test test_7
+  Errors.               parse     DEBUG		validating tree with dita version 1.1
+  Errors.               parse     DEBUG		first error message: /Users/matt/work/programs/dev_workspace/TreeGroup/Transforms/AStarTransform/classes/../../../testfiles/AStarTransform/Errors/ErrorTest7.xml:2:0:ERROR:VALID:DTD_CONTENT_MODEL: Element dita content does not follow the DTD, expecting (topic | concept | task | reference | glossentry)+, got (a topic )
+  Errors.      _parsePattern1     DEBUG		testing pattern: .*?\:\d*\:\d*\:ERROR:VALID\:DTD_CONTENT_MODEL\: Element (.*?) content does not follow the DTD, expecting (.*), got \((.*?)\)
+  Errors.      _parsePattern1     DEBUG		pattern matched
+  Errors.      _parsePattern1     DEBUG			parentTag: dita
+  Errors.      _parsePattern1     DEBUG			actualTags: ['a', 'topic']
+  Errors.      _parsePattern1     DEBUG			expectedTags: ['(topic | concept | task | reference | glossentry)+']
+  Errors.         _buildLinks     DEBUG		building links
+  Errors.         _buildLinks     DEBUG			actualIndex: 0	actual: ['a', None]
+  Errors.         _buildLinks     DEBUG			expectedCutoff: 0	len(self._expectedTags): 1
+  Errors.         _buildLinks     DEBUG			attempting to match expected, pattern: [\s\(]a[^\w]
+  Errors.         _buildLinks     DEBUG				expectedIndex: 0	expected: (topic | concept | task | reference | glossentry)+
+  Errors.         _buildLinks     DEBUG			no match found
+  Errors.         _buildLinks     DEBUG			actualIndex: 1	actual: ['topic', None]
+  Errors.         _buildLinks     DEBUG			expectedCutoff: 0	len(self._expectedTags): 1
+  Errors.         _buildLinks     DEBUG			attempting to match expected, pattern: [\s\(]topic[^\w]
+  Errors.         _buildLinks     DEBUG				expectedIndex: 0	expected: (topic | concept | task | reference | glossentry)+
+  Errors.         _buildLinks     DEBUG				matched actual
+  Errors.         _buildLinks     DEBUG		links built.
+  Errors.         _buildLinks     DEBUG		actualTags links:
+  Errors.         _buildLinks     DEBUG			a -> None: None
+  Errors.         _buildLinks     DEBUG			topic -> 0: (topic | concept | task | reference | glossentry)+
+  Errors.         _buildLinks     DEBUG		expectedTags links:
+  Errors.         _buildLinks     DEBUG			(topic | concept | task | reference | glossentry)+ -> 1: topic
+  Errors.         _buildLinks     DEBUG			(topic | concept | task | reference | glossentry)+ -> None: None
+  Errors.               parse     DEBUG		finding targetElement
+  Errors._actualTagsFindTarge     DEBUG		searching actualTags
+  Errors._actualTagsFindTarge     DEBUG			testing: ['a', None]
+  Errors._actualTagsFindTarge     DEBUG			targetTag found: a
+  Errors._findTargetElementFr     DEBUG		finding targetElement from actualTags
+  Errors._findTargetElementFr     DEBUG			xpath: //dita/a
+  Errors._findTargetElementFr     DEBUG			found target: <Element a at 15a3ab0>
+  Errors._actualTagsFindAccep     DEBUG		finding acceptableTags
+  Errors._actualTagsFindAccep     DEBUG		searching actualTags, starting index 0
+  Errors._actualTagsFindAccep     DEBUG			testing 0: ['a', None]
+  Errors._actualTagsFindAccep     DEBUG		last linked index not found, setting to 0
+  Errors._actualTagsFindAccep     DEBUG		actualStartingIndex: 0
+  Errors._actualTagsFindAccep     DEBUG		expectedStartingIndex: 0
+  Errors._actualTagsFindAccep     DEBUG		building tags
+  Errors._actualTagsFindAccep     DEBUG		got tags: ['(topic | concept | task | reference | glossentry)+']
+  Errors._actualTagsFindAccep     DEBUG		building acceptableTagsCandidate
+  Errors._buildAcceptableTags     DEBUG		building acceptableTags list from ['(topic | concept | task | reference | glossentry)+']
+  Errors._buildAcceptableTags     DEBUG			processing: (topic | concept | task | reference | glossentry)+
+  Errors._buildAcceptableTags     DEBUG			new string: topic  concept  task  reference  glossentry
+  Errors._buildAcceptableTags     DEBUG			adding to acceptableTags: topic
+  Errors._buildAcceptableTags     DEBUG			adding to acceptableTags: concept
+  Errors._buildAcceptableTags     DEBUG			adding to acceptableTags: task
+  Errors._buildAcceptableTags     DEBUG			adding to acceptableTags: reference
+  Errors._buildAcceptableTags     DEBUG			adding to acceptableTags: glossentry
+  Errors._getTargetAndAccepta     DEBUG		getting target and acceptableTags from expectedTags
+  Errors._expectedTagsFindTar     DEBUG		searching expectedTags for target
+  Errors._expectedTagsFindTar     DEBUG			testing ['(topic | concept | task | reference | glossentry)+', 1]
+  Errors._expectedTagsFindTar     DEBUG			testing ['(topic | concept | task | reference | glossentry)+', None]
+  Errors._expectedTagsFindTar     DEBUG				this is a required entry with no link
+  Errors._expectedTagsFindTar     DEBUG		target not found in expectedTags
+  Errors._getTargetAndAccepta     DEBUG			targetTag and targetActualIndex not found in atualTags, therefore no targetCandidate
+  Errors.               parse     DEBUG		targetCandidate2 is None, targetCandidate1 is targetElement: <Element a at 15a3ab0>
+test_Err.              test_8     DEBUG		
+test_Err.              test_8     DEBUG		
+test_Err.              test_8     DEBUG		running test test_8
+  Errors.               parse     DEBUG		validating tree with dita version 1.1
+  Errors.               parse     DEBUG		first error message: /Users/matt/work/programs/dev_workspace/TreeGroup/Transforms/AStarTransform/classes/../../../testfiles/AStarTransform/Errors/ErrorTest8.xml:6:0:ERROR:VALID:DTD_CONTENT_MODEL: Element task content does not follow the DTD, expecting (title , titlealts? , (shortdesc | abstract)? , prolog? , taskbody? , related-links? , (topic | concept | task | reference | glossentry)*), got 
+  Errors.      _parsePattern1     DEBUG		testing pattern: .*?\:\d*\:\d*\:ERROR:VALID\:DTD_CONTENT_MODEL\: Element (.*?) content does not follow the DTD, expecting (.*), got \((.*?)\)
+  Errors.      _parsePattern2     DEBUG		testing pattern: .*?\:\d*\:\d*\:ERROR:VALID\:DTD_UNKNOWN_ELEM\: No declaration for element (.*)
+  Errors.      _parsePattern3     DEBUG		testing pattern: .*?\:\d*\:\d*\:ERROR:VALID\:DTD_CONTENT_MODEL\: Element (.*?) content does not follow the DTD, expecting (.*), got 
+  Errors.      _parsePattern3     DEBUG		pattern matched
+  Errors.      _parsePattern3     DEBUG		no actualTags found. Appending unit node.
+  Errors.      _parsePattern3     DEBUG			parentTag: task
+  Errors.      _parsePattern3     DEBUG			actualTags: ['_']
+  Errors.      _parsePattern3     DEBUG			expectedTags: ['(title ', ' titlealts? ', ' (shortdesc | abstract)? ', ' prolog? ', ' taskbody? ', ' related-links? ', ' (topic | concept | task | reference | glossentry)*)']
+  Errors.         _buildLinks     DEBUG		building links
+  Errors.         _buildLinks     DEBUG			actualIndex: 0	actual: ['_', None]
+  Errors.         _buildLinks     DEBUG			expectedCutoff: 0	len(self._expectedTags): 7
+  Errors.         _buildLinks     DEBUG			attempting to match expected, pattern: [\s\(]_[^\w]
+  Errors.         _buildLinks     DEBUG				expectedIndex: 0	expected: (title 
+  Errors.         _buildLinks     DEBUG				expectedIndex: 1	expected:  titlealts? 
+  Errors.         _buildLinks     DEBUG				expectedIndex: 2	expected:  (shortdesc | abstract)? 
+  Errors.         _buildLinks     DEBUG				expectedIndex: 3	expected:  prolog? 
+  Errors.         _buildLinks     DEBUG				expectedIndex: 4	expected:  taskbody? 
+  Errors.         _buildLinks     DEBUG				expectedIndex: 5	expected:  related-links? 
+  Errors.         _buildLinks     DEBUG				expectedIndex: 6	expected:  (topic | concept | task | reference | glossentry)*)
+  Errors.         _buildLinks     DEBUG			no match found
+  Errors.         _buildLinks     DEBUG		links built.
+  Errors.         _buildLinks     DEBUG		actualTags links:
+  Errors.         _buildLinks     DEBUG			_ -> None: None
+  Errors.         _buildLinks     DEBUG		expectedTags links:
+  Errors.         _buildLinks     DEBUG			(title  -> None: None
+  Errors.         _buildLinks     DEBUG			 titlealts?  -> None: None
+  Errors.         _buildLinks     DEBUG			 (shortdesc | abstract)?  -> None: None
+  Errors.         _buildLinks     DEBUG			 prolog?  -> None: None
+  Errors.         _buildLinks     DEBUG			 taskbody?  -> None: None
+  Errors.         _buildLinks     DEBUG			 related-links?  -> None: None
+  Errors.         _buildLinks     DEBUG			 (topic | concept | task | reference | glossentry)*) -> None: None
+  Errors.               parse     DEBUG		finding targetElement
+  Errors._actualTagsFindTarge     DEBUG		searching actualTags
+  Errors._actualTagsFindTarge     DEBUG			testing: ['_', None]
+  Errors._actualTagsFindTarge     DEBUG			targetTag found: _
+  Errors._findTargetElementFr     DEBUG		finding targetElement from actualTags
+  Errors._findTargetElementFr     DEBUG			xpath: //task/_
+  Errors._findTargetElementFr     DEBUG			found target: <Element _ at 15a3ae0>
+  Errors._actualTagsFindAccep     DEBUG		finding acceptableTags
+  Errors._actualTagsFindAccep     DEBUG		searching actualTags, starting index 0
+  Errors._actualTagsFindAccep     DEBUG			testing 0: ['_', None]
+  Errors._actualTagsFindAccep     DEBUG		last linked index not found, setting to 0
+  Errors._actualTagsFindAccep     DEBUG		actualStartingIndex: 0
+  Errors._actualTagsFindAccep     DEBUG		expectedStartingIndex: 0
+  Errors._actualTagsFindAccep     DEBUG		building tags
+  Errors._actualTagsFindAccep     DEBUG		got tags: ['(title ']
+  Errors._actualTagsFindAccep     DEBUG		building acceptableTagsCandidate
+  Errors._buildAcceptableTags     DEBUG		building acceptableTags list from ['(title ']
+  Errors._buildAcceptableTags     DEBUG			processing: (title 
+  Errors._buildAcceptableTags     DEBUG			new string: title 
+  Errors._buildAcceptableTags     DEBUG			adding to acceptableTags: title
+  Errors._getTargetAndAccepta     DEBUG		getting target and acceptableTags from expectedTags
+  Errors._expectedTagsFindTar     DEBUG		searching expectedTags for target
+  Errors._expectedTagsFindTar     DEBUG			testing ['(title ', None]
+  Errors._expectedTagsFindTar     DEBUG				this is a required entry with no link
+  Errors._expectedTagsFindTar     DEBUG			testing [' titlealts? ', None]
+  Errors._expectedTagsFindTar     DEBUG			testing [' (shortdesc | abstract)? ', None]
+  Errors._expectedTagsFindTar     DEBUG			testing [' prolog? ', None]
+  Errors._expectedTagsFindTar     DEBUG			testing [' taskbody? ', None]
+  Errors._expectedTagsFindTar     DEBUG			testing [' related-links? ', None]
+  Errors._expectedTagsFindTar     DEBUG			testing [' (topic | concept | task | reference | glossentry)*)', None]
+  Errors._expectedTagsFindTar     DEBUG				this is a required entry with no link
+  Errors._expectedTagsFindTar     DEBUG		target not found in expectedTags
+  Errors._getTargetAndAccepta     DEBUG			targetTag and targetActualIndex not found in atualTags, therefore no targetCandidate
+  Errors.               parse     DEBUG		targetCandidate2 is None, targetCandidate1 is targetElement: <Element _ at 15a3ae0>
