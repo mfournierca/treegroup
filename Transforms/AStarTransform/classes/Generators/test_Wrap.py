@@ -31,6 +31,19 @@ class test_WrapGenerator(unittest.TestCase):
         self.assertTrue(Tree.Tree.equal(expectedTree, Tree.Tree.add(tree, operand.tree)), "Wrap Generator generated the wrong operand. Operand results in %s, expected %s" % (lxml.etree.tostring(tree), lxml.etree.tostring(expectedTree)))
     
             
+    def test_WrapRoot(self):
+        self.log.debug('')
+        self.log.debug('')
+        self.log.debug('running WrapSimpleElement')
+        testfile = os.path.join(self.testfilesdir, 'WrapTest1.xml')
+        tree = lxml.etree.parse(testfile)
+        targetElement = tree.getroot()
+        tag = 'dita'
+        expectedTree = lxml.etree.fromstring('''<dita><dita><a/></dita></dita>''')
+        generator = Wrap.Generator()
+        operand = generator.generateOperand(targetElement, tag)
+        self.assertTrue(Tree.Tree.equal(expectedTree, Tree.Tree.add(tree, operand.tree)), "Wrap Generator generated the wrong operand. Operand results in %s, expected %s" % (lxml.etree.tostring(tree), lxml.etree.tostring(expectedTree)))
+    
         
     def test_WrapElementWithSibling(self):
         self.log.debug('')

@@ -28,6 +28,18 @@ class test_Generator(unittest.TestCase):
         operand = generator.generateOperand(targetElement)
         self.assertTrue(Tree.Tree.equal(expectedTree, Tree.Tree.add(tree, operand.tree)), "UnwrapGenerator generated the wrong operand. Operand results in %s, expected %s" % (lxml.etree.tostring(tree), lxml.etree.tostring(expectedTree)))
     
+    def test_UnwrapRoot(self):
+        self.log.debug('')
+        self.log.debug('')
+        self.log.debug('running UnwrapRoot')
+        testfile = os.path.join(self.testfilesdir, 'UnwrapTest1.xml')
+        tree = lxml.etree.parse(testfile)
+        targetElement = tree.getroot()
+        expectedTree = lxml.etree.fromstring('''<a/>''')
+        generator = Unwrap.Generator()
+        operand = generator.generateOperand(targetElement)
+        self.assertTrue(Tree.Tree.equal(expectedTree, Tree.Tree.add(tree, operand.tree)), "UnwrapGenerator generated the wrong operand. Operand results in %s, expected %s" % (lxml.etree.tostring(tree), lxml.etree.tostring(expectedTree)))
+    
         
     def test_UnwrapEmptyElementWithSibling(self):
         self.log.debug('')
