@@ -5,12 +5,22 @@ import logging, lxml.etree, re
 import Element.Element
 import Tree.Tree
 
-from . import Errors, Generators
+from . import Errors
+
+import Generators.Rename
+import Generators.Unwrap
+import Generators.Wrap
 
 
 class Neighbor:
     def __init__(self):
-        pass
+        self.gscore = None
+        self.hscore = None
+        self.fscore = None
+        self.camefrom = None
+        self.dist = None
+        self.tree = None
+        
     
     
     
@@ -25,17 +35,31 @@ def findNeighbors_FirstValidationError(sourcetree):
     validator. By fixing this first error, we find neighbors that are the 
     result of fixing the first invalid element in the tree. """
     
-    neighbors = []
+    log = logging.getLogger()
     
     #Error parser
-    errorParser = Errors.ErrorParser(tree)
+    errorParser = Errors.ErrorParser(sourcetree)
     errorParser.parse()
     
     #get operands
+    log.debug('finding operands')
+    operands = []
+    for o in Generators.Rename.Iterator(errorParser.targetElement, errorParser.acceptableTags):
+        operands.append(o)
     
-    #apply operands
-    
+    for o in Generators.Wrap.Iterator(errorParser.targetElement, errorParser.acceptableTags):
+        operands.append(o)
+       
+    #apply operands to tree to get neighbors
+    neighbors = []
+    for  o in operands:
+        neighbor = Neighbor()
+        neighbor.tree = Tree.Tree.add(o.tree, sourcetree)
+        log.debug('got neighbor: %s' % lxml.etree.tostring(neighbor.tree))
+        neighbors.append(neighbor)
+
     #return neighbors.
+    return neighbors
     
     
 

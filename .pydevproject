@@ -7,5 +7,6 @@
 <pydev_pathproperty name="org.python.pydev.PROJECT_EXTERNAL_SOURCE_PATH">
 <path>/Users/matt/work/programs/dev_workspace</path>
 <path>/Users/matt/work/programs/dev_workspace/TreeGroup</path>
+<path>/Users/matt/work/programs/dev_workspace/TreeGroup/Transforms/AStarTransform/classes</path>
 </pydev_pathproperty>
 </pydev_project>
