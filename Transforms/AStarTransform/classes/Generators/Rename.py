@@ -28,10 +28,8 @@ class Generator:
         
         self.log.debug('Generating rename operand for  %s' % str(targetElement))
         self.log.debug('Rename to: %s' % tag)
-        self.operand = Operand.Operand(targetElement)
-        self.log.debug('created operand: %s' % str(self.operand))
-        self._generateOperand(self.operand, targetElement, tag)
-        return self.operand
+        operand = self._generateOperand(Operand.Operand(targetElement), targetElement, tag)
+        return operand
     
     
     def _generateOperand(self, operand, targetElement, tag):        
@@ -50,7 +48,7 @@ class Generator:
             operand.target.attrib[a] = renamenode.attrib[a]
         self.log.debug('result: %s' % lxml.etree.tostring(operand.tree))
         #done
-    
+        return operand
     
     
     
@@ -85,7 +83,6 @@ class Iterator(Generator):
             self.log.debug('no more renames to generate')
             raise StopIteration
         #if optimizing, you may want to copy the operand here instead of creating a new one each time. 
-        operand = Operand.Operand(self.targetElement)
-        self._generateOperand(operand, self.targetElement, self.acceptableTags[self.index])
+        operand = self._generateOperand(Operand.Operand(self.targetElement), self.targetElement, self.acceptableTags[self.index])
         self.index += 1
         return operand

@@ -28,6 +28,7 @@ class test_Generator(unittest.TestCase):
         operand = generator.generateOperand(targetElement)
         self.assertTrue(Tree.Tree.equal(expectedTree, Tree.Tree.add(tree, operand.tree)), "UnwrapGenerator generated the wrong operand. Operand results in %s, expected %s" % (lxml.etree.tostring(tree), lxml.etree.tostring(expectedTree)))
     
+    
     def test_UnwrapRoot(self):
         self.log.debug('')
         self.log.debug('')
@@ -40,7 +41,37 @@ class test_Generator(unittest.TestCase):
         operand = generator.generateOperand(targetElement)
         self.assertTrue(Tree.Tree.equal(expectedTree, Tree.Tree.add(tree, operand.tree)), "UnwrapGenerator generated the wrong operand. Operand results in %s, expected %s" % (lxml.etree.tostring(tree), lxml.etree.tostring(expectedTree)))
     
-        
+    
+    def test_UnwrapEmptyRoot(self): 
+        self.log.debug('')
+        self.log.debug('')
+        self.log.debug('running test_UnwrapEmptyRoot')
+        testfile = os.path.join(self.testfilesdir, 'UnwrapTest6.xml')
+        tree = lxml.etree.parse(testfile)
+        targetElement = tree.getroot()
+        expectedTree = None
+        generator = Unwrap.Generator()
+        operand = generator.generateOperand(targetElement)
+        self.assertEqual(expectedTree, operand, \
+                                        "UnwrapGenerator generated the wrong operand. Expected in %s, got %s" \
+                                        % (str(expectedTree), str(operand)))
+    
+    
+    def test_UnwrapRootWithTwoChildren(self): 
+        self.log.debug('')
+        self.log.debug('')
+        self.log.debug('running test_UnwrapRootWithTwoChildren')
+        testfile = os.path.join(self.testfilesdir, 'UnwrapTest2.xml')
+        tree = lxml.etree.parse(testfile)
+        targetElement = tree.getroot()
+        expectedTree = None
+        generator = Unwrap.Generator()
+        operand = generator.generateOperand(targetElement)
+        self.assertEqual(expectedTree, operand, \
+                                        "UnwrapGenerator generated the wrong operand. Expected %s, got %s" \
+                                        % (str(expectedTree), str(operand)))
+    
+    
     def test_UnwrapEmptyElementWithSibling(self):
         self.log.debug('')
         self.log.debug('')

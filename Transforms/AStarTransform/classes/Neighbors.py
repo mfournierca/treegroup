@@ -49,15 +49,19 @@ def findNeighbors_FirstValidationError(sourcetree):
     
     for o in Generators.Wrap.Iterator(errorParser.targetElement, errorParser.acceptableTags):
         operands.append(o)
+        
+    for o in Generators.Unwrap.Iterator(errorParser.targetElement):
+        operands.append(o)
        
     #apply operands to tree to get neighbors
+    log.debug('creating neighbors')
     neighbors = []
     for  o in operands:
         neighbor = Neighbor()
         neighbor.tree = Tree.Tree.add(o.tree, sourcetree)
-        log.debug('got neighbor: %s' % lxml.etree.tostring(neighbor.tree))
+        log.debug('\tneighbor: %s' % lxml.etree.tostring(neighbor.tree))
         neighbors.append(neighbor)
-
+        
     #return neighbors.
     return neighbors
     

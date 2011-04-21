@@ -27,10 +27,9 @@ class Generator:
             pass
         
         self.log.debug('Generating unwrap operand for  %s' % str(targetElement))
-        self.operand = Operand.Operand(targetElement)
-        self.log.debug('created operand: %s' % str(self.operand))
-        self._generateOperand(self.operand, targetElement)
-        return self.operand
+#        self.log.debug('created operand: %s' % str(self.operand))
+        operand = self._generateOperand(Operand.Operand(targetElement), targetElement)
+        return operand
     
     
     
@@ -58,9 +57,13 @@ class Generator:
         inversetarget = Tree.Tree.invert(copy.deepcopy(targetElement))
         if operand.target.getparent() is None:
             #the target is the root
-            if len(operand.target) > 1: 
-                #the target is the root and has more than one sibling - cannot unwrap
-                self.log.debug('target is root and has more than one sibling, cannot unwrap')
+            if len(targetElement) > 1: 
+                #the target is the root and has more than one child - cannot unwrap
+                self.log.debug('target is root and has more than one child, cannot unwrap')
+                return None
+            elif len(targetElement) == 0: 
+                #the target is the root and has no child - cannot unwrap
+                self.log.debug('target is root and has no child, cannot unwrap')
                 return None
             operand.target = inversetarget
             operand.tree = operand.target
@@ -167,8 +170,9 @@ class Iterator(Generator):
             #with the other generators, which do need iterators. 
             self.log.debug('no more unwraps to generate')
             raise StopIteration 
-        operand = Operand.Operand(self.targetElement)
-        self._generateOperand(operand, self.targetElement)
+        operand = self._generateOperand(Operand.Operand(self.targetElement), self.targetElement)
         self.index += 1
+        #the unwrap generator sometimes returns None
+        if operand is None: self.__next__()
         return operand
 

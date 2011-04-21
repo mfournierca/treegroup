@@ -33,10 +33,9 @@ class Generator:
         
         self.log.debug('Generating wrap operand for  %s' % str(targetElement))
         self.log.debug('wrap in: %s' % tag)
-        self.operand = Operand.Operand(targetElement)
-        self.log.debug('created operand: %s' % str(self.operand))
-        self._generateOperand(self.operand, targetElement, tag)
-        return self.operand
+#        self.log.debug('created operand: %s' % str(self.operand))
+        operand = self._generateOperand(Operand.Operand(targetElement), targetElement, tag)
+        return operand
     
     def _generateOperand(self, operand, targetElement, tag):
         """generate the operand"""
@@ -122,8 +121,7 @@ class Iterator(Generator):
             self.log.debug('no more wraps to generate')
             raise StopIteration
         #if optimizing, you may want to copy the operand here instead of creating a new one each time. 
-        operand = Operand.Operand(self.targetElement)
-        self._generateOperand(operand, self.targetElement, self.acceptableTags[self.index])
+        operand = self._generateOperand(Operand.Operand(self.targetElement), self.targetElement, self.acceptableTags[self.index])
         self.index += 1
         return operand
 
