@@ -114,18 +114,18 @@ class test_findNeighbors_FirstValidationError(unittest.TestCase):
                              '<dita><topic><title/><glossentry/></topic></dita>',        
                              '<dita><topic><title/><prolog/></topic></dita>',        
                              '<dita><topic><title/><reference/></topic></dita>',        
-                             '<dita><topic><title/><related-links/></topic></dita>',        
+#                             '<dita><topic><title/><related-links/></topic></dita>',        
                              '<dita><topic><title/><shortdesc/></topic></dita>',        
                              '<dita><topic><title/><task/></topic></dita>',        
                              '<dita><topic><title/><titlealts/></topic></dita>',        
-                             '<dita><topic><title/><topic/></topic></dita>'
+                             '<dita><topic><title/><topic/></topic></dita>',
                              '<dita><topic><title/><abstract><a/></abstract></topic></dita>',        
                              '<dita><topic><title/><body><a/></body></topic></dita>',        
                              '<dita><topic><title/><concept><a/></concept></topic></dita>',        
                              '<dita><topic><title/><glossentry><a/></glossentry></topic></dita>',        
                              '<dita><topic><title/><prolog><a/></prolog></topic></dita>',        
                              '<dita><topic><title/><reference><a/></reference></topic></dita>',        
-                             '<dita><topic><title/><related-links><a/></related-links></topic></dita>',        
+#                             '<dita><topic><title/><related-links><a/></related-links></topic></dita>',        
                              '<dita><topic><title/><shortdesc><a/></shortdesc></topic></dita>',        
                              '<dita><topic><title/><task><a/></task></topic></dita>',        
                              '<dita><topic><title/><titlealts><a/></titlealts></topic></dita>',        
@@ -134,7 +134,9 @@ class test_findNeighbors_FirstValidationError(unittest.TestCase):
                              ]
                                     
         index = 0
-        self.assertEqual(len(expectedneighbors), len(neighbors), "findNeighbors_FirstValidationError returned a neighbors list of the wrong lenght: expected %i, got %i" % (len(expectedneighbors), len(neighbors))) 
+        self.assertEqual(len(expectedneighbors), len(neighbors),\
+                          "findNeighbors_FirstValidationError returned a neighbors list of the wrong length: expected %i, got %i" % (len(expectedneighbors), len(neighbors))) 
         for n in neighbors:
-            self.assertTrue(Tree.Tree.equal(lxml.etree.fromstring(expectedneighbors[index]), n.tree), "findNeighbors_FirstValidationError returned the wrong tree: expected %s, got %s" % (expectedneighbors[index], lxml.etree.tostring(n.tree)))
+            self.assertTrue(Tree.Tree.equal(lxml.etree.fromstring(expectedneighbors[index]), n.tree), \
+                            "Index %i: findNeighbors_FirstValidationError returned the wrong tree: expected %s, got %s" % (index, expectedneighbors[index], lxml.etree.tostring(n.tree)))
             index += 1

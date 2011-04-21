@@ -229,7 +229,13 @@ class ErrorParser:
             self.log.debug('\tnew string: %s' % i)
             l = i.split(' ')
             for x in l:
-                if (x is None) or (x == '') or (x == ' '): continue
+                if (x is None) or (x == '') or (x == ' ') or (x.find('-') != -1): continue 
+                #we have to exclude tags with '-' in them because that character is not included in the 
+                #character domain of the Element.Tag module, which these functions are based on. Adding '-'
+                #to the character domain is not an option; lxml does not allow elements to be named
+                #just '-'. However, if that character is in the domain then the group theory that these modules 
+                #are based on demands that elements can be named '-'. The only way to solve this problem is to 
+                #somehow force lxml to allow elements to be named '-', but that is not going to happen soon. 
                 self.log.debug('\tadding to acceptableTags: %s' % x)
                 acceptableTagsCandidate.append(x)
         acceptableTagsCandidate.sort()

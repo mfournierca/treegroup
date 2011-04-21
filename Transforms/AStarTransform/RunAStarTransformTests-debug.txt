@@ -504,9 +504,7 @@ test_Err.              test_3     DEBUG		running test test_3
   Errors._buildAcceptableTags     DEBUG			adding to acceptableTags: object
   Errors._buildAcceptableTags     DEBUG			adding to acceptableTags: table
   Errors._buildAcceptableTags     DEBUG			adding to acceptableTags: simpletable
-  Errors._buildAcceptableTags     DEBUG			adding to acceptableTags: required-cleanup
   Errors._buildAcceptableTags     DEBUG			adding to acceptableTags: data
-  Errors._buildAcceptableTags     DEBUG			adding to acceptableTags: data-about
   Errors._buildAcceptableTags     DEBUG			adding to acceptableTags: foreign
   Errors._buildAcceptableTags     DEBUG			adding to acceptableTags: unknown
   Errors._buildAcceptableTags     DEBUG			adding to acceptableTags: section
@@ -591,7 +589,6 @@ test_Err.              test_4     DEBUG		running test test_4
   Errors._buildAcceptableTags     DEBUG			adding to acceptableTags: body
   Errors._buildAcceptableTags     DEBUG			processing:  related-links? 
   Errors._buildAcceptableTags     DEBUG			new string:  related-links 
-  Errors._buildAcceptableTags     DEBUG			adding to acceptableTags: related-links
   Errors._buildAcceptableTags     DEBUG			processing:  (topic | concept | task | reference | glossentry)*)
   Errors._buildAcceptableTags     DEBUG			new string:  topic  concept  task  reference  glossentry
   Errors._buildAcceptableTags     DEBUG			adding to acceptableTags: topic
@@ -902,7 +899,7 @@ Neighbor.findNeighbors_FirstV     DEBUG		finding operands
   Rename.    _generateOperand     DEBUG		result: b'<cita/>'
   Rename.            __next__     DEBUG		no more renames to generate
     Wrap.    _generateOperand     DEBUG		operand tree: b'<_/>'
-    Wrap.    _generateOperand     DEBUG		operand target: <Element _ at 16c98a0>
+    Wrap.    _generateOperand     DEBUG		operand target: <Element _ at 16c9450>
     Wrap.    _generateOperand     DEBUG		operand target parent: None
     Wrap.    _generateOperand     DEBUG		tag: dita
     Wrap.    _generateOperand     DEBUG		appended targetCopy to wrapElement
@@ -910,7 +907,7 @@ Neighbor.findNeighbors_FirstV     DEBUG		finding operands
     Wrap.    _generateOperand     DEBUG		done
     Wrap.            __next__     DEBUG		no more wraps to generate
   Unwrap.    _generateOperand     DEBUG		operand tree: b'<_/>'
-  Unwrap.    _generateOperand     DEBUG		operand target: <Element _ at 16c97b0>
+  Unwrap.    _generateOperand     DEBUG		operand target: <Element _ at 16c9390>
   Unwrap.    _generateOperand     DEBUG		operand target parent: None
   Unwrap.    _generateOperand     DEBUG		target is root and has no child, cannot unwrap
   Unwrap.            __next__     DEBUG		no more unwraps to generate
@@ -944,7 +941,7 @@ test_Nei.test_MisnamedChildOf     DEBUG		running TreeGroup.Transforms.AStarTrans
   Errors._actualTagsFindTarge     DEBUG			targetTag found: a
   Errors._findTargetElementFr     DEBUG		finding targetElement from actualTags
   Errors._findTargetElementFr     DEBUG			xpath: //dita/a
-  Errors._findTargetElementFr     DEBUG			found target: <Element a at 16c9b70>
+  Errors._findTargetElementFr     DEBUG			found target: <Element a at 16c99c0>
   Errors._actualTagsFindAccep     DEBUG		finding acceptableTags
   Errors._actualTagsFindAccep     DEBUG		searching actualTags, starting index 0
   Errors._actualTagsFindAccep     DEBUG			testing 0: ['a', None]
@@ -968,68 +965,68 @@ test_Nei.test_MisnamedChildOf     DEBUG		running TreeGroup.Transforms.AStarTrans
   Errors._expectedTagsFindTar     DEBUG				this is a required entry with no link
   Errors._expectedTagsFindTar     DEBUG		target not found in expectedTags
   Errors._getTargetAndAccepta     DEBUG			targetTag and targetActualIndex not found in atualTags, therefore no targetCandidate
-  Errors.               parse     DEBUG		targetCandidate2 is None, targetCandidate1 is targetElement: <Element a at 16c9b70>
+  Errors.               parse     DEBUG		targetCandidate2 is None, targetCandidate1 is targetElement: <Element a at 16c99c0>
 Neighbor.findNeighbors_FirstV     DEBUG		finding operands
   Rename.    _generateOperand     DEBUG		generating rename operand tree
-  Rename.    _generateOperand     DEBUG		targetElement: <Element a at 16c9b70>
+  Rename.    _generateOperand     DEBUG		targetElement: <Element a at 16c99c0>
   Rename.    _generateOperand     DEBUG		rename to: concept
   Rename.    _generateOperand     DEBUG		result: b'<_><boncept/></_>'
   Rename.    _generateOperand     DEBUG		generating rename operand tree
-  Rename.    _generateOperand     DEBUG		targetElement: <Element a at 16c9b70>
+  Rename.    _generateOperand     DEBUG		targetElement: <Element a at 16c99c0>
   Rename.    _generateOperand     DEBUG		rename to: glossentry
   Rename.    _generateOperand     DEBUG		result: b'<_><flossentry/></_>'
   Rename.    _generateOperand     DEBUG		generating rename operand tree
-  Rename.    _generateOperand     DEBUG		targetElement: <Element a at 16c9b70>
+  Rename.    _generateOperand     DEBUG		targetElement: <Element a at 16c99c0>
   Rename.    _generateOperand     DEBUG		rename to: reference
   Rename.    _generateOperand     DEBUG		result: b'<_><qeference/></_>'
   Rename.    _generateOperand     DEBUG		generating rename operand tree
-  Rename.    _generateOperand     DEBUG		targetElement: <Element a at 16c9b70>
+  Rename.    _generateOperand     DEBUG		targetElement: <Element a at 16c99c0>
   Rename.    _generateOperand     DEBUG		rename to: task
   Rename.    _generateOperand     DEBUG		result: b'<_><sask/></_>'
   Rename.    _generateOperand     DEBUG		generating rename operand tree
-  Rename.    _generateOperand     DEBUG		targetElement: <Element a at 16c9b70>
+  Rename.    _generateOperand     DEBUG		targetElement: <Element a at 16c99c0>
   Rename.    _generateOperand     DEBUG		rename to: topic
   Rename.    _generateOperand     DEBUG		result: b'<_><sopic/></_>'
   Rename.            __next__     DEBUG		no more renames to generate
     Wrap.    _generateOperand     DEBUG		operand tree: b'<_><_/></_>'
-    Wrap.    _generateOperand     DEBUG		operand target: <Element _ at 16c9d50>
-    Wrap.    _generateOperand     DEBUG		operand target parent: <Element _ at 16c9cf0>
+    Wrap.    _generateOperand     DEBUG		operand target: <Element _ at 16d11b0>
+    Wrap.    _generateOperand     DEBUG		operand target parent: <Element _ at 16d1150>
     Wrap.    _generateOperand     DEBUG		tag: concept
     Wrap.    _generateOperand     DEBUG		appended targetCopy to wrapElement
     Wrap.    _generateOperand     DEBUG		operand tree is: b'<_><boncept><a/>\n</boncept>\n</_>'
     Wrap.    _generateOperand     DEBUG		done
     Wrap.    _generateOperand     DEBUG		operand tree: b'<_><_/></_>'
-    Wrap.    _generateOperand     DEBUG		operand target: <Element _ at 16c9e40>
-    Wrap.    _generateOperand     DEBUG		operand target parent: <Element _ at 16c9db0>
+    Wrap.    _generateOperand     DEBUG		operand target: <Element _ at 16d12a0>
+    Wrap.    _generateOperand     DEBUG		operand target parent: <Element _ at 16d1210>
     Wrap.    _generateOperand     DEBUG		tag: glossentry
     Wrap.    _generateOperand     DEBUG		appended targetCopy to wrapElement
     Wrap.    _generateOperand     DEBUG		operand tree is: b'<_><flossentry><a/>\n</flossentry>\n</_>'
     Wrap.    _generateOperand     DEBUG		done
     Wrap.    _generateOperand     DEBUG		operand tree: b'<_><_/></_>'
-    Wrap.    _generateOperand     DEBUG		operand target: <Element _ at 16c9f30>
-    Wrap.    _generateOperand     DEBUG		operand target parent: <Element _ at 16c9ea0>
+    Wrap.    _generateOperand     DEBUG		operand target: <Element _ at 16d1390>
+    Wrap.    _generateOperand     DEBUG		operand target parent: <Element _ at 16d1300>
     Wrap.    _generateOperand     DEBUG		tag: reference
     Wrap.    _generateOperand     DEBUG		appended targetCopy to wrapElement
     Wrap.    _generateOperand     DEBUG		operand tree is: b'<_><qeference><a/>\n</qeference>\n</_>'
     Wrap.    _generateOperand     DEBUG		done
     Wrap.    _generateOperand     DEBUG		operand tree: b'<_><_/></_>'
-    Wrap.    _generateOperand     DEBUG		operand target: <Element _ at 16cc060>
-    Wrap.    _generateOperand     DEBUG		operand target parent: <Element _ at 16c9f90>
+    Wrap.    _generateOperand     DEBUG		operand target: <Element _ at 16d1480>
+    Wrap.    _generateOperand     DEBUG		operand target parent: <Element _ at 16d13f0>
     Wrap.    _generateOperand     DEBUG		tag: task
     Wrap.    _generateOperand     DEBUG		appended targetCopy to wrapElement
     Wrap.    _generateOperand     DEBUG		operand tree is: b'<_><sask><a/>\n</sask>\n</_>'
     Wrap.    _generateOperand     DEBUG		done
     Wrap.    _generateOperand     DEBUG		operand tree: b'<_><_/></_>'
-    Wrap.    _generateOperand     DEBUG		operand target: <Element _ at 16cc150>
-    Wrap.    _generateOperand     DEBUG		operand target parent: <Element _ at 16cc0c0>
+    Wrap.    _generateOperand     DEBUG		operand target: <Element _ at 16d1570>
+    Wrap.    _generateOperand     DEBUG		operand target parent: <Element _ at 16d14e0>
     Wrap.    _generateOperand     DEBUG		tag: topic
     Wrap.    _generateOperand     DEBUG		appended targetCopy to wrapElement
     Wrap.    _generateOperand     DEBUG		operand tree is: b'<_><sopic><a/>\n</sopic>\n</_>'
     Wrap.    _generateOperand     DEBUG		done
     Wrap.            __next__     DEBUG		no more wraps to generate
   Unwrap.    _generateOperand     DEBUG		operand tree: b'<_><_/></_>'
-  Unwrap.    _generateOperand     DEBUG		operand target: <Element _ at 16cc240>
-  Unwrap.    _generateOperand     DEBUG		operand target parent: <Element _ at 16cc1b0>
+  Unwrap.    _generateOperand     DEBUG		operand target: <Element _ at 16d1660>
+  Unwrap.    _generateOperand     DEBUG		operand target parent: <Element _ at 16d15d0>
   Unwrap.    _generateOperand     DEBUG		inverted target, tree is: b'<_><Z/>\n</_>'
   Unwrap.    _generateOperand     DEBUG		inverted siblings, tree is: b'<_><Z/>\n</_>'
   Unwrap.    _generateOperand     DEBUG		adding target children.
@@ -1091,7 +1088,7 @@ test_Nei.test_MisnamedChildOf     DEBUG		running TreeGroup.Transforms.AStarTrans
   Errors._actualTagsFindTarge     DEBUG			targetTag found: a
   Errors._findTargetElementFr     DEBUG		finding targetElement from actualTags
   Errors._findTargetElementFr     DEBUG			xpath: //topic/a
-  Errors._findTargetElementFr     DEBUG			found target: <Element a at 16c9b70>
+  Errors._findTargetElementFr     DEBUG			found target: <Element a at 16a3d80>
   Errors._actualTagsFindAccep     DEBUG		finding acceptableTags
   Errors._actualTagsFindAccep     DEBUG		searching actualTags, starting index 0
   Errors._actualTagsFindAccep     DEBUG			testing 0: ['a', None]
@@ -1118,24 +1115,24 @@ test_Nei.test_MisnamedChildOf     DEBUG		running TreeGroup.Transforms.AStarTrans
   Errors._expectedTagsFindTar     DEBUG				this is a required entry with no link
   Errors._expectedTagsFindTar     DEBUG		target not found in expectedTags
   Errors._getTargetAndAccepta     DEBUG			targetTag and targetActualIndex not found in atualTags, therefore no targetCandidate
-  Errors.               parse     DEBUG		targetCandidate2 is None, targetCandidate1 is targetElement: <Element a at 16c9b70>
+  Errors.               parse     DEBUG		targetCandidate2 is None, targetCandidate1 is targetElement: <Element a at 16a3d80>
 Neighbor.findNeighbors_FirstV     DEBUG		finding operands
   Rename.    _generateOperand     DEBUG		generating rename operand tree
-  Rename.    _generateOperand     DEBUG		targetElement: <Element a at 16c9b70>
+  Rename.    _generateOperand     DEBUG		targetElement: <Element a at 16a3d80>
   Rename.    _generateOperand     DEBUG		rename to: title
   Rename.    _generateOperand     DEBUG		result: b'<_><_><sitle/></_></_>'
   Rename.            __next__     DEBUG		no more renames to generate
     Wrap.    _generateOperand     DEBUG		operand tree: b'<_><_><_/></_></_>'
-    Wrap.    _generateOperand     DEBUG		operand target: <Element _ at 16c9ae0>
-    Wrap.    _generateOperand     DEBUG		operand target parent: <Element _ at 16c9990>
+    Wrap.    _generateOperand     DEBUG		operand target: <Element _ at 16d12a0>
+    Wrap.    _generateOperand     DEBUG		operand target parent: <Element _ at 16d1270>
     Wrap.    _generateOperand     DEBUG		tag: title
     Wrap.    _generateOperand     DEBUG		appended targetCopy to wrapElement
     Wrap.    _generateOperand     DEBUG		operand tree is: b'<_><_><sitle><a/>\n    </sitle>\n    </_></_>'
     Wrap.    _generateOperand     DEBUG		done
     Wrap.            __next__     DEBUG		no more wraps to generate
   Unwrap.    _generateOperand     DEBUG		operand tree: b'<_><_><_/></_></_>'
-  Unwrap.    _generateOperand     DEBUG		operand target: <Element _ at 16a3fc0>
-  Unwrap.    _generateOperand     DEBUG		operand target parent: <Element _ at 165d0c0>
+  Unwrap.    _generateOperand     DEBUG		operand target: <Element _ at 16d1090>
+  Unwrap.    _generateOperand     DEBUG		operand target parent: <Element _ at 16d10c0>
   Unwrap.    _generateOperand     DEBUG		inverted target, tree is: b'<_><_><Z/>\n    </_></_>'
   Unwrap.    _generateOperand     DEBUG		inverted siblings, tree is: b'<_><_><Z/>\n    </_></_>'
   Unwrap.    _generateOperand     DEBUG		adding target children.
@@ -1195,7 +1192,7 @@ test_Nei.test_MisnamedChildOf     DEBUG		running TreeGroup.Transforms.AStarTrans
   Errors._actualTagsFindTarge     DEBUG			targetTag found: a
   Errors._findTargetElementFr     DEBUG		finding targetElement from actualTags
   Errors._findTargetElementFr     DEBUG			xpath: //topic/a[preceding-sibling::*[1][self::title]]
-  Errors._findTargetElementFr     DEBUG			found target: <Element a at 16cc420>
+  Errors._findTargetElementFr     DEBUG			found target: <Element a at 16d1960>
   Errors._actualTagsFindAccep     DEBUG		finding acceptableTags
   Errors._actualTagsFindAccep     DEBUG		searching actualTags, starting index 1
   Errors._actualTagsFindAccep     DEBUG			testing 1: ['a', None]
@@ -1222,7 +1219,6 @@ test_Nei.test_MisnamedChildOf     DEBUG		running TreeGroup.Transforms.AStarTrans
   Errors._buildAcceptableTags     DEBUG			adding to acceptableTags: body
   Errors._buildAcceptableTags     DEBUG			processing:  related-links? 
   Errors._buildAcceptableTags     DEBUG			new string:  related-links 
-  Errors._buildAcceptableTags     DEBUG			adding to acceptableTags: related-links
   Errors._buildAcceptableTags     DEBUG			processing:  (topic | concept | task | reference | glossentry)*)
   Errors._buildAcceptableTags     DEBUG			new string:  topic  concept  task  reference  glossentry
   Errors._buildAcceptableTags     DEBUG			adding to acceptableTags: topic
@@ -1242,35 +1238,155 @@ test_Nei.test_MisnamedChildOf     DEBUG		running TreeGroup.Transforms.AStarTrans
   Errors._expectedTagsFindTar     DEBUG				this is a required entry with no link
   Errors._expectedTagsFindTar     DEBUG		target not found in expectedTags
   Errors._getTargetAndAccepta     DEBUG			targetTag and targetActualIndex not found in atualTags, therefore no targetCandidate
-  Errors.               parse     DEBUG		targetCandidate2 is None, targetCandidate1 is targetElement: <Element a at 16cc420>
+  Errors.               parse     DEBUG		targetCandidate2 is None, targetCandidate1 is targetElement: <Element a at 16d1960>
 Neighbor.findNeighbors_FirstV     DEBUG		finding operands
   Rename.    _generateOperand     DEBUG		generating rename operand tree
-  Rename.    _generateOperand     DEBUG		targetElement: <Element a at 16cc420>
+  Rename.    _generateOperand     DEBUG		targetElement: <Element a at 16d1960>
   Rename.    _generateOperand     DEBUG		rename to: abstract
   Rename.    _generateOperand     DEBUG		result: b'<_><_><_/><_bstract/></_></_>'
   Rename.    _generateOperand     DEBUG		generating rename operand tree
-  Rename.    _generateOperand     DEBUG		targetElement: <Element a at 16cc420>
+  Rename.    _generateOperand     DEBUG		targetElement: <Element a at 16d1960>
   Rename.    _generateOperand     DEBUG		rename to: body
   Rename.    _generateOperand     DEBUG		result: b'<_><_><_/><aody/></_></_>'
   Rename.    _generateOperand     DEBUG		generating rename operand tree
-  Rename.    _generateOperand     DEBUG		targetElement: <Element a at 16cc420>
+  Rename.    _generateOperand     DEBUG		targetElement: <Element a at 16d1960>
   Rename.    _generateOperand     DEBUG		rename to: concept
   Rename.    _generateOperand     DEBUG		result: b'<_><_><_/><boncept/></_></_>'
   Rename.    _generateOperand     DEBUG		generating rename operand tree
-  Rename.    _generateOperand     DEBUG		targetElement: <Element a at 16cc420>
+  Rename.    _generateOperand     DEBUG		targetElement: <Element a at 16d1960>
   Rename.    _generateOperand     DEBUG		rename to: glossentry
   Rename.    _generateOperand     DEBUG		result: b'<_><_><_/><flossentry/></_></_>'
   Rename.    _generateOperand     DEBUG		generating rename operand tree
-  Rename.    _generateOperand     DEBUG		targetElement: <Element a at 16cc420>
+  Rename.    _generateOperand     DEBUG		targetElement: <Element a at 16d1960>
   Rename.    _generateOperand     DEBUG		rename to: prolog
   Rename.    _generateOperand     DEBUG		result: b'<_><_><_/><orolog/></_></_>'
   Rename.    _generateOperand     DEBUG		generating rename operand tree
-  Rename.    _generateOperand     DEBUG		targetElement: <Element a at 16cc420>
+  Rename.    _generateOperand     DEBUG		targetElement: <Element a at 16d1960>
   Rename.    _generateOperand     DEBUG		rename to: reference
   Rename.    _generateOperand     DEBUG		result: b'<_><_><_/><qeference/></_></_>'
   Rename.    _generateOperand     DEBUG		generating rename operand tree
-  Rename.    _generateOperand     DEBUG		targetElement: <Element a at 16cc420>
-  Rename.    _generateOperand     DEBUG		rename to: related-links
+  Rename.    _generateOperand     DEBUG		targetElement: <Element a at 16d1960>
+  Rename.    _generateOperand     DEBUG		rename to: shortdesc
+  Rename.    _generateOperand     DEBUG		result: b'<_><_><_/><rhortdesc/></_></_>'
+  Rename.    _generateOperand     DEBUG		generating rename operand tree
+  Rename.    _generateOperand     DEBUG		targetElement: <Element a at 16d1960>
+  Rename.    _generateOperand     DEBUG		rename to: task
+  Rename.    _generateOperand     DEBUG		result: b'<_><_><_/><sask/></_></_>'
+  Rename.    _generateOperand     DEBUG		generating rename operand tree
+  Rename.    _generateOperand     DEBUG		targetElement: <Element a at 16d1960>
+  Rename.    _generateOperand     DEBUG		rename to: titlealts
+  Rename.    _generateOperand     DEBUG		result: b'<_><_><_/><sitlealts/></_></_>'
+  Rename.    _generateOperand     DEBUG		generating rename operand tree
+  Rename.    _generateOperand     DEBUG		targetElement: <Element a at 16d1960>
+  Rename.    _generateOperand     DEBUG		rename to: topic
+  Rename.    _generateOperand     DEBUG		result: b'<_><_><_/><sopic/></_></_>'
+  Rename.            __next__     DEBUG		no more renames to generate
+    Wrap.    _generateOperand     DEBUG		operand tree: b'<_><_><_/><_/></_></_>'
+    Wrap.    _generateOperand     DEBUG		operand target: <Element _ at 16da990>
+    Wrap.    _generateOperand     DEBUG		operand target parent: <Element _ at 16da930>
+    Wrap.    _generateOperand     DEBUG		tag: abstract
+    Wrap.    _generateOperand     DEBUG		appended targetCopy to wrapElement
+    Wrap.    _generateOperand     DEBUG		operand tree is: b'<_><_><_/><_bstract><a/>\n    </_bstract>\n    </_></_>'
+    Wrap.    _generateOperand     DEBUG		done
+    Wrap.    _generateOperand     DEBUG		operand tree: b'<_><_><_/><_/></_></_>'
+    Wrap.    _generateOperand     DEBUG		operand target: <Element _ at 16daa80>
+    Wrap.    _generateOperand     DEBUG		operand target parent: <Element _ at 16daa20>
+    Wrap.    _generateOperand     DEBUG		tag: body
+    Wrap.    _generateOperand     DEBUG		appended targetCopy to wrapElement
+    Wrap.    _generateOperand     DEBUG		operand tree is: b'<_><_><_/><aody><a/>\n    </aody>\n    </_></_>'
+    Wrap.    _generateOperand     DEBUG		done
+    Wrap.    _generateOperand     DEBUG		operand tree: b'<_><_><_/><_/></_></_>'
+    Wrap.    _generateOperand     DEBUG		operand target: <Element _ at 16dab70>
+    Wrap.    _generateOperand     DEBUG		operand target parent: <Element _ at 16dab10>
+    Wrap.    _generateOperand     DEBUG		tag: concept
+    Wrap.    _generateOperand     DEBUG		appended targetCopy to wrapElement
+    Wrap.    _generateOperand     DEBUG		operand tree is: b'<_><_><_/><boncept><a/>\n    </boncept>\n    </_></_>'
+    Wrap.    _generateOperand     DEBUG		done
+    Wrap.    _generateOperand     DEBUG		operand tree: b'<_><_><_/><_/></_></_>'
+    Wrap.    _generateOperand     DEBUG		operand target: <Element _ at 16dac60>
+    Wrap.    _generateOperand     DEBUG		operand target parent: <Element _ at 16dac00>
+    Wrap.    _generateOperand     DEBUG		tag: glossentry
+    Wrap.    _generateOperand     DEBUG		appended targetCopy to wrapElement
+    Wrap.    _generateOperand     DEBUG		operand tree is: b'<_><_><_/><flossentry><a/>\n    </flossentry>\n    </_></_>'
+    Wrap.    _generateOperand     DEBUG		done
+    Wrap.    _generateOperand     DEBUG		operand tree: b'<_><_><_/><_/></_></_>'
+    Wrap.    _generateOperand     DEBUG		operand target: <Element _ at 16dad50>
+    Wrap.    _generateOperand     DEBUG		operand target parent: <Element _ at 16dacf0>
+    Wrap.    _generateOperand     DEBUG		tag: prolog
+    Wrap.    _generateOperand     DEBUG		appended targetCopy to wrapElement
+    Wrap.    _generateOperand     DEBUG		operand tree is: b'<_><_><_/><orolog><a/>\n    </orolog>\n    </_></_>'
+    Wrap.    _generateOperand     DEBUG		done
+    Wrap.    _generateOperand     DEBUG		operand tree: b'<_><_><_/><_/></_></_>'
+    Wrap.    _generateOperand     DEBUG		operand target: <Element _ at 16dae40>
+    Wrap.    _generateOperand     DEBUG		operand target parent: <Element _ at 16dade0>
+    Wrap.    _generateOperand     DEBUG		tag: reference
+    Wrap.    _generateOperand     DEBUG		appended targetCopy to wrapElement
+    Wrap.    _generateOperand     DEBUG		operand tree is: b'<_><_><_/><qeference><a/>\n    </qeference>\n    </_></_>'
+    Wrap.    _generateOperand     DEBUG		done
+    Wrap.    _generateOperand     DEBUG		operand tree: b'<_><_><_/><_/></_></_>'
+    Wrap.    _generateOperand     DEBUG		operand target: <Element _ at 16daf30>
+    Wrap.    _generateOperand     DEBUG		operand target parent: <Element _ at 16daed0>
+    Wrap.    _generateOperand     DEBUG		tag: shortdesc
+    Wrap.    _generateOperand     DEBUG		appended targetCopy to wrapElement
+    Wrap.    _generateOperand     DEBUG		operand tree is: b'<_><_><_/><rhortdesc><a/>\n    </rhortdesc>\n    </_></_>'
+    Wrap.    _generateOperand     DEBUG		done
+    Wrap.    _generateOperand     DEBUG		operand tree: b'<_><_><_/><_/></_></_>'
+    Wrap.    _generateOperand     DEBUG		operand target: <Element _ at 16e0060>
+    Wrap.    _generateOperand     DEBUG		operand target parent: <Element _ at 16dafc0>
+    Wrap.    _generateOperand     DEBUG		tag: task
+    Wrap.    _generateOperand     DEBUG		appended targetCopy to wrapElement
+    Wrap.    _generateOperand     DEBUG		operand tree is: b'<_><_><_/><sask><a/>\n    </sask>\n    </_></_>'
+    Wrap.    _generateOperand     DEBUG		done
+    Wrap.    _generateOperand     DEBUG		operand tree: b'<_><_><_/><_/></_></_>'
+    Wrap.    _generateOperand     DEBUG		operand target: <Element _ at 16e0150>
+    Wrap.    _generateOperand     DEBUG		operand target parent: <Element _ at 16e00f0>
+    Wrap.    _generateOperand     DEBUG		tag: titlealts
+    Wrap.    _generateOperand     DEBUG		appended targetCopy to wrapElement
+    Wrap.    _generateOperand     DEBUG		operand tree is: b'<_><_><_/><sitlealts><a/>\n    </sitlealts>\n    </_></_>'
+    Wrap.    _generateOperand     DEBUG		done
+    Wrap.    _generateOperand     DEBUG		operand tree: b'<_><_><_/><_/></_></_>'
+    Wrap.    _generateOperand     DEBUG		operand target: <Element _ at 16e0240>
+    Wrap.    _generateOperand     DEBUG		operand target parent: <Element _ at 16e01e0>
+    Wrap.    _generateOperand     DEBUG		tag: topic
+    Wrap.    _generateOperand     DEBUG		appended targetCopy to wrapElement
+    Wrap.    _generateOperand     DEBUG		operand tree is: b'<_><_><_/><sopic><a/>\n    </sopic>\n    </_></_>'
+    Wrap.    _generateOperand     DEBUG		done
+    Wrap.            __next__     DEBUG		no more wraps to generate
+  Unwrap.    _generateOperand     DEBUG		operand tree: b'<_><_><_/><_/></_></_>'
+  Unwrap.    _generateOperand     DEBUG		operand target: <Element _ at 16e0330>
+  Unwrap.    _generateOperand     DEBUG		operand target parent: <Element _ at 16e02d0>
+  Unwrap.    _generateOperand     DEBUG		inverted target, tree is: b'<_><_><_/><Z/>\n    </_></_>'
+  Unwrap.    _generateOperand     DEBUG		inverted siblings, tree is: b'<_><_><_/><Z/>\n    </_></_>'
+  Unwrap.    _generateOperand     DEBUG		adding target children.
+  Unwrap.    _generateOperand     DEBUG		Target index is: 1. Target parent length is: 2
+  Unwrap.    _generateOperand     DEBUG		added target children, tree is: b'<_><_><_/><Z/>\n    </_></_>'
+  Unwrap.    _generateOperand     DEBUG		adding target siblings
+  Unwrap.    _generateOperand     DEBUG		Target index is: 1. Target parent length is: 2
+  Unwrap.    _generateOperand     DEBUG		added target siblings, tree is: b'<_><_><_/><Z/>\n    </_></_>'
+  Unwrap.    _generateOperand     DEBUG		done
+  Unwrap.            __next__     DEBUG		no more unwraps to generate
+Neighbor.findNeighbors_FirstV     DEBUG		creating neighbors
+Neighbor.findNeighbors_FirstV     DEBUG			neighbor: b'<dita><topic><title/><abstract/></topic></dita>'
+Neighbor.findNeighbors_FirstV     DEBUG			neighbor: b'<dita><topic><title/><body/></topic></dita>'
+Neighbor.findNeighbors_FirstV     DEBUG			neighbor: b'<dita><topic><title/><concept/></topic></dita>'
+Neighbor.findNeighbors_FirstV     DEBUG			neighbor: b'<dita><topic><title/><glossentry/></topic></dita>'
+Neighbor.findNeighbors_FirstV     DEBUG			neighbor: b'<dita><topic><title/><prolog/></topic></dita>'
+Neighbor.findNeighbors_FirstV     DEBUG			neighbor: b'<dita><topic><title/><reference/></topic></dita>'
+Neighbor.findNeighbors_FirstV     DEBUG			neighbor: b'<dita><topic><title/><shortdesc/></topic></dita>'
+Neighbor.findNeighbors_FirstV     DEBUG			neighbor: b'<dita><topic><title/><task/></topic></dita>'
+Neighbor.findNeighbors_FirstV     DEBUG			neighbor: b'<dita><topic><title/><titlealts/></topic></dita>'
+Neighbor.findNeighbors_FirstV     DEBUG			neighbor: b'<dita><topic><title/><topic/></topic></dita>'
+Neighbor.findNeighbors_FirstV     DEBUG			neighbor: b'<dita><topic><title/><abstract><a/>\n    </abstract>\n    </topic></dita>'
+Neighbor.findNeighbors_FirstV     DEBUG			neighbor: b'<dita><topic><title/><body><a/>\n    </body>\n    </topic></dita>'
+Neighbor.findNeighbors_FirstV     DEBUG			neighbor: b'<dita><topic><title/><concept><a/>\n    </concept>\n    </topic></dita>'
+Neighbor.findNeighbors_FirstV     DEBUG			neighbor: b'<dita><topic><title/><glossentry><a/>\n    </glossentry>\n    </topic></dita>'
+Neighbor.findNeighbors_FirstV     DEBUG			neighbor: b'<dita><topic><title/><prolog><a/>\n    </prolog>\n    </topic></dita>'
+Neighbor.findNeighbors_FirstV     DEBUG			neighbor: b'<dita><topic><title/><reference><a/>\n    </reference>\n    </topic></dita>'
+Neighbor.findNeighbors_FirstV     DEBUG			neighbor: b'<dita><topic><title/><shortdesc><a/>\n    </shortdesc>\n    </topic></dita>'
+Neighbor.findNeighbors_FirstV     DEBUG			neighbor: b'<dita><topic><title/><task><a/>\n    </task>\n    </topic></dita>'
+Neighbor.findNeighbors_FirstV     DEBUG			neighbor: b'<dita><topic><title/><titlealts><a/>\n    </titlealts>\n    </topic></dita>'
+Neighbor.findNeighbors_FirstV     DEBUG			neighbor: b'<dita><topic><title/><topic><a/>\n    </topic>\n    </topic></dita>'
+Neighbor.findNeighbors_FirstV     DEBUG			neighbor: b'<dita><topic><title/></topic></dita>'
 test_Nei.test_TwoMisnamedChil     DEBUG		
 test_Nei.test_TwoMisnamedChil     DEBUG		
 test_Nei.test_TwoMisnamedChil     DEBUG		running TreeGroup.Transforms.AStarTransform.classes.test_Neighbors
@@ -1304,7 +1420,7 @@ test_Nei.test_TwoMisnamedChil     DEBUG		running TreeGroup.Transforms.AStarTrans
   Errors._actualTagsFindTarge     DEBUG			targetTag found: a
   Errors._findTargetElementFr     DEBUG		finding targetElement from actualTags
   Errors._findTargetElementFr     DEBUG			xpath: //dita/a
-  Errors._findTargetElementFr     DEBUG			found target: <Element a at 16c94b0>
+  Errors._findTargetElementFr     DEBUG			found target: <Element a at 16d19c0>
   Errors._actualTagsFindAccep     DEBUG		finding acceptableTags
   Errors._actualTagsFindAccep     DEBUG		searching actualTags, starting index 0
   Errors._actualTagsFindAccep     DEBUG			testing 0: ['a', None]
@@ -1328,68 +1444,68 @@ test_Nei.test_TwoMisnamedChil     DEBUG		running TreeGroup.Transforms.AStarTrans
   Errors._expectedTagsFindTar     DEBUG				this is a required entry with no link
   Errors._expectedTagsFindTar     DEBUG		target not found in expectedTags
   Errors._getTargetAndAccepta     DEBUG			targetTag and targetActualIndex not found in atualTags, therefore no targetCandidate
-  Errors.               parse     DEBUG		targetCandidate2 is None, targetCandidate1 is targetElement: <Element a at 16c94b0>
+  Errors.               parse     DEBUG		targetCandidate2 is None, targetCandidate1 is targetElement: <Element a at 16d19c0>
 Neighbor.findNeighbors_FirstV     DEBUG		finding operands
   Rename.    _generateOperand     DEBUG		generating rename operand tree
-  Rename.    _generateOperand     DEBUG		targetElement: <Element a at 16c94b0>
+  Rename.    _generateOperand     DEBUG		targetElement: <Element a at 16d19c0>
   Rename.    _generateOperand     DEBUG		rename to: concept
   Rename.    _generateOperand     DEBUG		result: b'<_><boncept/></_>'
   Rename.    _generateOperand     DEBUG		generating rename operand tree
-  Rename.    _generateOperand     DEBUG		targetElement: <Element a at 16c94b0>
+  Rename.    _generateOperand     DEBUG		targetElement: <Element a at 16d19c0>
   Rename.    _generateOperand     DEBUG		rename to: glossentry
   Rename.    _generateOperand     DEBUG		result: b'<_><flossentry/></_>'
   Rename.    _generateOperand     DEBUG		generating rename operand tree
-  Rename.    _generateOperand     DEBUG		targetElement: <Element a at 16c94b0>
+  Rename.    _generateOperand     DEBUG		targetElement: <Element a at 16d19c0>
   Rename.    _generateOperand     DEBUG		rename to: reference
   Rename.    _generateOperand     DEBUG		result: b'<_><qeference/></_>'
   Rename.    _generateOperand     DEBUG		generating rename operand tree
-  Rename.    _generateOperand     DEBUG		targetElement: <Element a at 16c94b0>
+  Rename.    _generateOperand     DEBUG		targetElement: <Element a at 16d19c0>
   Rename.    _generateOperand     DEBUG		rename to: task
   Rename.    _generateOperand     DEBUG		result: b'<_><sask/></_>'
   Rename.    _generateOperand     DEBUG		generating rename operand tree
-  Rename.    _generateOperand     DEBUG		targetElement: <Element a at 16c94b0>
+  Rename.    _generateOperand     DEBUG		targetElement: <Element a at 16d19c0>
   Rename.    _generateOperand     DEBUG		rename to: topic
   Rename.    _generateOperand     DEBUG		result: b'<_><sopic/></_>'
   Rename.            __next__     DEBUG		no more renames to generate
     Wrap.    _generateOperand     DEBUG		operand tree: b'<_><_/></_>'
-    Wrap.    _generateOperand     DEBUG		operand target: <Element _ at 16d9690>
-    Wrap.    _generateOperand     DEBUG		operand target parent: <Element _ at 16d9630>
+    Wrap.    _generateOperand     DEBUG		operand target: <Element _ at 16a3e10>
+    Wrap.    _generateOperand     DEBUG		operand target parent: <Element _ at 16a3f30>
     Wrap.    _generateOperand     DEBUG		tag: concept
     Wrap.    _generateOperand     DEBUG		appended targetCopy to wrapElement
     Wrap.    _generateOperand     DEBUG		operand tree is: b'<_><boncept><a/>\n    </boncept>\n    </_>'
     Wrap.    _generateOperand     DEBUG		done
     Wrap.    _generateOperand     DEBUG		operand tree: b'<_><_/></_>'
-    Wrap.    _generateOperand     DEBUG		operand target: <Element _ at 16d9780>
-    Wrap.    _generateOperand     DEBUG		operand target parent: <Element _ at 16d96f0>
+    Wrap.    _generateOperand     DEBUG		operand target: <Element _ at 16a3ea0>
+    Wrap.    _generateOperand     DEBUG		operand target parent: <Element _ at 16a3d20>
     Wrap.    _generateOperand     DEBUG		tag: glossentry
     Wrap.    _generateOperand     DEBUG		appended targetCopy to wrapElement
     Wrap.    _generateOperand     DEBUG		operand tree is: b'<_><flossentry><a/>\n    </flossentry>\n    </_>'
     Wrap.    _generateOperand     DEBUG		done
     Wrap.    _generateOperand     DEBUG		operand tree: b'<_><_/></_>'
-    Wrap.    _generateOperand     DEBUG		operand target: <Element _ at 16d9870>
-    Wrap.    _generateOperand     DEBUG		operand target parent: <Element _ at 16d97e0>
+    Wrap.    _generateOperand     DEBUG		operand target: <Element _ at 16a3db0>
+    Wrap.    _generateOperand     DEBUG		operand target parent: <Element _ at 16a3cc0>
     Wrap.    _generateOperand     DEBUG		tag: reference
     Wrap.    _generateOperand     DEBUG		appended targetCopy to wrapElement
     Wrap.    _generateOperand     DEBUG		operand tree is: b'<_><qeference><a/>\n    </qeference>\n    </_>'
     Wrap.    _generateOperand     DEBUG		done
     Wrap.    _generateOperand     DEBUG		operand tree: b'<_><_/></_>'
-    Wrap.    _generateOperand     DEBUG		operand target: <Element _ at 16d9960>
-    Wrap.    _generateOperand     DEBUG		operand target parent: <Element _ at 16d98d0>
+    Wrap.    _generateOperand     DEBUG		operand target: <Element _ at 16c9ba0>
+    Wrap.    _generateOperand     DEBUG		operand target parent: <Element _ at 16c9d20>
     Wrap.    _generateOperand     DEBUG		tag: task
     Wrap.    _generateOperand     DEBUG		appended targetCopy to wrapElement
     Wrap.    _generateOperand     DEBUG		operand tree is: b'<_><sask><a/>\n    </sask>\n    </_>'
     Wrap.    _generateOperand     DEBUG		done
     Wrap.    _generateOperand     DEBUG		operand tree: b'<_><_/></_>'
-    Wrap.    _generateOperand     DEBUG		operand target: <Element _ at 16d9a50>
-    Wrap.    _generateOperand     DEBUG		operand target parent: <Element _ at 16d99c0>
+    Wrap.    _generateOperand     DEBUG		operand target: <Element _ at 16c9540>
+    Wrap.    _generateOperand     DEBUG		operand target parent: <Element _ at 16c9b70>
     Wrap.    _generateOperand     DEBUG		tag: topic
     Wrap.    _generateOperand     DEBUG		appended targetCopy to wrapElement
     Wrap.    _generateOperand     DEBUG		operand tree is: b'<_><sopic><a/>\n    </sopic>\n    </_>'
     Wrap.    _generateOperand     DEBUG		done
     Wrap.            __next__     DEBUG		no more wraps to generate
   Unwrap.    _generateOperand     DEBUG		operand tree: b'<_><_/></_>'
-  Unwrap.    _generateOperand     DEBUG		operand target: <Element _ at 16d9b40>
-  Unwrap.    _generateOperand     DEBUG		operand target parent: <Element _ at 16d9ab0>
+  Unwrap.    _generateOperand     DEBUG		operand target: <Element _ at 16c94b0>
+  Unwrap.    _generateOperand     DEBUG		operand target parent: <Element _ at 16c9450>
   Unwrap.    _generateOperand     DEBUG		inverted target, tree is: b'<_><Z/>\n    </_>'
   Unwrap.    _generateOperand     DEBUG		inverted siblings, tree is: b'<_><Z/>\n    <Y/>\n</_>'
   Unwrap.    _generateOperand     DEBUG		adding target children.
@@ -1397,7 +1513,7 @@ Neighbor.findNeighbors_FirstV     DEBUG		finding operands
   Unwrap.    _generateOperand     DEBUG		added target children, tree is: b'<_><Z/>\n    <Y/>\n</_>'
   Unwrap.    _generateOperand     DEBUG		adding target siblings
   Unwrap.    _generateOperand     DEBUG		Target index is: 0. Target parent length is: 2
-  Unwrap.    _generateOperand     DEBUG			adding sibling <Element b at 16d9bd0> at index 0
+  Unwrap.    _generateOperand     DEBUG			adding sibling <Element b at 16c9360> at index 0
   Unwrap.    _generateOperand     DEBUG		added target siblings, tree is: b'<_><a/>\n    <Y/>\n</_>'
   Unwrap.    _generateOperand     DEBUG		done
   Unwrap.            __next__     DEBUG		no more unwraps to generate
