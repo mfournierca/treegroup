@@ -244,3 +244,31 @@ def getNode(tree, position):
         
         
         
+
+def metric(tree1, tree2):
+    """Metric of tree1 and tree2 is defined as the number of non-unit nodes
+    in tree1 - tree2. 
+    
+    This function satisfies all the conditions of a metric. """
+    treecopy = copy.deepcopy(tree2)
+    add(invert(treecopy), tree1)
+    return countNonUnitNodes(treecopy)
+
+
+
+
+def countNonUnitNodes(tree):
+    """The size of a tree is defined as the number of non-unit nodes within the tree. 
+    This function should satisfy all the conditions of a modulus, but that has not been 
+    proven. """
+    log = logging.getLogger()
+    log.debug('%s' % lxml.etree.tostring(tree))
+    count = 0
+    for i in tree.getroot().iter():
+        if i.tag == '_' and len(i.attrib) == 0: continue
+        else: count += 1
+    return count
+
+
+
+

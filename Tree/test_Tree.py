@@ -6,6 +6,66 @@ from . import Tree
 
 import Element.Element
 
+
+class test_metric(unittest.TestCase):
+    def setUp(self):
+        """set up data used in the tests, called before each test function execution"""
+        
+        self.testfilesdir = os.path.join(os.path.dirname(__file__), '..', 'testfiles', 'Tree', 'Metric')
+        self.log = logging.getLogger()
+        
+    def test_SameRoot(self):
+        tree1 = lxml.etree.parse(os.path.join(self.testfilesdir, 'TreeTestFile_metric1-1.xml'))
+        tree2 = lxml.etree.parse(os.path.join(self.testfilesdir, 'TreeTestFile_metric1-2.xml'))
+        expecteddiff = 0
+        diff = Tree.metric(tree1, tree2)
+        self.assertEqual(diff, expecteddiff, 'metric() returned %i, expected %i' % (diff, expecteddiff))
+
+    def test_DifferentRoots(self):
+        tree1 = lxml.etree.parse(os.path.join(self.testfilesdir, 'TreeTestFile_metric2-1.xml'))
+        tree2 = lxml.etree.parse(os.path.join(self.testfilesdir, 'TreeTestFile_metric2-2.xml'))
+        expecteddiff = 1
+        diff = Tree.metric(tree1, tree2)
+        self.assertEqual(diff, expecteddiff, 'metric() returned %i, expected %i' % (diff, expecteddiff))
+
+    def test_LargerTrees(self):
+        tree1 = lxml.etree.parse(os.path.join(self.testfilesdir, 'TreeTestFile_metric3-1.xml'))
+        tree2 = lxml.etree.parse(os.path.join(self.testfilesdir, 'TreeTestFile_metric3-2.xml'))
+        expecteddiff = 4
+        diff = Tree.metric(tree1, tree2)
+        self.assertEqual(diff, expecteddiff, 'metric() returned %i, expected %i' % (diff, expecteddiff))
+
+    
+
+class test_countNonUnitNodes(unittest.TestCase):
+    def setUp(self):
+        """set up data used in the tests, called before each test function execution"""
+        
+        self.testfilesdir = os.path.join(os.path.dirname(__file__), '..', 'testfiles', 'Tree', 'CountNonUnitNodes')
+        self.log = logging.getLogger()
+    
+    def test_OnlyRoot(self):
+        tree = lxml.etree.parse(os.path.join(self.testfilesdir, 'TreeTestFile_countNonUnitNodes1.xml'))
+        size = Tree.countNonUnitNodes(tree)
+        expectedsize = 1
+        self.assertEqual(size, expectedsize, 'size() returned %i, expected %i' % (size, expectedsize))
+    
+    def test_RootOneChild(self):
+        tree = lxml.etree.parse(os.path.join(self.testfilesdir, 'TreeTestFile_countNonUnitNodes2.xml'))
+        size = Tree.countNonUnitNodes(tree)
+        expectedsize = 2
+        self.assertEqual(size, expectedsize, 'size() returned %i, expected %i' % (size, expectedsize))
+    
+    def test_LargeTree(self):
+        tree = lxml.etree.parse(os.path.join(self.testfilesdir, 'TreeTestFile_countNonUnitNodes3.xml'))
+        size = Tree.countNonUnitNodes(tree)
+        expectedsize = 6
+        self.assertEqual(size, expectedsize, 'size() returned %i, expected %i' % (size, expectedsize))
+    
+    
+    
+    
+    
 class test_equal(unittest.TestCase):
     """Test the equal() function"""
             
