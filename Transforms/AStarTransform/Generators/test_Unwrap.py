@@ -12,7 +12,7 @@ from . import Unwrap
 class test_Generator(unittest.TestCase):
     
     def setUp(self):
-        self.testfilesdir = os.path.join(os.path.dirname(__file__), '..', '..', '..', '..', 'testfiles', 'AStarTransform', 'Unwrap')
+        self.testfilesdir = os.path.join(os.path.dirname(__file__), '..', '..', '..', 'testfiles', 'AStarTransform', 'Unwrap')
         self.log = logging.getLogger()
         
         
@@ -157,7 +157,7 @@ class test_Iterator(unittest.TestCase):
     """Test the Unwrap Iterator class """
     
     def setUp(self):
-        self.testfilesdir = os.path.join(os.path.dirname(__file__), '..', '..', '..', '..', 'testfiles', 'AStarTransform', 'Unwrap')
+        self.testfilesdir = os.path.join(os.path.dirname(__file__), '..', '..', '..', 'testfiles', 'AStarTransform', 'Unwrap')
         self.log = logging.getLogger()
         
         

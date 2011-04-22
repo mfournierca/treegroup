@@ -13,7 +13,7 @@ from . import Wrap
 class test_WrapGenerator(unittest.TestCase):
     
     def setUp(self):
-        self.testfilesdir = os.path.join(os.path.dirname(__file__), '..', '..', '..', '..', 'testfiles', 'AStarTransform', 'Wrap')
+        self.testfilesdir = os.path.join(os.path.dirname(__file__), '..', '..', '..', 'testfiles', 'AStarTransform', 'Wrap')
         self.log = logging.getLogger()
         
         
@@ -128,7 +128,7 @@ class test_Iterator(unittest.TestCase):
     """Test the Wrap Iterator class """
     
     def setUp(self):
-        self.testfilesdir = os.path.join(os.path.dirname(__file__), '..', '..', '..', '..', 'testfiles', 'AStarTransform', 'Wrap')
+        self.testfilesdir = os.path.join(os.path.dirname(__file__), '..', '..', '..', 'testfiles', 'AStarTransform', 'Wrap')
         self.log = logging.getLogger()
         
         

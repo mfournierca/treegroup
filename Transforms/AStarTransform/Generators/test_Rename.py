@@ -13,7 +13,7 @@ class test_Generator(unittest.TestCase):
     """Test the Generator class """
     
     def setUp(self):
-        self.testfilesdir = os.path.join(os.path.dirname(__file__), '..', '..', '..', '..', 'testfiles', 'AStarTransform', 'Rename')
+        self.testfilesdir = os.path.join(os.path.dirname(__file__), '..', '..', '..', 'testfiles', 'AStarTransform', 'Rename')
         self.log = logging.getLogger()
         
         
@@ -82,7 +82,7 @@ class test_Iterator(unittest.TestCase):
     """Test the RenameGeneratorIterator class """
     
     def setUp(self):
-        self.testfilesdir = os.path.join(os.path.dirname(__file__), '..', '..', '..', '..', 'testfiles', 'AStarTransform', 'Rename')
+        self.testfilesdir = os.path.join(os.path.dirname(__file__), '..', '..', '..', 'testfiles', 'AStarTransform', 'Rename')
         self.log = logging.getLogger()
         
         

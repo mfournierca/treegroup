@@ -13,7 +13,7 @@ class test_findNeighbors_FirstValidationError(unittest.TestCase):
     """Test the findNeighbors_FirstValidationError function"""
     
     def setUp(self):
-        self.testfilesdir = os.path.join(os.path.dirname(__file__), '..', '..', '..', 'testfiles', 'AStarTransform', 'Neighbors')
+        self.testfilesdir = os.path.join(os.path.dirname(__file__), '..', '..', 'testfiles', 'AStarTransform', 'Neighbors')
         self.log = logging.getLogger()
         
         
