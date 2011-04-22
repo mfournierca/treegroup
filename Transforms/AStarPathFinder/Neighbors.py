@@ -58,6 +58,7 @@ def findNeighbors_FirstValidationError(sourcetree):
     neighbors = []
     for  o in operands:
         neighbor = Neighbor()
+#        neighbor.operand = copy.deepcopy(o.tree)
         neighbor.tree = Tree.Tree.add(o.tree, sourcetree)
         log.debug('\tneighbor: %s' % lxml.etree.tostring(neighbor.tree))
         neighbors.append(neighbor)

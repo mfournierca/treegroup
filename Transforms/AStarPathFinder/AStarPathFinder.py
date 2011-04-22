@@ -7,7 +7,7 @@ import DitaTools.Tree.File.Dita
 
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), '..'))
 
-import Tree.Tree, Element.Element
+import Tree.Tree, Element.Element, Neighbors
 
 
 
@@ -45,13 +45,38 @@ class AStarPathFinder:
     def findPath(self):
         
         #get member of open set with lowest fscore
+        t = self.findLowestFscore()
+        
+        #check if t is dita
+        errors = DitaTools.Tree.File.Dita.v11_validate(t)
+        if len(errors) = 0:
+            #if t is dita, the algorithm is complete.
+            finalOperand = self.backTrackBuildOperand(self, t)
+            return finalOperand
+        
+        #remove t from openset
+        
+        #add t to closed set
+        
+        #process neighbors of t
+        self.processNeighbors(t)
         
         pass
     
+    
+    def processNeighbors(self, t):
+        #process the neighbors of t - find them, add to openset if necessary, 
+        #calculate scores, etc. 
+        neighbors = Neighbors.findNeighbors_FirstValidationError(t)
+        pass
+
+    def findLowestFscore(self):
+        """Find the element of the open set with the lowest fscore"""
+        pass
 
 
-
-
+    def backTrackBuildOperand(self, x):
+        pass
 
 
 
