@@ -22,7 +22,7 @@ class test_ErrorParser(unittest.TestCase):
         testfile = os.path.join(self.testfilesdir, 'ErrorTest1.xml')
         tree = lxml.etree.parse(testfile)
         expectedtargetelement = tree.getroot()
-        expectederrormessage = '/Users/matt/work/programs/dev_workspace/TreeGroup/Transforms/AStarTransform/../../testfiles/AStarTransform/Errors/ErrorTest1.xml:2:0:ERROR:VALID:DTD_UNKNOWN_ELEM: No declaration for element a'
+        expectederrormessage = '/Users/matt/work/programs/dev_workspace/TreeGroup/Transforms/AStarPathFinder/../../testfiles/AStarTransform/Errors/ErrorTest1.xml:2:0:ERROR:VALID:DTD_UNKNOWN_ELEM: No declaration for element a'
         expectedtags = ['dita']
         
         parser = Errors.ErrorParser(tree)
@@ -41,7 +41,7 @@ class test_ErrorParser(unittest.TestCase):
         testfile = os.path.join(self.testfilesdir, 'ErrorTest2.xml')
         tree = lxml.etree.parse(testfile)
         expectedtargetelement = tree.getroot()[0]
-        expectederrormessage = '/Users/matt/work/programs/dev_workspace/TreeGroup/Transforms/AStarTransform/../../testfiles/AStarTransform/Errors/ErrorTest2.xml:2:0:ERROR:VALID:DTD_CONTENT_MODEL: Element dita content does not follow the DTD, expecting (topic | concept | task | reference | glossentry)+, got (a )'
+        expectederrormessage = '/Users/matt/work/programs/dev_workspace/TreeGroup/Transforms/AStarPathFinder/../../testfiles/AStarTransform/Errors/ErrorTest2.xml:2:0:ERROR:VALID:DTD_CONTENT_MODEL: Element dita content does not follow the DTD, expecting (topic | concept | task | reference | glossentry)+, got (a )'
         expectedtags = ['concept', 'glossentry', 'reference', 'task', 'topic']
         
         parser = Errors.ErrorParser(tree)
@@ -60,7 +60,7 @@ class test_ErrorParser(unittest.TestCase):
         testfile = os.path.join(self.testfilesdir, 'ErrorTest3.xml')
         tree = lxml.etree.parse(testfile)
         expectedtargetelement = tree.xpath('//a')[0]
-        expectederrormessage = '/Users/matt/work/programs/dev_workspace/TreeGroup/Transforms/AStarTransform/../../testfiles/AStarTransform/Errors/ErrorTest3.xml:5:0:ERROR:VALID:DTD_CONTENT_MODEL: Element body content does not follow the DTD, expecting (p | lq | note | dl | parml | ul | ol | sl | pre | codeblock | msgblock | screen | lines | fig | syntaxdiagram | imagemap | image | object | table | simpletable | required-cleanup | data | data-about | foreign | unknown | section | example)*, got (p a p )'
+        expectederrormessage = '/Users/matt/work/programs/dev_workspace/TreeGroup/Transforms/AStarPathFinder/../../testfiles/AStarTransform/Errors/ErrorTest3.xml:5:0:ERROR:VALID:DTD_CONTENT_MODEL: Element body content does not follow the DTD, expecting (p | lq | note | dl | parml | ul | ol | sl | pre | codeblock | msgblock | screen | lines | fig | syntaxdiagram | imagemap | image | object | table | simpletable | required-cleanup | data | data-about | foreign | unknown | section | example)*, got (p a p )'
         expectedtags = ['codeblock', 'data', 'dl', 'example', 'fig', 'foreign', 'image', 'imagemap', 'lines', 'lq', 'msgblock', 'note', 'object', 'ol', 'p', 'parml', 'pre', 'screen', 'section', 'simpletable', 'sl', 'syntaxdiagram', 'table', 'ul', 'unknown']
         #had to exclude 'required-cleanup' and 'data-about' because '-' does not work in the tag algebra: if it is allowed in the domain of characters
         #for the tag names, then group theory demands that an element can be named '-', however lxml does not allow this. Fixing this
@@ -82,7 +82,7 @@ class test_ErrorParser(unittest.TestCase):
         testfile = os.path.join(self.testfilesdir, 'ErrorTest4.xml')
         tree = lxml.etree.parse(testfile)
         expectedtargetelement = tree.xpath('//a')[0]
-        expectederrormessage = '/Users/matt/work/programs/dev_workspace/TreeGroup/Transforms/AStarTransform/../../testfiles/AStarTransform/Errors/ErrorTest4.xml:3:0:ERROR:VALID:DTD_CONTENT_MODEL: Element topic content does not follow the DTD, expecting (title , titlealts? , (shortdesc | abstract)? , prolog? , body? , related-links? , (topic | concept | task | reference | glossentry)*), got (title a )'
+        expectederrormessage = '/Users/matt/work/programs/dev_workspace/TreeGroup/Transforms/AStarPathFinder/../../testfiles/AStarTransform/Errors/ErrorTest4.xml:3:0:ERROR:VALID:DTD_CONTENT_MODEL: Element topic content does not follow the DTD, expecting (title , titlealts? , (shortdesc | abstract)? , prolog? , body? , related-links? , (topic | concept | task | reference | glossentry)*), got (title a )'
         expectedtags = ['abstract', 'body', 'concept', 'glossentry', 'prolog', 'reference', 'shortdesc', 'task', 'titlealts', 'topic'] 
         #had to exclude 'related-links' because '-' does not work in the tag algebra: if it is allowed in the domain of characters
         #for the tag names, then group theory demands that an element can be named '-', however lxml does not allow this. Fixing this
@@ -104,7 +104,7 @@ class test_ErrorParser(unittest.TestCase):
         testfile = os.path.join(self.testfilesdir, 'ErrorTest5.xml')
         tree = lxml.etree.parse(testfile)
         expectedtargetelement = tree.xpath('//body')[0]
-        expectederrormessage = '/Users/matt/work/programs/dev_workspace/TreeGroup/Transforms/AStarTransform/../../testfiles/AStarTransform/Errors/ErrorTest5.xml:3:0:ERROR:VALID:DTD_CONTENT_MODEL: Element topic content does not follow the DTD, expecting (title , titlealts? , (shortdesc | abstract)? , prolog? , body? , related-links? , (topic | concept | task | reference | glossentry)*), got (body )'
+        expectederrormessage = '/Users/matt/work/programs/dev_workspace/TreeGroup/Transforms/AStarPathFinder/../../testfiles/AStarTransform/Errors/ErrorTest5.xml:3:0:ERROR:VALID:DTD_CONTENT_MODEL: Element topic content does not follow the DTD, expecting (title , titlealts? , (shortdesc | abstract)? , prolog? , body? , related-links? , (topic | concept | task | reference | glossentry)*), got (body )'
         expectedtags = ['title']
         
         parser = Errors.ErrorParser(tree)
@@ -123,7 +123,7 @@ class test_ErrorParser(unittest.TestCase):
         testfile = os.path.join(self.testfilesdir, 'ErrorTest6.xml')
         tree = lxml.etree.parse(testfile)
         expectedtargetelement = tree.xpath('//body')[0]
-        expectederrormessage = '/Users/matt/work/programs/dev_workspace/TreeGroup/Transforms/AStarTransform/../../testfiles/AStarTransform/Errors/ErrorTest6.xml:3:0:ERROR:VALID:DTD_CONTENT_MODEL: Element topic content does not follow the DTD, expecting (title , titlealts? , (shortdesc | abstract)? , prolog? , body? , related-links? , (topic | concept | task | reference | glossentry)*), got (body )'
+        expectederrormessage = '/Users/matt/work/programs/dev_workspace/TreeGroup/Transforms/AStarPathFinder/../../testfiles/AStarTransform/Errors/ErrorTest6.xml:3:0:ERROR:VALID:DTD_CONTENT_MODEL: Element topic content does not follow the DTD, expecting (title , titlealts? , (shortdesc | abstract)? , prolog? , body? , related-links? , (topic | concept | task | reference | glossentry)*), got (body )'
         expectedtags = ['title']
         
         parser = Errors.ErrorParser(tree)
@@ -142,7 +142,7 @@ class test_ErrorParser(unittest.TestCase):
         testfile = os.path.join(self.testfilesdir, 'ErrorTest7.xml')
         tree = lxml.etree.parse(testfile)
         expectedtargetelement = tree.xpath('//a')[0]
-        expectederrormessage = '/Users/matt/work/programs/dev_workspace/TreeGroup/Transforms/AStarTransform/../../testfiles/AStarTransform/Errors/ErrorTest7.xml:2:0:ERROR:VALID:DTD_CONTENT_MODEL: Element dita content does not follow the DTD, expecting (topic | concept | task | reference | glossentry)+, got (a topic )'
+        expectederrormessage = '/Users/matt/work/programs/dev_workspace/TreeGroup/Transforms/AStarPathFinder/../../testfiles/AStarTransform/Errors/ErrorTest7.xml:2:0:ERROR:VALID:DTD_CONTENT_MODEL: Element dita content does not follow the DTD, expecting (topic | concept | task | reference | glossentry)+, got (a topic )'
         expectedtags = ['concept', 'glossentry', 'reference', 'task', 'topic']
         
         parser = Errors.ErrorParser(tree)
@@ -160,7 +160,7 @@ class test_ErrorParser(unittest.TestCase):
         self.log.debug('running test test_8')
         testfile = os.path.join(self.testfilesdir, 'ErrorTest8.xml')
         tree = lxml.etree.parse(testfile)
-        expectederrormessage = '/Users/matt/work/programs/dev_workspace/TreeGroup/Transforms/AStarTransform/../../testfiles/AStarTransform/Errors/ErrorTest8.xml:6:0:ERROR:VALID:DTD_CONTENT_MODEL: Element task content does not follow the DTD, expecting (title , titlealts? , (shortdesc | abstract)? , prolog? , taskbody? , related-links? , (topic | concept | task | reference | glossentry)*), got '
+        expectederrormessage = '/Users/matt/work/programs/dev_workspace/TreeGroup/Transforms/AStarPathFinder/../../testfiles/AStarTransform/Errors/ErrorTest8.xml:6:0:ERROR:VALID:DTD_CONTENT_MODEL: Element task content does not follow the DTD, expecting (title , titlealts? , (shortdesc | abstract)? , prolog? , taskbody? , related-links? , (topic | concept | task | reference | glossentry)*), got '
         expectedtags = ['title']
         
         parser = Errors.ErrorParser(tree)
