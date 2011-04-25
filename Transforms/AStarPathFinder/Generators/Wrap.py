@@ -50,18 +50,18 @@ class Generator:
         #create the operand
         #
         
-        self.log.debug('operand tree: %s' % lxml.etree.tostring(operand.tree))
-        self.log.debug('operand target: %s' % str(operand.target))
-        self.log.debug('operand target parent: %s' % str(operand.target.getparent()))
+        self.log.debug('operand tree: %s' % lxml.etree.tostring(operand.getTree()))
+        self.log.debug('operand target: %s' % str(operand.getTarget()))
+        self.log.debug('operand target parent: %s' % str(operand.getTarget().getparent()))
         self.log.debug('tag: %s' % tag)
         
         #change operand.target to inverse of targetElement.
         inversetarget = Tree.Tree.invert(copy.deepcopy(targetElement))
-        if operand.target.getparent() is None:
+        if operand.getTarget().getparent() is None:
             #the operand is the root, create a new root. The tree and target become
             #the root, then proceed.
-            operand.target = inversetarget
-            operand.tree = operand.target
+            operand.setTarget(inversetarget)
+            operand.setTree(inversetarget)
         else:
             operand.target.getparent().replace(operand.target, inversetarget)
             operand.target = inversetarget

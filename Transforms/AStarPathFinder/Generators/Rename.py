@@ -43,10 +43,11 @@ class Generator:
         self.log.debug('targetElement: %s' % targetElement)
         self.log.debug('rename to: %s' % tag)
         renamenode = Element.Element.add(lxml.etree.Element(tag), Element.Element.invert(lxml.etree.Element(targetElement.tag, targetElement.attrib)))
-        operand.target.tag = renamenode.tag
-        for a in renamenode.attrib.keys():
-            operand.target.attrib[a] = renamenode.attrib[a]
-        self.log.debug('result: %s' % lxml.etree.tostring(operand.tree))
+#        operand.target.tag = renamenode.tag
+#        for a in renamenode.attrib.keys():
+#            operand.target.attrib[a] = renamenode.attrib[a]
+        operand.setTarget(renamenode)
+        self.log.debug('result: %s' % lxml.etree.tostring(operand.getTree()))
         #done
         return operand
     

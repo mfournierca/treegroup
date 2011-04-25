@@ -29,7 +29,7 @@ class test_Generator(unittest.TestCase):
         expectedTree = lxml.etree.fromstring('<cita/>')
         generator = Rename.Generator()
         operand = generator.generateOperand(targetElement, acceptableTags[0])
-        self.assertTrue(Tree.Tree.equal(expectedTree, operand.tree), "Rename Generator generated the wrong operand. Expected %s, got %s" % (lxml.etree.tostring(expectedTree), lxml.etree.tostring(operand.tree)))
+        self.assertTrue(Tree.Tree.equal(expectedTree, operand.getTree()), "Rename Generator generated the wrong operand. Expected %s, got %s" % (lxml.etree.tostring(expectedTree), lxml.etree.tostring(operand.getTree())))
       
         
     def test_RenameFirstLevelTopic(self):
@@ -44,7 +44,7 @@ class test_Generator(unittest.TestCase):
         expectedTree = lxml.etree.fromstring('''<_> <sopic/> </_>''')
         generator = Rename.Generator()
         operand = generator.generateOperand(targetElement, acceptableTags[0])
-        self.assertTrue(Tree.Tree.equal(expectedTree, operand.tree), "Rename Generator generated the wrong operand. Expected %s, got %s" % (lxml.etree.tostring(expectedTree), lxml.etree.tostring(operand.tree)))
+        self.assertTrue(Tree.Tree.equal(expectedTree, operand.getTree()), "Rename Generator generated the wrong operand. Expected %s, got %s" % (lxml.etree.tostring(expectedTree), lxml.etree.tostring(operand.getTree())))
 
       
     def test_RenameTopicBody(self):
@@ -59,7 +59,7 @@ class test_Generator(unittest.TestCase):
         expectedTree = lxml.etree.fromstring('''<_> <_> <_/> <aody/> </_> </_>''')
         generator = Rename.Generator()
         operand = generator.generateOperand(targetElement, acceptableTags[0])
-        self.assertTrue(Tree.Tree.equal(expectedTree, operand.tree), "Rename Generator generated the wrong operand. Expected %s, got %s" % (lxml.etree.tostring(expectedTree), lxml.etree.tostring(operand.tree)))
+        self.assertTrue(Tree.Tree.equal(expectedTree, operand.getTree()), "Rename Generator generated the wrong operand. Expected %s, got %s" % (lxml.etree.tostring(expectedTree), lxml.etree.tostring(operand.getTree())))
     
     
     def test_RenameBodyP(self):
@@ -74,7 +74,7 @@ class test_Generator(unittest.TestCase):
         expectedTree = lxml.etree.fromstring('''<_> <_> <_/> <_> <_/> <o/> </_> </_> </_>''')
         generator = Rename.Generator()
         operand = generator.generateOperand(targetElement, acceptableTags[0])
-        self.assertTrue(Tree.Tree.equal(expectedTree, operand.tree), "Rename Generator generated the wrong operand. Expected %s, got %s" % (lxml.etree.tostring(expectedTree), lxml.etree.tostring(operand.tree)))
+        self.assertTrue(Tree.Tree.equal(expectedTree, operand.getTree()), "Rename Generator generated the wrong operand. Expected %s, got %s" % (lxml.etree.tostring(expectedTree), lxml.etree.tostring(operand.getTree())))
     
     
 
@@ -100,7 +100,7 @@ class test_Iterator(unittest.TestCase):
         index = 0
         for operand in iterator:
             expectedTree = lxml.etree.fromstring(expectedTrees[index])
-            self.assertTrue(Tree.Tree.equal(expectedTree, operand.tree), "RenameGenerator generated the wrong operand. Expected %s, got %s" % (lxml.etree.tostring(expectedTree), lxml.etree.tostring(operand.tree)))
+            self.assertTrue(Tree.Tree.equal(expectedTree, operand.getTree()), "RenameGenerator generated the wrong operand. Expected %s, got %s" % (lxml.etree.tostring(expectedTree), lxml.etree.tostring(operand.getTree())))
             index += 1
     
     
