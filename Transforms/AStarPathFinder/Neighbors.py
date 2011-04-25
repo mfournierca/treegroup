@@ -43,15 +43,22 @@ class Neighbor:
     #in any other part of the program. 
         
     def getOperandTree(self):
+        """Return the operand tree of this neighbor, ie the operand that when added to the
+        camefrom tree creates this neighbor tree. There is no guarantee that any changes
+        made on the return tree will persist, to guarantee that, use the setOperandTree() method."""
         return self._operand
     
     def setOperandTree(self, tree):
+        """Set the operand tree"""
         self._operand = tree
     
     def getTree(self):
+        """Return the tree of this neighbor. There is no guarantee that any changes made on the 
+        returned tree will persist - to guarantee that, use the setTree() method"""
         return self._tree
     
     def setTree(self, tree):
+        """Set the neighbor tree."""
         self._tree = tree
         
     
