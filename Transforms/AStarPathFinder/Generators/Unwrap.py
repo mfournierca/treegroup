@@ -49,13 +49,14 @@ class Generator:
         #create the operand
         #
         
-        self.log.debug('operand tree: %s' % lxml.etree.tostring(operand.tree))
-        self.log.debug('operand target: %s' % str(operand.target))
-        self.log.debug('operand target parent: %s' % str(operand.target.getparent()))
+        operandtarget = operand.getTarget()
+        self.log.debug('operand tree: %s' % lxml.etree.tostring(operand.getTree()))
+        self.log.debug('operand target: %s' % str(operandtarget))
+        self.log.debug('operand target parent: %s' % str(operandtarget.getparent()))
         
         #change operand.target to inverse of targetElement.
         inversetarget = Tree.Tree.invert(copy.deepcopy(targetElement))
-        if operand.target.getparent() is None:
+        if operandtarget.getparent() is None:
             #the target is the root
             if len(targetElement) > 1: 
                 #the target is the root and has more than one child - cannot unwrap
@@ -65,69 +66,74 @@ class Generator:
                 #the target is the root and has no child - cannot unwrap
                 self.log.debug('target is root and has no child, cannot unwrap')
                 return None
-            operand.target = inversetarget
-            operand.tree = operand.target
+            operand.setTarget(inversetarget)
+            operand.setTree(inversetarget)
         else:
-            operand.target.getparent().replace(operand.target, inversetarget)
-            operand.target = inversetarget
+            operandtarget.getparent().replace(operandtarget, inversetarget)
+            operand.setTarget(inversetarget)
         
-        self.log.debug('inverted target, tree is: %s' % lxml.etree.tostring(operand.tree))
+        self.log.debug('inverted target, tree is: %s' % lxml.etree.tostring(operand.getTree()))
         
+        #operand target may was set to inversetarget above, so we need it again.
+        operandtarget = operand.getTarget()
         #append invert of siblings to parent of operand.target 
         for sibling in targetElement.itersiblings():
             siblingcopy = copy.deepcopy(sibling)
-            operand.target.getparent().append(Tree.Tree.invert(siblingcopy))
+            operandtarget.getparent().append(Tree.Tree.invert(siblingcopy))
         
-        self.log.debug('inverted siblings, tree is: %s' % lxml.etree.tostring(operand.tree))
+        self.log.debug('inverted siblings, tree is: %s' % lxml.etree.tostring(operand.getTree()))
             
         #add children of targetElement to parent of operand.target
         index = DitaTools.Element.Functions.get_index(targetElement)
         self.log.debug('adding target children.')
-        self.log.debug('Target index is: %s. Target parent length is: %s' % (str(index), str(None) if operand.target.getparent() is None else str(len(operand.target.getparent())))) 
+        self.log.debug('Target index is: %s. Target parent length is: %s' % (str(index), str(None) if operandtarget.getparent() is None else str(len(operandtarget.getparent())))) 
         for child in targetElement:
             #if you don't copy the child, it gets moved out of the target tree and into the operand, which may cause problems
             #depending on what the user is doing. This function should not alter the target tree (that the user passes), 
             #it should only create an operand. Therefore make a copy of the child before adding it to the operand, so that 
             #the target tree does not change. 
             child = copy.deepcopy(child)
-            if operand.target.getparent() is None and len(operand.target) > 1:
+            if operandtarget.getparent() is None and len(operandtarget) > 1:
                 #cannot do this. This was already dealt with above.
                 pass
-            elif operand.target.getparent() is None and len(operand.target) <= 1:
-                Tree.Tree.add(operand.target, child)
+            elif operandtarget.getparent() is None and len(operandtarget) <= 1:
+                Tree.Tree.add(operandtarget, child)
                 self.log.debug('\ttarget is root, added single child')
                 break
-            elif len(operand.target.getparent()) > index:
-                Tree.Tree.add(operand.target.getparent()[index], child)
+            elif len(operandtarget.getparent()) > index:
+                Tree.Tree.add(operandtarget.getparent()[index], child)
                 self.log.debug('\tadded child %s at index %i' % (str(child), index))
             else:
-                operand.target.getparent().append(child)
-                self.log.debug('\tindex is %i, parent length is %i, appended child %s' % (index, len(operand.target.getparent()), str(child)))
+                operandtarget.getparent().append(child)
+                self.log.debug('\tindex is %i, parent length is %i, appended child %s' % (index, len(operandtarget.getparent()), str(child)))
             index += 1
 
-        self.log.debug('added target children, tree is: %s' % lxml.etree.tostring(operand.tree))
+        self.log.debug('added target children, tree is: %s' % lxml.etree.tostring(operand.getTree()))
 
         #add sibling trees of targetElement to operand.target
         self.log.debug('adding target siblings')
-        self.log.debug('Target index is: %s. Target parent length is: %s' % (str(index), str(None) if operand.target.getparent() is None else str(len(operand.target.getparent()))))
+        self.log.debug('Target index is: %s. Target parent length is: %s' % (str(index), str(None) if operandtarget.getparent() is None else str(len(operandtarget.getparent()))))
         for sibling in targetElement.itersiblings():
             #if you don't copy the sibling, it gets moved out of the target tree and into the operand, which may cause problems
             #depending on what the user is doing. This function should not alter the target tree (that the user passes), 
             #it should only create an operand. Therefore make a copy of the sibling before adding it to the operand, so that 
             #the target tree does not change.
-            if operand.target.getparent() is None:
+            if operandtarget.getparent() is None:
                 #the target is the root and has no children
                 break 
             sibling = copy.deepcopy(sibling)
-            if len(operand.target.getparent()) > index:
+            if len(operandtarget.getparent()) > index:
                 self.log.debug('\tadding sibling %s at index %i' % (str(sibling), index))
-                Tree.Tree.add(operand.target.getparent()[index], sibling)
+                Tree.Tree.add(operandtarget.getparent()[index], sibling)
             else:
-                self.log.debug('\tindex is %i, parent length is %i, appending sibling' % (index, len(operand.target.getparent())))
-                operand.target.getparent().append(sibling)
+                self.log.debug('\tindex is %i, parent length is %i, appending sibling' % (index, len(operandtarget.getparent())))
+                operandtarget.getparent().append(sibling)
             index += 1
             
-        self.log.debug('added target siblings, tree is: %s' % lxml.etree.tostring(operand.tree))
+        self.log.debug('added target siblings, tree is: %s' % lxml.etree.tostring(operand.getTree()))
+        
+        #set the target so the changes persist
+        operand.setTarget(operandtarget)
         
         self.log.debug('done')
         return operand

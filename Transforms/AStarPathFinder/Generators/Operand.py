@@ -13,6 +13,8 @@ class Operand:
     def __init__(self, targetElement):
         """Initialize the operand. Create the operand tree, targetElement, position"""
         
+        self.log = logging.getLogger()
+        
         self.targetPosition = Element.Element.position(targetElement)
         
         tree = lxml.etree.fromstring('<_/>')    #the operand tree, in lxml.etree._ElementTree form
@@ -55,11 +57,11 @@ class Operand:
         """Set the target element. This inserts or replaces the target element in the 
         operand tree"""
         targetbyposition = Tree.Tree.getNode(self.getTree(), self.targetPosition)
-        targetbyfunction = self.getTarget()
-        if not targetbyposition is targetbyfunction:
-            #consistency error, this should never happen
-            self.log.error('targetPosition in tree did not match self.getTarget()')
-            sys.exit(0)
+#        targetbyfunction = self.getTarget()
+#        if not targetbyposition is targetbyfunction:
+#            #consistency error, this should never happen
+#            self.log.error('targetPosition in tree did not match self.getTarget()')
+#            sys.exit(0)
         targetparent = targetbyposition.getparent()
         if targetparent is None:
             #target is root

@@ -26,7 +26,7 @@ class test_Generator(unittest.TestCase):
         expectedTree = lxml.etree.fromstring('''<dita></dita>''')
         generator = Unwrap.Generator()
         operand = generator.generateOperand(targetElement)
-        self.assertTrue(Tree.Tree.equal(expectedTree, Tree.Tree.add(tree, operand.tree)), "UnwrapGenerator generated the wrong operand. Operand results in %s, expected %s" % (lxml.etree.tostring(tree), lxml.etree.tostring(expectedTree)))
+        self.assertTrue(Tree.Tree.equal(expectedTree, Tree.Tree.add(tree, operand.getTree())), "UnwrapGenerator generated the wrong operand. Operand results in %s, expected %s" % (lxml.etree.tostring(tree), lxml.etree.tostring(expectedTree)))
     
     
     def test_UnwrapRoot(self):
@@ -39,7 +39,7 @@ class test_Generator(unittest.TestCase):
         expectedTree = lxml.etree.fromstring('''<a/>''')
         generator = Unwrap.Generator()
         operand = generator.generateOperand(targetElement)
-        self.assertTrue(Tree.Tree.equal(expectedTree, Tree.Tree.add(tree, operand.tree)), "UnwrapGenerator generated the wrong operand. Operand results in %s, expected %s" % (lxml.etree.tostring(tree), lxml.etree.tostring(expectedTree)))
+        self.assertTrue(Tree.Tree.equal(expectedTree, Tree.Tree.add(tree, operand.getTree())), "UnwrapGenerator generated the wrong operand. Operand results in %s, expected %s" % (lxml.etree.tostring(tree), lxml.etree.tostring(expectedTree)))
     
     
     def test_UnwrapEmptyRoot(self): 
@@ -82,7 +82,7 @@ class test_Generator(unittest.TestCase):
         expectedTree = lxml.etree.fromstring('''<dita><b/></dita>''')
         generator = Unwrap.Generator()
         operand = generator.generateOperand(targetElement)
-        self.assertTrue(Tree.Tree.equal(expectedTree, Tree.Tree.add(tree, operand.tree)), "UnwrapGenerator generated the wrong operand. Operand results in %s, expected %s" % (lxml.etree.tostring(tree), lxml.etree.tostring(expectedTree)))
+        self.assertTrue(Tree.Tree.equal(expectedTree, Tree.Tree.add(tree, operand.getTree())), "UnwrapGenerator generated the wrong operand. Operand results in %s, expected %s" % (lxml.etree.tostring(tree), lxml.etree.tostring(expectedTree)))
     
     
     def test_UnwrapElementWithChildren(self):
@@ -96,8 +96,8 @@ class test_Generator(unittest.TestCase):
         generator = Unwrap.Generator()
         operand = generator.generateOperand(targetElement)
         self.log.debug('test tree: %s' % lxml.etree.tostring(tree))
-        self.log.debug('got operand tree: %s' % lxml.etree.tostring(operand.tree))
-        result = Tree.Tree.add(tree, operand.tree)
+        self.log.debug('got operand tree: %s' % lxml.etree.tostring(operand.getTree()))
+        result = Tree.Tree.add(tree, operand.getTree())
         self.log.debug('addition result: %s' % lxml.etree.tostring(result))
         self.assertTrue(Tree.Tree.equal(expectedTree, result), "UnwrapGenerator generated the wrong operand. Operand results in %s, expected %s" % (lxml.etree.tostring(result), lxml.etree.tostring(expectedTree)))
     
@@ -114,8 +114,8 @@ class test_Generator(unittest.TestCase):
         generator = Unwrap.Generator()
         operand = generator.generateOperand(targetElement)
         self.log.debug('test tree: %s' % lxml.etree.tostring(tree))
-        self.log.debug('got operand tree: %s' % lxml.etree.tostring(operand.tree))
-        result = Tree.Tree.add(tree, operand.tree)
+        self.log.debug('got operand tree: %s' % lxml.etree.tostring(operand.getTree()))
+        result = Tree.Tree.add(tree, operand.getTree())
         self.log.debug('addition result: %s' % lxml.etree.tostring(result))
         self.assertTrue(Tree.Tree.equal(expectedTree, result), "UnwrapGenerator generated the wrong operand. Operand results in %s, expected %s" % (lxml.etree.tostring(result), lxml.etree.tostring(expectedTree)))
         
@@ -143,8 +143,8 @@ class test_Generator(unittest.TestCase):
         generator = Unwrap.Generator()
         operand = generator.generateOperand(targetElement)
         self.log.debug('test tree: %s' % lxml.etree.tostring(tree))
-        self.log.debug('got operand tree: %s' % lxml.etree.tostring(operand.tree))
-        result = Tree.Tree.add(tree, operand.tree)
+        self.log.debug('got operand tree: %s' % lxml.etree.tostring(operand.getTree()))
+        result = Tree.Tree.add(tree, operand.getTree())
         self.log.debug('addition result: %s' % lxml.etree.tostring(result))
         self.assertTrue(Tree.Tree.equal(expectedTree, result), "UnwrapGenerator generated the wrong operand. Operand results in %s, expected %s" % (lxml.etree.tostring(result), lxml.etree.tostring(expectedTree)))
     
@@ -174,6 +174,6 @@ class test_Iterator(unittest.TestCase):
         index = 0
         for operand in iterator:
             expectedTree = lxml.etree.fromstring(expectedTrees[index])
-            self.assertTrue(Tree.Tree.equal(expectedTree, Tree.Tree.add(operand.tree, tree)), "Wrap Generator generated the wrong operand. Expected %s, got %s" % (lxml.etree.tostring(expectedTree), lxml.etree.tostring(operand.tree)))
+            self.assertTrue(Tree.Tree.equal(expectedTree, Tree.Tree.add(operand.getTree(), tree)), "Wrap Generator generated the wrong operand. Expected %s, got %s" % (lxml.etree.tostring(expectedTree), lxml.etree.tostring(operand.getTree())))
             index += 1
     

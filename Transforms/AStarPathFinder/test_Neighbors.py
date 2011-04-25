@@ -28,7 +28,7 @@ class test_findNeighbors_FirstValidationError(unittest.TestCase):
         index = 0
         self.assertEqual(len(expectedneighbors), len(neighbors), "findNeighbors_FirstValidationError returned a neighbors list of the wrong lenght: expected %i, got %i" % (len(expectedneighbors), len(neighbors))) 
         for n in neighbors:
-            self.assertTrue(Tree.Tree.equal(lxml.etree.fromstring(expectedneighbors[index]), n.tree), "findNeighbors_FirstValidationError returned the wrong tree: expected %s, got %s" % (expectedneighbors[index], lxml.etree.tostring(n.tree)))
+            self.assertTrue(Tree.Tree.equal(lxml.etree.fromstring(expectedneighbors[index]), n.getTree()), "findNeighbors_FirstValidationError returned the wrong tree: expected %s, got %s" % (expectedneighbors[index], lxml.etree.tostring(n.getTree())))
             index += 1
             
                 
@@ -54,7 +54,7 @@ class test_findNeighbors_FirstValidationError(unittest.TestCase):
         index = 0
         self.assertEqual(len(expectedneighbors), len(neighbors), "findNeighbors_FirstValidationError returned a neighbors list of the wrong lenght: expected %i, got %i" % (len(expectedneighbors), len(neighbors))) 
         for n in neighbors:
-            self.assertTrue(Tree.Tree.equal(lxml.etree.fromstring(expectedneighbors[index]), n.tree), "findNeighbors_FirstValidationError returned the wrong tree: expected %s, got %s" % (expectedneighbors[index], lxml.etree.tostring(n.tree)))
+            self.assertTrue(Tree.Tree.equal(lxml.etree.fromstring(expectedneighbors[index]), n.getTree()), "findNeighbors_FirstValidationError returned the wrong tree: expected %s, got %s" % (expectedneighbors[index], lxml.etree.tostring(n.getTree())))
             index += 1
                
                
@@ -80,7 +80,7 @@ class test_findNeighbors_FirstValidationError(unittest.TestCase):
         index = 0
         self.assertEqual(len(expectedneighbors), len(neighbors), "findNeighbors_FirstValidationError returned a neighbors list of the wrong lenght: expected %i, got %i" % (len(expectedneighbors), len(neighbors))) 
         for n in neighbors:
-            self.assertTrue(Tree.Tree.equal(lxml.etree.fromstring(expectedneighbors[index]), n.tree), "findNeighbors_FirstValidationError returned the wrong tree: expected %s, got %s" % (expectedneighbors[index], lxml.etree.tostring(n.tree)))
+            self.assertTrue(Tree.Tree.equal(lxml.etree.fromstring(expectedneighbors[index]), n.getTree()), "findNeighbors_FirstValidationError returned the wrong tree: expected %s, got %s" % (expectedneighbors[index], lxml.etree.tostring(n.getTree())))
             index += 1
         
     
@@ -96,7 +96,7 @@ class test_findNeighbors_FirstValidationError(unittest.TestCase):
         index = 0
         self.assertEqual(len(expectedneighbors), len(neighbors), "findNeighbors_FirstValidationError returned a neighbors list of the wrong lenght: expected %i, got %i" % (len(expectedneighbors), len(neighbors))) 
         for n in neighbors:
-            self.assertTrue(Tree.Tree.equal(lxml.etree.fromstring(expectedneighbors[index]), n.tree), "findNeighbors_FirstValidationError returned the wrong tree: expected %s, got %s" % (expectedneighbors[index], lxml.etree.tostring(n.tree)))
+            self.assertTrue(Tree.Tree.equal(lxml.etree.fromstring(expectedneighbors[index]), n.getTree()), "findNeighbors_FirstValidationError returned the wrong tree: expected %s, got %s" % (expectedneighbors[index], lxml.etree.tostring(n.getTree())))
             index += 1
             
     
@@ -137,6 +137,6 @@ class test_findNeighbors_FirstValidationError(unittest.TestCase):
         self.assertEqual(len(expectedneighbors), len(neighbors),\
                           "findNeighbors_FirstValidationError returned a neighbors list of the wrong length: expected %i, got %i" % (len(expectedneighbors), len(neighbors))) 
         for n in neighbors:
-            self.assertTrue(Tree.Tree.equal(lxml.etree.fromstring(expectedneighbors[index]), n.tree), \
-                            "Index %i: findNeighbors_FirstValidationError returned the wrong tree: expected %s, got %s" % (index, expectedneighbors[index], lxml.etree.tostring(n.tree)))
+            self.assertTrue(Tree.Tree.equal(lxml.etree.fromstring(expectedneighbors[index]), n.getTree()), \
+                            "Index %i: findNeighbors_FirstValidationError returned the wrong tree: expected %s, got %s" % (index, expectedneighbors[index], lxml.etree.tostring(n.getTree())))
             index += 1
