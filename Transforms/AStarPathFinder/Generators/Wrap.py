@@ -57,30 +57,36 @@ class Generator:
         
         #change operand.target to inverse of targetElement.
         inversetarget = Tree.Tree.invert(copy.deepcopy(targetElement))
-        if operand.getTarget().getparent() is None:
-            #the operand is the root, create a new root. The tree and target become
-            #the root, then proceed.
-            operand.setTarget(inversetarget)
-            operand.setTree(inversetarget)
-        else:
-            operand.target.getparent().replace(operand.target, inversetarget)
-            operand.target = inversetarget
-        
+        operand.setTarget(inversetarget)
+
+#        #this code is now replaced by code in the operand.setTarget() method.
+#        if operand.getTarget().getparent() is None:
+#            #the operand is the root, create a new root. The tree and target become
+#            #the root, then proceed.
+#            operand.setTarget(inversetarget)
+#            operand.setTree(inversetarget)
+#        else:
+#            operand.setTarget(inversetarget)
+
         #add the wrap element
+        operandtarget = operand.getTarget()
         wrapElement = lxml.etree.Element(tag)
-        Tree.Tree.add(operand.target, wrapElement)
+        Tree.Tree.add(operandtarget, wrapElement)
         
-        #append the target element to the new wrap element. 
-        targetCopy = copy.deepcopy(targetElement)
-        if len(operand.target) == 0:
-            operand.target.append(targetCopy)
+        #append the target element to the new wrap element.
+        #we need to copy the targetElement to ensure that no changes are made to the source tree 
+        targetCopy = copy.deepcopy(targetElement) 
+        if len(operandtarget) == 0:
+            operandtarget.append(targetCopy)
             self.log.debug('appended targetCopy to wrapElement')
         else:
-            Tree.Tree.add(operand.target[0], targetCopy)
+            Tree.Tree.add(operandtarget[0], targetCopy)
             self.log.debug('added targetCopy to wrapElement[0]')
-            
+        
+        operand.setTarget(operandtarget)
+        
         #done creating the operand
-        self.log.debug('operand tree is: %s' % lxml.etree.tostring(operand.tree))
+        self.log.debug('operand tree is: %s' % lxml.etree.tostring(operand.getTree()))
         self.log.debug('done')
         return operand
     

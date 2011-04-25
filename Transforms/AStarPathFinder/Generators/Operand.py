@@ -43,12 +43,17 @@ class Operand:
     #done easily in the future. 
     
     def setTree(self, tree):
+        """Set the operand tree."""
         self._tree = tree
         
     def getTree(self):
+        """Get the operand tree. There is no guarantee that any changes made on the returned 
+        tree will persist. To guarantee this, use the setTree() method"""
         return self._tree
     
     def setTarget(self, newtarget):
+        """Set the target element. This inserts or replaces the target element in the 
+        operand tree"""
         targetbyposition = Tree.Tree.getNode(self.getTree(), self.targetPosition)
         targetbyfunction = self.getTarget()
         if not targetbyposition is targetbyfunction:
@@ -63,8 +68,11 @@ class Operand:
         else:
             targetbyposition.getparent().replace(targetbyposition, newtarget)
             self._target = newtarget
+            self.setTree(newtarget.getroottree())
         
     def getTarget(self):
+        """Get the target element. There is no guarantee that any changes made on the returned 
+        element will persist. To guarantee this, use the setTarget() method"""
         return self._target
     
     
