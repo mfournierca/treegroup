@@ -14,12 +14,12 @@ import Generators.Wrap
 
 class Neighbor:
     def __init__(self):
-        self.gscore = None
-        self.hscore = None
-        self.fscore = None
-        self.camefrom = None
+        self._gscore = None
+        self._hscore = None
+        self._fscore = None
+        self._camefrom = None
         
-        self.dist = None
+#        self.dist = None
         
         self._tree = None
         self._operand = None
@@ -52,6 +52,7 @@ class Neighbor:
         """Set the operand tree"""
         self._operand = tree
     
+    
     def getTree(self):
         """Return the tree of this neighbor. There is no guarantee that any changes made on the 
         returned tree will persist - to guarantee that, use the setTree() method"""
@@ -61,9 +62,33 @@ class Neighbor:
         """Set the neighbor tree."""
         self._tree = tree
         
+        
+    def setCameFrom(self, x):
+        self._camefrom = x
+        
+    def getCameFrom(self):
+        return self._camefrom
     
     
+    def setGScore(self, g):
+        self._gscore = g
     
+    def getGScore(self):
+        return self._gscore
+    
+    
+    def setHScore(self, h):
+        self._hscore = h
+        
+    def getHScore(self):
+        return self._hscore
+    
+    
+    def setFScore(self, f):
+        self._fscore = f
+        
+    def getFScore(self):
+        return self._fscore
     
 def findNeighbors_FirstValidationError(sourcetree):
     """Find Neighbors by fixing the first validation error. 

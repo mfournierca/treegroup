@@ -37,9 +37,11 @@ class AStarPathFinder:
         self.inputfile = file
         self.inputtree = lxml.etree.parse(self.inputfile)
         
-        self.start = 
-        self.openset = set(lxml.etree.tostring(self.inputtree))
-        self.closedset = set()
+        self.start = Neighbors.Neighbor()
+        self.start.setTree(self.inputtree) 
+        self._openset = set(self.start)
+        
+        self._closedset = set()
         
         
     def findPath(self):
@@ -49,7 +51,7 @@ class AStarPathFinder:
         
         #check if t is dita
         errors = DitaTools.Tree.File.Dita.v11_validate(t)
-        if len(errors) = 0:
+        if len(errors) == 0:
             #if t is dita, the algorithm is complete.
             finalOperand = self.backTrackBuildOperand(self, t)
             return finalOperand
@@ -68,18 +70,67 @@ class AStarPathFinder:
         #process the neighbors of t - find them, add to openset if necessary, 
         #calculate scores, etc. 
         neighbors = Neighbors.findNeighbors_FirstValidationError(t)
-        pass
+        
+        for n in neighbors: 
+            pass
+            #if n in closed set, continue
+            
+            #get tentativeGScore = n.getGScore() + Tree.Tree.metric(t, n)
+            
+            #if n not in openset:
+                #self._addToOpenSet(n)
+                #tentativeIsBetter = True
+                
+            #elif tentativeGScore < n.getGScore() #if n is in the openset, it already has a GScore
+                #tentativeIsBetter = True
+                
+            #else:
+                #tentativeIsBetter = False
+                
+            #if tentativeIsBetter is True: 
+                #n.setCameFrom(t)
+                
+                #n.setGScore(tentativeGScore)
+                
+                #n.setHScore = number of validation errors
+                
+                #n.setFScore(n.getGScore() + n.getHScore)
+                
+                #update closed and open set #?
+            
+
+
 
     def findLowestFscore(self):
         """Find the element of the open set with the lowest fscore"""
         pass
 
 
+    def _inClosedSet(self, x):
+        #return True if x is in the closed set, False otherwise.
+        pass
+    
+    def _inOpenSet(self, x):
+        #return True if x is in the open set, False otherwise
+        pass
+    
     def backTrackBuildOperand(self, x):
         pass
 
 
 
+    def _addToClosedSet(self, x):
+        pass
+    
+    def _removeFromClosedSet(self, x):
+        pass
+    
+    
+    def _addToOpenSet(self, x):
+        pass
+    
+    def _removeFromOpenSet(self, x):
+        pass
 
 
 #===============================================================================
