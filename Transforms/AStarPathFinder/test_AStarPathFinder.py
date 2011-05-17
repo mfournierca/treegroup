@@ -2,7 +2,7 @@ import unittest, os.path, sys, logging, lxml.etree, copy
 
 import Tree.Tree
 
-from . import AStarPathFinder
+from . import AStarPathFinder, Neighbors
         
     
     
@@ -13,15 +13,17 @@ class test_processNeighbors(unittest.TestCase):
     def setUp(self):
         self.testfilesdir = os.path.join(os.path.dirname(__file__), '..', '..', 'testfiles', 'AStarTransform', 'Neighbors')
         self.log = logging.getLogger()
-        self.pathfinder = AStarPathFinder.AStarPathFinder()
         
     def test_NeighborsOfRoot(self):
         testfile = os.path.join(self.testfilesdir, 'NeighborsTest1.xml')
+        pathfinder = AStarPathFinder.AStarPathFinder(testfile)
         tree = lxml.etree.parse(testfile)
-        self.pathfinder.processNeighbors(tree)
+        t = Neighbors.Neighbor(tree)
+        t.setGScore(0)
+        pathfinder.processNeighbors(t)
         
         #check open set, should only contain one entry
-        openset = self.pathfinder._getOpenSet()
+        openset = pathfinder._openset
         self.assertEqual(len(openset), 1, "processNeighbors created open set of length %i, expected %i" % (len(openset), 1))
         for o in openset:
             pass

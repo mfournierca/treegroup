@@ -171,3 +171,23 @@ class test_ErrorParser(unittest.TestCase):
         self.assertEqual(parser.errorMessage, expectederrormessage, 'ErrorParser parsed the wrong error. Expected %s, got %s' % (expectederrormessage, parser.errorMessage))
         self.assertEqual(expectedtags, parser.acceptableTags, 'ErrorParser parsed the wrong tags. Expected %s, got %s' % (expectedtags, parser.acceptableTags))
         self.assertTrue(expectedtargetelement is parser.targetElement, 'ErrorParser parsed the wrong target element. Expected %s, got %s' % (expectedtargetelement, parser.targetElement))
+
+
+    def test_9(self):
+        """Test the unknown element error message when passed an element"""
+        self.log.debug('')
+        self.log.debug('')
+        self.log.debug('running test test_1')
+        testfile = os.path.join(self.testfilesdir, 'ErrorTest1.xml')
+        tree = lxml.etree.parse(testfile)
+        expectedtargetelement = tree.getroot()
+        expectederrormessage = '/Users/matt/work/programs/dev_workspace/TreeGroup/Transforms/AStarPathFinder/../../testfiles/AStarTransform/Errors/ErrorTest1.xml:2:0:ERROR:VALID:DTD_UNKNOWN_ELEM: No declaration for element a'
+        expectedtags = ['dita']
+        
+        parser = Errors.ErrorParser(tree.getroot())
+        parser.parse()
+        
+        self.assertEqual(parser.errorMessage, expectederrormessage, 'ErrorParser parsed the wrong error. Expected %s, got %s' % (expectederrormessage, parser.errorMessage))
+        self.assertEqual(expectedtags, parser.acceptableTags, 'ErrorParser parsed the wrong tags. Expected %s, got %s' % (expectedtags, parser.acceptableTags))
+        self.assertTrue(expectedtargetelement is parser.targetElement, 'ErrorParser parsed the wrong target element. Expected %s, got %s' % (expectedtargetelement, parser.targetElement))
+    

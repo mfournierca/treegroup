@@ -5,7 +5,7 @@ import logging, lxml.etree, re
 import Element.Element
 import Tree.Tree
 
-from . import Errors
+import Errors
 
 import Generators.Rename
 import Generators.Unwrap
@@ -13,7 +13,7 @@ import Generators.Wrap
 
 
 class Neighbor:
-    def __init__(self):
+    def __init__(self, tree):
         self._gscore = None
         self._hscore = None
         self._fscore = None
@@ -22,6 +22,7 @@ class Neighbor:
 #        self.dist = None
         
         self._tree = None
+        self.setTree(tree)
         self._operand = None
     
     
@@ -90,7 +91,10 @@ class Neighbor:
     def getFScore(self):
         return self._fscore
     
-def findNeighbors_FirstValidationError(sourcetree):
+    
+    
+    
+def findNeighbors_FirstValidationError(n):
     """Find Neighbors by fixing the first validation error. 
     
     Neighbors are defined as a tree that can be reached by some operation
@@ -103,7 +107,7 @@ def findNeighbors_FirstValidationError(sourcetree):
     log = logging.getLogger()
     
     #Error parser
-    errorParser = Errors.ErrorParser(sourcetree)
+    errorParser = Errors.ErrorParser(n.getTree())
     errorParser.parse()
     
     #get operands
@@ -122,9 +126,8 @@ def findNeighbors_FirstValidationError(sourcetree):
     log.debug('creating neighbors')
     neighbors = []
     for  o in operands:
-        neighbor = Neighbor()
+        neighbor = Neighbor(Tree.Tree.add(o.getTree(), n.getTree()))
 #        neighbor.operand = copy.deepcopy(o.tree)
-        neighbor.setTree(Tree.Tree.add(o.getTree(), sourcetree))
         log.debug('\tneighbor: %s' % lxml.etree.tostring(neighbor.getTree()))
         neighbors.append(neighbor)
         

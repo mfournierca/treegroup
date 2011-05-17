@@ -254,7 +254,13 @@ class ErrorParser:
         self.log.debug('finding targetElement from actualTags')
         if self._parentTag is None:   # and len(actualTags) == 0: 
             self.log.debug('\tparentTag is None, targetElement is root')
-            target = self.tree.getroot()
+            try:
+                #the funtion should work whether or not self.tree is an lxml.ElementTree
+                #object or an lxml.Element object. The try statement deals with this. 
+                #AttributeError is raised if self.tree is an element
+                target = self.tree.getroot()
+            except AttributeError:
+                target = self.tree
         else:
             xpath = self._buildXpathFromActualIndex(targetActualIndex)
             self.log.debug('\txpath: %s' % xpath)
@@ -399,7 +405,14 @@ class ErrorParser:
         if not match: return None, None, None
         actualTag = match.group(1)
         candidates = self.tree.xpath('//%s' % actualTag)
-        if (len(candidates) > 1) or (not candidates[0] is self.tree.getroot()):
+        try:
+            #This functions should work if passed an lxml tree object or an element is passed. 
+            #We need to test against the root below, so first we find the root. AttributeErorr is 
+            #raised if self.tree is an element
+            actualroot = self.tree.getroot()
+        except AttributeError:
+            actualroot = self.tree
+        if (len(candidates) > 1) or (not candidates[0] is actualroot):
             self.log.debug('pattern matched, but could not find expectedTags or actualTags')
             return None, None, None
         parentTag = None

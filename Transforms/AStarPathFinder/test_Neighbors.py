@@ -23,7 +23,7 @@ class test_findNeighbors_FirstValidationError(unittest.TestCase):
         self.log.debug('running %s' % __name__)
         testfile = os.path.join(self.testfilesdir, 'NeighborsTest1.xml')
         tree = lxml.etree.parse(testfile)
-        neighbors = Neighbors.findNeighbors_FirstValidationError(tree)
+        neighbors = Neighbors.findNeighbors_FirstValidationError(Neighbors.Neighbor(tree))
         expectedneighbors = ['<dita/>', '<dita><a/></dita>']
         index = 0
         self.assertEqual(len(expectedneighbors), len(neighbors), "findNeighbors_FirstValidationError returned a neighbors list of the wrong lenght: expected %i, got %i" % (len(expectedneighbors), len(neighbors))) 
@@ -38,7 +38,7 @@ class test_findNeighbors_FirstValidationError(unittest.TestCase):
         self.log.debug('running %s' % __name__)
         testfile = os.path.join(self.testfilesdir, 'NeighborsTest2.xml')
         tree = lxml.etree.parse(testfile)
-        neighbors = Neighbors.findNeighbors_FirstValidationError(tree)
+        neighbors = Neighbors.findNeighbors_FirstValidationError(Neighbors.Neighbor(tree))
         expectedneighbors = ['<dita><concept/></dita>', \
                             '<dita><glossentry/></dita>',\
                             '<dita><reference/></dita>',\
@@ -64,7 +64,7 @@ class test_findNeighbors_FirstValidationError(unittest.TestCase):
         self.log.debug('running %s' % __name__)
         testfile = os.path.join(self.testfilesdir, 'NeighborsTest3.xml')
         tree = lxml.etree.parse(testfile)
-        neighbors = Neighbors.findNeighbors_FirstValidationError(tree)
+        neighbors = Neighbors.findNeighbors_FirstValidationError(Neighbors.Neighbor(tree))
         expectedneighbors = ['<dita><concept/><b/></dita>', \
                             '<dita><glossentry/><b/></dita>',\
                             '<dita><reference/><b/></dita>',\
@@ -91,7 +91,7 @@ class test_findNeighbors_FirstValidationError(unittest.TestCase):
         self.log.debug('running %s' % __name__)
         testfile = os.path.join(self.testfilesdir, 'NeighborsTest4.xml')
         tree = lxml.etree.parse(testfile)
-        neighbors = Neighbors.findNeighbors_FirstValidationError(tree)
+        neighbors = Neighbors.findNeighbors_FirstValidationError(Neighbors.Neighbor(tree))
         expectedneighbors = ['<dita><topic><title/></topic></dita>', '<dita><topic><title><a/></title></topic></dita>', '<dita><topic/></dita>']
         index = 0
         self.assertEqual(len(expectedneighbors), len(neighbors), "findNeighbors_FirstValidationError returned a neighbors list of the wrong lenght: expected %i, got %i" % (len(expectedneighbors), len(neighbors))) 
@@ -107,7 +107,7 @@ class test_findNeighbors_FirstValidationError(unittest.TestCase):
         self.log.debug('running %s' % __name__)
         testfile = os.path.join(self.testfilesdir, 'NeighborsTest5.xml')
         tree = lxml.etree.parse(testfile)
-        neighbors = Neighbors.findNeighbors_FirstValidationError(tree)
+        neighbors = Neighbors.findNeighbors_FirstValidationError(Neighbors.Neighbor(tree))
         expectedneighbors = ['<dita><topic><title/><abstract/></topic></dita>',
                              '<dita><topic><title/><body/></topic></dita>',   
                              '<dita><topic><title/><concept/></topic></dita>',

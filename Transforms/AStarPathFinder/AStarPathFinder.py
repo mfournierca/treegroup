@@ -1,11 +1,11 @@
 """Transform a tree into dita using an adapted A* pathfinding algorithm"""
 
 
-import logging, lxml.etree, sys, optparse, re, copy
+import logging, lxml.etree, sys, optparse, re, copy, os.path
 
 import DitaTools.Tree.File.Dita
 
-sys.path.insert(0, os.path.join(os.path.dirname(__file__), '..'))
+sys.path.insert(0, os.path.join(os.path.dirname(__file__), '..', '..'))
 
 import Tree.Tree, Element.Element, Neighbors
 
@@ -37,11 +37,12 @@ class AStarPathFinder:
         self.inputfile = file
         self.inputtree = lxml.etree.parse(self.inputfile)
         
-        self.start = Neighbors.Neighbor()
-        self.start.setTree(self.inputtree) 
-        self._openset = set(self.start)
+        self.start = Neighbors.Neighbor(self.inputtree)
+        self._openset = set([self.start])
         
         self._closedset = set()
+        
+        self.log = logging.getLogger()
         
         
     def findPath(self):
@@ -66,35 +67,57 @@ class AStarPathFinder:
         pass
     
     
+    
     def processNeighbors(self, t):
         #process the neighbors of t - find them, add to openset if necessary, 
-        #calculate scores, etc. 
+        #calculate scores, etc. Note that t itself is an instance of the Neighbors.Neighbor class
+        self.log.debug('processing neighbors of %s' % str(t))
         neighbors = Neighbors.findNeighbors_FirstValidationError(t)
+        self.log.debug('found %i neighbors' % len(neighbors))
         
         for n in neighbors: 
-            pass
+            self.log.debug('\t%s' % str(n))
+            
             #if n in closed set, continue
+            inClosedSet = False
+            for c in self._closedset:
+                if Tree.Tree.equal(c.getTree(), n.getTree()):
+                    #then n is in closed set. 
+                    inClosedSet = True
+            if inClosedSet: 
+                self.log.debug('\tin closed set, continue')
+                continue
+            
             
             #get tentativeGScore = n.getGScore() + Tree.Tree.metric(t, n)
+            tentativeGScore = t.getGScore() + Tree.Tree.metric(n.getTree(), t.getTree())
+            self.log.debug('\ttentative gscore: %s' % str(tentativeGScore))
             
-            #if n not in openset:
-                #self._addToOpenSet(n)
-                #tentativeIsBetter = True
+            inOpenSet = False
+            for o in self._openset:
+                if Tree.Tree.equal(o.getTree(), n.getTree()):
+                    #then n is in closed set. 
+                    inOpenSet = True
+                    del n
+                    n = o
+            
+            
+            if not inOpenSet:
+                self.log.debug('\tnot in open set, adding to open set')
+                self._addToOpenSet(n)
+                tentativeIsBetter = True
+            elif tentativeGScore < n.getGScore(): #if n is in the openset, it already has a GScore
+                tentativeIsBetter = True
+            else:
+                tentativeIsBetter = False
                 
-            #elif tentativeGScore < n.getGScore() #if n is in the openset, it already has a GScore
-                #tentativeIsBetter = True
                 
-            #else:
-                #tentativeIsBetter = False
-                
-            #if tentativeIsBetter is True: 
-                #n.setCameFrom(t)
-                
-                #n.setGScore(tentativeGScore)
-                
-                #n.setHScore = number of validation errors
-                
-                #n.setFScore(n.getGScore() + n.getHScore)
+            if tentativeIsBetter is True: 
+                self.log.debug('tentative is better')
+                n.setCameFrom(t)
+                n.setGScore(tentativeGScore)
+                n.setHScore(len(DitaTools.Tree.File.Dita.v11_validate(n.getTree())))
+                n.setFScore(n.getGScore() + n.getHScore())
                 
                 #update closed and open set #?
             
@@ -126,8 +149,9 @@ class AStarPathFinder:
         pass
     
     
+    
     def _addToOpenSet(self, x):
-        pass
+        self._openset.add(x)
     
     def _removeFromOpenSet(self, x):
         pass
