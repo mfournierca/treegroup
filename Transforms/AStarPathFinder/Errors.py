@@ -349,6 +349,7 @@ class ErrorParser:
                     break
             else:
                 self.log.debug('\tno match found')
+                pass
         
         #debug output
         self.log.debug('links built.')
@@ -356,14 +357,18 @@ class ErrorParser:
         for entry in self._actualTags: 
             if entry[1] is not None: 
                 self.log.debug('\t%s -> %s: %s' % (entry[0], entry[1], self._expectedTags[entry[1]][0]))
+                pass
             else:
                 self.log.debug('\t%s -> %s: %s' % (entry[0], str(None), str(None)))
+                pass
         self.log.debug('expectedTags links:')
         for entry in self._expectedTags: 
             if entry[1] is not None: 
                 self.log.debug('\t%s -> %s: %s' % (entry[0], entry[1], self._actualTags[entry[1]][0]))
+                pass
             else:
                 self.log.debug('\t%s -> %s: %s' % (entry[0], str(None), str(None)))   
+                pass
 
         
     def _expectedEntryIsMandatory(self, entry):

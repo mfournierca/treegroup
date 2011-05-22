@@ -23,7 +23,7 @@ class Neighbor:
         
         self._tree = None
         self.setTree(tree)
-        self._operand = None
+#        self._operand = None
     
     
     #===========================================================================
@@ -43,15 +43,15 @@ class Neighbor:
     #simple at this point. But changing them in the future will not require changes
     #in any other part of the program. 
         
-    def getOperandTree(self):
-        """Return the operand tree of this neighbor, ie the operand that when added to the
-        camefrom tree creates this neighbor tree. There is no guarantee that any changes
-        made on the return tree will persist, to guarantee that, use the setOperandTree() method."""
-        return self._operand
-    
-    def setOperandTree(self, tree):
-        """Set the operand tree"""
-        self._operand = tree
+#    def getOperandTree(self):
+#        """Return the operand tree of this neighbor, ie the operand that when added to the
+#        camefrom tree creates this neighbor tree. There is no guarantee that any changes
+#        made on the return tree will persist, to guarantee that, use the setOperandTree() method."""
+#        return self._operand
+#    
+#    def setOperandTree(self, tree):
+#        """Set the operand tree"""
+#        self._operand = tree
     
     
     def getTree(self):
@@ -92,6 +92,11 @@ class Neighbor:
         return self._fscore
     
     
+    def setCameFrom(self, c):
+        self._camefrom = c 
+    
+    def getCameFrom(self):
+        return self._camefrom
     
     
 def findNeighbors_FirstValidationError(n):
@@ -113,13 +118,16 @@ def findNeighbors_FirstValidationError(n):
     #get operands
     log.debug('finding operands')
     operands = []
-    for o in Generators.Rename.Iterator(errorParser.targetElement, errorParser.acceptableTags):
+    iterator = Generators.Rename.Iterator(errorParser.targetElement, errorParser.acceptableTags)
+    for o in iterator:
         operands.append(o)
     
-    for o in Generators.Wrap.Iterator(errorParser.targetElement, errorParser.acceptableTags):
+    iterator = Generators.Wrap.Iterator(errorParser.targetElement, errorParser.acceptableTags)
+    for o in iterator:
         operands.append(o)
         
-    for o in Generators.Unwrap.Iterator(errorParser.targetElement):
+    iterator = Generators.Unwrap.Iterator(errorParser.targetElement)
+    for o in iterator:
         operands.append(o)
        
     #apply operands to tree to get neighbors
@@ -127,7 +135,6 @@ def findNeighbors_FirstValidationError(n):
     neighbors = []
     for  o in operands:
         neighbor = Neighbor(Tree.Tree.add(o.getTree(), n.getTree()))
-#        neighbor.operand = copy.deepcopy(o.tree)
         log.debug('\tneighbor: %s' % lxml.etree.tostring(neighbor.getTree()))
         neighbors.append(neighbor)
         

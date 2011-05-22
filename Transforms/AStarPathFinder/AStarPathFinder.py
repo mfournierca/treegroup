@@ -34,32 +34,41 @@ class AStarPathFinder:
     since it copies a pathfinding algorithm.  """
     
     def __init__(self, file):
+        self.log = logging.getLogger()
+        
         self.inputfile = file
         self.inputtree = lxml.etree.parse(self.inputfile)
         
         self.start = Neighbors.Neighbor(self.inputtree)
+        self.start.setFScore(0)
         self._openset = set([self.start])
+        self.log.debug('self._openset: %s' % str(self._openset))
         
         self._closedset = set()
-        
-        self.log = logging.getLogger()
+        self.log.debug('self._closedset: %s' % str(self._closedset))
         
         
     def findPath(self):
         
         #get member of open set with lowest fscore
         t = self.findLowestFscore()
+        self.log.debug('lowest FScore: %s' % str(t))
         
         #check if t is dita
-        errors = DitaTools.Tree.File.Dita.v11_validate(t)
+        errors = DitaTools.Tree.File.Dita.v11_validate(t.getTree())
         if len(errors) == 0:
             #if t is dita, the algorithm is complete.
-            finalOperand = self.backTrackBuildOperand(self, t)
-            return finalOperand
+#            finalOperand = self.backTrackBuildOperand(self, t)
+#            return finalOperand
+            self.log.debug('transformation complete')
+            return t
+        
         
         #remove t from openset
+        self._removeFromOpenSet(t)
         
         #add t to closed set
+        self._addToClosedSet(t)
         
         #process neighbors of t
         self.processNeighbors(t)
@@ -79,30 +88,30 @@ class AStarPathFinder:
             self.log.debug('\t%s' % str(n))
             
             #if n in closed set, continue
-            inClosedSet = False
-            for c in self._closedset:
-                if Tree.Tree.equal(c.getTree(), n.getTree()):
-                    #then n is in closed set. 
-                    inClosedSet = True
-            if inClosedSet: 
+            if self._inClosedSet(n): 
                 self.log.debug('\tin closed set, continue')
                 continue
+            
+            
+            #because of the program flow and the way neighbors are generated, two neighbor 
+            #objects could represent the same tree, ie the same point in tree space. 
+            #This must be dealt with. 
+            #Get the member in the openset that matches n, if any
+            oMember = self._inOpenSet(n)
+            if oMember is False:
+                pass
+            else:
+                #otherwise replace n. 
+                del n
+                n = oMember
             
             
             #get tentativeGScore = n.getGScore() + Tree.Tree.metric(t, n)
             tentativeGScore = t.getGScore() + Tree.Tree.metric(n.getTree(), t.getTree())
             self.log.debug('\ttentative gscore: %s' % str(tentativeGScore))
             
-            inOpenSet = False
-            for o in self._openset:
-                if Tree.Tree.equal(o.getTree(), n.getTree()):
-                    #then n is in closed set. 
-                    inOpenSet = True
-                    del n
-                    n = o
-            
-            
-            if not inOpenSet:
+         
+            if oMember is False:
                 self.log.debug('\tnot in open set, adding to open set')
                 self._addToOpenSet(n)
                 tentativeIsBetter = True
@@ -126,35 +135,64 @@ class AStarPathFinder:
 
     def findLowestFscore(self):
         """Find the element of the open set with the lowest fscore"""
-        pass
+        lowest = None
+        for n in self._openset:
+            if lowest is None:
+                lowest = n
+                continue
+            
+            if n.getFScore() < lowest.getFScore():
+                lowest = n
+                continue
+            
+        return lowest
 
 
     def _inClosedSet(self, x):
         #return True if x is in the closed set, False otherwise.
-        pass
-    
-    def _inOpenSet(self, x):
-        #return True if x is in the open set, False otherwise
-        pass
-    
-    def backTrackBuildOperand(self, x):
-        pass
-
-
+        inClosedSet = False
+        for c in self._closedset:
+            if Tree.Tree.equal(c.getTree(), x.getTree()):
+                #then n is in closed set. 
+                return c
+        return False
 
     def _addToClosedSet(self, x):
-        pass
+        self._closedset.add(x)
     
-    def _removeFromClosedSet(self, x):
-        pass
-    
-    
-    
+#    def _removeFromClosedSet(self, x):
+#        pass
+
+
+
+    def _inOpenSet(self, x):
+        #return True if x is in the open set, False otherwiseinOpenSet = False
+        for o in self._openset:
+            if Tree.Tree.equal(o.getTree(), x.getTree()):
+                #then n is in closed set. 
+                return o
+        return False
+        
     def _addToOpenSet(self, x):
         self._openset.add(x)
     
     def _removeFromOpenSet(self, x):
-        pass
+        self._openset.remove(x
+                             )
+
+
+
+    
+#    def backTrackBuildOperand(self, x):
+#        operand = copy.deepcopy(x.getOperandTree())
+#        while x.getCameFrom() is not None:
+#            x = x.getCameFrom()
+#            Tree.Tree.add(operand, x.getOperandTree())
+#        return operand
+
+    
+    
+    
 
 
 #===============================================================================
@@ -222,10 +260,14 @@ if __name__ == "__main__":
     log.debug("transforming file: %s" % input)
         
     #initialize transformation object
-    pathfinder = AStarPathfinder(input)
+    pathfinder = AStarPathFinder(input)
     
     #perform transformation
-    path = pathfinder.findPath()
+    result = pathfinder.findPath()
+    
+    
+    print('success')
+    print(lxml.etree.tostring(result))
     
     #add path to input
     

@@ -18,10 +18,10 @@ class Generator:
     def generateOperand(self, targetElement, tag):
         """Generate an operand for the targetElement and tag"""
         if not isinstance(targetElement, lxml.etree._Element):
-            self.log.warning('targetElement must be lxml.etree._Element object, aborting')
+            self.log.warning('targetElement must be lxml.etree._Element object, is %s. Aborting' % str(targetElement))
             return None
         elif not isinstance(tag, str):
-            self.log.warning('tag must be str object, aborting')
+            self.log.warning('tag must be str object, is %s. Aborting' % str(tag))
             return None
         else:
             pass
@@ -60,11 +60,11 @@ class Iterator(Generator):
     def __init__(self, targetElement, acceptableTags):       
         self.log = logging.getLogger() 
         if not isinstance(targetElement, lxml.etree._Element):
-            self.log.warning('targetElement must be lxml.etree._Element object, aborting')
+            self.log.warning('targetElement must be lxml.etree._Element object, is %s. Aborting' % str(targetElement))
             #raise StopIteration #?
             return None
         elif not isinstance(acceptableTags, list):
-            self.log.warning('acceptableTags must be list object, aborting')
+            self.log.warning('acceptableTags must be list object, is %s. Aborting' % str(acceptableTags))
             #raise StopIteration #?
             return None
         else:
