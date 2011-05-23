@@ -42,7 +42,9 @@ class Generator:
         self.log.debug('generating rename operand tree')
         self.log.debug('targetElement: %s' % targetElement)
         self.log.debug('rename to: %s' % tag)
-        renamenode = Element.Element.add(lxml.etree.Element(tag), Element.Element.invert(lxml.etree.Element(targetElement.tag, targetElement.attrib)))
+        #we exclude the attributes from the inverted element, below, because we only
+        #want the generated operand to affect the tag. 
+        renamenode = Element.Element.add(lxml.etree.Element(tag), Element.Element.invert(lxml.etree.Element(targetElement.tag)))#, targetElement.attrib)))
 #        operand.target.tag = renamenode.tag
 #        for a in renamenode.attrib.keys():
 #            operand.target.attrib[a] = renamenode.attrib[a]

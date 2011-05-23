@@ -261,10 +261,14 @@ def countNonUnitNodes(tree):
     """The size of a tree is defined as the number of non-unit nodes within the tree. 
     This function should satisfy all the conditions of a modulus, but that has not been 
     proven. """
-    log = logging.getLogger()
-    log.debug('%s' % lxml.etree.tostring(tree))
+    log = logging.getLogger()    
+    if isinstance(tree, lxml.etree._ElementTree):
+        t = tree.getroot()
+    else:
+        t = tree
+    log.debug('%s' % lxml.etree.tostring(t))
     count = 0
-    for i in tree.getroot().iter():
+    for i in t.iter():
         if i.tag == '_' and len(i.attrib) == 0: continue
         else: count += 1
     return count

@@ -40,6 +40,8 @@ class AStarPathFinder:
         self.inputtree = lxml.etree.parse(self.inputfile)
         
         self.start = Neighbors.Neighbor(self.inputtree)
+        self.start.setGScore(0)
+        self.start.setHScore(0)
         self.start.setFScore(0)
         self._openset = set([self.start])
         self.log.debug('self._openset: %s' % str(self._openset))
@@ -50,30 +52,33 @@ class AStarPathFinder:
         
     def findPath(self):
         
-        #get member of open set with lowest fscore
-        t = self.findLowestFscore()
-        self.log.debug('lowest FScore: %s' % str(t))
+        while len(self._openset) > 0:
+            #get member of open set with lowest fscore
+            t = self.findLowestFscore()
+            self.log.debug('lowest FScore: %s' % str(t))
+            self.log.debug('tree: %s' % lxml.etree.tostring(t.getTree()))
+            
+            #check if t is dita
+            errors = DitaTools.Tree.File.Dita.v11_validate(t.getTree())
+            if len(errors) == 0:
+                #if t is dita, the algorithm is complete.
+    #            finalOperand = self.backTrackBuildOperand(self, t)
+    #            return finalOperand
+                self.log.debug('transformation complete')
+                return t.getTree()
+            
+            
+            #remove t from openset
+            self._removeFromOpenSet(t)
+            
+            #add t to closed set
+            self._addToClosedSet(t)
+            
+            #process neighbors of t
+            self.processNeighbors(t)
         
-        #check if t is dita
-        errors = DitaTools.Tree.File.Dita.v11_validate(t.getTree())
-        if len(errors) == 0:
-            #if t is dita, the algorithm is complete.
-#            finalOperand = self.backTrackBuildOperand(self, t)
-#            return finalOperand
-            self.log.debug('transformation complete')
-            return t
-        
-        
-        #remove t from openset
-        self._removeFromOpenSet(t)
-        
-        #add t to closed set
-        self._addToClosedSet(t)
-        
-        #process neighbors of t
-        self.processNeighbors(t)
-        
-        pass
+        self.log.debug('transformation failed')
+        return False
     
     
     
@@ -265,8 +270,6 @@ if __name__ == "__main__":
     #perform transformation
     result = pathfinder.findPath()
     
-    
-    print('success')
     print(lxml.etree.tostring(result))
     
     #add path to input

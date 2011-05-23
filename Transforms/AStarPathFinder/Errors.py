@@ -33,7 +33,7 @@ class ErrorParser:
         #Note that the order of the parsing functions in the list below is important. Some parsers only
         #create valid results on the assumption that other parsers have run before them, ie _parsePattern1
         #and _parsePattern3. 
-        for f in [self._parsePattern1, self._parsePattern2, self._parsePattern3]: 
+        for f in [self._parsePattern1, self._parsePattern2, self._parsePattern3, self._parsePattern4]: 
             self._parentTag, self._expectedTags, self._actualTags = f()
             if (not self._expectedTags is None) and (not self._actualTags is None):
                 break
@@ -457,3 +457,24 @@ class ErrorParser:
         self.log.debug('\tactualTags: %s' % str(actualTags))
         self.log.debug('\texpectedTags: %s' % str(expectedTags))
         return parentTag, expectedTags, actualTags
+    
+    def _parsePattern4(self):
+        pattern = r'.*?\:\d*\:\d*\:ERROR\:VALID\:DTD_INVALID_CHILD\: Element (.*?) is not declared in (.*?) list of possible children'
+        self.log.debug('testing pattern: %s' % str(pattern))
+        match = re.search(pattern, self.errorMessage)
+        if not match: return None, None, None
+        #If match, then it gets tricky. This pattern does not give any indication of what
+        #element is expected, so we need to guess. For now, the only guess we make is that
+        #if this is the root, it should be dita. 
+        #The xpath below should match at least once, and the target element should be the first match
+        element = self.tree.xpath('//%s/%s' % (match.group(2), match.group(1)))[0]
+        if (self.tree.getroot() is element.getparent()) and (not element.getparent().tag in ['dita', 'topic', 'task']):
+            parentTag = None
+            expectedTags = ['dita']
+            actualTags = [match.group(2)]
+        else:
+            parentTag = None
+            expectedTags = None
+            actualTags = None
+        return parentTag, expectedTags, actualTags
+                                                              
