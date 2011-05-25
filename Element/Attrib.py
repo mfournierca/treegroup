@@ -25,7 +25,7 @@ import copy
 #unit node is because this is a cyclic group. But keep in mind that several operations, 
 #eg cleanstring() remove trailing units in a string, which may cause problems if the '_' is
 #significant in some context. 
-attrdomain = ['_'] + [i for i in map(chr, range(97, 123))] + [i for i in map(chr, range(65, 91))] + [i for i in map(chr, range(48, 58))]
+attrdomain = ['_'] + ['-'] + [i for i in map(chr, range(97, 123))] + [i for i in map(chr, range(65, 91))] + [i for i in map(chr, range(48, 58))]
 
 def _cleankeys(attr):
     deletekeys = []

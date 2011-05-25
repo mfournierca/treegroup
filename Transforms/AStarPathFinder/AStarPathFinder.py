@@ -1,7 +1,7 @@
 """Transform a tree into dita using an adapted A* pathfinding algorithm"""
 
 
-import logging, lxml.etree, sys, optparse, re, copy, os.path
+import logging, lxml.etree, sys, optparse, re, copy, os.path, tempfile, shutil
 
 import DitaTools.Tree.File.Dita
 
@@ -33,11 +33,12 @@ class AStarPathFinder:
     being the operands all added together. I am going to use the word pathfinder, 
     since it copies a pathfinding algorithm.  """
     
-    def __init__(self, file):
+    def __init__(self, file, tempdir):
         self.log = logging.getLogger()
         
         self.inputfile = file
         self.inputtree = lxml.etree.parse(self.inputfile)
+        self.tempdir = tempdir
         
         self.start = Neighbors.Neighbor(self.inputtree)
         self.start.setGScore(0)
@@ -49,6 +50,8 @@ class AStarPathFinder:
         self._closedset = set()
         self.log.debug('self._closedset: %s' % str(self._closedset))
         
+        #step number is used to keep track of the process. 
+        self.stepnumber = 0
         
     def findPath(self):
         
@@ -57,6 +60,11 @@ class AStarPathFinder:
             t = self.findLowestFscore()
             self.log.debug('lowest FScore: %s' % str(t))
             self.log.debug('tree: %s' % lxml.etree.tostring(t.getTree()))
+            
+            steptrackingout = open(os.path.join(self.tempdir, str(self.stepnumber) + '.xml'), 'wb')
+            steptrackingout.write(lxml.etree.tostring(t.getTree()))
+            steptrackingout.close() 
+            
             
             #check if t is dita
             errors = DitaTools.Tree.File.Dita.v11_validate(t.getTree())
@@ -76,6 +84,8 @@ class AStarPathFinder:
             
             #process neighbors of t
             self.processNeighbors(t)
+            
+            self.stepnumber += 1
         
         self.log.debug('transformation failed')
         return False
@@ -210,17 +220,18 @@ if __name__ == "__main__":
     
     optparser.add_option("-i", "--input", type="string", dest="input", default='', 
     help="Path to the input file")
-    optparser.add_option("-o", "--output", type="string", dest="output", default='', 
+    optparser.add_option("-o", "--output", type="string", dest="output", default=None, 
     help="Path to the input file")
     optparser.add_option("--debug", action="store_true", dest="debug",
     help="Turn this on to activate debug logging.")
-    #optparser.add_option( "-t", "--tempdir", type="string", dest="tempdir", default=None, 
-    #help="path to the tempdir")
+    optparser.add_option( "-t", "--tempdir", type="string", dest="tempdir", default=None, 
+    help="path to the tempdir")
     
     (options, args) = optparser.parse_args()
     input = options.input
     debug = options.debug
     output = options.output
+    tempdir = options.tempdir
     
     #this next block ensures that the user can pass the input as a positional
     #argument, without the -i
@@ -229,10 +240,15 @@ if __name__ == "__main__":
     except:
         pass
     
-    if output == '':
+    if output is None:
         output = input + '.dita'
         
-    
+    if tempdir is None:
+#        tempdir = tempfile.mkdtemp(prefix="AStarTransform-", dir=os.path.dirname(input))
+        tempdir = os.path.join(os.path.dirname(input), 'AStarTransformTemp') 
+        if os.path.exists(tempdir): shutil.rmtree(tempdir)
+        os.mkdir(tempdir)
+        
     #===============================================================================
     # #prepare logging
     #===============================================================================
@@ -265,7 +281,7 @@ if __name__ == "__main__":
     log.debug("transforming file: %s" % input)
         
     #initialize transformation object
-    pathfinder = AStarPathFinder(input)
+    pathfinder = AStarPathFinder(input, tempdir)
     
     #perform transformation
     result = pathfinder.findPath()

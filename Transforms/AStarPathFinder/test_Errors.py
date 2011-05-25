@@ -177,7 +177,7 @@ class test_ErrorParser(unittest.TestCase):
         """Test the unknown element error message when passed an element"""
         self.log.debug('')
         self.log.debug('')
-        self.log.debug('running test test_1')
+        self.log.debug('running test test_9')
         testfile = os.path.join(self.testfilesdir, 'ErrorTest1.xml')
         tree = lxml.etree.parse(testfile)
         expectedtargetelement = tree.getroot()
@@ -190,4 +190,65 @@ class test_ErrorParser(unittest.TestCase):
         self.assertEqual(parser.errorMessage, expectederrormessage, 'ErrorParser parsed the wrong error. Expected %s, got %s' % (expectederrormessage, parser.errorMessage))
         self.assertEqual(expectedtags, parser.acceptableTags, 'ErrorParser parsed the wrong tags. Expected %s, got %s' % (expectedtags, parser.acceptableTags))
         self.assertTrue(expectedtargetelement is parser.targetElement, 'ErrorParser parsed the wrong target element. Expected %s, got %s' % (expectedtargetelement, parser.targetElement))
+    
+    def test_10(self):
+        #test the '.*?\:\d*\:\d*\:ERROR\:VALID\:DTD_INVALID_CHILD\: Element (.*?) is not declared in (.*?) list of possible children' message
+        #should occur when root is misnamed and has children. 
+        self.log.debug('')
+        self.log.debug('')
+        self.log.debug('running test test_10')
+        testfile = os.path.join(self.testfilesdir, 'ErrorTest9.xml')
+        tree = lxml.etree.parse(testfile)
+        expectedtargetelement = tree.getroot()
+        expectederrormessage = '/Users/matt/work/programs/dev_workspace/TreeGroup/Transforms/AStarPathFinder/../../testfiles/AStarTransform/Errors/ErrorTest9.xml:2:0:ERROR:VALID:DTD_UNKNOWN_ELEM: No declaration for element a'
+        expectedtags = ['dita']
+        
+        parser = Errors.ErrorParser(tree)
+        parser.parse()
+        
+        self.assertEqual(parser.errorMessage, expectederrormessage, 'ErrorParser parsed the wrong error. Expected %s, got %s' % (expectederrormessage, parser.errorMessage))
+        self.assertEqual(expectedtags, parser.acceptableTags, 'ErrorParser parsed the wrong tags. Expected %s, got %s' % (expectedtags, parser.acceptableTags))
+        self.assertTrue(expectedtargetelement is parser.targetElement, 'ErrorParser parsed the wrong target element. Expected %s, got %s' % (expectedtargetelement, parser.targetElement))
+
+    
+    def test_11(self):
+        #test a file that needs to have an element inserted after the target
+        self.log.debug('')
+        self.log.debug('')
+        self.log.debug('running test test_11')
+        testfile = os.path.join(self.testfilesdir, 'ErrorTest10.xml')
+        tree = lxml.etree.parse(testfile)
+        expectedtargetelement = tree.xpath('//glossterm')[0]
+        expectederrormessage = '/Users/matt/work/programs/dev_workspace/TreeGroup/Transforms/AStarPathFinder/../../testfiles/AStarTransform/Errors/ErrorTest10.xml:3:0:ERROR:VALID:DTD_CONTENT_MODEL: Element glossentry content does not follow the DTD, expecting (glossterm , glossdef , related-links? , no-topic-nesting*), got (glossterm )'
+        expectedtags = ['glossdef']
+        
+        parser = Errors.ErrorParser(tree)
+        parser.parse()
+        
+        self.assertEqual(parser.errorMessage, expectederrormessage, 'ErrorParser parsed the wrong error. Expected %s, got %s' % (expectederrormessage, parser.errorMessage))
+        self.assertEqual(expectedtags, parser.acceptableTags, 'ErrorParser parsed the wrong tags. Expected %s, got %s' % (expectedtags, parser.acceptableTags))
+        self.assertTrue(expectedtargetelement is parser.targetElement, 'ErrorParser parsed the wrong target element. Expected %s, got %s' % (expectedtargetelement, parser.targetElement))
+
+    
+    def test_12(self):
+        #test a file that needs an element inserted before the target
+        self.log.debug('')
+        self.log.debug('')
+        self.log.debug('running test test_12')
+        testfile = os.path.join(self.testfilesdir, 'ErrorTest11.xml')
+        tree = lxml.etree.parse(testfile)
+        expectedtargetelement = tree.xpath('//glossdef')[0]
+        expectederrormessage = '/Users/matt/work/programs/dev_workspace/TreeGroup/Transforms/AStarPathFinder/../../testfiles/AStarTransform/Errors/ErrorTest11.xml:3:0:ERROR:VALID:DTD_CONTENT_MODEL: Element glossentry content does not follow the DTD, expecting (glossterm , glossdef , related-links? , no-topic-nesting*), got (glossdef )'
+        expectedtags = ['glossterm']
+        
+        parser = Errors.ErrorParser(tree)
+        parser.parse()
+        
+        self.assertEqual(parser.errorMessage, expectederrormessage, 'ErrorParser parsed the wrong error. Expected %s, got %s' % (expectederrormessage, parser.errorMessage))
+        self.assertEqual(expectedtags, parser.acceptableTags, 'ErrorParser parsed the wrong tags. Expected %s, got %s' % (expectedtags, parser.acceptableTags))
+        self.assertTrue(expectedtargetelement is parser.targetElement, 'ErrorParser parsed the wrong target element. Expected %s, got %s' % (expectedtargetelement, parser.targetElement))
+
+    
+    
+    
     
