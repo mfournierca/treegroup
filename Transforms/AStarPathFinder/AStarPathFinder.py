@@ -33,7 +33,7 @@ class AStarPathFinder:
     being the operands all added together. I am going to use the word pathfinder, 
     since it copies a pathfinding algorithm.  """
     
-    def __init__(self, file, tempdir):
+    def __init__(self, file, tempdir=None):
         self.log = logging.getLogger()
         
         self.inputfile = file
@@ -61,9 +61,10 @@ class AStarPathFinder:
             self.log.debug('lowest FScore: %s' % str(t))
             self.log.debug('tree: %s' % lxml.etree.tostring(t.getTree()))
             
-            steptrackingout = open(os.path.join(self.tempdir, str(self.stepnumber) + '.xml'), 'wb')
-            steptrackingout.write(lxml.etree.tostring(t.getTree()))
-            steptrackingout.close() 
+            if self.tempdir is not None:
+                steptrackingout = open(os.path.join(self.tempdir, str(self.stepnumber) + '.xml'), 'wb')
+                steptrackingout.write(lxml.etree.tostring(t.getTree()))
+                steptrackingout.close() 
             
             
             #check if t is dita
