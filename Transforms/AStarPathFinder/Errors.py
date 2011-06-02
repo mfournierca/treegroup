@@ -477,4 +477,92 @@ class ErrorParser:
             expectedTags = None
             actualTags = None
         return parentTag, expectedTags, actualTags
-                                                              
+    
+    
+    
+    
+    
+    
+    
+    
+#===============================================================================
+# error parser 2, using a different method. 
+#===============================================================================
+
+class ErrorParser2:
+    
+    def __init__(self):
+        pass
+    
+    def parse(self):
+        pass
+        
+        
+        
+        
+    def parseActualTags(self):
+        pass
+        #set expectedIndex = 0. This will be used to determine the acceptable tags. 
+        #for index, entry in actual list
+        
+            #check [expectedIndex:next mandatory or end] slice until match or end
+            #match found?
+            #yes: 
+                #reset expectedIndex to match if necessary (on ? and mandatory, not + and *)
+                #continue
+                
+            #no
+                #entry is target element
+                
+                #now we need to decide on the acceptableTags. There are a few ways of doing
+                #this, all with different effect. 
+                
+                #1) Just find the first mandatory entry in the array slice and take that. 
+                #Obviously we want to use the mandatory entries, so that is an advantage. 
+                #However, this ignores other 
+                #information about the tree. If a non-mandatory entry is first in the slice, 
+                #then we may actually want the tree to use that and then use the mandatory entry 
+                #on a later element. Trying to make this decision here would be very complicated. 
+                
+                #2) Just return the whole slice. 
+                #If we take this approach, then the AStarTransform program would have to implement
+                #some kind of cost-assigning function at later steps. This is probably the best approach.
+                
+                #3) Take the slice up to and including the first mandatory. This is just a variation on the
+                #other 2. 
+                
+                #There are more options here, this decision in the program is probably going to need
+                #tweaking. 
+                
+                #We are taking option 2 for now. 
+                #acceptableTags are the array slice. 
+            
+            
+            
+        
+    def parseExpectedTags(self):
+        pass
+        #set actualIndex = 0
+        #while index < len(expected list)
+            
+            #check actualIndex. Match? 
+            #yes: 
+                #set actualIndex +=1 
+                #if expected entry is * or +, keep index the same. Otherwise increment. 
+            
+            #no:
+                #check expected list [index:next mandatory or end] slice against actualIndex until match or end
+                
+                #if match: 
+                    #set actualIndex +=1 
+                    #set index to match index
+                
+                #if no match, actualIndex is targetElement
+                
+                #See above for discussion of how to decide acceptableTags.
+                #acceptableTags are the array slice. 
+            
+            
+            
+            
+            
