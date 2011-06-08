@@ -12,7 +12,7 @@ class test_ErrorParser(unittest.TestCase):
     def setUp(self):
         self.testfilesdir = os.path.join(os.path.dirname(__file__), '..', '..', 'testfiles', 'AStarTransform', 'Errors')
         self.log = logging.getLogger()
-        self.parserClass = Errors.ErrorParser2
+        self.parserClass = Errors.ErrorParser
         
         
     def test_1(self):
