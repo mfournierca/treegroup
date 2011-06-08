@@ -12,6 +12,7 @@ class test_ErrorParser(unittest.TestCase):
     def setUp(self):
         self.testfilesdir = os.path.join(os.path.dirname(__file__), '..', '..', 'testfiles', 'AStarTransform', 'Errors')
         self.log = logging.getLogger()
+        self.parserClass = Errors.ErrorParser2
         
         
     def test_1(self):
@@ -25,7 +26,7 @@ class test_ErrorParser(unittest.TestCase):
         expectederrormessage = '/Users/matt/work/programs/dev_workspace/TreeGroup/Transforms/AStarPathFinder/../../testfiles/AStarTransform/Errors/ErrorTest1.xml:2:0:ERROR:VALID:DTD_UNKNOWN_ELEM: No declaration for element a'
         expectedtags = ['dita']
         
-        parser = Errors.ErrorParser(tree)
+        parser = self.parserClass(tree)
         parser.parse()
         
         self.assertEqual(parser.errorMessage, expectederrormessage, 'ErrorParser parsed the wrong error. Expected %s, got %s' % (expectederrormessage, parser.errorMessage))
@@ -44,7 +45,7 @@ class test_ErrorParser(unittest.TestCase):
         expectederrormessage = '/Users/matt/work/programs/dev_workspace/TreeGroup/Transforms/AStarPathFinder/../../testfiles/AStarTransform/Errors/ErrorTest2.xml:2:0:ERROR:VALID:DTD_CONTENT_MODEL: Element dita content does not follow the DTD, expecting (topic | concept | task | reference | glossentry)+, got (a )'
         expectedtags = ['concept', 'glossentry', 'reference', 'task', 'topic']
         
-        parser = Errors.ErrorParser(tree)
+        parser = self.parserClass(tree)
         parser.parse()
         
         self.assertEqual(parser.errorMessage, expectederrormessage, 'ErrorParser parsed the wrong error. Expected %s, got %s' % (expectederrormessage, parser.errorMessage))
@@ -61,12 +62,12 @@ class test_ErrorParser(unittest.TestCase):
         tree = lxml.etree.parse(testfile)
         expectedtargetelement = tree.xpath('//a')[0]
         expectederrormessage = '/Users/matt/work/programs/dev_workspace/TreeGroup/Transforms/AStarPathFinder/../../testfiles/AStarTransform/Errors/ErrorTest3.xml:5:0:ERROR:VALID:DTD_CONTENT_MODEL: Element body content does not follow the DTD, expecting (p | lq | note | dl | parml | ul | ol | sl | pre | codeblock | msgblock | screen | lines | fig | syntaxdiagram | imagemap | image | object | table | simpletable | required-cleanup | data | data-about | foreign | unknown | section | example)*, got (p a p )'
-        expectedtags = ['codeblock', 'data', 'dl', 'example', 'fig', 'foreign', 'image', 'imagemap', 'lines', 'lq', 'msgblock', 'note', 'object', 'ol', 'p', 'parml', 'pre', 'screen', 'section', 'simpletable', 'sl', 'syntaxdiagram', 'table', 'ul', 'unknown']
+        expectedtags = ['codeblock', 'data', 'data-about', 'dl', 'example', 'fig', 'foreign', 'image', 'imagemap', 'lines', 'lq', 'msgblock', 'note', 'object', 'ol', 'p', 'parml', 'pre', 'required-cleanup', 'screen', 'section', 'simpletable', 'sl', 'syntaxdiagram', 'table', 'ul', 'unknown']
         #had to exclude 'required-cleanup' and 'data-about' because '-' does not work in the tag algebra: if it is allowed in the domain of characters
         #for the tag names, then group theory demands that an element can be named '-', however lxml does not allow this. Fixing this
         #would mean forcing lxml to accept it, somehow. 
         
-        parser = Errors.ErrorParser(tree)
+        parser = self.parserClass(tree)
         parser.parse()
         
         self.assertEqual(parser.errorMessage, expectederrormessage, 'ErrorParser parsed the wrong error. Expected %s, got %s' % (expectederrormessage, parser.errorMessage))
@@ -83,12 +84,12 @@ class test_ErrorParser(unittest.TestCase):
         tree = lxml.etree.parse(testfile)
         expectedtargetelement = tree.xpath('//a')[0]
         expectederrormessage = '/Users/matt/work/programs/dev_workspace/TreeGroup/Transforms/AStarPathFinder/../../testfiles/AStarTransform/Errors/ErrorTest4.xml:3:0:ERROR:VALID:DTD_CONTENT_MODEL: Element topic content does not follow the DTD, expecting (title , titlealts? , (shortdesc | abstract)? , prolog? , body? , related-links? , (topic | concept | task | reference | glossentry)*), got (title a )'
-        expectedtags = ['abstract', 'body', 'concept', 'glossentry', 'prolog', 'reference', 'shortdesc', 'task', 'titlealts', 'topic'] 
+        expectedtags = ['abstract', 'body', 'concept', 'glossentry', 'prolog', 'reference', 'related-links', 'shortdesc', 'task', 'titlealts', 'topic'] 
         #had to exclude 'related-links' because '-' does not work in the tag algebra: if it is allowed in the domain of characters
         #for the tag names, then group theory demands that an element can be named '-', however lxml does not allow this. Fixing this
         #would mean forcing lxml to accept it, somehow. 
         
-        parser = Errors.ErrorParser(tree)
+        parser = self.parserClass(tree)
         parser.parse()
         
         self.assertEqual(parser.errorMessage, expectederrormessage, 'ErrorParser parsed the wrong error. Expected %s, got %s' % (expectederrormessage, parser.errorMessage))
@@ -107,7 +108,7 @@ class test_ErrorParser(unittest.TestCase):
         expectederrormessage = '/Users/matt/work/programs/dev_workspace/TreeGroup/Transforms/AStarPathFinder/../../testfiles/AStarTransform/Errors/ErrorTest5.xml:3:0:ERROR:VALID:DTD_CONTENT_MODEL: Element topic content does not follow the DTD, expecting (title , titlealts? , (shortdesc | abstract)? , prolog? , body? , related-links? , (topic | concept | task | reference | glossentry)*), got (body )'
         expectedtags = ['title']
         
-        parser = Errors.ErrorParser(tree)
+        parser = self.parserClass(tree)
         parser.parse()
         
         self.assertEqual(parser.errorMessage, expectederrormessage, 'ErrorParser parsed the wrong error. Expected %s, got %s' % (expectederrormessage, parser.errorMessage))
@@ -126,7 +127,7 @@ class test_ErrorParser(unittest.TestCase):
         expectederrormessage = '/Users/matt/work/programs/dev_workspace/TreeGroup/Transforms/AStarPathFinder/../../testfiles/AStarTransform/Errors/ErrorTest6.xml:3:0:ERROR:VALID:DTD_CONTENT_MODEL: Element topic content does not follow the DTD, expecting (title , titlealts? , (shortdesc | abstract)? , prolog? , body? , related-links? , (topic | concept | task | reference | glossentry)*), got (body )'
         expectedtags = ['title']
         
-        parser = Errors.ErrorParser(tree)
+        parser = self.parserClass(tree)
         parser.parse()
         
         self.assertEqual(parser.errorMessage, expectederrormessage, 'ErrorParser parsed the wrong error. Expected %s, got %s' % (expectederrormessage, parser.errorMessage))
@@ -145,7 +146,7 @@ class test_ErrorParser(unittest.TestCase):
         expectederrormessage = '/Users/matt/work/programs/dev_workspace/TreeGroup/Transforms/AStarPathFinder/../../testfiles/AStarTransform/Errors/ErrorTest7.xml:2:0:ERROR:VALID:DTD_CONTENT_MODEL: Element dita content does not follow the DTD, expecting (topic | concept | task | reference | glossentry)+, got (a topic )'
         expectedtags = ['concept', 'glossentry', 'reference', 'task', 'topic']
         
-        parser = Errors.ErrorParser(tree)
+        parser = self.parserClass(tree)
         parser.parse()
         
         self.assertEqual(parser.errorMessage, expectederrormessage, 'ErrorParser parsed the wrong error. Expected %s, got %s' % (expectederrormessage, parser.errorMessage))
@@ -163,7 +164,7 @@ class test_ErrorParser(unittest.TestCase):
         expectederrormessage = '/Users/matt/work/programs/dev_workspace/TreeGroup/Transforms/AStarPathFinder/../../testfiles/AStarTransform/Errors/ErrorTest8.xml:6:0:ERROR:VALID:DTD_CONTENT_MODEL: Element task content does not follow the DTD, expecting (title , titlealts? , (shortdesc | abstract)? , prolog? , taskbody? , related-links? , (topic | concept | task | reference | glossentry)*), got '
         expectedtags = ['title']
         
-        parser = Errors.ErrorParser(tree)
+        parser = self.parserClass(tree)
         parser.parse()
         
         expectedtargetelement = tree.xpath('//task/_')[0]
@@ -184,7 +185,7 @@ class test_ErrorParser(unittest.TestCase):
         expectederrormessage = '/Users/matt/work/programs/dev_workspace/TreeGroup/Transforms/AStarPathFinder/../../testfiles/AStarTransform/Errors/ErrorTest1.xml:2:0:ERROR:VALID:DTD_UNKNOWN_ELEM: No declaration for element a'
         expectedtags = ['dita']
         
-        parser = Errors.ErrorParser(tree.getroot())
+        parser = self.parserClass(tree.getroot())
         parser.parse()
         
         self.assertEqual(parser.errorMessage, expectederrormessage, 'ErrorParser parsed the wrong error. Expected %s, got %s' % (expectederrormessage, parser.errorMessage))
@@ -203,7 +204,7 @@ class test_ErrorParser(unittest.TestCase):
         expectederrormessage = '/Users/matt/work/programs/dev_workspace/TreeGroup/Transforms/AStarPathFinder/../../testfiles/AStarTransform/Errors/ErrorTest9.xml:2:0:ERROR:VALID:DTD_UNKNOWN_ELEM: No declaration for element a'
         expectedtags = ['dita']
         
-        parser = Errors.ErrorParser(tree)
+        parser = self.parserClass(tree)
         parser.parse()
         
         self.assertEqual(parser.errorMessage, expectederrormessage, 'ErrorParser parsed the wrong error. Expected %s, got %s' % (expectederrormessage, parser.errorMessage))
@@ -222,7 +223,7 @@ class test_ErrorParser(unittest.TestCase):
         expectederrormessage = '/Users/matt/work/programs/dev_workspace/TreeGroup/Transforms/AStarPathFinder/../../testfiles/AStarTransform/Errors/ErrorTest10.xml:3:0:ERROR:VALID:DTD_CONTENT_MODEL: Element glossentry content does not follow the DTD, expecting (glossterm , glossdef , related-links? , no-topic-nesting*), got (glossterm )'
         expectedtags = ['glossdef']
         
-        parser = Errors.ErrorParser(tree)
+        parser = self.parserClass(tree)
         parser.parse()
         
         self.assertEqual(parser.errorMessage, expectederrormessage, 'ErrorParser parsed the wrong error. Expected %s, got %s' % (expectederrormessage, parser.errorMessage))
@@ -241,7 +242,7 @@ class test_ErrorParser(unittest.TestCase):
         expectederrormessage = '/Users/matt/work/programs/dev_workspace/TreeGroup/Transforms/AStarPathFinder/../../testfiles/AStarTransform/Errors/ErrorTest11.xml:3:0:ERROR:VALID:DTD_CONTENT_MODEL: Element glossentry content does not follow the DTD, expecting (glossterm , glossdef , related-links? , no-topic-nesting*), got (glossdef )'
         expectedtags = ['glossterm']
         
-        parser = Errors.ErrorParser(tree)
+        parser = self.parserClass(tree)
         parser.parse()
         
         self.assertEqual(parser.errorMessage, expectederrormessage, 'ErrorParser parsed the wrong error. Expected %s, got %s' % (expectederrormessage, parser.errorMessage))
