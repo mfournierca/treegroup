@@ -291,5 +291,5 @@ if __name__ == "__main__":
     
     #add path to input
     
-#    DitaTools.Tree.File.Dita.write_tree_to_file(transformer.tree, output)
+    DitaTools.Tree.File.Dita.write_tree_to_file(result, output)
     
