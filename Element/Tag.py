@@ -14,7 +14,7 @@ from . import String
 #unit node is because this is a cyclic group. But keep in mind that several operations, 
 #eg cleantag() remove trailing units in a tag, which may cause problems if the '_' is
 #significant in some context. 
-tagdomain = ['_'] + [i for i in map(chr, range(97, 123))] + [i for i in map(chr, range(65, 91))]# + [i for i in map(chr, range(48, 58))]
+tagdomain = ['_'] + [i for i in map(chr, range(97, 123))] + ['-'] + [i for i in map(chr, range(65, 91))]# + [i for i in map(chr, range(48, 58))]
 
 
 def _addtags(tag1, tag2):
