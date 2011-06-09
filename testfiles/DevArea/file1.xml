@@ -12,20 +12,13 @@
     <topic id="id-2">
         <title/>
         <body>
-            <p/>
-            <section/>
-            <a/>
         </body>
+        <related-links>
+            <p></p>
+        </related-links>
     </topic>
-    <topic id="id-3">
-        <title/>
-        <body>
-            <p/>
-            <section/>
-            <p/>
-            <section/>
-            <a/>
-        </body>
-    </topic>
+    <a id="id-3">
+        <title/> 
+    </a>
 </dita>
 

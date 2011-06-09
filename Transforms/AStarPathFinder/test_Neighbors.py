@@ -26,7 +26,7 @@ class test_findNeighbors_FirstValidationError(unittest.TestCase):
         neighbors = Neighbors.findNeighbors_FirstValidationError(Neighbors.Neighbor(tree))
         expectedneighbors = ['<dita/>', '<dita><a/></dita>']
         index = 0
-        self.assertEqual(len(expectedneighbors), len(neighbors), "findNeighbors_FirstValidationError returned a neighbors list of the wrong lenght: expected %i, got %i" % (len(expectedneighbors), len(neighbors))) 
+        self.assertEqual(len(expectedneighbors), len(neighbors), "findNeighbors_FirstValidationError returned a neighbors list of the wrong length: expected %i, got %i" % (len(expectedneighbors), len(neighbors))) 
         for n in neighbors:
             self.assertTrue(Tree.Tree.equal(lxml.etree.fromstring(expectedneighbors[index]), n.getTree()), "findNeighbors_FirstValidationError returned the wrong tree: expected %s, got %s" % (expectedneighbors[index], lxml.etree.tostring(n.getTree())))
             index += 1
@@ -51,12 +51,18 @@ class test_findNeighbors_FirstValidationError(unittest.TestCase):
                             '<dita><topic><a/>\n</topic>\n</dita>',\
                             '<dita/>'\
                             ]
-        index = 0
-        self.assertEqual(len(expectedneighbors), len(neighbors), "findNeighbors_FirstValidationError returned a neighbors list of the wrong lenght: expected %i, got %i" % (len(expectedneighbors), len(neighbors))) 
+
+        self.assertEqual(len(expectedneighbors), len(neighbors), "findNeighbors_FirstValidationError returned a neighbors list of the wrong length: expected %i, got %i" % (len(expectedneighbors), len(neighbors))) 
         for n in neighbors:
-            self.assertTrue(Tree.Tree.equal(lxml.etree.fromstring(expectedneighbors[index]), n.getTree()), "findNeighbors_FirstValidationError returned the wrong tree: expected %s, got %s" % (expectedneighbors[index], lxml.etree.tostring(n.getTree())))
-            index += 1
-               
+            found = False
+            for e in expectedneighbors:
+                if Tree.Tree.equal(lxml.etree.fromstring(e), n.getTree()): 
+                    found = True
+                    break
+            self.assertTrue(found, "findNeighbors_FirstValidationError: expected but not found: %s" % lxml.etree.tostring(n.getTree()))
+            
+            
+            
                
     def test_TwoMisnamedChildrenOfRoot(self):
         self.log.debug('')
@@ -66,19 +72,19 @@ class test_findNeighbors_FirstValidationError(unittest.TestCase):
         tree = lxml.etree.parse(testfile)
         neighbors = Neighbors.findNeighbors_FirstValidationError(Neighbors.Neighbor(tree))
         expectedneighbors = ['<dita><concept/><b/></dita>', \
-                            '<dita><glossentry/><b/></dita>',\
-                            '<dita><reference/><b/></dita>',\
-                            '<dita><task/><b/></dita>',\
-                            '<dita><topic/><b/></dita>',\
                             '<dita><concept><a/>\n</concept>\n<b/></dita>',\
+                            '<dita><glossentry/><b/></dita>',\
                             '<dita><glossentry><a/>\n</glossentry>\n<b/></dita>',\
+                            '<dita><reference/><b/></dita>',\
                             '<dita><reference><a/>\n</reference>\n<b/></dita>',\
+                            '<dita><task/><b/></dita>',\
                             '<dita><task><a/>\n</task>\n<b/></dita>',\
+                            '<dita><topic/><b/></dita>',\
                             '<dita><topic><a/>\n</topic>\n<b/></dita>',\
                             '<dita><b/></dita>'\
                             ]
         index = 0
-        self.assertEqual(len(expectedneighbors), len(neighbors), "findNeighbors_FirstValidationError returned a neighbors list of the wrong lenght: expected %i, got %i" % (len(expectedneighbors), len(neighbors))) 
+        self.assertEqual(len(expectedneighbors), len(neighbors), "findNeighbors_FirstValidationError returned a neighbors list of the wrong length: expected %i, got %i" % (len(expectedneighbors), len(neighbors))) 
         for n in neighbors:
             self.assertTrue(Tree.Tree.equal(lxml.etree.fromstring(expectedneighbors[index]), n.getTree()), "findNeighbors_FirstValidationError returned the wrong tree: expected %s, got %s" % (expectedneighbors[index], lxml.etree.tostring(n.getTree())))
             index += 1
@@ -94,7 +100,7 @@ class test_findNeighbors_FirstValidationError(unittest.TestCase):
         neighbors = Neighbors.findNeighbors_FirstValidationError(Neighbors.Neighbor(tree))
         expectedneighbors = ['<dita><topic><title/></topic></dita>', '<dita><topic><title><a/></title></topic></dita>', '<dita><topic/></dita>']
         index = 0
-        self.assertEqual(len(expectedneighbors), len(neighbors), "findNeighbors_FirstValidationError returned a neighbors list of the wrong lenght: expected %i, got %i" % (len(expectedneighbors), len(neighbors))) 
+        self.assertEqual(len(expectedneighbors), len(neighbors), "findNeighbors_FirstValidationError returned a neighbors list of the wrong length: expected %i, got %i" % (len(expectedneighbors), len(neighbors))) 
         for n in neighbors:
             self.assertTrue(Tree.Tree.equal(lxml.etree.fromstring(expectedneighbors[index]), n.getTree()), "findNeighbors_FirstValidationError returned the wrong tree: expected %s, got %s" % (expectedneighbors[index], lxml.etree.tostring(n.getTree())))
             index += 1
@@ -132,11 +138,14 @@ class test_findNeighbors_FirstValidationError(unittest.TestCase):
                              '<dita><topic><title/><topic><a/></topic></topic></dita>',
                              '<dita><topic><title/></topic></dita>',        
                              ]
-                                    
-        index = 0
+                        
         self.assertEqual(len(expectedneighbors), len(neighbors),\
                           "findNeighbors_FirstValidationError returned a neighbors list of the wrong length: expected %i, got %i" % (len(expectedneighbors), len(neighbors))) 
         for n in neighbors:
-            self.assertTrue(Tree.Tree.equal(lxml.etree.fromstring(expectedneighbors[index]), n.getTree()), \
-                            "Index %i: findNeighbors_FirstValidationError returned the wrong tree: expected %s, got %s" % (index, expectedneighbors[index], lxml.etree.tostring(n.getTree())))
-            index += 1
+            found = False
+            for e in expectedneighbors:
+                if Tree.Tree.equal(lxml.etree.fromstring(e), n.getTree()): 
+                    found = True
+                    break
+            self.assertTrue(found, "findNeighbors_FirstValidationError: expected but not found: %s" % lxml.etree.tostring(n.getTree()))
+            

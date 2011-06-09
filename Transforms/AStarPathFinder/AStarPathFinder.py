@@ -59,7 +59,10 @@ class AStarPathFinder:
             #get member of open set with lowest fscore
             t = self.findLowestFscore()
             self.log.debug('lowest FScore: %s' % str(t))
-            self.log.debug('tree: %s' % lxml.etree.tostring(t.getTree()))
+            
+            self.log.info('tree: %s' % lxml.etree.tostring(t.getTree()))
+            self.log.info('\thscore: %s' % str(t.getHScore()))
+            self.log.info('\tgscore: %s' % str(t.getGScore()))
             
             if self.tempdir is not None:
                 steptrackingout = open(os.path.join(self.tempdir, str(self.stepnumber) + '.xml'), 'wb')
@@ -261,6 +264,12 @@ if __name__ == "__main__":
     warningformatter = logging.Formatter("%(module)8.8s.%(funcName)20.20s%(levelname)10.10s\t%(message)s")
     warninghandler.setFormatter(warningformatter)
     log.addHandler(warninghandler)
+    
+    infohandler = logging.StreamHandler(sys.stdout)
+    infohandler.setLevel(logging.INFO)
+    infoformatter = logging.Formatter("%(message)s")
+    infohandler.setFormatter(infoformatter)
+    log.addHandler(infohandler)
     
     if debug:
 #        debughandler = logging.FileHandler(os.path.basename(__file__).replace('.py', '-debug.txt'), 'w', encoding='utf-8')

@@ -99,6 +99,14 @@ class Neighbor:
         return self._camefrom
     
     
+    
+    
+    
+    
+    
+    
+    
+    
 def findNeighbors_FirstValidationError(n):
     """Find Neighbors by fixing the first validation error. 
     
@@ -115,28 +123,74 @@ def findNeighbors_FirstValidationError(n):
     errorParser = Errors.ErrorParser(n.getTree())
     errorParser.parse()
     
-    #get operands
-    log.debug('finding operands')
-    operands = []
-    iterator = Generators.Rename.Iterator(errorParser.targetElement, errorParser.acceptableTags)
-    for o in iterator:
-        operands.append(o)
-    
-    iterator = Generators.Wrap.Iterator(errorParser.targetElement, errorParser.acceptableTags)
-    for o in iterator:
-        operands.append(o)
-        
-    iterator = Generators.Unwrap.Iterator(errorParser.targetElement)
-    for o in iterator:
-        operands.append(o)
-       
-    #apply operands to tree to get neighbors
+   
     log.debug('creating neighbors')
     neighbors = []
-    for  o in operands:
-        neighbor = Neighbor(Tree.Tree.add(o.getTree(), n.getTree()))
-        log.debug('\tneighbor: %s' % lxml.etree.tostring(neighbor.getTree()))
-        neighbors.append(neighbor)
+    renameGenerator = Generators.Rename.Generator()
+    wrapGenerator = Generators.Wrap.Generator()
+    unwrapGenerator = Generators.Unwrap.Generator()    
+    for tag in errorParser.acceptableTags:
+    
+        #rename operator
+        renameOperand = renameGenerator.generateOperand(errorParser.targetElement, tag)
+        renameNeighbor = Neighbor(Tree.Tree.add(renameOperand.getTree(), n.getTree()))
+        cost = getCost(renameNeighbor, 'rename', tag)
+        if renameNeighbor.getGScore() is None:
+            renameNeighbor.setGScore(cost)
+        else:
+            renameNeighbor.setGScore(renameNeighbor.getGScore() + cost)
+        neighbors.append(renameNeighbor)
+    
+        #wrap operator
+        wrapOperand = wrapGenerator.generateOperand(errorParser.targetElement, tag)
+        wrapNeighbor = Neighbor(Tree.Tree.add(wrapOperand.getTree(), n.getTree()))
+        cost = getCost(wrapNeighbor, 'wrap', tag)
+        if wrapNeighbor.getGScore() is None:
+            wrapNeighbor.setGScore(cost)
+        else:
+            wrapNeighbor.setGScore(wrapNeighbor.getGScore() + cost)
+        neighbors.append(wrapNeighbor)
+        
+    #unwrap operator. There is only one result of the unwrap operator, so it comes outside
+    #the loop
+    unwrapOperand = unwrapGenerator.generateOperand(errorParser.targetElement)
+    if unwrapOperand is None: 
+        pass
+    else:
+        unwrapNeighbor = Neighbor(Tree.Tree.add(unwrapOperand.getTree(), n.getTree()))
+        cost = getCost(unwrapNeighbor, 'unwrap', tag)
+        if unwrapNeighbor.getGScore() is None:
+            unwrapNeighbor.setGScore(cost)
+        else:
+            unwrapNeighbor.setGScore(unwrapNeighbor.getGScore() + cost)
+        neighbors.append(unwrapNeighbor)
+        
+        
+#    log.debug('finding operands')
+#    operands = []
+#    iterator = Generators.Rename.Iterator(errorParser.targetElement, errorParser.acceptableTags)
+#    for o in iterator:
+#        operands.append(o)
+#    
+#    iterator = Generators.Wrap.Iterator(errorParser.targetElement, errorParser.acceptableTags)
+#    for o in iterator:
+#        operands.append(o)
+#        
+#    iterator = Generators.Unwrap.Iterator(errorParser.targetElement)
+#    for o in iterator:
+#        operands.append(o)
+#       
+#    #apply operands to tree to get neighbors
+##    log.debug('creating neighbors')
+##    neighbors = []
+#    for  o in operands:
+#        neighbor = Neighbor(Tree.Tree.add(o.getTree(), n.getTree()))
+#        log.debug('\tneighbor: %s' % lxml.etree.tostring(neighbor.getTree()))
+#        neighbors.append(neighbor)
+        
+    log.debug('found neighbors: ')
+    for n in neighbors:
+        log.debug('%s' % lxml.etree.tostring(n.getTree()))
         
     #return neighbors.
     return neighbors
@@ -145,3 +199,40 @@ def findNeighbors_FirstValidationError(n):
 
 
 
+
+
+
+
+
+
+
+def getCost(neighbor, operandtype, desttag):
+    """A placeholder function. Get a 'cost' of the neighbor based on some 
+    criteria. The 'cost' should reflect the 'cost' of using this neighbor - 
+    better or more desirable neighbors should receive a lower score. 
+    
+    Eventually, this should be done using more sofisticated methods, ie, 
+    bayesian filters that learn the desired cost based on the tag, target, 
+    elements surrounding the target, etc. That is difficult, however, and 
+    for now in the proof of concept stage we are simply going to hard code 
+    everything with if statements."""
+    
+    cost = 0
+    
+    #account for operandtype
+    if operandtype == 'rename': cost += 0
+    elif operandtype == 'wrap': cost += 5
+    elif operandtype == 'unwrap': cost += 7.5
+    else: cost += 10
+    
+    #account for dest tag
+    if desttag == 'body': cost += 0 
+    elif desttag == 'topic': cost += 1
+    elif desttag == 'task': cost += 2
+    elif desttag == 'title': cost += 2
+    else: cost += 10
+    
+    return cost
+    
+    
+    
