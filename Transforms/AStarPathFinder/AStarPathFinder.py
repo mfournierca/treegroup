@@ -45,10 +45,8 @@ class AStarPathFinder:
         self.start.setHScore(0)
         self.start.setFScore(0)
         self._openset = set([self.start])
-        self.log.debug('self._openset: %s' % str(self._openset))
         
         self._closedset = set()
-        self.log.debug('self._closedset: %s' % str(self._closedset))
         
         #step number is used to keep track of the process. 
         self.stepnumber = 0
@@ -59,10 +57,6 @@ class AStarPathFinder:
             #get member of open set with lowest fscore
             t = self.findLowestFscore()
             self.log.debug('lowest FScore: %s' % str(t))
-            
-            self.log.info('tree: %s' % lxml.etree.tostring(t.getTree()))
-            self.log.info('\thscore: %s' % str(t.getHScore()))
-            self.log.info('\tgscore: %s' % str(t.getGScore()))
             
             if self.tempdir is not None:
                 steptrackingout = open(os.path.join(self.tempdir, str(self.stepnumber) + '.xml'), 'wb')
@@ -99,12 +93,10 @@ class AStarPathFinder:
     def processNeighbors(self, t):
         #process the neighbors of t - find them, add to openset if necessary, 
         #calculate scores, etc. Note that t itself is an instance of the Neighbors.Neighbor class
-        self.log.debug('processing neighbors of %s' % str(t))
         neighbors = Neighbors.findNeighbors_FirstValidationError(t)
         self.log.debug('found %i neighbors' % len(neighbors))
         
         for n in neighbors: 
-            self.log.debug('\t%s' % str(n))
             
             #if n in closed set, continue
             if self._inClosedSet(n): 
@@ -125,8 +117,10 @@ class AStarPathFinder:
                 n = oMember
             
             
-            #get tentativeGScore = n.getGScore() + Tree.Tree.metric(t, n)
-            tentativeGScore = t.getGScore() + Tree.Tree.metric(n.getTree(), t.getTree())
+            #get tentativeGScore = t.getGScore() + n.getGScore() + Tree.Tree.metric(t, n)
+            #have to include n.getGScore() to account for the costs calculated in the getNeighbors
+            #function
+            tentativeGScore = t.getGScore() + n.getGScore() + Tree.Tree.metric(n.getTree(), t.getTree())
             self.log.debug('\ttentative gscore: %s' % str(tentativeGScore))
             
          
@@ -148,7 +142,7 @@ class AStarPathFinder:
                 n.setFScore(n.getGScore() + n.getHScore())
                 
                 #update closed and open set #?
-            
+            self.log.debug('\tgscore: %s\thscore: %s\tfscore: %s' % (str(n.getGScore()), str(n.getHScore()), str(n.getFScore())))
 
 
 
@@ -196,8 +190,7 @@ class AStarPathFinder:
         self._openset.add(x)
     
     def _removeFromOpenSet(self, x):
-        self._openset.remove(x
-                             )
+        self._openset.remove(x)
 
 
 

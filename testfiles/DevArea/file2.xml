@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-    <b>
-        <c id="id1"/>
-        <c id="id2">
-            <d id="id3"/>
-            <d id="id4"/>
-        </c>
-    </b>
-
+<b>
+    <c id="id1"/>
+    <c id="id2">
+        <d id="id3"/>
+        <d id="id4"/>
+    </c>
+</b>
