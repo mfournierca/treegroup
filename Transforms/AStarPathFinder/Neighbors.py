@@ -124,7 +124,7 @@ def findNeighbors_FirstValidationError(n):
     errorParser.parse()
     
    
-    log.debug('creating neighbors')
+#    log.debug('creating neighbors')
     neighbors = []
     renameGenerator = Generators.Rename.Generator()
     wrapGenerator = Generators.Wrap.Generator()

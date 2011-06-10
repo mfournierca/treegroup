@@ -33,12 +33,13 @@ class AStarPathFinder:
     being the operands all added together. I am going to use the word pathfinder, 
     since it copies a pathfinding algorithm.  """
     
-    def __init__(self, file, tempdir=None):
+    def __init__(self, file, tempdir=None, debug=False):
         self.log = logging.getLogger()
         
         self.inputfile = file
         self.inputtree = lxml.etree.parse(self.inputfile)
         self.tempdir = tempdir
+        self.debug = debug
         
         self.start = Neighbors.Neighbor(self.inputtree)
         self.start.setGScore(0)
@@ -52,13 +53,13 @@ class AStarPathFinder:
         self.stepnumber = 0
         
     def findPath(self):
-        
+        self.log.debug('starting path finder')
         while len(self._openset) > 0:
             #get member of open set with lowest fscore
             t = self.findLowestFscore()
-            self.log.debug('lowest FScore: %s' % str(t))
+            self.log.debug('lowest FScore: %s: %s' % (str(t.getFScore()), str(t)))
             
-            if self.tempdir is not None:
+            if (self.tempdir is not None) and (bool(self.debug)):
                 steptrackingout = open(os.path.join(self.tempdir, str(self.stepnumber) + '.xml'), 'wb')
                 steptrackingout.write(lxml.etree.tostring(t.getTree()))
                 steptrackingout.close() 
@@ -70,7 +71,7 @@ class AStarPathFinder:
                 #if t is dita, the algorithm is complete.
     #            finalOperand = self.backTrackBuildOperand(self, t)
     #            return finalOperand
-                self.log.debug('transformation complete')
+                self.log.info('transformation complete')
                 return t.getTree()
             
             
@@ -100,7 +101,7 @@ class AStarPathFinder:
             
             #if n in closed set, continue
             if self._inClosedSet(n): 
-                self.log.debug('\tin closed set, continue')
+                self.log.debug('\t%s in closed set, continue' % str(n))
                 continue
             
             
@@ -121,11 +122,11 @@ class AStarPathFinder:
             #have to include n.getGScore() to account for the costs calculated in the getNeighbors
             #function
             tentativeGScore = t.getGScore() + n.getGScore() + Tree.Tree.metric(n.getTree(), t.getTree())
-            self.log.debug('\ttentative gscore: %s' % str(tentativeGScore))
+#            self.log.debug('\ttentative gscore: %s' % str(tentativeGScore))
             
          
             if oMember is False:
-                self.log.debug('\tnot in open set, adding to open set')
+#                self.log.debug('\tnot in open set, adding to open set')
                 self._addToOpenSet(n)
                 tentativeIsBetter = True
             elif tentativeGScore < n.getGScore(): #if n is in the openset, it already has a GScore
@@ -135,7 +136,7 @@ class AStarPathFinder:
                 
                 
             if tentativeIsBetter is True: 
-                self.log.debug('tentative is better')
+#                self.log.debug('tentative is better')
                 n.setCameFrom(t)
                 n.setGScore(tentativeGScore)
                 n.setHScore(len(DitaTools.Tree.File.Dita.v11_validate(n.getTree())))
@@ -284,7 +285,7 @@ if __name__ == "__main__":
     log.debug("transforming file: %s" % input)
         
     #initialize transformation object
-    pathfinder = AStarPathFinder(input, tempdir)
+    pathfinder = AStarPathFinder(input, tempdir, debug)
     
     #perform transformation
     result = pathfinder.findPath()

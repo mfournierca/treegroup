@@ -54,7 +54,7 @@ class ErrorParser(ErrorParserRootClass):
         self.targetElement = None
         self.acceptableTags = None
         
-        self.log.debug('validating tree with dita version 1.1')
+#        self.log.debug('validating tree with dita version 1.1')
         errors = DitaTools.Tree.File.Dita.v11_validate(self.tree)
         self.errorMessage = errors[0]
         self.log.debug('first error message: %s' % self.errorMessage)
@@ -64,7 +64,7 @@ class ErrorParser(ErrorParserRootClass):
         if (self._expectedTags is None) and (self._actualTags is None):
             return False
         
-        self.log.debug('finding targetElement')
+#        self.log.debug('finding targetElement')
         targetCandidate1, acceptableTagsCandidate1, actualIndex1 = self.parseActualTags()
         targetCandidate2, acceptableTagsCandidate2, actualIndex2 = self.parseExpectedTags()
 
@@ -102,18 +102,18 @@ class ErrorParser(ErrorParserRootClass):
         targetElement = None
         acceptableTags = None
         
-        self.log.debug('parsing actualTags')
+#        self.log.debug('parsing actualTags')
         #set expectedIndex = 0. This will be used to determine the acceptable tags. 
         expectedIndex = 0
         for actualIndex, actualEntry in enumerate(self._actualTags):
         
-            self.log.debug('checking actual entry %s' % actualEntry)
-            self.log.debug('expectedTags remaining: %s' % str(self._expectedTags[expectedIndex:]))
+#            self.log.debug('checking actual entry %s' % actualEntry)
+#            self.log.debug('expectedTags remaining: %s' % str(self._expectedTags[expectedIndex:]))
             
             
             #check [expectedIndex:next mandatory or end] slice until match or end
             expectedSlice = self._buildExpectedSlice(expectedIndex)
-            self.log.debug('\tcorresponding expected slice: %s' % str(expectedSlice))
+#            self.log.debug('\tcorresponding expected slice: %s' % str(expectedSlice))
             
             
             #now try to find a match
@@ -129,22 +129,22 @@ class ErrorParser(ErrorParserRootClass):
     
             #match found?
             if matchIndex is not None:
-                self.log.debug('\tfound match, %s is not target element' % actualEntry)
+#                self.log.debug('\tfound match, %s is not target element' % actualEntry)
                 #reset expectedIndex to match if necessary (on ? and mandatory, not + and *)
                 #expectedIndex is what entry in expectedTags we check the acceptableTags against.
                 #Since + and * in the expectedTags allows for more than on corresponding actualTag, 
                 #we do not increment if those symbols are present. 
                 if re.search(r'[\w|\?|\)]\s*$', self._expectedTags[matchIndex]):
-                    self.log.debug('\texpected entry is non-repeating, resetting expectedIndex')
+#                    self.log.debug('\texpected entry is non-repeating, resetting expectedIndex')
                     expectedIndex = matchIndex + 1
                 else:
-                    self.log.debug('\texpected entry is allowed to repeat')
+#                    self.log.debug('\texpected entry is allowed to repeat')
                     pass
                 continue
                 
             else:
                 #actualEntry is target element
-                self.log.debug('\t%s is target element' % actualEntry)
+#                self.log.debug('\t%s is target element' % actualEntry)
                 
                 #now we need to decide on the acceptableTags. There are a few ways of doing
                 #this, all with different effect. 
@@ -189,7 +189,7 @@ class ErrorParser(ErrorParserRootClass):
         actualIndex = 0
         expectedIndex = 0 
         
-        self.log.debug('parsing expected Tags')
+#        self.log.debug('parsing expected Tags')
         
         while expectedIndex < len(self._expectedTags):
             #check if actualIndex has exceeded the length of actualTags
@@ -200,7 +200,7 @@ class ErrorParser(ErrorParserRootClass):
                     #check for mandatory
                     if re.search(r'[\w|+|\)]+\s*$', e):
                         #this is a mandatory element
-                        self.log.debug('last actual tag reached, but still mandatory entries in expected')
+#                        self.log.debug('last actual tag reached, but still mandatory entries in expected')
                         break
                 else:
                     self.log.debug('last actual reached and no mandatory in expected.')
@@ -213,28 +213,29 @@ class ErrorParser(ErrorParserRootClass):
             else:
                 pass
                 
-            self.log.debug('checking %s' % str(self._expectedTags[expectedIndex]))
+#            self.log.debug('checking %s' % str(self._expectedTags[expectedIndex]))
             #check actualIndex. Match? 
             if re.search(r'[\s\(]+%s[\s\)]+' % self._actualTags[actualIndex], self._expectedTags[expectedIndex]):
-                self.log.debug('\texpected entry matched actual entry: %s' % self._actualTags[actualIndex])
+#                self.log.debug('\texpected entry matched actual entry: %s' % self._actualTags[actualIndex])
                 #set actualIndex +=1 
                 actualIndex += 1
                 #if expected entry is * or +, keep index the same. Otherwise increment. 
                 if re.search(r'[\w|\?|\)]\s*$', self._expectedTags[expectedIndex]):
                       expectedIndex += 1
-                      self.log.debug('\texpected entry is mandatory, incrementing expectedIndex=%s' % str(expectedIndex))
+#                      self.log.debug('\texpected entry is mandatory, incrementing expectedIndex=%s' % str(expectedIndex))
                 else:
-                      self.log.debug('\texpected entry is not mandatory')
-                 
+#                      self.log.debug('\texpected entry is not mandatory')
+                      pass
+                    
             
             
             else:
                 #check expected list [index:next mandatory or end] slice against actualIndex until match or end
                 #find next mandatory and build slice
-                self.log.debug('\texpected entry did not match actual')
+#                self.log.debug('\texpected entry did not match actual')
                 expectedSlice = self._buildExpectedSlice(expectedIndex)
                 
-                self.log.debug('\tsearching for matches in slice: %s' % str(expectedSlice))
+#                self.log.debug('\tsearching for matches in slice: %s' % str(expectedSlice))
                 #now try to find a match
                 matchIndex = None
                 for i, e in enumerate(expectedSlice):
@@ -246,14 +247,14 @@ class ErrorParser(ErrorParserRootClass):
                         break
                 
                 if matchIndex is not None:
-                    self.log.debug('\tfound match at index %i' % matchIndex)
+#                    self.log.debug('\tfound match at index %i' % matchIndex)
                     #set actualIndex +=1 
                     actualIndex += 1
                     #set index to match index
                     expectedIndex = matchIndex + 1
                 else:
                     #if no match, actualIndex is targetElement
-                    self.log.debug('\tno match found, actual entry is target')
+#                    self.log.debug('\tno match found, actual entry is target')
                     
                     #See above for discussion of how to decide acceptableTags
                     acceptableTags = self._buildAcceptableTagsFromSlice(expectedSlice)
@@ -261,10 +262,10 @@ class ErrorParser(ErrorParserRootClass):
                     break
                 
                 
-            self.log.debug('expectedIndex = %i' % expectedIndex)
-            self.log.debug('len(self._expectedTags = %i' % len(self._expectedTags))
-            self.log.debug('actualIndex  = %i' % actualIndex)
-            self.log.debug('len(self._actualTags) = %i' % len(self._actualTags))
+#            self.log.debug('expectedIndex = %i' % expectedIndex)
+#            self.log.debug('len(self._expectedTags = %i' % len(self._expectedTags))
+#            self.log.debug('actualIndex  = %i' % actualIndex)
+#            self.log.debug('len(self._actualTags) = %i' % len(self._actualTags))
             
         self.log.debug('found targetElement: %s' % str(targetElement))
         self.log.debug('found acceptableTags: %s' % str(acceptableTags))
@@ -334,36 +335,36 @@ class ErrorParser(ErrorParserRootClass):
     def _buildXpathFromActualIndex(self, targetActualIndex):
         #build the xpath expression
         
-        self.log.debug('building xpath expression')
+#        self.log.debug('building xpath expression')
         xpath = '//%s/%s' % (self._parentTag, self._actualTags[targetActualIndex])
         self.log.debug('\txpath: %s' % xpath)
         #to build the xpath expression, we take each of the siblings in order and
         #add them to the appropriate spot in the expression
       
         #add previous siblings first.
-        self.log.debug('\tbuilding expression for preceding siblings')
+#        self.log.debug('\tbuilding expression for preceding siblings')
         index = targetActualIndex - 1
         bracketCount = 0
         precedingXpath = ''
         while index >= 0:
-            self.log.debug('\t\tindex: %s\ttag: %s' % (str(index), self._actualTags[index]))
+#            self.log.debug('\t\tindex: %s\ttag: %s' % (str(index), self._actualTags[index]))
             precedingXpath = precedingXpath + '[preceding-sibling::*[1][self::%s]' % self._actualTags[index]
             index = index - 1
             bracketCount += 1
         for i in range(0, bracketCount): precedingXpath += ']'
-        self.log.debug('\t\tpreviousXpath: %s' % precedingXpath)
+#        self.log.debug('\t\tpreviousXpath: %s' % precedingXpath)
             
-        self.log.debug('\tbuildingexpression for following siblings')
+#        self.log.debug('\tbuildingexpression for following siblings')
         index = targetActualIndex + 1
         bracketCount = 0
         followingXpath = ''
         while index < len(self._actualTags) - 1:
-            self.log.debug('\t\tindex: %s\ttag: %s' % (str(index), self._actualTags[index]))
+#            self.log.debug('\t\tindex: %s\ttag: %s' % (str(index), self._actualTags[index]))
             followingXpath = followingXpath + '[following-sibling::*[1][self::%s]' % self._actualTags[index]
             index = index + 1
             bracketCount += 1
         for i in range(0, bracketCount): followingXpath += ']'
-        self.log.debug('\t\tfollowingXpath: %s' % followingXpath)
+#        self.log.debug('\t\tfollowingXpath: %s' % followingXpath)
         
         xpath = xpath + precedingXpath + followingXpath
         self.log.debug('xpath: %s' % xpath)
@@ -443,7 +444,9 @@ class PatternParser:
         self.log.debug('testing pattern: %s' % str(pattern))
         match = re.search(pattern, self.errorMessage)
         if not match: return None, None, None
+        self.log.debug('\tpattern matched')
         actualTag = match.group(1)
+        self.log.debug('\tactualTag: %s' % actualTag)
         candidates = self.tree.xpath('//%s' % actualTag)
         try:
             #This functions should work if passed an lxml tree object or an element is passed. 

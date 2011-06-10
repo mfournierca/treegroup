@@ -23,16 +23,16 @@ class Generator:
     def generateOperand(self, targetElement, tag):
         """Generate an operand for the targetElement and tag"""
         if not isinstance(targetElement, lxml.etree._Element):
-            self.log.warning('targetElement must be lxml.etree._Element object, aborting')
+            self.log.error('targetElement must be lxml.etree._Element object, aborting')
             return None
         elif not isinstance(tag, str):
-            self.log.warning('tag must be str object, aborting')
+            self.log.error('tag must be str object, aborting')
             return None
         else:
             pass
         
-        self.log.debug('Generating wrap operand for  %s' % str(targetElement))
-        self.log.debug('wrap in: %s' % tag)
+#        self.log.debug('Generating wrap operand for  %s' % str(targetElement))
+#        self.log.debug('wrap in: %s' % tag)
 #        self.log.debug('created operand: %s' % str(self.operand))
         operand = self._generateOperand(Operand.Operand(targetElement), targetElement, tag)
         return operand
@@ -50,10 +50,10 @@ class Generator:
         #create the operand
         #
         
-        self.log.debug('operand tree: %s' % lxml.etree.tostring(operand.getTree()))
-        self.log.debug('operand target: %s' % str(operand.getTarget()))
-        self.log.debug('operand target parent: %s' % str(operand.getTarget().getparent()))
-        self.log.debug('tag: %s' % tag)
+#        self.log.debug('operand tree: %s' % lxml.etree.tostring(operand.getTree()))
+#        self.log.debug('operand target: %s' % str(operand.getTarget()))
+#        self.log.debug('operand target parent: %s' % str(operand.getTarget().getparent()))
+#        self.log.debug('tag: %s' % tag)
         
         #change operand.target to inverse of targetElement.
         inversetarget = Tree.Tree.invert(copy.deepcopy(targetElement))
@@ -78,16 +78,17 @@ class Generator:
         targetCopy = copy.deepcopy(targetElement) 
         if len(operandtarget) == 0:
             operandtarget.append(targetCopy)
-            self.log.debug('appended targetCopy to wrapElement')
+#            self.log.debug('appended targetCopy to wrapElement')
         else:
             Tree.Tree.add(operandtarget[0], targetCopy)
-            self.log.debug('added targetCopy to wrapElement[0]')
+#            self.log.debug('added targetCopy to wrapElement[0]')
         
         operand.setTarget(operandtarget)
         
         #done creating the operand
-        self.log.debug('operand tree is: %s' % lxml.etree.tostring(operand.getTree()))
-        self.log.debug('done')
+#        self.log.debug('operand tree is: %s' % lxml.etree.tostring(operand.getTree()))
+#        self.log.debug('done')
+        self.log.debug('Generated wrap operand: %s' % str(operand))
         return operand
     
     
@@ -102,11 +103,11 @@ class Iterator(Generator):
     def __init__(self, targetElement, acceptableTags):       
         self.log = logging.getLogger() 
         if not isinstance(targetElement, lxml.etree._Element):
-            self.log.warning('targetElement must be lxml.etree._Element object, aborting')
+            self.log.error('targetElement must be lxml.etree._Element object, aborting')
             #raise StopIteration #?
             return None
         elif not isinstance(acceptableTags, list):
-            self.log.warning('acceptableTags must be list object, aborting')
+            self.log.error('acceptableTags must be list object, aborting')
             #raise StopIteration #?
             return None
         else:
