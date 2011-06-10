@@ -50,7 +50,7 @@ class Generator:
 #        for a in renamenode.attrib.keys():
 #            operand.target.attrib[a] = renamenode.attrib[a]
         operand.setTarget(renamenode)
-        self.log.debug('Generated rename operand: %s' % str(operand))
+        self.log.debug('Generated rename operand: %s\tTarget: %s' % (str(operand), operand.getTarget()))
         #done
         return operand
     

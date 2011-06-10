@@ -14,6 +14,11 @@ from . import String
 #unit node is because this is a cyclic group. But keep in mind that several operations, 
 #eg cleantag() remove trailing units in a tag, which may cause problems if the '_' is
 #significant in some context. 
+#Also, note that although numbers (0, 1, 2, 3 . . . ) are valid as part of a tag name, a
+#sole number is not considered a valid tag name by lxml. This means that they cannot be
+#included in the tag domain, since excluding a node from being named any character in the
+#tag domain would render the arithmetic inconsistent. Inconsistent arithmetic will break 
+#everything, therefore we must exclude numbers from the domain. 
 tagdomain = ['_'] + [i for i in map(chr, range(97, 123))] + ['-'] + [i for i in map(chr, range(65, 91))]# + [i for i in map(chr, range(48, 58))]
 
 

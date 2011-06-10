@@ -188,9 +188,9 @@ def findNeighbors_FirstValidationError(n):
 #        log.debug('\tneighbor: %s' % lxml.etree.tostring(neighbor.getTree()))
 #        neighbors.append(neighbor)
         
-    log.debug('found neighbors: ')
-    for n in neighbors:
-        log.debug('%s' % lxml.etree.tostring(n.getTree()))
+#    log.debug('found neighbors: ')
+#    for n in neighbors:
+#        log.debug('%s' % str(n))
         
     #return neighbors.
     return neighbors

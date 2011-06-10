@@ -266,7 +266,7 @@ def countNonUnitNodes(tree):
         t = tree.getroot()
     else:
         t = tree
-    log.debug('%s' % lxml.etree.tostring(t))
+#    log.debug('%s' % lxml.etree.tostring(t))
     count = 0
     for i in t.iter():
         if i.tag == '_' and len(i.attrib) == 0: continue

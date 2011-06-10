@@ -1,3 +1,4 @@
+import logging
 
 #strings form a group by considering each character in the strings to be a
 #member of the cyclic group defined by the stringdomain list, which should be passed. We form
@@ -58,7 +59,13 @@ def _stringinverse(string1, stringdomain):
 
 def _characterinverse(char1, stringdomain):
     """Return the inverse of the character"""
-    return stringdomain[(len(stringdomain) - stringdomain.index(char1)) % len(stringdomain)]
+    try:
+        index = stringdomain.index(char1)
+    except ValueError:
+        log = logging.getLogger()
+        log.error('character "%s" not found in string domain' % char1)
+        return None
+    return stringdomain[(len(stringdomain) - index) % len(stringdomain)]
     
 
 
