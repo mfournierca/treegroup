@@ -286,7 +286,17 @@ if __name__ == "__main__":
         
     #initialize transformation object
     pathfinder = AStarPathFinder(input, tempdir, debug)
-    
+   
+#    #use this for diagnostics
+#    import cProfile
+#    cProfile.run("""result = pathfinder.findPath()""",
+#                 os.path.join(os.getcwd(), 'profile.txt')
+#                )
+#    #after program is run, use the following commands in interactive shell
+#    #import pstats
+#    #p = pstats.Stats('profile.txt') #or whatever the path is
+#    #p.sort_stats('cumulative').print_stats(20)
+
     #perform transformation
     result = pathfinder.findPath()
     
