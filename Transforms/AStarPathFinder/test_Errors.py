@@ -249,6 +249,41 @@ class test_ElementErrorParser(unittest.TestCase):
         self.assertEqual(expectedtags, parser.acceptableTags, 'ErrorParser parsed the wrong tags. Expected %s, got %s' % (expectedtags, parser.acceptableTags))
         self.assertTrue(expectedtargetelement is parser.targetElement, 'ErrorParser parsed the wrong target element. Expected %s, got %s' % (expectedtargetelement, parser.targetElement))
 
+
+
+
+
+
+
+
+
+class test_AttributeErrorParser(unittest.TestCase):
+    
+    def setUp(self):
+        self.testfilesdir = os.path.join(os.path.dirname(__file__), '..', '..', 'testfiles', 'AStarTransform', 'Errors')
+        self.log = logging.getLogger()
+        self.parserClass = Errors.AttributeErrorParser
+        
+        
+    def test_1(self):
+        """Test tan invalid attribute"""
+        self.log.debug('')
+        self.log.debug('')
+        self.log.debug('running test test_1')
+        testfile = os.path.join(self.testfilesdir, 'ErrorTest12.xml')
+        tree = lxml.etree.parse(testfile)
+        expectedTargetElement = tree.getroot()
+        expectedErrorMessage = '/Users/matt/work/programs/dev_workspace/TreeGroup/Transforms/AStarPathFinder/../../testfiles/AStarTransform/Errors/ErrorTest12.xml:2:0:ERROR:VALID:DTD_UNKNOWN_ATTRIBUTE: No declaration for attribute id of element dita'
+        expectedTargetAttribute = ['id']
+        expectedAcceptableAttributes = []
+        
+        parser = self.parserClass(tree)
+        parser.parse()
+        
+        self.assertEqual(parser.errorMessage, expectedErrorMessage, 'ErrorParser parsed the wrong error. Expected %s, got %s' % (expectedErrorMessage, parser.errorMessage))
+        self.assertEqual(expectedAcceptableAttributes, parser.acceptableAttributes, 'ErrorParser parsed the wrong tags. Expected %s, got %s' % (expectedAcceptableAttributes, parser.acceptableAttributes))
+        self.assertTrue(expectedTargetElement is parser.targetElement, 'ErrorParser parsed the wrong target element. Expected %s, got %s' % (expectedTargetElement, parser.targetElement))
+    
     
     
     

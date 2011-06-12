@@ -514,21 +514,25 @@ class AttributeErrorParser(ErrorParserRootClass):
         self.log.debug('first error message: %s' % self.errorMessage)
         
         patternparser = AttributePatternParser()
-        self._targetTag, self._targetAttribute = patternparser.parse(self.errorMessage, self.tree)
-        if (self._targetTag is None) and (self._targetAttribute is None):
+        self.targetTag, self.targetAttribute = patternparser.parse(self.errorMessage, self.tree)
+        if (self.targetTag is None) and (self.targetAttribute is None):
             return False
         
         #now get targetElement and acceptableAttributes
-        targetElement, acceptableAttributes = self._getTargetElementAndAcceptableTags()
+        self.targetElement, self.acceptableAttributes = self._getTargetElementAndAcceptableTags()
         
-        return targetElement, self.targetAttribute, acceptableAttributes
+        if (self.targetElement is None) and (self.acceptableAttributes is None):
+            return False
+
+        return True
      
      
     def _getTargetElementAndAcceptableTags(self):
+        targetElement = None
+        acceptableAttributes = None
         
         targetElement = self.tree.xpath('//%s[@%s]' % (self.targetTag, self.targetAttribute))[0]
         
-        acceptableAttributes = []
         #acceptableAttributes is harder, since no suggestions are provided in the error message. 
         #Take some guesses!
         if self.targetTag == 'dita': 
@@ -545,7 +549,7 @@ class AttributeErrorParser(ErrorParserRootClass):
 # class for parsing attribute error patterns
 #===============================================================================
          
-class ElementPatternParser:
+class AttributePatternParser:
     
     def __init__(self):
         """A class to control the parsing of the actual error strings"""
@@ -560,16 +564,16 @@ class ElementPatternParser:
             targetTag, targetAttribute = f()
             if (not targetTag is None) and (not targetAttribute is None):
                 break
-
-        return parentTag, expectedTags, actualTags
+        return targetTag, targetAttribute
+    
 
     def _parsePattern1(self):
         pattern = r'.*?\:\d*\:\d*\:ERROR:VALID\:DTD_UNKNOWN_ATTRIBUTE\: No declaration for attribute (.*?) of element (.*)'
 #        self.log.debug('testing pattern: %s' % str(pattern))
         match = re.search(pattern, self.errorMessage)
-        if not match: return None, None, None
-        targetTag = match.group(1)
-        targetAttribute = match.group(2)
+        if not match: return None, None
+        targetTag = match.group(2)
+        targetAttribute = match.group(1)
         self.log.debug('matched pattern: %s' % str(pattern))
         self.log.debug('\ttargetTag: %s' % targetTag)
         self.log.debug('\ttargetAttribute: %s' % targetAttribute)
