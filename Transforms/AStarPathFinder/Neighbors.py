@@ -1,6 +1,6 @@
 """Functions to find the neighbors of a tree. Allowed operations are defined here"""
 
-import logging, lxml.etree, re
+import logging, lxml.etree, re, sys
 
 import Element.Element
 import Tree.Tree
@@ -118,82 +118,86 @@ def findNeighbors_FirstValidationError(n):
     result of fixing the first invalid element in the tree. """
     
     log = logging.getLogger()
-    
-    #Error parser
-    errorParser = Errors.ErrorParser(n.getTree())
-    errorParser.parse()
-    
-   
+       
 #    log.debug('creating neighbors')
     neighbors = []
-    renameGenerator = Generators.Rename.Generator()
-    wrapGenerator = Generators.Wrap.Generator()
-    unwrapGenerator = Generators.Unwrap.Generator()    
-    for tag in errorParser.acceptableTags:
     
-        #rename operator
-        renameOperand = renameGenerator.generateOperand(errorParser.targetElement, tag)
-        renameNeighbor = Neighbor(Tree.Tree.add(renameOperand.getTree(), n.getTree()))
-        cost = getCost(renameNeighbor, 'rename', tag)
-        if renameNeighbor.getGScore() is None:
-            renameNeighbor.setGScore(cost)
-        else:
-            renameNeighbor.setGScore(renameNeighbor.getGScore() + cost)
-        neighbors.append(renameNeighbor)
     
-        #wrap operator
-        wrapOperand = wrapGenerator.generateOperand(errorParser.targetElement, tag)
-        wrapNeighbor = Neighbor(Tree.Tree.add(wrapOperand.getTree(), n.getTree()))
-        cost = getCost(wrapNeighbor, 'wrap', tag)
-        if wrapNeighbor.getGScore() is None:
-            wrapNeighbor.setGScore(cost)
+    #===========================================================================
+    # #element errors
+    #===========================================================================
+    
+    #Error parser
+    errorParser = Errors.ElementErrorParser(n.getTree())
+    parsed = errorParser.parse()
+    
+    if parsed:
+        renameGenerator = Generators.Rename.Generator()
+        wrapGenerator = Generators.Wrap.Generator()
+        unwrapGenerator = Generators.Unwrap.Generator()    
+        for tag in errorParser.acceptableTags:
+        
+            #rename operator
+            renameOperand = renameGenerator.generateOperand(errorParser.targetElement, tag)
+            renameNeighbor = Neighbor(Tree.Tree.add(renameOperand.getTree(), n.getTree()))
+            cost = getCost(renameNeighbor, 'rename', tag)
+            if renameNeighbor.getGScore() is None:
+                renameNeighbor.setGScore(cost)
+            else:
+                renameNeighbor.setGScore(renameNeighbor.getGScore() + cost)
+            neighbors.append(renameNeighbor)
+        
+            #wrap operator
+            wrapOperand = wrapGenerator.generateOperand(errorParser.targetElement, tag)
+            wrapNeighbor = Neighbor(Tree.Tree.add(wrapOperand.getTree(), n.getTree()))
+            cost = getCost(wrapNeighbor, 'wrap', tag)
+            if wrapNeighbor.getGScore() is None:
+                wrapNeighbor.setGScore(cost)
+            else:
+                wrapNeighbor.setGScore(wrapNeighbor.getGScore() + cost)
+            neighbors.append(wrapNeighbor)
+            
+        #unwrap operator. There is only one result of the unwrap operator, so it comes outside
+        #the loop
+        unwrapOperand = unwrapGenerator.generateOperand(errorParser.targetElement)
+        if unwrapOperand is None: 
+            pass
         else:
-            wrapNeighbor.setGScore(wrapNeighbor.getGScore() + cost)
-        neighbors.append(wrapNeighbor)
-        
-    #unwrap operator. There is only one result of the unwrap operator, so it comes outside
-    #the loop
-    unwrapOperand = unwrapGenerator.generateOperand(errorParser.targetElement)
-    if unwrapOperand is None: 
-        pass
-    else:
-        unwrapNeighbor = Neighbor(Tree.Tree.add(unwrapOperand.getTree(), n.getTree()))
-        cost = getCost(unwrapNeighbor, 'unwrap', tag)
-        if unwrapNeighbor.getGScore() is None:
-            unwrapNeighbor.setGScore(cost)
-        else:
-            unwrapNeighbor.setGScore(unwrapNeighbor.getGScore() + cost)
-        neighbors.append(unwrapNeighbor)
+            unwrapNeighbor = Neighbor(Tree.Tree.add(unwrapOperand.getTree(), n.getTree()))
+            cost = getCost(unwrapNeighbor, 'unwrap', tag)
+            if unwrapNeighbor.getGScore() is None:
+                unwrapNeighbor.setGScore(cost)
+            else:
+                unwrapNeighbor.setGScore(unwrapNeighbor.getGScore() + cost)
+            neighbors.append(unwrapNeighbor)
         
         
-#    log.debug('finding operands')
-#    operands = []
-#    iterator = Generators.Rename.Iterator(errorParser.targetElement, errorParser.acceptableTags)
-#    for o in iterator:
-#        operands.append(o)
-#    
-#    iterator = Generators.Wrap.Iterator(errorParser.targetElement, errorParser.acceptableTags)
-#    for o in iterator:
-#        operands.append(o)
-#        
-#    iterator = Generators.Unwrap.Iterator(errorParser.targetElement)
-#    for o in iterator:
-#        operands.append(o)
-#       
-#    #apply operands to tree to get neighbors
-##    log.debug('creating neighbors')
-##    neighbors = []
-#    for  o in operands:
-#        neighbor = Neighbor(Tree.Tree.add(o.getTree(), n.getTree()))
-#        log.debug('\tneighbor: %s' % lxml.etree.tostring(neighbor.getTree()))
-#        neighbors.append(neighbor)
-        
-#    log.debug('found neighbors: ')
-#    for n in neighbors:
-#        log.debug('%s' % str(n))
-        
-    #return neighbors.
-    return neighbors
+        #return neighbors.
+        return neighbors
+
+
+    #===========================================================================
+    # attribute errors
+    #===========================================================================
+    errorParser = Errors.AttributeErrorParser(n.getTree())
+    parsed = errorParser.parse()
+    
+    if parsed:
+        renameAttributeGenerator = None
+    
+    
+    
+    #===========================================================================
+    # text errors
+    #===========================================================================
+    
+    
+    
+    #===========================================================================
+    # error parsers failed
+    #===========================================================================
+    log.error('all error parsers failed')
+    sys.exit(-1)
     
     
 

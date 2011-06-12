@@ -27,16 +27,13 @@ class ErrorParserRootClass:
     
 
 
-
-
-
-
-    
+ 
 #===============================================================================
-# error parser  
+# element error parser, parse errors that relate to misplaced or misnamed element  
 #===============================================================================
 
-class ErrorParser(ErrorParserRootClass):
+class ElementErrorParser(ErrorParserRootClass):
+    """Parse error having to do with badly placed / named elements"""
     
     def __init__(self, tree):
         self.tree = tree
@@ -59,7 +56,7 @@ class ErrorParser(ErrorParserRootClass):
         self.errorMessage = errors[0]
         self.log.debug('first error message: %s' % self.errorMessage)
         
-        patternparser = PatternParser()
+        patternparser = ElementPatternParser()
         self._parentTag, self._expectedTags, self._actualTags = patternparser.parse(self.errorMessage, self.tree)
         if (self._expectedTags is None) and (self._actualTags is None):
             return False
@@ -93,28 +90,21 @@ class ErrorParser(ErrorParserRootClass):
                 return True
             
             
-            
-            
-            
+              
     def parseActualTags(self):
         """Parse the actual tags to determine the targetElement and acceptable tags"""
-        
         targetElement = None
         acceptableTags = None
-        
 #        self.log.debug('parsing actualTags')
+
         #set expectedIndex = 0. This will be used to determine the acceptable tags. 
         expectedIndex = 0
         for actualIndex, actualEntry in enumerate(self._actualTags):
-        
 #            self.log.debug('checking actual entry %s' % actualEntry)
 #            self.log.debug('expectedTags remaining: %s' % str(self._expectedTags[expectedIndex:]))
-            
-            
             #check [expectedIndex:next mandatory or end] slice until match or end
             expectedSlice = self._buildExpectedSlice(expectedIndex)
 #            self.log.debug('\tcorresponding expected slice: %s' % str(expectedSlice))
-            
             
             #now try to find a match
             matchIndex = None
@@ -125,7 +115,6 @@ class ErrorParser(ErrorParserRootClass):
                     #i is counted from the beginning of the slice, not the list. We need to account for this 
                     matchIndex = i + expectedIndex
                     break
-            
     
             #match found?
             if matchIndex is not None:
@@ -188,9 +177,7 @@ class ErrorParser(ErrorParserRootClass):
         #set actualIndex = 0
         actualIndex = 0
         expectedIndex = 0 
-        
 #        self.log.debug('parsing expected Tags')
-        
         while expectedIndex < len(self._expectedTags):
             #check if actualIndex has exceeded the length of actualTags
             if actualIndex >= len(self._actualTags): 
@@ -205,7 +192,6 @@ class ErrorParser(ErrorParserRootClass):
                 else:
                     self.log.debug('last actual reached and no mandatory in expected.')
                     return None, None, len(self._actualTags) - 1
-                
                 expectedSlice = self._buildExpectedSlice(expectedIndex)
                 acceptableTags = self._buildAcceptableTagsFromSlice(expectedSlice)
                 targetElement = self._findTargetElementFromActualIndex(len(self._actualTags) - 1)
@@ -226,9 +212,6 @@ class ErrorParser(ErrorParserRootClass):
                 else:
 #                      self.log.debug('\texpected entry is not mandatory')
                       pass
-                    
-            
-            
             else:
                 #check expected list [index:next mandatory or end] slice against actualIndex until match or end
                 #find next mandatory and build slice
@@ -260,7 +243,6 @@ class ErrorParser(ErrorParserRootClass):
                     acceptableTags = self._buildAcceptableTagsFromSlice(expectedSlice)
                     targetElement = self._findTargetElementFromActualIndex(actualIndex)
                     break
-                
                 
 #            self.log.debug('expectedIndex = %i' % expectedIndex)
 #            self.log.debug('len(self._expectedTags = %i' % len(self._expectedTags))
@@ -304,7 +286,6 @@ class ErrorParser(ErrorParserRootClass):
         pass
     
     
-
     def _findTargetElementFromActualIndex(self, targetActualIndex):
         #now we need to find the targetElement in the tree, which can be tricky. 
         #there may be many elements with the targetTag, not all of which are invalid. 
@@ -337,7 +318,7 @@ class ErrorParser(ErrorParserRootClass):
         
 #        self.log.debug('building xpath expression')
         xpath = '//%s/%s' % (self._parentTag, self._actualTags[targetActualIndex])
-        self.log.debug('\txpath: %s' % xpath)
+#        self.log.debug('\txpath: %s' % xpath)
         #to build the xpath expression, we take each of the siblings in order and
         #add them to the appropriate spot in the expression
       
@@ -367,39 +348,16 @@ class ErrorParser(ErrorParserRootClass):
 #        self.log.debug('\t\tfollowingXpath: %s' % followingXpath)
         
         xpath = xpath + precedingXpath + followingXpath
-        self.log.debug('xpath: %s' % xpath)
+        self.log.debug('generated xpath: %s' % xpath)
         return xpath
                 
-        
-  
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 #===============================================================================
-# class for parsing error patterns
+# class for parsing element error patterns
 #===============================================================================
-
-            
-            
-class PatternParser:
+         
+class ElementPatternParser:
     
     def __init__(self):
         """A class to control the parsing of the actual error strings"""
@@ -427,13 +385,13 @@ class PatternParser:
     
     def _parsePattern1(self):
         pattern = r'.*?\:\d*\:\d*\:ERROR:VALID\:DTD_CONTENT_MODEL\: Element (.*?) content does not follow the DTD, expecting (.*), got \((.*?)\)'
-        self.log.debug('testing pattern: %s' % str(pattern))
+#        self.log.debug('testing pattern: %s' % str(pattern))
         match = re.search(pattern, self.errorMessage)
         if not match: return None, None, None
         expectedTags = match.group(2).split(',')
         actualTags = match.group(3).strip().split(' ')
         parentTag = match.group(1)
-        self.log.debug('pattern matched')
+        self.log.debug('matched pattern: %s' % str(pattern))
         self.log.debug('\tparentTag: %s' % parentTag)
         self.log.debug('\tactualTags: %s' % str(actualTags))
         self.log.debug('\texpectedTags: %s' % str(expectedTags))
@@ -441,12 +399,10 @@ class PatternParser:
 
     def _parsePattern2(self):
         pattern = r'.*?\:\d*\:\d*\:ERROR:VALID\:DTD_UNKNOWN_ELEM\: No declaration for element (.*)'
-        self.log.debug('testing pattern: %s' % str(pattern))
         match = re.search(pattern, self.errorMessage)
         if not match: return None, None, None
-        self.log.debug('\tpattern matched')
         actualTag = match.group(1)
-        self.log.debug('\tactualTag: %s' % actualTag)
+#        self.log.debug('\tactualTag: %s' % actualTag)
         candidates = self.tree.xpath('//%s' % actualTag)
         try:
             #This functions should work if passed an lxml tree object or an element is passed. 
@@ -461,7 +417,7 @@ class PatternParser:
         parentTag = None
         expectedTags = ['dita']
         actualTags = [actualTag]
-        self.log.debug('pattern matched')
+        self.log.debug('matched pattern: %s' % str(pattern))
         self.log.debug('\tparentTag: %s' % str(parentTag))
         self.log.debug('\tactualTags: %s' % str(actualTags))
         self.log.debug('\texpectedTags: %s' % str(expectedTags))
@@ -470,7 +426,6 @@ class PatternParser:
         
     def _parsePattern3(self):
         pattern = r'.*?\:\d*\:\d*\:ERROR:VALID\:DTD_CONTENT_MODEL\: Element (.*?) content does not follow the DTD, expecting (.*), got '
-        self.log.debug('testing pattern: %s' % str(pattern))
         match = re.search(pattern, self.errorMessage)
         if not match: return None, None, None
         #if this matched then the error is caused by an element that
@@ -484,7 +439,7 @@ class PatternParser:
         #The unit element then becomes the targetElement
         expectedTags = match.group(2).split(',')
         parentTag = match.group(1)
-        self.log.debug('pattern matched')
+        self.log.debug('matched pattern: %s' % str(pattern))
         self.log.debug('no actualTags found. Appending unit node.')
         unitnode = lxml.etree.Element('_')
         #this xpath returns nodes with parentTag that have no children, of 
@@ -498,7 +453,7 @@ class PatternParser:
     
     def _parsePattern4(self):
         pattern = r'.*?\:\d*\:\d*\:ERROR\:VALID\:DTD_INVALID_CHILD\: Element (.*?) is not declared in (.*?) list of possible children'
-        self.log.debug('testing pattern: %s' % str(pattern))
+#        self.log.debug('testing pattern: %s' % str(pattern))
         match = re.search(pattern, self.errorMessage)
         if not match: return None, None, None
         #If match, then it gets tricky. This pattern does not give any indication of what
@@ -514,6 +469,7 @@ class PatternParser:
             parentTag = None
             expectedTags = None
             actualTags = None
+        self.log.debug('matched pattern: %s' % str(pattern))
         self.log.debug('\tparentTag: %s' % parentTag)
         self.log.debug('\tactualTags: %s' % str(actualTags))
         self.log.debug('\texpectedTags: %s' % str(expectedTags))
@@ -521,7 +477,100 @@ class PatternParser:
     
     
     
+
+
+
+
+
+
+
+
+    
+#===============================================================================
+# attribute error parser, parse errors that relate to invalid or misnamed attributes
+#===============================================================================
+    
+class AttributeErrorParser(ErrorParserRootClass):
+    """parse errors that result from invalid attributes"""
+    
+    def __init__(self, tree):
+        self.log = logging.getLogger()
+        self.tree = tree
+    
+    
+    def parse(self):
+        """validate the tree and parse the first error message. This must create 
+        the target attribute and a list of acceptable attributes """
+        
+        #this function assigns targetElement and acceptableTags if parsing is 
+        #successful, otherwise they remain None
+        self.targetElement = None
+        self.targetAttribute = None
+        self.acceptableAttributes = None
+        
+#        self.log.debug('validating tree with dita version 1.1')
+        errors = DitaTools.Tree.File.Dita.v11_validate(self.tree)
+        self.errorMessage = errors[0]
+        self.log.debug('first error message: %s' % self.errorMessage)
+        
+        patternparser = AttributePatternParser()
+        self._targetTag, self._targetAttribute = patternparser.parse(self.errorMessage, self.tree)
+        if (self._targetTag is None) and (self._targetAttribute is None):
+            return False
+        
+        #now get targetElement and acceptableAttributes
+        targetElement, acceptableAttributes = self._getTargetElementAndAcceptableTags()
+        
+        return targetElement, self.targetAttribute, acceptableAttributes
+     
+     
+    def _getTargetElementAndAcceptableTags(self):
+        
+        targetElement = self.tree.xpath('//%s[@%s]' % (self.targetTag, self.targetAttribute))[0]
+        
+        acceptableAttributes = []
+        #acceptableAttributes is harder, since no suggestions are provided in the error message. 
+        #Take some guesses!
+        if self.targetTag == 'dita': 
+            acceptableAttributes = []
+        else:
+            acceptableAttributes =['id']
+            
+        return targetElement, acceptableAttributes
     
     
     
     
+#===============================================================================
+# class for parsing attribute error patterns
+#===============================================================================
+         
+class ElementPatternParser:
+    
+    def __init__(self):
+        """A class to control the parsing of the actual error strings"""
+        self.log = logging.getLogger()
+    
+    def parse(self, error, tree):
+        """parse the error string"""
+        
+        self.errorMessage = error
+        self.tree = tree
+        for f in [self._parsePattern1]: 
+            targetTag, targetAttribute = f()
+            if (not targetTag is None) and (not targetAttribute is None):
+                break
+
+        return parentTag, expectedTags, actualTags
+
+    def _parsePattern1(self):
+        pattern = r'.*?\:\d*\:\d*\:ERROR:VALID\:DTD_UNKNOWN_ATTRIBUTE\: No declaration for attribute (.*?) of element (.*)'
+#        self.log.debug('testing pattern: %s' % str(pattern))
+        match = re.search(pattern, self.errorMessage)
+        if not match: return None, None, None
+        targetTag = match.group(1)
+        targetAttribute = match.group(2)
+        self.log.debug('matched pattern: %s' % str(pattern))
+        self.log.debug('\ttargetTag: %s' % targetTag)
+        self.log.debug('\ttargetAttribute: %s' % targetAttribute)
+        return targetTag, targetAttribute

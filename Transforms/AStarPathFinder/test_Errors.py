@@ -6,13 +6,13 @@ from . import Errors
     
     
     
-class test_ErrorParser(unittest.TestCase):
+class test_ElementErrorParser(unittest.TestCase):
     """Test the ErrorParser class """
     
     def setUp(self):
         self.testfilesdir = os.path.join(os.path.dirname(__file__), '..', '..', 'testfiles', 'AStarTransform', 'Errors')
         self.log = logging.getLogger()
-        self.parserClass = Errors.ErrorParser
+        self.parserClass = Errors.ElementErrorParser
         
         
     def test_1(self):
