@@ -180,8 +180,30 @@ class test_add(unittest.TestCase):
                          % (expected.tag + ' ' + str(expected.attrib), element1.tag + ' ' + str(element1.attrib)))
     
     
-    
-    
+    def test_AddingElementsWithText(self):
+        element1 = self.testtree.getroot()[15]
+        element2 = self.testtree.getroot()[16]
+        
+        Element.add(element1, element2)
+        expected = lxml.etree.fromstring('<a>b</a>')
+        Element.equal(element1, expected)
+       
+        self.assertTrue(Element.equal(element1, expected), 'add() failed: expected %s, got %s'\
+                         % (lxml.etree.tostring(expected), lxml.etree.tostring(element1)))
+        
+    def test_AddingElementsWithTextAndTail(self):
+        element1 = self.testtree.getroot()[17]
+        element2 = self.testtree.getroot()[18]
+        
+        Element.add(element1, element2)
+        expected = lxml.etree.Element('a')
+        expected.text = 'bdf'
+        expected.tail = 'h j l'
+        Element.equal(element1, expected)
+       
+        self.assertTrue(Element.equal(element1, expected), 'add() failed: expected %s, got %s'\
+                         % (lxml.etree.tostring(expected), lxml.etree.tostring(element1)))
+        
     
 
     

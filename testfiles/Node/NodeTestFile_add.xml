@@ -23,4 +23,11 @@
     <a id="a"/>
     <_ id="_"/>
     
+    <!-- Test adding elements with text -->
+    <a>a</a>
+    <_>a</_>
+    
+    <a>abc</a>d e f
+    <_>abc</_>d e f
+    
 </xml>

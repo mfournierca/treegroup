@@ -86,6 +86,8 @@ def add(element1, element2):
     newattribs = Attrib._addattribs(dict(element1.attrib), dict(element2.attrib))
     
     element1.tag = newtag
+    element1.text = Text._addtext(element1.text, element2.text)
+    element1.tail = Text._addtext(element1.tail, element2.tail)
     
     for i in element1.attrib:
         del element1.attrib[i]
