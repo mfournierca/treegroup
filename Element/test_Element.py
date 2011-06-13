@@ -185,7 +185,7 @@ class test_add(unittest.TestCase):
         element2 = self.testtree.getroot()[16]
         
         Element.add(element1, element2)
-        expected = lxml.etree.fromstring('<a>b</a>')
+        expected = lxml.etree.fromstring('<a>C</a>')
         Element.equal(element1, expected)
        
         self.assertTrue(Element.equal(element1, expected), 'add() failed: expected %s, got %s'\
@@ -197,8 +197,8 @@ class test_add(unittest.TestCase):
         
         Element.add(element1, element2)
         expected = lxml.etree.Element('a')
-        expected.text = 'bdf'
-        expected.tail = 'h j l'
+        expected.text = 'CEG'
+        expected.tail = 'I K M'
         Element.equal(element1, expected)
        
         self.assertTrue(Element.equal(element1, expected), 'add() failed: expected %s, got %s'\
@@ -279,8 +279,8 @@ class test_invert(unittest.TestCase):
         Element.invert(element1)
         
         expected = lxml.etree.Element('Z')
-        expected.text = 'ZYXW'
-        expected.tail = 'VUTS'
+        expected.text = '>=<;'
+        expected.tail = ':987'
         
         self.assertTrue(Element.equal(element1, expected), 'inverse() failed: expected %s, got %s'\
                          % (lxml.etree.tostring(expected), lxml.etree.tostring(element1)))
