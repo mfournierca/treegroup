@@ -2,7 +2,7 @@
 
 import lxml.etree, logging
 
-from . import Tag, Attrib    
+from . import Tag, Attrib, Text
 
 def invert(element1):
     """Invert the element, modify in place and return it.
@@ -19,6 +19,8 @@ def invert(element1):
     
 #    inverted = lxml.etree.Element(Tag._taginverse(element1.tag), )
     element1.tag = Tag._taginverse(element1.tag) 
+    element1.text = Text._textinverse(element1.text)
+    element1.tail = Text._textinverse(element1.tail)
     newattribs = Attrib._attribinverse(dict(element1.attrib))
     for i in element1.attrib:
         del element1.attrib[i]
@@ -36,12 +38,28 @@ def equal(element1, element2):
     attrib1 = element1.attrib
     Attrib._cleankeys(attrib1)
     tag1 = Tag._cleantag(element1.tag)
+    try:
+        text1 = element1.text.rstrip()
+    except AttributeError: 
+        text1 = ''
+    try:
+        tail1 = element1.tail.rstrip()
+    except AttributeError:
+        tail1 = ''
     
     attrib2 = element2.attrib
     Attrib._cleankeys(attrib2) 
     tag2 = Tag._cleantag(element2.tag)
-        
-    if (tag1 == tag2) and (attrib1 == attrib2): 
+    try:
+        text2 = element2.text.rstrip()
+    except AttributeError:
+        text2 = ''
+    try:
+        tail2 = element2.tail.rstrip()
+    except:
+        tail2 = ''
+    
+    if (tag1 == tag2) and (attrib1 == attrib2) and (text1 == text2) and (tail1 == tail2): 
         return True
     else:
         return False

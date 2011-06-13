@@ -14,4 +14,6 @@
     <!-- Test inverting the unit -->
     <_/>
     
+    <!-- Test inverting a node with text -->
+    <a>abcd</a>efgh
 </xml>

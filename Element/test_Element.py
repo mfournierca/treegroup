@@ -71,6 +71,42 @@ class test_equal(unittest.TestCase):
         result = Element.equal(element1, element2)
         self.assertFalse(result, "equal() returned %s, expected False" % str(result))
 
+    def test_EqualText(self):
+        element1 = self.testtree.getroot()[24]
+        element2 = self.testtree.getroot()[25]
+        result = Element.equal(element1, element2)
+        self.assertTrue(result, "equal() returned %s, expected True" % str(result))
+    
+    def test_EqualTextAndTail(self):
+        element1 = self.testtree.getroot()[26]
+        element2 = self.testtree.getroot()[27]
+        result = Element.equal(element1, element2)
+        self.assertTrue(result, "equal() returned %s, expected True" % str(result))
+    
+    def test_UnequalText(self):
+        element1 = self.testtree.getroot()[29]
+        element2 = self.testtree.getroot()[30]
+        result = Element.equal(element1, element2)
+        self.assertFalse(result, "equal() returned %s, expected False" % str(result))
+    
+    def test_EqualTextMissingTail(self):
+        element1 = self.testtree.getroot()[31]
+        element2 = self.testtree.getroot()[32]
+        result = Element.equal(element1, element2)
+        self.assertFalse(result, "equal() returned %s, expected False" % str(result))
+    
+    def test_EqualTextUnequalTail(self):
+        element1 = self.testtree.getroot()[33]
+        element2 = self.testtree.getroot()[34]
+        result = Element.equal(element1, element2)
+        self.assertFalse(result, "equal() returned %s, expected False" % str(result))
+    
+    def test_UnequalTextEqualTail(self):
+        element1 = self.testtree.getroot()[35]
+        element2 = self.testtree.getroot()[36]
+        result = Element.equal(element1, element2)
+        self.assertFalse(result, "equal() returned %s, expected False" % str(result))
+    
     
 
     
@@ -216,7 +252,19 @@ class test_invert(unittest.TestCase):
                          % (expected.tag + ' ' + str(expected.attrib), element1.tag + ' ' + str(element1.attrib)))
 
     
+    def test_InvertNodeWithTextAndTail(self):
+        element1 = self.testtree.getroot()[9]
+        Element.invert(element1)
+        
+        expected = lxml.etree.Element('Z')
+        expected.text = 'ZYXW'
+        expected.tail = 'VUTS'
+        
+        self.assertTrue(Element.equal(element1, expected), 'inverse() failed: expected %s, got %s'\
+                         % (lxml.etree.tostring(expected), lxml.etree.tostring(element1)))
+
     
+        
     
     
 

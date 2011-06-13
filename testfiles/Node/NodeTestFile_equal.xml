@@ -35,6 +35,24 @@
     <a id="node11" property="complex"/>
     <b id="node12" property="complex"/>
     
+    <!-- Node with text, test for equality -->
+    <a>Text 1</a>
+    <a>Text 1</a>
     
+    <b>Text 2</b>Text 3
+    <b>Text 2</b>Text 3
+    
+    <!-- Node with text, test for inequality -->
+    <c>Text 1</c>
+    <c>Text 2</c>
+    
+    <d>Text 1</d>Text 2
+    <d>Text 1</d>
+    
+    <e>Text 1</e>Text 2
+    <e>Text 1</e>Text 3
+    
+    <f>Text 1</f>Text 2
+    <f>Text 3</f>Text 2
 
 </xml>

@@ -59,6 +59,7 @@ def _stringinverse(string1, stringdomain):
 
 def _characterinverse(char1, stringdomain):
     """Return the inverse of the character"""
+    
     try:
         index = stringdomain.index(char1)
     except ValueError:
