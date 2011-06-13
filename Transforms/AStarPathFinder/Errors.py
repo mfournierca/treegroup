@@ -536,7 +536,7 @@ class AttributeErrorParser(ErrorParserRootClass):
         #acceptableAttributes is harder, since no suggestions are provided in the error message. 
         #Take some guesses!
         if self.targetTag == 'dita': 
-            acceptableAttributes = []
+            acceptableAttributes = ['_']
         else:
             acceptableAttributes =['id']
             

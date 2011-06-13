@@ -275,7 +275,7 @@ class test_AttributeErrorParser(unittest.TestCase):
         expectedTargetElement = tree.getroot()
         expectedErrorMessage = '/Users/matt/work/programs/dev_workspace/TreeGroup/Transforms/AStarPathFinder/../../testfiles/AStarTransform/Errors/ErrorTest12.xml:2:0:ERROR:VALID:DTD_UNKNOWN_ATTRIBUTE: No declaration for attribute id of element dita'
         expectedTargetAttribute = ['id']
-        expectedAcceptableAttributes = []
+        expectedAcceptableAttributes = ['_']
         
         parser = self.parserClass(tree)
         parser.parse()
