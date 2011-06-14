@@ -122,6 +122,12 @@ class AStarPathFinder:
             #have to include n.getGScore() to account for the costs calculated in the getNeighbors
             #function
             tentativeGScore = t.getGScore() + n.getGScore() + Tree.Tree.metric(n.getTree(), t.getTree())
+#            try:
+#                tentativeGScore = t.getGScore() + n.getGScore() + Tree.Tree.metric(n.getTree(), t.getTree())
+#            except:
+#                self.log.debug(str(n))
+#                self.log.debug(str(n.getTree()))
+#                self.log.debug(lxml.etree.tostring(n.getTree()))
 #            self.log.debug('\ttentative gscore: %s' % str(tentativeGScore))
             
          

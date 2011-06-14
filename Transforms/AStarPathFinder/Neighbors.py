@@ -135,7 +135,8 @@ def findNeighbors_FirstValidationError(n):
     if parsed:
         renameGenerator = Generators.Rename.Generator()
         wrapGenerator = Generators.Wrap.Generator()
-        unwrapGenerator = Generators.Unwrap.Generator()    
+        unwrapGenerator = Generators.Unwrap.Generator()
+        tag = '_'    
         for tag in errorParser.acceptableTags:
         
             #rename operator
@@ -188,6 +189,8 @@ def findNeighbors_FirstValidationError(n):
         for attributeName in errorParser.acceptableAttributes:
             renameAttributeOperand = renameAttributeGenerator.generateOperand(errorParser.targetElement, errorParser.targetAttribute, attributeName)
             renameAttributeNeighbor = Neighbor(Tree.Tree.add(renameAttributeOperand.getTree(), n.getTree()))
+            cost = getCost(renameAttributeNeighbor, 'renameAttribute', None)
+            renameAttributeNeighbor.setGScore(cost)
             neighbors.append(renameAttributeNeighbor)
     
         return neighbors
@@ -231,6 +234,7 @@ def getCost(neighbor, operandtype, desttag):
     
     #account for operandtype
     if operandtype == 'rename': cost += 0
+    elif operandtype == 'renameAttribute': cost += 0
     elif operandtype == 'wrap': cost += 5
     elif operandtype == 'unwrap': cost += 7.5
     else: cost += 10

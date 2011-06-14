@@ -256,6 +256,7 @@ class ElementErrorParser(ErrorParserRootClass):
          
          
     def _buildExpectedSlice(self, startIndex):
+        i = 0
         for i, e in enumerate(self._expectedTags[startIndex:]):
             #check for mandatory
             if re.search(r'[\w|+|\)]+\s*$', e):
