@@ -10,6 +10,7 @@ import Errors
 import Generators.Rename
 import Generators.Unwrap
 import Generators.Wrap
+import Generators.RenameAttribute
 
 
 class Neighbor:
@@ -183,9 +184,14 @@ def findNeighbors_FirstValidationError(n):
     parsed = errorParser.parse()
     
     if parsed:
-        renameAttributeGenerator = None
+        renameAttributeGenerator = Generators.RenameAttribute.Generator()
+        for attributeName in errorParser.acceptableAttributes:
+            renameAttributeOperand = renameAttributeGenerator.generateOperand(errorParser.targetElement, errorParser.targetAttribute, attributeName)
+            renameAttributeNeighbor = Neighbor(Tree.Tree.add(renameAttributeOperand.getTree(), n.getTree()))
+            neighbors.append(renameAttributeNeighbor)
     
-    
+        return neighbors
+            
     
     #===========================================================================
     # text errors
