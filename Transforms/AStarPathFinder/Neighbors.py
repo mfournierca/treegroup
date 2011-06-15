@@ -1,12 +1,13 @@
 """Functions to find the neighbors of a tree. Allowed operations are defined here"""
 
-import logging, lxml.etree, re, sys
+import logging, lxml.etree, re, sys, os.path
 
 import Element.Element
 import Tree.Tree
 
 import Errors
 
+sys.path.insert(0, os.path.dirname(__file__))
 import Generators.Rename
 import Generators.Unwrap
 import Generators.Wrap

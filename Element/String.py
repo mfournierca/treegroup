@@ -39,9 +39,20 @@ def _addstrings(string1, string2, stringdomain):
 def _addchars(char1, char2, stringdomain):
     """Add two characters, treating them as a elements of a cyclic group 
     defined by the stringdomain list"""
+    try:
+        index1 = stringdomain.index(char1)
+    except ValueError:
+        log = logging.getLogger()
+        log.error('%s not found in stringdomain' % char1)
+        raise
     
-    index1 = stringdomain.index(char1)
-    index2 = stringdomain.index(char2)
+    try:
+        index2 = stringdomain.index(char2)
+    except ValueError:
+        log = logging.getLogger()
+        log.error('%s not found in stringdomain' % char2)
+        raise
+    
     newchar = stringdomain[(index1 + index2) % len(stringdomain)]
     return newchar
     
