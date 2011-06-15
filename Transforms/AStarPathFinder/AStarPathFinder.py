@@ -57,11 +57,16 @@ class AStarPathFinder:
         while len(self._openset) > 0:
             #get member of open set with lowest fscore
             t = self.findLowestFscore()
-            self.log.debug('lowest FScore: %s: %s' % (str(t.getFScore()), str(t)))
+            self.log.debug('')
+            self.log.debug('')
+            self.log.info('Tree in open set with lowest FScore: %s' % str(t))
+            self.log.info('\tFScore: %s' % str(t.getFScore()))
+            self.log.info('\tGScore: %s' % str(t.getGScore()))
+            self.log.info('\tHScore: %s' % str(t.getHScore()))
             
             if (self.tempdir is not None) and (bool(self.debug)):
                 steptrackingout = open(os.path.join(self.tempdir, str(self.stepnumber) + '.xml'), 'wb')
-                steptrackingout.write(lxml.etree.tostring(t.getTree()))
+                steptrackingout.write(lxml.etree.tostring(t.getTree(), pretty_print=True))
                 steptrackingout.close() 
             
             

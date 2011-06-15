@@ -269,7 +269,10 @@ def countNonUnitNodes(tree):
 #    log.debug('%s' % lxml.etree.tostring(t))
     count = 0
     for i in t.iter():
-        if i.tag == '_' and len(i.attrib) == 0: continue
+        alltext = ''
+        if i.text: alltext = alltext.join(i.text)
+        if i.tail: alltext = alltext.join(i.tail)
+        if i.tag == '_' and len(i.attrib) == 0 and re.search(r'^\s*$', alltext): continue
         else: count += 1
     return count
 

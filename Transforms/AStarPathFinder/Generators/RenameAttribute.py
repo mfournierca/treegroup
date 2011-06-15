@@ -50,7 +50,7 @@ class Generator:
         
         renameAttributeNode = currentCopy
         operand.setTarget(renameAttributeNode)
-        self.log.debug('Generated attributeRename operand: %s\tTarget: %s' % (str(operand), operand.getTarget()))
+#        self.log.debug('Generated attributeRename operand: %s\tTarget: %s' % (str(operand), operand.getTarget()))
         return operand
     
     

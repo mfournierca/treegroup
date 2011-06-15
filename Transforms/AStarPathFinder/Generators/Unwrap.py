@@ -137,7 +137,7 @@ class Generator:
         operand.setTarget(operandtarget)
         
 #        self.log.debug('done')
-        self.log.debug('Generated unwrap operand: %s' % str(operand))
+#        self.log.debug('Generated unwrap operand: %s' % str(operand))
         return operand
     
     

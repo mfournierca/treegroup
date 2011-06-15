@@ -88,7 +88,7 @@ class Generator:
         #done creating the operand
 #        self.log.debug('operand tree is: %s' % lxml.etree.tostring(operand.getTree()))
 #        self.log.debug('done')
-        self.log.debug('Generated wrap operand: %s' % str(operand))
+#        self.log.debug('Generated wrap operand: %s' % str(operand))
         return operand
     
     
