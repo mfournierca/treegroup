@@ -617,6 +617,31 @@ class test_add(unittest.TestCase):
         self.assertTrue(Tree.equal(tree2.getroot()[0], expectedtree), "Add failed, created incorrect tree. Expected %s, got %s" \
                         % (lxml.etree.tostring(expectedtree, pretty_print=True), lxml.etree.tostring(tree2.getroot()[0], pretty_print=True)))
             
+           
+           
+    def test_TreesWithText(self):
+        self.log.debug('')
+        self.log.debug('')
+        self.log.debug('starting test_TreeToSubtree')
+        
+        expectedtree = lxml.etree.fromstring("""
+                                <c>
+                                    <Z id="9">
+                                        <c>nSYKDI)KqiD<d id="3"/></c>
+                                        <c/>
+                                    </Z>
+                                    <a id="6">
+                                        <a id="7">nSYKDI)KqiF<b id="8"/>nSYKDI)KqiH</a>
+                                        <a id="8">File14Text4</a>
+                                    </a>
+                                </c>
+                                            """)
+                                                
+        tree1 = lxml.etree.parse(os.path.join(self.testfilesdir, 'TreeTestFile_add13.xml'))
+        tree2 = lxml.etree.parse(os.path.join(self.testfilesdir, 'TreeTestFile_add14.xml'))
+        Tree.add(tree2, tree1)
+        self.assertTrue(Tree.equal(tree2, expectedtree), "Add failed, created incorrect tree. Expected %s, \ngot %s" \
+                        % (lxml.etree.tostring(expectedtree, pretty_print=True), lxml.etree.tostring(tree2, pretty_print=True)))
             
             
             

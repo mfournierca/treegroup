@@ -31,10 +31,10 @@ class test_WrapGenerator(unittest.TestCase):
         self.assertTrue(Tree.Tree.equal(expectedTree, Tree.Tree.add(tree, operand.getTree())), "Wrap Generator generated the wrong operand. Operand results in %s, expected %s" % (lxml.etree.tostring(tree), lxml.etree.tostring(expectedTree)))
     
             
-    def test_WrapRoot(self):
+    def test_WrapSimpleRoot(self):
         self.log.debug('')
         self.log.debug('')
-        self.log.debug('running WrapSimpleElement')
+        self.log.debug('running WrapSimpleRoot')
         testfile = os.path.join(self.testfilesdir, 'WrapTest1.xml')
         tree = lxml.etree.parse(testfile)
         targetElement = tree.getroot()
@@ -117,6 +117,38 @@ class test_WrapGenerator(unittest.TestCase):
         operand = generator.generateOperand(targetElement, tag)
         self.assertTrue(Tree.Tree.equal(expectedTree, Tree.Tree.add(tree, operand.getTree())), "Wrap Generator generated the wrong operand. Operand results in %s, expected %s" % (lxml.etree.tostring(tree), lxml.etree.tostring(expectedTree)))
     
+    
+    def test_WrapComplexRoot(self):
+        self.log.debug('')
+        self.log.debug('')
+        self.log.debug('running test_WrapComplexRoot')
+        testfile = os.path.join(self.testfilesdir, 'WrapTest6.xml')
+        tree = lxml.etree.parse(testfile)
+        targetElement = tree.getroot()
+        tag = 'dita'
+        expectedTree = lxml.etree.fromstring('''<dita>
+                                                   <html>
+                                                        <head>
+                                                            <base/>
+                                                            <meta/>
+                                                            <title>Sample XHTML Basic document</title>
+                                                            <link/>
+                                                            <meta/>
+                                                            <link/>
+                                                            <meta/>
+                                                            <meta/>
+                                                        </head>
+                                                        <body>
+                                                            <title>Sample XHTML Basic document</title>
+                                                            <title>Contents</title>
+                                                        </body>
+                                                    </html>
+                                                </dita>''')
+        generator = Wrap.Generator()
+        operand = generator.generateOperand(targetElement, tag)
+        self.assertTrue(Tree.Tree.equal(expectedTree, Tree.Tree.add(tree, operand.getTree())), "Wrap Generator generated the wrong operand. Operand results in %s, expected %s" % (lxml.etree.tostring(tree), lxml.etree.tostring(expectedTree)))
+    
+        
     
     
     

@@ -31,10 +31,12 @@ class Generator:
         else:
             pass
         
-#        self.log.debug('Generating wrap operand for  %s' % str(targetElement))
-#        self.log.debug('wrap in: %s' % tag)
-#        self.log.debug('created operand: %s' % str(self.operand))
         operand = self._generateOperand(Operand.Operand(targetElement), targetElement, tag)
+        
+        self.log.debug('Generating wrap operand for  %s' % str(targetElement))
+        self.log.debug('wrap in: %s' % tag)
+        self.log.debug('created operand: %s' % str(operand))
+        
         return operand
     
     def _generateOperand(self, operand, targetElement, tag):
@@ -50,10 +52,10 @@ class Generator:
         #create the operand
         #
         
-#        self.log.debug('operand tree: %s' % lxml.etree.tostring(operand.getTree()))
-#        self.log.debug('operand target: %s' % str(operand.getTarget()))
-#        self.log.debug('operand target parent: %s' % str(operand.getTarget().getparent()))
-#        self.log.debug('tag: %s' % tag)
+        self.log.debug('operand tree: %s' % lxml.etree.tostring(operand.getTree()))
+        self.log.debug('operand target: %s' % str(operand.getTarget()))
+        self.log.debug('operand target parent: %s' % str(operand.getTarget().getparent()))
+        self.log.debug('tag: %s' % tag)
         
         #change operand.target to inverse of targetElement.
         inversetarget = Tree.Tree.invert(copy.deepcopy(targetElement))
@@ -86,9 +88,9 @@ class Generator:
         operand.setTarget(operandtarget)
         
         #done creating the operand
-#        self.log.debug('operand tree is: %s' % lxml.etree.tostring(operand.getTree()))
-#        self.log.debug('done')
-#        self.log.debug('Generated wrap operand: %s' % str(operand))
+        self.log.debug('operand tree is: %s' % lxml.etree.tostring(operand.getTree()))
+        self.log.debug('done')
+        self.log.debug('Generated wrap operand: %s' % str(operand))
         return operand
     
     
