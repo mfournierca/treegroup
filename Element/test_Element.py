@@ -279,8 +279,8 @@ class test_invert(unittest.TestCase):
         Element.invert(element1)
         
         expected = lxml.etree.Element('Z')
-        expected.text = '>=<;'
-        expected.tail = ':987'
+        expected.text = '<;:9'
+        expected.tail = '8765'
         
         self.assertTrue(Element.equal(element1, expected), 'inverse() failed: expected %s, got %s'\
                          % (lxml.etree.tostring(expected), lxml.etree.tostring(element1)))

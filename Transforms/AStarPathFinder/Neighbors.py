@@ -1,6 +1,6 @@
 """Functions to find the neighbors of a tree. Allowed operations are defined here"""
 
-import logging, lxml.etree, re, sys, os.path
+import logging, lxml.etree, re, sys, os.path, copy
 
 import Element.Element
 import Tree.Tree
@@ -25,8 +25,11 @@ class Neighbor:
         
         self._tree = None
         self.setTree(tree)
-#        self._operand = None
-    
+        self._operand = None
+        
+        #used for debugging. 
+        self._id = None
+        self._operandType = None
     
     #===========================================================================
     # accessor methods
@@ -101,7 +104,25 @@ class Neighbor:
         return self._camefrom
     
     
+    def setOperand(self, o):
+        self._operand = o
+        
+    def getOperand(self):
+        return self._operand
     
+    
+    def setId(self, i):
+        self._id = i
+        
+    def getId(self):
+        return self._id
+    
+    
+    def setOperandType(self, t):
+        self._operandType = t
+        
+    def getOperandType(self):
+        return self._operandType
     
     
     
@@ -142,7 +163,9 @@ def findNeighbors_FirstValidationError(n):
         
             #rename operator
             renameOperand = renameGenerator.generateOperand(errorParser.targetElement, tag)
-            renameNeighbor = Neighbor(Tree.Tree.add(renameOperand.getTree(), n.getTree()))
+            renameNeighbor = Neighbor(Tree.Tree.add(copy.deepcopy(renameOperand.getTree()), n.getTree()))
+            renameNeighbor.setOperand(renameOperand.getTree())
+            renameNeighbor.setOperandType('rename')
             cost = getCost(renameNeighbor, 'rename', tag)
             if renameNeighbor.getGScore() is None:
                 renameNeighbor.setGScore(cost)
@@ -152,7 +175,9 @@ def findNeighbors_FirstValidationError(n):
         
             #wrap operator
             wrapOperand = wrapGenerator.generateOperand(errorParser.targetElement, tag)
-            wrapNeighbor = Neighbor(Tree.Tree.add(wrapOperand.getTree(), n.getTree()))
+            wrapNeighbor = Neighbor(Tree.Tree.add(copy.deepcopy(wrapOperand.getTree()), n.getTree()))
+            wrapNeighbor.setOperand(wrapOperand.getTree())
+            wrapNeighbor.setOperandType('wrap')
             cost = getCost(wrapNeighbor, 'wrap', tag)
             if wrapNeighbor.getGScore() is None:
                 wrapNeighbor.setGScore(cost)
@@ -166,7 +191,9 @@ def findNeighbors_FirstValidationError(n):
         if unwrapOperand is None: 
             pass
         else:
-            unwrapNeighbor = Neighbor(Tree.Tree.add(unwrapOperand.getTree(), n.getTree()))
+            unwrapNeighbor = Neighbor(Tree.Tree.add(copy.deepcopy(unwrapOperand.getTree()), n.getTree()))
+            unwrapNeighbor.setOperand(unwrapOperand.getTree)
+            unwrapNeighbor.setOperandType('unwrap')
             cost = getCost(unwrapNeighbor, 'unwrap', tag)
             if unwrapNeighbor.getGScore() is None:
                 unwrapNeighbor.setGScore(cost)
@@ -189,7 +216,9 @@ def findNeighbors_FirstValidationError(n):
         renameAttributeGenerator = Generators.RenameAttribute.Generator()
         for attributeName in errorParser.acceptableAttributes:
             renameAttributeOperand = renameAttributeGenerator.generateOperand(errorParser.targetElement, errorParser.targetAttribute, attributeName)
-            renameAttributeNeighbor = Neighbor(Tree.Tree.add(renameAttributeOperand.getTree(), n.getTree()))
+            renameAttributeNeighbor = Neighbor(Tree.Tree.add(copy.deepcopy(renameAttributeOperand.getTree()), n.getTree()))
+            renameAttributeNeighbor.setOperand(renameAttributeOperand.getTree())
+            renameAttributeNeighbor.setOperandType('renameAttribute')
             cost = getCost(renameAttributeNeighbor, 'renameAttribute', None)
             renameAttributeNeighbor.setGScore(cost)
             neighbors.append(renameAttributeNeighbor)

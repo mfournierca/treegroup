@@ -65,11 +65,33 @@ class AStarPathFinder:
             self.log.info('\tHScore: %s' % str(t.getHScore()))
             
             if (self.tempdir is not None) and (bool(self.debug)):
-                steptrackingout = open(os.path.join(self.tempdir, str(self.stepnumber) + '.xml'), 'wb')
-                steptrackingout.write(lxml.etree.tostring(t.getTree(), pretty_print=True))
-                steptrackingout.close() 
+                t.setId(self.stepnumber)
+                
+                stepdir = os.path.join(self.tempdir, str(self.stepnumber))
+                os.mkdir(stepdir)
+                
+                stepneighborout = open(os.path.join(stepdir, 'neighbor%s.xml' % str(self.stepnumber)), 'wb')
+                stepneighborout.write(lxml.etree.tostring(t.getTree(), pretty_print=True))
+                stepneighborout.close() 
+                
+                try:
+                    stepoperandout = open(os.path.join(stepdir, 'operand%s.xml' % str(self.stepnumber)), 'wb')
+                    stepoperandout.write(lxml.etree.tostring(t.getOperand(), pretty_print=True))
+                    stepoperandout.close() 
+                except TypeError:
+                    pass
             
-            
+                try:
+                    neighborinfoout = open(os.path.join(stepdir, 'info%s.txt' % str(self.stepnumber)), 'w')
+                    neighborinfoout.write('camefrom: %s\n' % str(t.getCameFrom().getId()))
+                    neighborinfoout.write('operand type: %s\n' % str(t.getOperandType()))
+                    neighborinfoout.write('gscore: %s\n' % str(t.getGScore()))
+                    neighborinfoout.write('hscore: %s\n' % str(t.getHScore()))
+                    neighborinfoout.write('fscore: %s\n' % str(t.getFScore()))
+                    neighborinfoout.close() 
+                except AttributeError: 
+                    pass
+                
             #check if t is dita
             errors = DitaTools.Tree.File.Dita.v11_validate(t.getTree())
             if len(errors) == 0:
@@ -126,7 +148,7 @@ class AStarPathFinder:
             #get tentativeGScore = t.getGScore() + n.getGScore() + Tree.Tree.metric(t, n)
             #have to include n.getGScore() to account for the costs calculated in the getNeighbors
             #function
-            tentativeGScore = t.getGScore() + n.getGScore() + Tree.Tree.metric(n.getTree(), t.getTree())
+            tentativeGScore = n.getGScore() + t.getGScore() + Tree.Tree.metric(n.getTree(), t.getTree())
 #            try:
 #                tentativeGScore = t.getGScore() + n.getGScore() + Tree.Tree.metric(n.getTree(), t.getTree())
 #            except:
@@ -272,7 +294,8 @@ if __name__ == "__main__":
     
     infohandler = logging.StreamHandler(sys.stdout)
     infohandler.setLevel(logging.INFO)
-    infoformatter = logging.Formatter("%(message)s")
+#    infoformatter = logging.Formatter("%(message)s")
+    infoformatter = logging.Formatter("%(module)8.8s.%(funcName)20.20s%(levelname)10.10s\t%(message)s")
     infohandler.setFormatter(infoformatter)
     log.addHandler(infohandler)
     
