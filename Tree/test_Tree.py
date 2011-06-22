@@ -347,7 +347,15 @@ class test_add(unittest.TestCase):
         tree2 = lxml.etree.parse(os.path.join(self.testfilesdir, 'TreeTestFile_add2.xml'))
         Tree.add(tree1.getroot(), tree2.getroot())
         self.assertTrue(Tree.equal(tree1, expectedtree), "Add failed, created incorrect tree")
-                                       
+                   
+        #test commutativity      
+        tree1 = lxml.etree.parse(os.path.join(self.testfilesdir, 'TreeTestFile_add1.xml'))
+        tree2 = lxml.etree.parse(os.path.join(self.testfilesdir, 'TreeTestFile_add2.xml'))
+        Tree.add(tree2, tree1)
+        self.assertTrue(Tree.equal(tree2, expectedtree), "Add failed, created incorrect tree")
+                             
+    
+    
     
     
     
@@ -380,6 +388,15 @@ class test_add(unittest.TestCase):
         Tree.add(tree1.getroot(), tree2.getroot())
         self.assertTrue(Tree.equal(tree1, expectedtree), "Add failed, created incorrect tree")
         
+        #test commutativity        
+        tree1 = lxml.etree.parse(os.path.join(self.testfilesdir, 'TreeTestFile_add3.xml'))
+        tree2 = lxml.etree.parse(os.path.join(self.testfilesdir, 'TreeTestFile_add4.xml'))
+        Tree.add(tree2, tree1)
+        self.assertTrue(Tree.equal(tree2, expectedtree), "Add failed, created incorrect tree")
+        
+        
+        
+        
         
     
     def test_AddUnit(self):
@@ -411,6 +428,15 @@ class test_add(unittest.TestCase):
         Tree.add(tree1.getroot(), tree2.getroot())
         self.assertTrue(Tree.equal(tree1, expectedtree), "Add failed, created incorrect tree")
  
+        #test commutativity
+        tree1 = lxml.etree.parse(os.path.join(self.testfilesdir, 'TreeTestFile_add3.xml'))
+        tree2 = lxml.etree.parse(os.path.join(self.testfilesdir, 'TreeTestFile_unit.xml'))
+        Tree.add(tree2, tree1)
+        self.assertTrue(Tree.equal(tree2, expectedtree), "Add failed, created incorrect tree")
+ 
+ 
+ 
+ 
     
     
     
@@ -435,6 +461,14 @@ class test_add(unittest.TestCase):
         tree2 = lxml.etree.parse(os.path.join(self.testfilesdir, 'TreeTestFile_add6.xml'))
         Tree.add(tree1.getroot(), tree2.getroot())
         self.assertTrue(Tree.equal(tree1, expectedtree), "Add failed, created incorrect tree")
+        
+        #test commutativity        
+        tree1 = lxml.etree.parse(os.path.join(self.testfilesdir, 'TreeTestFile_add5.xml'))
+        tree2 = lxml.etree.parse(os.path.join(self.testfilesdir, 'TreeTestFile_add6.xml'))
+        Tree.add(tree2, tree1)
+        self.assertTrue(Tree.equal(tree2, expectedtree), "Add failed, created incorrect tree")
+        
+        
         
         
         
@@ -465,14 +499,24 @@ class test_add(unittest.TestCase):
         tree2 = lxml.etree.parse(os.path.join(self.testfilesdir, 'TreeTestFile_add8.xml'))
         Tree.add(tree1, tree2)
         self.assertTrue(Tree.equal(tree1, expectedtree), "Add failed, created incorrect tree. Expected %s, got %s" \
-                        % (lxml.etree.tostring(expectedtree, pretty_print=True), lxml.etree.tostring(tree1, pretty_print=True)))
+                        % (lxml.etree.tostring(expectedtree, pretty_print=False), lxml.etree.tostring(tree1, pretty_print=False)))
         
         #test elements
         tree1 = lxml.etree.parse(os.path.join(self.testfilesdir, 'TreeTestFile_add7.xml'))
         tree2 = lxml.etree.parse(os.path.join(self.testfilesdir, 'TreeTestFile_add8.xml'))
         Tree.add(tree1.getroot(), tree2.getroot())
         self.assertTrue(Tree.equal(tree1, expectedtree), "Add failed, created incorrect tree. Expected %s, got %s" \
-                        % (lxml.etree.tostring(expectedtree, pretty_print=True), lxml.etree.tostring(tree1, pretty_print=True)))
+                        % (lxml.etree.tostring(expectedtree, pretty_print=False), lxml.etree.tostring(tree1, pretty_print=False)))
+         
+        #test commutativity        
+        tree1 = lxml.etree.parse(os.path.join(self.testfilesdir, 'TreeTestFile_add7.xml'))
+        tree2 = lxml.etree.parse(os.path.join(self.testfilesdir, 'TreeTestFile_add8.xml'))
+        Tree.add(tree2, tree1)
+        self.assertTrue(Tree.equal(tree2, expectedtree), "Add failed, created incorrect tree. Expected %s, \ngot %s" \
+                        % (lxml.etree.tostring(expectedtree, pretty_print=False), lxml.etree.tostring(tree2, pretty_print=False)))
+        
+         
+         
          
         
         
@@ -499,14 +543,24 @@ class test_add(unittest.TestCase):
         tree2 = lxml.etree.parse(os.path.join(self.testfilesdir, 'TreeTestFile_add10.xml'))
         Tree.add(tree1, tree2)
         self.assertTrue(Tree.equal(tree1, expectedtree), "Add failed, created incorrect tree. Expected %s, got %s" \
-                        % (lxml.etree.tostring(expectedtree, pretty_print=True), lxml.etree.tostring(tree1, pretty_print=True)))
+                        % (lxml.etree.tostring(expectedtree, pretty_print=False), lxml.etree.tostring(tree1, pretty_print=False)))
     
         #test elements    
         tree1 = lxml.etree.parse(os.path.join(self.testfilesdir, 'TreeTestFile_add9.xml'))
         tree2 = lxml.etree.parse(os.path.join(self.testfilesdir, 'TreeTestFile_add10.xml'))
         Tree.add(tree1.getroot(), tree2.getroot())
         self.assertTrue(Tree.equal(tree1, expectedtree), "Add failed, created incorrect tree. Expected %s, got %s" \
-                        % (lxml.etree.tostring(expectedtree, pretty_print=True), lxml.etree.tostring(tree1, pretty_print=True)))
+                        % (lxml.etree.tostring(expectedtree, pretty_print=False), lxml.etree.tostring(tree1, pretty_print=False)))
+    
+        #test commutativity        
+        tree1 = lxml.etree.parse(os.path.join(self.testfilesdir, 'TreeTestFile_add9.xml'))
+        tree2 = lxml.etree.parse(os.path.join(self.testfilesdir, 'TreeTestFile_add10.xml'))
+        Tree.add(tree2, tree1)
+        self.assertTrue(Tree.equal(tree2, expectedtree), "Add failed, created incorrect tree. Expected %s, got %s" \
+                        % (lxml.etree.tostring(expectedtree, pretty_print=False), lxml.etree.tostring(tree2, pretty_print=False)))
+    
+    
+    
     
     
     
@@ -532,14 +586,25 @@ class test_add(unittest.TestCase):
         tree2 = lxml.etree.parse(os.path.join(self.testfilesdir, 'TreeTestFile_add12.xml'))
         Tree.add(tree1, tree2)
         self.assertTrue(Tree.equal(tree1, expectedtree), "Add failed, created incorrect tree. Expected %s, got %s" \
-                        % (lxml.etree.tostring(expectedtree, pretty_print=True), lxml.etree.tostring(tree1, pretty_print=True)))
+                        % (lxml.etree.tostring(expectedtree, pretty_print=False), lxml.etree.tostring(tree1, pretty_print=False)))
         
         #test elements
         tree1 = lxml.etree.parse(os.path.join(self.testfilesdir, 'TreeTestFile_add11.xml'))
         tree2 = lxml.etree.parse(os.path.join(self.testfilesdir, 'TreeTestFile_add12.xml'))
         Tree.add(tree1.getroot(), tree2.getroot())
         self.assertTrue(Tree.equal(tree1, expectedtree), "Add failed, created incorrect tree. Expected %s, got %s" \
-                        % (lxml.etree.tostring(expectedtree, pretty_print=True), lxml.etree.tostring(tree1, pretty_print=True)))
+                        % (lxml.etree.tostring(expectedtree, pretty_print=False), lxml.etree.tostring(tree1, pretty_print=False)))
+        
+        #test commutativity
+        tree1 = lxml.etree.parse(os.path.join(self.testfilesdir, 'TreeTestFile_add11.xml'))
+        tree2 = lxml.etree.parse(os.path.join(self.testfilesdir, 'TreeTestFile_add12.xml'))
+        Tree.add(tree2, tree1)
+        self.assertTrue(Tree.equal(tree2, expectedtree), "Add failed, created incorrect tree. Expected %s, \ngot %s" \
+                        % (lxml.etree.tostring(expectedtree, pretty_print=False), lxml.etree.tostring(tree2, pretty_print=False)))
+        
+        
+        
+        
         
         
     def test_Subtrees(self):
@@ -560,35 +625,48 @@ class test_add(unittest.TestCase):
         tree2 = lxml.etree.parse(os.path.join(self.testfilesdir, 'TreeTestFile_add12.xml'))
         Tree.add(tree1.getroot()[0], tree2.getroot()[0])
         self.assertTrue(Tree.equal(tree1.getroot()[0], expectedtree), "Add failed, created incorrect tree. Expected %s, got %s" \
-                        % (lxml.etree.tostring(expectedtree, pretty_print=True), lxml.etree.tostring(tree1.getroot()[0], pretty_print=True)))
+                        % (lxml.etree.tostring(expectedtree, pretty_print=False), lxml.etree.tostring(tree1.getroot()[0], pretty_print=False)))
             
-        
-        
-    def test_SubtreeToTree(self):
-        self.log.debug('')
-        self.log.debug('')
-        self.log.debug('starting test_SubtreeToTree')
-        
-        expectedtree = lxml.etree.fromstring("""
-                                            <_ id="a">
-                                                <b id='9'>
-                                                    <g id="X"/>
-                                                </b>
-                                                <h id='1'>
-                                                    <f id="7">
-                                                        <g id='8'/>
-                                                    </f>
-                                                    <f id="8"/>
-                                                </h>
-                                            </_>
-                                            """)
-                                                
+        #test commutativity        
         tree1 = lxml.etree.parse(os.path.join(self.testfilesdir, 'TreeTestFile_add11.xml'))
         tree2 = lxml.etree.parse(os.path.join(self.testfilesdir, 'TreeTestFile_add12.xml'))
-        Tree.add(tree1, tree2.getroot()[0])
-        self.assertTrue(Tree.equal(tree1, expectedtree), "Add failed, created incorrect tree. Expected %s, got %s" \
-                        % (lxml.etree.tostring(expectedtree, pretty_print=True), lxml.etree.tostring(tree1, pretty_print=True)))
+        Tree.add(tree2.getroot()[0], tree1.getroot()[0])
+        self.assertTrue(Tree.equal(tree2.getroot()[0], expectedtree), "Add failed, created incorrect tree. Expected %s, got %s" \
+                        % (lxml.etree.tostring(expectedtree, pretty_print=False), lxml.etree.tostring(tree2.getroot()[0], pretty_print=False)))
             
+        
+        
+        
+        
+        
+#    def test_SubtreeToTree(self):
+#        self.log.debug('')
+#        self.log.debug('')
+#        self.log.debug('starting test_SubtreeToTree')
+#        
+#        expectedtree = lxml.etree.fromstring("""
+#                                            <_ id="a">
+#                                                <b id='9'>
+#                                                    <g id="X"/>
+#                                                </b>
+#                                                <h id='1'>
+#                                                    <f id="7">
+#                                                        <g id='8'/>
+#                                                    </f>
+#                                                    <f id="8"/>
+#                                                </h>
+#                                            </_>
+#                                            """)
+#                                                
+#        tree1 = lxml.etree.parse(os.path.join(self.testfilesdir, 'TreeTestFile_add11.xml'))
+#        tree2 = lxml.etree.parse(os.path.join(self.testfilesdir, 'TreeTestFile_add12.xml'))
+#        Tree.add(tree1, tree2.getroot()[0])
+#        self.assertTrue(Tree.equal(tree1, expectedtree), "Add failed, created incorrect tree. Expected %s, got %s" \
+#                        % (lxml.etree.tostring(expectedtree, pretty_print=False), lxml.etree.tostring(tree1, pretty_print=False)))
+#            
+#        
+        
+        
         
         
         
@@ -615,19 +693,28 @@ class test_add(unittest.TestCase):
         tree2 = lxml.etree.parse(os.path.join(self.testfilesdir, 'TreeTestFile_add12.xml'))
         Tree.add(tree2.getroot()[0], tree1)
         self.assertTrue(Tree.equal(tree2.getroot()[0], expectedtree), "Add failed, created incorrect tree. Expected %s, got %s" \
-                        % (lxml.etree.tostring(expectedtree, pretty_print=True), lxml.etree.tostring(tree2.getroot()[0], pretty_print=True)))
+                        % (lxml.etree.tostring(expectedtree, pretty_print=False), lxml.etree.tostring(tree2.getroot()[0], pretty_print=False)))
             
-           
+        #test commutativity                                                
+        tree1 = lxml.etree.parse(os.path.join(self.testfilesdir, 'TreeTestFile_add11.xml'))
+        tree2 = lxml.etree.parse(os.path.join(self.testfilesdir, 'TreeTestFile_add12.xml'))
+        Tree.add(tree1, tree2.getroot()[0])
+        self.assertTrue(Tree.equal(tree1, expectedtree), "Add failed, created incorrect tree. Expected %s, got %s" \
+                        % (lxml.etree.tostring(expectedtree, pretty_print=False), lxml.etree.tostring(tree1, pretty_print=False)))
+            
+            
+            
+            
            
     def test_TreesWithText(self):
         self.log.debug('')
         self.log.debug('')
-        self.log.debug('starting test_TreeToSubtree')
+        self.log.debug('starting test_TreesWithText')
         
         expectedtree = lxml.etree.fromstring("""
                                 <c>
                                     <Z id="9">
-                                        <c>nSYKDI)KqiD<d id="3"/></c>
+                                        <c id="3">nSYKDI)KqiD<d/></c>
                                         <c/>
                                     </Z>
                                     <a id="6">
@@ -639,10 +726,16 @@ class test_add(unittest.TestCase):
                                                 
         tree1 = lxml.etree.parse(os.path.join(self.testfilesdir, 'TreeTestFile_add13.xml'))
         tree2 = lxml.etree.parse(os.path.join(self.testfilesdir, 'TreeTestFile_add14.xml'))
-        Tree.add(tree2, tree1)
-        self.assertTrue(Tree.equal(tree2, expectedtree), "Add failed, created incorrect tree. Expected %s, \ngot %s" \
-                        % (lxml.etree.tostring(expectedtree, pretty_print=True), lxml.etree.tostring(tree2, pretty_print=True)))
+        Tree.add(tree1, tree2)
+        self.assertTrue(Tree.equal(tree1, expectedtree), "Add failed, created incorrect tree. \nExpected \n%s \ngot \n%s" \
+                        % (lxml.etree.tostring(expectedtree, pretty_print=False), lxml.etree.tostring(tree1, pretty_print=False)))
             
+        #test commutativity
+        tree1 = lxml.etree.parse(os.path.join(self.testfilesdir, 'TreeTestFile_add13.xml'))
+        tree2 = lxml.etree.parse(os.path.join(self.testfilesdir, 'TreeTestFile_add14.xml'))
+        Tree.add(tree2, tree1)
+        self.assertTrue(Tree.equal(tree2, expectedtree), "Add failed, created incorrect tree. Expected \n%s\ngot \n%s" \
+                        % (lxml.etree.tostring(expectedtree, pretty_print=False), lxml.etree.tostring(tree2, pretty_print=False)))
             
             
             
@@ -671,7 +764,7 @@ class test_invert(unittest.TestCase):
         tree = lxml.etree.parse(os.path.join(os.path.dirname(__file__),  '..', 'testfiles', 'Tree', 'Invert', 'TreeTestFile_invert1.xml'))
         Tree.invert(tree)
         self.assertTrue(Tree.equal(tree, expectedtree), "invert() failed, created incorrect tree. Expected %s, got %s" \
-                        % (lxml.etree.tostring(expectedtree, pretty_print=True), lxml.etree.tostring(tree, pretty_print=True)))
+                        % (lxml.etree.tostring(expectedtree, pretty_print=False), lxml.etree.tostring(tree, pretty_print=False)))
     
     
     
@@ -698,7 +791,7 @@ class test_invert(unittest.TestCase):
         tree = lxml.etree.parse(os.path.join(os.path.dirname(__file__), '..', 'testfiles', 'Tree', 'Invert', 'TreeTestFile_invert2.xml'))
         Tree.invert(tree)
         self.assertTrue(Tree.equal(tree, expectedtree), "invert() failed, created incorrect tree. Expected %s, got %s" \
-                        % (lxml.etree.tostring(expectedtree, pretty_print=True), lxml.etree.tostring(tree, pretty_print=True)))
+                        % (lxml.etree.tostring(expectedtree, pretty_print=False), lxml.etree.tostring(tree, pretty_print=False)))
     
     
     
@@ -717,7 +810,7 @@ class test_invert(unittest.TestCase):
     
         Tree.invert(tree)
         self.assertTrue(Tree.equal(tree, expectedtree), "invert() failed, created incorrect tree. Expected %s, got %s" \
-                        % (lxml.etree.tostring(expectedtree, pretty_print=True), lxml.etree.tostring(tree, pretty_print=True)))
+                        % (lxml.etree.tostring(expectedtree, pretty_print=False), lxml.etree.tostring(tree, pretty_print=False)))
     
     
     
@@ -758,7 +851,7 @@ class test_invert(unittest.TestCase):
         tree = lxml.etree.parse(os.path.join(os.path.dirname(__file__), '..', 'testfiles', 'Tree', 'Invert', 'TreeTestFile_invert2.xml'))
         Tree.invert(tree.getroot()[2])
         self.assertTrue(Tree.equal(tree.getroot()[2], expectedtree), "invert() failed, created incorrect tree. Expected %s, got %s" \
-                        % (lxml.etree.tostring(expectedtree, pretty_print=True), lxml.etree.tostring(tree.getroot()[2], pretty_print=True)))
+                        % (lxml.etree.tostring(expectedtree, pretty_print=False), lxml.etree.tostring(tree.getroot()[2], pretty_print=False)))
     
     
     
