@@ -137,6 +137,7 @@ class test_WrapGenerator(unittest.TestCase):
                                                             <link/>
                                                             <meta/>
                                                             <meta/>
+                                                            <link/>
                                                         </head>
                                                         <body>
                                                             <title>Sample XHTML Basic document</title>
@@ -146,7 +147,7 @@ class test_WrapGenerator(unittest.TestCase):
                                                 </dita>''')
         generator = Wrap.Generator()
         operand = generator.generateOperand(targetElement, tag)
-        self.assertTrue(Tree.Tree.equal(expectedTree, Tree.Tree.add(tree, operand.getTree())), "Wrap Generator generated the wrong operand. Operand results in %s, expected %s" % (lxml.etree.tostring(tree), lxml.etree.tostring(expectedTree)))
+        self.assertTrue(Tree.Tree.equal(expectedTree, Tree.Tree.add(tree, operand.getTree())), "Wrap Generator generated the wrong operand. \nOperand results in: \n%s \nexpected: \n%s" % (lxml.etree.tostring(tree), lxml.etree.tostring(expectedTree)))
     
         
     
