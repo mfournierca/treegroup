@@ -850,7 +850,7 @@ class test_invert(unittest.TestCase):
                                                 
         tree = lxml.etree.parse(os.path.join(os.path.dirname(__file__), '..', 'testfiles', 'Tree', 'Invert', 'TreeTestFile_invert2.xml'))
         Tree.invert(tree.getroot()[2])
-        self.assertTrue(Tree.equal(tree.getroot()[2], expectedtree), "invert() failed, created incorrect tree. Expected %s, got %s" \
+        self.assertTrue(Tree.equal(tree.getroot()[2], expectedtree), "invert() failed, created incorrect tree. \nExpected: \n%s \ngot: \n%s" \
                         % (lxml.etree.tostring(expectedtree, pretty_print=False), lxml.etree.tostring(tree.getroot()[2], pretty_print=False)))
     
     

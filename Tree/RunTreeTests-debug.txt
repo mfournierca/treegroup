@@ -1,39 +1,765 @@
 test_Tre.        test_AddUnit     DEBUG		
 test_Tre.        test_AddUnit     DEBUG		
 test_Tre.        test_AddUnit     DEBUG		starting TreeGroup.Tree.test_Tree
+    Tree.                 add     DEBUG		ordering1: [[1], [1, 1], [1, 2], [1, 2, 1], [1, 2, 1, 1], [1, 2, 2]]
+    Tree.                 add     DEBUG		ordering2: [[1]]
+    Tree.                 add     DEBUG		index: 0	position2: [1]
+    Tree.                 add     DEBUG			position2 == ordering1[index], add elements
+    Tree.                 add     DEBUG			node1: <Element a at 169c1e0>	node2: <Element _ at 169c240>
+  Attrib.         _addattribs     DEBUG		adding attributes: {}	{}
+    Tree.                 add     DEBUG		testing: <Element c at 169c360>
+    Tree.                 add     DEBUG			tag is not _, skip
+    Tree.                 add     DEBUG		testing: <Element d at 169c2d0>
+    Tree.                 add     DEBUG			tag is not _, skip
+    Tree.                 add     DEBUG		testing: <Element c at 169c330>
+    Tree.                 add     DEBUG			tag is not _, skip
+    Tree.                 add     DEBUG		testing: <Element b at 169c300>
+    Tree.                 add     DEBUG			tag is not _, skip
+    Tree.                 add     DEBUG		testing: <Element b at 169c270>
+    Tree.                 add     DEBUG			tag is not _, skip
+    Tree.                 add     DEBUG		testing: <Element a at 169c1e0>
+    Tree.                 add     DEBUG			tag is not _, skip
+    Tree.                 add     DEBUG		ordering1: [[1], [1, 1], [1, 2], [1, 2, 1], [1, 2, 1, 1], [1, 2, 2]]
+    Tree.                 add     DEBUG		ordering2: [[1]]
+    Tree.                 add     DEBUG		index: 0	position2: [1]
+    Tree.                 add     DEBUG			position2 == ordering1[index], add elements
+    Tree.                 add     DEBUG			node1: <Element a at 169c4b0>	node2: <Element _ at 169c510>
+  Attrib.         _addattribs     DEBUG		adding attributes: {}	{}
+    Tree.                 add     DEBUG		testing: <Element c at 169c630>
+    Tree.                 add     DEBUG			tag is not _, skip
+    Tree.                 add     DEBUG		testing: <Element d at 169c5a0>
+    Tree.                 add     DEBUG			tag is not _, skip
+    Tree.                 add     DEBUG		testing: <Element c at 169c600>
+    Tree.                 add     DEBUG			tag is not _, skip
+    Tree.                 add     DEBUG		testing: <Element b at 169c5d0>
+    Tree.                 add     DEBUG			tag is not _, skip
+    Tree.                 add     DEBUG		testing: <Element b at 169c540>
+    Tree.                 add     DEBUG			tag is not _, skip
+    Tree.                 add     DEBUG		testing: <Element a at 169c4b0>
+    Tree.                 add     DEBUG			tag is not _, skip
+    Tree.                 add     DEBUG		ordering1: [[1]]
+    Tree.                 add     DEBUG		ordering2: [[1], [1, 1], [1, 2], [1, 2, 1], [1, 2, 1, 1], [1, 2, 2]]
+    Tree.                 add     DEBUG		index: 0	position2: [1]
+    Tree.                 add     DEBUG			position2 == ordering1[index], add elements
+    Tree.                 add     DEBUG			node1: <Element _ at 169c6f0>	node2: <Element a at 169c690>
+  Attrib.         _addattribs     DEBUG		adding attributes: {}	{}
+    Tree.                 add     DEBUG		index: 1	position2: [1, 1]
+    Tree.                 add     DEBUG			index == len(ordering1)
+    Tree.                 add     DEBUG			node3: <Element b at 169c7e0>
+    Tree.                 add     DEBUG			parent1: <Element a at 169c6f0>
+    Tree.                 add     DEBUG			position3: [1, 1]
+    Tree.                 add     DEBUG			ordering1: [[1], [1, 1]]
+    Tree.                 add     DEBUG		index: 2	position2: [1, 2]
+    Tree.                 add     DEBUG			index == len(ordering1)
+    Tree.                 add     DEBUG			node3: <Element b at 169c810>
+    Tree.                 add     DEBUG			parent1: <Element a at 169c6f0>
+    Tree.                 add     DEBUG			position3: [1, 2]
+    Tree.                 add     DEBUG			ordering1: [[1], [1, 1], [1, 2]]
+    Tree.                 add     DEBUG		index: 3	position2: [1, 2, 1]
+    Tree.                 add     DEBUG			index == len(ordering1)
+    Tree.                 add     DEBUG			node3: <Element c at 169c840>
+    Tree.                 add     DEBUG			parent1: <Element b at 169c810>
+    Tree.                 add     DEBUG			position3: [1, 2, 1]
+    Tree.                 add     DEBUG			ordering1: [[1], [1, 1], [1, 2], [1, 2, 1]]
+    Tree.                 add     DEBUG		index: 4	position2: [1, 2, 1, 1]
+    Tree.                 add     DEBUG			index == len(ordering1)
+    Tree.                 add     DEBUG			node3: <Element d at 169c8d0>
+    Tree.                 add     DEBUG			parent1: <Element c at 169c840>
+    Tree.                 add     DEBUG			position3: [1, 2, 1, 1]
+    Tree.                 add     DEBUG			ordering1: [[1], [1, 1], [1, 2], [1, 2, 1], [1, 2, 1, 1]]
+    Tree.                 add     DEBUG		index: 5	position2: [1, 2, 2]
+    Tree.                 add     DEBUG			index == len(ordering1)
+    Tree.                 add     DEBUG			node3: <Element c at 169c900>
+    Tree.                 add     DEBUG			parent1: <Element b at 169c8d0>
+    Tree.                 add     DEBUG			position3: [1, 2, 2]
+    Tree.                 add     DEBUG			ordering1: [[1], [1, 1], [1, 2], [1, 2, 1], [1, 2, 1, 1], [1, 2, 2]]
+    Tree.                 add     DEBUG		testing: <Element c at 169c900>
+    Tree.                 add     DEBUG			tag is not _, skip
+    Tree.                 add     DEBUG		testing: <Element d at 169c960>
+    Tree.                 add     DEBUG			tag is not _, skip
+    Tree.                 add     DEBUG		testing: <Element c at 169c930>
+    Tree.                 add     DEBUG			tag is not _, skip
+    Tree.                 add     DEBUG		testing: <Element b at 169c8d0>
+    Tree.                 add     DEBUG			tag is not _, skip
+    Tree.                 add     DEBUG		testing: <Element b at 169c840>
+    Tree.                 add     DEBUG			tag is not _, skip
+    Tree.                 add     DEBUG		testing: <Element a at 169c6f0>
+    Tree.                 add     DEBUG			tag is not _, skip
 test_Tre.test_ComplexTrees_Eq     DEBUG		
 test_Tre.test_ComplexTrees_Eq     DEBUG		
 test_Tre.test_ComplexTrees_Eq     DEBUG		starting TreeGroup.Tree.test_Tree
+    Tree.                 add     DEBUG		ordering1: [[1], [1, 1], [1, 2], [1, 2, 1], [1, 2, 1, 1], [1, 2, 2]]
+    Tree.                 add     DEBUG		ordering2: [[1], [1, 1], [1, 2], [1, 2, 1], [1, 2, 1, 1], [1, 2, 2]]
+    Tree.                 add     DEBUG		index: 0	position2: [1]
+    Tree.                 add     DEBUG			position2 == ordering1[index], add elements
+    Tree.                 add     DEBUG			node1: <Element a at 169c7e0>	node2: <Element b at 169c990>
+  Attrib.         _addattribs     DEBUG		adding attributes: {}	{}
+    Tree.                 add     DEBUG		index: 1	position2: [1, 1]
+    Tree.                 add     DEBUG			position2 == ordering1[index], add elements
+    Tree.                 add     DEBUG			node1: <Element b at 169ca80>	node2: <Element c at 169c9f0>
+  Attrib.         _addattribs     DEBUG		adding attributes: {'id': '1'}	{'id': 'a'}
+  Attrib.         _addattribs     DEBUG		attrib2: key: id	value: a
+  Attrib.         _addattribs     DEBUG		result key: id	value: 1
+    Tree.                 add     DEBUG		index: 2	position2: [1, 2]
+    Tree.                 add     DEBUG			position2 == ordering1[index], add elements
+    Tree.                 add     DEBUG			node1: <Element b at 169cab0>	node2: <Element c at 169ca20>
+  Attrib.         _addattribs     DEBUG		adding attributes: {'id': '2'}	{'id': 'a'}
+  Attrib.         _addattribs     DEBUG		attrib2: key: id	value: a
+  Attrib.         _addattribs     DEBUG		result key: id	value: 2
+    Tree.                 add     DEBUG		index: 3	position2: [1, 2, 1]
+    Tree.                 add     DEBUG			position2 == ordering1[index], add elements
+    Tree.                 add     DEBUG			node1: <Element c at 169cb40>	node2: <Element d at 169cae0>
+  Attrib.         _addattribs     DEBUG		adding attributes: {'id': '3'}	{'id': 'a'}
+  Attrib.         _addattribs     DEBUG		attrib2: key: id	value: a
+  Attrib.         _addattribs     DEBUG		result key: id	value: 3
+    Tree.                 add     DEBUG		index: 4	position2: [1, 2, 1, 1]
+    Tree.                 add     DEBUG			position2 == ordering1[index], add elements
+    Tree.                 add     DEBUG			node1: <Element d at 169cbd0>	node2: <Element e at 169cb70>
+  Attrib.         _addattribs     DEBUG		adding attributes: {'id': '4'}	{'id': 'a'}
+  Attrib.         _addattribs     DEBUG		attrib2: key: id	value: a
+  Attrib.         _addattribs     DEBUG		result key: id	value: 4
+    Tree.                 add     DEBUG		index: 5	position2: [1, 2, 2]
+    Tree.                 add     DEBUG			position2 == ordering1[index], add elements
+    Tree.                 add     DEBUG			node1: <Element c at 169cc60>	node2: <Element d at 169cc00>
+  Attrib.         _addattribs     DEBUG		adding attributes: {'id': '5'}	{'id': 'a'}
+  Attrib.         _addattribs     DEBUG		attrib2: key: id	value: a
+  Attrib.         _addattribs     DEBUG		result key: id	value: 5
+    Tree.                 add     DEBUG		testing: <Element g at 169cc60>
+    Tree.                 add     DEBUG			tag is not _, skip
+    Tree.                 add     DEBUG		testing: <Element i at 169cbd0>
+    Tree.                 add     DEBUG			tag is not _, skip
+    Tree.                 add     DEBUG		testing: <Element g at 169cb40>
+    Tree.                 add     DEBUG			tag is not _, skip
+    Tree.                 add     DEBUG		testing: <Element e at 169cab0>
+    Tree.                 add     DEBUG			tag is not _, skip
+    Tree.                 add     DEBUG		testing: <Element e at 169ca80>
+    Tree.                 add     DEBUG			tag is not _, skip
+    Tree.                 add     DEBUG		testing: <Element c at 169c7e0>
+    Tree.                 add     DEBUG			tag is not _, skip
 test_Tre.test_ComplexTrees_Se     DEBUG		
 test_Tre.test_ComplexTrees_Se     DEBUG		
 test_Tre.test_ComplexTrees_Se     DEBUG		starting TreeGroup.Tree.test_Tree
+    Tree.                 add     DEBUG		ordering1: [[1], [1, 1], [1, 1, 1], [1, 2]]
+    Tree.                 add     DEBUG		ordering2: [[1], [1, 1], [1, 1, 1], [1, 1, 1, 1], [1, 1, 2]]
+    Tree.                 add     DEBUG		index: 0	position2: [1]
+    Tree.                 add     DEBUG			position2 == ordering1[index], add elements
+    Tree.                 add     DEBUG			node1: <Element b at 169cba0>	node2: <Element a at 169ccc0>
+  Attrib.         _addattribs     DEBUG		adding attributes: {}	{}
+    Tree.                 add     DEBUG		index: 1	position2: [1, 1]
+    Tree.                 add     DEBUG			position2 == ordering1[index], add elements
+    Tree.                 add     DEBUG			node1: <Element b at 16b6090>	node2: <Element _ at 169cc90>
+  Attrib.         _addattribs     DEBUG		adding attributes: {'id': '2'}	{}
+    Tree.                 add     DEBUG		index: 2	position2: [1, 1, 1]
+    Tree.                 add     DEBUG			position2 == ordering1[index], add elements
+    Tree.                 add     DEBUG			node1: <Element c at 16b60f0>	node2: <Element _ at 16b60c0>
+  Attrib.         _addattribs     DEBUG		adding attributes: {'id': '3'}	{}
+    Tree.                 add     DEBUG		index: 3	position2: [1, 1, 1, 1]
+    Tree.                 add     DEBUG			position2 != ordering1[index]
+    Tree.                 add     DEBUG			node3: <Element d at 16b6180>
+    Tree.                 add     DEBUG			parent1: <Element c at 16b60f0>
+    Tree.                 add     DEBUG			position3: [1, 1, 1, 1]
+    Tree.                 add     DEBUG			ordering1: [[1], [1, 1], [1, 1, 1], [1, 1, 1, 1], [1, 2]]
+    Tree.                 add     DEBUG		index: 4	position2: [1, 1, 2]
+    Tree.                 add     DEBUG			position2 != ordering1[index]
+    Tree.                 add     DEBUG			node3: <Element c at 16b61e0>
+    Tree.                 add     DEBUG			parent1: <Element b at 16b6090>
+    Tree.                 add     DEBUG			position3: [1, 1, 2]
+    Tree.                 add     DEBUG			ordering1: [[1], [1, 1], [1, 1, 1], [1, 1, 1, 1], [1, 1, 2], [1, 2]]
+    Tree.                 add     DEBUG		testing: <Element b at 16b6210>
+    Tree.                 add     DEBUG			tag is not _, skip
+    Tree.                 add     DEBUG		testing: <Element c at 16b61e0>
+    Tree.                 add     DEBUG			tag is not _, skip
+    Tree.                 add     DEBUG		testing: <Element d at 16b6180>
+    Tree.                 add     DEBUG			tag is not _, skip
+    Tree.                 add     DEBUG		testing: <Element c at 16b60f0>
+    Tree.                 add     DEBUG			tag is not _, skip
+    Tree.                 add     DEBUG		testing: <Element b at 16b6090>
+    Tree.                 add     DEBUG			tag is not _, skip
+    Tree.                 add     DEBUG		testing: <Element c at 169cba0>
+    Tree.                 add     DEBUG			tag is not _, skip
+    Tree.                 add     DEBUG		ordering1: [[1], [1, 1], [1, 1, 1], [1, 2]]
+    Tree.                 add     DEBUG		ordering2: [[1], [1, 1], [1, 1, 1], [1, 1, 1, 1], [1, 1, 2]]
+    Tree.                 add     DEBUG		index: 0	position2: [1]
+    Tree.                 add     DEBUG			position2 == ordering1[index], add elements
+    Tree.                 add     DEBUG			node1: <Element b at 16b6360>	node2: <Element a at 16b63c0>
+  Attrib.         _addattribs     DEBUG		adding attributes: {}	{}
+    Tree.                 add     DEBUG		index: 1	position2: [1, 1]
+    Tree.                 add     DEBUG			position2 == ordering1[index], add elements
+    Tree.                 add     DEBUG			node1: <Element b at 16b6480>	node2: <Element _ at 16b63f0>
+  Attrib.         _addattribs     DEBUG		adding attributes: {'id': '2'}	{}
+    Tree.                 add     DEBUG		index: 2	position2: [1, 1, 1]
+    Tree.                 add     DEBUG			position2 == ordering1[index], add elements
+    Tree.                 add     DEBUG			node1: <Element c at 16b64b0>	node2: <Element _ at 16b6420>
+  Attrib.         _addattribs     DEBUG		adding attributes: {'id': '3'}	{}
+    Tree.                 add     DEBUG		index: 3	position2: [1, 1, 1, 1]
+    Tree.                 add     DEBUG			position2 != ordering1[index]
+    Tree.                 add     DEBUG			node3: <Element d at 16b6540>
+    Tree.                 add     DEBUG			parent1: <Element c at 16b64b0>
+    Tree.                 add     DEBUG			position3: [1, 1, 1, 1]
+    Tree.                 add     DEBUG			ordering1: [[1], [1, 1], [1, 1, 1], [1, 1, 1, 1], [1, 2]]
+    Tree.                 add     DEBUG		index: 4	position2: [1, 1, 2]
+    Tree.                 add     DEBUG			position2 != ordering1[index]
+    Tree.                 add     DEBUG			node3: <Element c at 16b65a0>
+    Tree.                 add     DEBUG			parent1: <Element b at 16b6480>
+    Tree.                 add     DEBUG			position3: [1, 1, 2]
+    Tree.                 add     DEBUG			ordering1: [[1], [1, 1], [1, 1, 1], [1, 1, 1, 1], [1, 1, 2], [1, 2]]
+    Tree.                 add     DEBUG		testing: <Element b at 16b65d0>
+    Tree.                 add     DEBUG			tag is not _, skip
+    Tree.                 add     DEBUG		testing: <Element c at 16b65a0>
+    Tree.                 add     DEBUG			tag is not _, skip
+    Tree.                 add     DEBUG		testing: <Element d at 16b6540>
+    Tree.                 add     DEBUG			tag is not _, skip
+    Tree.                 add     DEBUG		testing: <Element c at 16b64b0>
+    Tree.                 add     DEBUG			tag is not _, skip
+    Tree.                 add     DEBUG		testing: <Element b at 16b6480>
+    Tree.                 add     DEBUG			tag is not _, skip
+    Tree.                 add     DEBUG		testing: <Element c at 16b6360>
+    Tree.                 add     DEBUG			tag is not _, skip
+    Tree.                 add     DEBUG		ordering1: [[1], [1, 1], [1, 1, 1], [1, 1, 1, 1], [1, 1, 2]]
+    Tree.                 add     DEBUG		ordering2: [[1], [1, 1], [1, 1, 1], [1, 2]]
+    Tree.                 add     DEBUG		index: 0	position2: [1]
+    Tree.                 add     DEBUG			position2 == ordering1[index], add elements
+    Tree.                 add     DEBUG			node1: <Element a at 16b6690>	node2: <Element b at 16b6630>
+  Attrib.         _addattribs     DEBUG		adding attributes: {}	{}
+    Tree.                 add     DEBUG		index: 1	position2: [1, 1]
+    Tree.                 add     DEBUG			position2 == ordering1[index], add elements
+    Tree.                 add     DEBUG			node1: <Element _ at 16b66c0>	node2: <Element b at 16b6720>
+  Attrib.         _addattribs     DEBUG		adding attributes: {}	{'id': '2'}
+  Attrib.         _addattribs     DEBUG		attrib2: key: id	value: 2
+    Tree.                 add     DEBUG		index: 2	position2: [1, 1, 1]
+    Tree.                 add     DEBUG			position2 == ordering1[index], add elements
+    Tree.                 add     DEBUG			node1: <Element _ at 16b6780>	node2: <Element c at 16b66f0>
+  Attrib.         _addattribs     DEBUG		adding attributes: {}	{'id': '3'}
+  Attrib.         _addattribs     DEBUG		attrib2: key: id	value: 3
+    Tree.                 add     DEBUG		index: 3	position2: [1, 2]
+    Tree.                 add     DEBUG			position2 != ordering1[index]
+    Tree.                 add     DEBUG			node3: <Element b at 16b6810>
+    Tree.                 add     DEBUG			parent1: <Element c at 16b6690>
+    Tree.                 add     DEBUG			position3: [1, 2]
+    Tree.                 add     DEBUG			ordering1: [[1], [1, 1], [1, 1, 1], [1, 2], [1, 1, 1, 1], [1, 1, 2]]
+    Tree.                 add     DEBUG		testing: <Element b at 16b6810>
+    Tree.                 add     DEBUG			tag is not _, skip
+    Tree.                 add     DEBUG		testing: <Element c at 16b6840>
+    Tree.                 add     DEBUG			tag is not _, skip
+    Tree.                 add     DEBUG		testing: <Element d at 16b67e0>
+    Tree.                 add     DEBUG			tag is not _, skip
+    Tree.                 add     DEBUG		testing: <Element c at 16b6780>
+    Tree.                 add     DEBUG			tag is not _, skip
+    Tree.                 add     DEBUG		testing: <Element b at 16b66c0>
+    Tree.                 add     DEBUG			tag is not _, skip
+    Tree.                 add     DEBUG		testing: <Element c at 16b6690>
+    Tree.                 add     DEBUG			tag is not _, skip
 test_Tre.test_ComplexTrees_Tr     DEBUG		
 test_Tre.test_ComplexTrees_Tr     DEBUG		
 test_Tre.test_ComplexTrees_Tr     DEBUG		starting TreeGroup.Tree.test_Tree
+    Tree.                 add     DEBUG		ordering1: [[1], [1, 1], [1, 1, 1], [1, 2], [1, 2, 1], [1, 2, 1, 1], [1, 2, 2]]
+    Tree.                 add     DEBUG		ordering2: [[1], [1, 1], [1, 1, 1], [1, 1, 1, 1], [1, 1, 2], [1, 2], [1, 2, 1], [1, 2, 1, 1], [1, 2, 2]]
+    Tree.                 add     DEBUG		index: 0	position2: [1]
+    Tree.                 add     DEBUG			position2 == ordering1[index], add elements
+    Tree.                 add     DEBUG			node1: <Element b at 16b6570>	node2: <Element a at 16b6870>
+  Attrib.         _addattribs     DEBUG		adding attributes: {}	{}
+    Tree.                 add     DEBUG		index: 1	position2: [1, 1]
+    Tree.                 add     DEBUG			position2 == ordering1[index], add elements
+    Tree.                 add     DEBUG			node1: <Element b at 16b68a0>	node2: <Element Y at 16b6900>
+  Attrib.         _addattribs     DEBUG		adding attributes: {'id': '9'}	{'id': 'a'}
+  Attrib.         _addattribs     DEBUG		attrib2: key: id	value: a
+  Attrib.         _addattribs     DEBUG		result key: id	value: 9
+    Tree.                 add     DEBUG		index: 2	position2: [1, 1, 1]
+    Tree.                 add     DEBUG			position2 == ordering1[index], add elements
+    Tree.                 add     DEBUG			node1: <Element c at 16b6990>	node2: <Element _ at 16b68d0>
+  Attrib.         _addattribs     DEBUG		adding attributes: {'id': '3'}	{}
+    Tree.                 add     DEBUG		index: 3	position2: [1, 1, 1, 1]
+    Tree.                 add     DEBUG			position2 != ordering1[index]
+    Tree.                 add     DEBUG			node3: <Element d at 16b6a20>
+    Tree.                 add     DEBUG			parent1: <Element c at 16b6990>
+    Tree.                 add     DEBUG			position3: [1, 1, 1, 1]
+    Tree.                 add     DEBUG			ordering1: [[1], [1, 1], [1, 1, 1], [1, 1, 1, 1], [1, 2], [1, 2, 1], [1, 2, 1, 1], [1, 2, 2]]
+    Tree.                 add     DEBUG		index: 4	position2: [1, 1, 2]
+    Tree.                 add     DEBUG			position2 != ordering1[index]
+    Tree.                 add     DEBUG			node3: <Element c at 16b6a80>
+    Tree.                 add     DEBUG			parent1: <Element _ at 16b68a0>
+    Tree.                 add     DEBUG			position3: [1, 1, 2]
+    Tree.                 add     DEBUG			ordering1: [[1], [1, 1], [1, 1, 1], [1, 1, 1, 1], [1, 1, 2], [1, 2], [1, 2, 1], [1, 2, 1, 1], [1, 2, 2]]
+    Tree.                 add     DEBUG		index: 5	position2: [1, 2]
+    Tree.                 add     DEBUG			position2 == ordering1[index], add elements
+    Tree.                 add     DEBUG			node1: <Element e at 16b6ab0>	node2: <Element V at 16b6a20>
+  Attrib.         _addattribs     DEBUG		adding attributes: {'id': '6'}	{'id': 'd'}
+  Attrib.         _addattribs     DEBUG		attrib2: key: id	value: d
+  Attrib.         _addattribs     DEBUG		result key: id	value: 6
+    Tree.                 add     DEBUG		index: 6	position2: [1, 2, 1]
+    Tree.                 add     DEBUG			position2 == ordering1[index], add elements
+    Tree.                 add     DEBUG			node1: <Element f at 16b6b40>	node2: <Element U at 16b6ae0>
+  Attrib.         _addattribs     DEBUG		adding attributes: {'id': '7'}	{'id': 'c'}
+  Attrib.         _addattribs     DEBUG		attrib2: key: id	value: c
+  Attrib.         _addattribs     DEBUG		result key: id	value: 7
+    Tree.                 add     DEBUG		index: 7	position2: [1, 2, 1, 1]
+    Tree.                 add     DEBUG			position2 == ordering1[index], add elements
+    Tree.                 add     DEBUG			node1: <Element g at 16b6bd0>	node2: <Element T at 16b6b70>
+  Attrib.         _addattribs     DEBUG		adding attributes: {'id': '8'}	{'id': 'b'}
+  Attrib.         _addattribs     DEBUG		attrib2: key: id	value: b
+  Attrib.         _addattribs     DEBUG		result key: id	value: 8
+    Tree.                 add     DEBUG		index: 8	position2: [1, 2, 2]
+    Tree.                 add     DEBUG			position2 == ordering1[index], add elements
+    Tree.                 add     DEBUG			node1: <Element f at 16b6c60>	node2: <Element U at 16b6c00>
+  Attrib.         _addattribs     DEBUG		adding attributes: {'id': '8'}	{'id': 'b'}
+  Attrib.         _addattribs     DEBUG		attrib2: key: id	value: b
+  Attrib.         _addattribs     DEBUG		result key: id	value: 8
+    Tree.                 add     DEBUG		testing: <Element _ at 16b6c60>
+    Tree.                 add     DEBUG			attributes not blank, skip
+    Tree.                 add     DEBUG		testing: <Element _ at 16b6bd0>
+    Tree.                 add     DEBUG			attributes not blank, skip
+    Tree.                 add     DEBUG		testing: <Element _ at 16b6b40>
+    Tree.                 add     DEBUG			attributes not blank, skip
+    Tree.                 add     DEBUG		testing: <Element _ at 16b6ab0>
+    Tree.                 add     DEBUG			attributes not blank, skip
+    Tree.                 add     DEBUG		testing: <Element c at 16b6a80>
+    Tree.                 add     DEBUG			tag is not _, skip
+    Tree.                 add     DEBUG		testing: <Element d at 16b6c90>
+    Tree.                 add     DEBUG			tag is not _, skip
+    Tree.                 add     DEBUG		testing: <Element c at 16b6990>
+    Tree.                 add     DEBUG			tag is not _, skip
+    Tree.                 add     DEBUG		testing: <Element _ at 16b68a0>
+    Tree.                 add     DEBUG			attributes not blank, skip
+    Tree.                 add     DEBUG		testing: <Element c at 16b6570>
+    Tree.                 add     DEBUG			tag is not _, skip
 test_Tre.test_ComplexTrees_Un     DEBUG		
 test_Tre.test_ComplexTrees_Un     DEBUG		
 test_Tre.test_ComplexTrees_Un     DEBUG		starting TreeGroup.Tree.test_Tree
+    Tree.                 add     DEBUG		ordering1: [[1], [1, 1], [1, 2], [1, 2, 1], [1, 2, 2]]
+    Tree.                 add     DEBUG		ordering2: [[1], [1, 1], [1, 2], [1, 2, 1], [1, 2, 1, 1], [1, 2, 2], [1, 3], [1, 3, 1], [1, 3, 1, 1], [1, 3, 2]]
+    Tree.                 add     DEBUG		index: 0	position2: [1]
+    Tree.                 add     DEBUG			position2 == ordering1[index], add elements
+    Tree.                 add     DEBUG			node1: <Element b at 16b6a50>	node2: <Element a at 16b6ba0>
+  Attrib.         _addattribs     DEBUG		adding attributes: {}	{}
+    Tree.                 add     DEBUG		index: 1	position2: [1, 1]
+    Tree.                 add     DEBUG			position2 == ordering1[index], add elements
+    Tree.                 add     DEBUG			node1: <Element c at 16b6d20>	node2: <Element _ at 16b6cc0>
+  Attrib.         _addattribs     DEBUG		adding attributes: {'id': 'a'}	{}
+    Tree.                 add     DEBUG		index: 2	position2: [1, 2]
+    Tree.                 add     DEBUG			position2 == ordering1[index], add elements
+    Tree.                 add     DEBUG			node1: <Element c at 16b61b0>	node2: <Element b at 16b6c30>
+  Attrib.         _addattribs     DEBUG		adding attributes: {'id': 'a'}	{'id': '2'}
+  Attrib.         _addattribs     DEBUG		attrib2: key: id	value: 2
+  Attrib.         _addattribs     DEBUG		result key: id	value: a
+    Tree.                 add     DEBUG		index: 3	position2: [1, 2, 1]
+    Tree.                 add     DEBUG			position2 == ordering1[index], add elements
+    Tree.                 add     DEBUG			node1: <Element d at 16b6d50>	node2: <Element c at 16b6c90>
+  Attrib.         _addattribs     DEBUG		adding attributes: {'id': 'a'}	{'id': '3'}
+  Attrib.         _addattribs     DEBUG		attrib2: key: id	value: 3
+  Attrib.         _addattribs     DEBUG		result key: id	value: a
+    Tree.                 add     DEBUG		index: 4	position2: [1, 2, 1, 1]
+    Tree.                 add     DEBUG			position2 != ordering1[index]
+    Tree.                 add     DEBUG			node3: <Element d at 16b6e10>
+    Tree.                 add     DEBUG			parent1: <Element g at 16b6d50>
+    Tree.                 add     DEBUG			position3: [1, 2, 1, 1]
+    Tree.                 add     DEBUG			ordering1: [[1], [1, 1], [1, 2], [1, 2, 1], [1, 2, 1, 1], [1, 2, 2]]
+    Tree.                 add     DEBUG		index: 5	position2: [1, 2, 2]
+    Tree.                 add     DEBUG			position2 == ordering1[index], add elements
+    Tree.                 add     DEBUG			node1: <Element d at 16b6e40>	node2: <Element c at 16b6de0>
+  Attrib.         _addattribs     DEBUG		adding attributes: {'id': 'a'}	{'id': '5'}
+  Attrib.         _addattribs     DEBUG		attrib2: key: id	value: 5
+  Attrib.         _addattribs     DEBUG		result key: id	value: a
+    Tree.                 add     DEBUG		index: 6	position2: [1, 3]
+    Tree.                 add     DEBUG			index == len(ordering1)
+    Tree.                 add     DEBUG			node3: <Element e at 16b6f00>
+    Tree.                 add     DEBUG			parent1: <Element c at 16b6a50>
+    Tree.                 add     DEBUG			position3: [1, 3]
+    Tree.                 add     DEBUG			ordering1: [[1], [1, 1], [1, 2], [1, 2, 1], [1, 2, 1, 1], [1, 2, 2], [1, 3]]
+    Tree.                 add     DEBUG		index: 7	position2: [1, 3, 1]
+    Tree.                 add     DEBUG			index == len(ordering1)
+    Tree.                 add     DEBUG			node3: <Element f at 16b6f30>
+    Tree.                 add     DEBUG			parent1: <Element e at 16b6f00>
+    Tree.                 add     DEBUG			position3: [1, 3, 1]
+    Tree.                 add     DEBUG			ordering1: [[1], [1, 1], [1, 2], [1, 2, 1], [1, 2, 1, 1], [1, 2, 2], [1, 3], [1, 3, 1]]
+    Tree.                 add     DEBUG		index: 8	position2: [1, 3, 1, 1]
+    Tree.                 add     DEBUG			index == len(ordering1)
+    Tree.                 add     DEBUG			node3: <Element g at 16b6fc0>
+    Tree.                 add     DEBUG			parent1: <Element f at 16b6f30>
+    Tree.                 add     DEBUG			position3: [1, 3, 1, 1]
+    Tree.                 add     DEBUG			ordering1: [[1], [1, 1], [1, 2], [1, 2, 1], [1, 2, 1, 1], [1, 2, 2], [1, 3], [1, 3, 1], [1, 3, 1, 1]]
+    Tree.                 add     DEBUG		index: 9	position2: [1, 3, 2]
+    Tree.                 add     DEBUG			index == len(ordering1)
+    Tree.                 add     DEBUG			node3: <Element f at 16c9030>
+    Tree.                 add     DEBUG			parent1: <Element e at 16b6fc0>
+    Tree.                 add     DEBUG			position3: [1, 3, 2]
+    Tree.                 add     DEBUG			ordering1: [[1], [1, 1], [1, 2], [1, 2, 1], [1, 2, 1, 1], [1, 2, 2], [1, 3], [1, 3, 1], [1, 3, 1, 1], [1, 3, 2]]
+    Tree.                 add     DEBUG		testing: <Element f at 16c9030>
+    Tree.                 add     DEBUG			tag is not _, skip
+    Tree.                 add     DEBUG		testing: <Element g at 16c9090>
+    Tree.                 add     DEBUG			tag is not _, skip
+    Tree.                 add     DEBUG		testing: <Element f at 16c9060>
+    Tree.                 add     DEBUG			tag is not _, skip
+    Tree.                 add     DEBUG		testing: <Element e at 16b6fc0>
+    Tree.                 add     DEBUG			tag is not _, skip
+    Tree.                 add     DEBUG		testing: <Element g at 16b6e40>
+    Tree.                 add     DEBUG			tag is not _, skip
+    Tree.                 add     DEBUG		testing: <Element d at 16b6f30>
+    Tree.                 add     DEBUG			tag is not _, skip
+    Tree.                 add     DEBUG		testing: <Element g at 16b6d50>
+    Tree.                 add     DEBUG			tag is not _, skip
+    Tree.                 add     DEBUG		testing: <Element e at 16b61b0>
+    Tree.                 add     DEBUG			tag is not _, skip
+    Tree.                 add     DEBUG		testing: <Element c at 16b6d20>
+    Tree.                 add     DEBUG			tag is not _, skip
+    Tree.                 add     DEBUG		testing: <Element c at 16b6a50>
+    Tree.                 add     DEBUG			tag is not _, skip
 test_Tre.test_SimpleTrees_Equ     DEBUG		
 test_Tre.test_SimpleTrees_Equ     DEBUG		
 test_Tre.test_SimpleTrees_Equ     DEBUG		starting TreeGroup.Tree.test_Tree
+    Tree.                 add     DEBUG		ordering1: [[1], [1, 1]]
+    Tree.                 add     DEBUG		ordering2: [[1], [1, 1]]
+    Tree.                 add     DEBUG		index: 0	position2: [1]
+    Tree.                 add     DEBUG			position2 == ordering1[index], add elements
+    Tree.                 add     DEBUG			node1: <Element a at 16b6ea0>	node2: <Element d at 16b6f00>
+  Attrib.         _addattribs     DEBUG		adding attributes: {}	{}
+    Tree.                 add     DEBUG		index: 1	position2: [1, 1]
+    Tree.                 add     DEBUG			position2 == ordering1[index], add elements
+    Tree.                 add     DEBUG			node1: <Element b at 16c90c0>	node2: <Element e at 16c9090>
+  Attrib.         _addattribs     DEBUG		adding attributes: {'id': '1'}	{'id': 'a'}
+  Attrib.         _addattribs     DEBUG		attrib2: key: id	value: a
+  Attrib.         _addattribs     DEBUG		result key: id	value: 1
+    Tree.                 add     DEBUG		testing: <Element g at 16c90c0>
+    Tree.                 add     DEBUG			tag is not _, skip
+    Tree.                 add     DEBUG		testing: <Element e at 16b6ea0>
+    Tree.                 add     DEBUG			tag is not _, skip
 test_Tre.test_SimpleTrees_Une     DEBUG		
 test_Tre.test_SimpleTrees_Une     DEBUG		
 test_Tre.test_SimpleTrees_Une     DEBUG		starting TreeGroup.Tree.test_Tree
+    Tree.                 add     DEBUG		ordering1: [[1], [1, 1]]
+    Tree.                 add     DEBUG		ordering2: [[1], [1, 1], [1, 2]]
+    Tree.                 add     DEBUG		index: 0	position2: [1]
+    Tree.                 add     DEBUG			position2 == ordering1[index], add elements
+    Tree.                 add     DEBUG			node1: <Element a at 16c9150>	node2: <Element a at 16c91b0>
+  Attrib.         _addattribs     DEBUG		adding attributes: {}	{}
+    Tree.                 add     DEBUG		index: 1	position2: [1, 1]
+    Tree.                 add     DEBUG			position2 == ordering1[index], add elements
+    Tree.                 add     DEBUG			node1: <Element b at 16c9240>	node2: <Element b at 16c91e0>
+  Attrib.         _addattribs     DEBUG		adding attributes: {'id': 'a'}	{'id': '1'}
+  Attrib.         _addattribs     DEBUG		attrib2: key: id	value: 1
+  Attrib.         _addattribs     DEBUG		result key: id	value: a
+    Tree.                 add     DEBUG		index: 2	position2: [1, 2]
+    Tree.                 add     DEBUG			index == len(ordering1)
+    Tree.                 add     DEBUG			node3: <Element g at 16c9300>
+    Tree.                 add     DEBUG			parent1: <Element b at 16c9150>
+    Tree.                 add     DEBUG			position3: [1, 2]
+    Tree.                 add     DEBUG			ordering1: [[1], [1, 1], [1, 2]]
+    Tree.                 add     DEBUG		testing: <Element g at 16c9300>
+    Tree.                 add     DEBUG			tag is not _, skip
+    Tree.                 add     DEBUG		testing: <Element d at 16c9240>
+    Tree.                 add     DEBUG			tag is not _, skip
+    Tree.                 add     DEBUG		testing: <Element b at 16c9150>
+    Tree.                 add     DEBUG			tag is not _, skip
 test_Tre.       test_Subtrees     DEBUG		
 test_Tre.       test_Subtrees     DEBUG		
 test_Tre.       test_Subtrees     DEBUG		starting test_Subtrees
+    Tree.                 add     DEBUG		ordering1: [[1], [1, 1]]
+    Tree.                 add     DEBUG		ordering2: [[1], [1, 1], [1, 1, 1], [1, 2]]
+    Tree.                 add     DEBUG		index: 0	position2: [1]
+    Tree.                 add     DEBUG			position2 == ordering1[index], add elements
+    Tree.                 add     DEBUG			node1: <Element b at 16c93c0>	node2: <Element Y at 16c93f0>
+  Attrib.         _addattribs     DEBUG		adding attributes: {'id': '9'}	{'id': 'a'}
+  Attrib.         _addattribs     DEBUG		attrib2: key: id	value: a
+  Attrib.         _addattribs     DEBUG		result key: id	value: 9
+    Tree.                 add     DEBUG		index: 1	position2: [1, 1]
+    Tree.                 add     DEBUG			position2 == ordering1[index], add elements
+    Tree.                 add     DEBUG			node1: <Element c at 16c94b0>	node2: <Element _ at 16c9450>
+  Attrib.         _addattribs     DEBUG		adding attributes: {'id': '3'}	{}
+    Tree.                 add     DEBUG		index: 2	position2: [1, 1, 1]
+    Tree.                 add     DEBUG			index == len(ordering1)
+    Tree.                 add     DEBUG			node3: <Element d at 16c9540>
+    Tree.                 add     DEBUG			parent1: <Element c at 16c94b0>
+    Tree.                 add     DEBUG			position3: [1, 1, 1]
+    Tree.                 add     DEBUG			ordering1: [[1], [1, 1], [1, 1, 1]]
+    Tree.                 add     DEBUG		index: 3	position2: [1, 2]
+    Tree.                 add     DEBUG			index == len(ordering1)
+    Tree.                 add     DEBUG			node3: <Element c at 16c95d0>
+    Tree.                 add     DEBUG			parent1: <Element _ at 16c93c0>
+    Tree.                 add     DEBUG			position3: [1, 2]
+    Tree.                 add     DEBUG			ordering1: [[1], [1, 1], [1, 1, 1], [1, 2]]
+    Tree.                 add     DEBUG		testing: <Element c at 16c95d0>
+    Tree.                 add     DEBUG			tag is not _, skip
+    Tree.                 add     DEBUG		testing: <Element d at 16c95a0>
+    Tree.                 add     DEBUG			tag is not _, skip
+    Tree.                 add     DEBUG		testing: <Element c at 16c94b0>
+    Tree.                 add     DEBUG			tag is not _, skip
+    Tree.                 add     DEBUG		testing: <Element _ at 16c93c0>
+    Tree.                 add     DEBUG			attributes not blank, skip
 test_Tre.  test_TreeToSubtree     DEBUG		
 test_Tre.  test_TreeToSubtree     DEBUG		
 test_Tre.  test_TreeToSubtree     DEBUG		starting test_TreeToSubtree
+    Tree.                 add     DEBUG		ordering1: [[1], [1, 1], [1, 1, 1], [1, 2]]
+    Tree.                 add     DEBUG		ordering2: [[1], [1, 1], [1, 1, 1], [1, 2], [1, 2, 1], [1, 2, 1, 1], [1, 2, 2]]
+    Tree.                 add     DEBUG		index: 0	position2: [1]
+    Tree.                 add     DEBUG			position2 == ordering1[index], add elements
+    Tree.                 add     DEBUG			node1: <Element Y at 16c95d0>	node2: <Element b at 16c9390>
+  Attrib.         _addattribs     DEBUG		adding attributes: {'id': 'a'}	{}
+    Tree.                 add     DEBUG		index: 1	position2: [1, 1]
+    Tree.                 add     DEBUG			position2 == ordering1[index], add elements
+    Tree.                 add     DEBUG			node1: <Element _ at 16c9660>	node2: <Element b at 16c9600>
+  Attrib.         _addattribs     DEBUG		adding attributes: {}	{'id': '9'}
+  Attrib.         _addattribs     DEBUG		attrib2: key: id	value: 9
+    Tree.                 add     DEBUG		index: 2	position2: [1, 1, 1]
+    Tree.                 add     DEBUG			position2 == ordering1[index], add elements
+    Tree.                 add     DEBUG			node1: <Element d at 16c9630>	node2: <Element c at 16c9690>
+  Attrib.         _addattribs     DEBUG		adding attributes: {'id': '4'}	{'id': '3'}
+  Attrib.         _addattribs     DEBUG		attrib2: key: id	value: 3
+  Attrib.         _addattribs     DEBUG		result key: id	value: 4
+    Tree.                 add     DEBUG		index: 3	position2: [1, 2]
+    Tree.                 add     DEBUG			position2 == ordering1[index], add elements
+    Tree.                 add     DEBUG			node1: <Element c at 16c9720>	node2: <Element e at 16c96c0>
+  Attrib.         _addattribs     DEBUG		adding attributes: {'id': '5'}	{'id': '6'}
+  Attrib.         _addattribs     DEBUG		attrib2: key: id	value: 6
+  Attrib.         _addattribs     DEBUG		result key: id	value: 5
+    Tree.                 add     DEBUG		index: 4	position2: [1, 2, 1]
+    Tree.                 add     DEBUG			index == len(ordering1)
+    Tree.                 add     DEBUG			node3: <Element f at 16b6f00>
+    Tree.                 add     DEBUG			parent1: <Element h at 16c9720>
+    Tree.                 add     DEBUG			position3: [1, 2, 1]
+    Tree.                 add     DEBUG			ordering1: [[1], [1, 1], [1, 1, 1], [1, 2], [1, 2, 1]]
+    Tree.                 add     DEBUG		index: 5	position2: [1, 2, 1, 1]
+    Tree.                 add     DEBUG			index == len(ordering1)
+    Tree.                 add     DEBUG			node3: <Element g at 16b6f30>
+    Tree.                 add     DEBUG			parent1: <Element f at 16b6f00>
+    Tree.                 add     DEBUG			position3: [1, 2, 1, 1]
+    Tree.                 add     DEBUG			ordering1: [[1], [1, 1], [1, 1, 1], [1, 2], [1, 2, 1], [1, 2, 1, 1]]
+    Tree.                 add     DEBUG		index: 6	position2: [1, 2, 2]
+    Tree.                 add     DEBUG			index == len(ordering1)
+    Tree.                 add     DEBUG			node3: <Element f at 16b6f90>
+    Tree.                 add     DEBUG			parent1: <Element h at 16c9720>
+    Tree.                 add     DEBUG			position3: [1, 2, 2]
+    Tree.                 add     DEBUG			ordering1: [[1], [1, 1], [1, 1, 1], [1, 2], [1, 2, 1], [1, 2, 1, 1], [1, 2, 2]]
+    Tree.                 add     DEBUG		testing: <Element f at 16b6f90>
+    Tree.                 add     DEBUG			tag is not _, skip
+    Tree.                 add     DEBUG		testing: <Element g at 16b6f60>
+    Tree.                 add     DEBUG			tag is not _, skip
+    Tree.                 add     DEBUG		testing: <Element f at 16b6b10>
+    Tree.                 add     DEBUG			tag is not _, skip
+    Tree.                 add     DEBUG		testing: <Element h at 16c9720>
+    Tree.                 add     DEBUG			tag is not _, skip
+    Tree.                 add     DEBUG		testing: <Element g at 16b6f30>
+    Tree.                 add     DEBUG			tag is not _, skip
+    Tree.                 add     DEBUG		testing: <Element b at 16b6f00>
+    Tree.                 add     DEBUG			tag is not _, skip
+    Tree.                 add     DEBUG		testing: <Element _ at 16c95d0>
+    Tree.                 add     DEBUG			attributes not blank, skip
+    Tree.                 add     DEBUG		ordering1: [[1], [1, 1], [1, 1, 1], [1, 2], [1, 2, 1], [1, 2, 1, 1], [1, 2, 2]]
+    Tree.                 add     DEBUG		ordering2: [[1], [1, 1], [1, 1, 1], [1, 2]]
+    Tree.                 add     DEBUG		index: 0	position2: [1]
+    Tree.                 add     DEBUG			position2 == ordering1[index], add elements
+    Tree.                 add     DEBUG			node1: <Element b at 16b6c90>	node2: <Element Y at 16b6d20>
+  Attrib.         _addattribs     DEBUG		adding attributes: {}	{'id': 'a'}
+  Attrib.         _addattribs     DEBUG		attrib2: key: id	value: a
+    Tree.                 add     DEBUG		index: 1	position2: [1, 1]
+    Tree.                 add     DEBUG			position2 == ordering1[index], add elements
+    Tree.                 add     DEBUG			node1: <Element b at 16b6a50>	node2: <Element _ at 16b6ba0>
+  Attrib.         _addattribs     DEBUG		adding attributes: {'id': '9'}	{}
+    Tree.                 add     DEBUG		index: 2	position2: [1, 1, 1]
+    Tree.                 add     DEBUG			position2 == ordering1[index], add elements
+    Tree.                 add     DEBUG			node1: <Element c at 16b6cc0>	node2: <Element d at 16b6c60>
+  Attrib.         _addattribs     DEBUG		adding attributes: {'id': '3'}	{'id': '4'}
+  Attrib.         _addattribs     DEBUG		attrib2: key: id	value: 4
+  Attrib.         _addattribs     DEBUG		result key: id	value: 3
+    Tree.                 add     DEBUG		index: 3	position2: [1, 2]
+    Tree.                 add     DEBUG			position2 == ordering1[index], add elements
+    Tree.                 add     DEBUG			node1: <Element e at 16b6750>	node2: <Element c at 16b6450>
+  Attrib.         _addattribs     DEBUG		adding attributes: {'id': '6'}	{'id': '5'}
+  Attrib.         _addattribs     DEBUG		attrib2: key: id	value: 5
+  Attrib.         _addattribs     DEBUG		result key: id	value: 6
+    Tree.                 add     DEBUG		testing: <Element f at 16b6ae0>
+    Tree.                 add     DEBUG			tag is not _, skip
+    Tree.                 add     DEBUG		testing: <Element g at 16b6b40>
+    Tree.                 add     DEBUG			tag is not _, skip
+    Tree.                 add     DEBUG		testing: <Element f at 16b6bd0>
+    Tree.                 add     DEBUG			tag is not _, skip
+    Tree.                 add     DEBUG		testing: <Element h at 16b6750>
+    Tree.                 add     DEBUG			tag is not _, skip
+    Tree.                 add     DEBUG		testing: <Element g at 16b6cc0>
+    Tree.                 add     DEBUG			tag is not _, skip
+    Tree.                 add     DEBUG		testing: <Element b at 16b6a50>
+    Tree.                 add     DEBUG			tag is not _, skip
+    Tree.                 add     DEBUG		testing: <Element _ at 16b6c90>
+    Tree.                 add     DEBUG			attributes not blank, skip
 test_Tre.  test_TreesWithText     DEBUG		
 test_Tre.  test_TreesWithText     DEBUG		
 test_Tre.  test_TreesWithText     DEBUG		starting test_TreesWithText
+    Tree.                 add     DEBUG		ordering1: [[1], [1, 1], [1, 1, 1], [1, 2], [1, 2, 1], [1, 2, 1, 1], [1, 2, 2]]
+    Tree.                 add     DEBUG		ordering2: [[1], [1, 1], [1, 1, 1], [1, 1, 1, 1], [1, 1, 2], [1, 2], [1, 2, 1], [1, 2, 1, 1], [1, 2, 2]]
+    Tree.                 add     DEBUG		index: 0	position2: [1]
+    Tree.                 add     DEBUG			position2 == ordering1[index], add elements
+    Tree.                 add     DEBUG			node1: <Element b at 16b6960>	node2: <Element a at 16b6b70>
+  Attrib.         _addattribs     DEBUG		adding attributes: {}	{}
+    Tree.                 add     DEBUG		index: 1	position2: [1, 1]
+    Tree.                 add     DEBUG			position2 == ordering1[index], add elements
+    Tree.                 add     DEBUG			node1: <Element a at 16b6c30>	node2: <Element Y at 16b6a20>
+  Attrib.         _addattribs     DEBUG		adding attributes: {'id': '9'}	{}
+    Tree.                 add     DEBUG		index: 2	position2: [1, 1, 1]
+    Tree.                 add     DEBUG			position2 == ordering1[index], add elements
+    Tree.                 add     DEBUG			node1: <Element c at 16b69f0>	node2: <Element _ at 16b6ab0>
+  Attrib.         _addattribs     DEBUG		adding attributes: {'id': '3'}	{}
+    Tree.                 add     DEBUG		index: 3	position2: [1, 1, 1, 1]
+    Tree.                 add     DEBUG			position2 != ordering1[index]
+    Tree.                 add     DEBUG			node3: <Element d at 16b68a0>
+    Tree.                 add     DEBUG			parent1: <Element c at 16b69f0>
+    Tree.                 add     DEBUG			position3: [1, 1, 1, 1]
+    Tree.                 add     DEBUG			ordering1: [[1], [1, 1], [1, 1, 1], [1, 1, 1, 1], [1, 2], [1, 2, 1], [1, 2, 1, 1], [1, 2, 2]]
+    Tree.                 add     DEBUG		index: 4	position2: [1, 1, 2]
+    Tree.                 add     DEBUG			position2 != ordering1[index]
+    Tree.                 add     DEBUG			node3: <Element c at 16b6870>
+    Tree.                 add     DEBUG			parent1: <Element Z at 16b6c30>
+    Tree.                 add     DEBUG			position3: [1, 1, 2]
+    Tree.                 add     DEBUG			ordering1: [[1], [1, 1], [1, 1, 1], [1, 1, 1, 1], [1, 1, 2], [1, 2], [1, 2, 1], [1, 2, 1, 1], [1, 2, 2]]
+    Tree.                 add     DEBUG		index: 5	position2: [1, 2]
+    Tree.                 add     DEBUG			position2 == ordering1[index], add elements
+    Tree.                 add     DEBUG			node1: <Element f at 16b6570>	node2: <Element V at 16b68a0>
+  Attrib.         _addattribs     DEBUG		adding attributes: {'id': '6'}	{}
+    Tree.                 add     DEBUG		index: 6	position2: [1, 2, 1]
+    Tree.                 add     DEBUG			position2 == ordering1[index], add elements
+    Tree.                 add     DEBUG			node1: <Element g at 16b6660>	node2: <Element U at 16b6810>
+  Attrib.         _addattribs     DEBUG		adding attributes: {'id': '7'}	{}
+    Tree.                 add     DEBUG		index: 7	position2: [1, 2, 1, 1]
+    Tree.                 add     DEBUG			position2 == ordering1[index], add elements
+    Tree.                 add     DEBUG			node1: <Element i at 16b67e0>	node2: <Element T at 16b6840>
+  Attrib.         _addattribs     DEBUG		adding attributes: {'id': '8'}	{}
+    Tree.                 add     DEBUG		index: 8	position2: [1, 2, 2]
+    Tree.                 add     DEBUG			position2 == ordering1[index], add elements
+    Tree.                 add     DEBUG			node1: <Element g at 16b6600>	node2: <Element U at 16b67b0>
+  Attrib.         _addattribs     DEBUG		adding attributes: {'id': '8'}	{}
+    Tree.                 add     DEBUG		testing: <Element a at 16b6600>
+    Tree.                 add     DEBUG			tag is not _, skip
+    Tree.                 add     DEBUG		testing: <Element b at 16b67e0>
+    Tree.                 add     DEBUG			tag is not _, skip
+    Tree.                 add     DEBUG		testing: <Element a at 16b6660>
+    Tree.                 add     DEBUG			tag is not _, skip
+    Tree.                 add     DEBUG		testing: <Element a at 16b6570>
+    Tree.                 add     DEBUG			tag is not _, skip
+    Tree.                 add     DEBUG		testing: <Element c at 16b6870>
+    Tree.                 add     DEBUG			tag is not _, skip
+    Tree.                 add     DEBUG		testing: <Element d at 16b6780>
+    Tree.                 add     DEBUG			tag is not _, skip
+    Tree.                 add     DEBUG		testing: <Element c at 16b69f0>
+    Tree.                 add     DEBUG			tag is not _, skip
+    Tree.                 add     DEBUG		testing: <Element Z at 16b6c30>
+    Tree.                 add     DEBUG			tag is not _, skip
+    Tree.                 add     DEBUG		testing: <Element c at 16b6960>
+    Tree.                 add     DEBUG			tag is not _, skip
+    Tree.                 add     DEBUG		ordering1: [[1], [1, 1], [1, 1, 1], [1, 1, 1, 1], [1, 1, 2], [1, 2], [1, 2, 1], [1, 2, 1, 1], [1, 2, 2]]
+    Tree.                 add     DEBUG		ordering2: [[1], [1, 1], [1, 1, 1], [1, 2], [1, 2, 1], [1, 2, 1, 1], [1, 2, 2]]
+    Tree.                 add     DEBUG		index: 0	position2: [1]
+    Tree.                 add     DEBUG			position2 == ordering1[index], add elements
+    Tree.                 add     DEBUG			node1: <Element a at 16b64e0>	node2: <Element b at 16b6510>
+  Attrib.         _addattribs     DEBUG		adding attributes: {}	{}
+    Tree.                 add     DEBUG		index: 1	position2: [1, 1]
+    Tree.                 add     DEBUG			position2 == ordering1[index], add elements
+    Tree.                 add     DEBUG			node1: <Element Y at 16b6420>	node2: <Element a at 16b64b0>
+  Attrib.         _addattribs     DEBUG		adding attributes: {}	{'id': '9'}
+  Attrib.         _addattribs     DEBUG		attrib2: key: id	value: 9
+    Tree.                 add     DEBUG		index: 2	position2: [1, 1, 1]
+    Tree.                 add     DEBUG			position2 == ordering1[index], add elements
+    Tree.                 add     DEBUG			node1: <Element _ at 16b63f0>	node2: <Element c at 16b6480>
+  Attrib.         _addattribs     DEBUG		adding attributes: {}	{'id': '3'}
+  Attrib.         _addattribs     DEBUG		attrib2: key: id	value: 3
+    Tree.                 add     DEBUG		index: 3	position2: [1, 2]
+    Tree.                 add     DEBUG			position2 != ordering1[index]
+    Tree.                 add     DEBUG			found position2 in ordering1 at index 5, adding nodes
+    Tree.                 add     DEBUG			node1: <Element V at 16b6300>	node2: <Element f at 16b6360>
+  Attrib.         _addattribs     DEBUG		adding attributes: {}	{'id': '6'}
+  Attrib.         _addattribs     DEBUG		attrib2: key: id	value: 6
+    Tree.                 add     DEBUG		index: 4	position2: [1, 2, 1]
+    Tree.                 add     DEBUG			position2 != ordering1[index]
+    Tree.                 add     DEBUG			found position2 in ordering1 at index 6, adding nodes
+    Tree.                 add     DEBUG			node1: <Element U at 16b62a0>	node2: <Element g at 16b62d0>
+  Attrib.         _addattribs     DEBUG		adding attributes: {}	{'id': '7'}
+  Attrib.         _addattribs     DEBUG		attrib2: key: id	value: 7
+    Tree.                 add     DEBUG		index: 5	position2: [1, 2, 1, 1]
+    Tree.                 add     DEBUG			position2 != ordering1[index]
+    Tree.                 add     DEBUG			found position2 in ordering1 at index 7, adding nodes
+    Tree.                 add     DEBUG			node1: <Element T at 16b6270>	node2: <Element i at 16b61e0>
+  Attrib.         _addattribs     DEBUG		adding attributes: {}	{'id': '8'}
+  Attrib.         _addattribs     DEBUG		attrib2: key: id	value: 8
+    Tree.                 add     DEBUG		index: 6	position2: [1, 2, 2]
+    Tree.                 add     DEBUG			position2 != ordering1[index]
+    Tree.                 add     DEBUG			found position2 in ordering1 at index 8, adding nodes
+    Tree.                 add     DEBUG			node1: <Element U at 16b6180>	node2: <Element g at 16b6210>
+  Attrib.         _addattribs     DEBUG		adding attributes: {}	{'id': '8'}
+  Attrib.         _addattribs     DEBUG		attrib2: key: id	value: 8
+    Tree.                 add     DEBUG		testing: <Element a at 16b6180>
+    Tree.                 add     DEBUG			tag is not _, skip
+    Tree.                 add     DEBUG		testing: <Element b at 16b6270>
+    Tree.                 add     DEBUG			tag is not _, skip
+    Tree.                 add     DEBUG		testing: <Element a at 16b62a0>
+    Tree.                 add     DEBUG			tag is not _, skip
+    Tree.                 add     DEBUG		testing: <Element a at 16b6300>
+    Tree.                 add     DEBUG			tag is not _, skip
+    Tree.                 add     DEBUG		testing: <Element c at 16b6150>
+    Tree.                 add     DEBUG			tag is not _, skip
+    Tree.                 add     DEBUG		testing: <Element d at 16b6240>
+    Tree.                 add     DEBUG			tag is not _, skip
+    Tree.                 add     DEBUG		testing: <Element c at 16b63f0>
+    Tree.                 add     DEBUG			tag is not _, skip
+    Tree.                 add     DEBUG		testing: <Element Z at 16b6420>
+    Tree.                 add     DEBUG			tag is not _, skip
+    Tree.                 add     DEBUG		testing: <Element c at 16b64e0>
+    Tree.                 add     DEBUG			tag is not _, skip
 test_Tre.    test_ComplexTree     DEBUG		
 test_Tre.    test_ComplexTree     DEBUG		
 test_Tre.    test_ComplexTree     DEBUG		starting TreeGroup.Tree.test_Tree
 test_Tre.test_InverseAddition     DEBUG		
 test_Tre.test_InverseAddition     DEBUG		
 test_Tre.test_InverseAddition     DEBUG		starting TreeGroup.Tree.test_Tree
+    Tree.                 add     DEBUG		ordering1: [[1], [1, 1], [1, 2], [1, 3], [1, 3, 1], [1, 3, 1, 1], [1, 3, 2]]
+    Tree.                 add     DEBUG		ordering2: [[1], [1, 1], [1, 2], [1, 3], [1, 3, 1], [1, 3, 1, 1], [1, 3, 2]]
+    Tree.                 add     DEBUG		index: 0	position2: [1]
+    Tree.                 add     DEBUG			position2 == ordering1[index], add elements
+    Tree.                 add     DEBUG			node1: <Element Z at 16c9ab0>	node2: <Element a at 16c9c00>
+  Attrib.         _addattribs     DEBUG		adding attributes: {}	{}
+    Tree.                 add     DEBUG		index: 1	position2: [1, 1]
+    Tree.                 add     DEBUG			position2 == ordering1[index], add elements
+    Tree.                 add     DEBUG			node1: <Element _ at 16c9c30>	node2: <Element _ at 16c9de0>
+  Attrib.         _addattribs     DEBUG		adding attributes: {}	{}
+    Tree.                 add     DEBUG		index: 2	position2: [1, 2]
+    Tree.                 add     DEBUG			position2 == ordering1[index], add elements
+    Tree.                 add     DEBUG			node1: <Element Y at 16c9c60>	node2: <Element b at 16c9e40>
+  Attrib.         _addattribs     DEBUG		adding attributes: {'id': 'h'}	{'id': '1'}
+  Attrib.         _addattribs     DEBUG		attrib2: key: id	value: 1
+  Attrib.         _addattribs     DEBUG		result key: id	value: h
+    Tree.                 add     DEBUG		index: 3	position2: [1, 3]
+    Tree.                 add     DEBUG			position2 == ordering1[index], add elements
+    Tree.                 add     DEBUG			node1: <Element Y at 16c9c90>	node2: <Element b at 16c9e10>
+  Attrib.         _addattribs     DEBUG		adding attributes: {'id': 'g'}	{'id': '2'}
+  Attrib.         _addattribs     DEBUG		attrib2: key: id	value: 2
+  Attrib.         _addattribs     DEBUG		result key: id	value: g
+    Tree.                 add     DEBUG		index: 4	position2: [1, 3, 1]
+    Tree.                 add     DEBUG			position2 == ordering1[index], add elements
+    Tree.                 add     DEBUG			node1: <Element X at 16c9cc0>	node2: <Element c at 16c9d50>
+  Attrib.         _addattribs     DEBUG		adding attributes: {'id': 'f'}	{'id': '3'}
+  Attrib.         _addattribs     DEBUG		attrib2: key: id	value: 3
+  Attrib.         _addattribs     DEBUG		result key: id	value: f
+    Tree.                 add     DEBUG		index: 5	position2: [1, 3, 1, 1]
+    Tree.                 add     DEBUG			position2 == ordering1[index], add elements
+    Tree.                 add     DEBUG			node1: <Element W at 16c9cf0>	node2: <Element d at 16c9ea0>
+  Attrib.         _addattribs     DEBUG		adding attributes: {'id': 'e'}	{'id': '4'}
+  Attrib.         _addattribs     DEBUG		attrib2: key: id	value: 4
+  Attrib.         _addattribs     DEBUG		result key: id	value: e
+    Tree.                 add     DEBUG		index: 6	position2: [1, 3, 2]
+    Tree.                 add     DEBUG			position2 == ordering1[index], add elements
+    Tree.                 add     DEBUG			node1: <Element X at 16c9d20>	node2: <Element c at 16c9f00>
+  Attrib.         _addattribs     DEBUG		adding attributes: {'id': 'd'}	{'id': '5'}
+  Attrib.         _addattribs     DEBUG		attrib2: key: id	value: 5
+  Attrib.         _addattribs     DEBUG		result key: id	value: d
+    Tree.                 add     DEBUG		testing: <Element _ at 16c9d20>
+    Tree.                 add     DEBUG		removing unit node: <Element _ at 16c9d20>
+    Tree.                 add     DEBUG		testing: <Element _ at 16c9cf0>
+    Tree.                 add     DEBUG		removing unit node: <Element _ at 16c9cf0>
+    Tree.                 add     DEBUG		testing: <Element _ at 16c9cc0>
+    Tree.                 add     DEBUG		removing unit node: <Element _ at 16c9cc0>
+    Tree.                 add     DEBUG		testing: <Element _ at 16c9c90>
+    Tree.                 add     DEBUG		removing unit node: <Element _ at 16c9c90>
+    Tree.                 add     DEBUG		testing: <Element _ at 16c9c60>
+    Tree.                 add     DEBUG		removing unit node: <Element _ at 16c9c60>
+    Tree.                 add     DEBUG		testing: <Element _ at 16c9c30>
+    Tree.                 add     DEBUG		removing unit node: <Element _ at 16c9c30>
+    Tree.                 add     DEBUG		testing: <Element _ at 16c9ab0>
+    Tree.                 add     DEBUG		removing unit node: <Element _ at 16c9ab0>
 test_Tre.     test_SimpleTree     DEBUG		
 test_Tre.     test_SimpleTree     DEBUG		
 test_Tre.     test_SimpleTree     DEBUG		starting TreeGroup.Tree.test_Tree
@@ -43,3 +769,69 @@ test_Tre.        test_Subtree     DEBUG		starting TreeGroup.Tree.test_Tree
 test_Tre.       test_UnitTree     DEBUG		
 test_Tre.       test_UnitTree     DEBUG		
 test_Tre.       test_UnitTree     DEBUG		starting TreeGroup.Tree.test_Tree
+    Tree.                 add     DEBUG		ordering1: [[1]]
+    Tree.                 add     DEBUG		ordering2: [[1]]
+    Tree.                 add     DEBUG		index: 0	position2: [1]
+    Tree.                 add     DEBUG			position2 == ordering1[index], add elements
+    Tree.                 add     DEBUG			node1: <Element Y at 16d02d0>	node2: <Element a at 16d0210>
+  Attrib.         _addattribs     DEBUG		adding attributes: {}	{}
+    Tree.                 add     DEBUG		testing: <Element Z at 16d02d0>
+    Tree.                 add     DEBUG			tag is not _, skip
+    Tree.                 add     DEBUG		ordering1: [[1], [1, 1], [1, 2], [1, 2, 1], [1, 2, 1, 1], [1, 2, 2], [1, 3]]
+    Tree.                 add     DEBUG		ordering2: [[1], [1, 1], [1, 2], [1, 2, 1], [1, 2, 1, 1], [1, 2, 2]]
+    Tree.                 add     DEBUG		index: 0	position2: [1]
+    Tree.                 add     DEBUG			position2 == ordering1[index], add elements
+    Tree.                 add     DEBUG			node1: <Element I at 16d0390>	node2: <Element a at 16d0270>
+  Attrib.         _addattribs     DEBUG		adding attributes: {}	{}
+    Tree.                 add     DEBUG		index: 1	position2: [1, 1]
+    Tree.                 add     DEBUG			position2 == ordering1[index], add elements
+    Tree.                 add     DEBUG			node1: <Element Y at 16d03c0>	node2: <Element b at 16d04e0>
+  Attrib.         _addattribs     DEBUG		adding attributes: {'id': 'h'}	{'id': '1'}
+  Attrib.         _addattribs     DEBUG		attrib2: key: id	value: 1
+  Attrib.         _addattribs     DEBUG		result key: id	value: h
+    Tree.                 add     DEBUG		index: 2	position2: [1, 2]
+    Tree.                 add     DEBUG			position2 == ordering1[index], add elements
+    Tree.                 add     DEBUG			node1: <Element X at 16d03f0>	node2: <Element b at 16d0570>
+  Attrib.         _addattribs     DEBUG		adding attributes: {'id': 'g'}	{'id': '2'}
+  Attrib.         _addattribs     DEBUG		attrib2: key: id	value: 2
+  Attrib.         _addattribs     DEBUG		result key: id	value: g
+    Tree.                 add     DEBUG		index: 3	position2: [1, 2, 1]
+    Tree.                 add     DEBUG			position2 == ordering1[index], add elements
+    Tree.                 add     DEBUG			node1: <Element W at 16d0420>	node2: <Element c at 16d0540>
+  Attrib.         _addattribs     DEBUG		adding attributes: {'id': 'f'}	{'id': '3'}
+  Attrib.         _addattribs     DEBUG		attrib2: key: id	value: 3
+  Attrib.         _addattribs     DEBUG		result key: id	value: f
+    Tree.                 add     DEBUG		index: 4	position2: [1, 2, 1, 1]
+    Tree.                 add     DEBUG			position2 == ordering1[index], add elements
+    Tree.                 add     DEBUG			node1: <Element W at 16d0450>	node2: <Element d at 16d0600>
+  Attrib.         _addattribs     DEBUG		adding attributes: {'id': 'e'}	{'id': '4'}
+  Attrib.         _addattribs     DEBUG		attrib2: key: id	value: 4
+  Attrib.         _addattribs     DEBUG		result key: id	value: e
+    Tree.                 add     DEBUG		index: 5	position2: [1, 2, 2]
+    Tree.                 add     DEBUG			position2 == ordering1[index], add elements
+    Tree.                 add     DEBUG			node1: <Element X at 16d0480>	node2: <Element c at 16d0660>
+  Attrib.         _addattribs     DEBUG		adding attributes: {'id': 'd'}	{'id': '5'}
+  Attrib.         _addattribs     DEBUG		attrib2: key: id	value: 5
+  Attrib.         _addattribs     DEBUG		result key: id	value: d
+    Tree.                 add     DEBUG		testing: <Element ULITLLWNVZHFIV at 16d04b0>
+    Tree.                 add     DEBUG			tag is not _, skip
+    Tree.                 add     DEBUG		testing: <Element _ at 16d0480>
+    Tree.                 add     DEBUG		removing unit node: <Element _ at 16d0480>
+    Tree.                 add     DEBUG		testing: <Element _ at 16d0450>
+    Tree.                 add     DEBUG		removing unit node: <Element _ at 16d0450>
+    Tree.                 add     DEBUG		testing: <Element Z at 16d0420>
+    Tree.                 add     DEBUG			tag is not _, skip
+    Tree.                 add     DEBUG		testing: <Element Z at 16d03f0>
+    Tree.                 add     DEBUG			tag is not _, skip
+    Tree.                 add     DEBUG		testing: <Element _ at 16d03c0>
+    Tree.                 add     DEBUG		removing unit node: <Element _ at 16d03c0>
+    Tree.                 add     DEBUG		testing: <Element J at 16d0390>
+    Tree.                 add     DEBUG			tag is not _, skip
+    Tree.                 add     DEBUG		ordering1: [[1]]
+    Tree.                 add     DEBUG		ordering2: [[1]]
+    Tree.                 add     DEBUG		index: 0	position2: [1]
+    Tree.                 add     DEBUG			position2 == ordering1[index], add elements
+    Tree.                 add     DEBUG			node1: <Element Z at 16d06f0>	node2: <Element a at 16d05a0>
+  Attrib.         _addattribs     DEBUG		adding attributes: {}	{}
+    Tree.                 add     DEBUG		testing: <Element _ at 16d06f0>
+    Tree.                 add     DEBUG		removing unit node: <Element _ at 16d06f0>

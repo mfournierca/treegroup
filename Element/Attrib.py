@@ -25,7 +25,7 @@ import copy, logging
 #unit node is because this is a cyclic group. But keep in mind that several operations, 
 #eg cleanstring() remove trailing units in a string, which may cause problems if the '_' is
 #significant in some context. 
-attrdomain = ['_'] + ['\\'] + [i for i in map(chr, range(97, 123))] + [i for i in map(chr, range(32, 48))] + [i for i in map(chr, range(58, 65))]+ [i for i in map(chr, range(65, 91))] + [i for i in map(chr, range(48, 58))]
+attrdomain = ['_'] + [i for i in map(chr, range(97, 123))] + [i for i in map(chr, range(32, 48))] + [i for i in map(chr, range(58, 65))] + ['\\'] + [i for i in map(chr, range(65, 91))] + [i for i in map(chr, range(48, 58))] 
 
 def _cleankeys(attr):
     deletekeys = []
@@ -39,14 +39,14 @@ def _cleankeys(attr):
 def _addattribs(attrib1, attrib2):
     """Add two attribute dictionaries and return the result"""
     log = logging.getLogger()
-    log.debug('adding attributes: %s\t%s' % (str(attrib1), str(attrib2)))
+    #log.debug('adding attributes: %s\t%s' % (str(attrib1), str(attrib2)))
     result = copy.copy(attrib1)
     for key in attrib2.keys():
-        log.debug('attrib2: key: %s\tvalue: %s' % (key, attrib2[key]))
+        #log.debug('attrib2: key: %s\tvalue: %s' % (key, attrib2[key]))
         if key not in result.keys():
             result[key] = attrib2[key]
         else:
-            log.debug('result key: %s\tvalue: %s' % (key, result[key]))
+            #log.debug('result key: %s\tvalue: %s' % (key, result[key]))
             result[key] = String._addstrings(result[key], attrib2[key], attrdomain)
     
     _cleankeys(result)        
