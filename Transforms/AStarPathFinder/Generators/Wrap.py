@@ -33,9 +33,9 @@ class Generator:
         
         operand = self._generateOperand(Operand.Operand(targetElement), targetElement, tag)
         
-        self.log.debug('Generating wrap operand for  %s' % str(targetElement))
-        self.log.debug('wrap in: %s' % tag)
-        self.log.debug('created operand: %s' % str(operand))
+        #self.log.debug('Generating wrap operand for  %s' % str(targetElement))
+        #self.log.debug('wrap in: %s' % tag)
+        #self.log.debug('created operand: %s' % str(operand))
         
         return operand
     
@@ -52,10 +52,10 @@ class Generator:
         #create the operand
         #
         
-        self.log.debug('operand tree: %s' % lxml.etree.tostring(operand.getTree()))
-        self.log.debug('operand target: %s' % str(operand.getTarget()))
-        self.log.debug('operand target parent: %s' % str(operand.getTarget().getparent()))
-        self.log.debug('tag: %s' % tag)
+        #self.log.debug('operand tree: %s' % lxml.etree.tostring(operand.getTree()))
+        #self.log.debug('operand target: %s' % str(operand.getTarget()))
+        #self.log.debug('operand target parent: %s' % str(operand.getTarget().getparent()))
+        #self.log.debug('tag: %s' % tag)
         
         #change operand.target to inverse of targetElement.
         inversetarget = Tree.Tree.invert(copy.deepcopy(targetElement))
@@ -80,17 +80,17 @@ class Generator:
         targetCopy = copy.deepcopy(targetElement) 
         if len(operandtarget) == 0:
             operandtarget.append(targetCopy)
-#            self.log.debug('appended targetCopy to wrapElement')
+#            #self.log.debug('appended targetCopy to wrapElement')
         else:
             Tree.Tree.add(operandtarget[0], targetCopy)
-#            self.log.debug('added targetCopy to wrapElement[0]')
+#            #self.log.debug('added targetCopy to wrapElement[0]')
         
         operand.setTarget(operandtarget)
         
         #done creating the operand
-        self.log.debug('operand tree is: %s' % lxml.etree.tostring(operand.getTree()))
-        self.log.debug('done')
-        self.log.debug('Generated wrap operand: %s' % str(operand))
+        #self.log.debug('operand tree is: %s' % lxml.etree.tostring(operand.getTree()))
+        #self.log.debug('done')
+        #self.log.debug('Generated wrap operand: %s' % str(operand))
         return operand
     
     
@@ -127,7 +127,7 @@ class Iterator(Generator):
         """Generate and return a wrap operand. This function can be used for iteration
         over the accpetableTags list"""
         if self.index >= len(self.acceptableTags): 
-            self.log.debug('no more wraps to generate')
+            #self.log.debug('no more wraps to generate')
             raise StopIteration
         #if optimizing, you may want to copy the operand here instead of creating a new one each time. 
         operand = self._generateOperand(Operand.Operand(self.targetElement), self.targetElement, self.acceptableTags[self.index])
