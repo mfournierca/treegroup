@@ -15,42 +15,32 @@ class Generator:
         self.log = logging.getLogger()
         
         
-    def generateOperand(self, targetElement, currentAttributeName, newAttributeName):
+    def generateOperand(self, targetElement, newAttributeName):
         """Generate an operand for the targetElement and tag"""
         if not isinstance(targetElement, lxml.etree._Element):
-            self.log.error('targetElement must be lxml.etree._Element object, is %s.' % str(targetElement))
-            return None
-        elif not isinstance(currentAttributeName, str):
-            self.log.error('currentAttributeName must be str object, is %s.' % str(currentAttributeName))
+            self.log.error('targetElement must be lxml.etree._Element object, is %s. Aborting' % str(targetElement))
             return None
         elif not isinstance(newAttributeName, str):
-            self.log.error('newAttributeName must be str object, is %s.' % str(newAttributeName))
+            self.log.error('newAttributeName must be str object, is %s. Aborting' % str(newAttributeName))
             return None
         else:
             pass
         
-        operand = self._generateOperand(Operand.Operand(targetElement), targetElement, currentAttributeName, newAttributeName)
+        operand = self._generateOperand(Operand.Operand(targetElement), targetElement, newAttributeName)
         return operand
     
     
-    def _generateOperand(self, operand, targetElement, currentAttributeName, newAttributeName):        
+    def _generateOperand(self, operand, targetElement, newAttributeName):        
         #generate the operand
-        currentAttributeValue = targetElement.get(currentAttributeName)
-        currentCopy = lxml.etree.Element('_', attrib={currentAttributeName: currentAttributeValue})
-        Element.Element.invert(currentCopy)
-        if (currentCopy.get(newAttributeName) is not None) or currentCopy.get(newAttributeName) == '':
-            #problem - the new attribute already exists, and combining them is probably meaningless. 
-            #Warn and return the unit. 
-            self.log.warning('element %s; tried to rename attribute to %s, attribute with that name already exists. Skipping' % (str(targetElement), newAttributeName))
-            return operand
-        elif newAttributeName == '' or newAttributeName == '_':
-            pass
+        if newAttributeName == 'id':
+            #just assign a random number
+            import random
+            newAttributeValue = str(int(random.random() * 10000000000))
         else:
-            currentCopy.set(newAttributeName, currentAttributeValue)
-        
-        renameAttributeNode = currentCopy
-        operand.setTarget(renameAttributeNode)
-#        self.log.debug('Generated attributeRename operand: %s\tTarget: %s' % (str(operand), operand.getTarget()))
+            newAttributeValue = 'defaultSetInAddAttributeGenerator'
+        addAttributeNode = lxml.etree.Element('_', attrib={newAttributeName: newAttributeValue})
+        operand.setTarget(addAttributeNode)
+#        self.log.debug('Generated addAttribute operand: %s\tTarget: %s' % (str(operand), operand.getTarget()))
         return operand
     
     

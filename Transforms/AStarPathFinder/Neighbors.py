@@ -12,7 +12,7 @@ import Generators.Rename
 import Generators.Unwrap
 import Generators.Wrap
 import Generators.RenameAttribute
-
+import Generators.AddAttribute
 
 class Neighbor:
     def __init__(self, tree):
@@ -189,6 +189,7 @@ def findNeighbors_FirstValidationError(n):
         #the loop
         unwrapOperand = unwrapGenerator.generateOperand(errorParser.targetElement)
         if unwrapOperand is None: 
+            #happens when trying to unwrap the root
             pass
         else:
             unwrapNeighbor = Neighbor(Tree.Tree.add(copy.deepcopy(unwrapOperand.getTree()), n.getTree()))
@@ -216,13 +217,30 @@ def findNeighbors_FirstValidationError(n):
         renameAttributeGenerator = Generators.RenameAttribute.Generator()
         for attributeName in errorParser.acceptableAttributes:
             renameAttributeOperand = renameAttributeGenerator.generateOperand(errorParser.targetElement, errorParser.actualAttribute, attributeName)
+            if not renameAttributeOperand:
+                continue
             renameAttributeNeighbor = Neighbor(Tree.Tree.add(copy.deepcopy(renameAttributeOperand.getTree()), n.getTree()))
             renameAttributeNeighbor.setOperand(renameAttributeOperand.getTree())
             renameAttributeNeighbor.setOperandType('renameAttribute')
             cost = getCost(renameAttributeNeighbor, 'renameAttribute', None)
             renameAttributeNeighbor.setGScore(cost)
             neighbors.append(renameAttributeNeighbor)
-    
+
+
+        addAttributeGenerator = Generators.AddAttribute.Generator()
+        for attributeName in errorParser.acceptableAttributes:
+            addAttributeOperand = addAttributeGenerator.generateOperand(errorParser.targetElement, attributeName)
+            addAttributeNeighbor = Neighbor(Tree.Tree.add(copy.deepcopy(addAttributeOperand.getTree()), n.getTree()))
+            addAttributeNeighbor.setOperand(addAttributeOperand.getTree())
+            addAttributeNeighbor.setOperandType('addAttribute')
+            cost = getCost(addAttributeNeighbor, 'addAttribute', None)
+            addAttributeNeighbor.setGScore(cost)
+            neighbors.append(addAttributeNeighbor)
+
+        
+        
+        
+        
         
         return neighbors
             

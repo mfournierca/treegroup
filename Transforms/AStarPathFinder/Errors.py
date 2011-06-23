@@ -522,7 +522,7 @@ class AttributeErrorParser(ErrorParserRootClass):
         #now get targetElement and acceptableAttributes
         self.targetElement, self.acceptableAttributes = self._getTargetElementAndAcceptableAttributes()
         
-        if (self.targetElement is None): #  (self.acceptableAttributes is None):
+        if (self.targetElement is None) and  (self.acceptableAttributes is None):
             return False
 
         return True
@@ -540,7 +540,7 @@ class AttributeErrorParser(ErrorParserRootClass):
             targetElement = self.tree.xpath('//%s[not(@%s)]' % (self.targetTag, self.expectedAttribute))[0]
         else:
             pass
-        
+            
         #acceptableAttributes is harder, since no suggestions are provided in the error message. 
         #Take some guesses!
         if self.targetTag == 'dita': 
