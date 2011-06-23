@@ -506,7 +506,7 @@ class AttributeErrorParser(ErrorParserRootClass):
         #this function assigns targetElement and acceptableTags if parsing is 
         #successful, otherwise they remain None
         self.targetElement = None
-        self.targetAttribute = None
+        self.actualAttribute = None
         self.acceptableAttributes = None
         
 #        self.log.debug('validating tree with dita version 1.1')
@@ -515,24 +515,31 @@ class AttributeErrorParser(ErrorParserRootClass):
         self.log.debug('first error message: %s' % self.errorMessage)
         
         patternparser = AttributePatternParser()
-        self.targetTag, self.targetAttribute = patternparser.parse(self.errorMessage, self.tree)
-        if (self.targetTag is None) and (self.targetAttribute is None):
+        self.targetTag, self.actualAttribute, self.expectedAttribute = patternparser.parse(self.errorMessage, self.tree)
+        if (self.targetTag is None) and (self.actualAttribute is None):
             return False
         
         #now get targetElement and acceptableAttributes
-        self.targetElement, self.acceptableAttributes = self._getTargetElementAndAcceptableTags()
+        self.targetElement, self.acceptableAttributes = self._getTargetElementAndAcceptableAttributes()
         
-        if (self.targetElement is None) and (self.acceptableAttributes is None):
+        if (self.targetElement is None): #  (self.acceptableAttributes is None):
             return False
 
         return True
      
      
-    def _getTargetElementAndAcceptableTags(self):
+    def _getTargetElementAndAcceptableAttributes(self):
         targetElement = None
         acceptableAttributes = None
         
-        targetElement = self.tree.xpath('//%s[@%s]' % (self.targetTag, self.targetAttribute))[0]
+        if self.actualAttribute is not None:
+            self.log.debug('xpath: //%s[@%s]' % (self.targetTag, self.actualAttribute))
+            targetElement = self.tree.xpath('//%s[@%s]' % (self.targetTag, self.actualAttribute))[0]
+        elif self.expectedAttribute is not None:
+            self.log.debug('xpath: //%s[not(@%s)]' % (self.targetTag, self.expectedAttribute))
+            targetElement = self.tree.xpath('//%s[not(@%s)]' % (self.targetTag, self.expectedAttribute))[0]
+        else:
+            pass
         
         #acceptableAttributes is harder, since no suggestions are provided in the error message. 
         #Take some guesses!
@@ -561,21 +568,38 @@ class AttributePatternParser:
         
         self.errorMessage = error
         self.tree = tree
-        for f in [self._parsePattern1]: 
-            targetTag, targetAttribute = f()
-            if (not targetTag is None) and (not targetAttribute is None):
+        for f in [self._parsePattern1, self._parsePattern2]: 
+            targetTag, actualAttribute, expectedAttribute = f()
+            if (not targetTag is None) and (not actualAttribute is None):
                 break
-        return targetTag, targetAttribute
+        return targetTag, actualAttribute, expectedAttribute
     
 
     def _parsePattern1(self):
         pattern = r'.*?\:\d*\:\d*\:ERROR:VALID\:DTD_UNKNOWN_ATTRIBUTE\: No declaration for attribute (.*?) of element (.*)'
 #        self.log.debug('testing pattern: %s' % str(pattern))
         match = re.search(pattern, self.errorMessage)
-        if not match: return None, None
+        if not match: return None, None, None
         targetTag = match.group(2)
-        targetAttribute = match.group(1)
+        actualAttribute = match.group(1)
         self.log.debug('matched pattern: %s' % str(pattern))
         self.log.debug('\ttargetTag: %s' % targetTag)
-        self.log.debug('\ttargetAttribute: %s' % targetAttribute)
-        return targetTag, targetAttribute
+        self.log.debug('\tactualAttribute: %s' % actualAttribute)
+        return targetTag, actualAttribute, None
+    
+    def _parsePattern2(self):
+        pattern = r'.*?\:\d*\:\d*\:ERROR:VALID\:DTD_MISSING_ATTRIBUTE\: Element (.*?) does not carry attribute (.*)'
+#        self.log.debug('testing pattern: %s' % str(pattern))
+        match = re.search(pattern, self.errorMessage)
+        if not match: return None, None, None
+        targetTag = match.group(1)
+        expectedAttribute = match.group(2)
+        self.log.debug('matched pattern: %s' % str(pattern))
+        self.log.debug('\ttargetTag: %s' % targetTag)
+        self.log.debug('\texpectedAttribute: %s' % expectedAttribute)
+        return targetTag, None, expectedAttribute
+    
+    
+    
+    
+    

@@ -215,7 +215,7 @@ def findNeighbors_FirstValidationError(n):
     if parsed:
         renameAttributeGenerator = Generators.RenameAttribute.Generator()
         for attributeName in errorParser.acceptableAttributes:
-            renameAttributeOperand = renameAttributeGenerator.generateOperand(errorParser.targetElement, errorParser.targetAttribute, attributeName)
+            renameAttributeOperand = renameAttributeGenerator.generateOperand(errorParser.targetElement, errorParser.actualAttribute, attributeName)
             renameAttributeNeighbor = Neighbor(Tree.Tree.add(copy.deepcopy(renameAttributeOperand.getTree()), n.getTree()))
             renameAttributeNeighbor.setOperand(renameAttributeOperand.getTree())
             renameAttributeNeighbor.setOperandType('renameAttribute')
@@ -223,6 +223,7 @@ def findNeighbors_FirstValidationError(n):
             renameAttributeNeighbor.setGScore(cost)
             neighbors.append(renameAttributeNeighbor)
     
+        
         return neighbors
             
     
