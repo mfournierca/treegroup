@@ -76,6 +76,8 @@ def add(tree1, tree2):
             #log.debug('\tindex == len(ordering1)')
             
             node3 = lxml.etree.Element(node2.tag, node2.attrib) #copy.copy(node2)
+            node3.text = node2.text
+            node3.tail = node2.tail
             #log.debug('\tnode3: %s' % str(node3))
                       
             parent1 = getNode(tree1, position2[:-1])
