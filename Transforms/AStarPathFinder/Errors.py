@@ -309,7 +309,14 @@ class ElementErrorParser(ErrorParserRootClass):
         else:
             xpath = self._buildXpathFromActualIndex(targetActualIndex)
 #            self.log.debug('\txpath: %s' % xpath)
-            target = self.tree.xpath(xpath)[0]
+            try:
+                target = self.tree.xpath(xpath)[0]
+            except lxml.etree.XPathEvalError:
+                self.log.error('invalid xpath: %s' % xpath)
+                raise
+            except IndexError:
+                self.log.error('xpath found no elements: %s' % xpath)
+                raise
 #        self.log.debug('\tfound target: %s' % str(target))
         return target
                 
