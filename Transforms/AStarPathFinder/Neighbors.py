@@ -193,7 +193,7 @@ def findNeighbors_FirstValidationError(n):
             pass
         else:
             unwrapNeighbor = Neighbor(Tree.Tree.add(copy.deepcopy(unwrapOperand.getTree()), n.getTree()))
-            unwrapNeighbor.setOperand(unwrapOperand.getTree)
+            unwrapNeighbor.setOperand(unwrapOperand.getTree())
             unwrapNeighbor.setOperandType('unwrap')
             cost = getCost(unwrapNeighbor, 'unwrap', tag)
             if unwrapNeighbor.getGScore() is None:
@@ -281,19 +281,19 @@ def getCost(neighbor, operandtype, desttag):
     
     cost = 0
     
-    #account for operandtype
-    if operandtype == 'rename': cost += 0
-    elif operandtype == 'renameAttribute': cost += 0
-    elif operandtype == 'wrap': cost += 1
-    elif operandtype == 'unwrap': cost += 1
-    else: cost += 1
-    
-    #account for dest tag
-    if desttag == 'body': cost += 0 
-    elif desttag == 'topic': cost += 0
-    elif desttag == 'task': cost += 1
-    elif desttag == 'title': cost += 1
-    else: cost += 1
+#    #account for operandtype
+#    if operandtype == 'rename': cost += 0
+#    elif operandtype == 'renameAttribute': cost += 0
+#    elif operandtype == 'wrap': cost += 1
+#    elif operandtype == 'unwrap': cost += 1
+#    else: cost += 1
+#    
+#    #account for dest tag
+#    if desttag == 'body': cost += 0 
+#    elif desttag == 'topic': cost += 0
+#    elif desttag == 'task': cost += 1
+#    elif desttag == 'title': cost += 1
+#    else: cost += 1
     
     return cost
     

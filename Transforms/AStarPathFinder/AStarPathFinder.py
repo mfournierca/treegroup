@@ -79,6 +79,7 @@ class AStarPathFinder:
                     stepoperandout.write(lxml.etree.tostring(t.getOperand(), pretty_print=True))
                     stepoperandout.close() 
                 except TypeError:
+                    self.log.warning('could not print operand: %s' % sys.exc_info()[1])
                     pass
             
                 try:
