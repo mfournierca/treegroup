@@ -45,6 +45,10 @@ class Generator:
         #self.log.debug('targetElement: %s' % targetElement)
         #self.log.debug('insertbefore: %s' % tag)
         
+        if targetElement.getparent() is None:
+            #target is root
+            return None
+        
         #copy, invert and set the target element
         operand.setTarget(Tree.Tree.invert(copy.deepcopy(targetElement)))
         

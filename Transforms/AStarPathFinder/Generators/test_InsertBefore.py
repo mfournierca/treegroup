@@ -95,7 +95,51 @@ class test_Generator(unittest.TestCase):
       
         
         
+    def test_InsertBeforeRoot(self):
+        self.log.debug('')
+        self.log.debug('')
+        self.log.debug('running %s' % __name__)
+        testfile = os.path.join(self.testfilesdir, 'InsertBeforeTest1.xml')
+        tree = lxml.etree.parse(testfile)
+        targetElement = tree.getroot()
+        operand = self.generator.generateOperand(targetElement, 'b')
+        self.assertTrue(operand is None, "InsertBefore Generator should have returned None, returned %s" % str(operand))
         
+        
+        
+        
+    def test_ComplexTreeWithText(self):
+        """Simple test of insert before"""
+        self.log.debug('')
+        self.log.debug('')
+        self.log.debug('running %s' % __name__)
+        testfile = os.path.join(self.testfilesdir, 'InsertBeforeTest3.xml')
+        tree = lxml.etree.parse(testfile)
+        targetElement = tree.getroot()[1]
+        expectedTree = lxml.etree.fromstring('''<dita>
+                                                <a>
+                                                    <b>
+                                                        <c>abcd</c>
+                                                    </b>
+                                                    <d/>
+                                                </a>
+                                                <b/>
+                                                <e>
+                                                    <f>
+                                                        <g>efg</g>
+                                                    </f>
+                                                    <h/>
+                                                </e>
+                                                <a>
+                                                    <b>hijk</b>
+                                                </a>
+                                            </dita>
+                                            ''')
+        operand = self.generator.generateOperand(targetElement, 'b')
+        self.assertTrue(Tree.Tree.equal(expectedTree, Tree.Tree.add(operand.getTree(), tree)), "InsertBefore Generator generated the wrong operand. \
+        \nExpected %s \
+        \ngot %s" % (lxml.etree.tostring(expectedTree), lxml.etree.tostring(operand.getTree())))
+      
         
         
         

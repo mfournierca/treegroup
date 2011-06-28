@@ -85,20 +85,15 @@ class Iterator(Generator):
     """An iterator class for generating appendbefore operands. This used the same 
     generating functions as the appendbeforeGenerator class"""
     
-    def __init__(self, targetElement, acceptableTags):       
+    def __init__(self, targetElement):       
         self.log = logging.getLogger() 
         if not isinstance(targetElement, lxml.etree._Element):
             self.log.error('targetElement must be lxml.etree._Element object, is %s. Aborting' % str(targetElement))
             #raise StopIteration #?
             return None
-        elif not isinstance(acceptableTags, list):
-            self.log.error('acceptableTags must be list object, is %s. Aborting' % str(acceptableTags))
-            #raise StopIteration #?
-            return None
         else:
             pass
         self.targetElement = targetElement
-        self.acceptableTags = acceptableTags
         self.index = 0
     
         
@@ -106,12 +101,11 @@ class Iterator(Generator):
         return self
         
     def __next__(self):
-        """Generate and return a appendbefore operand. This function can be used for iteration
-        over the accpetableTags list"""
-        if self.index >= len(self.acceptableTags): 
+        """Generate and return a appendbefore operand. This function can be used for iteration"""
+        if self.index >= 1: 
             #self.log.debug('no more appendbefores to generate')
             raise StopIteration
         #if optimizing, you may want to copy the operand here instead of creating a new one each time. 
-        operand = self._generateOperand(Operand.Operand(self.targetElement), self.targetElement, self.acceptableTags[self.index])
+        operand = self._generateOperand(Operand.Operand(self.targetElement), self.targetElement)
         self.index += 1
         return operand
