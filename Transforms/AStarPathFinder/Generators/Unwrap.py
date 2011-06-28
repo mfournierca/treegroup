@@ -120,7 +120,7 @@ class Generator:
             #it should only create an operand. Therefore make a copy of the sibling before adding it to the operand, so that 
             #the target tree does not change.
             if operandtarget.getparent() is None:
-                #the target is the root and has no children
+                #the target is the root and has no siblings
                 break 
             sibling = copy.deepcopy(sibling)
             if len(operandtarget.getparent()) > index:
