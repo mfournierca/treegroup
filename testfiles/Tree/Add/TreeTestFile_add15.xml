@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<html lang="en">
+    <head lang="en" profile="profile">
+        <title lang="en">Sample XHTML Basic document</title>
+    </head>
+    <body id="body" class="body" title="body" lang="en">
+        <title id="title" class="title" title="document title" lang="en">Sample XHTML Basic document</title>
+        <title id="ToC">Contents</title>
+    </body>
+</html>
+
