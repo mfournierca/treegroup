@@ -251,6 +251,27 @@ class test_ElementErrorParser(unittest.TestCase):
 
 
 
+    def test_13(self):
+        #test a file that needs an element inserted before the target
+        self.log.debug('')
+        self.log.debug('')
+        self.log.debug('running test test_13')
+        testfile = os.path.join(self.testfilesdir, 'ErrorTest13.xml')
+        tree = lxml.etree.parse(testfile)
+        expectedtargetelement = tree.getroot()[0][2]
+        expectederrormessage = '/Users/matt/work/programs/dev_workspace/TreeGroup/Transforms/AStarPathFinder/../../testfiles/AStarTransform/Errors/ErrorTest13.xml:3:0:ERROR:VALID:DTD_CONTENT_MODEL: Element topic content does not follow the DTD, expecting (title , titlealts? , (shortdesc | abstract)? , prolog? , body? , related-links? , (topic | concept | task | reference | glossentry)*), got (title body title link )'
+
+        expectedtags = ['concept', 'glossentry', 'reference', 'related-links', 'task', 'topic']
+
+        parser = self.parserClass(tree)
+        parser.parse()
+        
+        self.assertEqual(parser.errorMessage, expectederrormessage, 'ErrorParser parsed the wrong error. Expected %s, got %s' % (expectederrormessage, parser.errorMessage))
+        self.assertEqual(expectedtags, parser.acceptableTags, 'ErrorParser parsed the wrong tags. Expected %s, got %s' % (expectedtags, parser.acceptableTags))
+        self.assertTrue(expectedtargetelement is parser.targetElement, 'ErrorParser parsed the wrong target element. Expected %s, got %s' % (expectedtargetelement, parser.targetElement))
+
+
+
 
 
 

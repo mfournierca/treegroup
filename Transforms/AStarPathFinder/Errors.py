@@ -110,7 +110,7 @@ class ElementErrorParser(ErrorParserRootClass):
             matchIndex = None
             for i, e in enumerate(expectedSlice):
                 #check for match
-                if re.search(r'[\s\(]+%s[\s\)]+' % actualEntry, e):
+                if re.search(r'[\s\(]+%s[\s\)\?\*\+]+' % actualEntry, e):
                     #actualEntry was found in this expected entry.
                     #i is counted from the beginning of the slice, not the list. We need to account for this 
                     matchIndex = i + expectedIndex
@@ -223,7 +223,7 @@ class ElementErrorParser(ErrorParserRootClass):
                 matchIndex = None
                 for i, e in enumerate(expectedSlice):
                     #check for match
-                    if re.search(r'[\s\(]+%s[\s\)]+' % self._actualTags[actualIndex], e):
+                    if re.search(r'[\s\(]+%s[\s\)\?\*]+' % self._actualTags[actualIndex], e):
                         #actualEntry was found in this expected entry.
                         #i is counted from the beginning of the slice, not the list. We need to account for this 
                         matchIndex = i + expectedIndex
