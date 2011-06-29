@@ -25,6 +25,7 @@ class Neighbor:
         #used for debugging. 
         self._id = None
         self._operandType = None
+        self._targetElementStr = None
     
     #===========================================================================
     # accessor methods
@@ -120,6 +121,12 @@ class Neighbor:
         return self._operandType
     
     
+    def setTargetElementStr(self, t):
+        self._targetElementStr = t
+        
+    def getTargetElementStr(self):
+        return self._targetElementStr
+    
     
     
     
@@ -164,15 +171,16 @@ def findNeighbors_FirstValidationError(n):
         wrapGenerator = Generators.Wrap.Generator()
         unwrapGenerator = Generators.Unwrap.Generator()
         insertBeforeGenerator = Generators.InsertBefore.Generator()
-        appendBeforeGenerators = Generators.AppendBefore.Generator()
+        appendBeforeGenerator = Generators.AppendBefore.Generator()
         tag = '_'    
         for tag in errorParser.acceptableTags:
-        
+            
             #rename operator
             renameOperand = renameGenerator.generateOperand(errorParser.targetElement, tag)
             renameNeighbor = Neighbor(Tree.Tree.add(copy.deepcopy(renameOperand.getTree()), n.getTree()))
             renameNeighbor.setOperand(renameOperand.getTree())
             renameNeighbor.setOperandType('rename')
+            renameNeighbor.setTargetElementStr(str(errorParser.targetElement))
             cost = getCost(renameNeighbor, 'rename', tag)
             if renameNeighbor.getGScore() is None:
                 renameNeighbor.setGScore(cost)
@@ -185,6 +193,7 @@ def findNeighbors_FirstValidationError(n):
             wrapNeighbor = Neighbor(Tree.Tree.add(copy.deepcopy(wrapOperand.getTree()), n.getTree()))
             wrapNeighbor.setOperand(wrapOperand.getTree())
             wrapNeighbor.setOperandType('wrap')
+            wrapNeighbor.setTargetElementStr(str(errorParser.targetElement))
             cost = getCost(wrapNeighbor, 'wrap', tag)
             if wrapNeighbor.getGScore() is None:
                 wrapNeighbor.setGScore(cost)
@@ -194,15 +203,19 @@ def findNeighbors_FirstValidationError(n):
             
             #InsertBefore operator
             insertBeforeOperand = insertBeforeGenerator.generateOperand(errorParser.targetElement, tag)
-            insertBeforeNeighbor = Neighbor(Tree.Tree.add(copy.deepcopy(insertBeforeOperand.getTree()), n.getTree()))
-            insertBeforeNeighbor.setOperand(insertBeforeOperand.getTree())
-            insertBeforeNeighbor.setOperandType('insertBefore')
-            cost = getCost(insertBeforeNeighbor, 'insertBefore', tag)
-            if not insertBeforeNeighbor.getGScore():
-                insertBeforeNeighbor.setGScore(cost)
+            if not insertBeforeOperand:
+                pass
             else:
-                insertBeforeNeighbor.setGScore(insertBeforeNeighbor.getGScore() + cost)
-            neighbors.append(insertBeforeNeighbor)
+                insertBeforeNeighbor = Neighbor(Tree.Tree.add(copy.deepcopy(insertBeforeOperand.getTree()), n.getTree()))
+                insertBeforeNeighbor.setOperand(insertBeforeOperand.getTree())
+                insertBeforeNeighbor.setOperandType('insertBefore')
+                insertBeforeNeighbor.setTargetElementStr(str(errorParser.targetElement))
+                cost = getCost(insertBeforeNeighbor, 'insertBefore', tag)
+                if not insertBeforeNeighbor.getGScore():
+                    insertBeforeNeighbor.setGScore(cost)
+                else:
+                    insertBeforeNeighbor.setGScore(insertBeforeNeighbor.getGScore() + cost)
+                neighbors.append(insertBeforeNeighbor)
             
         #unwrap operator. There is only one result of the unwrap operator, so it comes outside
         #the loop
@@ -214,6 +227,7 @@ def findNeighbors_FirstValidationError(n):
             unwrapNeighbor = Neighbor(Tree.Tree.add(copy.deepcopy(unwrapOperand.getTree()), n.getTree()))
             unwrapNeighbor.setOperand(unwrapOperand.getTree())
             unwrapNeighbor.setOperandType('unwrap')
+            unwrapNeighbor.setTargetElementStr(str(errorParser.targetElement))
             cost = getCost(unwrapNeighbor, 'unwrap', tag)
             if unwrapNeighbor.getGScore() is None:
                 unwrapNeighbor.setGScore(cost)
@@ -231,6 +245,7 @@ def findNeighbors_FirstValidationError(n):
             appendBeforeNeighbor = Neighbor(Tree.Tree.add(copy.deepcopy(appendBeforeOperand.getTree()), n.getTree()))
             appendBeforeNeighbor.setOperand(appendBeforeOperand.getTree())
             appendBeforeNeighbor.setOperandType('appendBefore')
+            appendBeforeNeighbor.setTargetElementStr(str(errorParser.targetElement))
             cost = getCost(appendBeforeNeighbor, 'appendBefore', tag)
             if appendBeforeNeighbor.getGScore() is None:
                 appendBeforeNeighbor.setGScore(cost)
@@ -259,6 +274,7 @@ def findNeighbors_FirstValidationError(n):
             renameAttributeNeighbor = Neighbor(Tree.Tree.add(copy.deepcopy(renameAttributeOperand.getTree()), n.getTree()))
             renameAttributeNeighbor.setOperand(renameAttributeOperand.getTree())
             renameAttributeNeighbor.setOperandType('renameAttribute')
+            renameAttributeNeighbor.setTargetElementStr(str(errorParser.targetElement))
             cost = getCost(renameAttributeNeighbor, 'renameAttribute', None)
             renameAttributeNeighbor.setGScore(cost)
             neighbors.append(renameAttributeNeighbor)
@@ -270,6 +286,7 @@ def findNeighbors_FirstValidationError(n):
             addAttributeNeighbor = Neighbor(Tree.Tree.add(copy.deepcopy(addAttributeOperand.getTree()), n.getTree()))
             addAttributeNeighbor.setOperand(addAttributeOperand.getTree())
             addAttributeNeighbor.setOperandType('addAttribute')
+            addAttributeNeighbor.setTargetElementStr(str(errorParser.targetElement))
             cost = getCost(addAttributeNeighbor, 'addAttribute', None)
             addAttributeNeighbor.setGScore(cost)
             neighbors.append(addAttributeNeighbor)
@@ -323,6 +340,8 @@ def getCost(neighbor, operandtype, desttag):
     elif operandtype == 'renameAttribute': cost += 0
     elif operandtype == 'wrap': cost += 1
     elif operandtype == 'unwrap': cost += 2
+    elif operandtype == 'insertBefore': cost += 0
+    elif operandtype == 'appendBefore': cost += 0
     else: cost += 1
     
     #account for dest tag

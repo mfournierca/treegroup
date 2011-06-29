@@ -49,7 +49,12 @@ class test_findNeighbors_FirstValidationError(unittest.TestCase):
                             '<dita><reference><a/>\n</reference>\n</dita>',\
                             '<dita><task><a/>\n</task>\n</dita>',\
                             '<dita><topic><a/>\n</topic>\n</dita>',\
-                            '<dita/>'\
+                            '<dita/>', \
+                            '<dita><concept/><a/></dita>', \
+                            '<dita><glossentry/><a/></dita>',\
+                            '<dita><reference/><a/></dita>',\
+                            '<dita><task/><a/></dita>',\
+                            '<dita><topic/><a/></dita>',\
                             ]
 
         self.assertEqual(len(expectedneighbors), len(neighbors), "findNeighbors_FirstValidationError returned a neighbors list of the wrong length: expected %i, got %i" % (len(expectedneighbors), len(neighbors))) 
@@ -73,14 +78,19 @@ class test_findNeighbors_FirstValidationError(unittest.TestCase):
         neighbors = Neighbors.findNeighbors_FirstValidationError(Neighbors.Neighbor(tree))
         expectedneighbors = ['<dita><concept/><b/></dita>', \
                             '<dita><concept><a/>\n</concept>\n<b/></dita>',\
+                            '<dita><concept/><a/><b/></dita>', \
                             '<dita><glossentry/><b/></dita>',\
                             '<dita><glossentry><a/>\n</glossentry>\n<b/></dita>',\
+                            '<dita><glossentry/><a/><b/></dita>', \
                             '<dita><reference/><b/></dita>',\
                             '<dita><reference><a/>\n</reference>\n<b/></dita>',\
+                            '<dita><reference/><a/><b/></dita>',\
                             '<dita><task/><b/></dita>',\
                             '<dita><task><a/>\n</task>\n<b/></dita>',\
+                            '<dita><task/><a/><b/></dita>',\
                             '<dita><topic/><b/></dita>',\
                             '<dita><topic><a/>\n</topic>\n<b/></dita>',\
+                            '<dita><topic/><a/><b/></dita>',\
                             '<dita><b/></dita>'\
                             ]
         index = 0
@@ -98,13 +108,18 @@ class test_findNeighbors_FirstValidationError(unittest.TestCase):
         testfile = os.path.join(self.testfilesdir, 'NeighborsTest4.xml')
         tree = lxml.etree.parse(testfile)
         neighbors = Neighbors.findNeighbors_FirstValidationError(Neighbors.Neighbor(tree))
-        expectedneighbors = ['<dita><topic><title/></topic></dita>', '<dita><topic><title><a/></title></topic></dita>', '<dita><topic/></dita>']
-        index = 0
-        self.assertEqual(len(expectedneighbors), len(neighbors), "findNeighbors_FirstValidationError returned a neighbors list of the wrong length: expected %i, got %i" % (len(expectedneighbors), len(neighbors))) 
+        expectedneighbors = ['<dita><topic><title/></topic></dita>', 
+                             '<dita><topic><title><a/></title></topic></dita>', 
+                             '<dita><topic/></dita>',
+                             '<dita><topic><title/><a/></topic></dita>'
+                             ]        
         for n in neighbors:
-            self.assertTrue(Tree.Tree.equal(lxml.etree.fromstring(expectedneighbors[index]), n.getTree()), "findNeighbors_FirstValidationError returned the wrong tree: expected %s, got %s" % (expectedneighbors[index], lxml.etree.tostring(n.getTree())))
-            index += 1
-            
+            found = False
+            for e in expectedneighbors:
+                if Tree.Tree.equal(lxml.etree.fromstring(e), n.getTree()): 
+                    found = True
+                    break
+            self.assertTrue(found, "findNeighbors_FirstValidationError: expected but not found: %s" % lxml.etree.tostring(n.getTree()))
     
                 
     def test_MisnamedChildOfTopicAfterTitle(self):
@@ -137,6 +152,20 @@ class test_findNeighbors_FirstValidationError(unittest.TestCase):
                              '<dita><topic><title/><titlealts><a/></titlealts></topic></dita>',        
                              '<dita><topic><title/><topic><a/></topic></topic></dita>',
                              '<dita><topic><title/></topic></dita>',        
+                             
+                             '<dita><topic><title/><abstract/><a/></topic></dita>',
+                             '<dita><topic><title/><body/><a/></topic></dita>',
+                             '<dita><topic><title/><concept/><a/></topic></dita>',
+                             '<dita><topic><title/><glossentry/><a/></topic></dita>',
+                             '<dita><topic><title/><prolog/><a/></topic></dita>',
+                             '<dita><topic><title/><reference/><a/></topic></dita>',
+                             '<dita><topic><title/><related-links/><a/></topic></dita>',
+                             '<dita><topic><title/><shortdesc/><a/></topic></dita>',
+                             '<dita><topic><title/><task/><a/></topic></dita>',
+                             '<dita><topic><title/><titlealts/><a/></topic></dita>',
+                             '<dita><topic><title/><topic/><a/></topic></dita>',
+                             '<dita><topic><title><a/></title></topic></dita>',
+                             
                              ]
                         
         self.assertEqual(len(expectedneighbors), len(neighbors),\

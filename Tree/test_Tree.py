@@ -795,6 +795,38 @@ class test_add(unittest.TestCase):
             
             
         
+    
+    def test_JustRoots(self):
+        
+        self.log.debug('')
+        self.log.debug('')
+        self.log.debug('starting %s' % __name__)
+        
+        expectedtree = lxml.etree.fromstring('<c/>')
+        
+        tree1 = lxml.etree.parse(os.path.join(self.testfilesdir, 'TreeTestFile_add17.xml'))
+        tree2 = lxml.etree.parse(os.path.join(self.testfilesdir, 'TreeTestFile_add18.xml'))
+        Tree.add(tree1, tree2)
+        self.assertTrue(Tree.equal(tree1, expectedtree), "Add failed, created incorrect tree")
+         
+        #test adding elements
+        tree1 = lxml.etree.parse(os.path.join(self.testfilesdir, 'TreeTestFile_add17.xml'))
+        tree2 = lxml.etree.parse(os.path.join(self.testfilesdir, 'TreeTestFile_add18.xml'))
+        Tree.add(tree1.getroot(), tree2.getroot())
+        self.assertTrue(Tree.equal(tree1.getroot(), expectedtree), "Add failed, created incorrect tree")
+                   
+        #test commutativity     
+        self.log.debug('')
+        self.log.debug('') 
+        tree1 = lxml.etree.parse(os.path.join(self.testfilesdir, 'TreeTestFile_add17.xml'))
+        tree2 = lxml.etree.parse(os.path.join(self.testfilesdir, 'TreeTestFile_add18.xml'))
+        Tree.add(tree2, tree1)
+        self.assertTrue(Tree.equal(tree2, expectedtree), "Add failed, created incorrect tree")
+                     
+        
+        
+        
+        
         
         
 class test_invert(unittest.TestCase):

@@ -86,6 +86,7 @@ class AStarPathFinder:
                     neighborinfoout = open(os.path.join(stepdir, 'info%s.txt' % str(self.stepnumber)), 'w')
                     neighborinfoout.write('camefrom: %s\n' % str(t.getCameFrom().getId()))
                     neighborinfoout.write('operand type: %s\n' % str(t.getOperandType()))
+                    neighborinfoout.write('targetElement: %s\n' % str(t.getTargetElementStr()))
                     neighborinfoout.write('gscore: %s\n' % str(t.getGScore()))
                     neighborinfoout.write('hscore: %s\n' % str(t.getHScore()))
                     neighborinfoout.write('fscore: %s\n' % str(t.getFScore()))
@@ -152,7 +153,7 @@ class AStarPathFinder:
 #            self.log.debug('\ttree.getGScore(): %s' % str(t.getGScore()))
 #            self.log.debug('\tneighbor.getGScore(): %s' % str(n.getGScore()))
 #            self.log.debug('\tmetric: %s' % str(Tree.Tree.metric(n.getTree(), t.getTree())))
-            tentativeGScore = n.getGScore() + t.getGScore() + (float(Tree.Tree.metric(n.getTree(), t.getTree())) / 1.0)
+            tentativeGScore = n.getGScore() + t.getGScore() + (float(Tree.Tree.metric(n.getTree(), t.getTree())) / 10.0)
 #            try:
 #                tentativeGScore = t.getGScore() + n.getGScore() + Tree.Tree.metric(n.getTree(), t.getTree())
 #            except:
