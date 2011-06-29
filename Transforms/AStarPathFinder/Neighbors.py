@@ -8,11 +8,6 @@ import Tree.Tree
 import Errors
 
 sys.path.insert(0, os.path.dirname(__file__))
-import Generators.Rename
-import Generators.Unwrap
-import Generators.Wrap
-import Generators.RenameAttribute
-import Generators.AddAttribute
 
 class Neighbor:
     def __init__(self, tree):
@@ -140,6 +135,14 @@ def findNeighbors_FirstValidationError(n):
     validator. By fixing this first error, we find neighbors that are the 
     result of fixing the first invalid element in the tree. """
     
+    import Generators.Rename
+    import Generators.Unwrap
+    import Generators.Wrap
+    import Generators.RenameAttribute
+    import Generators.AddAttribute
+    import Generators.InsertBefore
+    import Generators.AppendBefore
+    
     log = logging.getLogger()
        
 #    log.debug('creating neighbors')
@@ -155,9 +158,13 @@ def findNeighbors_FirstValidationError(n):
     parsed = errorParser.parse()
     
     if parsed:
+        #generate operands using the result of this error parser
+    
         renameGenerator = Generators.Rename.Generator()
         wrapGenerator = Generators.Wrap.Generator()
         unwrapGenerator = Generators.Unwrap.Generator()
+        insertBeforeGenerator = Generators.InsertBefore.Generator()
+        appendBeforeGenerators = Generators.AppendBefore.Generator()
         tag = '_'    
         for tag in errorParser.acceptableTags:
         
@@ -185,10 +192,22 @@ def findNeighbors_FirstValidationError(n):
                 wrapNeighbor.setGScore(wrapNeighbor.getGScore() + cost)
             neighbors.append(wrapNeighbor)
             
+            #InsertBefore operator
+            insertBeforeOperand = insertBeforeGenerator.generateOperand(errorParser.targetElement, tag)
+            insertBeforeNeighbor = Neighbor(Tree.Tree.add(copy.deepcopy(insertBeforeOperand.getTree()), n.getTree()))
+            insertBeforeNeighbor.setOperand(insertBeforeOperand.getTree())
+            insertBeforeNeighbor.setOperandType('insertBefore')
+            cost = getCost(insertBeforeNeighbor, 'insertBefore', tag)
+            if not insertBeforeNeighbor.getGScore():
+                insertBeforeNeighbor.setGScore(cost)
+            else:
+                insertBeforeNeighbor.setGScore(insertBeforeNeighbor.getGScore() + cost)
+            neighbors.append(insertBeforeNeighbor)
+            
         #unwrap operator. There is only one result of the unwrap operator, so it comes outside
         #the loop
         unwrapOperand = unwrapGenerator.generateOperand(errorParser.targetElement)
-        if unwrapOperand is None: 
+        if not unwrapOperand: 
             #happens when trying to unwrap the root
             pass
         else:
@@ -202,6 +221,22 @@ def findNeighbors_FirstValidationError(n):
                 unwrapNeighbor.setGScore(unwrapNeighbor.getGScore() + cost)
             neighbors.append(unwrapNeighbor)
         
+        #appendBefore operator. There is only one result of the appendBefore operator, so it comes outside
+        #the loop
+        appendBeforeOperand = appendBeforeGenerator.generateOperand(errorParser.targetElement)
+        if not appendBeforeOperand: 
+            #happens when trying to appendBefore the root
+            pass
+        else:
+            appendBeforeNeighbor = Neighbor(Tree.Tree.add(copy.deepcopy(appendBeforeOperand.getTree()), n.getTree()))
+            appendBeforeNeighbor.setOperand(appendBeforeOperand.getTree())
+            appendBeforeNeighbor.setOperandType('appendBefore')
+            cost = getCost(appendBeforeNeighbor, 'appendBefore', tag)
+            if appendBeforeNeighbor.getGScore() is None:
+                appendBeforeNeighbor.setGScore(cost)
+            else:
+                appendBeforeNeighbor.setGScore(appendBeforeNeighbor.getGScore() + cost)
+            neighbors.append(appendBeforeNeighbor)
         
         #return neighbors.
         return neighbors
@@ -214,6 +249,8 @@ def findNeighbors_FirstValidationError(n):
     parsed = errorParser.parse()
     
     if parsed:
+        #generate operands using the result of this error parser
+        
         renameAttributeGenerator = Generators.RenameAttribute.Generator()
         for attributeName in errorParser.acceptableAttributes:
             renameAttributeOperand = renameAttributeGenerator.generateOperand(errorParser.targetElement, errorParser.actualAttribute, attributeName)
