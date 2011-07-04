@@ -56,7 +56,9 @@ class AStarPathFinder:
         self.log.debug('starting path finder')
         while len(self._openset) > 0:
             #get member of open set with lowest fscore
+            
             t = self.findLowestFscore()
+            
             self.log.debug('')
             self.log.debug('')
             self.log.info('Tree in open set with lowest FScore: %s' % str(t))
@@ -125,6 +127,16 @@ class AStarPathFinder:
         #calculate scores, etc. Note that t itself is an instance of the Neighbors.Neighbor class
         neighbors = Neighbors.findNeighbors_FirstValidationError(t)
         self.log.debug('found %i neighbors' % len(neighbors))
+        
+        #there are no obstacles in the tree space, so backtracking should not be necessary. 
+        #also, it is difficult to define an accurate heuristic - the number of validation 
+        #errors consistently underestimates (so A* reverts to Dijkstras algo) and there are no other 
+        #obvious / easy heuristics. 
+        #So, try having only the neighbors in the open set. This will force the algorithm to always move 
+        #forward, no backtracking. This is accomplished by emptying the open set before processing 
+        #neighbors. All neighbors are then added, and removed and replaced again on the next iteration. 
+        #This is experimental / speculative - if it doesn't work, comment out the next line. 
+        self._openset = set()
         
         for n in neighbors: 
             

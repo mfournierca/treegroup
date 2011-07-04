@@ -35,7 +35,7 @@ class Generator:
         if newAttributeName == 'id':
             #just assign a random number
             import random
-            newAttributeValue = str(int(random.random() * 10000000000))
+            newAttributeValue = 'id-' + str(int(random.random() * 10000000000))
         else:
             newAttributeValue = 'defaultSetInAddAttributeGenerator'
         addAttributeNode = lxml.etree.Element('_', attrib={newAttributeName: newAttributeValue})

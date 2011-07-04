@@ -15,11 +15,6 @@ import DitaTools.Tree.File.Dita
 # error parser root class
 #===============================================================================
 
-
-
-
-
-
 class ErrorParserRootClass:
     def __init__(self):
         pass
@@ -66,7 +61,9 @@ class ElementErrorParser(ErrorParserRootClass):
         targetCandidate2, acceptableTagsCandidate2, actualIndex2 = self.parseExpectedTags()
 
         #choose which targetCandidate to use. 
-        if targetCandidate2 is None: 
+        if targetCandidate1 is None and targetCandidate2 is None:
+            return False
+        elif targetCandidate2 is None: 
             self.log.debug('targetCandidate2 is None, targetCandidate1 is targetElement: %s' % str(targetCandidate1))
             self.targetElement = targetCandidate1
             self.acceptableTags = acceptableTagsCandidate1
@@ -296,6 +293,10 @@ class ElementErrorParser(ErrorParserRootClass):
         #xpath to find that particular arrangement. 
         #If the parentTag is None, we know that the targetElement is the root. 
         
+        if self._actualTags[targetActualIndex] == 'CDATA':
+            #if CDATA is causing the problem, it must be dealt with in a separate error parser.
+            return None
+        
 #        self.log.debug('finding targetElement from actualTags')
         if self._parentTag is None:   # and len(actualTags) == 0: 
 #            self.log.debug('\tparentTag is None, targetElement is root')
@@ -306,6 +307,7 @@ class ElementErrorParser(ErrorParserRootClass):
                 target = self.tree.getroot()
             except AttributeError:
                 target = self.tree
+
         else:
             xpath = self._buildXpathFromActualIndex(targetActualIndex)
 #            self.log.debug('\txpath: %s' % xpath)
@@ -336,12 +338,19 @@ class ElementErrorParser(ErrorParserRootClass):
         bracketCount = 0
         precedingXpath = ''
         while index >= 0:
-#            self.log.debug('\t\tindex: %s\ttag: %s' % (str(index), self._actualTags[index]))
+#            self.log.debug('\t\tindex: %s\ttag: %s' % (str(index), self._actualTags[index]))            
+            
+            if self._actualTags[index] == 'CDATA':
+                index = index - 1
+                continue
+            
             precedingXpath = precedingXpath + '[preceding-sibling::*[1][self::%s]' % self._actualTags[index]
             index = index - 1
             bracketCount += 1
+            
         for i in range(0, bracketCount): precedingXpath += ']'
 #        self.log.debug('\t\tpreviousXpath: %s' % precedingXpath)
+            
             
 #        self.log.debug('\tbuildingexpression for following siblings')
         index = targetActualIndex + 1
@@ -349,9 +358,15 @@ class ElementErrorParser(ErrorParserRootClass):
         followingXpath = ''
         while index < len(self._actualTags) - 1:
 #            self.log.debug('\t\tindex: %s\ttag: %s' % (str(index), self._actualTags[index]))
+            
+            if self._actualTags[index] == 'CDATA':
+                index = index + 1
+                continue
+            
             followingXpath = followingXpath + '[following-sibling::*[1][self::%s]' % self._actualTags[index]
             index = index + 1
             bracketCount += 1
+            
         for i in range(0, bracketCount): followingXpath += ']'
 #        self.log.debug('\t\tfollowingXpath: %s' % followingXpath)
         
@@ -361,6 +376,10 @@ class ElementErrorParser(ErrorParserRootClass):
                 
 
 
+
+
+
+    
 #===============================================================================
 # class for parsing element error patterns
 #===============================================================================
@@ -607,6 +626,120 @@ class AttributePatternParser:
         return targetTag, None, expectedAttribute
     
     
+    
+    
+    
+
+
+
+
+#===============================================================================
+# text error parser, parse errors that relate to invalid text
+#===============================================================================
+    
+class TextErrorParser(ElementErrorParser):
+    """parse errors that result from invalid attributes"""
+    
+    def __init__(self, tree):
+        self.log = logging.getLogger()
+        self.tree = tree
+    
+    
+
+    def parse(self):
+        """validate the tree and parse the first error message. This must create 
+        the target element and a list of acceptable tags for that element. """
+        
+        #this function assigns targetElement and acceptableTags if parsing is 
+        #successful, otherwise they remain None
+        self.targetElement = None
+        self.acceptableTags = None
+        
+#        self.log.debug('validating tree with dita version 1.1')
+        errors = DitaTools.Tree.File.Dita.v11_validate(self.tree)
+        self.errorMessage = errors[0]
+        self.log.debug('first error message: %s' % self.errorMessage)
+        
+        patternparser = TextPatternParser()
+        self._parentTag, self._expectedTags, self._actualTags = patternparser.parse(self.errorMessage, self.tree)
+        if (self._expectedTags is None) and (self._actualTags is None):
+            return False
+        
+        try:
+            index = self._actualTags.index('CDATA')
+        except ValueError:
+            return False
+        
+        if index == 0:
+            #parent is target, CDATA is parent text
+            xpath = self._buildParentXpathFromActualTags()
+        else:
+            #target is element preceding CDATA, CDATA is tail
+            xpath = self._buildXpathFromActualIndex(index - 1)
+        
+        
+
+    def _buildParentXpathFromActualTags(self):
+        xpath = '//%s' % self._parentTag
+        closingbracketcount = 0
+        i = 0
+        for i, a in enumerate(self._actualTags):
+            if a == 'CDATA': 
+                continue
+            else:
+                xpath += '[child::%s' % a
+                closingbracketcount += 1 
+                break
+            
+        for a in self._actualTags[i + 1:]:
+            if a == 'CDATA': 
+                continue
+            else:
+                xpath += '[following-sibling::%s]' % a
+#                closingbracketcount += 1 
+            
+        for b in range(closingbracketcount):
+            xpath += ']'
+        
+        self.log.debug('generated xpath: %s' % xpath)
+        return xpath
+    
+    
+#===============================================================================
+# class for parsing attribute error patterns
+#===============================================================================
+         
+class TextPatternParser:
+    
+    def __init__(self):
+        """A class to control the parsing of the actual error strings"""
+        self.log = logging.getLogger()
+    
+    def parse(self, error, tree):
+        """parse the error string"""
+        
+        self.errorMessage = error
+        self.tree = tree
+        for f in [self._parsePattern1, self._parsePattern2]: 
+            targetTag, actualAttribute, expectedAttribute = f()
+            if (not targetTag is None) and (not actualAttribute is None):
+                break
+        return targetTag, actualAttribute, expectedAttribute
+    
+
+    def _parsePattern1(self):
+        pattern = r'.*?\:\d*\:\d*\:ERROR:VALID\:DTD_CONTENT_MODEL\: Element (.*?) content does not follow the DTD, expecting (.*), got \((.*?)\)'
+#        self.log.debug('testing pattern: %s' % str(pattern))
+        match = re.search(pattern, self.errorMessage)
+        if not match: return None, None, None
+        expectedTags = match.group(2).split(',')
+        actualTags = match.group(3).strip().split(' ')
+        parentTag = match.group(1)
+        self.log.debug('matched pattern: %s' % str(pattern))
+        self.log.debug('\tparentTag: %s' % parentTag)
+        self.log.debug('\tactualTags: %s' % str(actualTags))
+        self.log.debug('\texpectedTags: %s' % str(expectedTags))
+        return parentTag, expectedTags, actualTags
     
     
     

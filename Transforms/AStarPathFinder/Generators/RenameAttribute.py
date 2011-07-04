@@ -29,21 +29,25 @@ class Generator:
         else:
             pass
         
+        self.log.debug('generating attribute rename operand for target %s' % str(targetElement))
+        self.log.debug('current attribute name: %s' % currentAttributeName)
+        self.log.debug('rename to: %s' % newAttributeName)
         operand = self._generateOperand(Operand.Operand(targetElement), targetElement, currentAttributeName, newAttributeName)
         return operand
     
     
     def _generateOperand(self, operand, targetElement, currentAttributeName, newAttributeName):        
+        if (targetElement.get(newAttributeName)): # is not None) or currentCopy.get(newAttributeName) == '':
+            #problem - the new attribute already exists, and combining them is probably meaningless. 
+            #Warn and return the unit. 
+            self.log.warning('element %s; tried to rename attribute to %s, attribute with that name already exists. Skipping' % (str(targetElement), newAttributeName))
+            #return None
+            newAttributeName = '_'
         #generate the operand
         currentAttributeValue = targetElement.get(currentAttributeName)
         currentCopy = lxml.etree.Element('_', attrib={currentAttributeName: currentAttributeValue})
         Element.Element.invert(currentCopy)
-        if (currentCopy.get(newAttributeName) is not None) or currentCopy.get(newAttributeName) == '':
-            #problem - the new attribute already exists, and combining them is probably meaningless. 
-            #Warn and return the unit. 
-            self.log.warning('element %s; tried to rename attribute to %s, attribute with that name already exists. Skipping' % (str(targetElement), newAttributeName))
-            return operand
-        elif newAttributeName == '' or newAttributeName == '_':
+        if newAttributeName == '' or newAttributeName == '_':
             pass
         else:
             currentCopy.set(newAttributeName, currentAttributeValue)

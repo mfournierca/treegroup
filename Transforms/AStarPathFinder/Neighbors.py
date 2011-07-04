@@ -336,13 +336,13 @@ def getCost(neighbor, operandtype, desttag):
     cost = 0
     
     #account for operandtype
-    if operandtype == 'rename': cost += 0
-    elif operandtype == 'renameAttribute': cost += 0
-    elif operandtype == 'wrap': cost += 1
-    elif operandtype == 'unwrap': cost += 2
-    elif operandtype == 'insertBefore': cost += 0
+    if operandtype == 'rename': cost += 1
+    elif operandtype == 'renameAttribute': cost += 1
+    elif operandtype == 'wrap': cost += 2
+    elif operandtype == 'unwrap': cost += 3
+    elif operandtype == 'insertBefore': cost += 2
     elif operandtype == 'appendBefore': cost += 0
-    else: cost += 1
+    else: cost += 2
     
     #account for dest tag
     if desttag == 'body': cost += 0 
