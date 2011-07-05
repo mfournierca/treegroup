@@ -291,18 +291,33 @@ def findNeighbors_FirstValidationError(n):
             addAttributeNeighbor.setGScore(cost)
             neighbors.append(addAttributeNeighbor)
 
-        
-        
-        
-        
-        
         return neighbors
             
     
     #===========================================================================
     # text errors
     #===========================================================================
+    errorParser = Errors.TextErrorParser(n.getTree())
+    parsed = errorParser.parse()
     
+    if parsed:
+        pass
+        #generate operands using the result of this error parser
+        
+#        wrapTextGenerator = Generators.WrapText.Generator()
+#        for attributeName in errorParser.acceptableAttributes:
+#            wrapTextOperand = wrapTextGenerator.generateOperand(errorParser.targetElement, errorParser.actualAttribute, attributeName)
+#            if not wrapTextOperand:
+#                continue
+#            wrapTextNeighbor = Neighbor(Tree.Tree.add(copy.deepcopy(wrapTextOperand.getTree()), n.getTree()))
+#            wrapTextNeighbor.setOperand(wrapTextOperand.getTree())
+#            wrapTextNeighbor.setOperandType('wrapText')
+#            wrapTextNeighbor.setTargetElementStr(str(errorParser.targetElement))
+#            cost = getCost(wrapTextNeighbor, 'wrapText', None)
+#            wrapTextNeighbor.setGScore(cost)
+#            neighbors.append(wrapTextNeighbor)
+#
+#        return neighbors
     
     
     #===========================================================================

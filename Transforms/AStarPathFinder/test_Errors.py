@@ -331,7 +331,8 @@ class test_TextErrorParser(unittest.TestCase):
         tree = lxml.etree.parse(testfile)
         expectedTargetElement = tree.getroot()[0]
         expectedErrorMessage = '/Users/matt/work/programs/dev_workspace/TreeGroup/Transforms/AStarPathFinder/../../testfiles/AStarTransform/Errors/ErrorTest14.xml:3:0:ERROR:VALID:DTD_CONTENT_MODEL: Element topic content does not follow the DTD, expecting (title , titlealts? , (shortdesc | abstract)? , prolog? , body? , related-links? , (topic | concept | task | reference | glossentry)*), got (CDATA body )'
-
+        expectedtags = ['title'] 
+        
         expectedTail = False
         expectedText = True
         
@@ -342,7 +343,8 @@ class test_TextErrorParser(unittest.TestCase):
         self.assertTrue(expectedTargetElement is parser.targetElement, 'ErrorParser parsed the wrong target element. Expected %s, got %s' % (expectedTargetElement, parser.targetElement))
         self.assertTrue(parser.text, "ErrorParser parsed text incorrectly. Expected True, got %s" % str(parser.text))
         self.assertFalse(parser.tail, 'ErrorParser parsed tail incorrectly. Expected False, got %s' % str(parser.tail))
-        
+        self.assertEqual(expectedtags, parser.acceptableTags, 'ErrorParser parsed the wrong tags. Expected \n%s \ngot \n%s' % (expectedtags, parser.acceptableTags))
+    
     
     def test_2(self):
         
@@ -353,7 +355,8 @@ class test_TextErrorParser(unittest.TestCase):
         tree = lxml.etree.parse(testfile)
         expectedTargetElement = tree.getroot()[0][0]
         expectedErrorMessage = '/Users/matt/work/programs/dev_workspace/TreeGroup/Transforms/AStarPathFinder/../../testfiles/AStarTransform/Errors/ErrorTest15.xml:3:0:ERROR:VALID:DTD_CONTENT_MODEL: Element topic content does not follow the DTD, expecting (title , titlealts? , (shortdesc | abstract)? , prolog? , body? , related-links? , (topic | concept | task | reference | glossentry)*), got (title CDATA body )'
-
+        expectedtags = ['abstract', 'body', 'concept', 'glossentry', 'prolog', 'reference', 'related-links', 'shortdesc', 'task', 'titlealts', 'topic'] 
+        
         expectedTail = True
         expectedText = False
         
@@ -364,7 +367,7 @@ class test_TextErrorParser(unittest.TestCase):
         self.assertTrue(expectedTargetElement is parser.targetElement, 'ErrorParser parsed the wrong target element. Expected %s, got %s' % (expectedTargetElement, parser.targetElement))
         self.assertTrue(parser.tail, "ErrorParser parsed tail incorrectly. Expected True, got %s" % str(parser.tail))
         self.assertFalse(parser.text, 'ErrorParser parsed text incorrectly. Expected False, got %s' % str(parser.text))
-        
+        self.assertEqual(expectedtags, parser.acceptableTags, 'ErrorParser parsed the wrong tags. Expected %s, got %s' % (expectedtags, parser.acceptableTags))
     
     
     
