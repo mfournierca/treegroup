@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dita>
+    <topic lang="en" profile="profile" id="311UWZ7UZ0">
+        <title href="http://www.w3.org/People/mimasa/test/schemas/xhtml-basic-sample.xml"/>
+        <body content="en" http-equiv="Content-Language">
+            <title lang="en">Sample XHTML Basic document</title>
+            <link href="mailto:mimasa@w3.org" rev="made"/>
+            <link media="screen, aural, print" href="./testhtml_files/xhtml-default.css" type="text/css" rel="stylesheet"/>
+            <body lang="en" title="body" class="body" id="body">
+                <title id="title" class="title" title="document title" lang="en">Sample XHTML Basic document</title>
+                <title id="ToC">Contents</title>
+            </body>
+        </body>
+    </topic>
+</dita>
+

@@ -654,6 +654,8 @@ class TextErrorParser(ElementErrorParser):
         #successful, otherwise they remain None
         self.targetElement = None
         self.acceptableTags = None
+        self.text = False
+        self.tail = False
         
 #        self.log.debug('validating tree with dita version 1.1')
         errors = DitaTools.Tree.File.Dita.v11_validate(self.tree)
@@ -664,7 +666,20 @@ class TextErrorParser(ElementErrorParser):
         self._parentTag, self._expectedTags, self._actualTags = patternparser.parse(self.errorMessage, self.tree)
         if (self._expectedTags is None) and (self._actualTags is None):
             return False
+
+        targetCandidate1, acceptableTagsCandidate1, actualIndex1 = self.parseActualTags()
+        targetCandidate2, acceptableTagsCandidate2, actualIndex2 = self.parseExpectedTags()
         
+        if (targetCandidate1 is not None) and (targetCandidate2 is not None):
+            self.log.error('expected target element to be None')
+            return False
+
+        #take the one that comes first in the actualTags
+        if actualIndex1 <= actualIndex2:
+            self.acceptableTags = acceptableTagsCandidate1
+        else:
+            self.acceptableTags = acceptableTagsCandidate2
+                
         try:
             index = self._actualTags.index('CDATA')
         except ValueError:
@@ -673,11 +688,15 @@ class TextErrorParser(ElementErrorParser):
         if index == 0:
             #parent is target, CDATA is parent text
             xpath = self._buildParentXpathFromActualTags()
+            self.text = True
         else:
             #target is element preceding CDATA, CDATA is tail
             xpath = self._buildXpathFromActualIndex(index - 1)
+            self.tail = True
         
-        
+        self.targetElement = self.tree.xpath(xpath)[0]
+        return True
+    
 
     def _buildParentXpathFromActualTags(self):
         xpath = '//%s' % self._parentTag
@@ -706,7 +725,7 @@ class TextErrorParser(ElementErrorParser):
     
     
 #===============================================================================
-# class for parsing attribute error patterns
+# class for parsing text error patterns
 #===============================================================================
          
 class TextPatternParser:
@@ -720,7 +739,7 @@ class TextPatternParser:
         
         self.errorMessage = error
         self.tree = tree
-        for f in [self._parsePattern1, self._parsePattern2]: 
+        for f in [self._parsePattern1]: #, self._parsePattern2]: 
             targetTag, actualAttribute, expectedAttribute = f()
             if (not targetTag is None) and (not actualAttribute is None):
                 break

@@ -304,8 +304,67 @@ class test_AttributeErrorParser(unittest.TestCase):
         self.assertEqual(parser.errorMessage, expectedErrorMessage, 'ErrorParser parsed the wrong error. Expected %s, got %s' % (expectedErrorMessage, parser.errorMessage))
         self.assertEqual(expectedAcceptableAttributes, parser.acceptableAttributes, 'ErrorParser parsed the wrong tags. Expected %s, got %s' % (expectedAcceptableAttributes, parser.acceptableAttributes))
         self.assertTrue(expectedTargetElement is parser.targetElement, 'ErrorParser parsed the wrong target element. Expected %s, got %s' % (expectedTargetElement, parser.targetElement))
+
+
+
+
+
+
+
+
+
+
+class test_TextErrorParser(unittest.TestCase):
     
+    def setUp(self):
+        self.testfilesdir = os.path.join(os.path.dirname(__file__), '..', '..', 'testfiles', 'AStarTransform', 'Errors')
+        self.log = logging.getLogger()
+        self.parserClass = Errors.TextErrorParser
+        
+        
+    def test_1(self):
+        
+        self.log.debug('')
+        self.log.debug('')
+        self.log.debug('running test test_1')
+        testfile = os.path.join(self.testfilesdir, 'ErrorTest14.xml')
+        tree = lxml.etree.parse(testfile)
+        expectedTargetElement = tree.getroot()[0]
+        expectedErrorMessage = '/Users/matt/work/programs/dev_workspace/TreeGroup/Transforms/AStarPathFinder/../../testfiles/AStarTransform/Errors/ErrorTest14.xml:3:0:ERROR:VALID:DTD_CONTENT_MODEL: Element topic content does not follow the DTD, expecting (title , titlealts? , (shortdesc | abstract)? , prolog? , body? , related-links? , (topic | concept | task | reference | glossentry)*), got (CDATA body )'
+
+        expectedTail = False
+        expectedText = True
+        
+        parser = self.parserClass(tree)
+        parser.parse()
+        
+        self.assertEqual(parser.errorMessage, expectedErrorMessage, 'ErrorParser parsed the wrong error. \n Expected \n%s \ngot \n%s' % (expectedErrorMessage, parser.errorMessage))
+        self.assertTrue(expectedTargetElement is parser.targetElement, 'ErrorParser parsed the wrong target element. Expected %s, got %s' % (expectedTargetElement, parser.targetElement))
+        self.assertTrue(parser.text, "ErrorParser parsed text incorrectly. Expected True, got %s" % str(parser.text))
+        self.assertFalse(parser.tail, 'ErrorParser parsed tail incorrectly. Expected False, got %s' % str(parser.tail))
+        
     
+    def test_2(self):
+        
+        self.log.debug('')
+        self.log.debug('')
+        self.log.debug('running test test_2')
+        testfile = os.path.join(self.testfilesdir, 'ErrorTest15.xml')
+        tree = lxml.etree.parse(testfile)
+        expectedTargetElement = tree.getroot()[0][0]
+        expectedErrorMessage = '/Users/matt/work/programs/dev_workspace/TreeGroup/Transforms/AStarPathFinder/../../testfiles/AStarTransform/Errors/ErrorTest15.xml:3:0:ERROR:VALID:DTD_CONTENT_MODEL: Element topic content does not follow the DTD, expecting (title , titlealts? , (shortdesc | abstract)? , prolog? , body? , related-links? , (topic | concept | task | reference | glossentry)*), got (title CDATA body )'
+
+        expectedTail = True
+        expectedText = False
+        
+        parser = self.parserClass(tree)
+        parser.parse()
+        
+        self.assertEqual(parser.errorMessage, expectedErrorMessage, 'ErrorParser parsed the wrong error. \n Expected \n%s \ngot \n%s' % (expectedErrorMessage, parser.errorMessage))
+        self.assertTrue(expectedTargetElement is parser.targetElement, 'ErrorParser parsed the wrong target element. Expected %s, got %s' % (expectedTargetElement, parser.targetElement))
+        self.assertTrue(parser.tail, "ErrorParser parsed tail incorrectly. Expected True, got %s" % str(parser.tail))
+        self.assertFalse(parser.text, 'ErrorParser parsed text incorrectly. Expected False, got %s' % str(parser.text))
+        
     
     
     
