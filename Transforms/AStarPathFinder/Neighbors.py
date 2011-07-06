@@ -149,6 +149,7 @@ def findNeighbors_FirstValidationError(n):
     import Generators.AddAttribute
     import Generators.InsertBefore
     import Generators.AppendBefore
+    import Generators.WrapText
     
     log = logging.getLogger()
        
@@ -300,25 +301,26 @@ def findNeighbors_FirstValidationError(n):
     errorParser = Errors.TextErrorParser(n.getTree())
     parsed = errorParser.parse()
     
-    if parsed:
-        pass
+    if parsed and errorParser.text:
         #generate operands using the result of this error parser
-        
-#        wrapTextGenerator = Generators.WrapText.Generator()
-#        for attributeName in errorParser.acceptableAttributes:
-#            wrapTextOperand = wrapTextGenerator.generateOperand(errorParser.targetElement, errorParser.actualAttribute, attributeName)
-#            if not wrapTextOperand:
-#                continue
-#            wrapTextNeighbor = Neighbor(Tree.Tree.add(copy.deepcopy(wrapTextOperand.getTree()), n.getTree()))
-#            wrapTextNeighbor.setOperand(wrapTextOperand.getTree())
-#            wrapTextNeighbor.setOperandType('wrapText')
-#            wrapTextNeighbor.setTargetElementStr(str(errorParser.targetElement))
-#            cost = getCost(wrapTextNeighbor, 'wrapText', None)
-#            wrapTextNeighbor.setGScore(cost)
-#            neighbors.append(wrapTextNeighbor)
-#
-#        return neighbors
+        wrapTextGenerator = Generators.WrapText.Generator()
+        for tag in errorParser.acceptableTags:
+            wrapTextOperand = wrapTextGenerator.generateOperand(errorParser.targetElement, tag)
+            if not wrapTextOperand:
+                continue
+            wrapTextNeighbor = Neighbor(Tree.Tree.add(copy.deepcopy(wrapTextOperand.getTree()), n.getTree()))
+            wrapTextNeighbor.setOperand(wrapTextOperand.getTree())
+            wrapTextNeighbor.setOperandType('wrapText')
+            wrapTextNeighbor.setTargetElementStr(str(errorParser.targetElement))
+            cost = getCost(wrapTextNeighbor, 'wrapText', tag)
+            wrapTextNeighbor.setGScore(cost)
+            neighbors.append(wrapTextNeighbor)
+
+        return neighbors
     
+    if parsed and errorParser.tail:
+        pass
+        #get wrap tail operand
     
     #===========================================================================
     # error parsers failed

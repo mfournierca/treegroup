@@ -81,7 +81,7 @@ class AStarPathFinder:
                     stepoperandout.write(lxml.etree.tostring(t.getOperand(), pretty_print=True))
                     stepoperandout.close() 
                 except TypeError:
-                    self.log.warning('could not print operand: %s' % sys.exc_info()[1])
+                    if t.getOperand() is not None: self.log.warning('could not print operand: %s' % sys.exc_info()[1])
                     pass
             
                 try:
@@ -354,6 +354,6 @@ if __name__ == "__main__":
     print(lxml.etree.tostring(result))
     
     #add path to input
-    
+    log.info('writing output to %s' % output)
     DitaTools.Tree.File.Dita.write_tree_to_file(result, output)
     
