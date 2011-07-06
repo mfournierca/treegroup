@@ -274,12 +274,14 @@ if __name__ == "__main__":
     help="Turn this on to activate debug logging.")
     optparser.add_option( "-t", "--tempdir", type="string", dest="tempdir", default=None, 
     help="path to the tempdir")
-    
+    optparser.add_option( "--profile", action="store_true", dest="profile",
+    help="Use to activate profiling.")
     (options, args) = optparser.parse_args()
     input = options.input
     debug = options.debug
     output = options.output
     tempdir = options.tempdir
+    profile = options.profile
     
     #this next block ensures that the user can pass the input as a positional
     #argument, without the -i
@@ -338,18 +340,19 @@ if __name__ == "__main__":
     #initialize transformation object
     pathfinder = AStarPathFinder(input, tempdir, debug)
    
-#    #use this for diagnostics
-#    import cProfile
-#    cProfile.run("""result = pathfinder.findPath()""",
-#                 os.path.join(os.getcwd(), 'profile.txt')
-#                )
-#    #after program is run, use the following commands in interactive shell
-#    #import pstats
-#    #p = pstats.Stats('profile.txt') #or whatever the path is
-#    #p.sort_stats('cumulative').print_stats(20)
-
-    #perform transformation
-    result = pathfinder.findPath()
+    if profile:
+        #use this for diagnostics
+        import cProfile
+        cProfile.run("""result = pathfinder.findPath()""",
+                     os.path.join(os.getcwd(), 'profile.txt')
+                    )
+        #after program is run, use the following commands in interactive shell
+        #import pstats
+        #p = pstats.Stats('profile.txt') #or whatever the path is
+        #p.sort_stats('cumulative').print_stats(20)
+    else:
+        #perform transformation
+        result = pathfinder.findPath()
     
     print(lxml.etree.tostring(result))
     
