@@ -916,7 +916,7 @@ class test_invert(unittest.TestCase):
         tree2 = copy.deepcopy(tree1)
         Tree.invert(tree1)
         Tree.add(tree1, tree2)
-        self.assertTrue(Tree.equal(tree1, unittree), "invert() failed, created incorrect tree, did not add to unit")
+        self.assertTrue(Tree.equal(tree1, unittree), "invert() failed, created incorrect tree, did not add to unit, added to: \n%s" % lxml.etree.tostring(tree1))
     
     
     

@@ -1,1124 +1,167 @@
 test_Tre.        test_AddUnit     DEBUG		
 test_Tre.        test_AddUnit     DEBUG		
 test_Tre.        test_AddUnit     DEBUG		starting TreeGroup.Tree.test_Tree
-    Tree.                 add     DEBUG		ordering1: [[1], [1, 1], [1, 2], [1, 2, 1], [1, 2, 1, 1], [1, 2, 2]]
-    Tree.                 add     DEBUG		ordering2: [[1]]
-    Tree.                 add     DEBUG		index: 0	position2: [1]
-    Tree.                 add     DEBUG			position2 == ordering1[index], add elements
-    Tree.                 add     DEBUG			node1: <Element a at 2077120>	node2: <Element _ at 2077180>
-    Tree.                 add     DEBUG		testing: <Element c at 20772a0>
-    Tree.                 add     DEBUG			tag is not _, skip
-    Tree.                 add     DEBUG		testing: <Element d at 2077210>
-    Tree.                 add     DEBUG			tag is not _, skip
-    Tree.                 add     DEBUG		testing: <Element c at 2077270>
-    Tree.                 add     DEBUG			tag is not _, skip
-    Tree.                 add     DEBUG		testing: <Element b at 2077240>
-    Tree.                 add     DEBUG			tag is not _, skip
-    Tree.                 add     DEBUG		testing: <Element b at 20771b0>
-    Tree.                 add     DEBUG			tag is not _, skip
-    Tree.                 add     DEBUG		testing: <Element a at 2077120>
-    Tree.                 add     DEBUG			tag is not _, skip
-    Tree.                 add     DEBUG		ordering1: [[1], [1, 1], [1, 2], [1, 2, 1], [1, 2, 1, 1], [1, 2, 2]]
-    Tree.                 add     DEBUG		ordering2: [[1]]
-    Tree.                 add     DEBUG		index: 0	position2: [1]
-    Tree.                 add     DEBUG			position2 == ordering1[index], add elements
-    Tree.                 add     DEBUG			node1: <Element a at 20773f0>	node2: <Element _ at 2077450>
-    Tree.                 add     DEBUG		testing: <Element c at 2077570>
-    Tree.                 add     DEBUG			tag is not _, skip
-    Tree.                 add     DEBUG		testing: <Element d at 20774e0>
-    Tree.                 add     DEBUG			tag is not _, skip
-    Tree.                 add     DEBUG		testing: <Element c at 2077540>
-    Tree.                 add     DEBUG			tag is not _, skip
-    Tree.                 add     DEBUG		testing: <Element b at 2077510>
-    Tree.                 add     DEBUG			tag is not _, skip
-    Tree.                 add     DEBUG		testing: <Element b at 2077480>
-    Tree.                 add     DEBUG			tag is not _, skip
-    Tree.                 add     DEBUG		testing: <Element a at 20773f0>
-    Tree.                 add     DEBUG			tag is not _, skip
+    Tree.                 add     DEBUG		result: b'<a><b id="1"/>\n    <b id="2">\n        <c id="3">\n            <d id="4"/>\n        </c>\n        <c id="5"/>\n    </b>\n</a>'
+    Tree.               equal     DEBUG		ordering1: [[1], [1, 1], [1, 2], [1, 2, 1], [1, 2, 1, 1], [1, 2, 2]]
+    Tree.               equal     DEBUG		ordering2: [[1], [1, 1], [1, 2], [1, 2, 1], [1, 2, 1, 1], [1, 2, 2]]
+    Tree.                 add     DEBUG		result: b'<a><b id="1"/>\n    <b id="2">\n        <c id="3">\n            <d id="4"/>\n        </c>\n        <c id="5"/>\n    </b>\n</a>'
+    Tree.               equal     DEBUG		ordering1: [[1], [1, 1], [1, 2], [1, 2, 1], [1, 2, 1, 1], [1, 2, 2]]
+    Tree.               equal     DEBUG		ordering2: [[1], [1, 1], [1, 2], [1, 2, 1], [1, 2, 1, 1], [1, 2, 2]]
 test_Tre.        test_AddUnit     DEBUG		
 test_Tre.        test_AddUnit     DEBUG		
-    Tree.                 add     DEBUG		ordering1: [[1]]
-    Tree.                 add     DEBUG		ordering2: [[1], [1, 1], [1, 2], [1, 2, 1], [1, 2, 1, 1], [1, 2, 2]]
-    Tree.                 add     DEBUG		index: 0	position2: [1]
-    Tree.                 add     DEBUG			position2 == ordering1[index], add elements
-    Tree.                 add     DEBUG			node1: <Element _ at 2077630>	node2: <Element a at 20775d0>
-    Tree.                 add     DEBUG		index: 1	position2: [1, 1]
-    Tree.                 add     DEBUG			index == len(ordering1)
-    Tree.                 add     DEBUG			node3: <Element b at 2077720>
-    Tree.                 add     DEBUG			parent1: <Element a at 2077630>
-    Tree.                 add     DEBUG			position3: [1, 1]
-    Tree.                 add     DEBUG			ordering1: [[1], [1, 1]]
-    Tree.                 add     DEBUG		index: 2	position2: [1, 2]
-    Tree.                 add     DEBUG			index == len(ordering1)
-    Tree.                 add     DEBUG			node3: <Element b at 2077750>
-    Tree.                 add     DEBUG			parent1: <Element a at 2077630>
-    Tree.                 add     DEBUG			position3: [1, 2]
-    Tree.                 add     DEBUG			ordering1: [[1], [1, 1], [1, 2]]
-    Tree.                 add     DEBUG		index: 3	position2: [1, 2, 1]
-    Tree.                 add     DEBUG			index == len(ordering1)
-    Tree.                 add     DEBUG			node3: <Element c at 2077780>
-    Tree.                 add     DEBUG			parent1: <Element b at 2077750>
-    Tree.                 add     DEBUG			position3: [1, 2, 1]
-    Tree.                 add     DEBUG			ordering1: [[1], [1, 1], [1, 2], [1, 2, 1]]
-    Tree.                 add     DEBUG		index: 4	position2: [1, 2, 1, 1]
-    Tree.                 add     DEBUG			index == len(ordering1)
-    Tree.                 add     DEBUG			node3: <Element d at 2077810>
-    Tree.                 add     DEBUG			parent1: <Element c at 2077780>
-    Tree.                 add     DEBUG			position3: [1, 2, 1, 1]
-    Tree.                 add     DEBUG			ordering1: [[1], [1, 1], [1, 2], [1, 2, 1], [1, 2, 1, 1]]
-    Tree.                 add     DEBUG		index: 5	position2: [1, 2, 2]
-    Tree.                 add     DEBUG			index == len(ordering1)
-    Tree.                 add     DEBUG			node3: <Element c at 2077840>
-    Tree.                 add     DEBUG			parent1: <Element b at 2077810>
-    Tree.                 add     DEBUG			position3: [1, 2, 2]
-    Tree.                 add     DEBUG			ordering1: [[1], [1, 1], [1, 2], [1, 2, 1], [1, 2, 1, 1], [1, 2, 2]]
-    Tree.                 add     DEBUG		testing: <Element c at 2077840>
-    Tree.                 add     DEBUG			tag is not _, skip
-    Tree.                 add     DEBUG		testing: <Element d at 20778a0>
-    Tree.                 add     DEBUG			tag is not _, skip
-    Tree.                 add     DEBUG		testing: <Element c at 2077870>
-    Tree.                 add     DEBUG			tag is not _, skip
-    Tree.                 add     DEBUG		testing: <Element b at 2077810>
-    Tree.                 add     DEBUG			tag is not _, skip
-    Tree.                 add     DEBUG		testing: <Element b at 2077780>
-    Tree.                 add     DEBUG			tag is not _, skip
-    Tree.                 add     DEBUG		testing: <Element a at 2077630>
-    Tree.                 add     DEBUG			tag is not _, skip
+    Tree.                 add     DEBUG		result: b'<a><b id="1"/>\n    <b id="2">\n        <c id="3">\n            <d id="4"/>\n        </c>\n        <c id="5"/>\n    </b>\n</a>'
+    Tree.               equal     DEBUG		ordering1: [[1]]
+    Tree.               equal     DEBUG		ordering2: [[1], [1, 1], [1, 2], [1, 2, 1], [1, 2, 1, 1], [1, 2, 2]]
 test_Tre.test_ComplexTrees_Eq     DEBUG		
 test_Tre.test_ComplexTrees_Eq     DEBUG		
 test_Tre.test_ComplexTrees_Eq     DEBUG		starting TreeGroup.Tree.test_Tree
-    Tree.                 add     DEBUG		ordering1: [[1], [1, 1], [1, 2], [1, 2, 1], [1, 2, 1, 1], [1, 2, 2]]
-    Tree.                 add     DEBUG		ordering2: [[1], [1, 1], [1, 2], [1, 2, 1], [1, 2, 1, 1], [1, 2, 2]]
-    Tree.                 add     DEBUG		index: 0	position2: [1]
-    Tree.                 add     DEBUG			position2 == ordering1[index], add elements
-    Tree.                 add     DEBUG			node1: <Element a at 2077720>	node2: <Element b at 20778d0>
-    Tree.                 add     DEBUG		index: 1	position2: [1, 1]
-    Tree.                 add     DEBUG			position2 == ordering1[index], add elements
-    Tree.                 add     DEBUG			node1: <Element b at 20779c0>	node2: <Element c at 2077930>
-    Tree.                 add     DEBUG		index: 2	position2: [1, 2]
-    Tree.                 add     DEBUG			position2 == ordering1[index], add elements
-    Tree.                 add     DEBUG			node1: <Element b at 2077990>	node2: <Element c at 2077960>
-    Tree.                 add     DEBUG		index: 3	position2: [1, 2, 1]
-    Tree.                 add     DEBUG			position2 == ordering1[index], add elements
-    Tree.                 add     DEBUG			node1: <Element c at 2077a20>	node2: <Element d at 20779f0>
-    Tree.                 add     DEBUG		index: 4	position2: [1, 2, 1, 1]
-    Tree.                 add     DEBUG			position2 == ordering1[index], add elements
-    Tree.                 add     DEBUG			node1: <Element d at 2077a80>	node2: <Element e at 2077a50>
-    Tree.                 add     DEBUG		index: 5	position2: [1, 2, 2]
-    Tree.                 add     DEBUG			position2 == ordering1[index], add elements
-    Tree.                 add     DEBUG			node1: <Element c at 2077ae0>	node2: <Element d at 2077ab0>
-    Tree.                 add     DEBUG		testing: <Element g at 2077ae0>
-    Tree.                 add     DEBUG			tag is not _, skip
-    Tree.                 add     DEBUG		testing: <Element i at 2077a80>
-    Tree.                 add     DEBUG			tag is not _, skip
-    Tree.                 add     DEBUG		testing: <Element g at 2077a20>
-    Tree.                 add     DEBUG			tag is not _, skip
-    Tree.                 add     DEBUG		testing: <Element e at 2077990>
-    Tree.                 add     DEBUG			tag is not _, skip
-    Tree.                 add     DEBUG		testing: <Element e at 20779c0>
-    Tree.                 add     DEBUG			tag is not _, skip
-    Tree.                 add     DEBUG		testing: <Element c at 2077720>
-    Tree.                 add     DEBUG			tag is not _, skip
-    Tree.                 add     DEBUG		ordering1: [[1], [1, 1], [1, 2], [1, 2, 1], [1, 2, 1, 1], [1, 2, 2]]
-    Tree.                 add     DEBUG		ordering2: [[1], [1, 1], [1, 2], [1, 2, 1], [1, 2, 1, 1], [1, 2, 2]]
-    Tree.                 add     DEBUG		index: 0	position2: [1]
-    Tree.                 add     DEBUG			position2 == ordering1[index], add elements
-    Tree.                 add     DEBUG			node1: <Element a at 2077c30>	node2: <Element b at 2077c90>
-    Tree.                 add     DEBUG		index: 1	position2: [1, 1]
-    Tree.                 add     DEBUG			position2 == ordering1[index], add elements
-    Tree.                 add     DEBUG			node1: <Element b at 2077d80>	node2: <Element c at 2077cf0>
-    Tree.                 add     DEBUG		index: 2	position2: [1, 2]
-    Tree.                 add     DEBUG			position2 == ordering1[index], add elements
-    Tree.                 add     DEBUG			node1: <Element b at 2077d50>	node2: <Element c at 2077d20>
-    Tree.                 add     DEBUG		index: 3	position2: [1, 2, 1]
-    Tree.                 add     DEBUG			position2 == ordering1[index], add elements
-    Tree.                 add     DEBUG			node1: <Element c at 2077de0>	node2: <Element d at 2077db0>
-    Tree.                 add     DEBUG		index: 4	position2: [1, 2, 1, 1]
-    Tree.                 add     DEBUG			position2 == ordering1[index], add elements
-    Tree.                 add     DEBUG			node1: <Element d at 2077e40>	node2: <Element e at 2077e10>
-    Tree.                 add     DEBUG		index: 5	position2: [1, 2, 2]
-    Tree.                 add     DEBUG			position2 == ordering1[index], add elements
-    Tree.                 add     DEBUG			node1: <Element c at 2077ea0>	node2: <Element d at 2077e70>
-    Tree.                 add     DEBUG		testing: <Element g at 2077ea0>
-    Tree.                 add     DEBUG			tag is not _, skip
-    Tree.                 add     DEBUG		testing: <Element i at 2077e40>
-    Tree.                 add     DEBUG			tag is not _, skip
-    Tree.                 add     DEBUG		testing: <Element g at 2077de0>
-    Tree.                 add     DEBUG			tag is not _, skip
-    Tree.                 add     DEBUG		testing: <Element e at 2077d50>
-    Tree.                 add     DEBUG			tag is not _, skip
-    Tree.                 add     DEBUG		testing: <Element e at 2077d80>
-    Tree.                 add     DEBUG			tag is not _, skip
-    Tree.                 add     DEBUG		testing: <Element c at 2077c30>
-    Tree.                 add     DEBUG			tag is not _, skip
+    Tree.                 add     DEBUG		result: b'<c><e id="2"/><e id="3"><g id="4"><i id="5"/></g><g id="6"/></e></c>'
+    Tree.               equal     DEBUG		ordering1: [[1], [1, 1], [1, 2], [1, 2, 1], [1, 2, 1, 1], [1, 2, 2]]
+    Tree.               equal     DEBUG		ordering2: [[1], [1, 1], [1, 2], [1, 2, 1], [1, 2, 1, 1], [1, 2, 2]]
+    Tree.                 add     DEBUG		result: b'<c><e id="2"/><e id="3"><g id="4"><i id="5"/></g><g id="6"/></e></c>'
+    Tree.               equal     DEBUG		ordering1: [[1], [1, 1], [1, 2], [1, 2, 1], [1, 2, 1, 1], [1, 2, 2]]
+    Tree.               equal     DEBUG		ordering2: [[1], [1, 1], [1, 2], [1, 2, 1], [1, 2, 1, 1], [1, 2, 2]]
 test_Tre.test_ComplexTrees_Eq     DEBUG		
 test_Tre.test_ComplexTrees_Eq     DEBUG		
-    Tree.                 add     DEBUG		ordering1: [[1], [1, 1], [1, 2], [1, 2, 1], [1, 2, 1, 1], [1, 2, 2]]
-    Tree.                 add     DEBUG		ordering2: [[1], [1, 1], [1, 2], [1, 2, 1], [1, 2, 1, 1], [1, 2, 2]]
-    Tree.                 add     DEBUG		index: 0	position2: [1]
-    Tree.                 add     DEBUG			position2 == ordering1[index], add elements
-    Tree.                 add     DEBUG			node1: <Element b at 2077f60>	node2: <Element a at 2077f00>
-    Tree.                 add     DEBUG		index: 1	position2: [1, 1]
-    Tree.                 add     DEBUG			position2 == ordering1[index], add elements
-    Tree.                 add     DEBUG			node1: <Element c at 2087090>	node2: <Element b at 2077fc0>
-    Tree.                 add     DEBUG		index: 2	position2: [1, 2]
-    Tree.                 add     DEBUG			position2 == ordering1[index], add elements
-    Tree.                 add     DEBUG			node1: <Element c at 2087060>	node2: <Element b at 2087030>
-    Tree.                 add     DEBUG		index: 3	position2: [1, 2, 1]
-    Tree.                 add     DEBUG			position2 == ordering1[index], add elements
-    Tree.                 add     DEBUG			node1: <Element d at 20870f0>	node2: <Element c at 20870c0>
-    Tree.                 add     DEBUG		index: 4	position2: [1, 2, 1, 1]
-    Tree.                 add     DEBUG			position2 == ordering1[index], add elements
-    Tree.                 add     DEBUG			node1: <Element e at 2087150>	node2: <Element d at 2087120>
-    Tree.                 add     DEBUG		index: 5	position2: [1, 2, 2]
-    Tree.                 add     DEBUG			position2 == ordering1[index], add elements
-    Tree.                 add     DEBUG			node1: <Element d at 20871b0>	node2: <Element c at 2087180>
-    Tree.                 add     DEBUG		testing: <Element g at 20871b0>
-    Tree.                 add     DEBUG			tag is not _, skip
-    Tree.                 add     DEBUG		testing: <Element i at 2087150>
-    Tree.                 add     DEBUG			tag is not _, skip
-    Tree.                 add     DEBUG		testing: <Element g at 20870f0>
-    Tree.                 add     DEBUG			tag is not _, skip
-    Tree.                 add     DEBUG		testing: <Element e at 2087060>
-    Tree.                 add     DEBUG			tag is not _, skip
-    Tree.                 add     DEBUG		testing: <Element e at 2087090>
-    Tree.                 add     DEBUG			tag is not _, skip
-    Tree.                 add     DEBUG		testing: <Element c at 2077f60>
-    Tree.                 add     DEBUG			tag is not _, skip
+    Tree.                 add     DEBUG		result: b'<c><e id="2"/><e id="3"><g id="4"><i id="5"/></g><g id="6"/></e></c>'
+    Tree.               equal     DEBUG		ordering1: [[1], [1, 1], [1, 2], [1, 2, 1], [1, 2, 1, 1], [1, 2, 2]]
+    Tree.               equal     DEBUG		ordering2: [[1], [1, 1], [1, 2], [1, 2, 1], [1, 2, 1, 1], [1, 2, 2]]
 test_Tre.test_ComplexTrees_Se     DEBUG		
 test_Tre.test_ComplexTrees_Se     DEBUG		
 test_Tre.test_ComplexTrees_Se     DEBUG		starting TreeGroup.Tree.test_Tree
-    Tree.                 add     DEBUG		ordering1: [[1], [1, 1], [1, 1, 1], [1, 2]]
-    Tree.                 add     DEBUG		ordering2: [[1], [1, 1], [1, 1, 1], [1, 1, 1, 1], [1, 1, 2]]
-    Tree.                 add     DEBUG		index: 0	position2: [1]
-    Tree.                 add     DEBUG			position2 == ordering1[index], add elements
-    Tree.                 add     DEBUG			node1: <Element b at 20871e0>	node2: <Element a at 2087240>
-    Tree.                 add     DEBUG		index: 1	position2: [1, 1]
-    Tree.                 add     DEBUG			position2 == ordering1[index], add elements
-    Tree.                 add     DEBUG			node1: <Element b at 2087300>	node2: <Element _ at 2087270>
-    Tree.                 add     DEBUG		index: 2	position2: [1, 1, 1]
-    Tree.                 add     DEBUG			position2 == ordering1[index], add elements
-    Tree.                 add     DEBUG			node1: <Element c at 2087330>	node2: <Element _ at 20872a0>
-    Tree.                 add     DEBUG		index: 3	position2: [1, 1, 1, 1]
-    Tree.                 add     DEBUG			position2 != ordering1[index]
-    Tree.                 add     DEBUG			node3: <Element d at 20873c0>
-    Tree.                 add     DEBUG			parent1: <Element c at 2087330>
-    Tree.                 add     DEBUG			position3: [1, 1, 1, 1]
-    Tree.                 add     DEBUG			ordering1: [[1], [1, 1], [1, 1, 1], [1, 1, 1, 1], [1, 2]]
-    Tree.                 add     DEBUG		index: 4	position2: [1, 1, 2]
-    Tree.                 add     DEBUG			position2 != ordering1[index]
-    Tree.                 add     DEBUG			node3: <Element c at 2087420>
-    Tree.                 add     DEBUG			parent1: <Element b at 2087300>
-    Tree.                 add     DEBUG			position3: [1, 1, 2]
-    Tree.                 add     DEBUG			ordering1: [[1], [1, 1], [1, 1, 1], [1, 1, 1, 1], [1, 1, 2], [1, 2]]
-    Tree.                 add     DEBUG		testing: <Element b at 2087450>
-    Tree.                 add     DEBUG			tag is not _, skip
-    Tree.                 add     DEBUG		testing: <Element c at 2087420>
-    Tree.                 add     DEBUG			tag is not _, skip
-    Tree.                 add     DEBUG		testing: <Element d at 20873c0>
-    Tree.                 add     DEBUG			tag is not _, skip
-    Tree.                 add     DEBUG		testing: <Element c at 2087330>
-    Tree.                 add     DEBUG			tag is not _, skip
-    Tree.                 add     DEBUG		testing: <Element b at 2087300>
-    Tree.                 add     DEBUG			tag is not _, skip
-    Tree.                 add     DEBUG		testing: <Element c at 20871e0>
-    Tree.                 add     DEBUG			tag is not _, skip
-    Tree.                 add     DEBUG		ordering1: [[1], [1, 1], [1, 1, 1], [1, 2]]
-    Tree.                 add     DEBUG		ordering2: [[1], [1, 1], [1, 1, 1], [1, 1, 1, 1], [1, 1, 2]]
-    Tree.                 add     DEBUG		index: 0	position2: [1]
-    Tree.                 add     DEBUG			position2 == ordering1[index], add elements
-    Tree.                 add     DEBUG			node1: <Element b at 20875a0>	node2: <Element a at 2087600>
-    Tree.                 add     DEBUG		index: 1	position2: [1, 1]
-    Tree.                 add     DEBUG			position2 == ordering1[index], add elements
-    Tree.                 add     DEBUG			node1: <Element b at 20876c0>	node2: <Element _ at 2087630>
-    Tree.                 add     DEBUG		index: 2	position2: [1, 1, 1]
-    Tree.                 add     DEBUG			position2 == ordering1[index], add elements
-    Tree.                 add     DEBUG			node1: <Element c at 20876f0>	node2: <Element _ at 2087660>
-    Tree.                 add     DEBUG		index: 3	position2: [1, 1, 1, 1]
-    Tree.                 add     DEBUG			position2 != ordering1[index]
-    Tree.                 add     DEBUG			node3: <Element d at 2087780>
-    Tree.                 add     DEBUG			parent1: <Element c at 20876f0>
-    Tree.                 add     DEBUG			position3: [1, 1, 1, 1]
-    Tree.                 add     DEBUG			ordering1: [[1], [1, 1], [1, 1, 1], [1, 1, 1, 1], [1, 2]]
-    Tree.                 add     DEBUG		index: 4	position2: [1, 1, 2]
-    Tree.                 add     DEBUG			position2 != ordering1[index]
-    Tree.                 add     DEBUG			node3: <Element c at 20877e0>
-    Tree.                 add     DEBUG			parent1: <Element b at 20876c0>
-    Tree.                 add     DEBUG			position3: [1, 1, 2]
-    Tree.                 add     DEBUG			ordering1: [[1], [1, 1], [1, 1, 1], [1, 1, 1, 1], [1, 1, 2], [1, 2]]
-    Tree.                 add     DEBUG		testing: <Element b at 2087810>
-    Tree.                 add     DEBUG			tag is not _, skip
-    Tree.                 add     DEBUG		testing: <Element c at 20877e0>
-    Tree.                 add     DEBUG			tag is not _, skip
-    Tree.                 add     DEBUG		testing: <Element d at 2087780>
-    Tree.                 add     DEBUG			tag is not _, skip
-    Tree.                 add     DEBUG		testing: <Element c at 20876f0>
-    Tree.                 add     DEBUG			tag is not _, skip
-    Tree.                 add     DEBUG		testing: <Element b at 20876c0>
-    Tree.                 add     DEBUG			tag is not _, skip
-    Tree.                 add     DEBUG		testing: <Element c at 20875a0>
-    Tree.                 add     DEBUG			tag is not _, skip
-test_Tre.test_ComplexTrees_Se     DEBUG		
-test_Tre.test_ComplexTrees_Se     DEBUG		
-    Tree.                 add     DEBUG		ordering1: [[1], [1, 1], [1, 1, 1], [1, 1, 1, 1], [1, 1, 2]]
-    Tree.                 add     DEBUG		ordering2: [[1], [1, 1], [1, 1, 1], [1, 2]]
-    Tree.                 add     DEBUG		index: 0	position2: [1]
-    Tree.                 add     DEBUG			position2 == ordering1[index], add elements
-    Tree.                 add     DEBUG			node1: <Element a at 20878d0>	node2: <Element b at 2087870>
-    Tree.                 add     DEBUG		index: 1	position2: [1, 1]
-    Tree.                 add     DEBUG			position2 == ordering1[index], add elements
-    Tree.                 add     DEBUG			node1: <Element _ at 2087900>	node2: <Element b at 2087960>
-    Tree.                 add     DEBUG		index: 2	position2: [1, 1, 1]
-    Tree.                 add     DEBUG			position2 == ordering1[index], add elements
-    Tree.                 add     DEBUG			node1: <Element _ at 20879c0>	node2: <Element c at 2087930>
-    Tree.                 add     DEBUG		index: 3	position2: [1, 2]
-    Tree.                 add     DEBUG			position2 != ordering1[index]
-    Tree.                 add     DEBUG			node3: <Element b at 2087a50>
-    Tree.                 add     DEBUG			parent1: <Element c at 20878d0>
-    Tree.                 add     DEBUG			position3: [1, 2]
-    Tree.                 add     DEBUG			ordering1: [[1], [1, 1], [1, 1, 1], [1, 2], [1, 1, 1, 1], [1, 1, 2]]
-    Tree.                 add     DEBUG		testing: <Element b at 2087a50>
-    Tree.                 add     DEBUG			tag is not _, skip
-    Tree.                 add     DEBUG		testing: <Element c at 2087a80>
-    Tree.                 add     DEBUG			tag is not _, skip
-    Tree.                 add     DEBUG		testing: <Element d at 2087a20>
-    Tree.                 add     DEBUG			tag is not _, skip
-    Tree.                 add     DEBUG		testing: <Element c at 20879c0>
-    Tree.                 add     DEBUG			tag is not _, skip
-    Tree.                 add     DEBUG		testing: <Element b at 2087900>
-    Tree.                 add     DEBUG			tag is not _, skip
-    Tree.                 add     DEBUG		testing: <Element c at 20878d0>
-    Tree.                 add     DEBUG			tag is not _, skip
+    Tree.                 add     DEBUG		result: b'<c><b id="2"><c id="3"><d id="4"/>\n        </c><c id="5"/>\n    </b><b id="4"/>\n</c>'
+    Tree.               equal     DEBUG		ordering1: [[1], [1, 1], [1, 1, 1], [1, 2]]
+    Tree.               equal     DEBUG		ordering2: [[1], [1, 1], [1, 1, 1], [1, 1, 1, 1], [1, 1, 2], [1, 2]]
 test_Tre.test_ComplexTrees_Tr     DEBUG		
 test_Tre.test_ComplexTrees_Tr     DEBUG		
 test_Tre.test_ComplexTrees_Tr     DEBUG		starting TreeGroup.Tree.test_Tree
-    Tree.                 add     DEBUG		ordering1: [[1], [1, 1], [1, 1, 1], [1, 2], [1, 2, 1], [1, 2, 1, 1], [1, 2, 2]]
-    Tree.                 add     DEBUG		ordering2: [[1], [1, 1], [1, 1, 1], [1, 1, 1, 1], [1, 1, 2], [1, 2], [1, 2, 1], [1, 2, 1, 1], [1, 2, 2]]
-    Tree.                 add     DEBUG		index: 0	position2: [1]
-    Tree.                 add     DEBUG			position2 == ordering1[index], add elements
-    Tree.                 add     DEBUG			node1: <Element b at 2077e10>	node2: <Element a at 2077db0>
-    Tree.                 add     DEBUG		index: 1	position2: [1, 1]
-    Tree.                 add     DEBUG			position2 == ordering1[index], add elements
-    Tree.                 add     DEBUG			node1: <Element b at 2077d50>	node2: <Element Y at 2077d80>
-    Tree.                 add     DEBUG		index: 2	position2: [1, 1, 1]
-    Tree.                 add     DEBUG			position2 == ordering1[index], add elements
-    Tree.                 add     DEBUG			node1: <Element c at 2077cf0>	node2: <Element _ at 2077d20>
-    Tree.                 add     DEBUG		index: 3	position2: [1, 1, 1, 1]
-    Tree.                 add     DEBUG			position2 != ordering1[index]
-    Tree.                 add     DEBUG			node3: <Element d at 20771e0>
-    Tree.                 add     DEBUG			parent1: <Element c at 2077cf0>
-    Tree.                 add     DEBUG			position3: [1, 1, 1, 1]
-    Tree.                 add     DEBUG			ordering1: [[1], [1, 1], [1, 1, 1], [1, 1, 1, 1], [1, 2], [1, 2, 1], [1, 2, 1, 1], [1, 2, 2]]
-    Tree.                 add     DEBUG		index: 4	position2: [1, 1, 2]
-    Tree.                 add     DEBUG			position2 != ordering1[index]
-    Tree.                 add     DEBUG			node3: <Element c at 2077ba0>
-    Tree.                 add     DEBUG			parent1: <Element _ at 2077d50>
-    Tree.                 add     DEBUG			position3: [1, 1, 2]
-    Tree.                 add     DEBUG			ordering1: [[1], [1, 1], [1, 1, 1], [1, 1, 1, 1], [1, 1, 2], [1, 2], [1, 2, 1], [1, 2, 1, 1], [1, 2, 2]]
-    Tree.                 add     DEBUG		index: 5	position2: [1, 2]
-    Tree.                 add     DEBUG			position2 == ordering1[index], add elements
-    Tree.                 add     DEBUG			node1: <Element e at 2077b10>	node2: <Element V at 20771e0>
-    Tree.                 add     DEBUG		index: 6	position2: [1, 2, 1]
-    Tree.                 add     DEBUG			position2 == ordering1[index], add elements
-    Tree.                 add     DEBUG			node1: <Element f at 2077ae0>	node2: <Element U at 2077b40>
-    Tree.                 add     DEBUG		index: 7	position2: [1, 2, 1, 1]
-    Tree.                 add     DEBUG			position2 == ordering1[index], add elements
-    Tree.                 add     DEBUG			node1: <Element g at 2077ab0>	node2: <Element T at 2077690>
-    Tree.                 add     DEBUG		index: 8	position2: [1, 2, 2]
-    Tree.                 add     DEBUG			position2 == ordering1[index], add elements
-    Tree.                 add     DEBUG			node1: <Element f at 2077a80>	node2: <Element U at 2077750>
-    Tree.                 add     DEBUG		testing: <Element _ at 2077a80>
-    Tree.                 add     DEBUG		removing unit node: <Element _ at 2077a80>
-    Tree.                 add     DEBUG		testing: <Element _ at 2077ab0>
-    Tree.                 add     DEBUG		removing unit node: <Element _ at 2077ab0>
-    Tree.                 add     DEBUG		testing: <Element _ at 2077ae0>
-    Tree.                 add     DEBUG		removing unit node: <Element _ at 2077ae0>
-    Tree.                 add     DEBUG		testing: <Element _ at 2077b10>
-    Tree.                 add     DEBUG		removing unit node: <Element _ at 2077b10>
-    Tree.                 add     DEBUG		testing: <Element c at 2077ba0>
-    Tree.                 add     DEBUG			tag is not _, skip
-    Tree.                 add     DEBUG		testing: <Element d at 2077a50>
-    Tree.                 add     DEBUG			tag is not _, skip
-    Tree.                 add     DEBUG		testing: <Element c at 2077cf0>
-    Tree.                 add     DEBUG			tag is not _, skip
-    Tree.                 add     DEBUG		testing: <Element _ at 2077d50>
-    Tree.                 add     DEBUG			length is not 0, skip
-    Tree.                 add     DEBUG		testing: <Element c at 2077e10>
-    Tree.                 add     DEBUG			tag is not _, skip
-    Tree.                 add     DEBUG		ordering1: [[1], [1, 1], [1, 1, 1], [1, 2], [1, 2, 1], [1, 2, 1, 1], [1, 2, 2]]
-    Tree.                 add     DEBUG		ordering2: [[1], [1, 1], [1, 1, 1], [1, 1, 1, 1], [1, 1, 2], [1, 2], [1, 2, 1], [1, 2, 1, 1], [1, 2, 2]]
-    Tree.                 add     DEBUG		index: 0	position2: [1]
-    Tree.                 add     DEBUG			position2 == ordering1[index], add elements
-    Tree.                 add     DEBUG			node1: <Element b at 2077930>	node2: <Element a at 2077720>
-    Tree.                 add     DEBUG		index: 1	position2: [1, 1]
-    Tree.                 add     DEBUG			position2 == ordering1[index], add elements
-    Tree.                 add     DEBUG			node1: <Element b at 20774b0>	node2: <Element Y at 2077600>
-    Tree.                 add     DEBUG		index: 2	position2: [1, 1, 1]
-    Tree.                 add     DEBUG			position2 == ordering1[index], add elements
-    Tree.                 add     DEBUG			node1: <Element c at 2077780>	node2: <Element _ at 2077870>
-    Tree.                 add     DEBUG		index: 3	position2: [1, 1, 1, 1]
-    Tree.                 add     DEBUG			position2 != ordering1[index]
-    Tree.                 add     DEBUG			node3: <Element d at 20777e0>
-    Tree.                 add     DEBUG			parent1: <Element c at 2077780>
-    Tree.                 add     DEBUG			position3: [1, 1, 1, 1]
-    Tree.                 add     DEBUG			ordering1: [[1], [1, 1], [1, 1, 1], [1, 1, 1, 1], [1, 2], [1, 2, 1], [1, 2, 1, 1], [1, 2, 2]]
-    Tree.                 add     DEBUG		index: 4	position2: [1, 1, 2]
-    Tree.                 add     DEBUG			position2 != ordering1[index]
-    Tree.                 add     DEBUG			node3: <Element c at 20777b0>
-    Tree.                 add     DEBUG			parent1: <Element _ at 20774b0>
-    Tree.                 add     DEBUG			position3: [1, 1, 2]
-    Tree.                 add     DEBUG			ordering1: [[1], [1, 1], [1, 1, 1], [1, 1, 1, 1], [1, 1, 2], [1, 2], [1, 2, 1], [1, 2, 1, 1], [1, 2, 2]]
-    Tree.                 add     DEBUG		index: 5	position2: [1, 2]
-    Tree.                 add     DEBUG			position2 == ordering1[index], add elements
-    Tree.                 add     DEBUG			node1: <Element e at 20776c0>	node2: <Element V at 20777e0>
-    Tree.                 add     DEBUG		index: 6	position2: [1, 2, 1]
-    Tree.                 add     DEBUG			position2 == ordering1[index], add elements
-    Tree.                 add     DEBUG			node1: <Element f at 2077660>	node2: <Element U at 20776f0>
-    Tree.                 add     DEBUG		index: 7	position2: [1, 2, 1, 1]
-    Tree.                 add     DEBUG			position2 == ordering1[index], add elements
-    Tree.                 add     DEBUG			node1: <Element g at 20775d0>	node2: <Element T at 2077630>
-    Tree.                 add     DEBUG		index: 8	position2: [1, 2, 2]
-    Tree.                 add     DEBUG			position2 == ordering1[index], add elements
-    Tree.                 add     DEBUG			node1: <Element f at 20773c0>	node2: <Element U at 2077540>
-    Tree.                 add     DEBUG		testing: <Element _ at 20773c0>
-    Tree.                 add     DEBUG		removing unit node: <Element _ at 20773c0>
-    Tree.                 add     DEBUG		testing: <Element _ at 20775d0>
-    Tree.                 add     DEBUG		removing unit node: <Element _ at 20775d0>
-    Tree.                 add     DEBUG		testing: <Element _ at 2077660>
-    Tree.                 add     DEBUG		removing unit node: <Element _ at 2077660>
-    Tree.                 add     DEBUG		testing: <Element _ at 20776c0>
-    Tree.                 add     DEBUG		removing unit node: <Element _ at 20776c0>
-    Tree.                 add     DEBUG		testing: <Element c at 20777b0>
-    Tree.                 add     DEBUG			tag is not _, skip
-    Tree.                 add     DEBUG		testing: <Element d at 2077480>
-    Tree.                 add     DEBUG			tag is not _, skip
-    Tree.                 add     DEBUG		testing: <Element c at 2077780>
-    Tree.                 add     DEBUG			tag is not _, skip
-    Tree.                 add     DEBUG		testing: <Element _ at 20774b0>
-    Tree.                 add     DEBUG			length is not 0, skip
-    Tree.                 add     DEBUG		testing: <Element c at 2077930>
-    Tree.                 add     DEBUG			tag is not _, skip
-test_Tre.test_ComplexTrees_Tr     DEBUG		
-test_Tre.test_ComplexTrees_Tr     DEBUG		
-    Tree.                 add     DEBUG		ordering1: [[1], [1, 1], [1, 1, 1], [1, 1, 1, 1], [1, 1, 2], [1, 2], [1, 2, 1], [1, 2, 1, 1], [1, 2, 2]]
-    Tree.                 add     DEBUG		ordering2: [[1], [1, 1], [1, 1, 1], [1, 2], [1, 2, 1], [1, 2, 1, 1], [1, 2, 2]]
-    Tree.                 add     DEBUG		index: 0	position2: [1]
-    Tree.                 add     DEBUG			position2 == ordering1[index], add elements
-    Tree.                 add     DEBUG			node1: <Element a at 2077450>	node2: <Element b at 2077570>
-    Tree.                 add     DEBUG		index: 1	position2: [1, 1]
-    Tree.                 add     DEBUG			position2 == ordering1[index], add elements
-    Tree.                 add     DEBUG			node1: <Element Y at 20773f0>	node2: <Element b at 2077420>
-    Tree.                 add     DEBUG		index: 2	position2: [1, 1, 1]
-    Tree.                 add     DEBUG			position2 == ordering1[index], add elements
-    Tree.                 add     DEBUG			node1: <Element _ at 2077360>	node2: <Element c at 2077390>
-    Tree.                 add     DEBUG		index: 3	position2: [1, 2]
-    Tree.                 add     DEBUG			position2 != ordering1[index]
-    Tree.                 add     DEBUG			found position2 in ordering1 at index 5, adding nodes
-    Tree.                 add     DEBUG			node1: <Element V at 2077300>	node2: <Element e at 2077330>
-    Tree.                 add     DEBUG		index: 4	position2: [1, 2, 1]
-    Tree.                 add     DEBUG			position2 != ordering1[index]
-    Tree.                 add     DEBUG			found position2 in ordering1 at index 6, adding nodes
-    Tree.                 add     DEBUG			node1: <Element U at 2077240>	node2: <Element f at 20772d0>
-    Tree.                 add     DEBUG		index: 5	position2: [1, 2, 1, 1]
-    Tree.                 add     DEBUG			position2 != ordering1[index]
-    Tree.                 add     DEBUG			found position2 in ordering1 at index 7, adding nodes
-    Tree.                 add     DEBUG			node1: <Element T at 20771b0>	node2: <Element g at 2077270>
-    Tree.                 add     DEBUG		index: 6	position2: [1, 2, 2]
-    Tree.                 add     DEBUG			position2 != ordering1[index]
-    Tree.                 add     DEBUG			found position2 in ordering1 at index 8, adding nodes
-    Tree.                 add     DEBUG			node1: <Element U at 20772a0>	node2: <Element f at 2077210>
-    Tree.                 add     DEBUG		testing: <Element _ at 20772a0>
-    Tree.                 add     DEBUG		removing unit node: <Element _ at 20772a0>
-    Tree.                 add     DEBUG		testing: <Element _ at 20771b0>
-    Tree.                 add     DEBUG		removing unit node: <Element _ at 20771b0>
-    Tree.                 add     DEBUG		testing: <Element _ at 2077240>
-    Tree.                 add     DEBUG		removing unit node: <Element _ at 2077240>
-    Tree.                 add     DEBUG		testing: <Element _ at 2077300>
-    Tree.                 add     DEBUG		removing unit node: <Element _ at 2077300>
-    Tree.                 add     DEBUG		testing: <Element c at 2077150>
-    Tree.                 add     DEBUG			tag is not _, skip
-    Tree.                 add     DEBUG		testing: <Element d at 2077180>
-    Tree.                 add     DEBUG			tag is not _, skip
-    Tree.                 add     DEBUG		testing: <Element c at 2077360>
-    Tree.                 add     DEBUG			tag is not _, skip
-    Tree.                 add     DEBUG		testing: <Element _ at 20773f0>
-    Tree.                 add     DEBUG			length is not 0, skip
-    Tree.                 add     DEBUG		testing: <Element c at 2077450>
-    Tree.                 add     DEBUG			tag is not _, skip
+    Tree.                 add     DEBUG		result: b'<c><_><c id="3"><d id="4"/>\n        </c><c id="5"/>\n    </_></c>'
+    Tree.               equal     DEBUG		ordering1: [[1], [1, 1], [1, 1, 1], [1, 2], [1, 2, 1], [1, 2, 1, 1], [1, 2, 2]]
+    Tree.               equal     DEBUG		ordering2: [[1], [1, 1], [1, 1, 1], [1, 1, 1, 1], [1, 1, 2]]
 test_Tre.test_ComplexTrees_Un     DEBUG		
 test_Tre.test_ComplexTrees_Un     DEBUG		
 test_Tre.test_ComplexTrees_Un     DEBUG		starting TreeGroup.Tree.test_Tree
-    Tree.                 add     DEBUG		ordering1: [[1], [1, 1], [1, 2], [1, 2, 1], [1, 2, 2]]
-    Tree.                 add     DEBUG		ordering2: [[1], [1, 1], [1, 2], [1, 2, 1], [1, 2, 1, 1], [1, 2, 2], [1, 3], [1, 3, 1], [1, 3, 1, 1], [1, 3, 2]]
-    Tree.                 add     DEBUG		index: 0	position2: [1]
-    Tree.                 add     DEBUG			position2 == ordering1[index], add elements
-    Tree.                 add     DEBUG			node1: <Element b at 20775a0>	node2: <Element a at 2077120>
-    Tree.                 add     DEBUG		index: 1	position2: [1, 1]
-    Tree.                 add     DEBUG			position2 == ordering1[index], add elements
-    Tree.                 add     DEBUG			node1: <Element c at 2087690>	node2: <Element _ at 2029750>
-    Tree.                 add     DEBUG		index: 2	position2: [1, 2]
-    Tree.                 add     DEBUG			position2 == ordering1[index], add elements
-    Tree.                 add     DEBUG			node1: <Element c at 20877b0>	node2: <Element b at 20873f0>
-    Tree.                 add     DEBUG		index: 3	position2: [1, 2, 1]
-    Tree.                 add     DEBUG			position2 == ordering1[index], add elements
-    Tree.                 add     DEBUG			node1: <Element d at 2087990>	node2: <Element c at 20872d0>
-    Tree.                 add     DEBUG		index: 4	position2: [1, 2, 1, 1]
-    Tree.                 add     DEBUG			position2 != ordering1[index]
-    Tree.                 add     DEBUG			node3: <Element d at 2087a20>
-    Tree.                 add     DEBUG			parent1: <Element g at 2087990>
-    Tree.                 add     DEBUG			position3: [1, 2, 1, 1]
-    Tree.                 add     DEBUG			ordering1: [[1], [1, 1], [1, 2], [1, 2, 1], [1, 2, 1, 1], [1, 2, 2]]
-    Tree.                 add     DEBUG		index: 5	position2: [1, 2, 2]
-    Tree.                 add     DEBUG			position2 == ordering1[index], add elements
-    Tree.                 add     DEBUG			node1: <Element d at 2087930>	node2: <Element c at 2087a80>
-    Tree.                 add     DEBUG		index: 6	position2: [1, 3]
-    Tree.                 add     DEBUG			index == len(ordering1)
-    Tree.                 add     DEBUG			node3: <Element e at 2087570>
-    Tree.                 add     DEBUG			parent1: <Element c at 20775a0>
-    Tree.                 add     DEBUG			position3: [1, 3]
-    Tree.                 add     DEBUG			ordering1: [[1], [1, 1], [1, 2], [1, 2, 1], [1, 2, 1, 1], [1, 2, 2], [1, 3]]
-    Tree.                 add     DEBUG		index: 7	position2: [1, 3, 1]
-    Tree.                 add     DEBUG			index == len(ordering1)
-    Tree.                 add     DEBUG			node3: <Element f at 20877e0>
-    Tree.                 add     DEBUG			parent1: <Element e at 2087570>
-    Tree.                 add     DEBUG			position3: [1, 3, 1]
-    Tree.                 add     DEBUG			ordering1: [[1], [1, 1], [1, 2], [1, 2, 1], [1, 2, 1, 1], [1, 2, 2], [1, 3], [1, 3, 1]]
-    Tree.                 add     DEBUG		index: 8	position2: [1, 3, 1, 1]
-    Tree.                 add     DEBUG			index == len(ordering1)
-    Tree.                 add     DEBUG			node3: <Element g at 20875d0>
-    Tree.                 add     DEBUG			parent1: <Element f at 20877e0>
-    Tree.                 add     DEBUG			position3: [1, 3, 1, 1]
-    Tree.                 add     DEBUG			ordering1: [[1], [1, 1], [1, 2], [1, 2, 1], [1, 2, 1, 1], [1, 2, 2], [1, 3], [1, 3, 1], [1, 3, 1, 1]]
-    Tree.                 add     DEBUG		index: 9	position2: [1, 3, 2]
-    Tree.                 add     DEBUG			index == len(ordering1)
-    Tree.                 add     DEBUG			node3: <Element f at 2087720>
-    Tree.                 add     DEBUG			parent1: <Element e at 20875d0>
-    Tree.                 add     DEBUG			position3: [1, 3, 2]
-    Tree.                 add     DEBUG			ordering1: [[1], [1, 1], [1, 2], [1, 2, 1], [1, 2, 1, 1], [1, 2, 2], [1, 3], [1, 3, 1], [1, 3, 1, 1], [1, 3, 2]]
-    Tree.                 add     DEBUG		testing: <Element f at 2087720>
-    Tree.                 add     DEBUG			tag is not _, skip
-    Tree.                 add     DEBUG		testing: <Element g at 2087660>
-    Tree.                 add     DEBUG			tag is not _, skip
-    Tree.                 add     DEBUG		testing: <Element f at 20876f0>
-    Tree.                 add     DEBUG			tag is not _, skip
-    Tree.                 add     DEBUG		testing: <Element e at 20875d0>
-    Tree.                 add     DEBUG			tag is not _, skip
-    Tree.                 add     DEBUG		testing: <Element g at 2087930>
-    Tree.                 add     DEBUG			tag is not _, skip
-    Tree.                 add     DEBUG		testing: <Element d at 20877e0>
-    Tree.                 add     DEBUG			tag is not _, skip
-    Tree.                 add     DEBUG		testing: <Element g at 2087990>
-    Tree.                 add     DEBUG			tag is not _, skip
-    Tree.                 add     DEBUG		testing: <Element e at 20877b0>
-    Tree.                 add     DEBUG			tag is not _, skip
-    Tree.                 add     DEBUG		testing: <Element c at 2087690>
-    Tree.                 add     DEBUG			tag is not _, skip
-    Tree.                 add     DEBUG		testing: <Element c at 20775a0>
-    Tree.                 add     DEBUG			tag is not _, skip
-    Tree.                 add     DEBUG		ordering1: [[1], [1, 1], [1, 2], [1, 2, 1], [1, 2, 2]]
-    Tree.                 add     DEBUG		ordering2: [[1], [1, 1], [1, 2], [1, 2, 1], [1, 2, 1, 1], [1, 2, 2], [1, 3], [1, 3, 1], [1, 3, 1, 1], [1, 3, 2]]
-    Tree.                 add     DEBUG		index: 0	position2: [1]
-    Tree.                 add     DEBUG			position2 == ordering1[index], add elements
-    Tree.                 add     DEBUG			node1: <Element b at 20873c0>	node2: <Element a at 2087390>
-    Tree.                 add     DEBUG		index: 1	position2: [1, 1]
-    Tree.                 add     DEBUG			position2 == ordering1[index], add elements
-    Tree.                 add     DEBUG			node1: <Element c at 2087270>	node2: <Element _ at 2087360>
-    Tree.                 add     DEBUG		index: 2	position2: [1, 2]
-    Tree.                 add     DEBUG			position2 == ordering1[index], add elements
-    Tree.                 add     DEBUG			node1: <Element c at 2087330>	node2: <Element b at 2087210>
-    Tree.                 add     DEBUG		index: 3	position2: [1, 2, 1]
-    Tree.                 add     DEBUG			position2 == ordering1[index], add elements
-    Tree.                 add     DEBUG			node1: <Element d at 2087240>	node2: <Element c at 20872a0>
-    Tree.                 add     DEBUG		index: 4	position2: [1, 2, 1, 1]
-    Tree.                 add     DEBUG			position2 != ordering1[index]
-    Tree.                 add     DEBUG			node3: <Element d at 2087180>
-    Tree.                 add     DEBUG			parent1: <Element g at 2087240>
-    Tree.                 add     DEBUG			position3: [1, 2, 1, 1]
-    Tree.                 add     DEBUG			ordering1: [[1], [1, 1], [1, 2], [1, 2, 1], [1, 2, 1, 1], [1, 2, 2]]
-    Tree.                 add     DEBUG		index: 5	position2: [1, 2, 2]
-    Tree.                 add     DEBUG			position2 == ordering1[index], add elements
-    Tree.                 add     DEBUG			node1: <Element d at 2087150>	node2: <Element c at 20871b0>
-    Tree.                 add     DEBUG		index: 6	position2: [1, 3]
-    Tree.                 add     DEBUG			index == len(ordering1)
-    Tree.                 add     DEBUG			node3: <Element e at 20870c0>
-    Tree.                 add     DEBUG			parent1: <Element c at 20873c0>
-    Tree.                 add     DEBUG			position3: [1, 3]
-    Tree.                 add     DEBUG			ordering1: [[1], [1, 1], [1, 2], [1, 2, 1], [1, 2, 1, 1], [1, 2, 2], [1, 3]]
-    Tree.                 add     DEBUG		index: 7	position2: [1, 3, 1]
-    Tree.                 add     DEBUG			index == len(ordering1)
-    Tree.                 add     DEBUG			node3: <Element f at 2087060>
-    Tree.                 add     DEBUG			parent1: <Element e at 20870c0>
-    Tree.                 add     DEBUG			position3: [1, 3, 1]
-    Tree.                 add     DEBUG			ordering1: [[1], [1, 1], [1, 2], [1, 2, 1], [1, 2, 1, 1], [1, 2, 2], [1, 3], [1, 3, 1]]
-    Tree.                 add     DEBUG		index: 8	position2: [1, 3, 1, 1]
-    Tree.                 add     DEBUG			index == len(ordering1)
-    Tree.                 add     DEBUG			node3: <Element g at 2087ab0>
-    Tree.                 add     DEBUG			parent1: <Element f at 2087060>
-    Tree.                 add     DEBUG			position3: [1, 3, 1, 1]
-    Tree.                 add     DEBUG			ordering1: [[1], [1, 1], [1, 2], [1, 2, 1], [1, 2, 1, 1], [1, 2, 2], [1, 3], [1, 3, 1], [1, 3, 1, 1]]
-    Tree.                 add     DEBUG		index: 9	position2: [1, 3, 2]
-    Tree.                 add     DEBUG			index == len(ordering1)
-    Tree.                 add     DEBUG			node3: <Element f at 2087ae0>
-    Tree.                 add     DEBUG			parent1: <Element e at 2087ab0>
-    Tree.                 add     DEBUG			position3: [1, 3, 2]
-    Tree.                 add     DEBUG			ordering1: [[1], [1, 1], [1, 2], [1, 2, 1], [1, 2, 1, 1], [1, 2, 2], [1, 3], [1, 3, 1], [1, 3, 1, 1], [1, 3, 2]]
-    Tree.                 add     DEBUG		testing: <Element f at 2087ae0>
-    Tree.                 add     DEBUG			tag is not _, skip
-    Tree.                 add     DEBUG		testing: <Element g at 2087b40>
-    Tree.                 add     DEBUG			tag is not _, skip
-    Tree.                 add     DEBUG		testing: <Element f at 2087b10>
-    Tree.                 add     DEBUG			tag is not _, skip
-    Tree.                 add     DEBUG		testing: <Element e at 2087ab0>
-    Tree.                 add     DEBUG			tag is not _, skip
-    Tree.                 add     DEBUG		testing: <Element g at 2087150>
-    Tree.                 add     DEBUG			tag is not _, skip
-    Tree.                 add     DEBUG		testing: <Element d at 2087060>
-    Tree.                 add     DEBUG			tag is not _, skip
-    Tree.                 add     DEBUG		testing: <Element g at 2087240>
-    Tree.                 add     DEBUG			tag is not _, skip
-    Tree.                 add     DEBUG		testing: <Element e at 2087330>
-    Tree.                 add     DEBUG			tag is not _, skip
-    Tree.                 add     DEBUG		testing: <Element c at 2087270>
-    Tree.                 add     DEBUG			tag is not _, skip
-    Tree.                 add     DEBUG		testing: <Element c at 20873c0>
-    Tree.                 add     DEBUG			tag is not _, skip
-test_Tre.test_ComplexTrees_Un     DEBUG		
-test_Tre.test_ComplexTrees_Un     DEBUG		
-    Tree.                 add     DEBUG		ordering1: [[1], [1, 1], [1, 2], [1, 2, 1], [1, 2, 1, 1], [1, 2, 2], [1, 3], [1, 3, 1], [1, 3, 1, 1], [1, 3, 2]]
-    Tree.                 add     DEBUG		ordering2: [[1], [1, 1], [1, 2], [1, 2, 1], [1, 2, 2]]
-    Tree.                 add     DEBUG		index: 0	position2: [1]
-    Tree.                 add     DEBUG			position2 == ordering1[index], add elements
-    Tree.                 add     DEBUG			node1: <Element a at 2087c00>	node2: <Element b at 2087ba0>
-    Tree.                 add     DEBUG		index: 1	position2: [1, 1]
-    Tree.                 add     DEBUG			position2 == ordering1[index], add elements
-    Tree.                 add     DEBUG			node1: <Element _ at 2087c90>	node2: <Element c at 2087d20>
-    Tree.                 add     DEBUG		index: 2	position2: [1, 2]
-    Tree.                 add     DEBUG			position2 == ordering1[index], add elements
-    Tree.                 add     DEBUG			node1: <Element b at 2087c60>	node2: <Element c at 2087c30>
-    Tree.                 add     DEBUG		index: 3	position2: [1, 2, 1]
-    Tree.                 add     DEBUG			position2 == ordering1[index], add elements
-    Tree.                 add     DEBUG			node1: <Element c at 2087d50>	node2: <Element d at 2087cc0>
-    Tree.                 add     DEBUG		index: 4	position2: [1, 2, 2]
-    Tree.                 add     DEBUG			position2 != ordering1[index]
-    Tree.                 add     DEBUG			found position2 in ordering1 at index 5, adding nodes
-    Tree.                 add     DEBUG			node1: <Element c at 2087db0>	node2: <Element d at 2087d80>
-    Tree.                 add     DEBUG		testing: <Element f at 2087ea0>
-    Tree.                 add     DEBUG			tag is not _, skip
-    Tree.                 add     DEBUG		testing: <Element g at 2087e70>
-    Tree.                 add     DEBUG			tag is not _, skip
-    Tree.                 add     DEBUG		testing: <Element f at 2087e40>
-    Tree.                 add     DEBUG			tag is not _, skip
-    Tree.                 add     DEBUG		testing: <Element e at 2087e10>
-    Tree.                 add     DEBUG			tag is not _, skip
-    Tree.                 add     DEBUG		testing: <Element g at 2087db0>
-    Tree.                 add     DEBUG			tag is not _, skip
-    Tree.                 add     DEBUG		testing: <Element d at 2087de0>
-    Tree.                 add     DEBUG			tag is not _, skip
-    Tree.                 add     DEBUG		testing: <Element g at 2087d50>
-    Tree.                 add     DEBUG			tag is not _, skip
-    Tree.                 add     DEBUG		testing: <Element e at 2087c60>
-    Tree.                 add     DEBUG			tag is not _, skip
-    Tree.                 add     DEBUG		testing: <Element c at 2087c90>
-    Tree.                 add     DEBUG			tag is not _, skip
-    Tree.                 add     DEBUG		testing: <Element c at 2087c00>
-    Tree.                 add     DEBUG			tag is not _, skip
+    Tree.                 add     DEBUG		result: b'<c><c id="a"/><e id="3"><g id="4"><d id="4"/>\n        </g><g id="6"/></e><e id="6">\n        <f id="7">\n            <g id="8"/>\n        </f>\n        <f id="8"/>\n    </e>\n</c>'
+    Tree.               equal     DEBUG		ordering1: [[1], [1, 1], [1, 2], [1, 2, 1], [1, 2, 2]]
+    Tree.               equal     DEBUG		ordering2: [[1], [1, 1], [1, 2], [1, 2, 1], [1, 2, 1, 1], [1, 2, 2], [1, 3], [1, 3, 1], [1, 3, 1, 1], [1, 3, 2]]
+test_Tre.      test_JustRoots     DEBUG		
+test_Tre.      test_JustRoots     DEBUG		
+test_Tre.      test_JustRoots     DEBUG		starting TreeGroup.Tree.test_Tree
+    Tree.                 add     DEBUG		result: b'<c/>'
+    Tree.               equal     DEBUG		ordering1: [[1]]
+    Tree.               equal     DEBUG		ordering2: [[1]]
+    Tree.                 add     DEBUG		result: b'<c/>'
+    Tree.               equal     DEBUG		ordering1: [[1]]
+    Tree.               equal     DEBUG		ordering2: [[1]]
+test_Tre.      test_JustRoots     DEBUG		
+test_Tre.      test_JustRoots     DEBUG		
+    Tree.                 add     DEBUG		result: b'<c/>'
+    Tree.               equal     DEBUG		ordering1: [[1]]
+    Tree.               equal     DEBUG		ordering2: [[1]]
 test_Tre.   test_RootWithText     DEBUG		
 test_Tre.   test_RootWithText     DEBUG		
 test_Tre.   test_RootWithText     DEBUG		starting test_TreesWithText
-    Tree.                 add     DEBUG		ordering1: [[1], [1, 1], [1, 1, 1], [1, 2], [1, 2, 1], [1, 2, 2]]
-    Tree.                 add     DEBUG		ordering2: [[1]]
-    Tree.                 add     DEBUG		index: 0	position2: [1]
-    Tree.                 add     DEBUG			position2 == ordering1[index], add elements
-    Tree.                 add     DEBUG			node1: <Element html at 2087300>	node2: <Element WPgP at 20870c0>
-    Tree.                 add     DEBUG		testing: <Element title at 2087f90>
-    Tree.                 add     DEBUG			tag is not _, skip
-    Tree.                 add     DEBUG		testing: <Element title at 2087f60>
-    Tree.                 add     DEBUG			tag is not _, skip
-    Tree.                 add     DEBUG		testing: <Element body at 2087f30>
-    Tree.                 add     DEBUG			tag is not _, skip
-    Tree.                 add     DEBUG		testing: <Element title at 2087f00>
-    Tree.                 add     DEBUG			tag is not _, skip
-    Tree.                 add     DEBUG		testing: <Element head at 2087cf0>
-    Tree.                 add     DEBUG			tag is not _, skip
-    Tree.                 add     DEBUG		testing: <Element dita at 2087300>
-    Tree.                 add     DEBUG			tag is not _, skip
+    Tree.                 add     DEBUG		result: b'<dita lang="en"><head lang="en" profile="profile">\n        <title lang="en">Sample XHTML Basic document</title>\n    </head>\n    <body id="body" class="body" title="body" lang="en">\n        <title id="title" class="title" title="document title" lang="en">Sample XHTML Basic document</title>\n        <title id="ToC">Contents</title>\n    </body>\n</dita>'
+    Tree.               equal     DEBUG		ordering1: [[1], [1, 1], [1, 1, 1], [1, 2], [1, 2, 1], [1, 2, 2]]
+    Tree.               equal     DEBUG		ordering2: [[1], [1, 1], [1, 1, 1], [1, 2], [1, 2, 1], [1, 2, 2]]
 test_Tre.   test_RootWithText     DEBUG		
 test_Tre.   test_RootWithText     DEBUG		
-    Tree.                 add     DEBUG		ordering1: [[1]]
-    Tree.                 add     DEBUG		ordering2: [[1], [1, 1], [1, 1, 1], [1, 2], [1, 2, 1], [1, 2, 2]]
-    Tree.                 add     DEBUG		index: 0	position2: [1]
-    Tree.                 add     DEBUG			position2 == ordering1[index], add elements
-    Tree.                 add     DEBUG			node1: <Element WPgP at 2089180>	node2: <Element html at 2089120>
-    Tree.                 add     DEBUG		index: 1	position2: [1, 1]
-    Tree.                 add     DEBUG			index == len(ordering1)
-    Tree.                 add     DEBUG			node3: <Element head at 2089240>
-    Tree.                 add     DEBUG			parent1: <Element dita at 2089180>
-    Tree.                 add     DEBUG			position3: [1, 1]
-    Tree.                 add     DEBUG			ordering1: [[1], [1, 1]]
-    Tree.                 add     DEBUG		index: 2	position2: [1, 1, 1]
-    Tree.                 add     DEBUG			index == len(ordering1)
-    Tree.                 add     DEBUG			node3: <Element title at 20892a0>
-    Tree.                 add     DEBUG			parent1: <Element head at 2089240>
-    Tree.                 add     DEBUG			position3: [1, 1, 1]
-    Tree.                 add     DEBUG			ordering1: [[1], [1, 1], [1, 1, 1]]
-    Tree.                 add     DEBUG		index: 3	position2: [1, 2]
-    Tree.                 add     DEBUG			index == len(ordering1)
-    Tree.                 add     DEBUG			node3: <Element body at 2089330>
-    Tree.                 add     DEBUG			parent1: <Element dita at 2089180>
-    Tree.                 add     DEBUG			position3: [1, 2]
-    Tree.                 add     DEBUG			ordering1: [[1], [1, 1], [1, 1, 1], [1, 2]]
-    Tree.                 add     DEBUG		index: 4	position2: [1, 2, 1]
-    Tree.                 add     DEBUG			index == len(ordering1)
-    Tree.                 add     DEBUG			node3: <Element title at 20892a0>
-    Tree.                 add     DEBUG			parent1: <Element body at 2089330>
-    Tree.                 add     DEBUG			position3: [1, 2, 1]
-    Tree.                 add     DEBUG			ordering1: [[1], [1, 1], [1, 1, 1], [1, 2], [1, 2, 1]]
-    Tree.                 add     DEBUG		index: 5	position2: [1, 2, 2]
-    Tree.                 add     DEBUG			index == len(ordering1)
-    Tree.                 add     DEBUG			node3: <Element title at 20893c0>
-    Tree.                 add     DEBUG			parent1: <Element body at 2089330>
-    Tree.                 add     DEBUG			position3: [1, 2, 2]
-    Tree.                 add     DEBUG			ordering1: [[1], [1, 1], [1, 1, 1], [1, 2], [1, 2, 1], [1, 2, 2]]
-    Tree.                 add     DEBUG		testing: <Element title at 20893c0>
-    Tree.                 add     DEBUG			tag is not _, skip
-    Tree.                 add     DEBUG		testing: <Element title at 2089420>
-    Tree.                 add     DEBUG			tag is not _, skip
-    Tree.                 add     DEBUG		testing: <Element body at 2089330>
-    Tree.                 add     DEBUG			tag is not _, skip
-    Tree.                 add     DEBUG		testing: <Element title at 20893f0>
-    Tree.                 add     DEBUG			tag is not _, skip
-    Tree.                 add     DEBUG		testing: <Element head at 20892a0>
-    Tree.                 add     DEBUG			tag is not _, skip
-    Tree.                 add     DEBUG		testing: <Element dita at 2089180>
-    Tree.                 add     DEBUG			tag is not _, skip
+    Tree.                 add     DEBUG		result: b'<dita lang="en"><head lang="en" profile="profile">\n        <title lang="en">Sample XHTML Basic document</title>\n    </head>\n    <body id="body" class="body" title="body" lang="en">\n        <title id="title" class="title" title="document title" lang="en">Sample XHTML Basic document</title>\n        <title id="ToC">Contents</title>\n    </body>\n</dita>'
+    Tree.               equal     DEBUG		ordering1: [[1]]
+    Tree.               equal     DEBUG		ordering2: [[1], [1, 1], [1, 1, 1], [1, 2], [1, 2, 1], [1, 2, 2]]
 test_Tre.test_SimpleTrees_Equ     DEBUG		
 test_Tre.test_SimpleTrees_Equ     DEBUG		
 test_Tre.test_SimpleTrees_Equ     DEBUG		starting TreeGroup.Tree.test_Tree
-    Tree.                 add     DEBUG		ordering1: [[1], [1, 1]]
-    Tree.                 add     DEBUG		ordering2: [[1], [1, 1]]
-    Tree.                 add     DEBUG		index: 0	position2: [1]
-    Tree.                 add     DEBUG			position2 == ordering1[index], add elements
-    Tree.                 add     DEBUG			node1: <Element a at 2089240>	node2: <Element d at 2089450>
-    Tree.                 add     DEBUG		index: 1	position2: [1, 1]
-    Tree.                 add     DEBUG			position2 == ordering1[index], add elements
-    Tree.                 add     DEBUG			node1: <Element b at 20894e0>	node2: <Element e at 20894b0>
-    Tree.                 add     DEBUG		testing: <Element g at 20894e0>
-    Tree.                 add     DEBUG			tag is not _, skip
-    Tree.                 add     DEBUG		testing: <Element e at 2089240>
-    Tree.                 add     DEBUG			tag is not _, skip
-    Tree.                 add     DEBUG		ordering1: [[1], [1, 1]]
-    Tree.                 add     DEBUG		ordering2: [[1], [1, 1]]
-    Tree.                 add     DEBUG		index: 0	position2: [1]
-    Tree.                 add     DEBUG			position2 == ordering1[index], add elements
-    Tree.                 add     DEBUG			node1: <Element a at 2089570>	node2: <Element d at 20895d0>
-    Tree.                 add     DEBUG		index: 1	position2: [1, 1]
-    Tree.                 add     DEBUG			position2 == ordering1[index], add elements
-    Tree.                 add     DEBUG			node1: <Element b at 2089660>	node2: <Element e at 2089630>
-    Tree.                 add     DEBUG		testing: <Element g at 2089660>
-    Tree.                 add     DEBUG			tag is not _, skip
-    Tree.                 add     DEBUG		testing: <Element e at 2089570>
-    Tree.                 add     DEBUG			tag is not _, skip
+    Tree.                 add     DEBUG		result: b'<e><g id="2"/></e>'
+    Tree.               equal     DEBUG		ordering1: [[1], [1, 1]]
+    Tree.               equal     DEBUG		ordering2: [[1], [1, 1]]
+    Tree.                 add     DEBUG		result: b'<e><g id="2"/></e>'
+    Tree.               equal     DEBUG		ordering1: [[1], [1, 1]]
+    Tree.               equal     DEBUG		ordering2: [[1], [1, 1]]
 test_Tre.test_SimpleTrees_Equ     DEBUG		
 test_Tre.test_SimpleTrees_Equ     DEBUG		
-    Tree.                 add     DEBUG		ordering1: [[1], [1, 1]]
-    Tree.                 add     DEBUG		ordering2: [[1], [1, 1]]
-    Tree.                 add     DEBUG		index: 0	position2: [1]
-    Tree.                 add     DEBUG			position2 == ordering1[index], add elements
-    Tree.                 add     DEBUG			node1: <Element d at 2089720>	node2: <Element a at 20896c0>
-    Tree.                 add     DEBUG		index: 1	position2: [1, 1]
-    Tree.                 add     DEBUG			position2 == ordering1[index], add elements
-    Tree.                 add     DEBUG			node1: <Element e at 20897b0>	node2: <Element b at 2089780>
-    Tree.                 add     DEBUG		testing: <Element g at 20897b0>
-    Tree.                 add     DEBUG			tag is not _, skip
-    Tree.                 add     DEBUG		testing: <Element e at 2089720>
-    Tree.                 add     DEBUG			tag is not _, skip
+    Tree.                 add     DEBUG		result: b'<e><g id="2"/></e>'
+    Tree.               equal     DEBUG		ordering1: [[1], [1, 1]]
+    Tree.               equal     DEBUG		ordering2: [[1], [1, 1]]
 test_Tre.test_SimpleTrees_Une     DEBUG		
 test_Tre.test_SimpleTrees_Une     DEBUG		
 test_Tre.test_SimpleTrees_Une     DEBUG		starting TreeGroup.Tree.test_Tree
-    Tree.                 add     DEBUG		ordering1: [[1], [1, 1]]
-    Tree.                 add     DEBUG		ordering2: [[1], [1, 1], [1, 2]]
-    Tree.                 add     DEBUG		index: 0	position2: [1]
-    Tree.                 add     DEBUG			position2 == ordering1[index], add elements
-    Tree.                 add     DEBUG			node1: <Element a at 20897e0>	node2: <Element a at 2089840>
-    Tree.                 add     DEBUG		index: 1	position2: [1, 1]
-    Tree.                 add     DEBUG			position2 == ordering1[index], add elements
-    Tree.                 add     DEBUG			node1: <Element b at 20898d0>	node2: <Element b at 2089870>
-    Tree.                 add     DEBUG		index: 2	position2: [1, 2]
-    Tree.                 add     DEBUG			index == len(ordering1)
-    Tree.                 add     DEBUG			node3: <Element g at 2089960>
-    Tree.                 add     DEBUG			parent1: <Element b at 20897e0>
-    Tree.                 add     DEBUG			position3: [1, 2]
-    Tree.                 add     DEBUG			ordering1: [[1], [1, 1], [1, 2]]
-    Tree.                 add     DEBUG		testing: <Element g at 2089960>
-    Tree.                 add     DEBUG			tag is not _, skip
-    Tree.                 add     DEBUG		testing: <Element d at 20898d0>
-    Tree.                 add     DEBUG			tag is not _, skip
-    Tree.                 add     DEBUG		testing: <Element b at 20897e0>
-    Tree.                 add     DEBUG			tag is not _, skip
-    Tree.                 add     DEBUG		ordering1: [[1], [1, 1]]
-    Tree.                 add     DEBUG		ordering2: [[1], [1, 1], [1, 2]]
-    Tree.                 add     DEBUG		index: 0	position2: [1]
-    Tree.                 add     DEBUG			position2 == ordering1[index], add elements
-    Tree.                 add     DEBUG			node1: <Element a at 20899f0>	node2: <Element a at 2089a50>
-    Tree.                 add     DEBUG		index: 1	position2: [1, 1]
-    Tree.                 add     DEBUG			position2 == ordering1[index], add elements
-    Tree.                 add     DEBUG			node1: <Element b at 2089ae0>	node2: <Element b at 2089a80>
-    Tree.                 add     DEBUG		index: 2	position2: [1, 2]
-    Tree.                 add     DEBUG			index == len(ordering1)
-    Tree.                 add     DEBUG			node3: <Element g at 2089b70>
-    Tree.                 add     DEBUG			parent1: <Element b at 20899f0>
-    Tree.                 add     DEBUG			position3: [1, 2]
-    Tree.                 add     DEBUG			ordering1: [[1], [1, 1], [1, 2]]
-    Tree.                 add     DEBUG		testing: <Element g at 2089b70>
-    Tree.                 add     DEBUG			tag is not _, skip
-    Tree.                 add     DEBUG		testing: <Element d at 2089ae0>
-    Tree.                 add     DEBUG			tag is not _, skip
-    Tree.                 add     DEBUG		testing: <Element b at 20899f0>
-    Tree.                 add     DEBUG			tag is not _, skip
-test_Tre.test_SimpleTrees_Une     DEBUG		
-test_Tre.test_SimpleTrees_Une     DEBUG		
-    Tree.                 add     DEBUG		ordering1: [[1], [1, 1], [1, 2]]
-    Tree.                 add     DEBUG		ordering2: [[1], [1, 1]]
-    Tree.                 add     DEBUG		index: 0	position2: [1]
-    Tree.                 add     DEBUG			position2 == ordering1[index], add elements
-    Tree.                 add     DEBUG			node1: <Element a at 2089c00>	node2: <Element a at 2089ba0>
-    Tree.                 add     DEBUG		index: 1	position2: [1, 1]
-    Tree.                 add     DEBUG			position2 == ordering1[index], add elements
-    Tree.                 add     DEBUG			node1: <Element b at 2089c90>	node2: <Element b at 2089c30>
-    Tree.                 add     DEBUG		testing: <Element g at 2089cc0>
-    Tree.                 add     DEBUG			tag is not _, skip
-    Tree.                 add     DEBUG		testing: <Element d at 2089c90>
-    Tree.                 add     DEBUG			tag is not _, skip
-    Tree.                 add     DEBUG		testing: <Element b at 2089c00>
-    Tree.                 add     DEBUG			tag is not _, skip
+    Tree.                 add     DEBUG		result: b'<b><d id="2"/><g id="1"/>\n</b>'
+    Tree.               equal     DEBUG		ordering1: [[1], [1, 1]]
+    Tree.               equal     DEBUG		ordering2: [[1], [1, 1], [1, 2]]
 test_Tre.       test_Subtrees     DEBUG		
 test_Tre.       test_Subtrees     DEBUG		
 test_Tre.       test_Subtrees     DEBUG		starting test_Subtrees
-    Tree.                 add     DEBUG		ordering1: [[1], [1, 1]]
-    Tree.                 add     DEBUG		ordering2: [[1], [1, 1], [1, 1, 1], [1, 2]]
-    Tree.                 add     DEBUG		index: 0	position2: [1]
-    Tree.                 add     DEBUG			position2 == ordering1[index], add elements
-    Tree.                 add     DEBUG			node1: <Element b at 2089d80>	node2: <Element Y at 2089db0>
-    Tree.                 add     DEBUG		index: 1	position2: [1, 1]
-    Tree.                 add     DEBUG			position2 == ordering1[index], add elements
-    Tree.                 add     DEBUG			node1: <Element c at 2089de0>	node2: <Element _ at 2089e10>
-    Tree.                 add     DEBUG		index: 2	position2: [1, 1, 1]
-    Tree.                 add     DEBUG			index == len(ordering1)
-    Tree.                 add     DEBUG			node3: <Element d at 2089ed0>
-    Tree.                 add     DEBUG			parent1: <Element c at 2089de0>
-    Tree.                 add     DEBUG			position3: [1, 1, 1]
-    Tree.                 add     DEBUG			ordering1: [[1], [1, 1], [1, 1, 1]]
-    Tree.                 add     DEBUG		index: 3	position2: [1, 2]
-    Tree.                 add     DEBUG			index == len(ordering1)
-    Tree.                 add     DEBUG			node3: <Element c at 2089f60>
-    Tree.                 add     DEBUG			parent1: <Element _ at 2089d80>
-    Tree.                 add     DEBUG			position3: [1, 2]
-    Tree.                 add     DEBUG			ordering1: [[1], [1, 1], [1, 1, 1], [1, 2]]
-    Tree.                 add     DEBUG		testing: <Element c at 2089f60>
-    Tree.                 add     DEBUG			tag is not _, skip
-    Tree.                 add     DEBUG		testing: <Element d at 2089f30>
-    Tree.                 add     DEBUG			tag is not _, skip
-    Tree.                 add     DEBUG		testing: <Element c at 2089de0>
-    Tree.                 add     DEBUG			tag is not _, skip
-    Tree.                 add     DEBUG		testing: <Element _ at 2089d80>
-    Tree.                 add     DEBUG			length is not 0, skip
-test_Tre.       test_Subtrees     DEBUG		
-test_Tre.       test_Subtrees     DEBUG		
-    Tree.                 add     DEBUG		ordering1: [[1], [1, 1], [1, 1, 1], [1, 2]]
-    Tree.                 add     DEBUG		ordering2: [[1], [1, 1]]
-    Tree.                 add     DEBUG		index: 0	position2: [1]
-    Tree.                 add     DEBUG			position2 == ordering1[index], add elements
-    Tree.                 add     DEBUG			node1: <Element Y at 2089d50>	node2: <Element b at 20860c0>
-    Tree.                 add     DEBUG		index: 1	position2: [1, 1]
-    Tree.                 add     DEBUG			position2 == ordering1[index], add elements
-    Tree.                 add     DEBUG			node1: <Element _ at 20860f0>	node2: <Element c at 2086120>
-    Tree.                 add     DEBUG		testing: <Element c at 20861b0>
-    Tree.                 add     DEBUG			tag is not _, skip
-    Tree.                 add     DEBUG		testing: <Element d at 2086180>
-    Tree.                 add     DEBUG			tag is not _, skip
-    Tree.                 add     DEBUG		testing: <Element c at 20860f0>
-    Tree.                 add     DEBUG			tag is not _, skip
-    Tree.                 add     DEBUG		testing: <Element _ at 2089d50>
-    Tree.                 add     DEBUG			length is not 0, skip
 test_Tre.  test_TreeToSubtree     DEBUG		
 test_Tre.  test_TreeToSubtree     DEBUG		
 test_Tre.  test_TreeToSubtree     DEBUG		starting test_TreeToSubtree
-    Tree.                 add     DEBUG		ordering1: [[1], [1, 1], [1, 1, 1], [1, 2]]
-    Tree.                 add     DEBUG		ordering2: [[1], [1, 1], [1, 1, 1], [1, 2], [1, 2, 1], [1, 2, 1, 1], [1, 2, 2]]
-    Tree.                 add     DEBUG		index: 0	position2: [1]
-    Tree.                 add     DEBUG			position2 == ordering1[index], add elements
-    Tree.                 add     DEBUG			node1: <Element Y at 2086210>	node2: <Element b at 2086090>
-    Tree.                 add     DEBUG		index: 1	position2: [1, 1]
-    Tree.                 add     DEBUG			position2 == ordering1[index], add elements
-    Tree.                 add     DEBUG			node1: <Element _ at 20862d0>	node2: <Element b at 2086270>
-    Tree.                 add     DEBUG		index: 2	position2: [1, 1, 1]
-    Tree.                 add     DEBUG			position2 == ordering1[index], add elements
-    Tree.                 add     DEBUG			node1: <Element d at 20862a0>	node2: <Element c at 2086300>
-    Tree.                 add     DEBUG		index: 3	position2: [1, 2]
-    Tree.                 add     DEBUG			position2 == ordering1[index], add elements
-    Tree.                 add     DEBUG			node1: <Element c at 2086360>	node2: <Element e at 2086330>
-    Tree.                 add     DEBUG		index: 4	position2: [1, 2, 1]
-    Tree.                 add     DEBUG			index == len(ordering1)
-    Tree.                 add     DEBUG			node3: <Element f at 20863f0>
-    Tree.                 add     DEBUG			parent1: <Element h at 2086360>
-    Tree.                 add     DEBUG			position3: [1, 2, 1]
-    Tree.                 add     DEBUG			ordering1: [[1], [1, 1], [1, 1, 1], [1, 2], [1, 2, 1]]
-    Tree.                 add     DEBUG		index: 5	position2: [1, 2, 1, 1]
-    Tree.                 add     DEBUG			index == len(ordering1)
-    Tree.                 add     DEBUG			node3: <Element g at 2086480>
-    Tree.                 add     DEBUG			parent1: <Element f at 20863f0>
-    Tree.                 add     DEBUG			position3: [1, 2, 1, 1]
-    Tree.                 add     DEBUG			ordering1: [[1], [1, 1], [1, 1, 1], [1, 2], [1, 2, 1], [1, 2, 1, 1]]
-    Tree.                 add     DEBUG		index: 6	position2: [1, 2, 2]
-    Tree.                 add     DEBUG			index == len(ordering1)
-    Tree.                 add     DEBUG			node3: <Element f at 20864e0>
-    Tree.                 add     DEBUG			parent1: <Element h at 2086360>
-    Tree.                 add     DEBUG			position3: [1, 2, 2]
-    Tree.                 add     DEBUG			ordering1: [[1], [1, 1], [1, 1, 1], [1, 2], [1, 2, 1], [1, 2, 1, 1], [1, 2, 2]]
-    Tree.                 add     DEBUG		testing: <Element f at 20864e0>
-    Tree.                 add     DEBUG			tag is not _, skip
-    Tree.                 add     DEBUG		testing: <Element g at 2086480>
-    Tree.                 add     DEBUG			tag is not _, skip
-    Tree.                 add     DEBUG		testing: <Element f at 20863f0>
-    Tree.                 add     DEBUG			tag is not _, skip
-    Tree.                 add     DEBUG		testing: <Element h at 2086360>
-    Tree.                 add     DEBUG			tag is not _, skip
-    Tree.                 add     DEBUG		testing: <Element g at 20862a0>
-    Tree.                 add     DEBUG			tag is not _, skip
-    Tree.                 add     DEBUG		testing: <Element b at 20862d0>
-    Tree.                 add     DEBUG			tag is not _, skip
-    Tree.                 add     DEBUG		testing: <Element _ at 2086210>
-    Tree.                 add     DEBUG			attributes not blank, skip
-test_Tre.  test_TreeToSubtree     DEBUG		
-test_Tre.  test_TreeToSubtree     DEBUG		
-    Tree.                 add     DEBUG		ordering1: [[1], [1, 1], [1, 1, 1], [1, 2], [1, 2, 1], [1, 2, 1, 1], [1, 2, 2]]
-    Tree.                 add     DEBUG		ordering2: [[1], [1, 1], [1, 1, 1], [1, 2]]
-    Tree.                 add     DEBUG		index: 0	position2: [1]
-    Tree.                 add     DEBUG			position2 == ordering1[index], add elements
-    Tree.                 add     DEBUG			node1: <Element b at 2086660>	node2: <Element Y at 20861e0>
-    Tree.                 add     DEBUG		index: 1	position2: [1, 1]
-    Tree.                 add     DEBUG			position2 == ordering1[index], add elements
-    Tree.                 add     DEBUG			node1: <Element b at 2086750>	node2: <Element _ at 2086720>
-    Tree.                 add     DEBUG		index: 2	position2: [1, 1, 1]
-    Tree.                 add     DEBUG			position2 == ordering1[index], add elements
-    Tree.                 add     DEBUG			node1: <Element c at 20866f0>	node2: <Element d at 20867b0>
-    Tree.                 add     DEBUG		index: 3	position2: [1, 2]
-    Tree.                 add     DEBUG			position2 == ordering1[index], add elements
-    Tree.                 add     DEBUG			node1: <Element e at 2086810>	node2: <Element c at 20867e0>
-    Tree.                 add     DEBUG		testing: <Element f at 20868a0>
-    Tree.                 add     DEBUG			tag is not _, skip
-    Tree.                 add     DEBUG		testing: <Element g at 2086870>
-    Tree.                 add     DEBUG			tag is not _, skip
-    Tree.                 add     DEBUG		testing: <Element f at 2086840>
-    Tree.                 add     DEBUG			tag is not _, skip
-    Tree.                 add     DEBUG		testing: <Element h at 2086810>
-    Tree.                 add     DEBUG			tag is not _, skip
-    Tree.                 add     DEBUG		testing: <Element g at 20866f0>
-    Tree.                 add     DEBUG			tag is not _, skip
-    Tree.                 add     DEBUG		testing: <Element b at 2086750>
-    Tree.                 add     DEBUG			tag is not _, skip
-    Tree.                 add     DEBUG		testing: <Element _ at 2086660>
-    Tree.                 add     DEBUG			attributes not blank, skip
+    Tree.                 add     DEBUG		result: b'<_ id="a"><b id="9"><g id="X"/></b><h id="1"><f id="7">\n            <g id="8"/>\n        </f>\n        <f id="8"/>\n    </h></_>'
+    Tree.               equal     DEBUG		ordering1: [[1], [1, 1], [1, 1, 1], [1, 2], [2], [2, 1], [2, 1, 1], [2, 2]]
+    Tree.               equal     DEBUG		ordering2: [[1], [1, 1], [1, 1, 1], [1, 2], [1, 2, 1], [1, 2, 1, 1], [1, 2, 2]]
 test_Tre.  test_TreesWithText     DEBUG		
 test_Tre.  test_TreesWithText     DEBUG		
 test_Tre.  test_TreesWithText     DEBUG		starting test_TreesWithText
-    Tree.                 add     DEBUG		ordering1: [[1], [1, 1], [1, 1, 1], [1, 2], [1, 2, 1], [1, 2, 1, 1], [1, 2, 2]]
-    Tree.                 add     DEBUG		ordering2: [[1], [1, 1], [1, 1, 1], [1, 1, 1, 1], [1, 1, 2], [1, 2], [1, 2, 1], [1, 2, 1, 1], [1, 2, 2]]
-    Tree.                 add     DEBUG		index: 0	position2: [1]
-    Tree.                 add     DEBUG			position2 == ordering1[index], add elements
-    Tree.                 add     DEBUG			node1: <Element b at 2086780>	node2: <Element a at 20868d0>
-    Tree.                 add     DEBUG		index: 1	position2: [1, 1]
-    Tree.                 add     DEBUG			position2 == ordering1[index], add elements
-    Tree.                 add     DEBUG			node1: <Element a at 2086900>	node2: <Element Y at 2086960>
-    Tree.                 add     DEBUG		index: 2	position2: [1, 1, 1]
-    Tree.                 add     DEBUG			position2 == ordering1[index], add elements
-    Tree.                 add     DEBUG			node1: <Element c at 2086990>	node2: <Element _ at 2086930>
-    Tree.                 add     DEBUG		index: 3	position2: [1, 1, 1, 1]
-    Tree.                 add     DEBUG			position2 != ordering1[index]
-    Tree.                 add     DEBUG			node3: <Element d at 2086a50>
-    Tree.                 add     DEBUG			parent1: <Element c at 2086990>
-    Tree.                 add     DEBUG			position3: [1, 1, 1, 1]
-    Tree.                 add     DEBUG			ordering1: [[1], [1, 1], [1, 1, 1], [1, 1, 1, 1], [1, 2], [1, 2, 1], [1, 2, 1, 1], [1, 2, 2]]
-    Tree.                 add     DEBUG		index: 4	position2: [1, 1, 2]
-    Tree.                 add     DEBUG			position2 != ordering1[index]
-    Tree.                 add     DEBUG			node3: <Element c at 2086ab0>
-    Tree.                 add     DEBUG			parent1: <Element Z at 2086900>
-    Tree.                 add     DEBUG			position3: [1, 1, 2]
-    Tree.                 add     DEBUG			ordering1: [[1], [1, 1], [1, 1, 1], [1, 1, 1, 1], [1, 1, 2], [1, 2], [1, 2, 1], [1, 2, 1, 1], [1, 2, 2]]
-    Tree.                 add     DEBUG		index: 5	position2: [1, 2]
-    Tree.                 add     DEBUG			position2 == ordering1[index], add elements
-    Tree.                 add     DEBUG			node1: <Element f at 2086ae0>	node2: <Element V at 2086a50>
-    Tree.                 add     DEBUG		index: 6	position2: [1, 2, 1]
-    Tree.                 add     DEBUG			position2 == ordering1[index], add elements
-    Tree.                 add     DEBUG			node1: <Element g at 2086b40>	node2: <Element U at 2086b10>
-    Tree.                 add     DEBUG		index: 7	position2: [1, 2, 1, 1]
-    Tree.                 add     DEBUG			position2 == ordering1[index], add elements
-    Tree.                 add     DEBUG			node1: <Element i at 2086ba0>	node2: <Element T at 2086b70>
-    Tree.                 add     DEBUG		index: 8	position2: [1, 2, 2]
-    Tree.                 add     DEBUG			position2 == ordering1[index], add elements
-    Tree.                 add     DEBUG			node1: <Element g at 2086c00>	node2: <Element U at 2086bd0>
-    Tree.                 add     DEBUG		testing: <Element a at 2086c00>
-    Tree.                 add     DEBUG			tag is not _, skip
-    Tree.                 add     DEBUG		testing: <Element b at 2086ba0>
-    Tree.                 add     DEBUG			tag is not _, skip
-    Tree.                 add     DEBUG		testing: <Element a at 2086b40>
-    Tree.                 add     DEBUG			tag is not _, skip
-    Tree.                 add     DEBUG		testing: <Element a at 2086ae0>
-    Tree.                 add     DEBUG			tag is not _, skip
-    Tree.                 add     DEBUG		testing: <Element c at 2086ab0>
-    Tree.                 add     DEBUG			tag is not _, skip
-    Tree.                 add     DEBUG		testing: <Element d at 2086c30>
-    Tree.                 add     DEBUG			tag is not _, skip
-    Tree.                 add     DEBUG		testing: <Element c at 2086990>
-    Tree.                 add     DEBUG			tag is not _, skip
-    Tree.                 add     DEBUG		testing: <Element Z at 2086900>
-    Tree.                 add     DEBUG			tag is not _, skip
-    Tree.                 add     DEBUG		testing: <Element c at 2086780>
-    Tree.                 add     DEBUG			tag is not _, skip
-test_Tre.  test_TreesWithText     DEBUG		
-test_Tre.  test_TreesWithText     DEBUG		
-    Tree.                 add     DEBUG		ordering1: [[1], [1, 1], [1, 1, 1], [1, 1, 1, 1], [1, 1, 2], [1, 2], [1, 2, 1], [1, 2, 1, 1], [1, 2, 2]]
-    Tree.                 add     DEBUG		ordering2: [[1], [1, 1], [1, 1, 1], [1, 2], [1, 2, 1], [1, 2, 1, 1], [1, 2, 2]]
-    Tree.                 add     DEBUG		index: 0	position2: [1]
-    Tree.                 add     DEBUG			position2 == ordering1[index], add elements
-    Tree.                 add     DEBUG			node1: <Element a at 2077810>	node2: <Element b at 2029750>
-    Tree.                 add     DEBUG		index: 1	position2: [1, 1]
-    Tree.                 add     DEBUG			position2 == ordering1[index], add elements
-    Tree.                 add     DEBUG			node1: <Element Y at 2077120>	node2: <Element a at 20770f0>
-    Tree.                 add     DEBUG		index: 2	position2: [1, 1, 1]
-    Tree.                 add     DEBUG			position2 == ordering1[index], add elements
-    Tree.                 add     DEBUG			node1: <Element _ at 2077bd0>	node2: <Element c at 20775a0>
-    Tree.                 add     DEBUG		index: 3	position2: [1, 2]
-    Tree.                 add     DEBUG			position2 != ordering1[index]
-    Tree.                 add     DEBUG			found position2 in ordering1 at index 5, adding nodes
-    Tree.                 add     DEBUG			node1: <Element V at 2077180>	node2: <Element f at 20774e0>
-    Tree.                 add     DEBUG		index: 4	position2: [1, 2, 1]
-    Tree.                 add     DEBUG			position2 != ordering1[index]
-    Tree.                 add     DEBUG			found position2 in ordering1 at index 6, adding nodes
-    Tree.                 add     DEBUG			node1: <Element U at 2077210>	node2: <Element g at 20772a0>
-    Tree.                 add     DEBUG		index: 5	position2: [1, 2, 1, 1]
-    Tree.                 add     DEBUG			position2 != ordering1[index]
-    Tree.                 add     DEBUG			found position2 in ordering1 at index 7, adding nodes
-    Tree.                 add     DEBUG			node1: <Element T at 20771b0>	node2: <Element i at 2077510>
-    Tree.                 add     DEBUG		index: 6	position2: [1, 2, 2]
-    Tree.                 add     DEBUG			position2 != ordering1[index]
-    Tree.                 add     DEBUG			found position2 in ordering1 at index 8, adding nodes
-    Tree.                 add     DEBUG			node1: <Element U at 2077240>	node2: <Element g at 2077270>
-    Tree.                 add     DEBUG		testing: <Element a at 2077240>
-    Tree.                 add     DEBUG			tag is not _, skip
-    Tree.                 add     DEBUG		testing: <Element b at 20771b0>
-    Tree.                 add     DEBUG			tag is not _, skip
-    Tree.                 add     DEBUG		testing: <Element a at 2077210>
-    Tree.                 add     DEBUG			tag is not _, skip
-    Tree.                 add     DEBUG		testing: <Element a at 2077180>
-    Tree.                 add     DEBUG			tag is not _, skip
-    Tree.                 add     DEBUG		testing: <Element c at 2077300>
-    Tree.                 add     DEBUG			tag is not _, skip
-    Tree.                 add     DEBUG		testing: <Element d at 20772d0>
-    Tree.                 add     DEBUG			tag is not _, skip
-    Tree.                 add     DEBUG		testing: <Element c at 2077bd0>
-    Tree.                 add     DEBUG			tag is not _, skip
-    Tree.                 add     DEBUG		testing: <Element Z at 2077120>
-    Tree.                 add     DEBUG			tag is not _, skip
-    Tree.                 add     DEBUG		testing: <Element c at 2077810>
-    Tree.                 add     DEBUG			tag is not _, skip
+    Tree.                 add     DEBUG		result: b'<c><Z id="9"><c id="3">nSYKDI)KqiD<d/></c><c/>\n    </Z><a id="6"><a id="7">nSYKDI)KqiF<b id="8"/>nSYKDI)KqiH</a><a id="8">File14Text4</a></a></c>'
+    Tree.               equal     DEBUG		ordering1: [[1], [1, 1], [1, 1, 1], [1, 2], [1, 2, 1], [1, 2, 1, 1], [1, 2, 2]]
+    Tree.               equal     DEBUG		ordering2: [[1], [1, 1], [1, 1, 1], [1, 1, 1, 1], [1, 1, 2], [1, 2], [1, 2, 1], [1, 2, 1, 1], [1, 2, 2]]
+    Tree.               equal     DEBUG		ordering1: [[1], [1, 1], [1, 2], [1, 3], [1, 3, 1], [1, 3, 1, 1]]
+    Tree.               equal     DEBUG		ordering2: [[1], [1, 1], [1, 2], [1, 3], [1, 3, 1], [1, 3, 1, 1]]
+    Tree.               equal     DEBUG		ordering1: [[1], [1, 1], [1, 2], [1, 3], [1, 3, 1], [1, 3, 1, 1]]
+    Tree.               equal     DEBUG		ordering2: [[1], [1, 1], [1, 2], [1, 3], [1, 3, 1], [1, 3, 1, 1]]
+    Tree.               equal     DEBUG		ordering1: [[1], [1, 1], [1, 1, 1], [1, 2], [1, 2, 1], [1, 2, 2], [1, 2, 3], [1, 2, 3, 1], [1, 2, 3, 1, 1]]
+    Tree.               equal     DEBUG		ordering2: [[1], [1, 1], [1, 1, 1], [1, 2], [1, 2, 1], [1, 2, 2], [1, 2, 3], [1, 2, 3, 1], [1, 2, 3, 1, 1]]
+    Tree.               equal     DEBUG		ordering1: [[1], [1, 1], [1, 1, 1], [1, 2], [1, 2, 1], [1, 2, 2], [1, 2, 3], [1, 2, 3, 1], [1, 2, 3, 1, 1]]
+    Tree.               equal     DEBUG		ordering2: [[1], [1, 1], [1, 1, 1], [1, 2], [1, 2, 1], [1, 2, 2], [1, 2, 3], [1, 2, 3, 1], [1, 2, 3, 1, 1]]
+    Tree.               equal     DEBUG		ordering1: [[1], [1, 1], [1, 1, 1], [1, 2], [1, 2, 1], [1, 2, 2], [1, 2, 3], [1, 2, 3, 1], [1, 2, 3, 1, 1]]
+    Tree.               equal     DEBUG		ordering2: [[1]]
+    Tree.               equal     DEBUG		ordering1: [[1], [1, 1], [1, 1, 1], [1, 2], [1, 2, 1], [1, 2, 2], [1, 2, 3], [1, 2, 3, 1], [1, 2, 3, 1, 1]]
+    Tree.               equal     DEBUG		ordering2: [[1]]
+    Tree.               equal     DEBUG		ordering1: [[1], [1, 1], [1, 1, 1], [1, 2], [1, 2, 1], [1, 2, 2], [1, 2, 3], [1, 2, 3, 1], [1, 2, 3, 1, 1]]
+    Tree.               equal     DEBUG		ordering2: [[1], [1, 1], [1, 2]]
+    Tree.               equal     DEBUG		ordering1: [[1], [1, 1], [1, 1, 1], [1, 2], [1, 2, 1], [1, 2, 2], [1, 2, 3], [1, 2, 3, 1], [1, 2, 3, 1, 1]]
+    Tree.               equal     DEBUG		ordering2: [[1], [1, 1], [1, 2]]
+    Tree.               equal     DEBUG		ordering1: [[1], [1, 1], [1, 1, 1], [1, 2], [1, 2, 1], [1, 2, 2], [1, 2, 3], [1, 2, 3, 1], [1, 2, 3, 1, 1]]
+    Tree.               equal     DEBUG		ordering2: [[1], [1, 1], [1, 1, 1], [1, 2], [1, 2, 1], [1, 2, 2], [1, 2, 3], [1, 2, 3, 1], [1, 2, 3, 1, 1]]
+    Tree.               equal     DEBUG		ordering1: [[1], [1, 1], [1, 1, 1], [1, 2], [1, 2, 1], [1, 2, 2], [1, 2, 3], [1, 2, 3, 1], [1, 2, 3, 1, 1]]
+    Tree.               equal     DEBUG		ordering2: [[1], [1, 1], [1, 1, 1], [1, 2], [1, 2, 1], [1, 2, 2], [1, 2, 3], [1, 2, 3, 1], [1, 2, 3, 1, 1]]
+    Tree.               equal     DEBUG		ordering1: [[1], [1, 1], [1, 1, 1], [1, 2], [1, 2, 1], [1, 2, 2], [1, 2, 3], [1, 2, 3, 1], [1, 2, 3, 1, 1]]
+    Tree.               equal     DEBUG		ordering2: [[1], [1, 1], [1, 1, 1], [1, 2], [1, 2, 1], [1, 2, 2], [1, 2, 3], [1, 2, 3, 1], [1, 2, 3, 1, 1]]
+    Tree.               equal     DEBUG		ordering1: [[1], [1, 1], [1, 1, 1], [1, 2], [1, 2, 1], [1, 2, 2], [1, 2, 3], [1, 2, 3, 1], [1, 2, 3, 1, 1]]
+    Tree.               equal     DEBUG		ordering2: [[1], [1, 1], [1, 1, 1], [1, 2], [1, 2, 1], [1, 2, 2], [1, 2, 3], [1, 2, 3, 1], [1, 2, 3, 1, 1]]
+    Tree.               equal     DEBUG		ordering1: [[1], [1, 1], [1, 1, 1], [1, 2], [1, 2, 1], [1, 2, 2], [1, 2, 3], [1, 2, 3, 1], [1, 2, 3, 1, 1]]
+    Tree.               equal     DEBUG		ordering2: [[1], [1, 1], [1, 1, 1], [1, 2], [1, 2, 1], [1, 2, 2], [1, 2, 3], [1, 2, 3, 1], [1, 2, 3, 1, 1]]
+    Tree.               equal     DEBUG		ordering1: [[1], [1, 1], [1, 1, 1], [1, 2], [1, 2, 1], [1, 2, 2], [1, 2, 3], [1, 2, 3, 1], [1, 2, 3, 1, 1]]
+    Tree.               equal     DEBUG		ordering2: [[1], [1, 1], [1, 1, 1], [1, 2], [1, 2, 1], [1, 2, 2], [1, 2, 3], [1, 2, 3, 1], [1, 2, 3, 1, 1]]
+    Tree.               equal     DEBUG		ordering1: [[1], [1, 1], [2], [2, 1], [2, 2], [2, 3], [2, 3, 1], [2, 3, 1, 1]]
+    Tree.               equal     DEBUG		ordering2: [[1], [1, 1], [1, 2], [1, 3], [1, 3, 1], [1, 3, 1, 1]]
+    Tree.               equal     DEBUG		ordering1: [[1], [1, 1], [2], [2, 1], [2, 2], [2, 3], [2, 3, 1], [2, 3, 1, 1]]
+    Tree.               equal     DEBUG		ordering2: [[1], [1, 1], [1, 2], [1, 3], [1, 3, 1], [1, 3, 1, 1]]
 test_Tre.    test_ComplexTree     DEBUG		
 test_Tre.    test_ComplexTree     DEBUG		
 test_Tre.    test_ComplexTree     DEBUG		starting TreeGroup.Tree.test_Tree
+    Tree.               equal     DEBUG		ordering1: [[1], [1, 1], [1, 2], [1, 3], [1, 3, 1], [1, 3, 1, 1], [1, 3, 2]]
+    Tree.               equal     DEBUG		ordering2: [[1], [1, 1], [1, 2], [1, 3], [1, 3, 1], [1, 3, 1, 1], [1, 3, 2]]
 test_Tre.test_InverseAddition     DEBUG		
 test_Tre.test_InverseAddition     DEBUG		
 test_Tre.test_InverseAddition     DEBUG		starting TreeGroup.Tree.test_Tree
-    Tree.                 add     DEBUG		ordering1: [[1], [1, 1], [1, 2], [1, 3], [1, 3, 1], [1, 3, 1, 1], [1, 3, 2]]
-    Tree.                 add     DEBUG		ordering2: [[1], [1, 1], [1, 2], [1, 3], [1, 3, 1], [1, 3, 1, 1], [1, 3, 2]]
-    Tree.                 add     DEBUG		index: 0	position2: [1]
-    Tree.                 add     DEBUG			position2 == ordering1[index], add elements
-    Tree.                 add     DEBUG			node1: <Element Z at 2086ed0>	node2: <Element a at 2086f30>
-    Tree.                 add     DEBUG		index: 1	position2: [1, 1]
-    Tree.                 add     DEBUG			position2 == ordering1[index], add elements
-    Tree.                 add     DEBUG			node1: <Element _ at 2086f60>	node2: <Element _ at 2089150>
-    Tree.                 add     DEBUG		index: 2	position2: [1, 2]
-    Tree.                 add     DEBUG			position2 == ordering1[index], add elements
-    Tree.                 add     DEBUG			node1: <Element Y at 2086f90>	node2: <Element b at 20891b0>
-    Tree.                 add     DEBUG		index: 3	position2: [1, 3]
-    Tree.                 add     DEBUG			position2 == ordering1[index], add elements
-    Tree.                 add     DEBUG			node1: <Element Y at 2086fc0>	node2: <Element b at 2089180>
-    Tree.                 add     DEBUG		index: 4	position2: [1, 3, 1]
-    Tree.                 add     DEBUG			position2 == ordering1[index], add elements
-    Tree.                 add     DEBUG			node1: <Element X at 2089030>	node2: <Element c at 20890f0>
-    Tree.                 add     DEBUG		index: 5	position2: [1, 3, 1, 1]
-    Tree.                 add     DEBUG			position2 == ordering1[index], add elements
-    Tree.                 add     DEBUG			node1: <Element W at 2089060>	node2: <Element d at 20890c0>
-    Tree.                 add     DEBUG		index: 6	position2: [1, 3, 2]
-    Tree.                 add     DEBUG			position2 == ordering1[index], add elements
-    Tree.                 add     DEBUG			node1: <Element X at 2089090>	node2: <Element c at 20891e0>
-    Tree.                 add     DEBUG		testing: <Element _ at 2089090>
-    Tree.                 add     DEBUG		removing unit node: <Element _ at 2089090>
-    Tree.                 add     DEBUG		testing: <Element _ at 2089060>
-    Tree.                 add     DEBUG		removing unit node: <Element _ at 2089060>
-    Tree.                 add     DEBUG		testing: <Element _ at 2089030>
-    Tree.                 add     DEBUG		removing unit node: <Element _ at 2089030>
-    Tree.                 add     DEBUG		testing: <Element _ at 2086fc0>
-    Tree.                 add     DEBUG		removing unit node: <Element _ at 2086fc0>
-    Tree.                 add     DEBUG		testing: <Element _ at 2086f90>
-    Tree.                 add     DEBUG		removing unit node: <Element _ at 2086f90>
-    Tree.                 add     DEBUG		testing: <Element _ at 2086f60>
-    Tree.                 add     DEBUG		removing unit node: <Element _ at 2086f60>
-    Tree.                 add     DEBUG		testing: <Element _ at 2086ed0>
-    Tree.                 add     DEBUG		removing unit node: <Element _ at 2086ed0>
+    Tree.                 add     DEBUG		result: b'<_></_>'
+    Tree.               equal     DEBUG		ordering1: [[1], [1, 1], [1, 2], [1, 3], [1, 3, 1], [1, 3, 1, 1], [1, 3, 2]]
+    Tree.               equal     DEBUG		ordering2: [[1]]
 test_Tre.     test_SimpleTree     DEBUG		
 test_Tre.     test_SimpleTree     DEBUG		
 test_Tre.     test_SimpleTree     DEBUG		starting TreeGroup.Tree.test_Tree
+    Tree.               equal     DEBUG		ordering1: [[1], [1, 1]]
+    Tree.               equal     DEBUG		ordering2: [[1], [1, 1]]
 test_Tre.        test_Subtree     DEBUG		
 test_Tre.        test_Subtree     DEBUG		
 test_Tre.        test_Subtree     DEBUG		starting TreeGroup.Tree.test_Tree
+    Tree.               equal     DEBUG		ordering1: [[1], [1, 1], [1, 1, 1], [1, 2]]
+    Tree.               equal     DEBUG		ordering2: [[1], [1, 1], [1, 1, 1], [1, 2]]
 test_Tre.       test_UnitTree     DEBUG		
 test_Tre.       test_UnitTree     DEBUG		
 test_Tre.       test_UnitTree     DEBUG		starting TreeGroup.Tree.test_Tree
-    Tree.                 add     DEBUG		ordering1: [[1]]
-    Tree.                 add     DEBUG		ordering2: [[1]]
-    Tree.                 add     DEBUG		index: 0	position2: [1]
-    Tree.                 add     DEBUG			position2 == ordering1[index], add elements
-    Tree.                 add     DEBUG			node1: <Element Y at 2089690>	node2: <Element a at 20895d0>
-    Tree.                 add     DEBUG		testing: <Element Z at 2089690>
-    Tree.                 add     DEBUG			tag is not _, skip
-    Tree.                 add     DEBUG		ordering1: [[1], [1, 1], [1, 2], [1, 2, 1], [1, 2, 1, 1], [1, 2, 2], [1, 3]]
-    Tree.                 add     DEBUG		ordering2: [[1], [1, 1], [1, 2], [1, 2, 1], [1, 2, 1, 1], [1, 2, 2]]
-    Tree.                 add     DEBUG		index: 0	position2: [1]
-    Tree.                 add     DEBUG			position2 == ordering1[index], add elements
-    Tree.                 add     DEBUG			node1: <Element I at 2089750>	node2: <Element a at 2089630>
-    Tree.                 add     DEBUG		index: 1	position2: [1, 1]
-    Tree.                 add     DEBUG			position2 == ordering1[index], add elements
-    Tree.                 add     DEBUG			node1: <Element Y at 2089780>	node2: <Element b at 20898a0>
-    Tree.                 add     DEBUG		index: 2	position2: [1, 2]
-    Tree.                 add     DEBUG			position2 == ordering1[index], add elements
-    Tree.                 add     DEBUG			node1: <Element X at 20897b0>	node2: <Element b at 2089930>
-    Tree.                 add     DEBUG		index: 3	position2: [1, 2, 1]
-    Tree.                 add     DEBUG			position2 == ordering1[index], add elements
-    Tree.                 add     DEBUG			node1: <Element W at 20897e0>	node2: <Element c at 2089960>
-    Tree.                 add     DEBUG		index: 4	position2: [1, 2, 1, 1]
-    Tree.                 add     DEBUG			position2 == ordering1[index], add elements
-    Tree.                 add     DEBUG			node1: <Element W at 2089810>	node2: <Element d at 2089900>
-    Tree.                 add     DEBUG		index: 5	position2: [1, 2, 2]
-    Tree.                 add     DEBUG			position2 == ordering1[index], add elements
-    Tree.                 add     DEBUG			node1: <Element X at 2089840>	node2: <Element c at 2089990>
-    Tree.                 add     DEBUG		testing: <Element ULITLLWNVZHFIV at 2089870>
-    Tree.                 add     DEBUG			tag is not _, skip
-    Tree.                 add     DEBUG		testing: <Element _ at 2089840>
-    Tree.                 add     DEBUG		removing unit node: <Element _ at 2089840>
-    Tree.                 add     DEBUG		testing: <Element _ at 2089810>
-    Tree.                 add     DEBUG		removing unit node: <Element _ at 2089810>
-    Tree.                 add     DEBUG		testing: <Element Z at 20897e0>
-    Tree.                 add     DEBUG			tag is not _, skip
-    Tree.                 add     DEBUG		testing: <Element Z at 20897b0>
-    Tree.                 add     DEBUG			tag is not _, skip
-    Tree.                 add     DEBUG		testing: <Element _ at 2089780>
-    Tree.                 add     DEBUG		removing unit node: <Element _ at 2089780>
-    Tree.                 add     DEBUG		testing: <Element J at 2089750>
-    Tree.                 add     DEBUG			tag is not _, skip
-    Tree.                 add     DEBUG		ordering1: [[1]]
-    Tree.                 add     DEBUG		ordering2: [[1]]
-    Tree.                 add     DEBUG		index: 0	position2: [1]
-    Tree.                 add     DEBUG			position2 == ordering1[index], add elements
-    Tree.                 add     DEBUG			node1: <Element Z at 2089a20>	node2: <Element a at 20896f0>
-    Tree.                 add     DEBUG		testing: <Element _ at 2089a20>
-    Tree.                 add     DEBUG		removing unit node: <Element _ at 2089a20>
+    Tree.               equal     DEBUG		ordering1: [[1]]
+    Tree.               equal     DEBUG		ordering2: [[1]]
+    Tree.                 add     DEBUG		result: b'<Z/>'
+    Tree.                 add     DEBUG		result: b'<J><_/><Z><Z></Z></Z><ULITLLWNVZHFIV/></J>'
+    Tree.                 add     DEBUG		result: b'<_/>'

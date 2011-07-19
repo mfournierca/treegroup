@@ -54,8 +54,8 @@ def add(tree1, tree2):
     ordering1 = ordering(tree1)
     ordering2 = ordering(tree2)
     
-    #log.debug('ordering1: %s' % str(ordering1))
-    #log.debug('ordering2: %s' % str(ordering2))
+#    log.debug('ordering1: %s' % str(ordering1))
+#    log.debug('ordering2: %s' % str(ordering2))
     
     #iterate over ordering2, apply to ordering1
 #    for index, position2 in enumerate(ordering2):
@@ -196,9 +196,13 @@ def add(tree1, tree2):
         if parent is None:
             #happens if i is the root
             pass
+        elif not i is parent[-1]:
+            #only remove trailing units. 
+            pass
         else:
             parent.remove(i)
-
+    
+    log.debug('result: %s' % lxml.etree.tostring(tree1))
     return tree1
 
 
@@ -207,6 +211,8 @@ def equal(tree1, tree2):
     """Return True if the trees are equal, False otherwise"""
     #trees are equal if their orderings are of the same length, have the same 
     #positions in the same order, and point to equal nodes. 
+
+    log = logging.getLogger()
 
     #check that correct object is passed. 
     #In lxml, ElementTrees are distinct from Elements in that ElementTrees have doc information
@@ -220,6 +226,8 @@ def equal(tree1, tree2):
     
     ordering1 = ordering(tree1)
     ordering2 = ordering(tree2)
+    log.debug("ordering1: %s" % str(ordering1))
+    log.debug("ordering2: %s" % str(ordering2))
     
     if not len(ordering1) == len(ordering2):
         return False
@@ -235,20 +243,182 @@ def equal(tree1, tree2):
 
 
 
+def ordering_sax(file, startingposition):
+    """Build the ordering of the tree using the sax parser."""
+    
+    #this is great, and it works, but it only works when reading the file 
+    #directly from disk. This means that this ordering function cannot be used
+    #when performing compound operations, because those changes happen in memory, 
+    #not on disk, so the the sax parser here will not pick up the changes. 
+    #Can sax parse a tree serialized from the etree model in memory? Would that be faster?
+    #Probably not. 
+    
+    import xml.sax, lxml.etree, os.path, urllib.parse, copy
+    import DitaTools.Exceptions
+    
+    log = logging.getLogger()
+    
+    #define sax content handlers
+    class ContentHandlers(xml.sax.handler.ContentHandler):
+        
+        def __init__(self, startingposition):
+            #startingposition is used to decide when to start building the ordering
+            self.startingposition = startingposition
+            self.buildordering = False
+            #stack is used to build each position, which is then added to the ordering
+            self.stack = [] 
+            self.stackindex = 0
+            #ordering is what we generate
+            self.ordering = []
+            self.log = logging.getLogger()
+            
+     
+        def startElement(self, name, attrs):
+            #self.log.debug('found element: %s' % name)
+            if self.stackindex == len(self.stack):
+                #append / insert
+                #self.log.debug('\tappending to stack at index %s' % str(self.stackindex))
+                self.stack.insert(self.stackindex, 1)
+                self.stackindex += 1
+            elif self.stackindex < len(self.stack):
+                #add
+                #self.log.debug('\tadding to stack at index %s' % str(self.stackindex))
+                self.stack[self.stackindex] += 1
+                self.stackindex += 1
+            elif self.stackindex > len(self.stack):
+                #should never happen
+                self.log.error('self.stackindex > len(self.stack)')
+            #add current stack onto ordering
+            #self.log.debug('\tstack: %s' % str(self.stack))
+            #self.log.debug('\tstackindex: %s' % str(self.stackindex))
+            if not self.buildordering:
+                if self.stack == self.startingposition:
+                    self.stack = [1]
+                    self.stackindex = 1
+                    self.buildordering = True
+            if self.buildordering:
+                self.ordering.append(copy.copy(self.stack))
+            
+        def endElement(self, name):
+            #self.log.debug('ending element %s' % name)
+            if self.stackindex == len(self.stack):
+                pass
+            elif self.stackindex == len(self.stack) - 1:
+                discard = self.stack.pop(-1)
+            else:
+                #should not happen
+                pass
+            self.stackindex -= 1
+            #self.log.debug('\tstack: %s' % str(self.stack))
+            #self.log.debug('\tstackindex: %s' % str(self.stackindex))
+            if len(self.stack) == 0:
+                #could happen if we take the ordering of an element that is not the root
+                raise StopIteration
+
+        def endDocument(self):
+            raise StopIteration
+
+    #start sax parser
+    parser = xml.sax.make_parser()
+    parser.setFeature(xml.sax.handler.feature_external_ges, False)
+    contenthandlers = ContentHandlers(startingposition)
+    parser.setContentHandler(contenthandlers)
+    try:
+        parser.parse(file)
+    except IOError:
+        log.error("IOError when parsing file %s: %s" % (file, str(sys.exc_info()[0])))
+        return False
+    except StopIteration:
+        pass
+    
+#    log.debug('ordering:')
+#    for i in parser.getContentHandler().ordering:
+#        log.debug(str(i))
+    return parser.getContentHandler().ordering
+
+
+
+
+def ordering_etree(tree):
+    """Build the ordering of the tree by iterating over the elements in the tree"""
+#    #this can be made much more effecient by using a stack and 
+#    #building each position while iterating, instead of calling 
+#    #Element.Element.position each time, which iterates over the 
+#    #tree for each element. 
+#    result = [] 
+#    
+#    if isinstance(tree, lxml.etree._ElementTree):
+#        root = tree.getroot()
+#    else:
+#        root = tree
+#    
+#    for i in root.iter():
+#        result.append(Element.Element.position(i, root=root))
+#    return result
+
+    log = logging.getLogger()
+    ordering = []
+    currentposition = []
+    stack = []
+    for element in tree.iter():
+        #log.debug('found element: %s' % element.tag)
+        if len(stack) == 0:
+            stack = [element]
+            currentposition = [1]
+            ordering = [copy.copy(currentposition)]
+            #log.debug('\tcurrentposition: %s' % str(currentposition))
+            #log.debug('\tstack: %s' % str(stack))
+            continue
+        
+        #search backward in stack until parent found. 
+        while len(stack) > 0:
+            if stack[-1] is element.getparent():
+                break
+            stack.pop(-1)
+        else:
+            #done
+            break
+        stack.append(element)
+        
+        if len(stack) > len(currentposition):
+            currentposition.append(1)
+        elif len(stack) < len(currentposition):
+            currentposition = currentposition[:len(stack)]
+            currentposition[-1] += 1
+        elif len(stack) == len(currentposition):
+            currentposition[-1] += 1
+        
+        ordering.append(copy.copy(currentposition))
+        #log.debug('\tcurrentposition: %s' % str(currentposition))
+        #log.debug('\tstack: %s' % str(stack))
+    
+    #log.debug('ordering:')
+#    for i in ordering: 
+        #log.debug('\t%s' % str(i))
+    return ordering
+
 
 
 def ordering(tree):
-    result = [] 
+    import urllib.parse
     
-    if isinstance(tree, lxml.etree._ElementTree):
-        root = tree.getroot()
-    else:
-        root = tree
+#    if isinstance(tree, lxml.etree._ElementTree):
+#        url = tree.docinfo.URL
+#        startingposition = [1]
+#    elif isinstance(tree, lxml.etree._Element):
+#        url = tree.getroottree().docinfo.URL
+#        startingposition = Element.Element.position(tree)
+#        
+#    if url:
+#        file = urllib.parse.unquote(url, encoding='utf-8')
+#        return ordering_sax(file, startingposition)
+#    else:
+#        return ordering_etree(tree)
+    return ordering_etree(tree)
     
-    for i in root.iter():
-        result.append(Element.Element.position(i, root=root))
-    return result
+        
 
+    
 
 
 

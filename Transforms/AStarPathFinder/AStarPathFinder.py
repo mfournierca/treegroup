@@ -347,9 +347,9 @@ if __name__ == "__main__":
                      os.path.join(os.getcwd(), 'profile.txt')
                     )
         #after program is run, use the following commands in interactive shell
-        #import pstats
-        #p = pstats.Stats('profile.txt') #or whatever the path is
-        #p.sort_stats('cumulative').print_stats(20)
+        import pstats
+        p = pstats.Stats('profile.txt') #or whatever the path is
+        p.sort_stats('cumulative').print_stats(20)
     else:
         #perform transformation
         result = pathfinder.findPath()
