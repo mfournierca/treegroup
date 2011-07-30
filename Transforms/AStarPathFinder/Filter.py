@@ -7,12 +7,45 @@ import sqlite3, os.path, logging
 class ElementTagFilter:
     """This filter is used to choose the 'best' tags that an element can be assigned. """
     
-    def __init__(self, tagfilterdb=os.path.join(os.path.dirname(__file__), 'FilterDB', 'tagfilter.db')):
+    #if adding a new token to the filter, remember to:
+    #    create training function and add to self.train()
+    #    create probability generating functiand add to self.getTagScore()
+    #    add the appropriate table to the self.resetDB() function
+    def __init__(self, database=os.path.join(os.path.dirname(__file__), 'FilterDB', 'tagfilter.db')):
         """initialize the filter"""
-        self.dbconnection = sqlite3.connect(tagfilterdb) 
         self.log = logging.getLogger()
         
-        self.parenttag_tablename = "parenttagtable"
+        if not os.path.exists(database):
+            self.log.error('database does not exist: %s' % database)
+        self.database = os.path.abspath(database)
+        self.dbconnection = sqlite3.connect(database) 
+        
+        #ensure database schema is correct
+        try: 
+            self.dbconnection.execute("select * from parenttagtable")
+        except sqlite3.OperationalError: 
+            self.dbconnection.execute("create table parenttagtable(parenttag, targettag, count INTEGER, proba FLOAT)")
+            self.dbconnection.commit()
+        
+        try: 
+            self.dbconnection.execute("select * from targettexttable")
+        except sqlite3.OperationalError: 
+            self.dbconnection.execute("create table targettexttable(word, targettag, count INTEGER, proba FLOAT)")
+            self.dbconnection.commit()
+            
+        #base probability is used when the filter has no information about a tag-token pair. 
+        #eg, if the word "foo" does not appear anywhere under the tag "bar" in the files 
+        #that were used to train the filter, then the filter thinks that P(tag="bar"|word="foo") = 0
+        #This would cause the cumulative score of this tag to be zero, regardless of what the other 
+        #tokens may indicate. See the bayesian formula in self.getTagScore() to realize this. 
+        #This situation, of course, is not what we want because the files used to train the filter 
+        #are not completely representative of all possible files - there are gaps in the information. 
+        #therefore we cannot assume that any probability is zero, so we have to assign a "base probability" 
+        #to be used when the filter has no information. 
+        #This value will be tweaked as time goes on, and it would be very nice if we could somehow 
+        #prove what the correct value is. For now, we guess. 
+        self.baseproba = 0.1
+            
     
     
     
@@ -30,8 +63,113 @@ class ElementTagFilter:
      
         pass
     
-
-
+    
+    
+    
+    def getTagScore(self, tag, target):
+        """Get the score of an tag, ie the probability that the tag
+        is the correct one to use for the target element"""
+        #get all the conditional probabilities and combine them using Bayes' formula. Return the result
+        #Derived from Bayes' formula, used to combine conditional probabilities:
+        #                                  P(T|C1)P(T|C2) ... P(T|Cn)
+        # p   =                    ------------------------------------------
+        #            P(T|C1)P(T|C2) ... P(T|Cn) + (1 - P(T|C1))(1 - P(T|C2)) ... (1 - P(T|Cn))
+        #
+        #where P(T|Ci) is the probability that tag T is the correct one given the condition Ci, where Ci is one of
+        #parent tag value, child tag value, text, etc. 
+        #Note this formula assumes that the conditions are independant. 
+        
+        probas = []
+        probas.append(self.getProbaTagGivenParentTag(tag, target.getparent().tag))
+        for word in self._getWordsFromText(target.text):
+            probas.append(self.getProbaTagGivenTextWord(tag, word))
+        
+        p1 = 1
+        for i in probas: p1 = p1*i
+        p2 = 1
+        for i in probas: p2 = p2*(1 - i)
+        
+        p = p1 / (p1 + p2)
+        self.log.debug('tag score: %s / (%s + %s) = %s' % (p1, p1, p2, p))
+        return p
+        
+    
+    
+    
+    def getProbaTagGivenParentTag(self, tag, parenttag):
+        #find P(tag|parent) and return it
+        #P(tag|parent) = number of times tag appears under parent / #number of times any tag appears under parent. 
+        #need some code to control what happens if tag or parenttag is not in database - probably set to 
+        #0 and wait for user input, or define a "base probability" that is used in the absence of information. 
+        
+        tagcountdbslice = self.dbconnection.execute("select count from parenttagtable where targettag=? and parenttag=?", \
+                                             (tag, parenttag)).fetchall()
+        if len(tagcountdbslice) == 0:
+            #no information, return base probability. (or ask for user input?)
+            self.log.debug('no information, return base proba: %s' % str(self.baseproba))
+            return self.baseproba
+        else:
+            tagcount = tagcountdbslice[0][0]
+            
+        totalcount = 0
+        for i in self.dbconnection.execute("select count from parenttagtable where parenttag=?",\
+                                               (parenttag,)).fetchall():
+            totalcount += i[0]
+            
+        if not totalcount >= tagcount: 
+            self.log.error("impossible probability generated, totalcount < tagcount: %i < %i" % (totalcount, tagcount))
+            return None
+        
+        p = float(tagcount) / float(totalcount)
+        self.log.debug('tag: %s\tparenttag: %s\tproba: %s / %s =  %s' % (tag, parenttag, str(tagcount), str(totalcount), str(p)))
+        return p
+    
+    
+    
+    
+    def getProbaTagGivenTextWord(self, tag, word):
+        #find P(tag|word in target.text) and return
+        tagcountdbslice = self.dbconnection.execute("select count from targettexttable where targettag=? and word=?", \
+                                                    (tag, word)).fetchall()
+        if len(tagcountdbslice) == 0:
+            #no information, return base probability. (or ask for user input?)
+            self.log.debug('no information, return base proba: %s' % str(self.baseproba))
+            return self.baseproba
+        else:
+            tagcount = tagcountdbslice[0][0]
+            
+        totalcount = 0
+        for i in self.dbconnection.execute("select count from targettexttable where word=?",\
+                                               (word,)).fetchall():
+            totalcount += i[0]
+            
+        if not totalcount >= tagcount: 
+            self.log.error("impossible probability generated, totalcount < tagcount: %i < %i" % (totalcount, tagcount))
+            return None
+        
+        p = float(tagcount) / float(totalcount)
+        self.log.debug('tag: %s\tword: %s\tproba: %s/%s =  %s' % (tag, word, str(tagcount), str(totalcount), str(p)))
+        return p
+    
+    
+    
+    
+    def getProbaTagGivenChild(self, tag, child):
+        #find P(tag|child) and return
+        pass
+    
+    
+    
+    
+    
+    def getProbaTagGivenChildText(self, tag, word):
+        #find P(tag|word in any child) and return
+        pass
+    
+    
+    
+    
+    
     def train(self, ditafile):
         """Used to train the filter automatically. Take a dita file, and iterate the 
         elements one by one. For each element, get tokens and add to the databases."""
@@ -46,103 +184,70 @@ class ElementTagFilter:
         
         tree = lxml.etree.parse(ditafile)   #parse the dita file
         for element in tree.iter():         #iterate over the elements
-            if not element.getparent(): continue
-            #if parent-tag record is in database, add to count. Otherwise add new record
-            dbslice = [i for i in self.dbconnection.execute("select count from ? where parenttag=? and targettag=?", \
-                                                            (self.parenttag_tablename, element.getparent().tag, element.tag))]
-            if len(dbslice) == 0:
-                self.dbconnection.execute("insert into ? values(?, ?, 1, 0)", \
-                                          (self.parenttag_tablename, element.getparent().tag, element.tag))
-            elif len(dbslice) > 1:
-                self.log.error('len(dbslice) > 1, this means that there is more than one record for the parenttag-targettag pair (%s, %s).\
-                 This should not happen, please fix the database' % (element.getparent().tag, element.tag))
-            else:
-                #update record
-                newcount = dbslice[0][0] + 1
-                self.dbconnection.execute("update ? set count=? where parenttag=? and targettag=?", \
-                                          (self.parenttag_tablename, newcount, element.getparent().tag, element.tag))
+            self._trainParentTagTable(element)
+            self._trainTargetText(element)
+        
         self.dbconnection.commit()
     
     
     
-#    def addData(self):
-#        """Add data to the databases"""
+    
+    def _trainParentTagTable(self, element):
+        if element.getparent() is None: return
+        if (not isinstance(element.tag, str)) or (not isinstance(element.getparent().tag, str)): return
+        #if parent-tag record is in database, add to count. Otherwise add new record
+        dbslice = self.dbconnection.execute("select count from parenttagtable where parenttag=? and targettag=?", (element.getparent().tag, element.tag)).fetchall()
+        if len(dbslice) == 0:
+            self.dbconnection.execute("insert into parenttagtable values(?, ?, 1, 0)", (element.getparent().tag, element.tag))
+            self.dbconnection.commit()
+        elif len(dbslice) > 1:
+            self.log.error('len(dbslice) > 1, this means that there is more than one record for the parenttag-targettag pair (%s, %s).\
+             This should not happen, please fix the database' % (element.getparent().tag, element.tag))
+        else:
+            #update record
+            newcount = dbslice[0][0] + 1
+            self.dbconnection.execute("update parenttagtable set count=? where parenttag=? and targettag=?", (newcount, element.getparent().tag, element.tag))
+            self.dbconnection.commit()
     
     
     
-    def getTagScore(self, tag, target, tree):
-        """Get the score of an tag, ie the probability that the tag
-        is the correct one to use for the target element"""
-        #get all the conditional probabilities and combine them using Bayes' formula. Return the result
-        #Derived from Bayes' formula, used to combine conditional probabilities:
-        #                                 P(T|C1)P(T|C2) ... P(T|Cn)
-        # p =                          ------------------------------------------
-        #            P(T|C1)P(T|C2) ... P(T|Cn) + (1 - P(T|C1))(1 - P(T|C2)) ... (1 - P(T|Cn))
-        #
-        #where P(T|Ci) is the probability that tag T is the correct one given the condition Ci, where Ci is one of
-        #parent tag value, child tag value, text, etc. 
-        #Note this formula assumes that the conditions are independant. 
+    
+    def _trainTargetText(self, element):
+        if not element.text: return
+        if not isinstance(element.text, str): return
+        if not isinstance(element.tag, str): return
         
-        probas = []
-        probas.append(self.getProbaTagGivenParentTag(tag, target.getparent().tag))
-        
-        p1 = 1
-        for i in probas: p1 = p1*i
-        
-        p2 = 1
-        for i in probas: p2 = p2*(1 - i)
-
-        p = p1 / (p1 + p2)
-        
-        return p
+        for word in self._getWordsFromText(element.text):
+            if not isinstance(word, str): continue
+            #if word-tag record is in database, update count. Otherwise create record. 
+            dbslice = self.dbconnection.execute("select count from targettexttable where word=? and targettag=?", (word, element.tag)).fetchall()
+            if len(dbslice) == 0:
+                self.dbconnection.execute("insert into targettexttable values(?, ?, 1, 0)", (word, element.tag))
+                self.dbconnection.commit()
+            elif len(dbslice) > 1:
+                self.log.error('len(dbslice) > 1, this means that there is more than one record for the word-targettag pair (%s, %s).\
+                 This should not happen, please fix the database' % (word, element.tag))
+            else:
+                #update record
+                newcount = dbslice[0][0] + 1
+                self.dbconnection.execute("update targettexttable set count=? where word=? and targettag=?", (newcount, word, element.tag))
+                self.dbconnection.commit()
+  
     
     
     
-    def getProbaTagGivenParentTag(self, tag, parenttag):
-        #find P(tag|parent) and return it
-        #P(tag|parent) = #times tag appears under parent / #number of times any tag appears under parent. 
-        
-        tagcount = self.dbconnection.execute("select count from ? where targettag=? and parenttag=?", \
-                                             (self.parenttag_tablename, tag, parenttag)).fetchall()[0][0]
-        totalcount = 0
-        for i in self.dbconnection.execute("select count from ? where parenttag=?",\
-                                               (self.parenttag_tablename, parenttag)).fetchall():
-            totalcount += i[0]
-            
-        if not totalcount >= tagcount: 
-            self.log.error("impossible probability generated, totalcount < tagcount: %i < %i" % (totalcount, tagcount))
-            return None
-        
-        return float(tagcount) / float(totalcount)
-    
-    
-    
-    def getProbaTagGivenChild(self, tag, child):
-        #find P(tag|child) and return
-        pass
-    
-    
-    
-    def getProbaTagGivenText(self, tag, word):
-        #find P(tag|word in target.text) and return
-        pass
-    
-    
-    
-    def getProbaTagGivenChildText(self, tag, word):
-        #find P(tag|word in any child) and return
-        pass
-    
-    
-    
-    def getTokens(self):
-        """A function used to ensure that the same tokens are used whether we are training the 
-        filter or calculating probabilities"""
-        
-        #parent tag, child tags, text, text length, descendant text, descendant depth
-        #shape of tree? How would this be accomplished?
-    
-        pass
+    def _getWordsFromText(self, text):
+        import string
+        words = []
+        for word in text.split(' '):
+            word = word.lower()
+            for letter in word: 
+                if (letter not in string.ascii_lowercase) and (letter not in string.digits) and (letter not in ['-', '_']):
+                    word = word.replace(letter, '')
+            if len(word) == 0: continue
+            if not isinstance(word, str): continue
+            words.append(word) 
+        return words
     
     
     
@@ -160,9 +265,11 @@ class ElementTagFilter:
     
     
     
-    def reset(self):
-        """reset the database"""
-        pass
+    def resetDB(self):
+        """Remove all records from the database"""
+        self.dbconnection.execute("delete from parenttagtable")
+        self.dbconnection.execute("delete from targettexttable")
+        self.dbconnection.commit()
     
     
     
