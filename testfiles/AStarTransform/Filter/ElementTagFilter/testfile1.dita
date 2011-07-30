@@ -1,0 +1,800 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE dita  PUBLIC '-//OASIS//DTD DITA Composite//EN'  'ditabase.dtd'
+[
+<!-- Begin Entity Declarations -->
+<!-- End Entity Declarations -->
+]><?Fm Condition DITA-Comment AsIs NO_OVERRIDE hide?>
+<?Fm Condition DITA-Prolog AsIs NO_OVERRIDE hide?>
+<?Fm Condition FM8_SYSTEM_HIDEELEMENT AsIs NO_OVERRIDE hide?>
+<?Fm Condition FM8_TRACK_CHANGES_ADDED Forest%20Green SINGLE_UNDERLINE show?>
+<?Fm Condition FM8_TRACK_CHANGES_DELETED Red STRIKETHROUGH show?>
+<?Fm BoolCondExpr "" State 0?>
+<?Fm TrackChange Off PreviewState PREVIEW_OFF_TRACK_CHANGE?>
+
+<dita>
+    <topic xmlns:ditaarch="http://dita.oasis-open.org/architecture/2005/" id="pgfId-1390754">
+        <title>WaveReady Node Manager Installation </title>
+        <body>
+            <p id="pgfId-1390759">This chapter describes how to install the WaveReady Node Manager (WRNM). </p>
+            <p id="pgfId-1390817">This chapter contains the following sections: </p>
+            <ul>
+                <li><xref href="#pgfId-1402700" type="fm:Title_and_Page">System Requirements on page 3-1</xref></li>
+                <li><xref href="#pgfId-1390818" type="fm:Title_and_Page">Installing Node Manager on page 3-2</xref></li>
+                <li><xref href="#pgfId-1390918" type="fm:Title_and_Page">Launching Node Manager on page 3-10</xref></li>
+                <li><xref href="#pgfId-1258268" type="fm:Title_and_Page">Troubleshooting and Related Information on page 3-17</xref></li>
+            </ul>
+        </body>
+        <topic xmlns:ditaarch="http://dita.oasis-open.org/architecture/2005/" id="pgfId-1402700">
+            <title>System Requirements </title>
+            <body id="id104JBH001UI">
+                <p id="pgfId-1390821">This section describes the system requirements for installing the Node Manager application. </p>
+                <p id="pgfId-1402723">This section contains the following topics: </p>
+                <ul>
+                    <li><xref href="#id104LC020MHT" type="fm:Title_and_Page">Standard System Requirements on page 3-1</xref></li>
+                    <li><xref href="#id104JC01E0XW" type="fm:Title_and_Page">JWS Web Server Requirements on page 3-2</xref></li>
+                    <li><xref href="#id104JC0204QN" type="fm:Title_and_Page">JWS Client Requirements on page 3-2</xref></li>
+                </ul>
+            </body>
+            <?Fm Condstart DITA-Conref?>
+            <topic xmlns:ditaarch="http://dita.oasis-open.org/architecture/2005/" id="id104LC020MHT">
+                <title><?Fm Condend DITA-Conref?>Standard System Requirements<?Fm Condstart DITA-Conref?></title>
+                <body id="id104JC050VX4">
+                    <p id="pgfId-1390823">The computer used to host Node Manager sessions must meet these minimum system requirements: </p>
+                    <ul id="id104JE700H4B">
+                        <li>Pentium III or better (600 MHz or better) </li>
+                        <li>128 MB of RAM (256 preferred)</li>
+                        <li>65 MB of available hard-disk space</li>
+                        <li>Display set to 1024 x 768 pixels (or more) and 256 colors (8-bit or higher)</li>
+                        <li>Supported Windows operating system.</li>
+                        <li><p>Sufficient Windows user account permission levels to:</p><ul>
+                                <li><p>install new software</p></li>
+                                <li><p>create new folders at the C:\ directory level</p></li>
+                            </ul><p>JDSU recommends that the user account used for installation of the Node Manager application have the highest (administrator) privilege levels on the computer.</p></li>
+                    </ul>
+                </body>
+            </topic>
+            <topic xmlns:ditaarch="http://dita.oasis-open.org/architecture/2005/" id="id104JC01E0XW">
+                <?Fm Condend DITA-Conref?>
+                <title>JWS Web Server Requirements</title>
+                <?Fm Condstart DITA-Conref?>
+                <body id="id104JC0505BI">
+                    <p id="pgfId-1390830">Using the Java Web Start (JWS) version of Multi-Node Manager or Node Manager requires a web server (such as Webserver Tomcat 6.0 or higher) on the host system. The system requirements are those of the web server. </p>
+                </body>
+            </topic>
+            <topic xmlns:ditaarch="http://dita.oasis-open.org/architecture/2005/" id="id104JC0204QN">
+                <?Fm Condend DITA-Conref?>
+                <title>JWS Client Requirements</title>
+                <?Fm Condstart DITA-Conref?>
+                <body id="id104JC0470BI">
+                    <p id="pgfId-1390832">In addition to the standard system requirements, the client requirements for running the JWS Multi-Node Manager or Node Manager are: </p>
+                    <ul>
+                        <li><p>A web browser running Internet Explorer 7.0 or higher, or Firefox 3.5.2 or higher.</p></li>
+                        <li id="pgfId-1390834"><p>The Java Web Start plug-in for the browser, JRE 1.6 or higher (64 bit for Internet Explorer on Windows 7). </p><note>If using Windows Vista, a default browser for Java Web Start must be registered. Refer to Registering JWS Browsers for Vista for details on how to register all applicable browsers.</note></li>
+                        <li id="id09AKD0H70Y4"><p>The URL for the JWS Multi-Node Manager or Node Manager.</p><note><p>Multi-Node Manager and Node Manager supports both IPv4 and IPv6 addressing. If using IPv6 addressing for the JWS URL, the IPv6 hexadecimal section of the URL should be enclosed in square brackets, for example as follows: http://<b>[2200::a0d:9905]</b>:8080/WRNM/.</p></note></li>
+                    </ul>
+                </body>
+            </topic>
+            <?Fm Condend DITA-Conref?>
+        </topic>
+        <topic xmlns:ditaarch="http://dita.oasis-open.org/architecture/2005/" id="pgfId-1390818">
+            <title>Installing Node Manager</title>
+            <body>
+                <p>This section describes the steps required to install the Multi-Node Manager application.</p>
+                <p>This section contains the following topics and procedures: </p>
+                <ul>
+                    <li><xref href="#pgfId-1397928" type="fm:Title_and_Page">Installing Node Manager for Windows on page 3-3</xref></li>
+                    <li><xref href="#pgfId-1390873" type="fm:Title_and_Page">Installing JWS Node Manager on page 3-5</xref></li>
+                    <li><xref href="#id09AJB0S305Z" type="fm:Title_and_Page">Registering JWS Browsers for Vista on page 3-8</xref></li>
+                </ul>
+            </body>
+            <topic xmlns:ditaarch="http://dita.oasis-open.org/architecture/2005/" id="pgfId-1397928">
+                <title>Installing Node Manager for Windows </title>
+                <?Fm Condstart DITA-Conref?>
+                <body id="id104LE03J0BI">
+                    <p>WaveReady Multi-Node Manager and Node Manager should be installed on the computer that will access and manage the WaveReady network, nodes and modules. </p>
+                    <p>It is important to note that BOTH WaveReady Multi-Node Manager and WaveReady Node Manager can be installed on the same computer; each application downloads to a separate directory folder and creates a separate desktop shortcut. </p>
+                    <section id="pgfId-1390837"><title>Purpose </title><p id="pgfId-1390844">Use this procedure to install the WaveReady Multi-Node Manager (WRMNM) or WaveReady Node Manager (WRNM) software.</p><note type="note"><p id="pgfId-1390845">During upgrades of WRMNM and WRNM, the installer automatically uninstalls the existing version before installing the new version. </p></note></section>
+                    <section id="pgfId-1390846"><title>Requirements </title><p id="pgfId-1390851">Ensure that the Multi-Node Manager or Node Manager software folder is available to the computer that will host and run the application.</p><p>Ensure that the minimum system requirements are met. </p><note type="note"><p id="pgfId-1390852">The Multi-Node Manager and Node Manager release files are in default directories on the product CD-ROM. For information on the CD-ROM content see the current release notes. </p></note></section>
+                    <section id="pgfId-1392223"><title>Precautions </title><p id="pgfId-1406722">When installing Multi-Node Manager or Node Manager, take note of the following conditions: </p><ul>
+                            <li><p id="pgfId-1406722">Multi-Node Manager or Node Manager can not be installed in a directory that contains more than 127 characters, including the drive name and directory (backslash) dividers.</p></li>
+                            <li><p id="pgfId-1406722">Multi-Node Manager or Node Manager can not be installed in a directory that contains non-Latin characters (also known as Roman characters). For example, the directory path can not contain Cyrillic characters.</p></li>
+                            <li><p id="pgfId-1618295">An FTP error may occur when a directory containing spaces or invalid characters is used. Ensure that the directory path does not contain spaces or the following invalid characters. </p><table frame="all" colsep="1" rowsep="1" id="d11e535">
+                                    <tgroup cols="24" colsep="1" rowsep="1" outputclass="FormatA">
+                                        <colspec colnum="1" colname="1" colwidth="0.200in"/>
+                                        <colspec colnum="2" colname="2" colwidth="0.200in"/>
+                                        <colspec colnum="3" colname="3" colwidth="0.200in"/>
+                                        <colspec colnum="4" colname="4" colwidth="0.200in"/>
+                                        <colspec colnum="5" colname="5" colwidth="0.200in"/>
+                                        <colspec colnum="6" colname="6" colwidth="0.200in"/>
+                                        <colspec colnum="7" colname="7" colwidth="0.200in"/>
+                                        <colspec colnum="8" colname="8" colwidth="0.200in"/>
+                                        <colspec colnum="9" colname="9" colwidth="0.200in"/>
+                                        <colspec colnum="10" colname="10" colwidth="0.200in"/>
+                                        <colspec colnum="11" colname="11" colwidth="0.200in"/>
+                                        <colspec colnum="12" colname="12" colwidth="0.200in"/>
+                                        <colspec colnum="13" colname="13" colwidth="0.200in"/>
+                                        <colspec colnum="14" colname="14" colwidth="0.200in"/>
+                                        <colspec colnum="15" colname="15" colwidth="0.200in"/>
+                                        <colspec colnum="16" colname="16" colwidth="0.200in"/>
+                                        <colspec colnum="17" colname="17" colwidth="0.200in"/>
+                                        <colspec colnum="18" colname="18" colwidth="0.200in"/>
+                                        <colspec colnum="19" colname="19" colwidth="0.200in"/>
+                                        <colspec colnum="20" colname="20" colwidth="0.200in"/>
+                                        <colspec colnum="21" colname="21" colwidth="0.200in"/>
+                                        <colspec colnum="22" colname="22" colwidth="0.200in"/>
+                                        <colspec colnum="23" colname="23" colwidth="0.200in"/>
+                                        <colspec colnum="24" colname="24" colwidth="0.200in"/>
+                                        <tbody>
+                                            <row rowsep="1">
+                                                <entry colname="1" colsep="0"/>
+                                                <entry colname="2" colsep="0"><p id="pgfId-1618161">~ </p></entry>
+                                                <entry colname="3"/>
+                                                <entry colname="4" colsep="0"/>
+                                                <entry colname="5" colsep="0"><p id="pgfId-1618163">! </p></entry>
+                                                <entry colname="6"/>
+                                                <entry colname="7" colsep="0"/>
+                                                <entry colname="8" colsep="0"><p id="pgfId-1618165">@ </p></entry>
+                                                <entry colname="9"/>
+                                                <entry colname="10" colsep="0"/>
+                                                <entry colname="11" colsep="0"><p id="pgfId-1618167"># </p></entry>
+                                                <entry colname="12"/>
+                                                <entry colname="13" colsep="0"/>
+                                                <entry colname="14" colsep="0"><p id="pgfId-1618169">$ </p></entry>
+                                                <entry colname="15"/>
+                                                <entry colname="16" colsep="0"/>
+                                                <entry colname="17" colsep="0"><p id="pgfId-1618171">^ </p></entry>
+                                                <entry colname="18"/>
+                                                <entry colname="19" colsep="0"/>
+                                                <entry colname="20" colsep="0"><p id="pgfId-1618173">&amp; </p></entry>
+                                                <entry colname="21"/>
+                                                <entry colname="22" colsep="0"/>
+                                                <entry colname="23" colsep="0"><p id="pgfId-1618175">* </p></entry>
+                                                <entry colname="24"/>
+                                            </row>
+                                            <row rowsep="1">
+                                                <entry colname="1" colsep="0"/>
+                                                <entry colname="2" colsep="0"><p id="pgfId-1618177">( </p></entry>
+                                                <entry colname="3"/>
+                                                <entry colname="4" colsep="0"/>
+                                                <entry colname="5" colsep="0"><p id="pgfId-1618179">) </p></entry>
+                                                <entry colname="6"/>
+                                                <entry colname="7" colsep="0"/>
+                                                <entry colname="8" colsep="0"><p id="pgfId-1618181">{ </p></entry>
+                                                <entry colname="9"/>
+                                                <entry colname="10" colsep="0"/>
+                                                <entry colname="11" colsep="0"><p id="pgfId-1618183">} </p></entry>
+                                                <entry colname="12"/>
+                                                <entry colname="13" colsep="0"/>
+                                                <entry colname="14" colsep="0"><p id="pgfId-1618185">% </p></entry>
+                                                <entry colname="15"/>
+                                                <entry colname="16" colsep="0"/>
+                                                <entry colname="17" colsep="0"><p id="pgfId-1618187">; </p></entry>
+                                                <entry colname="18"/>
+                                                <entry colname="19" colsep="0"/>
+                                                <entry colname="20" colsep="0"><p id="pgfId-1618189">` </p></entry>
+                                                <entry colname="21"/>
+                                                <entry colname="22" colsep="0"/>
+                                                <entry colname="23" colsep="0"><p id="pgfId-1618191">' </p></entry>
+                                                <entry colname="24"/>
+                                            </row>
+                                            <row rowsep="0">
+                                                <entry colname="1" colsep="0"/>
+                                                <entry colname="2" colsep="0"><p id="pgfId-1618193">[ </p></entry>
+                                                <entry colname="3"/>
+                                                <entry colname="4" colsep="0"/>
+                                                <entry colname="5" colsep="0"><p id="pgfId-1618195">] </p></entry>
+                                                <entry colname="6"/>
+                                                <entry colname="7" colsep="0"/>
+                                                <entry colname="8" colsep="0"><p id="pgfId-1618197">| </p></entry>
+                                                <entry colname="9"/>
+                                                <entry colname="10" colsep="0"/>
+                                                <entry colname="11" colsep="0"><p id="pgfId-1618199">" </p></entry>
+                                                <entry colname="12"/>
+                                                <entry colname="13" colsep="0"/>
+                                                <entry colname="14" colsep="0"><p id="pgfId-1618201">&lt; </p></entry>
+                                                <entry colname="15"/>
+                                                <entry colname="16" colsep="0"/>
+                                                <entry colname="17" colsep="0"><p id="pgfId-1618203">&gt; </p></entry>
+                                                <entry colname="18"/>
+                                                <entry colname="19" colsep="0"/>
+                                                <entry colname="20" colsep="0"/>
+                                                <entry colname="21" colsep="0"/>
+                                                <entry colname="22" colsep="0"/>
+                                                <entry colname="23" colsep="0"/>
+                                                <entry colname="24"/>
+                                            </row>
+                                        </tbody>
+                                    </tgroup>
+                                </table></li>
+                        </ul></section>
+                    <section id="pgfId-1392223"><p id="pgfId-1405288">When upgrading, choose the same directory where the existing Multi-Node Manager or Node Manager version is installed. This enables the installer to uninstall the previous version prior to installing the new version. </p></section>
+                </body>
+                <?Fm Condend DITA-Conref?>
+                <task xmlns:ditaarch="http://dita.oasis-open.org/architecture/2005/" id="pgfId-1392221">
+                    <title>Procedure </title>
+                    <taskbody>
+                        <context><p id="pgfId-1408398">Proceed as follows: </p></context>
+                        <steps>
+                            <step>
+                                <cmd id="pgfId-1408410">Browse to the <b>\NodeMgr\Software\Node_Manager_Installer </b>directory on the release CD. This directory may also be copied to the computer that will host and run the application. </cmd>
+                            </step>
+                            <step>
+                                <cmd id="pgfId-1408415">Double-click <b>install.cmd </b>in the Installer folder. </cmd>
+                            </step>
+                            <step>
+                                <cmd id="pgfId-1390860">In the <b>WaveReady Node Manager Installer</b> window, click <b>Yes </b>to continue with the installation.</cmd>
+                            </step>
+                            <step>
+                                <cmd id="pgfId-1390861">In the <b>WaveReady License Agreement</b> window, read the license agreement and then click <b>I Accept</b> to continue. </cmd>
+                            </step>
+                            <step>
+                                <cmd id="pgfId-1390862">In the <b>Installation Configuration</b> window, accept the default installation directory (<b>C:\WaveReady_Node_Manager </b>) or browse to select another directory. </cmd>
+                            </step>
+                            <step>
+                                <cmd id="pgfId-1390864">To create a desktop shortcut for Node Manager, select the <b>Create Desktop Shortcut </b>option and click <b>Next</b>. </cmd>
+                            </step>
+                            <step>
+                                <cmd id="pgfId-1390865">If there is an earlier Node Manager version installed and a message appears confirming an uninstall, click <b>Yes</b>. </cmd>
+                            </step>
+                            <step>
+                                <cmd id="pgfId-1390866">In the <b>Installation Confirmation </b>window, confirm the installation conditions (the Installation Directory, any Uninstall and Create Desktop Shortcut) then click <b>Next </b>to install Node Manager with the specified defaults. The dialog box shows the progress of the installation. </cmd>
+                            </step>
+                            <step>
+                                <cmd id="pgfId-1390867">When the installation finishes, click <b>Next </b>and then click <b>Exit. </b>A desktop shortcut will appear. See <xref href="#pgfId-1390918" type="fm:Title_and_Page">Launching Node Manager on page 3-10</xref> to launch Node Manager. </cmd>
+                            </step>
+                        </steps>
+                    </taskbody>
+                </task>
+            </topic>
+            <topic xmlns:ditaarch="http://dita.oasis-open.org/architecture/2005/" id="pgfId-1390873">
+                <title>Installing JWS Node Manager </title>
+                <?Fm Condstart DITA-Conref?>
+                <body id="id104LC0M04PN">
+                    <p id="pgfId-1390875">The Java Web Start (JWS) Multi-Node Manager or Node Manager application must be installed on the system where the web server is running. </p>
+                    <section id="pgfId-1390874"><title>Purpose</title><p id="pgfId-1390875">Use this procedure to install the Java Web Start (JWS) Multi-Node Manager or Node Manager application. </p></section>
+                    <section id="pgfId-1390876"><title>Requirements </title><p id="pgfId-1390881">The Multi-Node Manager and Node Manager release files are in default directories on the product CD-ROM. For information on the CD-ROM content see the current release notes.</p><p>If using Windows Vista, a default browser for Java Web Start must be registered. See the following instructions for details on how to register all applicable browsers.</p><p>If using IPv6 addressing for the hostname of theJWS Node Manager URL, the IPv6 hexadecimal hostname should be enclosed in square brackets, for example as follows: http://<b>[2200::a0d:9905]</b>:8080/WRNM/</p></section>
+                    <section id="pgfId-1392234"><title>Precautions </title><p id="pgfId-1392238">This procedure has no special precautions. </p></section>
+                </body>
+                <task id="id104LC0M087Q">
+                    <title>Procedure </title>
+                    <taskbody>
+                        <context><p id="pgfId-1390882">Proceed as follows: </p></context>
+                        <steps>
+                            <step>
+                                <cmd id="pgfId-1390883">Configure the web server to serve.jnlp files. </cmd>
+                                <info><p id="pgfId-1390884">For example, if using Apache 2.2, add the following line to the mime.type file located in \Apache Software Foundation\Apache2.2\conf: </p><codeph id="pgfId-1390885">application/x-java-jnlp-file jnlp </codeph><note type="note"><p id="pgfId-1418328">Restart the web server if required to put the change into effect. </p></note></info>
+                            </step>
+                            <step>
+                                <cmd id="pgfId-1418329">In the Release CD directory, unpack WaveReady_Multi-Node_ Manager_JWS_Installer.zip or WaveReady_Node_ Manager_JWS_Installer.zip into the Web Server <varname>DocumentRoot </varname>folder. </cmd>
+                                <info><p id="pgfId-1390888">The web server <varname>DocumentRoot </varname>depends on the location of the Web Server installation. </p></info>
+                                <info><p id="pgfId-1390889">When the package is expanded, make sure to select the options, if applicable, to reproduce the directory structure. This is required to recreate the Multi-Node Manager or Node Manager folder structure. </p></info>
+                            </step>
+                            <step>
+                                <cmd id="pgfId-1390890">Go to the <b>\jws </b>folder located within the <varname>DocumentRoot </varname>folder where the Multi-Node Manager or Node Manager folder was installed. </cmd>
+                                <info><p>For example: </p><codeph id="pgfId-1390891">C:\ProgramFiles\ApacheSoftwareFoundation\Apache2.2\htdocs\jws </codeph></info>
+                            </step>
+                            <step>
+                                <cmd id="pgfId-1390892">In the <filepath>\jws </filepath>folder, copy these two files and remove the <filepath>.pp</filepath> extension from the copies: <codeph id="pgfId-1390893">download.html.pp&gt;</codeph><codeph id="pgfId-1390893">download.htmldownload.jnlp.pp&gt;download.jnlp </codeph></cmd>
+                            </step>
+                            <step>
+                                <cmd id="pgfId-1390894">In the <filepath>download.html </filepath>file use Wordpad or Notepad to change the strings<codeph> &#8220;hostname&#8221; </codeph>and <codeph>&#8220;httpport&#8221; </codeph>to the web server hostname and port. </cmd>
+                                <info><p>For example, change: </p><codeph id="pgfId-1390897">&lt;PARAM NAME="app" VALUE="http://<i>myhostname</i>:8080/jws/ download.jnlp"&gt; </codeph><p>to:</p><codeph id="pgfId-1390895">&lt;PARAM NAME="app" VALUE="http://&#8221;your_<varname>hostname&#8221;</varname>:<varname>&#8221;assigned_portnumber&#8221; </varname>/jws/download.jnlp"&gt; </codeph></info>
+                                <info><p id="pgfId-1390898">If the web server uses the default port 80, it is not necessary to specify a port number. </p></info>
+                                <info><p>If using IPv6 addressing for the hostname, it should be enclosed in square brackets, for example, as follows: http://<b>[2200::a0d:9905]</b>:8080/WRNM/</p></info>
+                            </step>
+                            <step>
+                                <cmd id="pgfId-1390899">In the <b>download.jnlp </b>file, change the strings <b>&#8220;hostname&#8221; </b>and <b>&#8220;httpport&#8221; </b>to the web server hostname and port. </cmd>
+                                <info><p id="pgfId-1390900">For example, change: </p><codeph id="pgfId-1390901">&lt;jnlp spec="1.0+"codebase="http://<varname>&#8221;hostname&#8221;</varname>: <varname>&#8220;httpport&#8221;</varname>/jws" href="download.jnlp"&gt; </codeph><p id="pgfId-1390902">To: </p><codeph id="pgfId-1390903">&lt;jnlp spec="1.0+" codebase="http://<varname>your_hostname</varname>:&#8221;<varname>assigned_portnumber</varname>&#8221;/jws" href="download.jnlp"&gt; </codeph></info>
+                                <info><p>If the web server uses the default port 80, it is not necessary to specify a port number. </p></info>
+                                <info><p>If using IPv6 addressing for the hostname, it should be enclosed in square brackets, for example, as follows: http://[2200::a0d:9905]:8080/WRNM/</p></info>
+                            </step>
+                            <step>
+                                <cmd id="pgfId-1390905">Enter this URL in the browser to test the Node Manager launching process: <codeph id="pgfId-1390906">http://<varname>hostname</varname>:<varname>portnumber</varname>/index.html </codeph></cmd>
+                                <info><p>If using IPv6 addressing for the hostname, it should be enclosed in square brackets, for example, as follows: http://[2200::a0d:9905]:8080/WRNM/</p></info>
+                                <info><p id="pgfId-1390907">A web server must be running. </p></info>
+                                <stepresult><p id="pgfId-1390908">A Launch page should display. </p></stepresult>
+                            </step>
+                            <step>
+                                <cmd id="pgfId-1390909">Click the Launch button to launch Node Manager. </cmd>
+                                <info><p>The following information window will display. </p><fig frame="all">
+                                        <title id="pgfId-1390914">JWS Node Manager Launch Page </title>
+                                        <image href="../../Common/Graphics/WRNM_MNM_Graphics/JDSU_splash_Checking_For_Latest.jpg" height="232" width="360" align="center" placement="break"/>
+                                    </fig></info>
+                                <stepresult><p id="pgfId-1401446">After JWS downloads the application, a Security Warning message displays, confirming the application's access to the machine and network. </p></stepresult>
+                            </step>
+                            <step>
+                                <cmd id="pgfId-1390916">Press <b>Run </b>to start Node Manager. </cmd>
+                            </step>
+                        </steps>
+                    </taskbody>
+                </task>
+                <?Fm Condend DITA-Conref?>
+            </topic>
+            <topic xmlns:ditaarch="http://dita.oasis-open.org/architecture/2005/" id="id09AJB0S305Z">
+                <title>Registering JWS Browsers for Vista</title>
+                <?Fm Condstart DITA-Conref?>
+                <body id="id104LD0HJ0RO">
+                    <p>If using Windows Vista, a default browser for Java Web Start must be registered. </p>
+                    <section id="pgfId-1390874"><title>Purpose</title><p>Use this procedure to register a default Java browser (or browsers) when running Windows Vista. </p></section>
+                    <section id="pgfId-1390876"><title>Requirements </title><p>This procedure has no special requirements. </p></section>
+                    <section id="pgfId-1392234"><title>Precautions </title><p id="pgfId-1392238">This procedure has no special precautions. </p></section>
+                </body>
+                <task id="id104LD0HN0E9">
+                    <title>Procedure</title>
+                    <taskbody>
+                        <steps>
+                            <step>
+                                <cmd>If Java is installed on a computer running Windows Vista Operating System (OS), follow these instructions to open the Java Control Panel:, </cmd>
+                                <substeps>
+                                    <substep>
+                                        <cmd>32 bit Windows Vista OS: Open the <b>Control Panel</b> and double-click the <b>Java</b> icon.</cmd>
+                                    </substep>
+                                    <substep>
+                                        <cmd>64 bit Windows Vista OS: Open the <b>Control Panel</b>, double-click the <b>View 32 bit Control Panel</b> icon, then double-click the <b>Java</b> icon. </cmd>
+                                    </substep>
+                                </substeps>
+                                <stepresult><p>The Java Control Panel will open.</p></stepresult>
+                            </step>
+                            <step>
+                                <cmd>Select the <b>Advanced</b> tab and expand the tree view under <b>Settings</b>. </cmd>
+                                <info><p>The following illustration shows the the Java Control Panel with the Advanced tab selected. </p><fig frame="all">
+                                        <title>Java Control Panel</title>
+                                        <image href="../../Common/Graphics/WRNM_MNM_Graphics/JavaControlPanel.jpg" height="191" width="172" align="center" placement="break"/>
+                                    </fig></info>
+                            </step>
+                            <step>
+                                <cmd>Expand the "Default Java for browsers" tree and ensure that all the required browsers for JWS are selected. </cmd>
+                            </step>
+                            <step>
+                                <cmd>Save the changes.</cmd>
+                            </step>
+                            <step>
+                                <cmd>Verify that the Multi-Node Manager or Node Manager application will launch on an appropriate browser through Java Web Start.</cmd>
+                            </step>
+                        </steps>
+                    </taskbody>
+                </task>
+                <?Fm Condend DITA-Conref?>
+            </topic>
+        </topic>
+        <topic xmlns:ditaarch="http://dita.oasis-open.org/architecture/2005/" id="pgfId-1390918">
+            <title>Launching Node Manager </title>
+            <body>
+                <p id="pgfId-1398277">Consult this section to launch Node Manager, once it is installed in the computer that will be used to access and manage the node. </p>
+                <p id="pgfId-1398294">This section contains the following topics: </p>
+                <ul>
+                    <li><xref href="#id104SG0K05E9" type="fm:Title_and_Page">Limits on Account Usage on page 3-10</xref></li>
+                    <li><xref href="#id104UF0009HS" type="fm:Title_and_Page">TL1Force Password Change on First Login on page 3-13</xref></li>
+                    <li><xref href="#id0998F0SG0Y4" type="fm:Title_and_Page">Launching Node Manager for Windows on page 3-13</xref></li>
+                    <li><xref href="#pgfId-1395300" type="fm:Title_and_Page">Launching JWS Node Manager on page 3-15</xref></li>
+                </ul>
+            </body>
+            <?Fm Condstart DITA-Conref?>
+            <topic xmlns:ditaarch="http://dita.oasis-open.org/architecture/2005/" id="id104SG0K05E9">
+                <title>Limits on Account Usage</title>
+                <body id="id1062EL0D05Z">
+                    <p id="pgfId-1572083">When mounted in the WaveReady shelf, the COM-200 module performs a system test and check for internal hardware errors during initialization. The COM-200 module is initialized with two default user accounts:</p>
+                    <ul>
+                        <li id="pgfId-1572095">Default superuser account using the backplance EEPROM with default user identification and password. The User ID (TL1 parameter &lt;uid&gt;) is SUPERUSER and the password (TL1 parameter &lt;pid&gt;) is Sup%9User.</li>
+                        <li id="pgfId-1583172">Default administrator account on the module itself (and therefore configurable) with default user identification and password. The User ID (TL1 parameter &lt;uid&gt;) is ADMINUSER and the password (TL1 parameter &lt;pid&gt;) is Admin%9.</li>
+                    </ul>
+                    <p>Take note of the following limitations when creating a new user account:</p>
+                    <ul>
+                        <li><p>Each COM-200 supports a maximum of twelve (12) user accounts, including the ADMINUSER account. There is, therefore, a maximum of eleven (11) administrator-created user accounts available. Attempts to exceed these user account limits will be blocked and an ACCOUNTS EXCEEDED dialog will display.</p><note><p>The SUPERUSER account is not included in this limitation. </p></note></li>
+                        <li><p>JDSU recommends that the SUPERUSER account be reserved for administrative tasks, such as registering new users on the network, monitoring the number of active sessions, closing a user session and deleting a user account.</p></li>
+                        <li><p>JDSU recommends using the ADMINUSER account for node and network administrative tasks, and an administrator-created user account for equipment configuration and management tasks.</p></li>
+                        <li><p>Each COM-200 supports a maximum of five (5) logins with the same userid (including the SUPERUSER account), and a maximum of ten (10) logins with different userids (any combination of different and identical userids totalling ten, including the SUPERUSER account). Attempts to exceed these login limits will be blocked and an ACCESS DENIED dialog will display. </p></li>
+                        <li><p>If access is denied because the login limit for the COM-200 has been exceeded, one or more sessions should be terminated;</p><ul>
+                                <li><p>An account with administration privileges can terminate a user session, </p></li>
+                                <li><p>An ADMINUSER account can terminate a SUPERUSER account and a user session, and</p></li>
+                                <li><p> A user session can terminate itself. </p></li>
+                            </ul></li>
+                    </ul>
+                </body>
+            </topic>
+            <topic xmlns:ditaarch="http://dita.oasis-open.org/architecture/2005/" id="id106MEB060PN">
+                <title>Time-out Behavior and Configuration</title>
+                <body id="id1062EL0H0Y4">
+                    <p>If a Multi-Node Manager or Node Manager session is left open and inactive, the application will "time out." </p>
+                    <p>This time-out feature preserves memory, prevents memory-related problems which may affect the application, and reduces access problems related to user session limits on nodes. </p>
+                    <p>The software defines an inactive period as a period without any user commands sent to the node. </p>
+                    <p>Time-out rules apply to all users: ADMINUSER, SUPERUSER and any other new administrator-created user account. These time-out defaults apply: </p>
+                    <ol>
+                        <li><p>By default, Node Manager (WRNM) will logout all inactive users after 25 minutes of inactivity, unless a software download is in progress. </p><p>After 25 minutes of inactivity, the <b>Application Connection Los</b>t dialog box will automatically display a warning message and three options: <b>Restart</b>, <b>Work Offline</b> and <b>Exit</b>.</p><fig frame="all">
+                                <title>Node Manager Time-out Dialog</title>
+                                <image href="../../Common/Graphics/WRNM_MNM_Graphics/WRNM_TimeOut.jpg" height="79" width="220" align="center" placement="break"/>
+                            </fig></li>
+                        <li><p>By default, Multi-Node Manager (WRMNM) will logout all inactive users after 48 hours (2880 minutes) of inactivity. </p><p>A warning dialog, giving a five minute grace period, will display a warning message after 48 hours with two options: <b>Continue</b> and <b>Logout</b>. </p><fig frame="all">
+                                <title>Multi-Node Manager Time-out Dialog</title>
+                                <image href="../../Common/Graphics/WRNM_MNM_Graphics/NMN_timeout_dialog.jpg" height="86" width="172" align="center" placement="break"/>
+                            </fig></li>
+                    </ol>
+                    <note><p>There is a limit of five (5) user sessions per node. If this maximum is reached, and one or more of those sessions are inactive, additional users will not be able to log-in. Disabling the time-out feature may result in user access problems.</p></note>
+                </body>
+                <task id="id106AB000HUI">
+                    <title>Procedure</title>
+                    <taskbody>
+                        <context><p>Use this procedure to change the time-out parameters, or disable the feature by editing the properties field of the application short-cut. </p></context>
+                        <steps>
+                            <step>
+                                <cmd>Locate the desktop shortcut for <b>Multi-Node Manager</b> or <b>Node Manager</b>. </cmd>
+                            </step>
+                            <step>
+                                <cmd>Right-click the shortcut. A pop-up menu displays. </cmd>
+                            </step>
+                            <step>
+                                <cmd>Select <b>Properties</b> from the pop-up menu. A <b>Properties</b> dialog displays. </cmd>
+                            </step>
+                            <step>
+                                <cmd>Select the <b>Shortcut</b> tab in the <b>Properties</b> dialog. The <b>Target</b> field displays the directory path location of the application.</cmd>
+                            </step>
+                            <step>
+                                <cmd> Scroll, if necessary, to the right to the end of this directory path. </cmd>
+                            </step>
+                            <step>
+                                <cmd>Type &#8220; timeout=x&#8221;, where &#8220;x&#8221; is the number of minutes before the application will time-out. Setting the timeout value to &#8220;0&#8221; will disable the feature; there will be no forced logout of users. </cmd>
+                                <substeps>
+                                    <substep>
+                                        <cmd>Do not type the &#8220;quotation marks&#8221;. </cmd>
+                                    </substep>
+                                    <substep>
+                                        <cmd>Enter a single space between the directory path and &#8220;timeout&#8221;. </cmd>
+                                    </substep>
+                                </substeps>
+                            </step>
+                        </steps>
+                    </taskbody>
+                </task>
+            </topic>
+            <topic xmlns:ditaarch="http://dita.oasis-open.org/architecture/2005/" id="id104UF0009HS">
+                <title>TL1Force Password Change on First Login</title>
+                <body id="id104JC050VX4">
+                    <p>Take note of the following password conditions and limitations: </p>
+                    <ol>
+                        <li><p>If this is the first launch of a new Multi-Node Manager or Node Manager installation by a network administrator, enter the default user ID &#8220;SUPERUSER&#8221; and the default password &#8220;Sup%9User&#8221; OR the default user ID &#8220;ADMINUSER&#8221; and password &#8220;Admin%9&#8221; into the<b> User Authentication </b>fields.</p></li>
+                        <li><p>If this is the first launch by a new user account, enter the user name and password assigned by the network administrator.</p></li>
+                        <li><p>If enabled, the <b>TL1 Force Password Change on First Login</b> feature will then prompt for a new password, chosen by the user. </p><p>This feature is enabled or disabled by selecting the appropriate radio button on the Node-Specific Properties panel. This feature is configured by the system administrator on the communications module (COM-200) of each node. </p><p>The default setting for <b>TL1 Force Password Change on First Login</b> is <b>Disabled</b>. </p>When a user account is created, or changed while <b>TL1 Force Password Change on First Login</b> is enabled, the feature will prompt the user to change their password, from the password chosen by the administrator to a user-chosen password, each time:<ul>
+                                <li><p>a new user account logs on for the first time to a node, or</p></li>
+                                <li><p>an existing user account with a new administrator-assigned password logs on for the first time to a node</p></li>
+                            </ul><p>This new password prompt will appear as each new node connection is opened. The new user-chosen password must be entered to complete the connection. </p><p>If the network includes several nodes, this repeated <b>TL1 Force Password Change on First Login</b> and re-entry from the password chosen by the administrator to the user-chosen password may be onerous. For this reason, <b>TL1 Force Password Change on First Login</b> may be left at its default setting of <b>Disabled</b>. </p><p>Even if <b>TL1 Force Password Change on First Login</b> is <b>Disabled</b>, JDSU recommends changing the administrator-assigned password to a more secure user-chosen password during the first user account launch. </p></li>
+                    </ol>
+                </body>
+            </topic>
+            <?Fm Condend DITA-Conref?>
+            <?Fm Condstart DITA-Conref?>
+            <topic xmlns:ditaarch="http://dita.oasis-open.org/architecture/2005/" id="id0998F0SG0Y4">
+                <?Fm Condend DITA-Conref?>
+                <title>Launching Node Manager for Windows</title>
+                <?Fm Condstart DITA-Conref?>
+                <body id="id105BFM00QHS">
+                    <p>Node Manager must be launched before beginning the commissioning process. </p>
+                    <section><title>Purpose</title><p id="pgfId-1390953">Use this procedure to launch the WRNM <b>Connect To Node </b>window. </p></section>
+                    <section><title>Requirements </title><p id="pgfId-1390823">The computer used to host Node Manager sessions must meet these minimum system requirements: </p><ul id="id104JE700H4B">
+                            <li id="pgfId-1390824"><p>Pentium III or better (600 MHz or better) </p></li>
+                            <li id="pgfId-1390825"><p>128 MB of RAM (256 preferred)</p></li>
+                            <li id="pgfId-1390826"><p>65 MB of available hard-disk space</p></li>
+                            <li id="pgfId-1390827"><p>Display set to 1024 x 768 pixels (or more) and 256 colors (8-bit or higher)</p></li>
+                            <li id="pgfId-1390828"><p>Supported Windows operating system.</p></li>
+                            <li><p>Sufficient Windows user account permission levels to:</p><ul>
+                                    <li><p>install new software</p></li>
+                                    <li><p>create new folders at the C:\ directory level</p></li>
+                                </ul><p>JDSU recommends that the user account used for installation of the Node Manager application have the highest (administrator) privilege levels on the computer.</p></li>
+                        </ul></section>
+                    <section><title>Precautions </title><p id="pgfId-1390963">This procedure has no special precautions. </p></section>
+                </body>
+                <task id="pgfId-1390964">
+                    <title>Procedure </title>
+                    <taskbody>
+                        <context><p id="pgfId-1390965">Proceed as follows: </p></context>
+                        <steps>
+                            <step>
+                                <cmd id="pgfId-1390966">On the desktop, double-click the <b>WaveReady Node Manager </b>shortcut, or</cmd>
+                            </step>
+                            <step>
+                                <cmd id="pgfId-1390967">In the Node Manager directory (default is C:\WaveReady_ Node_Manager), double-click <b>start</b>NodeManager. <b>bat </b>. </cmd>
+                                <stepresult><p>The Node Manager <b>Connect To Node </b>dialog box appears. </p><fig frame="all">
+                                        <title>Node Manager Connect To Node dialog </title>
+                                        <image href="../../Common/Graphics/ManagementConnection_Graphics/WRNM_OpenSession_COMM.jpg" height="293" width="181" align="center" placement="break"/>
+                                    </fig></stepresult>
+                            </step>
+                            <step>
+                                <cmd id="pgfId-1390968">Proceed to the appropriate procedure: </cmd>
+                                <substeps>
+                                    <substep>
+                                        <cmd>Procedure: Configuring a WaveReady Node</cmd>
+                                    </substep>
+                                    <substep>
+                                        <cmd>Procedure: Connecting to a WaveReady Node</cmd>
+                                    </substep>
+                                    <substep>
+                                        <cmd>Procedure: Specifying Start-Up Connection Parameters</cmd>
+                                    </substep>
+                                    <substep>
+                                        <cmd>Procedure: Re-Connecting to a Node after a Lost Connection</cmd>
+                                    </substep>
+                                </substeps>
+                            </step>
+                        </steps>
+                    </taskbody>
+                </task>
+            </topic>
+            <?Fm Condend DITA-Conref?>
+            <topic xmlns:ditaarch="http://dita.oasis-open.org/architecture/2005/" id="pgfId-1395300">
+                <title>Launching JWS Node Manager </title>
+                <?Fm Condstart DITA-Conref?>
+                <body id="id104LD3020XW">
+                    <p>JWS enables the launching of Node Manager from a remote PC; a computer other than the application host machine. </p>
+                    <section id="pgfId-1395301"><title>Purpose </title><p id="pgfId-1392156">Use this procedure to launch JWS Multi-Node Manager or Node Manager. </p></section>
+                    <section id="pgfId-1392157"><title>Requirements </title><p id="pgfId-1392162">The URL to the JWS Node Manager on the host system is required.</p></section>
+                    <section>If using Windows Vista, a default browser for Java Web Start must be registered. </section>
+                    <section id="pgfId-1392269"><title>Precautions </title><p id="pgfId-1392273">This procedure has no special precautions. </p></section>
+                </body>
+                <task id="id104LD3050QN">
+                    <title>Procedure </title>
+                    <taskbody>
+                        <context><p id="pgfId-1392164">Proceed as follows: </p></context>
+                        <steps>
+                            <step>
+                                <cmd id="pgfId-1392165">Enter the URL to the <b>JWS Multi-Node Manager</b> or <b>Node Manager</b> host in the browser locator field. </cmd>
+                                <info><p>If using IPv6 addressing for the hostname of the JWS Node Manager URL, the IPv6 hexadecimal hostname should be enclosed in square brackets, for example as follows: http://<b>[2200::a0d:9905]</b>:8080/WRNM/</p></info>
+                                <stepresult><p id="pgfId-1392166">A page with a yellow panel and a <b>Launch </b>button should display. </p><fig frame="all">
+                                        <title id="pgfId-1401463">Java WebStart Launch page </title>
+                                        <image href="../../Common/Graphics/WRNM_MNM_Graphics/jws_startup_page.jpg" height="108" width="254" align="center" placement="break"/>
+                                    </fig></stepresult>
+                            </step>
+                            <step>
+                                <cmd id="pgfId-1392167">Click the <b>Launch </b>button to launch Multi-Node Manager or Node Manager. </cmd>
+                                <stepresult><p id="pgfId-1392168">After the application downloads, a Security Warning message displays confirming the application's access to the machine and network. </p></stepresult>
+                            </step>
+                            <step>
+                                <cmd id="pgfId-1392169">Press <b>Run </b>to start Multi-Node Manager or Node Manager. </cmd>
+                            </step>
+                            <step>
+                                <cmd id="pgfId-1392170">When the Node Manager <b>Open Session </b>dialog box appears, enter the connection parameters for the desired node and click <b>Connect</b>. </cmd>
+                                <info><p>If this is the first launch of a new install, use the factory default user name: SUPERUSER and the factory default password: Sup%9User to login. However, JDSU strongly recommends changing the user name and password once Node Manager is running. </p></info>
+                            </step>
+                        </steps>
+                    </taskbody>
+                </task>
+                <?Fm Condend DITA-Conref?>
+            </topic>
+        </topic>
+        <topic xmlns:ditaarch="http://dita.oasis-open.org/architecture/2005/" id="pgfId-1258268">
+            <title>Troubleshooting and Related Information</title>
+            <body>
+                <p id="pgfId-1398781">This section contains troubleshooting information related to Node Manager upgrades. </p>
+                <p id="pgfId-1398798">This section contains the following topics: </p>
+                <ul>
+                    <li><xref href="#id104JC0C80ZJ" type="fm:Title_and_Page">Troubleshooting Installation Errors on page 3-17</xref></li>
+                    <li><xref href="#pgfId-1615128" type="fm:Title_and_Page">Troubleshooting WRNM Connectivity on page 3-18</xref></li>
+                    <li><xref href="#id09AJE0O0VPF" type="fm:Title_and_Page">Troubleshoot JWS Launch on page 3-18</xref></li>
+                    <li><xref href="#pgfId-1617418" type="fm:Title_and_Page">Troubleshooting Node Upgrades on page 3-18</xref></li>
+                    <li><xref href="#id098R9J00EHT" type="fm:Title_and_Page">Troubleshooting Software Upgrade on page 3-19</xref></li>
+                    <li><xref href="#pgfId-1394227" type="fm:Title_and_Page">Viewing Online Help without Launching Node Manager on page 3-20</xref></li>
+                    <li><xref href="#pgfId-1400087" type="fm:Title_and_Page">Uninstalling WRNM for Windows on page 3-20</xref></li>
+                </ul>
+            </body>
+            <topic xmlns:ditaarch="http://dita.oasis-open.org/architecture/2005/" id="id104JC0C80ZJ" props="chunk=yes">
+                <title>Troubleshooting Installation Errors</title>
+                <?Fm Condstart DITA-Conref?>
+                <body id="id104JE0V00L7">
+                    <p>The Windows operating system supports the setting of user permission levels to regulate and control a user&#8217;s ability to install or de-install software on a computer and create folders at the C:\ directory level. </p>
+                    <p>Since installing Multi-Node Manager and Node Manager requires both the installing of the application software and the creation of an application folder at the C:\ directory level, an installation will fail if the user permission level on the target computer is not high enough, and an &#8220;unexpected error&#8221; dialog will display. </p>
+                    <p>If this occurs, click <b>OK</b>, exit the installation procedure and contact the system administrator to increase the user permission levels on the target computer. </p>
+                    <p>JDSU recommends that the user account used for installation of the Node Manager application have the highest (administrator) privilege levels on the computer.</p>
+                </body>
+                <?Fm Condend DITA-Conref?>
+            </topic>
+            <topic xmlns:ditaarch="http://dita.oasis-open.org/architecture/2005/" id="pgfId-1615128">
+                <title>Troubleshooting WRNM Connectivity </title>
+                <body>
+                    <p id="pgfId-1617336">WaveReady Node Manager connects to the Craft Terminal of a node's COM-200 module through TCP port 3082. </p>
+                    <p id="pgfId-1617417">If unable to connect to a node, check that TCP port 3082 is accessible from WRNM. </p>
+                </body>
+            </topic>
+            <topic xmlns:ditaarch="http://dita.oasis-open.org/architecture/2005/" id="id09AJE0O0VPF">
+                <title>Troubleshoot JWS Launch</title>
+                <body>
+                    <p>WaveReady Node Manager Java Web Start (JWS) allows management sessions using a web browser. If Node Manager JWS will not launch, check that the computer used to launch Node Manager JWS has these programs installed and that following conditions are met: </p>
+                    <ul>
+                        <li>A web server (such as Webserver Tomcat 6.0 or higher) on the host system. The system requirements are those of the web server. </li>
+                        <li>A web browser running Internet Explorer 7.0 or higher, or Firefox 3.5.2 or higher.</li>
+                        <li id="pgfId-1390834">The Java Web Start plug-in for the browser, JRE 1.6 or higher. <note><p>If using Windows Vista, a default browser for Java Web Start must be registered. See <xref href="#id09AJB0S305Z" type="fm:Title_and_Page">Registering JWS Browsers for Vista on page 3-8</xref> for details on how to register all applicable browsers.</p></note></li>
+                        <li id="id09AKD0H70Y4">The URL for the JWS Node Manager.<note><p>Node Manager supports both IPv4 and IPv6 addressing. If using IPv6 addressing for the JWS Node Manager URL, the IPv6 hexadecimal section of the URL should be enclosed in square brackets, for example as follows: http://<b>[2200::a0d:9905]</b>:8080/WRNM/.</p></note></li>
+                    </ul>
+                </body>
+            </topic>
+            <topic xmlns:ditaarch="http://dita.oasis-open.org/architecture/2005/" id="pgfId-1617418">
+                <title>Troubleshooting Node Upgrades </title>
+                <body id="pgfId-1616280">
+                    <p id="pgfId-1617331">WaveReady Node Manager acts as an FTP server; the WaveReady Craft Terminal acts as an FTP client in FTP passive mode. To support the above FTP situation, the routers, firewalls and web content filters must be configured so that: </p>
+                    <ul>
+                        <li id="pgfId-1616306">WRNM FTP server TCP port 21 is accessible from any TCP port of the Craft Terminal (TCP port &gt; 1023) </li>
+                        <li id="pgfId-1616307">WRNM FTP server TCP port &gt; 1023 is accessible from any TCP port of the Craft Terminal (TCP port &gt; 1023) </li>
+                        <li id="pgfId-1616308">Web content filters allow FTP http based format in the copy rfile sent from WRNM to the Craft Terminal </li>
+                    </ul>
+                    <?Fm Condstart DITA-Conref?>
+                    <section id="id103GB400BPF"><p id="pgfId-1618295">An FTP error may occur when a directory containing spaces or invalid characters is used. Ensure that the directory meets the following requirements: </p><ul>
+                            <li><p id="pgfId-1406722">Multi-Node Manager or Node Manager can not be installed in a directory that contains more than 127 characters, including the drive name and directory (backslash) dividers.</p></li>
+                            <li><p id="pgfId-1406722">Multi-Node Manager or Node Manager can not be installed in a directory that contains non-Latin characters (also known as Roman characters). For example, the directory path can not contain Cyrillic characters.</p></li>
+                            <li><p id="pgfId-1618295">An FTP error may occur when a directory containing spaces or invalid characters is used. Ensure that the directory path does not contain spaces or the following invalid characters. </p><table frame="all" colsep="1" rowsep="1" id="d11e535">
+                                    <tgroup cols="24" colsep="1" rowsep="1" outputclass="FormatA">
+                                        <colspec colnum="1" colname="1" colwidth="0.200in"/>
+                                        <colspec colnum="2" colname="2" colwidth="0.200in"/>
+                                        <colspec colnum="3" colname="3" colwidth="0.200in"/>
+                                        <colspec colnum="4" colname="4" colwidth="0.200in"/>
+                                        <colspec colnum="5" colname="5" colwidth="0.200in"/>
+                                        <colspec colnum="6" colname="6" colwidth="0.200in"/>
+                                        <colspec colnum="7" colname="7" colwidth="0.200in"/>
+                                        <colspec colnum="8" colname="8" colwidth="0.200in"/>
+                                        <colspec colnum="9" colname="9" colwidth="0.200in"/>
+                                        <colspec colnum="10" colname="10" colwidth="0.200in"/>
+                                        <colspec colnum="11" colname="11" colwidth="0.200in"/>
+                                        <colspec colnum="12" colname="12" colwidth="0.200in"/>
+                                        <colspec colnum="13" colname="13" colwidth="0.200in"/>
+                                        <colspec colnum="14" colname="14" colwidth="0.200in"/>
+                                        <colspec colnum="15" colname="15" colwidth="0.200in"/>
+                                        <colspec colnum="16" colname="16" colwidth="0.200in"/>
+                                        <colspec colnum="17" colname="17" colwidth="0.200in"/>
+                                        <colspec colnum="18" colname="18" colwidth="0.200in"/>
+                                        <colspec colnum="19" colname="19" colwidth="0.200in"/>
+                                        <colspec colnum="20" colname="20" colwidth="0.200in"/>
+                                        <colspec colnum="21" colname="21" colwidth="0.200in"/>
+                                        <colspec colnum="22" colname="22" colwidth="0.200in"/>
+                                        <colspec colnum="23" colname="23" colwidth="0.200in"/>
+                                        <colspec colnum="24" colname="24" colwidth="0.200in"/>
+                                        <tbody>
+                                            <row rowsep="1">
+                                                <entry colname="1" colsep="0"/>
+                                                <entry colname="2" colsep="0"><p id="pgfId-1618161">~ </p></entry>
+                                                <entry colname="3"/>
+                                                <entry colname="4" colsep="0"/>
+                                                <entry colname="5" colsep="0"><p id="pgfId-1618163">! </p></entry>
+                                                <entry colname="6"/>
+                                                <entry colname="7" colsep="0"/>
+                                                <entry colname="8" colsep="0"><p id="pgfId-1618165">@ </p></entry>
+                                                <entry colname="9"/>
+                                                <entry colname="10" colsep="0"/>
+                                                <entry colname="11" colsep="0"><p id="pgfId-1618167"># </p></entry>
+                                                <entry colname="12"/>
+                                                <entry colname="13" colsep="0"/>
+                                                <entry colname="14" colsep="0"><p id="pgfId-1618169">$ </p></entry>
+                                                <entry colname="15"/>
+                                                <entry colname="16" colsep="0"/>
+                                                <entry colname="17" colsep="0"><p id="pgfId-1618171">^ </p></entry>
+                                                <entry colname="18"/>
+                                                <entry colname="19" colsep="0"/>
+                                                <entry colname="20" colsep="0"><p id="pgfId-1618173">&amp; </p></entry>
+                                                <entry colname="21"/>
+                                                <entry colname="22" colsep="0"/>
+                                                <entry colname="23" colsep="0"><p id="pgfId-1618175">* </p></entry>
+                                                <entry colname="24"/>
+                                            </row>
+                                            <row rowsep="1">
+                                                <entry colname="1" colsep="0"/>
+                                                <entry colname="2" colsep="0"><p id="pgfId-1618177">( </p></entry>
+                                                <entry colname="3"/>
+                                                <entry colname="4" colsep="0"/>
+                                                <entry colname="5" colsep="0"><p id="pgfId-1618179">) </p></entry>
+                                                <entry colname="6"/>
+                                                <entry colname="7" colsep="0"/>
+                                                <entry colname="8" colsep="0"><p id="pgfId-1618181">{ </p></entry>
+                                                <entry colname="9"/>
+                                                <entry colname="10" colsep="0"/>
+                                                <entry colname="11" colsep="0"><p id="pgfId-1618183">} </p></entry>
+                                                <entry colname="12"/>
+                                                <entry colname="13" colsep="0"/>
+                                                <entry colname="14" colsep="0"><p id="pgfId-1618185">% </p></entry>
+                                                <entry colname="15"/>
+                                                <entry colname="16" colsep="0"/>
+                                                <entry colname="17" colsep="0"><p id="pgfId-1618187">; </p></entry>
+                                                <entry colname="18"/>
+                                                <entry colname="19" colsep="0"/>
+                                                <entry colname="20" colsep="0"><p id="pgfId-1618189">` </p></entry>
+                                                <entry colname="21"/>
+                                                <entry colname="22" colsep="0"/>
+                                                <entry colname="23" colsep="0"><p id="pgfId-1618191">' </p></entry>
+                                                <entry colname="24"/>
+                                            </row>
+                                            <row rowsep="0">
+                                                <entry colname="1" colsep="0"/>
+                                                <entry colname="2" colsep="0"><p id="pgfId-1618193">[ </p></entry>
+                                                <entry colname="3"/>
+                                                <entry colname="4" colsep="0"/>
+                                                <entry colname="5" colsep="0"><p id="pgfId-1618195">] </p></entry>
+                                                <entry colname="6"/>
+                                                <entry colname="7" colsep="0"/>
+                                                <entry colname="8" colsep="0"><p id="pgfId-1618197">| </p></entry>
+                                                <entry colname="9"/>
+                                                <entry colname="10" colsep="0"/>
+                                                <entry colname="11" colsep="0"><p id="pgfId-1618199">" </p></entry>
+                                                <entry colname="12"/>
+                                                <entry colname="13" colsep="0"/>
+                                                <entry colname="14" colsep="0"><p id="pgfId-1618201">&lt; </p></entry>
+                                                <entry colname="15"/>
+                                                <entry colname="16" colsep="0"/>
+                                                <entry colname="17" colsep="0"><p id="pgfId-1618203">&gt; </p></entry>
+                                                <entry colname="18"/>
+                                                <entry colname="19" colsep="0"/>
+                                                <entry colname="20" colsep="0"/>
+                                                <entry colname="21" colsep="0"/>
+                                                <entry colname="22" colsep="0"/>
+                                                <entry colname="23" colsep="0"/>
+                                                <entry colname="24"/>
+                                            </row>
+                                        </tbody>
+                                    </tgroup>
+                                </table></li>
+                        </ul></section>
+                    <?Fm Condend DITA-Conref?>
+                </body>
+            </topic>
+            <topic xmlns:ditaarch="http://dita.oasis-open.org/architecture/2005/" id="id098R9J00EHT">
+                <title>Troubleshooting Software Upgrade</title>
+                <body>
+                    <p>For a software upgrade to succeed, both the upgrade version and the existing software version must be correctly identified in a standard format. Node Manager requires that the &#8220;REV&#8221; number have three digits. </p>
+                    <p>For example, both: </p>
+                    <ul>
+                        <li>HwRev = &lt;blank&gt;</li>
+                        <li>HwRev=PCBA Rev3</li>
+                    </ul>
+                    <p>will return the following dialog warning: </p>
+                    <fig frame="all" expanse="page">
+                        <title>Invalid Hardware Rev. Number Warning Dialog</title>
+                        <image href="graphics\WRNM_Software_DownLoad_HWREV.JPG" height="109" width="360" align="center" placement="break"/>
+                    </fig>
+                    <p>To force the node to continue with the upgrade, click &#8220;Yes&#8221;. Since the results may be unexpected, and the whole upgrade may fail, JDSU does not recommend forcing the upgrade under these conditions. </p>
+                    <p>To continue the upgrade, skipping the upgrade for this module, click &#8220;No&#8221;. This is the recommended action. </p>
+                </body>
+            </topic>
+            <topic xmlns:ditaarch="http://dita.oasis-open.org/architecture/2005/" id="pgfId-1394227" props="chunk=yes">
+                <title>Viewing Online Help without Launching Node Manager </title>
+                <body>
+                    <section id="pgfId-1394214"><title>Purpose</title><p id="pgfId-1391075">Use this procedure to view the Multi-Node Manager or Node Manager Online Help without launching the application. </p></section>
+                    <section id="pgfId-1391076"><title>Requirements </title><p id="pgfId-1391077">Online Help can not be accessed remotely without launching the application. Therefore, Node Manager must be installed on the PC used to view Online Help.</p></section>
+                    <section id="pgfId-1391081"><title>Precautions </title><p id="pgfId-1391085">This procedure has no special precautions. </p></section>
+                </body>
+                <task xmlns:ditaarch="http://dita.oasis-open.org/architecture/2005/" id="pgfId-1391086">
+                    <title>Procedure </title>
+                    <taskbody>
+                        <context><p id="pgfId-1391087">Proceed as follows: </p></context>
+                        <steps>
+                            <step>
+                                <cmd id="pgfId-1391088">Browse to the Multi-Node Manager or Node Manager directory. </cmd>
+                            </step>
+                            <step>
+                                <cmd id="pgfId-1391089">Double-click <b>HelpViewer.bat</b>. </cmd>
+                                <stepresult><p id="pgfId-1400082">The viewer opens and displays the Multi-Node Manager or Node Manager Help files. </p></stepresult>
+                            </step>
+                        </steps>
+                    </taskbody>
+                </task>
+            </topic>
+            <topic xmlns:ditaarch="http://dita.oasis-open.org/architecture/2005/" id="pgfId-1400087">
+                <title>Uninstalling WRNM for Windows </title>
+                <body>
+                    <section id="pgfId-1400088"><title>Purpose </title><p id="pgfId-1391097">Use this procedure to uninstall Node Manager software from a computer. </p><note type="note"><p id="pgfId-1391098">For upgrades it is NOT necessary to uninstall the existing version. The installer will automatically uninstall it before performing the upgrade. </p></note></section>
+                    <section id="pgfId-1391099"><title>Requirements </title><p id="pgfId-1391100">If WRNM is connected to any systems, ensure that it is disconnected before uninstalling WRNM. </p></section>
+                    <section id="pgfId-1391101"><title>Precautions </title><p id="pgfId-1391105">This procedure has no special precautions. </p></section>
+                </body>
+                <task xmlns:ditaarch="http://dita.oasis-open.org/architecture/2005/" id="pgfId-1391106">
+                    <title>Procedure </title>
+                    <taskbody>
+                        <context><p id="pgfId-1391107">Proceed as follows: </p></context>
+                        <steps>
+                            <step>
+                                <cmd id="pgfId-1391111">If the WRNM software was installed from a CD ROM, browse to the directory where the WRNM is installed. The default installation directory is C:\ WaveReady_Node_Manager. </cmd>
+                            </step>
+                            <step>
+                                <cmd id="pgfId-1391115">Delete the installation directory. </cmd>
+                            </step>
+                            <step>
+                                <cmd id="pgfId-1391116">Delete the shortcut (if one was created using the installer). </cmd>
+                            </step>
+                        </steps>
+                    </taskbody>
+                </task>
+            </topic>
+        </topic>
+    </topic>
+</dita>

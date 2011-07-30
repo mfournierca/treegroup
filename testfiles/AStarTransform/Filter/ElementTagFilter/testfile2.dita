@@ -1,0 +1,273 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE dita  PUBLIC '-//OASIS//DTD DITA Composite//EN'  'ditabase.dtd'
+[
+<!-- Begin Entity Declarations -->
+<!-- End Entity Declarations -->
+]><?Fm Condition DITA-Comment AsIs NO_OVERRIDE hide?>
+<?Fm Condition DITA-Prolog AsIs NO_OVERRIDE hide?>
+<?Fm Condition FM8_SYSTEM_HIDEELEMENT AsIs NO_OVERRIDE hide?>
+<?Fm Condition FM8_TRACK_CHANGES_ADDED Forest%20Green SINGLE_UNDERLINE show?>
+<?Fm Condition FM8_TRACK_CHANGES_DELETED Red STRIKETHROUGH show?>
+<?Fm BoolCondExpr "" State 0?>
+<?Fm TrackChange Off PreviewState PREVIEW_OFF_TRACK_CHANGE?>
+
+<dita>
+<topic xmlns:ditaarch="http://dita.oasis-open.org/architecture/2005/" id="pgfId-1578438">
+<title>About this Document</title>
+<body><p id="pgfId-1578440">This guide provides information about
+the WaveReady Node Manager (WRNM). It covers:</p>
+<ul><li id="pgfId-1578444">How to install the application</li>
+<li id="pgfId-1579653">How to use the application to configure
+a node and related modules</li>
+<li id="pgfId-1578445">How to use the application to operate and
+maintain WaveReady modules installed in a WaveReady shelf.</li></ul>
+<note type="note"><p id="pgfId-1578452">See the Release Notes
+for supported hardware and software configurations in the current release.</p></note></body>
+<topic xmlns:ditaarch="http://dita.oasis-open.org/architecture/2005/" id="id104MD08B0PF">
+<title>Typographical Conventions</title><?Fm Condstart DITA-Conref?><body id="id104KF700YHS"><p id="pgfId-1404897new167">This document
+uses these typographic conventions:</p>
+<ul><li id="pgfId-1404898new772"><b>Bold text</b> is used to emphasize
+parameters, input fields, menu options, ports and light emitting
+diodes (LEDs) located on WaveReady module front panels.</li>
+<li id="pgfId-1404899new1545"><varname>Italic text</varname> is
+used to reference titles of other publications and for emphasis.</li>
+<li id="pgfId-1404900new1459"><userinput>Courier text</userinput> is
+used to indicate paths and filenames, user input, and system output.</li></ul></body><?Fm Condend DITA-Conref?></topic>
+<topic xmlns:ditaarch="http://dita.oasis-open.org/architecture/2005/" id="pgfId-1578453">
+<title>Intended Audience</title>
+<body><p id="pgfId-1578455">This document is intended for network
+management personnel and technicians who want to configure, manage,
+maintain and troubleshoot a WaveReady system.</p></body></topic>
+<topic xmlns:ditaarch="http://dita.oasis-open.org/architecture/2005/" id="pgfId-1579814">
+<title>Document History</title>
+<body><table frame="all" colsep="1" rowsep="1" id="d11e37">
+<tgroup cols="4" colsep="1" rowsep="1" outputclass="FormatA">
+<colspec colnum="1" colname="1" colwidth="0.850in"/>
+<colspec colnum="2" colname="2" colwidth="0.850in"/>
+<colspec colnum="3" colname="3" colwidth="1.311in"/>
+<colspec colnum="4" colname="4" colwidth="3.212in"/>
+<thead>
+<row rowsep="1">
+<entry colname="1">Release</entry>
+<entry colname="2" id="pgfId-1579777">Date</entry>
+<entry colname="3" id="pgfId-1579775">Document Number</entry>
+<entry colname="4" id="pgfId-1579779">Reason for Revision</entry>
+</row>
+</thead>
+<tbody>
+<row rowsep="1">
+<entry colname="1" morerows="1">4.6.6</entry>
+<entry colname="2" id="pgfId-1579783">October 2009</entry>
+<entry colname="3" id="pgfId-1579781">21051541-009, R000</entry>
+<entry colname="4" id="pgfId-1579788">WaveReady Release 4.6.6
+provides support for standard 4.6.6 features described in the applicable user
+guides. In addition, this release introduces:<ul><li>IPv6 addressing</li>
+<li>Running on international language operating systems</li>
+<li>New WRNM functionality</li></ul></entry>
+</row>
+<row rowsep="1">
+<entry colname="2">November 2009</entry>
+<entry colname="3">21051541-009, R001</entry>
+<entry colname="4">Added Node Upgrade limitations and work-around.</entry>
+</row>
+<row rowsep="1">
+<entry colname="1">4.7</entry>
+<entry colname="2">May 2010</entry>
+<entry colname="3">21051541-010, R000</entry>
+<entry colname="4">WaveReady Release 4.7 provides support for
+standard 4.7 features described in the applicable user guides. In addition,
+this release introduces:<ul><li>WRT-781</li>
+<li>Additional WRT-852 functionality</li>
+<li>New Multi-Node Manager software</li></ul></entry>
+</row>
+<row rowsep="1">
+<entry colname="1" morerows="1">4.7.1</entry>
+<entry colname="2">June 2010</entry>
+<entry colname="3">21051541-011, R000</entry>
+<entry colname="4">WaveReady Release 4.7.1 provides support for standard
+4.7.1 features described in the applicable user guides. In this
+document, user account limitations, serial port connection limitations,
+and time out configuration and limitations have been documented.</entry>
+</row>
+<row rowsep="1">
+<entry colname="2">June 2010</entry>
+<entry colname="3">21051541-011, R001</entry>
+<entry colname="4">Update to Time-out Behavior and User Account Limitations</entry>
+</row>
+<row rowsep="1">
+<entry colname="1" morerows="1">4.7.4</entry>
+<entry colname="2">September 2010</entry>
+<entry colname="3">21051541-012, R000</entry>
+<entry colname="4">WaveReady Release 4.7.4 provides support for standard
+4.7.4 features described in the applicable user guides. In this
+document, configuring Tilt Set Point (for the WRA-217C and WRA-219C
+only) has been documented. </entry>
+</row>
+<row rowsep="0">
+<entry colname="2">October 2010</entry>
+<entry colname="3">21051541-012, R001</entry>
+<entry colname="4">Updated screen shots</entry>
+</row>
+</tbody>
+</tgroup></table></body></topic>
+<topic xmlns:ditaarch="http://dita.oasis-open.org/architecture/2005/" id="pgfId-1579250">
+<title>Ordering Information</title>
+<body><table frame="all" colsep="1" rowsep="1" id="d11e83">
+<tgroup cols="2" colsep="1" rowsep="1" outputclass="FormatA">
+<colspec colnum="1" colname="1" colwidth="2.875in"/>
+<colspec colnum="2" colname="2" colwidth="2.125in"/>
+<thead>
+<row rowsep="1">
+<entry colname="1" colsep="0" id="pgfId-1579102">Product</entry>
+<entry colname="2" id="pgfId-1579104">Product Number</entry>
+</row>
+</thead>
+<tbody>
+<row rowsep="0">
+<entry colname="1" colsep="0" id="pgfId-1579106">WaveReady
+Node Manager (WRNM)</entry>
+<entry colname="2" id="pgfId-1579374">WRM-NODEMNGSW-470</entry>
+</row>
+</tbody>
+</tgroup></table></body></topic>
+<?Fm Condstart DITA-Conref?><topic xmlns:ditaarch="http://dita.oasis-open.org/architecture/2005/" id="id098JD0K305Z">
+<title>WaveReady Documents</title><body id="pgfId-1591593">
+<table frame="all" colsep="1" rowsep="1" id="d12e136">
+<tgroup cols="2" colsep="1" rowsep="1" outputclass="FormatA">
+<colspec colnum="1" colname="1" colwidth="1.302in"/>
+<colspec colnum="2" colname="2" colwidth="4.919in"/>
+<thead>
+<row rowsep="1">
+<entry colname="1" id="pgfId-1591601"> Document Number</entry>
+<entry colname="2" id="pgfId-1591599"> Product</entry>
+</row>
+</thead>
+<tbody>
+<row rowsep="1">
+<entry colname="1" id="pgfId-1591605"> 21048030-011</entry>
+<entry colname="2" id="pgfId-1591603">WaveReady&#8482; WR3100 Shelf
+Models DMS-3100DC002, DMS-3100AC002 Installation and User Guide</entry>
+</row>
+<row rowsep="1">
+<entry colname="1">21061772-003</entry>
+<entry colname="2">WaveReady&#8482; WR3100 Shelf Power Supply Installation
+and User Guide</entry>
+</row>
+<row rowsep="1">
+<entry colname="1" id="pgfId-1591609">21060352-011</entry>
+<entry colname="2" id="pgfId-1591607">WaveReady&#8482; 3500F Models
+DMS-3500FSE03, DMS-3500FSE04 Installation and User Guide</entry>
+</row>
+<row rowsep="1">
+<entry colname="1">2149657-002</entry>
+<entry colname="2">WaveReady&#8482; Multi-Node Manager (MNM) Installation
+and User Guide</entry>
+</row>
+<row rowsep="1">
+<entry colname="1" id="pgfId-1591613">21051541-012</entry>
+<entry colname="2" id="pgfId-1591611">WaveReady&#8482; Node Manager
+(WRNM) Installation and User Guide</entry>
+</row>
+<row rowsep="1">
+<entry colname="1" id="pgfId-1591617">21063484-012</entry>
+<entry colname="2" id="pgfId-1591615">WaveReady&#8482; TL1 Reference
+Manual</entry>
+</row>
+<row rowsep="1">
+<entry colname="1" id="pgfId-1591621">21063701-011</entry>
+<entry colname="2" id="pgfId-1591619">WaveReady&#8482; SNMP Reference
+Manual</entry>
+</row>
+<row rowsep="1">
+<entry colname="1" id="pgfId-1591625">21057603-011</entry>
+<entry colname="2" id="pgfId-1591623">WaveReady&#8482; COM-200 Installation
+and User Guide</entry>
+</row>
+<row rowsep="1">
+<entry colname="1" id="pgfId-1591657">21107865-007</entry>
+<entry colname="2" id="pgfId-1591653">WaveReady&#8482; Single-Channel
+EDFA Optical Amplifier Models WRA-110, WRA-113, WRA-116, WRA-119
+Installation and User Guide</entry>
+</row>
+<row rowsep="1">
+<entry colname="1">21141978-003</entry>
+<entry colname="2">WaveReady&#8482; Multi-Channel (DWDM) EDFA Optical
+Amplifier Models WRA-217, WRA-217L, WRA-219 Installation and User
+Guide</entry>
+</row>
+<row rowsep="1">
+<entry colname="1">21136733-004</entry>
+<entry colname="2">WaveReady&#8482; Muxponder 782 Installation and User
+Guide</entry>
+</row>
+<row rowsep="1">
+<entry colname="1">21138638-005</entry>
+<entry colname="2">WaveReady Muxponder 8004, Models WRM-8004T00B-100,
+WRM-8004T00B-192 Installation and User Guide</entry>
+</row>
+<row rowsep="1">
+<entry colname="1">21139328-004</entry>
+<entry colname="2">WaveReady&#8482; Reconfigurable Optical Add/Drop
+Multiplexer, Model WRS-05AD1C00B Installation and User Guide</entry>
+</row>
+<row rowsep="1">
+<entry colname="1" id="pgfId-1591629">21061336-011</entry>
+<entry colname="2" id="pgfId-1591627">WaveReady&#8482; Transponder
+740 Models WRT-740DT241B, WRT-740DC241B Installation and User Guide</entry>
+</row>
+<row rowsep="1">
+<entry colname="1" id="pgfId-1591633">21058348-011</entry>
+<entry colname="2" id="pgfId-1591631">WaveReady&#8482; Transponder
+760 Model WRT-760DT241B Installation and User Guide</entry>
+</row>
+<row rowsep="1">
+<entry colname="1" id="pgfId-1591637">21116021-007</entry>
+<entry colname="2" id="pgfId-1591635">WaveReady&#8482; Transponder
+780 Model WRT-780DT000B, WaveReady&#8482; Transponder 781Model WRT-780DT000B
+Installation and User Guide</entry>
+</row>
+<row rowsep="1">
+<entry colname="1" id="pgfId-1591641">21079332-011</entry>
+<entry colname="2" id="pgfId-1591639">WaveReady&#8482; Transponder
+840 Model WRT-840DT100B Installation and User Guide</entry>
+</row>
+<row rowsep="1">
+<entry colname="1" id="pgfId-1591645">21109093-008</entry>
+<entry colname="2" id="pgfId-1591643">WaveReady&#8482; Transponder
+842 Model WRT-842DT101B-100, WRT-842DT101B-200 Installation and
+User Guide</entry>
+</row>
+<row rowsep="1">
+<entry colname="1" id="pgfId-1591649">21132488-006</entry>
+<entry colname="2" id="pgfId-1591647">WaveReady&#8482; Transponder
+852 Model WRT-852DT101B-100, WRT-852DT101B-200 Installation and
+User Guide</entry>
+</row>
+<row rowsep="1">
+<entry colname="1" id="pgfId-1591664">21042419-017</entry>
+<entry colname="2" id="pgfId-1591661">WaveReady&#8482; LightProtector
+530 Model LPR&#8211;530DWC1SA Installation and User Guide</entry>
+</row>
+<row rowsep="1">
+<entry colname="1" id="pgfId-1591668">10135542</entry>
+<entry colname="2" id="pgfId-1591666">LightAmp DWDM Optical
+Amplifier Model LAP-MCH00R00A Installation and User&#8217;s Manual</entry>
+</row>
+<row rowsep="1">
+<entry colname="1" id="pgfId-1591673">10129933</entry>
+<entry colname="2" id="pgfId-1591670">BrightAmp Configurable
+Single-Channel Optical Amplifier Model 10129127 Installation and
+User&#8217;s Manual</entry>
+</row>
+<row rowsep="1">
+<entry colname="1">21124196</entry>
+<entry colname="2">WaveReady&#8482; FiberCleaningGuide</entry>
+</row>
+<row rowsep="0">
+<entry colname="1" id="pgfId-1591677">21052361-013</entry>
+<entry colname="2" id="pgfId-1591675">WaveReady&#8482; System Release
+4.7.4 and Multi-Node Manager and Node Manager Release 4.7.4 Release
+Notes</entry>
+</row>
+</tbody>
+</tgroup></table></body></topic><?Fm Condend DITA-Conref?></topic></dita>
