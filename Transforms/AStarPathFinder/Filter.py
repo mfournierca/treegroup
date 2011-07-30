@@ -186,7 +186,7 @@ class ElementTagFilter:
         
         try:
             #parse the dita file
-            tree = lxml.etree.parse(ditafile, parser=etree.XMLParser(resolve_entities=False))
+            tree = lxml.etree.parse(ditafile, parser=lxml.etree.XMLParser(resolve_entities=False))
         except lxml.etree.XMLSyntaxError:
             self.log.warning('syntax error in file: %s' % ditafile)
             return
