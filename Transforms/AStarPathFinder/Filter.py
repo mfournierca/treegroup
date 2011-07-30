@@ -1,3 +1,5 @@
+#!/usr/bin/env python3
+
 """This file implements a bayesian filter used to determine the most likely
 operations that can be used when generating operands. """
 
@@ -182,7 +184,13 @@ class ElementTagFilter:
             self.log.error('file must be dita: %s' % ditafile)
             return
         
-        tree = lxml.etree.parse(ditafile)   #parse the dita file
+        try:
+            #parse the dita file
+            tree = lxml.etree.parse(ditafile, parser=etree.XMLParser(resolve_entities=False))
+        except lxml.etree.XMLSyntaxError:
+            self.log.warning('syntax error in file: %s' % ditafile)
+            return
+        
         for element in tree.iter():         #iterate over the elements
             self._trainParentTagTable(element)
             self._trainTargetText(element)
@@ -281,19 +289,27 @@ class ElementTagFilter:
     
 if __name__ == "__main__":
     
-    #parse args
-    optparser.add_option("-i", "--input", type="string", dest="input", default='', 
-    help="Path to the input file")
-    optparser.add_option("--train", action="store_true", dest="train",
-    help="Turn this on to train the filter(s) using the input file")
-    (options, args) = optparser.parse_args()
-    input = options.input
-    debug = options.train
+    import optparse, sys
     
+    #parse args
+    optparser=optparse.OptionParser()
+    optparser.add_option("-i", "--input", type="string", dest="inputpath", default='', 
+    help="Path to the input file / dir")
+    optparser.add_option("--trainfile", action="store_true", dest="trainfile",
+    help="Turn this on to train the filter(s) using the input file")
+    optparser.add_option("--traindir", action="store_true", dest="traindir",
+    help="Turn this on to train the filter(s) using the input directory")
+    optparser.add_option("--resetdb", action="store_true", dest="resetdb",
+    help="Turn this on to reset the filter database, ie remove all records from the database. USE WITH CAUTION.")
+    (options, args) = optparser.parse_args()
+    inputpath = options.inputpath
+    trainfile = options.trainfile
+    traindir = options.traindir
+    resetdb = options.resetdb
     #this next block ensures that the user can pass the input as a positional
     #argument, without the -i
     try:
-        input = args[0]
+        inputpath = args[0]
     except:
         pass
         
@@ -316,7 +332,43 @@ if __name__ == "__main__":
     infohandler.setFormatter(infoformatter)
     log.addHandler(infohandler)
     
-    if train:
+    if resetdb:
+        response = input("are you sure you want to reset the filter DB? All records will be lost. (y/n)")
+        if response == 'y':
+            print("RESETTING FILTER DATABASE")
+            filter = ElementTagFilter()
+            filter.resetDB()
+            print("FILTER DATABASE RESET")
+        else:
+            print("NOT RESETTING FILTER DATABASE: DATABASE WILL NOT BE ALTERED")
+        
+    if trainfile:
+        if not os.path.isfile(inputpath):
+            log.error("--trainfile passed, but input is not a file: %s" % inputpath)
+            sys.exit(1)
+        if not os.path.exists(inputpath):
+            log.error("input does not exist: %s" % inputpath)
+            sys.exit(1)
         filter = ElementTagFilter()
-        filter.train(input)
-    
+        filter.train(inputpath)
+        
+    if traindir:
+        if not os.path.isdir(inputpath):
+            log.error("--traindir passed, but input is not a dir: %s" % inputpath)
+            sys.exit(1)
+        if not os.path.exists(inputpath):
+            log.error("input does not exist: %s" % inputpath)
+            sys.exit(1)
+            
+        import DirAndFileTools.Find
+        dirs, files = DirAndFileTools.Find.dirs_and_files(searchroot=inputpath, 
+                                                          extensions=['dita'], 
+                                                          ignorefilenames=['.recover', '.bak', '.backup'], 
+                                                          ignoredirnames=['backup', 'Backup'], 
+                                                          includepathfromcwd=True,
+                                                          )
+        del dirs
+        filter = ElementTagFilter()
+        for file in files: 
+            log.info("training with file: %s" % file)
+            filter.train(file)
