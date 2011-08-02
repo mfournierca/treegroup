@@ -27,35 +27,35 @@ class test_ElementTagFilter(unittest.TestCase):
         
         
         
-#    def test_Train(self):
-#        #test training a database on a file
-#        self.filter.resetDB()
-#        self.filter.train(os.path.join(self.testfilesdir, 'trainfile.dita'))
-#        
-#        #check some records
-#        expected = ('dita', 'topic', 1, 0.0)
-#        record = self.filter.dbconnection.execute("select * from parenttagtable where parenttag='dita' and targettag='topic'").fetchall()[0]
-#        self.assertEqual(expected, record, "train() created incorrect record, expected %s got %s" % (str(expected), str(record)))
-#        
-#        expected = ('topic', 'title', 134, 0.0)
-#        record = self.filter.dbconnection.execute("select * from parenttagtable where parenttag='topic' and targettag='title'").fetchall()[0]
-#        self.assertEqual(expected, record, "train() created incorrect record, expected %s got %s" % (str(expected), str(record)))
-#        
-#        expected = ('task', 'title', 7, 0.0)
-#        record = self.filter.dbconnection.execute("select * from parenttagtable where parenttag='task' and targettag='title'").fetchall()[0]
-#        self.assertEqual(expected, record, "train() created incorrect record, expected %s got %s" % (str(expected), str(record)))
-#        
-#        expected = ('body', 'p', 244, 0.0)
-#        record = self.filter.dbconnection.execute("select * from parenttagtable where parenttag='body' and targettag='p'").fetchall()[0]
-#        self.assertEqual(expected, record, "train() created incorrect record, expected %s got %s" % (str(expected), str(record)))
-#      
-#        expected = ('body', 'ul', 110, 0.0)
-#        record = self.filter.dbconnection.execute("select * from parenttagtable where parenttag='body' and targettag='ul'").fetchall()[0]
-#        self.assertEqual(expected, record, "train() created incorrect record, expected %s got %s" % (str(expected), str(record)))
-#
-#        expected = ('ul', 'li', 696, 0.0)
-#        record = self.filter.dbconnection.execute("select * from parenttagtable where parenttag='ul' and targettag='li'").fetchall()[0]
-#        self.assertEqual(expected, record, "train() created incorrect record, expected %s got %s" % (str(expected), str(record)))
+    def test_Train(self):
+        #test training a database on a file
+        self.filter.resetDB()
+        self.filter.train(os.path.join(self.testfilesdir, 'trainfile.dita'))
+        
+        #check some records
+        expected = ('dita', 'topic', 1, 0.0)
+        record = self.filter.dbconnection.execute("select * from parenttagtable where parenttag='dita' and targettag='topic'").fetchall()[0]
+        self.assertEqual(expected, record, "train() created incorrect record, expected %s got %s" % (str(expected), str(record)))
+        
+        expected = ('topic', 'title', 134, 0.0)
+        record = self.filter.dbconnection.execute("select * from parenttagtable where parenttag='topic' and targettag='title'").fetchall()[0]
+        self.assertEqual(expected, record, "train() created incorrect record, expected %s got %s" % (str(expected), str(record)))
+        
+        expected = ('task', 'title', 7, 0.0)
+        record = self.filter.dbconnection.execute("select * from parenttagtable where parenttag='task' and targettag='title'").fetchall()[0]
+        self.assertEqual(expected, record, "train() created incorrect record, expected %s got %s" % (str(expected), str(record)))
+        
+        expected = ('body', 'p', 244, 0.0)
+        record = self.filter.dbconnection.execute("select * from parenttagtable where parenttag='body' and targettag='p'").fetchall()[0]
+        self.assertEqual(expected, record, "train() created incorrect record, expected %s got %s" % (str(expected), str(record)))
+      
+        expected = ('body', 'ul', 110, 0.0)
+        record = self.filter.dbconnection.execute("select * from parenttagtable where parenttag='body' and targettag='ul'").fetchall()[0]
+        self.assertEqual(expected, record, "train() created incorrect record, expected %s got %s" % (str(expected), str(record)))
+
+        expected = ('ul', 'li', 696, 0.0)
+        record = self.filter.dbconnection.execute("select * from parenttagtable where parenttag='ul' and targettag='li'").fetchall()[0]
+        self.assertEqual(expected, record, "train() created incorrect record, expected %s got %s" % (str(expected), str(record)))
         
         
     
@@ -102,25 +102,35 @@ class test_ElementTagFilter(unittest.TestCase):
          
          
     def test_getProbaTagGivenTextWord(self):
-        result = self.filter.getProbaTagGivenTextWord('p', 'operation')
+        vars = ('p', 'operation')
+        result = self.filter.getProbaTagGivenTextWord(vars[0], vars[1])
         expected = 0.6
-        self.assertEqual(round(expected, 12), round(result, 12), "getProbaGivenTextWord('title', 'topic') returned the wrong value, expected %s, got %s" % (str(expected), str(result)))
+        self.assertEqual(round(expected, 12), round(result, 12), "getProbaGivenTextWord('%s', '%s') \
+        returned the wrong value, expected %s, got %s" % (vars[0], vars[1], str(expected), str(result)))
         
-        result = self.filter.getProbaTagGivenTextWord('b', 'operation')
+        vars = ('b', 'operation')
+        result = self.filter.getProbaTagGivenTextWord(vars[0], vars[1])
         expected = 0.2
-        self.assertEqual(round(expected, 12), round(result, 12), "getProbaGivenTextWord('title', 'topic') returned the wrong value, expected %s, got %s" % (str(expected), str(result)))
+        self.assertEqual(round(expected, 12), round(result, 12), "getProbaGivenTextWord('%s', '%s') \
+        returned the wrong value, expected %s, got %s" % (vars[0], vars[1], str(expected), str(result)))
         
-        result = self.filter.getProbaTagGivenTextWord('p', 'operation')
+        vars = ('p', 'operation')
+        result = self.filter.getProbaTagGivenTextWord(vars[0], vars[1])
         expected = 0.6
-        self.assertEqual(round(expected, 12), round(result, 12), "getProbaGivenTextWord('title', 'topic') returned the wrong value, expected %s, got %s" % (str(expected), str(result)))
+        self.assertEqual(round(expected, 12), round(result, 12), "getProbaGivenTextWord('%s', '%s') \
+        returned the wrong value, expected %s, got %s" % (vars[0], vars[1], str(expected), str(result)))
          
-        result = self.filter.getProbaTagGivenTextWord('p', 'steps')
+        vars = ('p', 'steps')
+        result = self.filter.getProbaTagGivenTextWord(vars[0], vars[1])
         expected = 1.0
-        self.assertEqual(round(expected, 12), round(result, 12), "getProbaGivenTextWord('title', 'topic') returned the wrong value, expected %s, got %s" % (str(expected), str(result)))
+        self.assertEqual(round(expected, 12), round(result, 12), "getProbaGivenTextWord('%s', '%s') \
+        returned the wrong value, expected %s, got %s" % (vars[0], vars[1], str(expected), str(result)))
          
-        result = self.filter.getProbaTagGivenTextWord('title', 'steps')
+        vars = ('title', 'steps')
+        result = self.filter.getProbaTagGivenTextWord(vars[0], vars[1])
         expected = 0.0
-        self.assertEqual(round(expected, 12), round(result, 12), "getProbaGivenTextWord('title', 'topic') returned the wrong value, expected %s, got %s" % (str(expected), str(result)))
+        self.assertEqual(round(expected, 12), round(result, 12), "getProbaGivenTextWord('%s', '%s') \
+        returned the wrong value, expected %s, got %s" % (vars[0], vars[1], str(expected), str(result)))
         
          
     def test_getProbaTagGivenText(self):

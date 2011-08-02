@@ -35,6 +35,18 @@ class ElementTagFilter:
             self.dbconnection.execute("create table targettexttable(word, targettag, count INTEGER, proba FLOAT)")
             self.dbconnection.commit()
             
+        try: 
+            self.dbconnection.execute("select * from targettextlengthtable")
+        except sqlite3.OperationalError: 
+            self.dbconnection.execute("create table targettextlengthtable(length INTEGER, targettag, count INTEGER, proba FLOAT)")
+            self.dbconnection.commit()  
+                      
+        try: 
+            self.dbconnection.execute("select * from targetindextable")
+        except sqlite3.OperationalError: 
+            self.dbconnection.execute("create table targetindextable(targetindex INTEGER, targettag, count INTEGER, proba FLOAT)")
+            self.dbconnection.commit()
+            
         #base probability is used when the filter has no information about a tag-token pair. 
         #eg, if the word "foo" does not appear anywhere under the tag "bar" in the files 
         #that were used to train the filter, then the filter thinks that P(tag="bar"|word="foo") = 0
@@ -80,11 +92,21 @@ class ElementTagFilter:
         #where P(T|Ci) is the probability that tag T is the correct one given the condition Ci, where Ci is one of
         #parent tag value, child tag value, text, etc. 
         #Note this formula assumes that the conditions are independant. 
+        #Note also that this formula is unbiased, ie it treats any possible outcome the same. 
         
+        #Note also that if any of the getProba functions returns 0 or 1, 
+        #then p will equal 0 or 1, respectively. This can be seen just by looking at the equation. 
+        #If you are experiencing weird results, or see that a certain tag is being taken or rejected
+        #when it shouldn't be, this could be the cause. 
+            
         probas = []
         probas.append(self.getProbaTagGivenParentTag(tag, target.getparent().tag))
-        for word in self._getWordsFromText(target.text):
-            probas.append(self.getProbaTagGivenTextWord(tag, word))
+        probas.append(self.getProbaTagGivenIndexUnderParent(tag, self._getElementIndex(target)))
+                                                           
+        words = self._getWordsFromText(target.text)
+        probas.append(self.getProbaGivenTextLengthInterval(tag, len(words))) 
+#        for word in words:
+#            probas.append(self.getProbaTagGivenTextWord(tag, word))
         
         p1 = 1
         for i in probas: p1 = p1*i
@@ -104,19 +126,16 @@ class ElementTagFilter:
         #need some code to control what happens if tag or parenttag is not in database - probably set to 
         #0 and wait for user input, or define a "base probability" that is used in the absence of information. 
         
-        tagcountdbslice = self.dbconnection.execute("select count from parenttagtable where targettag=? and parenttag=?", \
-                                             (tag, parenttag)).fetchall()
-        if len(tagcountdbslice) == 0:
+        tagcount = self.dbconnection.execute("select sum(count) from parenttagtable where targettag=? and parenttag=?", \
+                                             (tag, parenttag)).fetchone()[0]
+        
+        if tagcount is None:
             #no information, return base probability. (or ask for user input?)
             self.log.debug('no information, return base proba: %s' % str(self.baseproba))
             return self.baseproba
-        else:
-            tagcount = tagcountdbslice[0][0]
-            
-        totalcount = 0
-        for i in self.dbconnection.execute("select count from parenttagtable where parenttag=?",\
-                                               (parenttag,)).fetchall():
-            totalcount += i[0]
+        
+        totalcount = self.dbconnection.execute("select sum(count) from parenttagtable where parenttag=?", \
+                                       (parenttag,)).fetchone()[0]    
             
         if not totalcount >= tagcount: 
             self.log.error("impossible probability generated, totalcount < tagcount: %i < %i" % (totalcount, tagcount))
@@ -131,19 +150,15 @@ class ElementTagFilter:
     
     def getProbaTagGivenTextWord(self, tag, word):
         #find P(tag|word in target.text) and return
-        tagcountdbslice = self.dbconnection.execute("select count from targettexttable where targettag=? and word=?", \
-                                                    (tag, word)).fetchall()
-        if len(tagcountdbslice) == 0:
+        tagcount = self.dbconnection.execute("select sum(count) from targettexttable where targettag=? and word=?",\
+                                             (tag, word)).fetchone()[0]
+        
+        if tagcount is None:
             #no information, return base probability. (or ask for user input?)
             self.log.debug('no information, return base proba: %s' % str(self.baseproba))
             return self.baseproba
-        else:
-            tagcount = tagcountdbslice[0][0]
             
-        totalcount = 0
-        for i in self.dbconnection.execute("select count from targettexttable where word=?",\
-                                               (word,)).fetchall():
-            totalcount += i[0]
+        totalcount = self.dbconnection.execute("select sum(count) from targettexttable where word=?", (word,)).fetchone()[0]
             
         if not totalcount >= tagcount: 
             self.log.error("impossible probability generated, totalcount < tagcount: %i < %i" % (totalcount, tagcount))
@@ -155,6 +170,63 @@ class ElementTagFilter:
     
     
     
+    
+    def getProbaGivenTextLengthInterval(self, tag, length):
+        #get the text length based on how close it is to the lengths stored in the filter db, 
+        #ie, given interval = some integer, calculate and return
+        #P(target tag | text length is within +/- interval of target text length)
+        
+        #define interval. Interval could be defined with a function over the text length, so interval gets larger as 
+        #text gets larger, vice versa, etc. 
+        interval = 2
+        
+        count = self.dbconnection.execute("select sum(count) from targettextlengthtable where targettag=? and length>? and length<?", \
+                                          (tag, length - interval, length + interval)).fetchone()[0]
+                                          
+        if count is None:
+            self.log.debug("no information, return base proba: %s" % str(self.baseproba))
+            return self.baseproba
+        
+        totalcount = self.dbconnection.execute("select sum(count) from targettextlengthtable where length>? and length<?", \
+                                               (length - interval, length + interval)).fetchone()[0]
+                                                    
+        p = float(count) / float(totalcount)
+        self.log.debug('tag: %s\tlength: %s\tinterval: %s\tproba: %s/%s =  %s' % (tag, str(length), str(interval), str(count), str(totalcount), str(p)))
+        return p
+    
+        
+        
+        
+        
+    def getProbaTagGivenIndexUnderParent(self, tag, index):
+        #get P(target tag = tag | target is at index "index" under its parent)
+        #Should use intervals for this function, as in getProbaGivenTextLengthInterval()
+        indexcountdbslice = self.dbconnection.execute("select count from targetindextable where targettag=? and targetindex=?", \
+                                                    (tag, index)).fetchall()
+                                                    
+        indexcount = self.dbconnection.execute("select sum(count) from targetindextable where targettag=? and targetindex=?",\
+                                          (tag, index)).fetchone()[0]
+                                          
+        if indexcount is None:
+            #no information, return base probability. (or ask for user input?)
+            self.log.debug('no information, return base proba: %s' % str(self.baseproba))
+            return self.baseproba
+            
+        totalcount = self.dbconnection.execute("select sum(count) from targetindextable where targetindex=?", \
+                                               (index,)).fetchone()[0]
+                                               
+        if not totalcount >= indexcount: 
+            self.log.error("impossible probability generated, totalcount < indexcount: %i < %i" % (totalcount, indexcount))
+            return None
+        
+        p = float(indexcount) / float(totalcount)
+        self.log.debug('tag: %s\tindex: %s\tproba: %s/%s =  %s' % (tag, index, str(indexcount), str(totalcount), str(p)))
+        return p
+    
+        
+        
+        
+        
     
     def getProbaTagGivenChild(self, tag, child):
         #find P(tag|child) and return
@@ -172,10 +244,14 @@ class ElementTagFilter:
     
     
     
+    
+    
+    
     def train(self, ditafile):
         """Used to train the filter automatically. Take a dita file, and iterate the 
         elements one by one. For each element, get tokens and add to the databases."""
         import lxml.etree
+        self.log.info("training with file: %s" % ditafile)
         
         if not os.path.exists(ditafile):
             self.log.error('file does not exist: %s' % ditafile)
@@ -190,57 +266,172 @@ class ElementTagFilter:
         except lxml.etree.XMLSyntaxError:
             self.log.warning('syntax error in file: %s' % ditafile)
             return
-        
-        for element in tree.iter():         #iterate over the elements
-            self._trainParentTagTable(element)
-            self._trainTargetText(element)
+            
+        #functionbelow all loop over the tree - could be sped up by combining them. 
+        #keeping them separate for now for ease of coding, refactoring, adding new conditions,
+        #etc
+        self._trainParentTag_Tree(tree)
+        self._trainTargetTextLength_Tree(tree)
+        self._trainTargetText_Tree(tree)
+        self._trainTargetIndexUnderParent_Tree(tree)
         
         self.dbconnection.commit()
     
     
     
     
-    def _trainParentTagTable(self, element):
-        if element.getparent() is None: return
-        if (not isinstance(element.tag, str)) or (not isinstance(element.getparent().tag, str)): return
-        #if parent-tag record is in database, add to count. Otherwise add new record
-        dbslice = self.dbconnection.execute("select count from parenttagtable where parenttag=? and targettag=?", (element.getparent().tag, element.tag)).fetchall()
-        if len(dbslice) == 0:
-            self.dbconnection.execute("insert into parenttagtable values(?, ?, 1, 0)", (element.getparent().tag, element.tag))
-            self.dbconnection.commit()
-        elif len(dbslice) > 1:
-            self.log.error('len(dbslice) > 1, this means that there is more than one record for the parenttag-targettag pair (%s, %s).\
-             This should not happen, please fix the database' % (element.getparent().tag, element.tag))
-        else:
-            #update record
-            newcount = dbslice[0][0] + 1
-            self.dbconnection.execute("update parenttagtable set count=? where parenttag=? and targettag=?", (newcount, element.getparent().tag, element.tag))
-            self.dbconnection.commit()
+    
+    def _trainParentTag_Tree(self, tree):
+        d = {}
+        for e in tree.iter():
+            if e.getparent() is None: continue
+            if not isinstance(e.tag, str): continue
+            
+            if not e.tag in d.keys(): d[e.tag] = {}
+            
+            if not e.getparent().tag in d[e.tag].keys(): 
+                d[e.tag][e.getparent().tag] = 1
+            else: 
+                d[e.tag][e.getparent().tag] += 1                      
+
+        for tag in d.keys():
+            for parenttag in d[tag].keys():
+                record = self.dbconnection.execute("select count from parenttagtable where parenttag=? and targettag=?", \
+                                                    (parenttag, tag)).fetchone() #.fetchall
+                if record is None:
+                    self.dbconnection.execute("insert into parenttagtable values(?, ?, 1, 0)", (parenttag, tag))
+#                elif len(record) > 1:
+#                    self.log.error('len(dbslice) > 1, this means that there is more than one record for the word-targettag pair (%s, %s).\
+#                                     This should not happen, please fix the database' % (word, element.tag))
+                else:
+                    newcount = record[0] + d[tag][parenttag]
+                    self.dbconnection.execute("update parenttagtable set count=? where parenttag=? and targettag=?", \
+                                              (newcount, parenttag, tag))
+        self.dbconnection.commit()
+                
+                
     
     
     
-    
-    def _trainTargetText(self, element):
-        if not element.text: return
-        if not isinstance(element.text, str): return
-        if not isinstance(element.tag, str): return
+    def _trainTargetText_Tree(self, tree):
+        """Training the filter with text, and adding words one by one to the database 
+        (the strategy used for other tokens) takes too long. This function counts words 
+        over the whole tree and stores them in a dictionary, and adds to the database at
+        the end"""
         
-        for word in self._getWordsFromText(element.text):
-            if not isinstance(word, str): continue
-            #if word-tag record is in database, update count. Otherwise create record. 
-            dbslice = self.dbconnection.execute("select count from targettexttable where word=? and targettag=?", (word, element.tag)).fetchall()
-            if len(dbslice) == 0:
-                self.dbconnection.execute("insert into targettexttable values(?, ?, 1, 0)", (word, element.tag))
-                self.dbconnection.commit()
-            elif len(dbslice) > 1:
-                self.log.error('len(dbslice) > 1, this means that there is more than one record for the word-targettag pair (%s, %s).\
-                 This should not happen, please fix the database' % (word, element.tag))
-            else:
-                #update record
-                newcount = dbslice[0][0] + 1
-                self.dbconnection.execute("update targettexttable set count=? where word=? and targettag=?", (newcount, word, element.tag))
-                self.dbconnection.commit()
-  
+        d = {}
+        for e in tree.iter():
+            if not e.text: continue
+            if not isinstance(e.text, str): continue
+            if not isinstance(e.tag, str): continue
+            
+            if not e.tag in d.keys(): d[e.tag] = {}
+            for word in self._getWordsFromText(e.text):
+                if not word in d[e.tag].keys(): 
+                    d[e.tag][word] = 1
+                else: 
+                    d[e.tag][word] += 1
+                    
+        for tag in d.keys():
+            for word in d[tag].keys():
+                record = self.dbconnection.execute("select count from targettexttable where word=? and targettag=?", \
+                                                    (word, tag)).fetchone() #.fetchall
+                if record is None:
+                    self.dbconnection.execute("insert into targettexttable values(?, ?, 1, 0)", (word, tag))
+#                elif len(record) > 1:
+#                    self.log.error('len(dbslice) > 1, this means that there is more than one record for the word-targettag pair (%s, %s).\
+#                                     This should not happen, please fix the database' % (word, element.tag))
+                else:
+                    newcount = record[0] + d[tag][word]
+                    self.dbconnection.execute("update targettexttable set count=? where word=? and targettag=?", \
+                                              (newcount, word, tag))
+        self.dbconnection.commit()
+        
+                
+                
+    
+    
+    def _trainTargetTextLength_Tree(self, tree):
+        d = {}
+        for e in tree.iter():
+            if not e.text: continue
+            if not isinstance(e.text, str): continue
+            if not isinstance(e.tag, str): continue
+            
+            if not e.tag in d.keys(): d[e.tag] = {}
+            
+            textlength = len(self._getWordsFromText(e.text))
+        
+            if not textlength in d[e.tag].keys(): 
+                d[e.tag][textlength] = 1
+            else: 
+                d[e.tag][textlength] += 1
+                    
+        for tag in d.keys():
+            for textlength in d[tag].keys():
+                record = self.dbconnection.execute("select count from targettextlengthtable where length=? and targettag=?", \
+                                                    (textlength, tag)).fetchone() #.fetchall
+                if record is None:
+                    self.dbconnection.execute("insert into targettextlengthtable values(?, ?, 1, 0)", (textlength, tag))
+#                elif len(record) > 1:
+#                    self.log.error('len(dbslice) > 1, this means that there is more than one record for the word-targettag pair (%s, %s).\
+#                                     This should not happen, please fix the database' % (word, element.tag))
+                else:
+                    newcount = record[0] + d[tag][textlength]
+                    self.dbconnection.execute("update targettextlengthtable set count=? where length=? and targettag=?", \
+                                              (newcount, textlength, tag))
+        self.dbconnection.commit()
+              
+              
+            
+    
+    def _trainTargetIndexUnderParent_Tree(self, tree):
+        d = {}
+        for e in tree.iter():
+            if e.getparent() is None: continue
+            if not isinstance(e.tag, str): continue
+            
+            if not e.tag in d.keys(): d[e.tag] = {}
+   
+            index = self._getElementIndex(e)
+        
+            if not index in d[e.tag].keys(): 
+                d[e.tag][index] = 1
+            else: 
+                d[e.tag][index] += 1
+                    
+        for tag in d.keys():
+            for index in d[tag].keys():
+                record = self.dbconnection.execute("select count from targetindextable where targetindex=? and targettag=?", \
+                                                    (index, tag)).fetchone() #.fetchall
+                if record is None:
+                    self.dbconnection.execute("insert into targetindextable values(?, ?, 1, 0)", (index, tag))
+#                elif len(record) > 1:
+#                    self.log.error('len(dbslice) > 1, this means that there is more than one record for the word-targettag pair (%s, %s).\
+#                                     This should not happen, please fix the database' % (word, element.tag))
+                else:
+                    newcount = record[0] + d[tag][index]
+                    self.dbconnection.execute("update targetindextable set count=? where targetindex=? and targettag=?", \
+                                              (newcount, index, tag))
+        self.dbconnection.commit()
+              
+    
+    
+        
+        
+        
+    def _getElementIndex(self, element):
+        index = 0
+        for i in element.getparent():
+            if element is i: break
+            index += 1
+        else:
+            #element not found
+            self.log.warning("index could not be found for element %s" % str(element))
+            return False
+        
+        return index
+    
     
     
     
@@ -277,6 +468,8 @@ class ElementTagFilter:
         """Remove all records from the database"""
         self.dbconnection.execute("delete from parenttagtable")
         self.dbconnection.execute("delete from targettexttable")
+        self.dbconnection.execute("delete from targettextlengthtable")
+        self.dbconnection.execute("delete from targetindextable")
         self.dbconnection.commit()
     
     
@@ -293,19 +486,44 @@ if __name__ == "__main__":
     
     #parse args
     optparser=optparse.OptionParser()
+    optparser.add_option("-q", "--query", type="string", dest="query", default='',
+                         help="Query the tag filter database with the provided sql query")
+    optparser.add_option("-d", "--database", type="string", dest="database", 
+                         default=os.path.join(os.path.dirname(__file__), 'FilterDB', 'tagfilter.db'),
+                         help="The database that the filter will use. Defaults to %s" % \
+                         os.path.join(os.path.dirname(__file__), 'FilterDB', 'tagfilter.db')) 
+    
     optparser.add_option("-i", "--input", type="string", dest="inputpath", default='', 
-    help="Path to the input file / dir")
+                         help="Path to the input file / dir used to train the filter")
     optparser.add_option("--trainfile", action="store_true", dest="trainfile",
-    help="Turn this on to train the filter(s) using the input file")
+                         help="Activate to train the filter(s) using the input file")
     optparser.add_option("--traindir", action="store_true", dest="traindir",
-    help="Turn this on to train the filter(s) using the input directory")
+                         help="Activate to train the filter(s) using the input directory. All dita files below the \
+                         input dir will be used to train the filter.")
     optparser.add_option("--resetdb", action="store_true", dest="resetdb",
-    help="Turn this on to reset the filter database, ie remove all records from the database. USE WITH CAUTION.")
+                         help="Activate to reset the filter database, ie remove all records from the database. USE WITH CAUTION.")
+    
+    optparser.add_option("--probataggiventext", type="string", default='',
+                         help="Comma separated list of two values 'tag,word'. Returns P(element tag = tag | word is in element text")
+    optparser.add_option("--probataggivenparent", type="string", default='',
+                         help="Comma separated list of two values 'tag,parent'. Returns P(element tag = tag | parent tag = parent")
+    
+    optparser.add_option("--profile", action="store_true", dest="profile",
+                         help="Use to activate profiling.")
+    
     (options, args) = optparser.parse_args()
     inputpath = options.inputpath
     trainfile = options.trainfile
     traindir = options.traindir
     resetdb = options.resetdb
+    query = options.query
+    profile = options.profile
+    database=options.database
+    
+    probataggiventext = options.probataggiventext.split(',')
+    probataggivenparent = options.probataggivenparent.split(',')
+    
+    
     #this next block ensures that the user can pass the input as a positional
     #argument, without the -i
     try:
@@ -332,16 +550,45 @@ if __name__ == "__main__":
     infohandler.setFormatter(infoformatter)
     log.addHandler(infohandler)
     
+    
+    filter = ElementTagFilter(database)
+        
+    #
+    #database query, reset, etc
+    #
     if resetdb:
         response = input("are you sure you want to reset the filter DB? All records will be lost. (y/n)")
         if response == 'y':
             print("RESETTING FILTER DATABASE")
-            filter = ElementTagFilter()
             filter.resetDB()
             print("FILTER DATABASE RESET")
         else:
             print("NOT RESETTING FILTER DATABASE: DATABASE WILL NOT BE ALTERED")
         
+    if query != '':
+        try:
+            l = filter.dbconnection.execute(query).fetchall()
+        except sqlite3.OperationalError:
+            log.error("error processing query: %s" % query)
+            log.error(sys.exc_info()[1])
+            sys.exit(2)
+        for i in l:
+            print(str(i))
+    
+    
+    #
+    #calculate probabilities
+    #
+    if len(probataggiventext) == 2:
+        print(filter.getProbaTagGivenTextWord(probataggiventext[0], probataggiventext[1]))
+        
+    if len(probataggivenparent) == 2:
+        print(filter.getProbaTagGivenParentTag(probataggivenparent[0], probataggivenparent[1]))
+    
+    
+    #
+    #training
+    #
     if trainfile:
         if not os.path.isfile(inputpath):
             log.error("--trainfile passed, but input is not a file: %s" % inputpath)
@@ -349,8 +596,16 @@ if __name__ == "__main__":
         if not os.path.exists(inputpath):
             log.error("input does not exist: %s" % inputpath)
             sys.exit(1)
-        filter = ElementTagFilter()
-        filter.train(inputpath)
+            
+        if profile:
+            import cProfile, pstats
+            cProfile.run("""filter.train(inputpath)""", os.path.join(os.getcwd(), 'profile.txt'))
+            p = pstats.Stats('profile.txt')
+            p.sort_stats('cumulative').print_stats(20)
+        else:
+            filter.train(inputpath)
+        
+        
         
     if traindir:
         if not os.path.isdir(inputpath):
@@ -368,7 +623,11 @@ if __name__ == "__main__":
                                                           includepathfromcwd=True,
                                                           )
         del dirs
-        filter = ElementTagFilter()
-        for file in files: 
-            log.info("training with file: %s" % file)
-            filter.train(file)
+        
+        if profile:
+            import cProfile, pstats
+            cProfile.run("""for file in files: filter.train(file)""", os.path.join(os.getcwd(), 'profile.txt'))
+            p = pstats.Stats('profile.txt')
+            p.sort_stats('cumulative').print_stats(20)
+        else:
+            for file in files: filter.train(file)
