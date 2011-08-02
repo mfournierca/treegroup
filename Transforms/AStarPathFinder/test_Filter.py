@@ -83,7 +83,7 @@ class test_ElementTagFilter(unittest.TestCase):
         self.assertEqual(round(expected, 12), round(result, 12), "getProbaGivenParentTag('title', 'topic') returned the wrong value, expected %s, got %s" % (str(expected), str(result)))
         
         result = self.filter.getProbaTagGivenParentTag('li', 'ul')
-        expected = 1.0
+        expected = self.filter.ceilingproba
         self.assertEqual(round(expected, 12), round(result, 12), "getProbaGivenParentTag('title', 'topic') returned the wrong value, expected %s, got %s" % (str(expected), str(result)))
           
         result = self.filter.getProbaTagGivenParentTag('p', 'body')
@@ -95,7 +95,7 @@ class test_ElementTagFilter(unittest.TestCase):
         self.assertEqual(round(expected, 12), round(result, 12), "getProbaGivenParentTag('title', 'topic') returned the wrong value, expected %s, got %s" % (str(expected), str(result)))
                  
         result = self.filter.getProbaTagGivenParentTag('title', 'body')
-        expected = 0.0
+        expected = self.filter.floorproba
         self.assertEqual(round(expected, 12), round(result, 12), "getProbaGivenParentTag('title', 'topic') returned the wrong value, expected %s, got %s" % (str(expected), str(result)))
          
          
@@ -122,13 +122,13 @@ class test_ElementTagFilter(unittest.TestCase):
          
         vars = ('p', 'steps')
         result = self.filter.getProbaTagGivenTextWord(vars[0], vars[1])
-        expected = 1.0
+        expected = self.filter.ceilingproba
         self.assertEqual(round(expected, 12), round(result, 12), "getProbaGivenTextWord('%s', '%s') \
         returned the wrong value, expected %s, got %s" % (vars[0], vars[1], str(expected), str(result)))
          
         vars = ('title', 'steps')
         result = self.filter.getProbaTagGivenTextWord(vars[0], vars[1])
-        expected = 0.0
+        expected = self.filter.floorproba
         self.assertEqual(round(expected, 12), round(result, 12), "getProbaGivenTextWord('%s', '%s') \
         returned the wrong value, expected %s, got %s" % (vars[0], vars[1], str(expected), str(result)))
         

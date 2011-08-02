@@ -58,7 +58,13 @@ class ElementTagFilter:
         #to be used when the filter has no information. 
         #This value will be tweaked as time goes on, and it would be very nice if we could somehow 
         #prove what the correct value is. For now, we guess. 
-        self.baseproba = 0.1
+        self.floorproba = 0.1
+            
+        #similarly, by looking at the function in self.getTagScore() you can see that if any of the
+        #probas is 1, then the entire result becomes 1. This is also not desirable for the same reason as 
+        #above. Therefore, we need to assign an upper limit on the probability. 
+        self.ceilingproba = 0.99
+            
             
     
     
@@ -94,11 +100,12 @@ class ElementTagFilter:
         #Note this formula assumes that the conditions are independant. 
         #Note also that this formula is unbiased, ie it treats any possible outcome the same. 
         
-        #Note also that if any of the getProba functions returns 0 or 1, 
-        #then p will equal 0 or 1, respectively. This can be seen just by looking at the equation. 
-        #If you are experiencing weird results, or see that a certain tag is being taken or rejected
-        #when it shouldn't be, this could be the cause. 
-            
+        #solved by self.baseproba and self.ceilingproba
+        ####Note also that if any of the getProba functions returns 0 or 1, 
+        ####then p will equal 0 or 1, respectively. This can be seen just by looking at the equation. 
+        ####If you are experiencing weird results, or see that a certain tag is being taken or rejected
+        ####when it shouldn't be, this could be the cause. 
+        
         probas = []
         probas.append(self.getProbaTagGivenParentTag(tag, target.getparent().tag))
         probas.append(self.getProbaTagGivenIndexUnderParent(tag, self._getElementIndex(target)))
@@ -120,19 +127,26 @@ class ElementTagFilter:
     
     
     
+    
+    def _setFloorCieling(self, p):
+        if p == 0.0: 
+            return self.floorproba
+        elif p == 1.0:
+            return self.ceilingproba
+        else:
+            return p
+    
+    
+    
+    
     def getProbaTagGivenParentTag(self, tag, parenttag):
         #find P(tag|parent) and return it
         #P(tag|parent) = number of times tag appears under parent / #number of times any tag appears under parent. 
         #need some code to control what happens if tag or parenttag is not in database - probably set to 
         #0 and wait for user input, or define a "base probability" that is used in the absence of information. 
-        
         tagcount = self.dbconnection.execute("select sum(count) from parenttagtable where targettag=? and parenttag=?", \
                                              (tag, parenttag)).fetchone()[0]
-        
-        if tagcount is None:
-            #no information, return base probability. (or ask for user input?)
-            self.log.debug('no information, return base proba: %s' % str(self.baseproba))
-            return self.baseproba
+        if tagcount is None: tagcount = 0
         
         totalcount = self.dbconnection.execute("select sum(count) from parenttagtable where parenttag=?", \
                                        (parenttag,)).fetchone()[0]    
@@ -142,6 +156,7 @@ class ElementTagFilter:
             return None
         
         p = float(tagcount) / float(totalcount)
+        p = self._setFloorCieling(p)
         self.log.debug('tag: %s\tparenttag: %s\tproba: %s / %s =  %s' % (tag, parenttag, str(tagcount), str(totalcount), str(p)))
         return p
     
@@ -152,11 +167,7 @@ class ElementTagFilter:
         #find P(tag|word in target.text) and return
         tagcount = self.dbconnection.execute("select sum(count) from targettexttable where targettag=? and word=?",\
                                              (tag, word)).fetchone()[0]
-        
-        if tagcount is None:
-            #no information, return base probability. (or ask for user input?)
-            self.log.debug('no information, return base proba: %s' % str(self.baseproba))
-            return self.baseproba
+        if tagcount is None: tagcount = 0
             
         totalcount = self.dbconnection.execute("select sum(count) from targettexttable where word=?", (word,)).fetchone()[0]
             
@@ -165,6 +176,7 @@ class ElementTagFilter:
             return None
         
         p = float(tagcount) / float(totalcount)
+        p = self._setFloorCieling(p)
         self.log.debug('tag: %s\tword: %s\tproba: %s/%s =  %s' % (tag, word, str(tagcount), str(totalcount), str(p)))
         return p
     
@@ -181,16 +193,14 @@ class ElementTagFilter:
         interval = 2
         
         count = self.dbconnection.execute("select sum(count) from targettextlengthtable where targettag=? and length>? and length<?", \
-                                          (tag, length - interval, length + interval)).fetchone()[0]
-                                          
-        if count is None:
-            self.log.debug("no information, return base proba: %s" % str(self.baseproba))
-            return self.baseproba
+                                          (tag, length - interval, length + interval)).fetchone()[0]                                          
+        if count is None: count = 0
         
         totalcount = self.dbconnection.execute("select sum(count) from targettextlengthtable where length>? and length<?", \
                                                (length - interval, length + interval)).fetchone()[0]
                                                     
         p = float(count) / float(totalcount)
+        p = self._setFloorCieling(p)
         self.log.debug('tag: %s\tlength: %s\tinterval: %s\tproba: %s/%s =  %s' % (tag, str(length), str(interval), str(count), str(totalcount), str(p)))
         return p
     
@@ -201,16 +211,9 @@ class ElementTagFilter:
     def getProbaTagGivenIndexUnderParent(self, tag, index):
         #get P(target tag = tag | target is at index "index" under its parent)
         #Should use intervals for this function, as in getProbaGivenTextLengthInterval()
-        indexcountdbslice = self.dbconnection.execute("select count from targetindextable where targettag=? and targetindex=?", \
-                                                    (tag, index)).fetchall()
-                                                    
         indexcount = self.dbconnection.execute("select sum(count) from targetindextable where targettag=? and targetindex=?",\
-                                          (tag, index)).fetchone()[0]
-                                          
-        if indexcount is None:
-            #no information, return base probability. (or ask for user input?)
-            self.log.debug('no information, return base proba: %s' % str(self.baseproba))
-            return self.baseproba
+                                          (tag, index)).fetchone()[0]   
+        if indexcount is None: indexcount = 0
             
         totalcount = self.dbconnection.execute("select sum(count) from targetindextable where targetindex=?", \
                                                (index,)).fetchone()[0]
@@ -220,6 +223,7 @@ class ElementTagFilter:
             return None
         
         p = float(indexcount) / float(totalcount)
+        p = self._setFloorCieling(p)
         self.log.debug('tag: %s\tindex: %s\tproba: %s/%s =  %s' % (tag, index, str(indexcount), str(totalcount), str(p)))
         return p
     
@@ -299,12 +303,14 @@ class ElementTagFilter:
                 record = self.dbconnection.execute("select count from parenttagtable where parenttag=? and targettag=?", \
                                                     (parenttag, tag)).fetchone() #.fetchall
                 if record is None:
-                    self.dbconnection.execute("insert into parenttagtable values(?, ?, 1, 0)", (parenttag, tag))
+                    self.log.debug('adding record: (%s, %s, 1, 0)' % (parenttag, tag))
+                    self.dbconnection.execute("insert into parenttagtable values(?, ?, ?, 0)", (parenttag, tag, d[tag][parenttag]))
 #                elif len(record) > 1:
 #                    self.log.error('len(dbslice) > 1, this means that there is more than one record for the word-targettag pair (%s, %s).\
 #                                     This should not happen, please fix the database' % (word, element.tag))
                 else:
                     newcount = record[0] + d[tag][parenttag]
+                    self.log.debug('updating record: (%s, %s, %i, 0' % (parenttag, tag, newcount))
                     self.dbconnection.execute("update parenttagtable set count=? where parenttag=? and targettag=?", \
                                               (newcount, parenttag, tag))
         self.dbconnection.commit()
@@ -337,7 +343,7 @@ class ElementTagFilter:
                 record = self.dbconnection.execute("select count from targettexttable where word=? and targettag=?", \
                                                     (word, tag)).fetchone() #.fetchall
                 if record is None:
-                    self.dbconnection.execute("insert into targettexttable values(?, ?, 1, 0)", (word, tag))
+                    self.dbconnection.execute("insert into targettexttable values(?, ?, ?, 0)", (word, tag, d[tag][word]))
 #                elif len(record) > 1:
 #                    self.log.error('len(dbslice) > 1, this means that there is more than one record for the word-targettag pair (%s, %s).\
 #                                     This should not happen, please fix the database' % (word, element.tag))
@@ -372,7 +378,7 @@ class ElementTagFilter:
                 record = self.dbconnection.execute("select count from targettextlengthtable where length=? and targettag=?", \
                                                     (textlength, tag)).fetchone() #.fetchall
                 if record is None:
-                    self.dbconnection.execute("insert into targettextlengthtable values(?, ?, 1, 0)", (textlength, tag))
+                    self.dbconnection.execute("insert into targettextlengthtable values(?, ?, ?, 0)", (textlength, tag, d[tag][textlength]))
 #                elif len(record) > 1:
 #                    self.log.error('len(dbslice) > 1, this means that there is more than one record for the word-targettag pair (%s, %s).\
 #                                     This should not happen, please fix the database' % (word, element.tag))
@@ -405,7 +411,7 @@ class ElementTagFilter:
                 record = self.dbconnection.execute("select count from targetindextable where targetindex=? and targettag=?", \
                                                     (index, tag)).fetchone() #.fetchall
                 if record is None:
-                    self.dbconnection.execute("insert into targetindextable values(?, ?, 1, 0)", (index, tag))
+                    self.dbconnection.execute("insert into targetindextable values(?, ?, ?, 0)", (index, tag, d[tag][index]))
 #                elif len(record) > 1:
 #                    self.log.error('len(dbslice) > 1, this means that there is more than one record for the word-targettag pair (%s, %s).\
 #                                     This should not happen, please fix the database' % (word, element.tag))
@@ -510,6 +516,8 @@ if __name__ == "__main__":
     
     optparser.add_option("--profile", action="store_true", dest="profile",
                          help="Use to activate profiling.")
+    optparser.add_option("--debug", action="store_true", dest="debug",
+                         help="Use to activate debugging.")
     
     (options, args) = optparser.parse_args()
     inputpath = options.inputpath
@@ -518,7 +526,8 @@ if __name__ == "__main__":
     resetdb = options.resetdb
     query = options.query
     profile = options.profile
-    database=options.database
+    database = options.database
+    debug = options.debug
     
     probataggiventext = options.probataggiventext.split(',')
     probataggivenparent = options.probataggivenparent.split(',')
@@ -549,6 +558,14 @@ if __name__ == "__main__":
     infoformatter = logging.Formatter("%(module)8.8s.%(funcName)20.20s%(levelname)10.10s\t%(message)s")
     infohandler.setFormatter(infoformatter)
     log.addHandler(infohandler)
+    
+    if debug:
+        debughandler = logging.StreamHandler(sys.stdout)
+        debughandler.setLevel(logging.DEBUG)
+    #    debugformatter = logging.Formatter("%(message)s")
+        debugformatter = logging.Formatter("%(module)8.8s.%(funcName)20.20s%(levelname)10.10s\t%(message)s")
+        debughandler.setFormatter(debugformatter)
+        log.addHandler(debughandler)
     
     
     filter = ElementTagFilter(database)
