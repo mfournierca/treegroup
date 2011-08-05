@@ -52,6 +52,16 @@ class AStarPathFinder:
         #step number is used to keep track of the process. 
         self.stepnumber = 0
         
+        #beam width. -1 means infinite width
+        self.beamwidth = -1
+        
+        #no backtracking
+        self.bactracking = False
+        
+        
+        
+        
+        
     def findPath(self):
         self.log.debug('starting path finder')
         while len(self._openset) > 0:
@@ -128,15 +138,23 @@ class AStarPathFinder:
         neighbors = Neighbors.findNeighbors_FirstValidationError(t)
         self.log.debug('found %i neighbors' % len(neighbors))
         
-        #there are no obstacles in the tree space, so backtracking should not be necessary. 
-        #also, it is difficult to define an accurate heuristic - the number of validation 
-        #errors consistently underestimates (so A* reverts to Dijkstras algo) and there are no other 
-        #obvious / easy heuristics. 
-        #So, try having only the neighbors in the open set. This will force the algorithm to always move 
-        #forward, no backtracking. This is accomplished by emptying the open set before processing 
-        #neighbors. All neighbors are then added, and removed and replaced again on the next iteration. 
-        #This is experimental / speculative - if it doesn't work, comment out the next line. 
-        self._openset = set()
+        if self.bactracking is False:    
+            #there are no obstacles in the tree space, so backtracking should not be necessary. 
+            #also, it is difficult to define an accurate heuristic - the number of validation 
+            #errors consistently underestimates (so A* reverts to Dijkstras algo) and there are no other 
+            #obvious / easy heuristics. 
+            #So, try having only the neighbors in the open set. This will force the algorithm to always move 
+            #forward, no backtracking. This is accomplished by emptying the open set before processing 
+            #neighbors. All neighbors are then added, and removed and replaced again on the next iteration. 
+            #This is experimental / speculative - change the self.bactracking variable in __init__()
+            self._openset = set()
+        
+        
+        #implement beamwidth
+        if self.beamwidth > 0:
+            neighbors.sort(key=lambda x: x.getCost())
+            neighbors = neighbors[:self.beamwidth]
+            
         
         for n in neighbors: 
             
@@ -158,14 +176,21 @@ class AStarPathFinder:
                 del n
                 n = oMember
             
-            
-            #get tentativeGScore = t.getGScore() + n.getGScore() + Tree.Tree.metric(t, n)
-            #have to include n.getGScore() to account for the costs calculated in the getNeighbors
-            #function
+                                
 #            self.log.debug('\ttree.getGScore(): %s' % str(t.getGScore()))
 #            self.log.debug('\tneighbor.getGScore(): %s' % str(n.getGScore()))
 #            self.log.debug('\tmetric: %s' % str(Tree.Tree.metric(n.getTree(), t.getTree())))
-            tentativeGScore = n.getGScore() + t.getGScore() + (float(Tree.Tree.metric(n.getTree(), t.getTree())) / 10.0)
+
+
+            #A* algo requires that the gscore be:
+            #get tentativeGScore = t.getGScore() + n.getGScore() + Tree.Tree.metric(t, n)
+            #
+            #We do this, but use
+            #get tentativeGScore = t.getGScore() + n.getCost()
+            #since cost includes the metric, see Neighbors.py
+            tentativeGScore = t.getGScore() + n.getCost() 
+            
+            
 #            try:
 #                tentativeGScore = t.getGScore() + n.getGScore() + Tree.Tree.metric(n.getTree(), t.getTree())
 #            except:
@@ -311,12 +336,12 @@ if __name__ == "__main__":
     warninghandler.setFormatter(warningformatter)
     log.addHandler(warninghandler)
     
-    infohandler = logging.StreamHandler(sys.stdout)
-    infohandler.setLevel(logging.INFO)
-#    infoformatter = logging.Formatter("%(message)s")
-    infoformatter = logging.Formatter("%(module)8.8s.%(funcName)20.20s%(levelname)10.10s\t%(message)s")
-    infohandler.setFormatter(infoformatter)
-    log.addHandler(infohandler)
+#    infohandler = logging.StreamHandler(sys.stdout)
+#    infohandler.setLevel(logging.INFO)
+##    infoformatter = logging.Formatter("%(message)s")
+#    infoformatter = logging.Formatter("%(module)8.8s.%(funcName)20.20s%(levelname)10.10s\t%(message)s")
+#    infohandler.setFormatter(infoformatter)
+#    log.addHandler(infohandler)
     
     if debug:
 #        debughandler = logging.FileHandler(os.path.basename(__file__).replace('.py', '-debug.txt'), 'w', encoding='utf-8')

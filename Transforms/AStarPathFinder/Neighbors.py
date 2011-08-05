@@ -5,7 +5,7 @@ import logging, lxml.etree, re, sys, os.path, copy
 import Element.Element
 import Tree.Tree
 
-import Errors
+import Errors, Filter
 
 sys.path.insert(0, os.path.dirname(__file__))
 
@@ -16,6 +16,12 @@ class Neighbor:
         self._fscore = None
         self._camefrom = None
         
+        #cost is used to control the performance of the path finder - 
+        #make some neighbors less "expensive" so that they will be chosen over 
+        #others. Cost can be set by considering the score from the tag filter, 
+        #or by putting in our own values to make certain operations more expensive.         
+        self._cost = 0
+
 #        self.dist = None
         
         self._tree = None
@@ -26,6 +32,11 @@ class Neighbor:
         self._id = None
         self._operandType = None
         self._targetElementStr = None
+        
+        
+        
+        #metric reduction factor
+#        self.metricadjustmentfactor = float(1) / float(10)
     
     #===========================================================================
     # accessor methods
@@ -127,12 +138,28 @@ class Neighbor:
     def getTargetElementStr(self):
         return self._targetElementStr
     
+    def setCost(self, filterscore, metric, metricnormalizationdenomiator, manualscore):
+        #three factors in cost (or there should be): filter score, metric, and manually set.
+        #should normalize these factors, ie force them all to be 0 < x < 1, so that none dominate
+        #normalize metric
+        metric = float(metric) / float(metricnormalizationfactor) #* self.metricadjustmentfactor
+        
+        #filterscore and manualscore are already normalized. 
+        
+        #the filter returns scores that are higher when better - we want the opposite
+        filterscore = 1 - filterscore
+        
+        self._cost = filterscore + metric + manualscore
+        
+    
+    def getCost(self):
+        return self._cost
     
     
     
     
     
-def findNeighbors_FirstValidationError(n):
+def findNeighbors_FirstValidationError(t):
     """Find Neighbors by fixing the first validation error. 
     
     Neighbors are defined as a tree that can be reached by some operation
@@ -152,6 +179,15 @@ def findNeighbors_FirstValidationError(n):
     import Generators.WrapText
     
     log = logging.getLogger()
+    
+    def getTreeSize(tree):
+        """used to get the tree size, which is used to normalize the metric"""
+        count = 0
+        for i in tree:
+            count = 1 + getTreeSize(i)
+        return count
+    
+    treeSize = getTreeSize(t.getroot())
        
 #    log.debug('creating neighbors')
     neighbors = []
@@ -162,11 +198,15 @@ def findNeighbors_FirstValidationError(n):
     #===========================================================================
     
     #Error parser
-    errorParser = Errors.ElementErrorParser(n.getTree())
+    errorParser = Errors.ElementErrorParser(t.getTree()())
     parsed = errorParser.parse()
     
     if parsed:
         #generate operands using the result of this error parser
+        
+        #filter acceptable tags
+        filter = Filter.ElementTagFilter()
+        filteredtags, filteredscores = filter.filter(errorParser.targetElement, errorParser.acceptableTags)
     
         renameGenerator = Generators.Rename.Generator()
         wrapGenerator = Generators.Wrap.Generator()
@@ -174,32 +214,33 @@ def findNeighbors_FirstValidationError(n):
         insertBeforeGenerator = Generators.InsertBefore.Generator()
         appendBeforeGenerator = Generators.AppendBefore.Generator()
         tag = '_'    
-        for tag in errorParser.acceptableTags:
+        for tag in filteredtags:
             
             #rename operator
             renameOperand = renameGenerator.generateOperand(errorParser.targetElement, tag)
-            renameNeighbor = Neighbor(Tree.Tree.add(copy.deepcopy(renameOperand.getTree()), n.getTree()))
+            renameNeighbor = Neighbor(Tree.Tree.add(copy.deepcopy(renameOperand.getTree()), t.getTree()()))
             renameNeighbor.setOperand(renameOperand.getTree())
             renameNeighbor.setOperandType('rename')
             renameNeighbor.setTargetElementStr(str(errorParser.targetElement))
-            cost = getCost(renameNeighbor, 'rename', tag)
-            if renameNeighbor.getGScore() is None:
-                renameNeighbor.setGScore(cost)
-            else:
-                renameNeighbor.setGScore(renameNeighbor.getGScore() + cost)
+            
+            renameNeighbor.setCost(filteredscores[tag], 
+                                   Tree.Tree.metric(t.getTree(), renameNeighbor.getTree()),
+                                   treeSize,
+                                   getManualCost(renameNeighbor, 'rename', tag)
+                                   )
             neighbors.append(renameNeighbor)
         
             #wrap operator
             wrapOperand = wrapGenerator.generateOperand(errorParser.targetElement, tag)
-            wrapNeighbor = Neighbor(Tree.Tree.add(copy.deepcopy(wrapOperand.getTree()), n.getTree()))
+            wrapNeighbor = Neighbor(Tree.Tree.add(copy.deepcopy(wrapOperand.getTree()), t.getTree()()))
             wrapNeighbor.setOperand(wrapOperand.getTree())
             wrapNeighbor.setOperandType('wrap')
             wrapNeighbor.setTargetElementStr(str(errorParser.targetElement))
-            cost = getCost(wrapNeighbor, 'wrap', tag)
-            if wrapNeighbor.getGScore() is None:
-                wrapNeighbor.setGScore(cost)
-            else:
-                wrapNeighbor.setGScore(wrapNeighbor.getGScore() + cost)
+            wrapNeighbor.setCost(filteredscores[tag], 
+                               Tree.Tree.metric(t.getTree(), wrapNeighbor.getTree()),
+                               treeSize,
+                               getManualCost(wrapNeighbor, 'wrap', tag)
+                               )
             neighbors.append(wrapNeighbor)
             
             #InsertBefore operator
@@ -207,15 +248,15 @@ def findNeighbors_FirstValidationError(n):
             if not insertBeforeOperand:
                 pass
             else:
-                insertBeforeNeighbor = Neighbor(Tree.Tree.add(copy.deepcopy(insertBeforeOperand.getTree()), n.getTree()))
+                insertBeforeNeighbor = Neighbor(Tree.Tree.add(copy.deepcopy(insertBeforeOperand.getTree()), t.getTree()()))
                 insertBeforeNeighbor.setOperand(insertBeforeOperand.getTree())
                 insertBeforeNeighbor.setOperandType('insertBefore')
                 insertBeforeNeighbor.setTargetElementStr(str(errorParser.targetElement))
-                cost = getCost(insertBeforeNeighbor, 'insertBefore', tag)
-                if not insertBeforeNeighbor.getGScore():
-                    insertBeforeNeighbor.setGScore(cost)
-                else:
-                    insertBeforeNeighbor.setGScore(insertBeforeNeighbor.getGScore() + cost)
+                insertBeforeNeighbor.setCost(filteredscores[tag],
+                                             Tree.Tree.metric(t.getTree(), insertBeforeNeighbore.getTree()),
+                                             treeSize,
+                                             getManualCost(insertBeforeNeighbor, 'insertBefore', tag),
+                                             )
                 neighbors.append(insertBeforeNeighbor)
             
         #unwrap operator. There is only one result of the unwrap operator, so it comes outside
@@ -225,15 +266,15 @@ def findNeighbors_FirstValidationError(n):
             #happens when trying to unwrap the root
             pass
         else:
-            unwrapNeighbor = Neighbor(Tree.Tree.add(copy.deepcopy(unwrapOperand.getTree()), n.getTree()))
+            unwrapNeighbor = Neighbor(Tree.Tree.add(copy.deepcopy(unwrapOperand.getTree()), t.getTree()()))
             unwrapNeighbor.setOperand(unwrapOperand.getTree())
             unwrapNeighbor.setOperandType('unwrap')
             unwrapNeighbor.setTargetElementStr(str(errorParser.targetElement))
-            cost = getCost(unwrapNeighbor, 'unwrap', tag)
-            if unwrapNeighbor.getGScore() is None:
-                unwrapNeighbor.setGScore(cost)
-            else:
-                unwrapNeighbor.setGScore(unwrapNeighbor.getGScore() + cost)
+            unwrapNeighbor.setCost(0.5,
+                                 Tree.Tree.metric(t.getTree(), unwrapNeighbors.getTree()),
+                                 treeSize,
+                                 getManualCost(unwrapNeighbor, 'unwrap', tag),
+                                 )
             neighbors.append(unwrapNeighbor)
         
         #appendBefore operator. There is only one result of the appendBefore operator, so it comes outside
@@ -243,15 +284,15 @@ def findNeighbors_FirstValidationError(n):
             #happens when trying to appendBefore the root
             pass
         else:
-            appendBeforeNeighbor = Neighbor(Tree.Tree.add(copy.deepcopy(appendBeforeOperand.getTree()), n.getTree()))
+            appendBeforeNeighbor = Neighbor(Tree.Tree.add(copy.deepcopy(appendBeforeOperand.getTree()), t.getTree()()))
             appendBeforeNeighbor.setOperand(appendBeforeOperand.getTree())
             appendBeforeNeighbor.setOperandType('appendBefore')
             appendBeforeNeighbor.setTargetElementStr(str(errorParser.targetElement))
-            cost = getCost(appendBeforeNeighbor, 'appendBefore', tag)
-            if appendBeforeNeighbor.getGScore() is None:
-                appendBeforeNeighbor.setGScore(cost)
-            else:
-                appendBeforeNeighbor.setGScore(appendBeforeNeighbor.getGScore() + cost)
+            appendBeforeNeighbor.setCost(0.5,
+                                         Tree.Tree.metric(t.getTree(), unwrapNeighbors.getTree()),
+                                         treeSize,
+                                         getManualCost(appendBeforeNeighbor, 'appendBefore', tag),
+                                         )
             neighbors.append(appendBeforeNeighbor)
         
         #return neighbors.
@@ -261,7 +302,7 @@ def findNeighbors_FirstValidationError(n):
     #===========================================================================
     # attribute errors
     #===========================================================================
-    errorParser = Errors.AttributeErrorParser(n.getTree())
+    errorParser = Errors.AttributeErrorParser(t.getTree()())
     parsed = errorParser.parse()
     
     if parsed:
@@ -272,24 +313,30 @@ def findNeighbors_FirstValidationError(n):
             renameAttributeOperand = renameAttributeGenerator.generateOperand(errorParser.targetElement, errorParser.actualAttribute, attributeName)
             if not renameAttributeOperand:
                 continue
-            renameAttributeNeighbor = Neighbor(Tree.Tree.add(copy.deepcopy(renameAttributeOperand.getTree()), n.getTree()))
+            renameAttributeNeighbor = Neighbor(Tree.Tree.add(copy.deepcopy(renameAttributeOperand.getTree()), t.getTree()()))
             renameAttributeNeighbor.setOperand(renameAttributeOperand.getTree())
             renameAttributeNeighbor.setOperandType('renameAttribute')
             renameAttributeNeighbor.setTargetElementStr(str(errorParser.targetElement))
-            cost = getCost(renameAttributeNeighbor, 'renameAttribute', None)
-            renameAttributeNeighbor.setGScore(cost)
+            renameAttributeNeighbor.setCost(0.5,
+                                         Tree.Tree.metric(t.getTree(), renameAttributeNeighbor.getTree()),
+                                         treeSize,
+                                         getManualCost(renameAttributeNeighbor, 'renameAttribute', None),
+                                         )
             neighbors.append(renameAttributeNeighbor)
 
 
         addAttributeGenerator = Generators.AddAttribute.Generator()
         for attributeName in errorParser.acceptableAttributes:
             addAttributeOperand = addAttributeGenerator.generateOperand(errorParser.targetElement, attributeName)
-            addAttributeNeighbor = Neighbor(Tree.Tree.add(copy.deepcopy(addAttributeOperand.getTree()), n.getTree()))
+            addAttributeNeighbor = Neighbor(Tree.Tree.add(copy.deepcopy(addAttributeOperand.getTree()), t.getTree()()))
             addAttributeNeighbor.setOperand(addAttributeOperand.getTree())
             addAttributeNeighbor.setOperandType('addAttribute')
             addAttributeNeighbor.setTargetElementStr(str(errorParser.targetElement))
-            cost = getCost(addAttributeNeighbor, 'addAttribute', None)
-            addAttributeNeighbor.setGScore(cost)
+            addAttributeNeighbor.setCost(0.5,
+                                         Tree.Tree.metric(t.getTree(), addAttributeNeighbor.getTree()),
+                                         treeSize,
+                                         getManualCost(addAttributeNeighbor, 'addAttribute', None),
+                                         )
             neighbors.append(addAttributeNeighbor)
 
         return neighbors
@@ -298,22 +345,30 @@ def findNeighbors_FirstValidationError(n):
     #===========================================================================
     # text errors
     #===========================================================================
-    errorParser = Errors.TextErrorParser(n.getTree())
+    errorParser = Errors.TextErrorParser(t.getTree()())
     parsed = errorParser.parse()
     
     if parsed and errorParser.text:
         #generate operands using the result of this error parser
         wrapTextGenerator = Generators.WrapText.Generator()
-        for tag in errorParser.acceptableTags:
+
+        #filter acceptable tags
+        filter = Filter.ElementTagFilter()
+        filteredtags, filteredscores = filter.filter(errorParser.targetElement, errorParser.acceptableTags)
+        
+        for tag in filteredtags:
             wrapTextOperand = wrapTextGenerator.generateOperand(errorParser.targetElement, tag)
             if not wrapTextOperand:
                 continue
-            wrapTextNeighbor = Neighbor(Tree.Tree.add(copy.deepcopy(wrapTextOperand.getTree()), n.getTree()))
+            wrapTextNeighbor = Neighbor(Tree.Tree.add(copy.deepcopy(wrapTextOperand.getTree()), t.getTree()()))
             wrapTextNeighbor.setOperand(wrapTextOperand.getTree())
             wrapTextNeighbor.setOperandType('wrapText')
             wrapTextNeighbor.setTargetElementStr(str(errorParser.targetElement))
-            cost = getCost(wrapTextNeighbor, 'wrapText', tag)
-            wrapTextNeighbor.setGScore(cost)
+            wrapTextNeighbor.setCost(filteredscores[tag],
+                                     Tree.Tree.metric(t.getTree(), wrapTextNeighbor.getTree()),
+                                     treeSize,
+                                     getManualCost(wrapTextNeighbor, 'wrapText', tag),
+                                     )
             neighbors.append(wrapTextNeighbor)
 
         return neighbors
@@ -339,7 +394,7 @@ def findNeighbors_FirstValidationError(n):
 
 
 
-def getCost(neighbor, operandtype, desttag):
+def getManaulCost(neighbor, operandtype, desttag):
     """A placeholder function. Get a 'cost' of the neighbor based on some 
     criteria. The 'cost' should reflect the 'cost' of using this neighbor - 
     better or more desirable neighbors should receive a lower score. 
@@ -350,22 +405,17 @@ def getCost(neighbor, operandtype, desttag):
     for now in the proof of concept stage we are simply going to hard code 
     everything with if statements."""
     
+    #result must be between 0 and 1
+    
     cost = 0
     
     #account for operandtype
-    if operandtype == 'rename': cost += 1
-    elif operandtype == 'renameAttribute': cost += 1
-    elif operandtype == 'wrap': cost += 2
-    elif operandtype == 'unwrap': cost += 3
-    elif operandtype == 'insertBefore': cost += 2
+    if operandtype == 'rename': cost += .25
+    elif operandtype == 'renameAttribute': cost += .25
+    elif operandtype == 'wrap': cost += .5
+    elif operandtype == 'unwrap': cost += .75
+    elif operandtype == 'insertBefore': cost += .5
     elif operandtype == 'appendBefore': cost += 0
-    else: cost += 2
-    
-    #account for dest tag
-    if desttag == 'body': cost += 0 
-    elif desttag == 'topic': cost += 0
-    elif desttag == 'task': cost += 1
-    elif desttag == 'title': cost += 1
     else: cost += 1
     
     return cost
