@@ -192,7 +192,7 @@ class Neighbor:
     
     
     
-def findNeighbors_FirstValidationError(t):
+def findNeighbors_FirstValidationError(t, ignore_filter=False):
     """Find Neighbors by fixing the first validation error. 
     
     Neighbors are defined as a tree that can be reached by some operation
@@ -238,9 +238,14 @@ def findNeighbors_FirstValidationError(t):
         #generate operands using the result of this error parser
         
         #filter acceptable tags
-        filter = Filter.ElementTagFilter()
-        filteredtags, filteredscores = filter.filter(errorParser.targetElement, errorParser.acceptableTags)
-    
+        if not ignore_filter:
+            filter = Filter.ElementTagFilter()
+            filteredtags, filteredscores = filter.filter(errorParser.targetElement, errorParser.acceptableTags)
+        else:
+            filteredtags = errorParser.acceptableTags
+            filteredscores = {}
+            for i in filteredtags: filteredscores[i] = 1
+            
         renameGenerator = Generators.Rename.Generator()
         wrapGenerator = Generators.Wrap.Generator()
         unwrapGenerator = Generators.Unwrap.Generator()
@@ -392,8 +397,13 @@ def findNeighbors_FirstValidationError(t):
         wrapTextGenerator = Generators.WrapText.Generator()
 
         #filter acceptable tags
-        filter = Filter.ElementTagFilter()
-        filteredtags, filteredscores = filter.filter(errorParser.targetElement, errorParser.acceptableTags)
+        if not ignore_filter:
+            filter = Filter.ElementTagFilter()
+            filteredtags, filteredscores = filter.filter(errorParser.targetElement, errorParser.acceptableTags)
+        else:
+            filteredtags = errorParser.acceptableTags
+            filterscores = {}
+            for i in filteredtags: filteredscores[i] = 1
         
         for tag in filteredtags:
             wrapTextOperand = wrapTextGenerator.generateOperand(errorParser.targetElement, tag)

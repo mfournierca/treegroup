@@ -38,7 +38,7 @@ class test_findNeighbors_FirstValidationError(unittest.TestCase):
         self.log.debug('running %s' % __name__)
         testfile = os.path.join(self.testfilesdir, 'NeighborsTest2.xml')
         tree = lxml.etree.parse(testfile)
-        neighbors = Neighbors.findNeighbors_FirstValidationError(Neighbors.Neighbor(tree))
+        neighbors = Neighbors.findNeighbors_FirstValidationError(Neighbors.Neighbor(tree), ignore_filter=True)
         expectedneighbors = ['<dita><concept/></dita>', \
                             '<dita><glossentry/></dita>',\
                             '<dita><reference/></dita>',\
@@ -75,7 +75,7 @@ class test_findNeighbors_FirstValidationError(unittest.TestCase):
         self.log.debug('running %s' % __name__)
         testfile = os.path.join(self.testfilesdir, 'NeighborsTest3.xml')
         tree = lxml.etree.parse(testfile)
-        neighbors = Neighbors.findNeighbors_FirstValidationError(Neighbors.Neighbor(tree))
+        neighbors = Neighbors.findNeighbors_FirstValidationError(Neighbors.Neighbor(tree), ignore_filter=True)
         expectedneighbors = ['<dita><concept/><b/></dita>', \
                             '<dita><concept><a/>\n</concept>\n<b/></dita>',\
                             '<dita><concept/><a/><b/></dita>', \
@@ -128,7 +128,7 @@ class test_findNeighbors_FirstValidationError(unittest.TestCase):
         self.log.debug('running %s' % __name__)
         testfile = os.path.join(self.testfilesdir, 'NeighborsTest5.xml')
         tree = lxml.etree.parse(testfile)
-        neighbors = Neighbors.findNeighbors_FirstValidationError(Neighbors.Neighbor(tree))
+        neighbors = Neighbors.findNeighbors_FirstValidationError(Neighbors.Neighbor(tree), ignore_filter=True)
         expectedneighbors = ['<dita><topic><title/><abstract/></topic></dita>',
                              '<dita><topic><title/><body/></topic></dita>',   
                              '<dita><topic><title/><concept/></topic></dita>',

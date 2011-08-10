@@ -142,6 +142,21 @@ class test_Generator(unittest.TestCase):
       
         
         
+    def test_FullDitaFile(self):
+        """Test on a full dita file"""
+        self.log.debug('')
+        self.log.debug('')
+        self.log.debug('running %s' % __name__)
+        
+        tree = lxml.etree.parse(os.path.join(self.testfilesdir, 'InsertBeforeTest4.xml'))
+        targetElement = tree.getroot()[0][0]
+        expectedTree = lxml.etree.parse(os.path.join(self.testfilesdir, 'InsertBeforeTest4_expected.xml'))
+        
+        operand = self.generator.generateOperand(targetElement, 'title')
+        self.assertTrue(Tree.Tree.equal(expectedTree, Tree.Tree.add(operand.getTree(), tree)), "InsertBefore Generator generated the wrong operand. \
+        \nExpected %s \
+        \ngot %s" % (lxml.etree.tostring(expectedTree), lxml.etree.tostring(operand.getTree())))
+      
         
         
         

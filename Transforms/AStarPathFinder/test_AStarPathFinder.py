@@ -24,7 +24,7 @@ class test_processNeighbors(unittest.TestCase):
         
         #check open set, should only contain one entry
         openset = pathfinder._openset
-        expectedopensetlength = 2
+        expectedopensetlength = 3
         self.assertEqual(len(openset), expectedopensetlength, "processNeighbors created open set of length %i, expected %i" % (len(openset), expectedopensetlength))
         for o in openset:
             pass

@@ -41,30 +41,35 @@ class Generator:
         #this case, A and C are full trees, and we don't know what C is. 
         #The method used here builds the operand, B, directly which avoids finding 
         #the full trees and saves time and headaches.    
-        #self.log.debug('generating insertbefore operand')
-        #self.log.debug('targetElement: %s' % targetElement)
-        #self.log.debug('insertbefore: %s' % tag)
+        self.log.debug('generating insertbefore operand')
+        self.log.debug('targetElement: %s' % targetElement)
+        self.log.debug('insertbefore: %s' % tag)
         
         if targetElement.getparent() is None:
             #target is root
             return None
         
         #copy, invert and set the target element
+        self.log.debug('inverting target: %s' % str(targetElement))
         operand.setTarget(Tree.Tree.invert(copy.deepcopy(targetElement)))
         
         #take inverse of siblings of target, append after target
         for sibling in targetElement.itersiblings():
+            self.log.debug('appending inverted sibling: %s' % str(sibling))
             siblingcopy = copy.deepcopy(sibling)
             operand.getTarget().getparent().append(Tree.Tree.invert(siblingcopy))
             
         #add new element to target
+        self.log.debug('adding new element to operand: %s' % tag)
         Element.Element.add(operand.getTarget(), lxml.etree.Element(tag))
         
         #add target after operand target
         index = DitaTools.Element.Functions.get_index(targetElement) + 1
         if len(operand.getTarget().getparent()) > index:
+            self.log.debug('adding target at index %i: %s' % (index, str(targetElement)))
             Tree.Tree.add(operand.getTarget().getparent()[index], targetElement)
         else:
+            self.log.debug('appending target: %s' % str(targetElement))
             operand.getTarget().getparent().append(copy.deepcopy(targetElement))
         index += 1
         
@@ -74,14 +79,14 @@ class Generator:
                 #the target is the root and has no siblings
                 break 
             if len(operand.getTarget().getparent()) > index:
-                #self.log.debug('\tadding sibling %s at index %i' % (str(sibling), index))
-                Tree.Tree.add(operand.getTarget().getparent()[index], sibling)
+                self.log.debug('adding sibling at index %i: %s' % (index, str(sibling)))
+                Tree.Tree.add(operand.getTarget().getparent()[index], copy.deepcopy(sibling))
             else:
                 #if you don't copy the sibling, it gets moved out of the target tree and into the operand, which may cause problems
                 #depending on what the user is doing. This function should not alter the target tree (that the user passes), 
                 #it should only create an operand. Therefore make a copy of the sibling before adding it to the operand, so that 
                 #the target tree does not change.
-                #self.log.debug('\tindex is %i, parent length is %i, appending sibling' % (index, len(operand.getTarget().getparent())))
+                self.log.debug('index %i, parent length %i, appending sibling: %s' % (index, len(operand.getTarget().getparent()), str(sibling)))
                 operand.getTarget().getparent().append(copy.deepcopy(sibling))
             index += 1
 
