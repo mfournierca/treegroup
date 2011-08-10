@@ -56,7 +56,7 @@ class AStarPathFinder:
         self.beamwidth = -1
         
         #no backtracking
-        self.bactracking = False
+        self.bactracking = True
         
         
         
@@ -69,8 +69,11 @@ class AStarPathFinder:
             
             t = self.findLowestFscore()
             
-            self.log.debug('')
-            self.log.debug('')
+            self.log.info('')
+            self.log.info('')
+            self.log.info('')
+            self.log.info('Size of open set: %i' % len(self._openset))
+            self.log.info('Size of closed set: %i' % len(self._closedset))
             self.log.info('Tree in open set with lowest FScore: %s' % str(t))
             self.log.info('\tFScore: %s' % str(t.getFScore()))
             self.log.info('\tGScore: %s' % str(t.getGScore()))
@@ -147,17 +150,25 @@ class AStarPathFinder:
             #forward, no backtracking. This is accomplished by emptying the open set before processing 
             #neighbors. All neighbors are then added, and removed and replaced again on the next iteration. 
             #This is experimental / speculative - change the self.bactracking variable in __init__()
+            
+            #this is a crappy solution - backtracking can be avoided by having the heuristic consistently 
+            #overestimate. This is a much more elegant solution, and can be accomplished by correctly balancing
+            #the heuristic (ie # of validation errors) against the cost function in Neighbors.py. 
+            
             self._openset = set()
+            self.log.info("backtracking is False, emptied openset")
         
         
         #implement beamwidth
         if self.beamwidth > 0:
             neighbors.sort(key=lambda x: x.getCost())
             neighbors = neighbors[:self.beamwidth]
+            self.log.info("reduced number of neighbors to beamwidth: %s" % str(neighbors))
             
         
         for n in neighbors: 
             
+            self.log.info('processing neighbor %s' % str(n))
             #if n in closed set, continue
             if self._inClosedSet(n): 
                 self.log.debug('\t%s in closed set, continue' % str(n))
@@ -177,11 +188,6 @@ class AStarPathFinder:
                 n = oMember
             
                                 
-#            self.log.debug('\ttree.getGScore(): %s' % str(t.getGScore()))
-#            self.log.debug('\tneighbor.getGScore(): %s' % str(n.getGScore()))
-#            self.log.debug('\tmetric: %s' % str(Tree.Tree.metric(n.getTree(), t.getTree())))
-
-
             #A* algo requires that the gscore be:
             #get tentativeGScore = t.getGScore() + n.getGScore() + Tree.Tree.metric(t, n)
             #
@@ -190,15 +196,11 @@ class AStarPathFinder:
             #since cost includes the metric, see Neighbors.py
             tentativeGScore = t.getGScore() + n.getCost() 
             
-            
-#            try:
-#                tentativeGScore = t.getGScore() + n.getGScore() + Tree.Tree.metric(n.getTree(), t.getTree())
-#            except:
-#                self.log.debug(str(n))
-#                self.log.debug(str(n.getTree()))
-#                self.log.debug(lxml.etree.tostring(n.getTree()))
-#            self.log.debug('\ttentative gscore: %s' % str(tentativeGScore))
-            
+            self.log.info('tree.getGScore(): %s' % str(t.getGScore()))
+            self.log.info('neighbor.getCost(): %s' % str(n.getCost()))
+            self.log.info('tentative gscore: %s' % str(tentativeGScore))
+
+
          
             if oMember is False:
 #                self.log.debug('\tnot in open set, adding to open set')
@@ -218,8 +220,8 @@ class AStarPathFinder:
                 n.setFScore(n.getGScore() + n.getHScore())
                 
                 #update closed and open set #?
-            self.log.debug('\tgscore: %s\thscore: %s\tfscore: %s' % (str(n.getGScore()), str(n.getHScore()), str(n.getFScore())))
-
+            self.log.info('gscore: %s\thscore: %s\tfscore: %s' % (str(n.getGScore()), str(n.getHScore()), str(n.getFScore())))
+            self.log.info('')
 
 
     def findLowestFscore(self):
@@ -336,12 +338,13 @@ if __name__ == "__main__":
     warninghandler.setFormatter(warningformatter)
     log.addHandler(warninghandler)
     
-#    infohandler = logging.StreamHandler(sys.stdout)
-#    infohandler.setLevel(logging.INFO)
-##    infoformatter = logging.Formatter("%(message)s")
-#    infoformatter = logging.Formatter("%(module)8.8s.%(funcName)20.20s%(levelname)10.10s\t%(message)s")
-#    infohandler.setFormatter(infoformatter)
-#    log.addHandler(infohandler)
+    if not debug:
+        infohandler = logging.StreamHandler(sys.stdout)
+        infohandler.setLevel(logging.INFO)
+    #    infoformatter = logging.Formatter("%(message)s")
+        infoformatter = logging.Formatter("%(module)8.8s.%(funcName)20.20s%(levelname)10.10s\t%(message)s")
+        infohandler.setFormatter(infoformatter)
+        log.addHandler(infohandler)
     
     if debug:
 #        debughandler = logging.FileHandler(os.path.basename(__file__).replace('.py', '-debug.txt'), 'w', encoding='utf-8')
@@ -360,7 +363,7 @@ if __name__ == "__main__":
     # #begin transformation
     #===========================================================================
     
-    log.debug("transforming file: %s" % input)
+    log.info("transforming file: %s" % input)
         
     #initialize transformation object
     pathfinder = AStarPathFinder(input, tempdir, debug)
@@ -379,9 +382,7 @@ if __name__ == "__main__":
         #perform transformation
         result = pathfinder.findPath()
     
-    print(lxml.etree.tostring(result))
-    
     #add path to input
     log.info('writing output to %s' % output)
-    DitaTools.Tree.File.Dita.write_tree_to_file(result, output)
+    DitaTools.Tree.File.Dita.write_root_to_file(result.getroot(), output)
     

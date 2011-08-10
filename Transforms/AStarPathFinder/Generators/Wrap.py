@@ -36,7 +36,7 @@ class Generator:
         
         operand = self._generateOperand(Operand.Operand(targetElement), targetElement, tag)
         
-        #self.log.debug('created operand: %s' % str(operand))
+#        self.log.info('created operand: %s' % str(operand))
         
         return operand
     

@@ -80,7 +80,7 @@ class ElementTagFilter:
         #prove what the correct value is. For now, we guess.
         #A value of 0.5 essentially returns no information, and does not bias the filter in either
         #direction 
-        self.floorproba = 0.5
+        self.floorproba = 0.1
             
         #similarly, by looking at the function in self.getTagScore() you can see that if any of the
         #probas is 1, then the entire result becomes 1. This is also not desirable for the same reason as 
@@ -132,11 +132,10 @@ class ElementTagFilter:
         """Apply the filter and return the most likely operations"""
         
         self.target = target
-        self.tree = tree
         
         #get scores
         scores = {}
-        for t in acceptabletags:
+        for t in acceptableTags:
             if t in scores.keys():
                 self.log.error('repeated tag %s' % t)
                 sys.exit()
@@ -151,9 +150,16 @@ class ElementTagFilter:
         
         #take top self.width entries in acceptableTags and return. self.width can be set in __init__()
         #want to pass the completed tag list and the scores back.
+        
+        #
+        #Want to include tags that have the same score as the bottom of the slice created below - even if the
+        #slice gets longer as a result. 
+        #
         if self.width <= 0:
+            self.log.info("filteredtags: %s" % str(sortedtags))
             return sortedtags, scores
         else:
+            self.log.info("filteredtags: %s" % str(sortedtags[:self.width]))
             return sortedtags[:self.width], scores
     
     
@@ -197,17 +203,16 @@ class ElementTagFilter:
         
         #descendants
         probas.append(self.getProbaTagGivenNumberOfChildrenRange(tag, len(target)))
-        
-        
+    
         #remove 'uninteresting' entries from probas, ie probas that are too close to 0.5
         
-        p1 = 1
+        p1 = 1.0
         for i in probas: p1 = p1*i
-        p2 = 1
+        p2 = 1.0
         for i in probas: p2 = p2*(1 - i)
         
         p = p1 / (p1 + p2)
-        self.log.debug('tag score: %s / (%s + %s) = %s' % (p1, p1, p2, p))
+        self.log.info('tag score: %12.20s / (%12.20s + %12.20s) = %12.20s' % (str(p1), str(p1), str(p2), str(p)))
         return p
         
     
@@ -215,9 +220,9 @@ class ElementTagFilter:
     
     
     def _setFloorCieling(self, p):
-        if p == 0.0: 
+        if p < self.floorproba: 
             return self.floorproba
-        elif p == 1.0:
+        elif p > self.ceilingproba:
             return self.ceilingproba
         else:
             return p
@@ -247,7 +252,7 @@ class ElementTagFilter:
         
         p = float(tagcount) / float(totalcount)
         p = self._setFloorCieling(p)
-        self.log.debug('tag: %s\tparenttag: %s\tproba: %s / %s =  %s' % (tag, parenttag, str(tagcount), str(totalcount), str(p)))
+        self.log.info('P(tag = %10.20s | parenttag = %20.20s) = %6.10s / %6.10s = %2.10s' % (tag, parenttag, str(tagcount), str(totalcount), str(p)))
         return p
     
         
@@ -280,7 +285,7 @@ class ElementTagFilter:
         
         p = float(indexcount) / float(totalcount)
         p = self._setFloorCieling(p)
-        self.log.debug('tag: %s\tindex: %s\tlowerbound: %s\tupperbound: %s\tproba: %s/%s =  %s' % (tag, index, str(lowerbound), str(upperbound), str(indexcount), str(totalcount), str(p)))
+        self.log.info('P(tag = %10.20s | %3.10s <= index under parent <= %3.10s) = %6.10s / %6.10s = %2.10s' % (tag, str(lowerbound), str(upperbound), str(indexcount), str(totalcount), str(p)))
         return p
     
     
@@ -306,7 +311,8 @@ class ElementTagFilter:
         
         p = float(tagcount) / float(totalcount)
         p = self._setFloorCieling(p)
-        self.log.debug('tag: %s\tword: %s\tproba: %s/%s =  %s' % (tag, word, str(tagcount), str(totalcount), str(p)))
+        self.log.info('P(tag = %10.20s | word "%s" is in text) = %6.10s / %6.10s = %2.10s' % (tag, word, str(tagcount), str(totalcount), str(p)))
+        #self.log.debug('tag: %s\tword: %s\tproba: %s/%s =  %s' % (tag, word, str(tagcount), str(totalcount), str(p)))
         return p
     
     
@@ -335,7 +341,8 @@ class ElementTagFilter:
         
         p = float(count) / float(totalcount)
         p = self._setFloorCieling(p)
-        self.log.debug('tag: %s\tlength: %s\tlowerbound: %s\tupperbound: %s\tproba: %s/%s =  %s' % (tag, str(length), str(lowerbound), str(upperbound), str(count), str(totalcount), str(p)))
+        self.log.info("P(tag = %10.20s | %3.10s <= text length <= %10.10s) = %6.10s / %6.10s = %2.10s" % (tag, str(lowerbound), str(upperbound), str(count), str(totalcount), str(p)))
+        #self.log.debug('tag: %s\tlength: %s\tlowerbound: %s\tupperbound: %s\tproba: %s/%s =  %s' % (tag, str(length), str(lowerbound), str(upperbound), str(count), str(totalcount), str(p)))
         return p
     
         
@@ -363,7 +370,8 @@ class ElementTagFilter:
             
         p = float(siblingcount) / float(totalcount)
         p = self._setFloorCieling(p)
-        self.log.debug('tag: %s\tnumber: %s\tlowerbound: %s\tupperbound: %s\tproba: %s/%s =  %s' % (tag, number, str(lowerbound), str(upperbound), str(siblingcount), str(totalcount), str(p)))
+        self.log.info("P(tag = %10.20s | %3.10s <= number of siblings <= %3.5s) = %6.10s / %6.10s = %2.10s" % (tag, str(lowerbound), str(upperbound), str(siblingcount), str(totalcount), str(p)))
+        #self.log.debug('tag: %s\tnumber: %s\tlowerbound: %s\tupperbound: %s\tproba: %s/%s =  %s' % (tag, number, str(lowerbound), str(upperbound), str(siblingcount), str(totalcount), str(p)))
         return p
     
     
@@ -391,7 +399,8 @@ class ElementTagFilter:
             
         p = float(subcount) / float(totalcount)
         p = self._setFloorCieling(p)
-        self.log.debug('tag: %s\tnumber: %s\tlowerbound: %s\tupperbound: %s\tproba: %s/%s =  %s' % (tag, number, str(lowerbound), str(upperbound), str(subcount), str(totalcount), str(p)))
+        self.log.info("P(tag = %10.20s | %3.10s <= number of children <= %3.10s) = %6.10s / %6.10s = %2.10s" % (tag, str(lowerbound), str(upperbound), str(subcount), str(totalcount), str(p)))
+        #self.log.debug('tag: %s\tnumber: %s\tlowerbound: %s\tupperbound: %s\tproba: %s/%s =  %s' % (tag, number, str(lowerbound), str(upperbound), str(subcount), str(totalcount), str(p)))
         return p
     
     
@@ -419,7 +428,8 @@ class ElementTagFilter:
         
         p = float(subcount) / float(totalcount)
         p = self._setFloorCieling(p)
-        self.log.debug('tag: %s\tword: %s\tdepth: %s\tlowerbound: %s\tupperbound: %s\tproba: %s/%s =  %s' % (tag, word, str(depth), str(lowerbound), str(upperbound), str(subcount), str(totalcount), str(p)))
+        self.log.info("P(tag = %10.20s | text within descendant between levels %3.10s -> %3.10s) = %6.10s / %6.10s = %2.10s" % (tag, str(lowerbound), str(upperbound), str(subcount), str(totalcount), str(p))) 
+        #self.log.debug('tag: %s\tword: %s\tdepth: %s\tlowerbound: %s\tupperbound: %s\tproba: %s/%s =  %s' % (tag, word, str(depth), str(lowerbound), str(upperbound), str(subcount), str(totalcount), str(p)))
         return p
         
                                             
@@ -519,11 +529,11 @@ class ElementTagFilter:
                     continue
                 
                 if record is None: 
-                    self.log.debug("adding record: (%i, %s, %i, 0)" % (childcount, tag, d[tag][childcount]))
+                    #self.log.debug("adding record: (%i, %s, %i, 0)" % (childcount, tag, d[tag][childcount]))
                     self.dbconnection.execute("insert into childcounttable values(?, ?, ?, 0)", (childcount, tag, d[tag][childcount]))
                 else:
                     newcount = record[0] + d[tag][childcount]
-                    self.log.debug("updating record: (%i, %s, %i, 0)" % (childcount, tag, newcount))
+                    #self.log.debug("updating record: (%i, %s, %i, 0)" % (childcount, tag, newcount))
                     self.dbconnection.execute("update childcounttable set count=? where childcount=? and targettag=?", \
                                               (newcount, childcount, tag))
         self.dbconnection.commit()
@@ -562,11 +572,11 @@ class ElementTagFilter:
                     continue
                 
                 if record is None: 
-                    self.log.debug("adding record: (%i, %s, %i, 0)" % (siblingcount, tag, d[tag][siblingcount]))
+                    #self.log.debug("adding record: (%i, %s, %i, 0)" % (siblingcount, tag, d[tag][siblingcount]))
                     self.dbconnection.execute("insert into siblingcounttable values(?, ?, ?, 0)", (siblingcount, tag, d[tag][siblingcount]))
                 else:
                     newcount = record[0] + d[tag][siblingcount]
-                    self.log.debug("updating record: (%i, %s, %i, 0)" % (siblingcount, tag, newcount))
+                    #self.log.debug("updating record: (%i, %s, %i, 0)" % (siblingcount, tag, newcount))
                     self.dbconnection.execute("update siblingcounttable set count=? where siblingcount=? and targettag=?", \
                                               (newcount, siblingcount, tag))
         self.dbconnection.commit()
@@ -593,14 +603,14 @@ class ElementTagFilter:
                 record = self.dbconnection.execute("select count from parenttagtable where parenttag=? and targettag=?", \
                                                     (parenttag, tag)).fetchone() #.fetchall
                 if record is None:
-                    self.log.debug('adding record: (%s, %s, %i, 0)' % (parenttag, tag, d[tag][parenttag]))
+                    #self.log.debug('adding record: (%s, %s, %i, 0)' % (parenttag, tag, d[tag][parenttag]))
                     self.dbconnection.execute("insert into parenttagtable values(?, ?, ?, 0)", (parenttag, tag, d[tag][parenttag]))
 #                elif len(record) > 1:
 #                    self.log.error('len(dbslice) > 1, this means that there is more than one record for the word-targettag pair (%s, %s).\
 #                                     This should not happen, please fix the database' % (word, element.tag))
                 else:
                     newcount = record[0] + d[tag][parenttag]
-                    self.log.debug('updating record: (%s, %s, %i, 0' % (parenttag, tag, newcount))
+                    #self.log.debug('updating record: (%s, %s, %i, 0' % (parenttag, tag, newcount))
                     self.dbconnection.execute("update parenttagtable set count=? where parenttag=? and targettag=?", \
                                               (newcount, parenttag, tag))
         self.dbconnection.commit()

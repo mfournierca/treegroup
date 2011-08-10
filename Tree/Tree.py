@@ -50,6 +50,13 @@ def add(tree1, tree2):
     
     log = logging.getLogger()
     
+    if isinstance(tree1, lxml.etree._ProcessingInstruction):
+        self.log.error('%s is ProcessingInstruction' % str(tree1))
+        raise TypeError
+    elif isinstance(tree2, lxml.etree._ProcessingInstruction):
+        self.log.error("%s is ProcessingInstruction, cannot add" % str(tree2))
+        raise TypeError
+    
     #get orderings
     ordering1 = ordering(tree1)
     ordering2 = ordering(tree2)
@@ -75,7 +82,13 @@ def add(tree1, tree2):
         elif index == len(ordering1):
             #log.debug('\tindex == len(ordering1)')
             
-            node3 = lxml.etree.Element(node2.tag, node2.attrib) #copy.copy(node2)
+            try:
+                node3 = lxml.etree.Element(node2.tag, node2.attrib) #copy.copy(node2)
+            except TypeError:
+                log.error('TypeError: %s' % str(sys.exc_info()[1]))
+                log.error('%s\t%s' % (node2.tag, str(node2.attrib)))
+                raise
+            
             node3.text = node2.text
             node3.tail = node2.tail
             #log.debug('\tnode3: %s' % str(node3))
@@ -202,7 +215,7 @@ def add(tree1, tree2):
         else:
             parent.remove(i)
     
-    log.debug('result: %s' % lxml.etree.tostring(tree1))
+#    log.debug('result: %s' % lxml.etree.tostring(tree1))
     return tree1
 
 
@@ -226,8 +239,8 @@ def equal(tree1, tree2):
     
     ordering1 = ordering(tree1)
     ordering2 = ordering(tree2)
-    log.debug("ordering1: %s" % str(ordering1))
-    log.debug("ordering2: %s" % str(ordering2))
+#    log.debug("ordering1: %s" % str(ordering1))
+#    log.debug("ordering2: %s" % str(ordering2))
     
     if not len(ordering1) == len(ordering2):
         return False

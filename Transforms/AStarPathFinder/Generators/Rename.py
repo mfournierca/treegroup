@@ -29,7 +29,7 @@ class Generator:
 #        self.log.debug('Generating rename operand for  %s' % str(targetElement))
 #        self.log.debug('Rename to: %s' % tag)
         operand = self._generateOperand(Operand.Operand(targetElement), targetElement, tag)
-#        self.log.debug('Generated operand: %s' % str(operand))
+#        self.log.info('Generated operand: %s' % str(operand))
         return operand
     
     

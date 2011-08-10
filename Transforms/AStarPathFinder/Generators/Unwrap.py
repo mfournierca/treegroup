@@ -29,7 +29,7 @@ class Generator:
 #        self.log.debug('Generating unwrap operand for  %s' % str(targetElement))
 #        self.log.debug('created operand: %s' % str(self.operand))
         operand = self._generateOperand(Operand.Operand(targetElement), targetElement)
-#        self.log.debug('Generated operand: %s' % str(operand))
+#        self.log.info('Generated operand: %s' % str(operand))
         return operand
     
     

@@ -138,19 +138,52 @@ class Neighbor:
     def getTargetElementStr(self):
         return self._targetElementStr
     
-    def setCost(self, filterscore, metric, metricnormalizationdenomiator, manualscore):
-        #three factors in cost (or there should be): filter score, metric, and manually set.
-        #should normalize these factors, ie force them all to be 0 < x < 1, so that none dominate
-        #normalize metric
-        metric = float(metric) / float(metricnormalizationfactor) #* self.metricadjustmentfactor
+    def setCost(self, filterscore, metric, metricnormalizationdenominator, manualscore):
+        #we want the cost to be balanced against the heuristic - the path finder will work differently
+        #if the heuristic overestimates, underestimates, or gets it right. 
+        #Of course, the only criteria that matters when determining how the heuristic estimates is this 
+        #cost function - the heuristic over or underestimating is determined totally by how the costs add 
+        #up, since the heuristic estimates distance and the final "distance travelled" is the sum of all 
+        #the costs. 
+        #So this function matters a lot. The cost must be balanced correctly. 
+        #Great, so what is the right way to do it? 
+        #If the heuristic underestimates, the pathfinder backtracks alot, but gets around obstacles easily. 
+        #If the heuristic overestimates, it does not backtrack unless it absolutely has to, which means it
+        #takes a while to get around obstacles, but goes quickly if it does not find any.
+        #If the heuristic gets it right, we get shortest path in optimal time.  
+        #But there are no obstacles in the tree space - no insurmountable barriers. Only more costly and
+        #less costly paths. So underestimating has no benefit. Estimating correctly is extremely difficult, 
+        #so screw it. We should try to have an overestimating metric.
+        #The amount of backtracking is going to depend on how cost compares to the heuristic - it should be
+        #as close as possible.  
         
-        #filterscore and manualscore are already normalized. 
+        #since the heuristic in the pathfinder is the number of validation errors, the heuristic thinks that
+        #each step in is of length 1 - ie one error gets fixed at each step. We can use this when deciding on 
+        #the cost. 
         
-        #the filter returns scores that are higher when better - we want the opposite
+        #If we want the heuristic to overestimate, make cost <= 1 always. That is what we try here. 
+        
+        
+        #There are three factors in cost (or there should be): filter score, metric, and a number that is 
+        #set manually in the getManualCost() function. We should normalize these factors, ie make them all
+        #0 < x < 1, so that none dominate. 
+        
+        log = logging.getLogger()
+        
+        #Normalize metric. Filterscore and manualscore are already normalized.
+#        log.info('metric: %s' % str(metric))
+        metric = float(metric) / float(metricnormalizationdenominator) #* self.metricadjustmentfactor
+#        log.info('metric normalization denominator: %s' % str(metricnormalizationdenominator))
+#        log.info('normalized metric: %s' % str(metric))
+        
+        #the filter returns scores that are higher when better - the pathfinder wants the opposite
         filterscore = 1 - filterscore
+#        log.info('filter score: %s' % str(filterscore))
+#        log.info('manual score: %s' % str(manualscore))
         
-        self._cost = filterscore + metric + manualscore
-        
+        #divide by three to make sure the heuristic overestimates. 
+        self._cost = (filterscore + metric + manualscore) / 3
+#        log.info('cost: %s' % str(self._cost))
     
     def getCost(self):
         return self._cost
@@ -182,12 +215,12 @@ def findNeighbors_FirstValidationError(t):
     
     def getTreeSize(tree):
         """used to get the tree size, which is used to normalize the metric"""
-        count = 0
-        for i in tree:
-            count = 1 + getTreeSize(i)
-        return count
+        for index, e in enumerate(tree.iter()):
+            pass
+        return index
     
-    treeSize = getTreeSize(t.getroot())
+    
+    treeSize = getTreeSize(t.getTree())
        
 #    log.debug('creating neighbors')
     neighbors = []
@@ -198,7 +231,7 @@ def findNeighbors_FirstValidationError(t):
     #===========================================================================
     
     #Error parser
-    errorParser = Errors.ElementErrorParser(t.getTree()())
+    errorParser = Errors.ElementErrorParser(t.getTree())
     parsed = errorParser.parse()
     
     if parsed:
@@ -218,21 +251,21 @@ def findNeighbors_FirstValidationError(t):
             
             #rename operator
             renameOperand = renameGenerator.generateOperand(errorParser.targetElement, tag)
-            renameNeighbor = Neighbor(Tree.Tree.add(copy.deepcopy(renameOperand.getTree()), t.getTree()()))
+            renameNeighbor = Neighbor(Tree.Tree.add(copy.deepcopy(renameOperand.getTree()), t.getTree()))
             renameNeighbor.setOperand(renameOperand.getTree())
             renameNeighbor.setOperandType('rename')
             renameNeighbor.setTargetElementStr(str(errorParser.targetElement))
-            
             renameNeighbor.setCost(filteredscores[tag], 
                                    Tree.Tree.metric(t.getTree(), renameNeighbor.getTree()),
                                    treeSize,
                                    getManualCost(renameNeighbor, 'rename', tag)
                                    )
+            log.info("generated rename neighbor: %s\trename to: %s\tcost: %s" % (str(renameNeighbor), tag, str(renameNeighbor.getCost())))
             neighbors.append(renameNeighbor)
         
             #wrap operator
             wrapOperand = wrapGenerator.generateOperand(errorParser.targetElement, tag)
-            wrapNeighbor = Neighbor(Tree.Tree.add(copy.deepcopy(wrapOperand.getTree()), t.getTree()()))
+            wrapNeighbor = Neighbor(Tree.Tree.add(copy.deepcopy(wrapOperand.getTree()), t.getTree()))
             wrapNeighbor.setOperand(wrapOperand.getTree())
             wrapNeighbor.setOperandType('wrap')
             wrapNeighbor.setTargetElementStr(str(errorParser.targetElement))
@@ -241,6 +274,7 @@ def findNeighbors_FirstValidationError(t):
                                treeSize,
                                getManualCost(wrapNeighbor, 'wrap', tag)
                                )
+            log.info("generated wrap neighbor: %s\twrap in: %s\tcost: %s" % (str(wrapNeighbor), tag, str(wrapNeighbor.getCost())))
             neighbors.append(wrapNeighbor)
             
             #InsertBefore operator
@@ -248,15 +282,16 @@ def findNeighbors_FirstValidationError(t):
             if not insertBeforeOperand:
                 pass
             else:
-                insertBeforeNeighbor = Neighbor(Tree.Tree.add(copy.deepcopy(insertBeforeOperand.getTree()), t.getTree()()))
+                insertBeforeNeighbor = Neighbor(Tree.Tree.add(copy.deepcopy(insertBeforeOperand.getTree()), t.getTree()))
                 insertBeforeNeighbor.setOperand(insertBeforeOperand.getTree())
                 insertBeforeNeighbor.setOperandType('insertBefore')
                 insertBeforeNeighbor.setTargetElementStr(str(errorParser.targetElement))
                 insertBeforeNeighbor.setCost(filteredscores[tag],
-                                             Tree.Tree.metric(t.getTree(), insertBeforeNeighbore.getTree()),
+                                             Tree.Tree.metric(t.getTree(), insertBeforeNeighbor.getTree()),
                                              treeSize,
                                              getManualCost(insertBeforeNeighbor, 'insertBefore', tag),
                                              )
+                log.info("generated inserBefore neighbor: %s\tnew element: %s\tcost: %s" % (str(insertBeforeNeighbor), tag, str(insertBeforeNeighbor.getCost())))
                 neighbors.append(insertBeforeNeighbor)
             
         #unwrap operator. There is only one result of the unwrap operator, so it comes outside
@@ -266,15 +301,16 @@ def findNeighbors_FirstValidationError(t):
             #happens when trying to unwrap the root
             pass
         else:
-            unwrapNeighbor = Neighbor(Tree.Tree.add(copy.deepcopy(unwrapOperand.getTree()), t.getTree()()))
+            unwrapNeighbor = Neighbor(Tree.Tree.add(copy.deepcopy(unwrapOperand.getTree()), t.getTree()))
             unwrapNeighbor.setOperand(unwrapOperand.getTree())
             unwrapNeighbor.setOperandType('unwrap')
             unwrapNeighbor.setTargetElementStr(str(errorParser.targetElement))
             unwrapNeighbor.setCost(0.5,
-                                 Tree.Tree.metric(t.getTree(), unwrapNeighbors.getTree()),
+                                 Tree.Tree.metric(t.getTree(), unwrapNeighbor.getTree()),
                                  treeSize,
                                  getManualCost(unwrapNeighbor, 'unwrap', tag),
                                  )
+            log.info("generated unwrap neighbor: %s\tcost: %s" % (str(unwrapNeighbor), str(unwrapNeighbor.getCost())))
             neighbors.append(unwrapNeighbor)
         
         #appendBefore operator. There is only one result of the appendBefore operator, so it comes outside
@@ -284,15 +320,16 @@ def findNeighbors_FirstValidationError(t):
             #happens when trying to appendBefore the root
             pass
         else:
-            appendBeforeNeighbor = Neighbor(Tree.Tree.add(copy.deepcopy(appendBeforeOperand.getTree()), t.getTree()()))
+            appendBeforeNeighbor = Neighbor(Tree.Tree.add(copy.deepcopy(appendBeforeOperand.getTree()), t.getTree()))
             appendBeforeNeighbor.setOperand(appendBeforeOperand.getTree())
             appendBeforeNeighbor.setOperandType('appendBefore')
             appendBeforeNeighbor.setTargetElementStr(str(errorParser.targetElement))
             appendBeforeNeighbor.setCost(0.5,
-                                         Tree.Tree.metric(t.getTree(), unwrapNeighbors.getTree()),
+                                         Tree.Tree.metric(t.getTree(), unwrapNeighbor.getTree()),
                                          treeSize,
                                          getManualCost(appendBeforeNeighbor, 'appendBefore', tag),
                                          )
+            log.info("generated appendBefore neighbor: %s\tcost: %s" % (str(appendBeforeNeighbor), str(appendBeforeNeighbor.getCost())))
             neighbors.append(appendBeforeNeighbor)
         
         #return neighbors.
@@ -302,7 +339,7 @@ def findNeighbors_FirstValidationError(t):
     #===========================================================================
     # attribute errors
     #===========================================================================
-    errorParser = Errors.AttributeErrorParser(t.getTree()())
+    errorParser = Errors.AttributeErrorParser(t.getTree())
     parsed = errorParser.parse()
     
     if parsed:
@@ -313,7 +350,7 @@ def findNeighbors_FirstValidationError(t):
             renameAttributeOperand = renameAttributeGenerator.generateOperand(errorParser.targetElement, errorParser.actualAttribute, attributeName)
             if not renameAttributeOperand:
                 continue
-            renameAttributeNeighbor = Neighbor(Tree.Tree.add(copy.deepcopy(renameAttributeOperand.getTree()), t.getTree()()))
+            renameAttributeNeighbor = Neighbor(Tree.Tree.add(copy.deepcopy(renameAttributeOperand.getTree()), t.getTree()))
             renameAttributeNeighbor.setOperand(renameAttributeOperand.getTree())
             renameAttributeNeighbor.setOperandType('renameAttribute')
             renameAttributeNeighbor.setTargetElementStr(str(errorParser.targetElement))
@@ -322,13 +359,14 @@ def findNeighbors_FirstValidationError(t):
                                          treeSize,
                                          getManualCost(renameAttributeNeighbor, 'renameAttribute', None),
                                          )
+            log.info("generated rename attribute neighbor: %s\trename to: %s\tcost: %s" % (str(renameAttributeNeighbor), attributeName, str(renameAttributeNeighbor.getCost())))
             neighbors.append(renameAttributeNeighbor)
 
 
         addAttributeGenerator = Generators.AddAttribute.Generator()
         for attributeName in errorParser.acceptableAttributes:
             addAttributeOperand = addAttributeGenerator.generateOperand(errorParser.targetElement, attributeName)
-            addAttributeNeighbor = Neighbor(Tree.Tree.add(copy.deepcopy(addAttributeOperand.getTree()), t.getTree()()))
+            addAttributeNeighbor = Neighbor(Tree.Tree.add(copy.deepcopy(addAttributeOperand.getTree()), t.getTree()))
             addAttributeNeighbor.setOperand(addAttributeOperand.getTree())
             addAttributeNeighbor.setOperandType('addAttribute')
             addAttributeNeighbor.setTargetElementStr(str(errorParser.targetElement))
@@ -337,6 +375,7 @@ def findNeighbors_FirstValidationError(t):
                                          treeSize,
                                          getManualCost(addAttributeNeighbor, 'addAttribute', None),
                                          )
+            log.info("generated add attribute neighbor: %s\tadd attr: %s\tcost: %s" % (str(addAttributeNeighbor), attributeName, str(addAttributeNeighbor.getCost())))
             neighbors.append(addAttributeNeighbor)
 
         return neighbors
@@ -345,7 +384,7 @@ def findNeighbors_FirstValidationError(t):
     #===========================================================================
     # text errors
     #===========================================================================
-    errorParser = Errors.TextErrorParser(t.getTree()())
+    errorParser = Errors.TextErrorParser(t.getTree())
     parsed = errorParser.parse()
     
     if parsed and errorParser.text:
@@ -360,7 +399,7 @@ def findNeighbors_FirstValidationError(t):
             wrapTextOperand = wrapTextGenerator.generateOperand(errorParser.targetElement, tag)
             if not wrapTextOperand:
                 continue
-            wrapTextNeighbor = Neighbor(Tree.Tree.add(copy.deepcopy(wrapTextOperand.getTree()), t.getTree()()))
+            wrapTextNeighbor = Neighbor(Tree.Tree.add(copy.deepcopy(wrapTextOperand.getTree()), t.getTree()))
             wrapTextNeighbor.setOperand(wrapTextOperand.getTree())
             wrapTextNeighbor.setOperandType('wrapText')
             wrapTextNeighbor.setTargetElementStr(str(errorParser.targetElement))
@@ -369,6 +408,7 @@ def findNeighbors_FirstValidationError(t):
                                      treeSize,
                                      getManualCost(wrapTextNeighbor, 'wrapText', tag),
                                      )
+            log.info("generated wrap text neighbor: %s\twrap in: %s\tcost: %s" % (str(wrapTextNeighbor), tag, str(wrapTextNeighbor.getCost())))
             neighbors.append(wrapTextNeighbor)
 
         return neighbors
@@ -380,7 +420,7 @@ def findNeighbors_FirstValidationError(t):
     #===========================================================================
     # error parsers failed
     #===========================================================================
-    log.error('all error parsers failed')
+    log.error('all error parsers failed on message "%s"' % errorParser.errorMessage)
     sys.exit(-1)
     
     
@@ -394,7 +434,7 @@ def findNeighbors_FirstValidationError(t):
 
 
 
-def getManaulCost(neighbor, operandtype, desttag):
+def getManualCost(neighbor, operandtype, desttag):
     """A placeholder function. Get a 'cost' of the neighbor based on some 
     criteria. The 'cost' should reflect the 'cost' of using this neighbor - 
     better or more desirable neighbors should receive a lower score. 
@@ -413,7 +453,7 @@ def getManaulCost(neighbor, operandtype, desttag):
     if operandtype == 'rename': cost += .25
     elif operandtype == 'renameAttribute': cost += .25
     elif operandtype == 'wrap': cost += .5
-    elif operandtype == 'unwrap': cost += .75
+    elif operandtype == 'unwrap': cost += 1.0
     elif operandtype == 'insertBefore': cost += .5
     elif operandtype == 'appendBefore': cost += 0
     else: cost += 1

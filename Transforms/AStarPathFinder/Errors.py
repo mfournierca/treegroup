@@ -63,29 +63,30 @@ class ElementErrorParser(ErrorParserRootClass):
         #choose which targetCandidate to use. 
         if targetCandidate1 is None and targetCandidate2 is None:
             return False
-        elif targetCandidate2 is None: 
+        
+        if targetCandidate2 is None: 
             self.log.debug('targetCandidate2 is None, targetCandidate1 is targetElement: %s' % str(targetCandidate1))
             self.targetElement = targetCandidate1
             self.acceptableTags = acceptableTagsCandidate1
-            return True
         elif targetCandidate1 is None: 
             self.log.debug('targetCandidate1 is None, targetCandidate2 is targetElement: %s' % str(targetCandidate2))
             self.targetElement = targetCandidate2
             self.acceptableTags = acceptableTagsCandidate2
-            return True
         else:
             #if both returned a target, then take the one that comes first in the actualTags
             if actualIndex1 <= actualIndex2:
                 self.log.debug('actualIndex1 <= actualIndex2, targetCandidate1 is targetElement: %s' % str(targetCandidate1))
                 self.targetElement = targetCandidate1
                 self.acceptableTags = acceptableTagsCandidate1
-                return True
             else:
                 self.log.debug('actualIndex1 > actualIndex2, targetCandidate2 is targetElement: %s' % str(targetCandidate2))
                 self.targetElement = targetCandidate2
                 self.acceptableTags = acceptableTagsCandidate2
-                return True
-            
+        
+        self.log.info("errorMessage: %s" % str(self.errorMessage))
+        self.log.info("targetElement: %s" % str(self.targetElement))
+        self.log.info("acceptableTags: %s" % str(self.acceptableTags))
+        return True
             
               
     def parseActualTags(self):
