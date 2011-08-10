@@ -413,7 +413,7 @@ class ElementPatternParser:
     
     def _parsePattern1(self):
         pattern = r'.*?\:\d*\:\d*\:ERROR:VALID\:DTD_CONTENT_MODEL\: Element (.*?) content does not follow the DTD, expecting (.*), got \((.*?)\)'
-#        self.log.debug('testing pattern: %s' % str(pattern))
+        self.log.debug('testing pattern: %s' % str(pattern))
         match = re.search(pattern, self.errorMessage)
         if not match: return None, None, None
         expectedTags = match.group(2).split(',')
@@ -427,6 +427,7 @@ class ElementPatternParser:
 
     def _parsePattern2(self):
         pattern = r'.*?\:\d*\:\d*\:ERROR:VALID\:DTD_UNKNOWN_ELEM\: No declaration for element (.*)'
+        self.log.debug('testing pattern: %s' % str(pattern))
         match = re.search(pattern, self.errorMessage)
         if not match: return None, None, None
         actualTag = match.group(1)
@@ -454,6 +455,7 @@ class ElementPatternParser:
         
     def _parsePattern3(self):
         pattern = r'.*?\:\d*\:\d*\:ERROR:VALID\:DTD_CONTENT_MODEL\: Element (.*?) content does not follow the DTD, expecting (.*), got '
+        self.log.debug('testing pattern: %s' % str(pattern))
         match = re.search(pattern, self.errorMessage)
         if not match: return None, None, None
         #if this matched then the error is caused by an element that
@@ -481,7 +483,7 @@ class ElementPatternParser:
     
     def _parsePattern4(self):
         pattern = r'.*?\:\d*\:\d*\:ERROR\:VALID\:DTD_INVALID_CHILD\: Element (.*?) is not declared in (.*?) list of possible children'
-#        self.log.debug('testing pattern: %s' % str(pattern))
+        self.log.debug('testing pattern: %s' % str(pattern))
         match = re.search(pattern, self.errorMessage)
         if not match: return None, None, None
         #If match, then it gets tricky. This pattern does not give any indication of what
@@ -493,6 +495,14 @@ class ElementPatternParser:
             parentTag = None
             expectedTags = ['dita']
             actualTags = [match.group(2)]
+        elif not (self.tree.getroot() is element.getparent()):
+            parentTag = match.group(2)
+            actualTags = [match.group(1)]
+            if parentTag == 'topic':
+                expectedTags = "(title,titlealts?,(shortdesc|abstract)?,prolog?,body?,related-links?,\
+                                (topic|concept|task|reference|glossentry|glossgroup)*)".split(',')
+            else:
+                expectedTags = []
         else:
             parentTag = None
             expectedTags = None

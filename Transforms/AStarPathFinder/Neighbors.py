@@ -452,7 +452,7 @@ def getManualCost(neighbor, operandtype, desttag):
     #account for operandtype
     if operandtype == 'rename': cost += .25
     elif operandtype == 'renameAttribute': cost += .25
-    elif operandtype == 'wrap': cost += .2
+    elif operandtype == 'wrap': cost += .25
     elif operandtype == 'unwrap': cost += 1.0
     elif operandtype == 'insertBefore': cost += .25
     elif operandtype == 'appendBefore': cost += 0
