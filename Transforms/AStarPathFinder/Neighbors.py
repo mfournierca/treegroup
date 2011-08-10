@@ -171,13 +171,13 @@ class Neighbor:
         log = logging.getLogger()
         
         #Normalize metric. Filterscore and manualscore are already normalized.
-#        log.info('metric: %s' % str(metric))
-        metric = float(metric) / float(metricnormalizationdenominator) #* self.metricadjustmentfactor
-#        log.info('metric normalization denominator: %s' % str(metricnormalizationdenominator))
-#        log.info('normalized metric: %s' % str(metric))
+        #metric = float(metric) / float(metricnormalizationdenominator) 
+        metric = 1 # all operands have the same intrinsic cost, regardless of the number of changes they make to the tree. 
         
         #the filter returns scores that are higher when better - the pathfinder wants the opposite
         filterscore = 1 - filterscore
+        
+#        log.info('normalized metric: %s' % str(metric))
 #        log.info('filter score: %s' % str(filterscore))
 #        log.info('manual score: %s' % str(manualscore))
         
@@ -452,9 +452,9 @@ def getManualCost(neighbor, operandtype, desttag):
     #account for operandtype
     if operandtype == 'rename': cost += .25
     elif operandtype == 'renameAttribute': cost += .25
-    elif operandtype == 'wrap': cost += .5
+    elif operandtype == 'wrap': cost += .2
     elif operandtype == 'unwrap': cost += 1.0
-    elif operandtype == 'insertBefore': cost += .5
+    elif operandtype == 'insertBefore': cost += .25
     elif operandtype == 'appendBefore': cost += 0
     else: cost += 1
     

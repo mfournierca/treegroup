@@ -207,9 +207,20 @@ class ElementTagFilter:
         #remove 'uninteresting' entries from probas, ie probas that are too close to 0.5
         
         p1 = 1.0
-        for i in probas: p1 = p1*i
+        c1 = False
+        for i in probas: 
+            if i is None: continue
+            c1 = True
+            p1 = p1*i
+        
         p2 = 1.0
-        for i in probas: p2 = p2*(1 - i)
+        for i in probas:  
+            if i is None: continue
+            p2 = p2*(1 - i)
+        
+        if (c1 is False): 
+            self.log.info('no probability information: tag score = 0')
+            return 0
         
         p = p1 / (p1 + p2)
         self.log.info('tag score: %12.20s / (%12.20s + %12.20s) = %12.20s' % (str(p1), str(p1), str(p2), str(p)))
@@ -237,7 +248,10 @@ class ElementTagFilter:
         #0 and wait for user input, or define a "base probability" that is used in the absence of information. 
         tagcount = self.dbconnection.execute("select sum(count) from parenttagtable where targettag=? and parenttag=?", \
                                              (tag, parenttag)).fetchone()[0]
-        if tagcount is None: tagcount = 0
+        if tagcount is None: 
+            #don't want to return a probability that was created with no information.
+            self.log.info('P(tag = %10.20s | parenttag = %20.20s) = None' % (tag, parenttag))
+            return None
         
         totalcount = self.dbconnection.execute("select sum(count) from parenttagtable where parenttag=?", \
                                        (parenttag,)).fetchone()[0]    
@@ -269,7 +283,10 @@ class ElementTagFilter:
         
         indexcount = self.dbconnection.execute("select sum(count) from targetindextable where targettag=? and targetindex>=? and targetindex<=?",\
                                           (tag, lowerbound, upperbound)).fetchone()[0]   
-        if indexcount is None: indexcount = 0
+        if indexcount is None: 
+            #don't want to return a probability that was created with no information.
+            self.log.info('P(tag = %10.20s | %3.10s <= index under parent <= %3.10s) = None' % (tag, str(lowerbound), str(upperbound)))
+            return None
             
         totalcount = self.dbconnection.execute("select sum(count) from targetindextable where targetindex>=? and targetindex<=?", \
                                                (lowerbound, upperbound)).fetchone()[0]
@@ -295,7 +312,10 @@ class ElementTagFilter:
         #find P(tag|word in target.text) and return
         tagcount = self.dbconnection.execute("select sum(count) from targettexttable where targettag=? and word=?",\
                                              (tag, word)).fetchone()[0]
-        if tagcount is None: tagcount = 0
+        if tagcount is None: 
+            #don't want to return a probability that was created with no information.
+            self.log.info('P(tag = %10.20s | word "%s" is in text) = None' % (tag, word))
+            return None
             
         totalcount = self.dbconnection.execute("select sum(count) from targettexttable where word=?", (word,)).fetchone()[0]
         if totalcount is None: return self.floorproba
@@ -331,7 +351,10 @@ class ElementTagFilter:
         
         count = self.dbconnection.execute("select sum(count) from targettextlengthtable where targettag=? and length>=? and length<=?", \
                                           (tag, lowerbound, upperbound)).fetchone()[0]                                          
-        if count is None: count = 0
+        if count is None: 
+            #don't want to return a probability that was created with no information.
+            self.log.info("P(tag = %10.20s | %3.10s <= text length <= %10.10s) = None" % (tag, str(lowerbound), str(upperbound)))
+            return None
         
         totalcount = self.dbconnection.execute("select sum(count) from targettextlengthtable where length>=? and length<=?", \
                                                (lowerbound, upperbound)).fetchone()[0]
@@ -357,7 +380,10 @@ class ElementTagFilter:
         
         siblingcount = self.dbconnection.execute("select sum(count) from siblingcounttable where targettag=? and siblingcount>=? and siblingcount<=?", \
                                                  (tag, lowerbound, upperbound)).fetchone()[0]
-        if siblingcount is None: siblingcount = 0
+        if siblingcount is None: 
+            #don't want to return a probability that was created with no information. 
+            self.log.info("P(tag = %10.20s | %3.10s <= number of siblings <= %3.5s) = None" % (tag, str(lowerbound), str(upperbound)))
+            return None
         
         totalcount = self.dbconnection.execute("select sum(count) from siblingcounttable where siblingcount>=? and siblingcount<=?",\
                                                (lowerbound, upperbound)).fetchone()[0]
@@ -386,8 +412,11 @@ class ElementTagFilter:
         
         subcount = self.dbconnection.execute("select sum(count) from childcounttable where targettag=? and childcount>=? and childcount<=?",\
                                              (tag, lowerbound, upperbound)).fetchone()[0]
-        if subcount is None: subcount = 0
-        
+        if subcount is None: 
+            #don't want to return a probability that was created with no information.
+             self.log.info("P(tag = %10.20s | %3.10s <= number of children <= %3.10s) = None" % (tag, str(lowerbound), str(upperbound)))
+             return None
+         
         totalcount = self.dbconnection.execute("select sum(count) from childcounttable where childcount>=? and childcount<=?",\
                                              (lowerbound, upperbound)).fetchone()[0]
         
@@ -415,8 +444,11 @@ class ElementTagFilter:
         
         subcount = self.dbconnection.execute("select sum(count) from descendanttexttable where targettag=? and word=? and depth>=? and depth<=?",\
                                              (tag, word, lowerbound, upperbound)).fetchone()[0]
-        if subcount is None: subcount = 0
-        
+        if subcount is None:  
+            #don't want to return a probability that was created with no information.     
+            self.log.info("P(tag = %10.20s | text within descendant between levels %3.10s -> %3.10s) = None" % (tag, str(lowerbound), str(upperbound)))
+            return None
+         
         totalcount = self.dbconnection.execute("select sum(count) from descendanttexttable where word=? and depth=>=? and depth<=?",\
                                                (word, lowerbound, upperbound)).fetchone()[0]
         

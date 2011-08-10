@@ -384,5 +384,5 @@ if __name__ == "__main__":
     
     #add path to input
     log.info('writing output to %s' % output)
-    DitaTools.Tree.File.Dita.write_root_to_file(result.getroot(), output)
+    DitaTools.Tree.File.Dita.write_tree_to_file(result.getroot(), output)
     
