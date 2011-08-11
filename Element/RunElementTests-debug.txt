@@ -1,0 +1,498 @@
+    Text.        _textinverse     DEBUG		inverting: "
+    "
+    Text.        _textinverse     DEBUG		"
+"
+    Text.        _textinverse     DEBUG		"
+    "
+    Text.        _textinverse     DEBUG		"
+ "
+    Text.        _textinverse     DEBUG		"
+    "
+    Text.        _textinverse     DEBUG		"
+  "
+    Text.        _textinverse     DEBUG		"
+    "
+    Text.        _textinverse     DEBUG		"
+   "
+    Text.        _textinverse     DEBUG		"
+    "
+    Text.        _textinverse     DEBUG		"
+    "
+    Text.        _textinverse     DEBUG		"
+    "
+    Text.        _textinverse     DEBUG		result: "
+"
+    Text.        _textinverse     DEBUG		inverting: "
+    
+    
+    "
+    Text.        _textinverse     DEBUG		"
+"
+    Text.        _textinverse     DEBUG		"
+    
+    
+    "
+    Text.        _textinverse     DEBUG		"
+ "
+    Text.        _textinverse     DEBUG		"
+    
+    
+    "
+    Text.        _textinverse     DEBUG		"
+  "
+    Text.        _textinverse     DEBUG		"
+    
+    
+    "
+    Text.        _textinverse     DEBUG		"
+   "
+    Text.        _textinverse     DEBUG		"
+    
+    
+    "
+    Text.        _textinverse     DEBUG		"
+    "
+    Text.        _textinverse     DEBUG		"
+    
+    
+    "
+    Text.        _textinverse     DEBUG		"
+    
+"
+    Text.        _textinverse     DEBUG		"
+    
+    
+    "
+    Text.        _textinverse     DEBUG		"
+    
+ "
+    Text.        _textinverse     DEBUG		"
+    
+    
+    "
+    Text.        _textinverse     DEBUG		"
+    
+  "
+    Text.        _textinverse     DEBUG		"
+    
+    
+    "
+    Text.        _textinverse     DEBUG		"
+    
+   "
+    Text.        _textinverse     DEBUG		"
+    
+    
+    "
+    Text.        _textinverse     DEBUG		"
+    
+    "
+    Text.        _textinverse     DEBUG		"
+    
+    
+    "
+    Text.        _textinverse     DEBUG		"
+    
+    
+"
+    Text.        _textinverse     DEBUG		"
+    
+    
+    "
+    Text.        _textinverse     DEBUG		"
+    
+    
+ "
+    Text.        _textinverse     DEBUG		"
+    
+    
+    "
+    Text.        _textinverse     DEBUG		"
+    
+    
+  "
+    Text.        _textinverse     DEBUG		"
+    
+    
+    "
+    Text.        _textinverse     DEBUG		"
+    
+    
+   "
+    Text.        _textinverse     DEBUG		"
+    
+    
+    "
+    Text.        _textinverse     DEBUG		"
+    
+    
+    "
+    Text.        _textinverse     DEBUG		"
+    
+    
+    "
+    Text.        _textinverse     DEBUG		result: "
+    
+    
+"
+    Text.        _textinverse     DEBUG		inverting: "abcd"
+    Text.        _textinverse     DEBUG		">"
+    Text.        _textinverse     DEBUG		"abcd"
+    Text.        _textinverse     DEBUG		">="
+    Text.        _textinverse     DEBUG		"abcd"
+    Text.        _textinverse     DEBUG		">=<"
+    Text.        _textinverse     DEBUG		"abcd"
+    Text.        _textinverse     DEBUG		">=<;"
+    Text.        _textinverse     DEBUG		"abcd"
+    Text.        _textinverse     DEBUG		result: ">=<;"
+    Text.        _textinverse     DEBUG		inverting: "efgh
+"
+    Text.        _textinverse     DEBUG		":"
+    Text.        _textinverse     DEBUG		"efgh
+"
+    Text.        _textinverse     DEBUG		":9"
+    Text.        _textinverse     DEBUG		"efgh
+"
+    Text.        _textinverse     DEBUG		":98"
+    Text.        _textinverse     DEBUG		"efgh
+"
+    Text.        _textinverse     DEBUG		":987"
+    Text.        _textinverse     DEBUG		"efgh
+"
+    Text.        _textinverse     DEBUG		":987
+"
+    Text.        _textinverse     DEBUG		"efgh
+"
+    Text.        _textinverse     DEBUG		result: ":987
+"
+    Text.        _textinverse     DEBUG		inverting: "
+    
+    "
+    Text.        _textinverse     DEBUG		"
+"
+    Text.        _textinverse     DEBUG		"
+    
+    "
+    Text.        _textinverse     DEBUG		"
+ "
+    Text.        _textinverse     DEBUG		"
+    
+    "
+    Text.        _textinverse     DEBUG		"
+  "
+    Text.        _textinverse     DEBUG		"
+    
+    "
+    Text.        _textinverse     DEBUG		"
+   "
+    Text.        _textinverse     DEBUG		"
+    
+    "
+    Text.        _textinverse     DEBUG		"
+    "
+    Text.        _textinverse     DEBUG		"
+    
+    "
+    Text.        _textinverse     DEBUG		"
+    
+"
+    Text.        _textinverse     DEBUG		"
+    
+    "
+    Text.        _textinverse     DEBUG		"
+    
+ "
+    Text.        _textinverse     DEBUG		"
+    
+    "
+    Text.        _textinverse     DEBUG		"
+    
+  "
+    Text.        _textinverse     DEBUG		"
+    
+    "
+    Text.        _textinverse     DEBUG		"
+    
+   "
+    Text.        _textinverse     DEBUG		"
+    
+    "
+    Text.        _textinverse     DEBUG		"
+    
+    "
+    Text.        _textinverse     DEBUG		"
+    
+    "
+    Text.        _textinverse     DEBUG		result: "
+    
+"
+    Text.        _textinverse     DEBUG		inverting: "
+    
+    
+    "
+    Text.        _textinverse     DEBUG		"
+"
+    Text.        _textinverse     DEBUG		"
+    
+    
+    "
+    Text.        _textinverse     DEBUG		"
+ "
+    Text.        _textinverse     DEBUG		"
+    
+    
+    "
+    Text.        _textinverse     DEBUG		"
+  "
+    Text.        _textinverse     DEBUG		"
+    
+    
+    "
+    Text.        _textinverse     DEBUG		"
+   "
+    Text.        _textinverse     DEBUG		"
+    
+    
+    "
+    Text.        _textinverse     DEBUG		"
+    "
+    Text.        _textinverse     DEBUG		"
+    
+    
+    "
+    Text.        _textinverse     DEBUG		"
+    
+"
+    Text.        _textinverse     DEBUG		"
+    
+    
+    "
+    Text.        _textinverse     DEBUG		"
+    
+ "
+    Text.        _textinverse     DEBUG		"
+    
+    
+    "
+    Text.        _textinverse     DEBUG		"
+    
+  "
+    Text.        _textinverse     DEBUG		"
+    
+    
+    "
+    Text.        _textinverse     DEBUG		"
+    
+   "
+    Text.        _textinverse     DEBUG		"
+    
+    
+    "
+    Text.        _textinverse     DEBUG		"
+    
+    "
+    Text.        _textinverse     DEBUG		"
+    
+    
+    "
+    Text.        _textinverse     DEBUG		"
+    
+    
+"
+    Text.        _textinverse     DEBUG		"
+    
+    
+    "
+    Text.        _textinverse     DEBUG		"
+    
+    
+ "
+    Text.        _textinverse     DEBUG		"
+    
+    
+    "
+    Text.        _textinverse     DEBUG		"
+    
+    
+  "
+    Text.        _textinverse     DEBUG		"
+    
+    
+    "
+    Text.        _textinverse     DEBUG		"
+    
+    
+   "
+    Text.        _textinverse     DEBUG		"
+    
+    
+    "
+    Text.        _textinverse     DEBUG		"
+    
+    
+    "
+    Text.        _textinverse     DEBUG		"
+    
+    
+    "
+    Text.        _textinverse     DEBUG		result: "
+    
+    
+"
+    Text.        _textinverse     DEBUG		inverting: "
+    
+    "
+    Text.        _textinverse     DEBUG		"
+"
+    Text.        _textinverse     DEBUG		"
+    
+    "
+    Text.        _textinverse     DEBUG		"
+ "
+    Text.        _textinverse     DEBUG		"
+    
+    "
+    Text.        _textinverse     DEBUG		"
+  "
+    Text.        _textinverse     DEBUG		"
+    
+    "
+    Text.        _textinverse     DEBUG		"
+   "
+    Text.        _textinverse     DEBUG		"
+    
+    "
+    Text.        _textinverse     DEBUG		"
+    "
+    Text.        _textinverse     DEBUG		"
+    
+    "
+    Text.        _textinverse     DEBUG		"
+    
+"
+    Text.        _textinverse     DEBUG		"
+    
+    "
+    Text.        _textinverse     DEBUG		"
+    
+ "
+    Text.        _textinverse     DEBUG		"
+    
+    "
+    Text.        _textinverse     DEBUG		"
+    
+  "
+    Text.        _textinverse     DEBUG		"
+    
+    "
+    Text.        _textinverse     DEBUG		"
+    
+   "
+    Text.        _textinverse     DEBUG		"
+    
+    "
+    Text.        _textinverse     DEBUG		"
+    
+    "
+    Text.        _textinverse     DEBUG		"
+    
+    "
+    Text.        _textinverse     DEBUG		result: "
+    
+"
+    Text.        _textinverse     DEBUG		inverting: "Audience"
+    Text.        _textinverse     DEBUG		"^"
+    Text.        _textinverse     DEBUG		"Audience"
+    Text.        _textinverse     DEBUG		"^*"
+    Text.        _textinverse     DEBUG		"Audience"
+    Text.        _textinverse     DEBUG		"^*;"
+    Text.        _textinverse     DEBUG		"Audience"
+    Text.        _textinverse     DEBUG		"^*;6"
+    Text.        _textinverse     DEBUG		"Audience"
+    Text.        _textinverse     DEBUG		"^*;6:"
+    Text.        _textinverse     DEBUG		"Audience"
+    Text.        _textinverse     DEBUG		"^*;6:1"
+    Text.        _textinverse     DEBUG		"Audience"
+    Text.        _textinverse     DEBUG		"^*;6:1<"
+    Text.        _textinverse     DEBUG		"Audience"
+    Text.        _textinverse     DEBUG		"^*;6:1<:"
+    Text.        _textinverse     DEBUG		"Audience"
+    Text.        _textinverse     DEBUG		result: "^*;6:1<:"
+    Text.        _textinverse     DEBUG		inverting: "Sample XHTML Basic document"
+    Text.        _textinverse     DEBUG		"L"
+    Text.        _textinverse     DEBUG		"Sample XHTML Basic document"
+    Text.        _textinverse     DEBUG		"L>"
+    Text.        _textinverse     DEBUG		"Sample XHTML Basic document"
+    Text.        _textinverse     DEBUG		"L>2"
+    Text.        _textinverse     DEBUG		"Sample XHTML Basic document"
+    Text.        _textinverse     DEBUG		"L>2/"
+    Text.        _textinverse     DEBUG		"Sample XHTML Basic document"
+    Text.        _textinverse     DEBUG		"L>2/3"
+    Text.        _textinverse     DEBUG		"Sample XHTML Basic document"
+    Text.        _textinverse     DEBUG		"L>2/3:"
+    Text.        _textinverse     DEBUG		"Sample XHTML Basic document"
+    Text.        _textinverse     DEBUG		"L>2/3: "
+    Text.        _textinverse     DEBUG		"Sample XHTML Basic document"
+    Text.        _textinverse     DEBUG		"L>2/3: G"
+    Text.        _textinverse     DEBUG		"Sample XHTML Basic document"
+    Text.        _textinverse     DEBUG		"L>2/3: GW"
+    Text.        _textinverse     DEBUG		"Sample XHTML Basic document"
+    Text.        _textinverse     DEBUG		"L>2/3: GWK"
+    Text.        _textinverse     DEBUG		"Sample XHTML Basic document"
+    Text.        _textinverse     DEBUG		"L>2/3: GWKR"
+    Text.        _textinverse     DEBUG		"Sample XHTML Basic document"
+    Text.        _textinverse     DEBUG		"L>2/3: GWKRS"
+    Text.        _textinverse     DEBUG		"Sample XHTML Basic document"
+    Text.        _textinverse     DEBUG		"L>2/3: GWKRS "
+    Text.        _textinverse     DEBUG		"Sample XHTML Basic document"
+    Text.        _textinverse     DEBUG		"L>2/3: GWKRS ]"
+    Text.        _textinverse     DEBUG		"Sample XHTML Basic document"
+    Text.        _textinverse     DEBUG		"L>2/3: GWKRS ]>"
+    Text.        _textinverse     DEBUG		"Sample XHTML Basic document"
+    Text.        _textinverse     DEBUG		"L>2/3: GWKRS ]>,"
+    Text.        _textinverse     DEBUG		"Sample XHTML Basic document"
+    Text.        _textinverse     DEBUG		"L>2/3: GWKRS ]>,6"
+    Text.        _textinverse     DEBUG		"Sample XHTML Basic document"
+    Text.        _textinverse     DEBUG		"L>2/3: GWKRS ]>,6<"
+    Text.        _textinverse     DEBUG		"Sample XHTML Basic document"
+    Text.        _textinverse     DEBUG		"L>2/3: GWKRS ]>,6< "
+    Text.        _textinverse     DEBUG		"Sample XHTML Basic document"
+    Text.        _textinverse     DEBUG		"L>2/3: GWKRS ]>,6< ;"
+    Text.        _textinverse     DEBUG		"Sample XHTML Basic document"
+    Text.        _textinverse     DEBUG		"L>2/3: GWKRS ]>,6< ;0"
+    Text.        _textinverse     DEBUG		"Sample XHTML Basic document"
+    Text.        _textinverse     DEBUG		"L>2/3: GWKRS ]>,6< ;0<"
+    Text.        _textinverse     DEBUG		"Sample XHTML Basic document"
+    Text.        _textinverse     DEBUG		"L>2/3: GWKRS ]>,6< ;0<*"
+    Text.        _textinverse     DEBUG		"Sample XHTML Basic document"
+    Text.        _textinverse     DEBUG		"L>2/3: GWKRS ]>,6< ;0<*2"
+    Text.        _textinverse     DEBUG		"Sample XHTML Basic document"
+    Text.        _textinverse     DEBUG		"L>2/3: GWKRS ]>,6< ;0<*2:"
+    Text.        _textinverse     DEBUG		"Sample XHTML Basic document"
+    Text.        _textinverse     DEBUG		"L>2/3: GWKRS ]>,6< ;0<*2:1"
+    Text.        _textinverse     DEBUG		"Sample XHTML Basic document"
+    Text.        _textinverse     DEBUG		"L>2/3: GWKRS ]>,6< ;0<*2:1+"
+    Text.        _textinverse     DEBUG		"Sample XHTML Basic document"
+    Text.        _textinverse     DEBUG		result: "L>2/3: GWKRS ]>,6< ;0<*2:1+"
+    Text.        _textinverse     DEBUG		inverting: "Contents"
+    Text.        _textinverse     DEBUG		"\"
+    Text.        _textinverse     DEBUG		"Contents"
+    Text.        _textinverse     DEBUG		"\0"
+    Text.        _textinverse     DEBUG		"Contents"
+    Text.        _textinverse     DEBUG		"\01"
+    Text.        _textinverse     DEBUG		"Contents"
+    Text.        _textinverse     DEBUG		"\01+"
+    Text.        _textinverse     DEBUG		"Contents"
+    Text.        _textinverse     DEBUG		"\01+:"
+    Text.        _textinverse     DEBUG		"Contents"
+    Text.        _textinverse     DEBUG		"\01+:1"
+    Text.        _textinverse     DEBUG		"Contents"
+    Text.        _textinverse     DEBUG		"\01+:1+"
+    Text.        _textinverse     DEBUG		"Contents"
+    Text.        _textinverse     DEBUG		"\01+:1+,"
+    Text.        _textinverse     DEBUG		"Contents"
+    Text.        _textinverse     DEBUG		result: "\01+:1+,"
+    Text.        _textinverse     DEBUG		inverting: " "
+    Text.        _textinverse     DEBUG		" "
+    Text.        _textinverse     DEBUG		" "
+    Text.        _textinverse     DEBUG		result: " "

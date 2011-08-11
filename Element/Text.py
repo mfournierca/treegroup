@@ -1,3 +1,5 @@
+import logging
+
 from . import String
 
 
@@ -11,7 +13,7 @@ from . import String
 #The unit characted is the first element in the domain, ie textdomain[0]. For 
 #text strings, this is whitespace, unlike the tags, where the unit is '_'
 
-textdomain = [' '] + ['\\', '''\\'''] + [i for i in map(chr, range(33, 127))] #[i for i in map(chr, range(97, 123))] + ['-', '_'] + [i for i in map(chr, range(65, 91))]
+textdomain = [' '] + [i for i in map(chr, range(33, 127))] #[i for i in map(chr, range(97, 123))] + ['-', '_'] + [i for i in map(chr, range(65, 91))]
 
 
 def _addtext(text1, text2):
@@ -24,9 +26,10 @@ def _addtext(text1, text2):
     if text2 is None: 
         text2 = ''
     
-    #we are not interested in trailing whitespace. 
-    text1 = text1.rstrip()
-    text2 = text2.rstrip()
+    #whitespace is sometimes significant
+#    #we are not interested in trailing whitespace. 
+#    text1 = text1.rstrip()
+#    text2 = text2.rstrip()
     
     #first make them the same length
     if len(text1) == len(text2):
@@ -60,15 +63,24 @@ def _textinverse(text1):
     receiving None, which can happen with document text but not, for example, element tags."""
     if text1 is None: 
         return None
-    text1 = text1.rstrip()
+    log = logging.getLogger()
+    log.debug('inverting: "%s"' % text1)
+
+    #whitespace is significant sometimes. 
+#    text1 = text1.rstrip()
+#    log.debug('rstrip: "%s"' % text1)
+    
     result = ''
     for i in text1:
         if i == '\n':
             result += i
         else:
             result += String._characterinverse(i, textdomain)
-
+#        log.debug('"%s"' % result)
+#        log.debug('"%s"' % text1)
+        
     result = _cleantext(result)
+    log.debug('result: "%s"' % result)
     return result
 
 

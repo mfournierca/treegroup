@@ -1,0 +1,180 @@
+<dita>
+    <topic id="pgfId-1579833" xmlns:ditaarch="http://dita.oasis-open.org/architecture/2005/">
+        <body>
+            <p id="pgfId-1400622">This guide provides information about the WaveReady Communications Module 200 (COM-200) controller. The COM-200 enables the monitoring and managing of communications with the WaveReady family of modules when mounted in a WaveReady shelf.</p>
+        </body>
+        <topic id="pgfId-1400451" xmlns:ditaarch="http://dita.oasis-open.org/architecture/2005/">
+            <title>Audience</title>
+            <body>
+                <p id="pgfId-1400452">This document is intended for technicians and network operators when installing and operating the COM-200 in the WaveReady shelf.</p>
+            </body>
+        </topic>
+        <topic id="pgfId-1400714" xmlns:ditaarch="http://dita.oasis-open.org/architecture/2005/">
+            <title>Typographical Conventions</title>
+            
+            <body conref="..\..\Common\DocumentsList\Typographical_conventions.dita#pgfId-1406419new2050/id104KF700YHS"/>
+            
+        </topic>
+        <topic id="pgfId-1576286" xmlns:ditaarch="http://dita.oasis-open.org/architecture/2005/">
+            <title>Document History</title>
+            <body>
+                <table frame="all" colsep="1" rowsep="1" id="d11e44">
+                    <tgroup cols="4" colsep="1" rowsep="1" outputclass="FormatA">
+                        <colspec colnum="1" colname="1" colwidth="0.667in"/>
+                        <colspec colnum="2" colname="2" colwidth="1.228in"/>
+                        <colspec colnum="3" colname="3" colwidth="1.430in"/>
+                        <colspec colnum="4" colname="4" colwidth="2.899in"/>
+                        <thead>
+                            <row rowsep="1">
+                                <entry colname="1">Release</entry>
+                                <entry colname="2" id="pgfId-1576264">Date</entry>
+                                <entry colname="3" id="pgfId-1576262">Document Number</entry>
+                                <entry colname="4" id="pgfId-1576266">Description</entry>
+                            </row>
+                        </thead>
+                        <tbody>
+                            <row rowsep="1">
+                                <entry colname="1">R4.2.1</entry>
+                                <entry colname="2">March 2007</entry>
+                                <entry colname="3">21057603-000, R000</entry>
+                                <entry colname="4">Initial release. Release 4.2.1 supports:<ul>
+                                    <li>Initial release of UDROA system</li>
+                                    <li>LightAmpPlus configurable Gain and Output Power modes</li>
+                                    <li><p>WRT-740 configurable to Regenerator, 2R Regenerator or Transponder mode. </p><note>Note: See the 4.2.1 release notes for supported hardware and software in Release 4.2.1.</note></li>
+                                </ul></entry>
+                            </row>
+                            <row rowsep="1">
+                                <entry namest="1" nameend="2"/>
+                                <entry colname="3">21057603-001,R000</entry>
+                                <entry colname="4">Not released. </entry>
+                            </row>
+                            <row rowsep="1">
+                                <entry colname="1">R4.3.0</entry>
+                                <entry colname="2">June 2007</entry>
+                                <entry colname="3">21057603-002, R000</entry>
+                                <entry colname="4">Release 4.3.0 provides support for:<ul>
+                                    <li>WRA-1xx/217 Optical Amplifier</li>
+                                    <li>WRT-842</li>
+                                </ul></entry>
+                            </row>
+                            <row rowsep="1">
+                                <entry colname="1">R4.3.1</entry>
+                                <entry colname="2">September 2007</entry>
+                                <entry colname="3">21057603-003, R000</entry>
+                                <entry colname="4">WaveReady Release 4.3.1 provides support for:<ul>
+                                    <li>Backup and Restore of module configuration data</li>
+                                    <li>Module replacement procedure updates</li>
+                                    <li>TL1 and SNMP MIB updates to support 4.3.1 features</li>
+                                    <li>Standard release 4.3.1 features described in the applicableuser guides</li>
+                                </ul></entry>
+                            </row>
+                            <row rowsep="1">
+                                <entry colname="1">R4.4.1</entry>
+                                <entry colname="2">June 2008</entry>
+                                <entry colname="3">21057603-004, R000</entry>
+                                <entry colname="4">WaveReady Releases 4.4.0 and 4.4.1 provide support for standard release features described in the applicable user guides.In addition, release 4.4.0 provides support for new equipment:<ul>
+                                    <li>WaveReady Transponder 780</li>
+                                    <li>WRA-217L</li>
+                                    <li>WRA-219 Release 4.4.1 also provides support for:<ul>
+                                        <li>Remote Fan Alarm Monitoring via linked WRT-840s</li>
+                                        <li>Ethernet Management Link via WRT-780</li>
+                                    </ul></li>
+                                </ul></entry>
+                            </row>
+                            <row rowsep="1">
+                                <entry colname="1">R4.5.4</entry>
+                                <entry colname="2">February 2009</entry>
+                                <entry colname="3">21057603-005, R000</entry>
+                                <entry colname="4">WaveReady Releases 4.5.1, 4.5.3 and 4.5.4 provide support for standard release features described in the applicable user guides. In addition, these releases provide support for new equipment:<ul>
+                                    <li>WaveReady Transponder 852</li>
+                                    <li>WaveReady 3500F-2 shelf</li>
+                                </ul></entry>
+                            </row>
+                            <row rowsep="1">
+                                <entry colname="1">R4.6.0</entry>
+                                <entry colname="2">May 2009</entry>
+                                <entry colname="3">21057603-006, R000</entry>
+                                <entry colname="4">WaveReady Release 4.6.0 provides support for standard 4.6.0 features described in the applicable user guides. In addition, this release provides support for new equipment:<ul>
+                                    <li>WaveReady Muxponder 782This release also renames the WR3500F-HP shelf.</li>
+                                </ul></entry>
+                            </row>
+                            <row rowsep="1">
+                                <entry colname="1">R4.6.3</entry>
+                                <entry colname="2" id="pgfId-1576270">June 2009</entry>
+                                <entry colname="3" id="pgfId-1576268">21057603-007, R000</entry>
+                                <entry colname="4" id="pgfId-1579560">WaveReady Release 4.6.3 provides support for standard 4.6.3 features described in the applicable user guides. In addition, this release provides support for new equipment:<ul>
+                                    <li>WaveReady Reconfigurable Optical Add/Drop Multiplexer (WRS-051) </li>
+                                </ul></entry>
+                            </row>
+                            <row rowsep="1">
+                                <entry colname="1" morerows="1">R4.6.6</entry>
+                                <entry colname="2">October 2009</entry>
+                                <entry colname="3">21057603-008,R000</entry>
+                                <entry colname="4">WaveReady Release 4.6.6 provides support for standard 4.6.6 features described in the applicable user guides. In addition, this release provides support for:<ul>
+                                    <li>IPv6 Addressing</li>
+                                    <li>Support for Windows Vista, and Windows Internation versions</li>
+                                    <li>External Shelf and unit management</li>
+                                    <li>Enhanced Node Manager logs</li>
+                                </ul></entry>
+                            </row>
+                            <row rowsep="1">
+                                <entry colname="2">December 2009</entry>
+                                <entry colname="3">21057603-008,R001</entry>
+                                <entry colname="4">Update graphics, format changes</entry>
+                            </row>
+                            <row rowsep="1">
+                                <entry colname="1">R.4.7</entry>
+                                <entry colname="2">April 2010</entry>
+                                <entry colname="3">21057603-009, R000</entry>
+                                <entry colname="4"><p>WaveReady Release 4.7 provides support for standard 4.7 features described in the applicable user guides. In addition, this release introduces new products: </p><ul>
+                                    <li>WaveReady Multi-Node Manager</li>
+                                    <li>WRT-781</li>
+                                </ul><p>In this document: added information on logging in and configuring the COM-200 using WaveReady Multi-Node Manager.</p></entry>
+                            </row>
+                            <row rowsep="1">
+                                <entry colname="1">R4.7.1</entry>
+                                <entry colname="2">June 2010</entry>
+                                <entry colname="3">21057603-010, R000</entry>
+                                <entry colname="4">WaveReady Release 4.7.1 provides support for standard 4.7.1 features described in the applicable user guides. </entry>
+                            </row>
+                            <row rowsep="1">
+                                <entry colname="1">R4.7.4</entry>
+                                <entry colname="2">October 2010</entry>
+                                <entry colname="3">21057603-011, R000</entry>
+                                <entry colname="4"><p>WaveReady Release 4.7.4 provides support for standard 4.7.4 features described in the applicable user guides. </p><p>In this document, user account limitations, serial port connection limitations, and timeout configuration and limitations for Multi-Node Manager and Node Manager have been documented.</p></entry>
+                            </row>
+                            <row rowsep="0">
+                                <entry colname="1">R4.8</entry>
+                                <entry colname="2">March 2011</entry>
+                                <entry colname="3">21057603-012, R000</entry>
+                                <entry colname="4"><p>WaveReady Release 4.8 provides support for standard 4.8 features described in the applicable user guides.</p><p>This release introduces</p><ul>
+                                    <li><p>Linux version of Multi-Node Manager</p></li>
+                                    <li><p>COM-300</p></li>
+                                    <li><p>Performance Monitoring and Threshold Crossing Alerts for selected equipment</p></li>
+                                </ul><p>In this document,</p><ul>
+                                    <li><p>Revised communications module procedures</p></li>
+                                    <li><p>Added COM-200/COM-300 replacement</p></li>
+                                    <li><p>Revised, expanded alarms tables</p></li>
+                                    <li><p>Revised, updated connection, management session launching and configuration procedures</p></li>
+                                </ul></entry>
+                            </row>
+                        </tbody>
+                    </tgroup>
+                </table>
+            </body>
+        </topic>
+        <topic id="pgfId-1576296" xmlns:ditaarch="http://dita.oasis-open.org/architecture/2005/">
+            <title>Ordering Information</title>
+            <body>
+                <p id="pgfId-1575984">Refer to the Product Release CD or contact JDSU customer support.</p>
+            </body>
+        </topic>
+        <topic id="pgfId-1581680" xmlns:ditaarch="http://dita.oasis-open.org/architecture/2005/">
+            <title>WaveReady Documents</title>
+            
+            <body conref="..\..\Common\DocumentsList\documentsList.dita#pgfId-1591593"/>
+            
+        </topic>
+    </topic>
+</dita>
+

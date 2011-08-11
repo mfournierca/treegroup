@@ -730,18 +730,17 @@ class test_add(unittest.TestCase):
         self.log.debug('starting test_TreesWithText')
         
         expectedtree = lxml.etree.fromstring("""
-                                <c>
-                                    <Z id="9">
-                                        <c id="3">nSYKDI)KqiD<d/></c>
-                                        <c/>
-                                    </Z>
-                                    <a id="6">
-                                        <a id="7">nSYKDI)KqiF<b id="8"/>nSYKDI)KqiH</a>
-                                        <a id="8">File14Text4</a>
-                                    </a>
-                                </c>
+                                            <c>
+                                                <Z id="9">
+                                                    <c id="3">lSYKBG)KqiB<d/></c>
+                                                    <c/>
+                                                </Z>
+                                                <a id="6">
+                                                <a id="7">lSYKBG)KqiD<b id="8"/>lSYKBG)KqiF</a>
+                                                <a id="8">File14Text4</a></a>
+                                            </c>
                                             """)
-                                                
+
         tree1 = lxml.etree.parse(os.path.join(self.testfilesdir, 'TreeTestFile_add13.xml'))
         tree2 = lxml.etree.parse(os.path.join(self.testfilesdir, 'TreeTestFile_add14.xml'))
         Tree.add(tree1, tree2)
