@@ -320,7 +320,7 @@ class ElementErrorParser(ErrorParserRootClass):
             except IndexError:
                 self.log.error('xpath found no elements: %s' % xpath)
                 raise
-#        self.log.debug('\tfound target: %s' % str(target))
+        self.log.debug('\tfound target: %s' % str(target))
         return target
                 
                 
@@ -690,7 +690,8 @@ class TextErrorParser(ElementErrorParser):
             self.acceptableTags = acceptableTagsCandidate1
         else:
             self.acceptableTags = acceptableTagsCandidate2
-                
+        self.log.debug('acceptableTags: %s' % str(self.acceptableTags))
+        
         try:
             index = self._actualTags.index('CDATA')
         except ValueError:
@@ -706,6 +707,7 @@ class TextErrorParser(ElementErrorParser):
             self.tail = True
         
         self.targetElement = self.tree.xpath(xpath)[0]
+        self.log.debug('targetElement: %s' % str(self.targetElement))
         return True
     
 
@@ -758,7 +760,7 @@ class TextPatternParser:
     
 
     def _parsePattern1(self):
-        pattern = r'.*?\:\d*\:\d*\:ERROR:VALID\:DTD_CONTENT_MODEL\: Element (.*?) content does not follow the DTD, expecting (.*), got \((.*?)\)'
+        pattern = r'.*?\:\d*\:\d*\:ERROR:VALID\:DTD_CONTENT_MODEL\: Element (.*?) content does not follow the DTD, expecting (.*), got \((.*)\)'
 #        self.log.debug('testing pattern: %s' % str(pattern))
         match = re.search(pattern, self.errorMessage)
         if not match: return None, None, None

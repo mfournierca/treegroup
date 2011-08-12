@@ -53,7 +53,7 @@ class AStarPathFinder:
         self.stepnumber = 0
         
         #beam width. -1 means infinite width
-        self.beamwidth = -1
+        self.beamwidth = 5
         
         #no backtracking
         self.bactracking = True

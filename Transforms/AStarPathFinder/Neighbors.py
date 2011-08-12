@@ -210,6 +210,7 @@ def findNeighbors_FirstValidationError(t, ignore_filter=False):
     import Generators.InsertBefore
     import Generators.AppendBefore
     import Generators.WrapText
+    import Generators.WrapTail
     
     log = logging.getLogger()
     
@@ -423,8 +424,36 @@ def findNeighbors_FirstValidationError(t, ignore_filter=False):
 
         return neighbors
     
-    if parsed and errorParser.tail:
-        pass
+    
+    if parsed and errorParser.tail: 
+        wrapTailGenerator = Generators.WrapTail.Generator()
+
+        #filter acceptable tags
+        if not ignore_filter:
+            filter = Filter.ElementTagFilter()
+            filteredtags, filteredscores = filter.filter(errorParser.targetElement, errorParser.acceptableTags)
+        else:
+            filteredtags = errorParser.acceptableTags
+            filterscores = {}
+            for i in filteredtags: filteredscores[i] = 1
+        
+        for tag in filteredtags:
+            wrapTailOperand = wrapTailGenerator.generateOperand(errorParser.targetElement, tag)
+            if not wrapTailOperand:
+                continue
+            wrapTailNeighbor = Neighbor(Tree.Tree.add(copy.deepcopy(wrapTailOperand.getTree()), t.getTree()))
+            wrapTailNeighbor.setOperand(wrapTailNeighbor.getTree())
+            wrapTailNeighbor.setOperandType('wrapTail')
+            wrapTailNeighbor.setTargetElementStr(str(errorParser.targetElement))
+            wrapTailNeighbor.setCost(filteredscores[tag],
+                                     Tree.Tree.metric(t.getTree(), wrapTailNeighbor.getTree()),
+                                     treeSize,
+                                     getManualCost(wrapTailNeighbor, 'wrapText', tag),
+                                     )
+            log.info("generated wrap tail neighbor: %s\twrap in: %s\tcost: %s" % (str(wrapTailNeighbor), tag, str(wrapTailNeighbor.getCost())))
+            neighbors.append(wrapTailNeighbor)
+
+        return neighbors
         #get wrap tail operand
     
     #===========================================================================

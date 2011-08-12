@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dita>
+    <topic id="id-1">
+        <title/>
+        <body>
+            <p><b>Bold 1 Text</b>Bold 1 Tail<b>Bold 2 Text<i>Italic Text</i>Italic Tail</b>Bold 2 Tail</p>
+        </body>
+    </topic>
+</dita>
+    
