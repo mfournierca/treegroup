@@ -149,6 +149,114 @@ class test_Generator(unittest.TestCase):
         self.assertTrue(Tree.Tree.equal(expectedTree, result), "UnwrapGenerator generated the wrong operand. Operand results in %s, expected %s" % (lxml.etree.tostring(result), lxml.etree.tostring(expectedTree)))
     
     
+    def test_UnwrapElementWithTextNoChildren(self):
+        self.log.debug('')
+        self.log.debug('')
+        self.log.debug('running test_UnwrapElementWithTextNoChildren')
+        testfile = os.path.join(self.testfilesdir, 'UnwrapTest7.xml')
+        tree = lxml.etree.parse(testfile)
+        targetElement = tree.getroot()[0][2]
+        expectedTree = lxml.etree.fromstring('''<dita><topic id="id-1"><title/><body/>Important Text</topic></dita>''')
+        
+        generator = Unwrap.Generator()
+        operand = generator.generateOperand(targetElement)
+#        self.log.debug('test tree: %s' % lxml.etree.tostring(tree))
+#        self.log.debug('got operand tree: %s' % lxml.etree.tostring(operand.getTree()))
+        result = Tree.Tree.add(tree, operand.getTree())
+#        self.log.debug('addition result: %s' % lxml.etree.tostring(result))
+        self.assertTrue(Tree.Tree.equal(expectedTree, result), "UnwrapGenerator generated the wrong operand. Operand results in: \n\
+        result:   %s\n\
+        expected: %s" % (lxml.etree.tostring(result), lxml.etree.tostring(expectedTree)))
+    
+    
+        
+    def test_UnwrapElementWithTextAndTailNoChildren(self):
+        self.log.debug('')
+        self.log.debug('')
+        self.log.debug('running test_UnwrapElementWithTextAndTailNoChildren')
+        testfile = os.path.join(self.testfilesdir, 'UnwrapTest8.xml')
+        tree = lxml.etree.parse(testfile)
+        targetElement = tree.getroot()[0][1][0][0]
+        expectedTree = lxml.etree.fromstring('''<dita><topic id="id-1"><title/><body><p>Bold TextBold Tail</p></body></topic></dita>''')
+        
+        generator = Unwrap.Generator()
+        operand = generator.generateOperand(targetElement)
+#        self.log.debug('test tree: %s' % lxml.etree.tostring(tree))
+#        self.log.debug('got operand tree: %s' % lxml.etree.tostring(operand.getTree()))
+        result = Tree.Tree.add(tree, operand.getTree())
+#        self.log.debug('addition result: %s' % lxml.etree.tostring(result))
+        self.assertTrue(Tree.Tree.equal(expectedTree, result), "UnwrapGenerator generated the wrong operand. Operand results in: \n\
+        result:   %s\n\
+        expected: %s" % (lxml.etree.tostring(result), lxml.etree.tostring(expectedTree)))
+    
+    
+        
+    def test_UnwrapElementWithTextAndTailChild(self):
+        self.log.debug('')
+        self.log.debug('')
+        self.log.debug('running test_UnwrapElementWithTextAndTailChild')
+        testfile = os.path.join(self.testfilesdir, 'UnwrapTest9.xml')
+        tree = lxml.etree.parse(testfile)
+        targetElement = tree.getroot()[0][1][0][0]
+        expectedTree = lxml.etree.fromstring('''<dita><topic id="id-1"><title/><body><p>Bold Text<i/>Bold Tail</p></body></topic></dita>''')
+        
+        generator = Unwrap.Generator()
+        operand = generator.generateOperand(targetElement)
+#        self.log.debug('test tree: %s' % lxml.etree.tostring(tree))
+#        self.log.debug('got operand tree: %s' % lxml.etree.tostring(operand.getTree()))
+        result = Tree.Tree.add(tree, operand.getTree())
+#        self.log.debug('addition result: %s' % lxml.etree.tostring(result))
+        self.assertTrue(Tree.Tree.equal(expectedTree, result), "UnwrapGenerator generated the wrong operand. Operand results in: \n\
+        result:   %s\n\
+        expected: %s" % (lxml.etree.tostring(result), lxml.etree.tostring(expectedTree)))
+    
+    
+    
+        
+    def test_UnwrapElementWithChildTailAndTextBoth(self):
+        self.log.debug('')
+        self.log.debug('')
+        self.log.debug('running test_UnwrapElementWithChildTailAndTextBoth')
+        testfile = os.path.join(self.testfilesdir, 'UnwrapTest10.xml')
+        tree = lxml.etree.parse(testfile)
+        targetElement = tree.getroot()[0][1][0][0]
+        expectedTree = lxml.etree.fromstring('''<dita><topic id="id-1"><title/><body><p>Bold Text<i>Italic Text</i>Italic TailBold Tail</p></body></topic></dita>''')
+        
+        generator = Unwrap.Generator()
+        operand = generator.generateOperand(targetElement)
+#        self.log.debug('test tree: %s' % lxml.etree.tostring(tree))
+#        self.log.debug('got operand tree: %s' % lxml.etree.tostring(operand.getTree()))
+        result = Tree.Tree.add(tree, operand.getTree())
+#        self.log.debug('addition result: %s' % lxml.etree.tostring(result))
+        self.assertTrue(Tree.Tree.equal(expectedTree, result), "UnwrapGenerator generated the wrong operand. Operand results in: \n\
+        result:   %s\n\
+        expected: %s" % (lxml.etree.tostring(result), lxml.etree.tostring(expectedTree)))
+    
+            
+            
+    def test_UnwrapElementWithChildTailAndTextBothNotFirstChild(self):
+        self.log.debug('')
+        self.log.debug('')
+        self.log.debug('running test_UnwrapElementWithChildTailAndTextBothNotFirstChild')
+        testfile = os.path.join(self.testfilesdir, 'UnwrapTest11.xml')
+        tree = lxml.etree.parse(testfile)
+        targetElement = tree.getroot()[0][1][0][1]
+        expectedTree = lxml.etree.fromstring('''<dita><topic id="id-1"><title/><body><p><b>Bold 1 Text</b>Bold 1 TailBold 2 Text<i>Italic Text</i>Italic TailBold 2 Tail</p></body></topic></dita>''')
+        
+        generator = Unwrap.Generator()
+        operand = generator.generateOperand(targetElement)
+#        self.log.debug('test tree: %s' % lxml.etree.tostring(tree))
+#        self.log.debug('got operand tree: %s' % lxml.etree.tostring(operand.getTree()))
+        result = Tree.Tree.add(tree, operand.getTree())
+#        self.log.debug('addition result: %s' % lxml.etree.tostring(result))
+        self.assertTrue(Tree.Tree.equal(expectedTree, result), "UnwrapGenerator generated the wrong operand. Operand results in: \n\
+        result:   %s\n\
+        expected: %s" % (lxml.etree.tostring(result), lxml.etree.tostring(expectedTree)))
+    
+    
+    
+    
+    
     
     
     

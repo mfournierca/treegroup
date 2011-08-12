@@ -64,7 +64,7 @@ def _textinverse(text1):
     if text1 is None: 
         return None
     log = logging.getLogger()
-    log.debug('inverting: "%s"' % text1)
+#    log.debug('inverting: "%s"' % text1)
 
     #whitespace is significant sometimes. 
 #    text1 = text1.rstrip()
@@ -80,7 +80,7 @@ def _textinverse(text1):
 #        log.debug('"%s"' % text1)
         
     result = _cleantext(result)
-    log.debug('result: "%s"' % result)
+#    log.debug('result: "%s"' % result)
     return result
 
 
