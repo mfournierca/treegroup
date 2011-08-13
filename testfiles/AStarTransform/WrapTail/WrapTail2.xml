@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dita>
+    <topic id="id-1">
+        <title/>
+        <body><p>Text 1</p>cdata<p>Text 2</p></body>
+    </topic>
+</dita>

@@ -45,18 +45,31 @@ class AStarPathFinder:
         self.start.setGScore(0)
         self.start.setHScore(0)
         self.start.setFScore(0)
+        self.start.setGeneration(0)
         self._openset = set([self.start])
         
         self._closedset = set()
+        
+        #
+        #variables below are used to try and speed up the pathfinder, or increase performance. 
+        #
         
         #step number is used to keep track of the process. 
         self.stepnumber = 0
         
         #beam width. -1 means infinite width
-        self.beamwidth = 5
+        self.beamwidth = 3
         
         #no backtracking
         self.bactracking = True
+        
+        #keep generations determines how many generations of neighbors are kept 
+        #in the open set. -1 means infinite generations. 
+        self.keepgenerations = -1
+        
+        #filter f score is used to remove all elements from the open set whose fscores
+        #at least self.filterfscore above the current best fscore. -1 means keep everything
+        self.filterfscore = -1  
         
         
         
@@ -131,7 +144,7 @@ class AStarPathFinder:
             
             self.stepnumber += 1
         
-        self.log.debug('transformation failed')
+        self.log.info('transformation failed')
         return False
     
     
@@ -167,6 +180,28 @@ class AStarPathFinder:
             self.log.info("reduced number of neighbors to beamwidth: %s" % str(neighbors))
             
         
+        #implement keep generations
+        discard = []
+        if self.keepgenerations > 0:
+            for n in self._openset:
+                if n.getGeneration() < t.getGeneration() + self.keepgenerations:
+                    discard.append(n)
+            for n in discard:        
+                self._openset.remove(n)
+            self.log.info('reduced openset for %i generations, removed %i neighbors' % (self.keepgenerations, len(discard)))
+        
+        
+        #implement filterfscore
+        discard = []
+        if self.filterfscore > 0:
+            for n in self._openset:
+                if n.getFScore() > t.getFScore() + self.filterfscore:
+                    discard.append(n)
+            for n in discard:
+                self._openset.remove()
+            self.log.info('filtered fscore to %s, removed %i neighbors' % (str(self.filterfscore), len(discard)))    
+                    
+        
         self.log.info('')
         for n in neighbors: 
             
@@ -188,6 +223,10 @@ class AStarPathFinder:
                 #otherwise replace n. 
                 del n
                 n = oMember
+            
+            
+            #set Generation
+            n.setGeneration(t.getGeneration() + 1)
             
                                 
             #A* algo requires that the gscore be:
@@ -384,7 +423,9 @@ if __name__ == "__main__":
         #perform transformation
         result = pathfinder.findPath()
     
-    #add path to input
-    log.info('writing output to %s' % output)
-    DitaTools.Tree.File.Dita.write_tree_to_file(result.getroot(), output)
+    if result is False:
+        log.info("Transformation failed")
+    else:
+        log.info('writing output to %s' % output)
+        DitaTools.Tree.File.Dita.write_tree_to_file(result.getroot(), output)
     

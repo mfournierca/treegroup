@@ -33,6 +33,8 @@ class Neighbor:
         self._operandType = None
         self._targetElementStr = None
         
+        #generations determines how many steps from the start this neighbor is
+        self._generation = None
         
         
         #metric reduction factor
@@ -137,6 +139,14 @@ class Neighbor:
         
     def getTargetElementStr(self):
         return self._targetElementStr
+    
+    
+    def setGeneration(self, g):
+        self._generation = g
+        
+    def getGeneration(self):
+        return self._generation
+    
     
     def setCost(self, filterscore, metric, metricnormalizationdenominator, manualscore):
         #we want the cost to be balanced against the heuristic - the path finder will work differently
