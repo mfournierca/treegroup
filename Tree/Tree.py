@@ -32,6 +32,31 @@ def invert(tree):
     return tree
 
 
+#
+#def add(tree1, tree2):
+#    """Add tree2 to tree1, modify tree1 in place.
+#    
+#    Note that this function modifies tree1 in place _and_ returns it. 
+#    
+#    Modifying the tree in place is important since it avoids multiple copies
+#    of a tree being created in more complicated programs. 
+#    
+#    Returning the tree allows this function to be used in compound statements, such 
+#    as
+#        add(tree3, invert(add(tree1, tree2)))
+#        
+#    Remember that the tree itself is not returned, only a reference to it. 
+#    """
+#    
+#    log = logging.getLogger()
+#    
+#    if isinstance(tree1, lxml.etree._ProcessingInstruction):
+#        self.log.error('%s is ProcessingInstruction' % str(tree1))
+#        raise TypeError
+#    elif isinstance(tree2, lxml.etree._ProcessingInstruction):
+#        self.log.error("%s is ProcessingInstruction, cannot add" % str(tree2))
+#        raise TypeError
+    
 
 def add(tree1, tree2):
     """Add tree2 to tree1, modify tree1 in place.

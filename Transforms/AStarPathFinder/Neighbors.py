@@ -148,7 +148,7 @@ class Neighbor:
         return self._generation
     
     
-    def setCost(self, filterscore, metric, metricnormalizationdenominator, manualscore):
+    def setCost(self, filterscore, metric, manualscore):
         #we want the cost to be balanced against the heuristic - the path finder will work differently
         #if the heuristic overestimates, underestimates, or gets it right. 
         #Of course, the only criteria that matters when determining how the heuristic estimates is this 
@@ -179,10 +179,7 @@ class Neighbor:
         #0 < x < 1, so that none dominate. 
         
         log = logging.getLogger()
-        
-        #Normalize metric. Filterscore and manualscore are already normalized.
-        #metric = float(metric) / float(metricnormalizationdenominator) 
-        metric = 1 # all operands have the same intrinsic cost, regardless of the number of changes they make to the tree. 
+    
         
         #the filter returns scores that are higher when better - the pathfinder wants the opposite
         filterscore = 1 - filterscore
@@ -228,7 +225,22 @@ def findNeighbors_FirstValidationError(t, ignore_filter=False):
         """used to get the tree size, which is used to normalize the metric"""
         for index, e in enumerate(tree.iter()):
             pass
+        #index is 0 if the tree has only the root, therefore return 1
+        if index == 0: index = 1
         return index
+    
+    
+    def metricWrapper(tree1, tree2, normalizationfactor):
+        #A wrapper used to change the metric used to generate neighbors and costs. 
+        log = logging.getLogger()
+        
+#        metric = Tree.Tree.metric(tree1, tree2)
+#        result = float(metric) / float(normalizationfactor)
+#        log.debug('metric = %s / %s = %s' % (str(metric), str(normalizationfactor), str(result)))
+        
+        result = 1.0
+        
+        return result
     
     
     treeSize = getTreeSize(t.getTree())
@@ -272,8 +284,7 @@ def findNeighbors_FirstValidationError(t, ignore_filter=False):
             renameNeighbor.setOperandType('rename')
             renameNeighbor.setTargetElementStr(str(errorParser.targetElement))
             renameNeighbor.setCost(filteredscores[tag], 
-                                   Tree.Tree.metric(t.getTree(), renameNeighbor.getTree()),
-                                   treeSize,
+                                   metricWrapper(t.getTree(), renameNeighbor.getTree(), treeSize),
                                    getManualCost(renameNeighbor, 'rename', tag)
                                    )
             log.info("generated rename neighbor: %s\trename to: %s\tcost: %s" % (str(renameNeighbor), tag, str(renameNeighbor.getCost())))
@@ -286,8 +297,7 @@ def findNeighbors_FirstValidationError(t, ignore_filter=False):
             wrapNeighbor.setOperandType('wrap')
             wrapNeighbor.setTargetElementStr(str(errorParser.targetElement))
             wrapNeighbor.setCost(filteredscores[tag], 
-                               Tree.Tree.metric(t.getTree(), wrapNeighbor.getTree()),
-                               treeSize,
+                               metricWrapper(t.getTree(), wrapNeighbor.getTree(), treeSize),
                                getManualCost(wrapNeighbor, 'wrap', tag)
                                )
             log.info("generated wrap neighbor: %s\twrap in: %s\tcost: %s" % (str(wrapNeighbor), tag, str(wrapNeighbor.getCost())))
@@ -303,8 +313,7 @@ def findNeighbors_FirstValidationError(t, ignore_filter=False):
                 insertBeforeNeighbor.setOperandType('insertBefore')
                 insertBeforeNeighbor.setTargetElementStr(str(errorParser.targetElement))
                 insertBeforeNeighbor.setCost(filteredscores[tag],
-                                             Tree.Tree.metric(t.getTree(), insertBeforeNeighbor.getTree()),
-                                             treeSize,
+                                             metricWrapper(t.getTree(), insertBeforeNeighbor.getTree(), treeSize),
                                              getManualCost(insertBeforeNeighbor, 'insertBefore', tag),
                                              )
                 log.info("generated inserBefore neighbor: %s\tnew element: %s\tcost: %s" % (str(insertBeforeNeighbor), tag, str(insertBeforeNeighbor.getCost())))
@@ -322,8 +331,7 @@ def findNeighbors_FirstValidationError(t, ignore_filter=False):
             unwrapNeighbor.setOperandType('unwrap')
             unwrapNeighbor.setTargetElementStr(str(errorParser.targetElement))
             unwrapNeighbor.setCost(0.5,
-                                 Tree.Tree.metric(t.getTree(), unwrapNeighbor.getTree()),
-                                 treeSize,
+                                 metricWrapper(t.getTree(), unwrapNeighbor.getTree(), treeSize),
                                  getManualCost(unwrapNeighbor, 'unwrap', tag),
                                  )
             log.info("generated unwrap neighbor: %s\tcost: %s" % (str(unwrapNeighbor), str(unwrapNeighbor.getCost())))
@@ -341,8 +349,7 @@ def findNeighbors_FirstValidationError(t, ignore_filter=False):
             appendBeforeNeighbor.setOperandType('appendBefore')
             appendBeforeNeighbor.setTargetElementStr(str(errorParser.targetElement))
             appendBeforeNeighbor.setCost(0.5,
-                                         Tree.Tree.metric(t.getTree(), unwrapNeighbor.getTree()),
-                                         treeSize,
+                                         metricWrapper(t.getTree(), unwrapNeighbor.getTree(), treeSize),
                                          getManualCost(appendBeforeNeighbor, 'appendBefore', tag),
                                          )
             log.info("generated appendBefore neighbor: %s\tcost: %s" % (str(appendBeforeNeighbor), str(appendBeforeNeighbor.getCost())))
@@ -371,8 +378,7 @@ def findNeighbors_FirstValidationError(t, ignore_filter=False):
             renameAttributeNeighbor.setOperandType('renameAttribute')
             renameAttributeNeighbor.setTargetElementStr(str(errorParser.targetElement))
             renameAttributeNeighbor.setCost(0.5,
-                                         Tree.Tree.metric(t.getTree(), renameAttributeNeighbor.getTree()),
-                                         treeSize,
+                                         metricWrapper(t.getTree(), renameAttributeNeighbor.getTree(), treeSize),
                                          getManualCost(renameAttributeNeighbor, 'renameAttribute', None),
                                          )
             log.info("generated rename attribute neighbor: %s\trename to: %s\tcost: %s" % (str(renameAttributeNeighbor), attributeName, str(renameAttributeNeighbor.getCost())))
@@ -387,8 +393,7 @@ def findNeighbors_FirstValidationError(t, ignore_filter=False):
             addAttributeNeighbor.setOperandType('addAttribute')
             addAttributeNeighbor.setTargetElementStr(str(errorParser.targetElement))
             addAttributeNeighbor.setCost(0.5,
-                                         Tree.Tree.metric(t.getTree(), addAttributeNeighbor.getTree()),
-                                         treeSize,
+                                         metricWrapper(t.getTree(), addAttributeNeighbor.getTree(), treeSize),
                                          getManualCost(addAttributeNeighbor, 'addAttribute', None),
                                          )
             log.info("generated add attribute neighbor: %s\tadd attr: %s\tcost: %s" % (str(addAttributeNeighbor), attributeName, str(addAttributeNeighbor.getCost())))
@@ -425,8 +430,7 @@ def findNeighbors_FirstValidationError(t, ignore_filter=False):
             wrapTextNeighbor.setOperandType('wrapText')
             wrapTextNeighbor.setTargetElementStr(str(errorParser.targetElement))
             wrapTextNeighbor.setCost(filteredscores[tag],
-                                     Tree.Tree.metric(t.getTree(), wrapTextNeighbor.getTree()),
-                                     treeSize,
+                                     metricWrapper(t.getTree(), wrapTextNeighbor.getTree(), treeSize),
                                      getManualCost(wrapTextNeighbor, 'wrapText', tag),
                                      )
             log.info("generated wrap text neighbor: %s\twrap in: %s\tcost: %s" % (str(wrapTextNeighbor), tag, str(wrapTextNeighbor.getCost())))
@@ -456,8 +460,7 @@ def findNeighbors_FirstValidationError(t, ignore_filter=False):
             wrapTailNeighbor.setOperandType('wrapTail')
             wrapTailNeighbor.setTargetElementStr(str(errorParser.targetElement))
             wrapTailNeighbor.setCost(filteredscores[tag],
-                                     Tree.Tree.metric(t.getTree(), wrapTailNeighbor.getTree()),
-                                     treeSize,
+                                     metricWrapper(t.getTree(), wrapTailNeighbor.getTree(), treeSize),
                                      getManualCost(wrapTailNeighbor, 'wrapText', tag),
                                      )
             log.info("generated wrap tail neighbor: %s\twrap in: %s\tcost: %s" % (str(wrapTailNeighbor), tag, str(wrapTailNeighbor.getCost())))

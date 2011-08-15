@@ -20,6 +20,7 @@ class test_processNeighbors(unittest.TestCase):
         tree = lxml.etree.parse(testfile)
         t = Neighbors.Neighbor(tree)
         t.setGScore(0)
+        t.setGeneration(0)
         pathfinder.processNeighbors(t)
         
         #check open set, should only contain one entry

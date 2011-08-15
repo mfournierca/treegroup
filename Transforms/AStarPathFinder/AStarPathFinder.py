@@ -187,7 +187,9 @@ class AStarPathFinder:
                 if n.getGeneration() < t.getGeneration() + self.keepgenerations:
                     discard.append(n)
             for n in discard:        
-                self._openset.remove(n)
+                #don't remove from openset - this may cause loops in the path. Instead, multiply fscore 
+                #so this neighbor is never chosen again. 
+                n.setFScore(n.getFScore * 1000)
             self.log.info('reduced openset for %i generations, removed %i neighbors' % (self.keepgenerations, len(discard)))
         
         
@@ -198,7 +200,9 @@ class AStarPathFinder:
                 if n.getFScore() > t.getFScore() + self.filterfscore:
                     discard.append(n)
             for n in discard:
-                self._openset.remove()
+                #don't remove from openset - this may cause loops in the path. Instead, multiply fscore 
+                #so this neighbor is never chosen again. 
+                n.setFScore(n.getFScore * 1000)
             self.log.info('filtered fscore to %s, removed %i neighbors' % (str(self.filterfscore), len(discard)))    
                     
         
