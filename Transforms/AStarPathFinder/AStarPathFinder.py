@@ -38,8 +38,10 @@ class AStarPathFinder:
         
         self.inputfile = file
         self.inputtree = lxml.etree.parse(self.inputfile)
+        
         self.tempdir = tempdir
         self.debug = debug
+        self.debugPathTree = None
         
         self.start = Neighbors.Neighbor(self.inputtree)
         self.start.setGScore(0)
@@ -68,11 +70,11 @@ class AStarPathFinder:
         
         #keep generations determines how many generations of neighbors are kept 
         #in the open set. -1 means infinite generations. 
-        self.keepgenerations = -1
+        self.keepgenerations = 10
         
         #filter f score is used to remove all elements from the open set whose fscores
         #at least self.filterfscore above the current best fscore. -1 means keep everything
-        self.filterfscore = -1  
+        self.filterfscore = 20
         
         
         
@@ -97,16 +99,15 @@ class AStarPathFinder:
             self.log.info('\tOperand Type: %s' % t.getOperandType())
             
             if (self.tempdir is not None) and (bool(self.debug)):
-                self.writeDebugInfo(t)
+                self._writeDebugInfo(t)
+                self._updateDebugPathTree(t)
                 
                 
             #check if t is dita
             self.validationerrors = DitaTools.Tree.File.Dita.v11_validate(t.getTree())
             if len(self.validationerrors) == 0:
                 #if t is dita, the algorithm is complete.
-    #            finalOperand = self.backTrackBuildOperand(self, t)
-    #            return finalOperand
-                self.log.info('transformation complete')
+                self.log.info('transformation complete')    
                 return t.getTree()
             
             
@@ -166,7 +167,7 @@ class AStarPathFinder:
             for n in discard:        
                 #don't remove from openset - this may cause loops in the path. Instead, multiply fscore 
                 #so this neighbor is never chosen again. 
-                n.setFScore(n.getFScore * 1000)
+                n.setFScore(n.getFScore() * 1000)
             self.log.info('reduced openset for %i generations, removed %i neighbors' % (self.keepgenerations, len(discard)))
         
         
@@ -179,7 +180,7 @@ class AStarPathFinder:
             for n in discard:
                 #don't remove from openset - this may cause loops in the path. Instead, multiply fscore 
                 #so this neighbor is never chosen again. 
-                n.setFScore(n.getFScore * 1000)
+                n.setFScore(n.getFScore() * 1000)
             self.log.info('filtered fscore to %s, removed %i neighbors' % (str(self.filterfscore), len(discard)))    
                     
         
@@ -286,15 +287,20 @@ class AStarPathFinder:
                 #then n is in closed set. 
                 return o
         return False
+    
+    
         
     def _addToOpenSet(self, x):
         self._openset.add(x)
+    
+    
     
     def _removeFromOpenSet(self, x):
         self._openset.remove(x)
 
 
-    def writeDebugInfo(self, t):
+
+    def _writeDebugInfo(self, t):
         t.setId(self.stepnumber)
         
         stepdir = os.path.join(self.tempdir, str(self.stepnumber))
@@ -354,6 +360,40 @@ class AStarPathFinder:
         infotreeout.write(lxml.etree.tostring(infotree))
         infotreeout.close()
 
+
+
+    def _updateDebugPathTree(self, t):
+        log = logging.getLogger()
+        
+        if self.debugPathTree == None:
+            self.debugPathTree = lxml.etree.Element('xml')
+        
+        e = lxml.etree.Element('neighbor')
+        try:
+            e.set('camefrom', str(t.getCameFrom().getId()))
+        except AttributeError:
+            e.set('camefrom', 'None')
+        e.set('id', str(self.stepnumber))
+        e.set('fscore', str(t.getFScore()))
+        e.set('hscore', str(t.getHScore()))
+        e.set('operandType', str(t.getOperandType()))
+        e.set('generation', str(t.getGeneration()))
+        
+        if e.get('camefrom') == 'None':
+            parent = self.debugPathTree
+        else:
+            try:
+                parent = self.debugPathTree.xpath('//*[@id="%s"]' % str(t.getCameFrom().getId()))[0]
+            except IndexError:
+                log.error('invalid path: //*[@id="%s"]' % str(t.getCameFrom().getId()))
+                raise 
+        parent.append(e)
+        
+        #print pathtree in tempdir
+        out = open(os.path.join(self.tempdir, 'path.xml'), 'wb')
+        out.write(lxml.etree.tostring(self.debugPathTree))
+        out.close()
+    
     
     
     
