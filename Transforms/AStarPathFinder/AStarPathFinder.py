@@ -70,7 +70,7 @@ class AStarPathFinder:
         
         #keep generations determines how many generations of neighbors are kept 
         #in the open set. -1 means infinite generations. 
-        self.keepgenerations = 20
+        self.keepgenerations = 10
         
         #filter f score is used to remove all elements from the open set whose fscores
         #at least self.filterfscore above the current best fscore. -1 means keep everything
@@ -162,7 +162,7 @@ class AStarPathFinder:
         discard = []
         if self.keepgenerations > 0:
             for n in self._openset:
-                if n.getGeneration() < t.getGeneration() + self.keepgenerations:
+                if n.getGeneration() < t.getGeneration() - self.keepgenerations:
                     discard.append(n)
             for n in discard:        
                 #don't remove from openset - this may cause loops in the path. Instead, multiply fscore 
