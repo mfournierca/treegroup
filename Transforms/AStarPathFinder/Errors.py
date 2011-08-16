@@ -37,7 +37,7 @@ class ElementErrorParser(ErrorParserRootClass):
     
     
     
-    def parse(self):
+    def parse(self, validationerrors=False):
         """validate the tree and parse the first error message. This must create 
         the target element and a list of acceptable tags for that element. """
         
@@ -47,7 +47,11 @@ class ElementErrorParser(ErrorParserRootClass):
         self.acceptableTags = None
         
 #        self.log.debug('validating tree with dita version 1.1')
-        errors = DitaTools.Tree.File.Dita.v11_validate(self.tree)
+        if not validationerrors:
+            errors = DitaTools.Tree.File.Dita.v11_validate(self.tree)
+        else:
+            errors = validationerrors
+            
         self.errorMessage = errors[0]
         self.log.debug('first error message: %s' % self.errorMessage)
         
@@ -412,7 +416,7 @@ class ElementPatternParser:
     #===========================================================================
     
     def _parsePattern1(self):
-        pattern = r'.*?\:\d*\:\d*\:ERROR:VALID\:DTD_CONTENT_MODEL\: Element (.*?) content does not follow the DTD, expecting (.*), got \((.*?)\)'
+        pattern = r'.*?\:\d*\:\d*\:ERROR:VALID\:DTD_CONTENT_MODEL\: Element (.*?) content does not follow the DTD, expecting (.*), got \((.+?)\)'
         self.log.debug('testing pattern: %s' % str(pattern))
         match = re.search(pattern, self.errorMessage)
         if not match: return None, None, None
@@ -454,7 +458,7 @@ class ElementPatternParser:
         return None, expectedTags, actualTags
         
     def _parsePattern3(self):
-        pattern = r'.*?\:\d*\:\d*\:ERROR:VALID\:DTD_CONTENT_MODEL\: Element (.*?) content does not follow the DTD, expecting (.*), got '
+        pattern = r'.*?\:\d*\:\d*\:ERROR:VALID\:DTD_CONTENT_MODEL\: Element (.*?) content does not follow the DTD, expecting (.*), got \(*\)*'
         self.log.debug('testing pattern: %s' % str(pattern))
         match = re.search(pattern, self.errorMessage)
         if not match: return None, None, None
@@ -536,7 +540,7 @@ class AttributeErrorParser(ErrorParserRootClass):
         self.tree = tree
     
     
-    def parse(self):
+    def parse(self, validationerrors=False):
         """validate the tree and parse the first error message. This must create 
         the target attribute and a list of acceptable attributes """
         
@@ -547,7 +551,10 @@ class AttributeErrorParser(ErrorParserRootClass):
         self.acceptableAttributes = None
         
 #        self.log.debug('validating tree with dita version 1.1')
-        errors = DitaTools.Tree.File.Dita.v11_validate(self.tree)
+        if not validationerrors:
+            errors = DitaTools.Tree.File.Dita.v11_validate(self.tree)
+        else:
+            errors = validationerrors
         self.errorMessage = errors[0]
         self.log.debug('first error message: %s' % self.errorMessage)
         
@@ -657,7 +664,7 @@ class TextErrorParser(ElementErrorParser):
     
     
 
-    def parse(self):
+    def parse(self, validationerrors=False):
         """validate the tree and parse the first error message. This must create 
         the target element and a list of acceptable tags for that element. """
         
@@ -669,7 +676,10 @@ class TextErrorParser(ElementErrorParser):
         self.tail = False
         
 #        self.log.debug('validating tree with dita version 1.1')
-        errors = DitaTools.Tree.File.Dita.v11_validate(self.tree)
+        if not validationerrors:
+            errors = DitaTools.Tree.File.Dita.v11_validate(self.tree)
+        else:
+            errors = validationerrors
         self.errorMessage = errors[0]
         self.log.debug('first error message: %s' % self.errorMessage)
         

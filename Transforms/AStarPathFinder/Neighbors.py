@@ -199,7 +199,7 @@ class Neighbor:
     
     
     
-def findNeighbors_FirstValidationError(t, ignore_filter=False):
+def findNeighbors_FirstValidationError(t, validationerrors=False, ignore_filter=False):
     """Find Neighbors by fixing the first validation error. 
     
     Neighbors are defined as a tree that can be reached by some operation
@@ -245,6 +245,7 @@ def findNeighbors_FirstValidationError(t, ignore_filter=False):
     
     treeSize = getTreeSize(t.getTree())
        
+       
 #    log.debug('creating neighbors')
     neighbors = []
     
@@ -255,7 +256,7 @@ def findNeighbors_FirstValidationError(t, ignore_filter=False):
     
     #Error parser
     errorParser = Errors.ElementErrorParser(t.getTree())
-    parsed = errorParser.parse()
+    parsed = errorParser.parse(validationerrors=validationerrors)
     
     if parsed:
         #generate operands using the result of this error parser
@@ -363,7 +364,7 @@ def findNeighbors_FirstValidationError(t, ignore_filter=False):
     # attribute errors
     #===========================================================================
     errorParser = Errors.AttributeErrorParser(t.getTree())
-    parsed = errorParser.parse()
+    parsed = errorParser.parse(validationerrors=validationerrors)
     
     if parsed:
         #generate operands using the result of this error parser
@@ -406,7 +407,7 @@ def findNeighbors_FirstValidationError(t, ignore_filter=False):
     # text errors
     #===========================================================================
     errorParser = Errors.TextErrorParser(t.getTree())
-    parsed = errorParser.parse()
+    parsed = errorParser.parse(validationerrors=validationerrors)
     
     if parsed and errorParser.text:
         #generate operands using the result of this error parser

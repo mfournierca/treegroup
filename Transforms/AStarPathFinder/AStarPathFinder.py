@@ -45,10 +45,13 @@ class AStarPathFinder:
         self.start.setGScore(0)
         self.start.setHScore(0)
         self.start.setFScore(0)
-        self.start.setGeneration(0)
+        self.start.setGeneration(1)
         self._openset = set([self.start])
         
         self._closedset = set()
+        
+        self.validationerrors = False
+        
         
         #
         #variables below are used to try and speed up the pathfinder, or increase performance. 
@@ -94,38 +97,12 @@ class AStarPathFinder:
             self.log.info('\tOperand Type: %s' % t.getOperandType())
             
             if (self.tempdir is not None) and (bool(self.debug)):
-                t.setId(self.stepnumber)
+                self.writeDebugInfo(t)
                 
-                stepdir = os.path.join(self.tempdir, str(self.stepnumber))
-                os.mkdir(stepdir)
-                
-                stepneighborout = open(os.path.join(stepdir, 'neighbor%s.xml' % str(self.stepnumber)), 'wb')
-                stepneighborout.write(lxml.etree.tostring(t.getTree(), pretty_print=True))
-                stepneighborout.close() 
-                
-                try:
-                    stepoperandout = open(os.path.join(stepdir, 'operand%s.xml' % str(self.stepnumber)), 'wb')
-                    stepoperandout.write(lxml.etree.tostring(t.getOperand(), pretty_print=True))
-                    stepoperandout.close() 
-                except TypeError:
-                    if t.getOperand() is not None: self.log.warning('could not print operand: %s' % sys.exc_info()[1])
-                    pass
-            
-                try:
-                    neighborinfoout = open(os.path.join(stepdir, 'info%s.txt' % str(self.stepnumber)), 'w')
-                    neighborinfoout.write('camefrom: %s\n' % str(t.getCameFrom().getId()))
-                    neighborinfoout.write('operand type: %s\n' % str(t.getOperandType()))
-                    neighborinfoout.write('targetElement: %s\n' % str(t.getTargetElementStr()))
-                    neighborinfoout.write('gscore: %s\n' % str(t.getGScore()))
-                    neighborinfoout.write('hscore: %s\n' % str(t.getHScore()))
-                    neighborinfoout.write('fscore: %s\n' % str(t.getFScore()))
-                    neighborinfoout.close() 
-                except AttributeError: 
-                    pass
                 
             #check if t is dita
-            errors = DitaTools.Tree.File.Dita.v11_validate(t.getTree())
-            if len(errors) == 0:
+            self.validationerrors = DitaTools.Tree.File.Dita.v11_validate(t.getTree())
+            if len(self.validationerrors) == 0:
                 #if t is dita, the algorithm is complete.
     #            finalOperand = self.backTrackBuildOperand(self, t)
     #            return finalOperand
@@ -152,7 +129,7 @@ class AStarPathFinder:
     def processNeighbors(self, t):
         #process the neighbors of t - find them, add to openset if necessary, 
         #calculate scores, etc. Note that t itself is an instance of the Neighbors.Neighbor class
-        neighbors = Neighbors.findNeighbors_FirstValidationError(t)
+        neighbors = Neighbors.findNeighbors_FirstValidationError(t, validationerrors=self.validationerrors)
         self.log.debug('found %i neighbors' % len(neighbors))
         
         if self.bactracking is False:    
@@ -317,7 +294,69 @@ class AStarPathFinder:
         self._openset.remove(x)
 
 
+    def writeDebugInfo(self, t):
+        t.setId(self.stepnumber)
+        
+        stepdir = os.path.join(self.tempdir, str(self.stepnumber))
+        os.mkdir(stepdir)
+        
+        stepneighborout = open(os.path.join(stepdir, 'neighbor%s.xml' % str(self.stepnumber)), 'wb')
+        stepneighborout.write(lxml.etree.tostring(t.getTree(), pretty_print=True))
+        stepneighborout.close() 
+        
+        try:
+            stepoperandout = open(os.path.join(stepdir, 'operand%s.xml' % str(self.stepnumber)), 'wb')
+            stepoperandout.write(lxml.etree.tostring(t.getOperand(), pretty_print=True))
+            stepoperandout.close() 
+        except TypeError:
+            if t.getOperand() is not None: self.log.warning('could not print operand: %s' % sys.exc_info()[1])
+            pass
+    
+        #write relevant information about this neighbor to an xml file
+        infotree = lxml.etree.Element('xml')
+        
+        camefrom = lxml.etree.Element('camefrom')
+        try:
+            camefrom.text = str(t.getCameFrom().getId())
+        except AttributeError:
+            camefrom.text = 'None'
+        infotree.append(camefrom)
+        
+        generation = lxml.etree.Element('generation')
+        generation.text = str(t.getGeneration())
+        infotree.append(generation)
+        
+        stepnumber = lxml.etree.Element('stepnumber')
+        stepnumber.text = str(self.stepnumber)
+        infotree.append(stepnumber)
+        
+        operandType = lxml.etree.Element('operandType')
+        operandType.text = str(t.getOperandType())
+        infotree.append(operandType)
+        
+        targetElement = lxml.etree.Element('targetElement')
+        targetElement.text = str(t.getTargetElementStr())
+        infotree.append(targetElement)
+        
+        gscore = lxml.etree.Element('gscore')
+        gscore.text = str(t.getGScore())
+        infotree.append(gscore)
+        
+        hscore = lxml.etree.Element('hscore')
+        hscore.text = str(t.getHScore())
+        infotree.append(hscore)
+        
+        fscore = lxml.etree.Element('fscore')
+        fscore.text = str(t.getFScore())
+        infotree.append(fscore)
+                                 
+        infotreeout = open(os.path.join(stepdir, 'info.xml'), 'wb')
+        infotreeout.write(lxml.etree.tostring(infotree))
+        infotreeout.close()
 
+    
+    
+    
     
 #    def backTrackBuildOperand(self, x):
 #        operand = copy.deepcopy(x.getOperandTree())
@@ -416,13 +455,17 @@ if __name__ == "__main__":
     if profile:
         #use this for diagnostics
         import cProfile
-        cProfile.run("""result = pathfinder.findPath()""",
+        try:
+            cProfile.run("""result = pathfinder.findPath()""",
                      os.path.join(os.getcwd(), 'profile.txt')
                     )
+        except KeyboardInterrupt:
+            pass
         #after program is run, use the following commands in interactive shell
         import pstats
         p = pstats.Stats('profile.txt') #or whatever the path is
         p.sort_stats('cumulative').print_stats(20)
+ 
     else:
         #perform transformation
         result = pathfinder.findPath()
