@@ -861,18 +861,7 @@ class test_invert(unittest.TestCase):
         self.log.debug('')
         self.log.debug('starting %s' % __name__)
         
-        expectedtree = lxml.etree.fromstring("""    
-                                            <Z>
-                                                <_/>
-                                                <Y id='i'/>
-                                                <Y id='h'>
-                                                    <X id='g'>
-                                                        <W id='f'/>
-                                                    </X>
-                                                    <X id="e"/>
-                                                </Y>
-                                            </Z>
-                                            """)
+        expectedtree = lxml.etree.fromstring("""<Z><_/><Y id='i'/><Y id='h'><X id='g'><W id='f'/></X><X id="e"/></Y></Z>""")
                                                 
         tree = lxml.etree.parse(os.path.join(os.path.dirname(__file__), '..', 'testfiles', 'Tree', 'Invert', 'TreeTestFile_invert2.xml'))
         Tree.invert(tree)
@@ -907,9 +896,7 @@ class test_invert(unittest.TestCase):
         self.log.debug('')
         self.log.debug('starting %s' % __name__)
         
-        unittree = lxml.etree.fromstring("""    
-                                        <_/>
-                                        """)
+        unittree = lxml.etree.fromstring("""<_/>""")
                                                 
         tree1 = lxml.etree.parse(os.path.join(os.path.dirname(__file__),  '..', 'testfiles', 'Tree', 'Invert', 'TreeTestFile_invert2.xml'))
         tree2 = copy.deepcopy(tree1)
@@ -925,14 +912,7 @@ class test_invert(unittest.TestCase):
         self.log.debug('')
         self.log.debug('starting %s' % __name__)
         
-        expectedtree = lxml.etree.fromstring("""
-                                            <Y id='h'>
-                                                <X id='g'>
-                                                    <W id='f'/>
-                                                </X>
-                                                <X id="e"/>
-                                            </Y>
-                                            """)
+        expectedtree = lxml.etree.fromstring("""<Y id='h'><X id='g'><W id='f'/></X><X id="e"/></Y>""")
                                                 
         tree = lxml.etree.parse(os.path.join(os.path.dirname(__file__), '..', 'testfiles', 'Tree', 'Invert', 'TreeTestFile_invert2.xml'))
         Tree.invert(tree.getroot()[2])

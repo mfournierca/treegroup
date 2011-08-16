@@ -32,31 +32,6 @@ def invert(tree):
     return tree
 
 
-#
-#def add(tree1, tree2):
-#    """Add tree2 to tree1, modify tree1 in place.
-#    
-#    Note that this function modifies tree1 in place _and_ returns it. 
-#    
-#    Modifying the tree in place is important since it avoids multiple copies
-#    of a tree being created in more complicated programs. 
-#    
-#    Returning the tree allows this function to be used in compound statements, such 
-#    as
-#        add(tree3, invert(add(tree1, tree2)))
-#        
-#    Remember that the tree itself is not returned, only a reference to it. 
-#    """
-#    
-#    log = logging.getLogger()
-#    
-#    if isinstance(tree1, lxml.etree._ProcessingInstruction):
-#        self.log.error('%s is ProcessingInstruction' % str(tree1))
-#        raise TypeError
-#    elif isinstance(tree2, lxml.etree._ProcessingInstruction):
-#        self.log.error("%s is ProcessingInstruction, cannot add" % str(tree2))
-#        raise TypeError
-    
 
 def add(tree1, tree2):
     """Add tree2 to tree1, modify tree1 in place.
@@ -247,6 +222,65 @@ def add(tree1, tree2):
 
 def equal(tree1, tree2):
     """Return True if the trees are equal, False otherwise"""
+    #determine if trees are equal, without using the orderings. This function should be faster 
+    #that the old ones.     
+#    log = logging.getLogger()
+    
+    #check that correct object is passed. 
+    #In lxml, ElementTrees are distinct from Elements in that ElementTrees have doc information
+    #like xml and dtd declaration, entity decalarations, etc. For our purposes of the Tree Group 
+    #theory, these differences are irrelevant, so we can treat lxml ElementTree and Element objects 
+    #the same. 
+    if not (isinstance(tree1, lxml.etree._ElementTree) or isinstance(tree1, lxml.etree._Element)):
+        return False
+    elif not (isinstance(tree2, lxml.etree._ElementTree) or isinstance(tree2, lxml.etree._Element)):
+        return False
+    
+    tree1iterator = tree1.iter()
+    tree2iterator = tree2.iter()
+    while True:
+        try: 
+            e1 = tree1iterator.__next__()
+        except StopIteration:
+            break
+#        log.debug('e1: %s' % str(e1))
+        
+        try:
+            e2 = tree2iterator.__next__()
+        except StopIteration: 
+#            log.debug('no e2, return False')
+            return False
+#        log.debug('e2: %s' % str(e2))
+        
+        if not Element.Element.equal(e1, e2): 
+#            log.debug('e1 != e2, return False')
+            return False
+        
+        p1 = Element.Element.position(e1, root=tree1)
+        p2 = Element.Element.position(e2, root=tree2)
+#        log.debug('p1: %s' % str(p1))
+#        log.debug('p2: %s' % str(p2))
+        if p1 != p2: 
+#            log.debug('p1 != p2, return False')
+            return False
+#    log.debug('tree1 iteration finished')
+    
+    try:
+        e2 = tree2iterator.__next__()
+    except StopIteration:
+#        log.debug('tree2 iteration finished, return True')
+        return True
+    
+    if e2 is not None: 
+#        log.debug('tree2 iteration not finished, return False')
+        return False
+    
+#    log.debug('return True')
+    return True
+
+
+def equal_old(tree1, tree2):
+    """Return True if the trees are equal, False otherwise"""
     #trees are equal if their orderings are of the same length, have the same 
     #positions in the same order, and point to equal nodes. 
 
@@ -278,6 +312,7 @@ def equal(tree1, tree2):
             return False
     
     return True
+
 
 
 

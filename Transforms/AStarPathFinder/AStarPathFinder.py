@@ -70,11 +70,11 @@ class AStarPathFinder:
         
         #keep generations determines how many generations of neighbors are kept 
         #in the open set. -1 means infinite generations. 
-        self.keepgenerations = 10
+        self.keepgenerations = 20
         
         #filter f score is used to remove all elements from the open set whose fscores
         #at least self.filterfscore above the current best fscore. -1 means keep everything
-        self.filterfscore = 20
+        self.filterfscore = 50
         
         
         
@@ -391,7 +391,7 @@ class AStarPathFinder:
         
         #print pathtree in tempdir
         out = open(os.path.join(self.tempdir, 'path.xml'), 'wb')
-        out.write(lxml.etree.tostring(self.debugPathTree))
+        out.write(lxml.etree.tostring(self.debugPathTree, pretty_print=True))
         out.close()
     
     

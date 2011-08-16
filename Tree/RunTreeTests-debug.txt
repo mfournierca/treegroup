@@ -1,167 +1,1157 @@
 test_Tre.        test_AddUnit     DEBUG		
 test_Tre.        test_AddUnit     DEBUG		
 test_Tre.        test_AddUnit     DEBUG		starting TreeGroup.Tree.test_Tree
-    Tree.                 add     DEBUG		result: b'<a><b id="1"/>\n    <b id="2">\n        <c id="3">\n            <d id="4"/>\n        </c>\n        <c id="5"/>\n    </b>\n</a>'
-    Tree.               equal     DEBUG		ordering1: [[1], [1, 1], [1, 2], [1, 2, 1], [1, 2, 1, 1], [1, 2, 2]]
-    Tree.               equal     DEBUG		ordering2: [[1], [1, 1], [1, 2], [1, 2, 1], [1, 2, 1, 1], [1, 2, 2]]
-    Tree.                 add     DEBUG		result: b'<a><b id="1"/>\n    <b id="2">\n        <c id="3">\n            <d id="4"/>\n        </c>\n        <c id="5"/>\n    </b>\n</a>'
-    Tree.               equal     DEBUG		ordering1: [[1], [1, 1], [1, 2], [1, 2, 1], [1, 2, 1, 1], [1, 2, 2]]
-    Tree.               equal     DEBUG		ordering2: [[1], [1, 1], [1, 2], [1, 2, 1], [1, 2, 1, 1], [1, 2, 2]]
+    Tree.               equal     DEBUG		e1: <Element a at 207b270>
+    Tree.               equal     DEBUG		e2: <Element a at 202d3f0>
+    Tree.               equal     DEBUG		p1: [1]
+    Tree.               equal     DEBUG		p2: [1]
+    Tree.               equal     DEBUG		e1: <Element b at 207b3c0>
+    Tree.               equal     DEBUG		e2: <Element b at 207b300>
+    Tree.               equal     DEBUG		p1: [1, 1]
+    Tree.               equal     DEBUG		p2: [1, 1]
+    Tree.               equal     DEBUG		e1: <Element b at 207b360>
+    Tree.               equal     DEBUG		e2: <Element b at 207b330>
+    Tree.               equal     DEBUG		p1: [1, 2]
+    Tree.               equal     DEBUG		p2: [1, 2]
+    Tree.               equal     DEBUG		e1: <Element c at 207b390>
+    Tree.               equal     DEBUG		e2: <Element c at 207b3f0>
+    Tree.               equal     DEBUG		p1: [1, 2, 1]
+    Tree.               equal     DEBUG		p2: [1, 2, 1]
+    Tree.               equal     DEBUG		e1: <Element d at 207b420>
+    Tree.               equal     DEBUG		e2: <Element d at 207b450>
+    Tree.               equal     DEBUG		p1: [1, 2, 1, 1]
+    Tree.               equal     DEBUG		p2: [1, 2, 1, 1]
+    Tree.               equal     DEBUG		e1: <Element c at 207b480>
+    Tree.               equal     DEBUG		e2: <Element c at 207b4b0>
+    Tree.               equal     DEBUG		p1: [1, 2, 2]
+    Tree.               equal     DEBUG		p2: [1, 2, 2]
+    Tree.               equal     DEBUG		tree1 iteration finished
+    Tree.               equal     DEBUG		tree2 iteration finished, return True
+    Tree.               equal     DEBUG		e1: <Element a at 207b510>
+    Tree.               equal     DEBUG		e2: <Element a at 202d3f0>
+    Tree.               equal     DEBUG		p1: [1]
+    Tree.               equal     DEBUG		p2: [1]
+    Tree.               equal     DEBUG		e1: <Element b at 207b660>
+    Tree.               equal     DEBUG		e2: <Element b at 207b300>
+    Tree.               equal     DEBUG		p1: [1, 1]
+    Tree.               equal     DEBUG		p2: [1, 1]
+    Tree.               equal     DEBUG		e1: <Element b at 207b5a0>
+    Tree.               equal     DEBUG		e2: <Element b at 207b330>
+    Tree.               equal     DEBUG		p1: [1, 2]
+    Tree.               equal     DEBUG		p2: [1, 2]
+    Tree.               equal     DEBUG		e1: <Element c at 207b600>
+    Tree.               equal     DEBUG		e2: <Element c at 207b3f0>
+    Tree.               equal     DEBUG		p1: [1, 2, 1]
+    Tree.               equal     DEBUG		p2: [1, 2, 1]
+    Tree.               equal     DEBUG		e1: <Element d at 207b5d0>
+    Tree.               equal     DEBUG		e2: <Element d at 207b450>
+    Tree.               equal     DEBUG		p1: [1, 2, 1, 1]
+    Tree.               equal     DEBUG		p2: [1, 2, 1, 1]
+    Tree.               equal     DEBUG		e1: <Element c at 207b630>
+    Tree.               equal     DEBUG		e2: <Element c at 207b4b0>
+    Tree.               equal     DEBUG		p1: [1, 2, 2]
+    Tree.               equal     DEBUG		p2: [1, 2, 2]
+    Tree.               equal     DEBUG		tree1 iteration finished
+    Tree.               equal     DEBUG		tree2 iteration finished, return True
 test_Tre.        test_AddUnit     DEBUG		
 test_Tre.        test_AddUnit     DEBUG		
-    Tree.                 add     DEBUG		result: b'<a><b id="1"/>\n    <b id="2">\n        <c id="3">\n            <d id="4"/>\n        </c>\n        <c id="5"/>\n    </b>\n</a>'
-    Tree.               equal     DEBUG		ordering1: [[1]]
-    Tree.               equal     DEBUG		ordering2: [[1], [1, 1], [1, 2], [1, 2, 1], [1, 2, 1, 1], [1, 2, 2]]
+    Tree.               equal     DEBUG		e1: <Element a at 207b720>
+    Tree.               equal     DEBUG		e2: <Element a at 202d3f0>
+    Tree.               equal     DEBUG		p1: [1]
+    Tree.               equal     DEBUG		p2: [1]
+    Tree.               equal     DEBUG		e1: <Element b at 207b8d0>
+    Tree.               equal     DEBUG		e2: <Element b at 207b300>
+    Tree.               equal     DEBUG		p1: [1, 1]
+    Tree.               equal     DEBUG		p2: [1, 1]
+    Tree.               equal     DEBUG		e1: <Element b at 207b900>
+    Tree.               equal     DEBUG		e2: <Element b at 207b330>
+    Tree.               equal     DEBUG		p1: [1, 2]
+    Tree.               equal     DEBUG		p2: [1, 2]
+    Tree.               equal     DEBUG		e1: <Element c at 207b840>
+    Tree.               equal     DEBUG		e2: <Element c at 207b3f0>
+    Tree.               equal     DEBUG		p1: [1, 2, 1]
+    Tree.               equal     DEBUG		p2: [1, 2, 1]
+    Tree.               equal     DEBUG		e1: <Element d at 207b8a0>
+    Tree.               equal     DEBUG		e2: <Element d at 207b450>
+    Tree.               equal     DEBUG		p1: [1, 2, 1, 1]
+    Tree.               equal     DEBUG		p2: [1, 2, 1, 1]
+    Tree.               equal     DEBUG		e1: <Element c at 207b810>
+    Tree.               equal     DEBUG		e2: <Element c at 207b4b0>
+    Tree.               equal     DEBUG		p1: [1, 2, 2]
+    Tree.               equal     DEBUG		p2: [1, 2, 2]
+    Tree.               equal     DEBUG		tree1 iteration finished
+    Tree.               equal     DEBUG		tree2 iteration finished, return True
 test_Tre.test_ComplexTrees_Eq     DEBUG		
 test_Tre.test_ComplexTrees_Eq     DEBUG		
 test_Tre.test_ComplexTrees_Eq     DEBUG		starting TreeGroup.Tree.test_Tree
-    Tree.                 add     DEBUG		result: b'<c><e id="2"/><e id="3"><g id="4"><i id="5"/></g><g id="6"/></e></c>'
-    Tree.               equal     DEBUG		ordering1: [[1], [1, 1], [1, 2], [1, 2, 1], [1, 2, 1, 1], [1, 2, 2]]
-    Tree.               equal     DEBUG		ordering2: [[1], [1, 1], [1, 2], [1, 2, 1], [1, 2, 1, 1], [1, 2, 2]]
-    Tree.                 add     DEBUG		result: b'<c><e id="2"/><e id="3"><g id="4"><i id="5"/></g><g id="6"/></e></c>'
-    Tree.               equal     DEBUG		ordering1: [[1], [1, 1], [1, 2], [1, 2, 1], [1, 2, 1, 1], [1, 2, 2]]
-    Tree.               equal     DEBUG		ordering2: [[1], [1, 1], [1, 2], [1, 2, 1], [1, 2, 1, 1], [1, 2, 2]]
+    Tree.               equal     DEBUG		e1: <Element c at 207b9c0>
+    Tree.               equal     DEBUG		e2: <Element c at 207b960>
+    Tree.               equal     DEBUG		p1: [1]
+    Tree.               equal     DEBUG		p2: [1]
+    Tree.               equal     DEBUG		e1: <Element e at 207ba80>
+    Tree.               equal     DEBUG		e2: <Element e at 207bc30>
+    Tree.               equal     DEBUG		p1: [1, 1]
+    Tree.               equal     DEBUG		p2: [1, 1]
+    Tree.               equal     DEBUG		e1: <Element e at 207bae0>
+    Tree.               equal     DEBUG		e2: <Element e at 207bc60>
+    Tree.               equal     DEBUG		p1: [1, 2]
+    Tree.               equal     DEBUG		p2: [1, 2]
+    Tree.               equal     DEBUG		e1: <Element g at 207bb40>
+    Tree.               equal     DEBUG		e2: <Element g at 207bc90>
+    Tree.               equal     DEBUG		p1: [1, 2, 1]
+    Tree.               equal     DEBUG		p2: [1, 2, 1]
+    Tree.               equal     DEBUG		e1: <Element i at 207bba0>
+    Tree.               equal     DEBUG		e2: <Element i at 207bcc0>
+    Tree.               equal     DEBUG		p1: [1, 2, 1, 1]
+    Tree.               equal     DEBUG		p2: [1, 2, 1, 1]
+    Tree.               equal     DEBUG		e1: <Element g at 207bc00>
+    Tree.               equal     DEBUG		e2: <Element g at 207bcf0>
+    Tree.               equal     DEBUG		p1: [1, 2, 2]
+    Tree.               equal     DEBUG		p2: [1, 2, 2]
+    Tree.               equal     DEBUG		tree1 iteration finished
+    Tree.               equal     DEBUG		tree2 iteration finished, return True
+    Tree.               equal     DEBUG		e1: <Element c at 207bd50>
+    Tree.               equal     DEBUG		e2: <Element c at 207b960>
+    Tree.               equal     DEBUG		p1: [1]
+    Tree.               equal     DEBUG		p2: [1]
+    Tree.               equal     DEBUG		e1: <Element e at 207be10>
+    Tree.               equal     DEBUG		e2: <Element e at 207bc30>
+    Tree.               equal     DEBUG		p1: [1, 1]
+    Tree.               equal     DEBUG		p2: [1, 1]
+    Tree.               equal     DEBUG		e1: <Element e at 207be70>
+    Tree.               equal     DEBUG		e2: <Element e at 207bc60>
+    Tree.               equal     DEBUG		p1: [1, 2]
+    Tree.               equal     DEBUG		p2: [1, 2]
+    Tree.               equal     DEBUG		e1: <Element g at 207bed0>
+    Tree.               equal     DEBUG		e2: <Element g at 207bc90>
+    Tree.               equal     DEBUG		p1: [1, 2, 1]
+    Tree.               equal     DEBUG		p2: [1, 2, 1]
+    Tree.               equal     DEBUG		e1: <Element i at 207bf30>
+    Tree.               equal     DEBUG		e2: <Element i at 207bcc0>
+    Tree.               equal     DEBUG		p1: [1, 2, 1, 1]
+    Tree.               equal     DEBUG		p2: [1, 2, 1, 1]
+    Tree.               equal     DEBUG		e1: <Element g at 207bf90>
+    Tree.               equal     DEBUG		e2: <Element g at 207bcf0>
+    Tree.               equal     DEBUG		p1: [1, 2, 2]
+    Tree.               equal     DEBUG		p2: [1, 2, 2]
+    Tree.               equal     DEBUG		tree1 iteration finished
+    Tree.               equal     DEBUG		tree2 iteration finished, return True
 test_Tre.test_ComplexTrees_Eq     DEBUG		
 test_Tre.test_ComplexTrees_Eq     DEBUG		
-    Tree.                 add     DEBUG		result: b'<c><e id="2"/><e id="3"><g id="4"><i id="5"/></g><g id="6"/></e></c>'
-    Tree.               equal     DEBUG		ordering1: [[1], [1, 1], [1, 2], [1, 2, 1], [1, 2, 1, 1], [1, 2, 2]]
-    Tree.               equal     DEBUG		ordering2: [[1], [1, 1], [1, 2], [1, 2, 1], [1, 2, 1, 1], [1, 2, 2]]
+    Tree.               equal     DEBUG		e1: <Element c at 2087090>
+    Tree.               equal     DEBUG		e2: <Element c at 207b960>
+    Tree.               equal     DEBUG		p1: [1]
+    Tree.               equal     DEBUG		p2: [1]
+    Tree.               equal     DEBUG		e1: <Element e at 20870f0>
+    Tree.               equal     DEBUG		e2: <Element e at 207bc30>
+    Tree.               equal     DEBUG		p1: [1, 1]
+    Tree.               equal     DEBUG		p2: [1, 1]
+    Tree.               equal     DEBUG		e1: <Element e at 2087150>
+    Tree.               equal     DEBUG		e2: <Element e at 207bc60>
+    Tree.               equal     DEBUG		p1: [1, 2]
+    Tree.               equal     DEBUG		p2: [1, 2]
+    Tree.               equal     DEBUG		e1: <Element g at 20871b0>
+    Tree.               equal     DEBUG		e2: <Element g at 207bc90>
+    Tree.               equal     DEBUG		p1: [1, 2, 1]
+    Tree.               equal     DEBUG		p2: [1, 2, 1]
+    Tree.               equal     DEBUG		e1: <Element i at 2087210>
+    Tree.               equal     DEBUG		e2: <Element i at 207bf90>
+    Tree.               equal     DEBUG		p1: [1, 2, 1, 1]
+    Tree.               equal     DEBUG		p2: [1, 2, 1, 1]
+    Tree.               equal     DEBUG		e1: <Element g at 207bd20>
+    Tree.               equal     DEBUG		e2: <Element g at 207bf60>
+    Tree.               equal     DEBUG		p1: [1, 2, 2]
+    Tree.               equal     DEBUG		p2: [1, 2, 2]
+    Tree.               equal     DEBUG		tree1 iteration finished
+    Tree.               equal     DEBUG		tree2 iteration finished, return True
 test_Tre.test_ComplexTrees_Se     DEBUG		
 test_Tre.test_ComplexTrees_Se     DEBUG		
 test_Tre.test_ComplexTrees_Se     DEBUG		starting TreeGroup.Tree.test_Tree
-    Tree.                 add     DEBUG		result: b'<c><b id="2"><c id="3"><d id="4"/>\n        </c><c id="5"/>\n    </b><b id="4"/>\n</c>'
-    Tree.               equal     DEBUG		ordering1: [[1], [1, 1], [1, 1, 1], [1, 2]]
-    Tree.               equal     DEBUG		ordering2: [[1], [1, 1], [1, 1, 1], [1, 1, 1, 1], [1, 1, 2], [1, 2]]
+    Tree.               equal     DEBUG		e1: <Element c at 207bed0>
+    Tree.               equal     DEBUG		e2: <Element c at 207bf30>
+    Tree.               equal     DEBUG		p1: [1]
+    Tree.               equal     DEBUG		p2: [1]
+    Tree.               equal     DEBUG		e1: <Element b at 207bde0>
+    Tree.               equal     DEBUG		e2: <Element b at 207bcc0>
+    Tree.               equal     DEBUG		p1: [1, 1]
+    Tree.               equal     DEBUG		p2: [1, 1]
+    Tree.               equal     DEBUG		e1: <Element c at 207be10>
+    Tree.               equal     DEBUG		e2: <Element c at 207bc00>
+    Tree.               equal     DEBUG		p1: [1, 1, 1]
+    Tree.               equal     DEBUG		p2: [1, 1, 1]
+    Tree.               equal     DEBUG		e1: <Element d at 207bc30>
+    Tree.               equal     DEBUG		e2: <Element d at 207b990>
+    Tree.               equal     DEBUG		p1: [1, 1, 1, 1]
+    Tree.               equal     DEBUG		p2: [1, 1, 1, 1]
+    Tree.               equal     DEBUG		e1: <Element c at 207bbd0>
+    Tree.               equal     DEBUG		e2: <Element c at 207b9f0>
+    Tree.               equal     DEBUG		p1: [1, 1, 2]
+    Tree.               equal     DEBUG		p2: [1, 1, 2]
+    Tree.               equal     DEBUG		e1: <Element b at 207bba0>
+    Tree.               equal     DEBUG		e2: <Element b at 207bb70>
+    Tree.               equal     DEBUG		p1: [1, 2]
+    Tree.               equal     DEBUG		p2: [1, 2]
+    Tree.               equal     DEBUG		tree1 iteration finished
+    Tree.               equal     DEBUG		tree2 iteration finished, return True
+    Tree.               equal     DEBUG		e1: <Element c at 207bb10>
+    Tree.               equal     DEBUG		e2: <Element c at 207bf30>
+    Tree.               equal     DEBUG		p1: [1]
+    Tree.               equal     DEBUG		p2: [1]
+    Tree.               equal     DEBUG		e1: <Element b at 207ba20>
+    Tree.               equal     DEBUG		e2: <Element b at 207bcc0>
+    Tree.               equal     DEBUG		p1: [1, 1]
+    Tree.               equal     DEBUG		p2: [1, 1]
+    Tree.               equal     DEBUG		e1: <Element c at 207ba50>
+    Tree.               equal     DEBUG		e2: <Element c at 207bc00>
+    Tree.               equal     DEBUG		p1: [1, 1, 1]
+    Tree.               equal     DEBUG		p2: [1, 1, 1]
+    Tree.               equal     DEBUG		e1: <Element d at 207b8a0>
+    Tree.               equal     DEBUG		e2: <Element d at 207b990>
+    Tree.               equal     DEBUG		p1: [1, 1, 1, 1]
+    Tree.               equal     DEBUG		p2: [1, 1, 1, 1]
+    Tree.               equal     DEBUG		e1: <Element c at 207b900>
+    Tree.               equal     DEBUG		e2: <Element c at 207b9f0>
+    Tree.               equal     DEBUG		p1: [1, 1, 2]
+    Tree.               equal     DEBUG		p2: [1, 1, 2]
+    Tree.               equal     DEBUG		e1: <Element b at 207b840>
+    Tree.               equal     DEBUG		e2: <Element b at 207bb70>
+    Tree.               equal     DEBUG		p1: [1, 2]
+    Tree.               equal     DEBUG		p2: [1, 2]
+    Tree.               equal     DEBUG		tree1 iteration finished
+    Tree.               equal     DEBUG		tree2 iteration finished, return True
+test_Tre.test_ComplexTrees_Se     DEBUG		
+test_Tre.test_ComplexTrees_Se     DEBUG		
+    Tree.               equal     DEBUG		e1: <Element c at 207b7b0>
+    Tree.               equal     DEBUG		e2: <Element c at 207bf30>
+    Tree.               equal     DEBUG		p1: [1]
+    Tree.               equal     DEBUG		p2: [1]
+    Tree.               equal     DEBUG		e1: <Element b at 207b720>
+    Tree.               equal     DEBUG		e2: <Element b at 207bcc0>
+    Tree.               equal     DEBUG		p1: [1, 1]
+    Tree.               equal     DEBUG		p2: [1, 1]
+    Tree.               equal     DEBUG		e1: <Element c at 207b7e0>
+    Tree.               equal     DEBUG		e2: <Element c at 207bc00>
+    Tree.               equal     DEBUG		p1: [1, 1, 1]
+    Tree.               equal     DEBUG		p2: [1, 1, 1]
+    Tree.               equal     DEBUG		e1: <Element d at 207b4e0>
+    Tree.               equal     DEBUG		e2: <Element d at 207b990>
+    Tree.               equal     DEBUG		p1: [1, 1, 1, 1]
+    Tree.               equal     DEBUG		p2: [1, 1, 1, 1]
+    Tree.               equal     DEBUG		e1: <Element c at 207b5d0>
+    Tree.               equal     DEBUG		e2: <Element c at 207b9f0>
+    Tree.               equal     DEBUG		p1: [1, 1, 2]
+    Tree.               equal     DEBUG		p2: [1, 1, 2]
+    Tree.               equal     DEBUG		e1: <Element b at 207b630>
+    Tree.               equal     DEBUG		e2: <Element b at 207bb70>
+    Tree.               equal     DEBUG		p1: [1, 2]
+    Tree.               equal     DEBUG		p2: [1, 2]
+    Tree.               equal     DEBUG		tree1 iteration finished
+    Tree.               equal     DEBUG		tree2 iteration finished, return True
 test_Tre.test_ComplexTrees_Tr     DEBUG		
 test_Tre.test_ComplexTrees_Tr     DEBUG		
 test_Tre.test_ComplexTrees_Tr     DEBUG		starting TreeGroup.Tree.test_Tree
-    Tree.                 add     DEBUG		result: b'<c><_><c id="3"><d id="4"/>\n        </c><c id="5"/>\n    </_></c>'
-    Tree.               equal     DEBUG		ordering1: [[1], [1, 1], [1, 1, 1], [1, 2], [1, 2, 1], [1, 2, 1, 1], [1, 2, 2]]
-    Tree.               equal     DEBUG		ordering2: [[1], [1, 1], [1, 1, 1], [1, 1, 1, 1], [1, 1, 2]]
+    Tree.               equal     DEBUG		e1: <Element c at 207b570>
+    Tree.               equal     DEBUG		e2: <Element c at 207b5a0>
+    Tree.               equal     DEBUG		p1: [1]
+    Tree.               equal     DEBUG		p2: [1]
+    Tree.               equal     DEBUG		e1: <Element _ at 207b420>
+    Tree.               equal     DEBUG		e2: <Element _ at 207b360>
+    Tree.               equal     DEBUG		p1: [1, 1]
+    Tree.               equal     DEBUG		p2: [1, 1]
+    Tree.               equal     DEBUG		e1: <Element c at 207b480>
+    Tree.               equal     DEBUG		e2: <Element c at 202d3f0>
+    Tree.               equal     DEBUG		p1: [1, 1, 1]
+    Tree.               equal     DEBUG		p2: [1, 1, 1]
+    Tree.               equal     DEBUG		e1: <Element d at 2087270>
+    Tree.               equal     DEBUG		e2: <Element d at 2087240>
+    Tree.               equal     DEBUG		p1: [1, 1, 1, 1]
+    Tree.               equal     DEBUG		p2: [1, 1, 1, 1]
+    Tree.               equal     DEBUG		e1: <Element c at 20871e0>
+    Tree.               equal     DEBUG		e2: <Element c at 2087180>
+    Tree.               equal     DEBUG		p1: [1, 1, 2]
+    Tree.               equal     DEBUG		p2: [1, 1, 2]
+    Tree.               equal     DEBUG		tree1 iteration finished
+    Tree.               equal     DEBUG		tree2 iteration finished, return True
+    Tree.               equal     DEBUG		e1: <Element c at 2087120>
+    Tree.               equal     DEBUG		e2: <Element c at 207b5a0>
+    Tree.               equal     DEBUG		p1: [1]
+    Tree.               equal     DEBUG		p2: [1]
+    Tree.               equal     DEBUG		e1: <Element _ at 2087360>
+    Tree.               equal     DEBUG		e2: <Element _ at 207b360>
+    Tree.               equal     DEBUG		p1: [1, 1]
+    Tree.               equal     DEBUG		p2: [1, 1]
+    Tree.               equal     DEBUG		e1: <Element c at 20872d0>
+    Tree.               equal     DEBUG		e2: <Element c at 202d3f0>
+    Tree.               equal     DEBUG		p1: [1, 1, 1]
+    Tree.               equal     DEBUG		p2: [1, 1, 1]
+    Tree.               equal     DEBUG		e1: <Element d at 2087420>
+    Tree.               equal     DEBUG		e2: <Element d at 2087240>
+    Tree.               equal     DEBUG		p1: [1, 1, 1, 1]
+    Tree.               equal     DEBUG		p2: [1, 1, 1, 1]
+    Tree.               equal     DEBUG		e1: <Element c at 2087570>
+    Tree.               equal     DEBUG		e2: <Element c at 2087180>
+    Tree.               equal     DEBUG		p1: [1, 1, 2]
+    Tree.               equal     DEBUG		p2: [1, 1, 2]
+    Tree.               equal     DEBUG		tree1 iteration finished
+    Tree.               equal     DEBUG		tree2 iteration finished, return True
+test_Tre.test_ComplexTrees_Tr     DEBUG		
+test_Tre.test_ComplexTrees_Tr     DEBUG		
+    Tree.               equal     DEBUG		e1: <Element c at 2087630>
+    Tree.               equal     DEBUG		e2: <Element c at 207b5a0>
+    Tree.               equal     DEBUG		p1: [1]
+    Tree.               equal     DEBUG		p2: [1]
+    Tree.               equal     DEBUG		e1: <Element _ at 2087690>
+    Tree.               equal     DEBUG		e2: <Element _ at 207b360>
+    Tree.               equal     DEBUG		p1: [1, 1]
+    Tree.               equal     DEBUG		p2: [1, 1]
+    Tree.               equal     DEBUG		e1: <Element c at 20876f0>
+    Tree.               equal     DEBUG		e2: <Element c at 202d3f0>
+    Tree.               equal     DEBUG		p1: [1, 1, 1]
+    Tree.               equal     DEBUG		p2: [1, 1, 1]
+    Tree.               equal     DEBUG		e1: <Element d at 20878d0>
+    Tree.               equal     DEBUG		e2: <Element d at 2087240>
+    Tree.               equal     DEBUG		p1: [1, 1, 1, 1]
+    Tree.               equal     DEBUG		p2: [1, 1, 1, 1]
+    Tree.               equal     DEBUG		e1: <Element c at 20878a0>
+    Tree.               equal     DEBUG		e2: <Element c at 2087180>
+    Tree.               equal     DEBUG		p1: [1, 1, 2]
+    Tree.               equal     DEBUG		p2: [1, 1, 2]
+    Tree.               equal     DEBUG		tree1 iteration finished
+    Tree.               equal     DEBUG		tree2 iteration finished, return True
 test_Tre.test_ComplexTrees_Un     DEBUG		
 test_Tre.test_ComplexTrees_Un     DEBUG		
 test_Tre.test_ComplexTrees_Un     DEBUG		starting TreeGroup.Tree.test_Tree
-    Tree.                 add     DEBUG		result: b'<c><c id="a"/><e id="3"><g id="4"><d id="4"/>\n        </g><g id="6"/></e><e id="6">\n        <f id="7">\n            <g id="8"/>\n        </f>\n        <f id="8"/>\n    </e>\n</c>'
-    Tree.               equal     DEBUG		ordering1: [[1], [1, 1], [1, 2], [1, 2, 1], [1, 2, 2]]
-    Tree.               equal     DEBUG		ordering2: [[1], [1, 1], [1, 2], [1, 2, 1], [1, 2, 1, 1], [1, 2, 2], [1, 3], [1, 3, 1], [1, 3, 1, 1], [1, 3, 2]]
+    Tree.               equal     DEBUG		e1: <Element c at 2087990>
+    Tree.               equal     DEBUG		e2: <Element c at 2087930>
+    Tree.               equal     DEBUG		p1: [1]
+    Tree.               equal     DEBUG		p2: [1]
+    Tree.               equal     DEBUG		e1: <Element c at 2087ae0>
+    Tree.               equal     DEBUG		e2: <Element c at 2087d20>
+    Tree.               equal     DEBUG		p1: [1, 1]
+    Tree.               equal     DEBUG		p2: [1, 1]
+    Tree.               equal     DEBUG		e1: <Element e at 2087a50>
+    Tree.               equal     DEBUG		e2: <Element e at 2087d50>
+    Tree.               equal     DEBUG		p1: [1, 2]
+    Tree.               equal     DEBUG		p2: [1, 2]
+    Tree.               equal     DEBUG		e1: <Element g at 2087b10>
+    Tree.               equal     DEBUG		e2: <Element g at 2087c90>
+    Tree.               equal     DEBUG		p1: [1, 2, 1]
+    Tree.               equal     DEBUG		p2: [1, 2, 1]
+    Tree.               equal     DEBUG		e1: <Element d at 2087cf0>
+    Tree.               equal     DEBUG		e2: <Element d at 2087c60>
+    Tree.               equal     DEBUG		p1: [1, 2, 1, 1]
+    Tree.               equal     DEBUG		p2: [1, 2, 1, 1]
+    Tree.               equal     DEBUG		e1: <Element g at 2087bd0>
+    Tree.               equal     DEBUG		e2: <Element g at 2087d80>
+    Tree.               equal     DEBUG		p1: [1, 2, 2]
+    Tree.               equal     DEBUG		p2: [1, 2, 2]
+    Tree.               equal     DEBUG		e1: <Element e at 2087db0>
+    Tree.               equal     DEBUG		e2: <Element e at 2087de0>
+    Tree.               equal     DEBUG		p1: [1, 3]
+    Tree.               equal     DEBUG		p2: [1, 3]
+    Tree.               equal     DEBUG		e1: <Element f at 2087e10>
+    Tree.               equal     DEBUG		e2: <Element f at 2087e40>
+    Tree.               equal     DEBUG		p1: [1, 3, 1]
+    Tree.               equal     DEBUG		p2: [1, 3, 1]
+    Tree.               equal     DEBUG		e1: <Element g at 2087e70>
+    Tree.               equal     DEBUG		e2: <Element g at 2087ea0>
+    Tree.               equal     DEBUG		p1: [1, 3, 1, 1]
+    Tree.               equal     DEBUG		p2: [1, 3, 1, 1]
+    Tree.               equal     DEBUG		e1: <Element f at 2087ed0>
+    Tree.               equal     DEBUG		e2: <Element f at 2087f00>
+    Tree.               equal     DEBUG		p1: [1, 3, 2]
+    Tree.               equal     DEBUG		p2: [1, 3, 2]
+    Tree.               equal     DEBUG		tree1 iteration finished
+    Tree.               equal     DEBUG		tree2 iteration finished, return True
+    Tree.               equal     DEBUG		e1: <Element c at 2087f60>
+    Tree.               equal     DEBUG		e2: <Element c at 2087930>
+    Tree.               equal     DEBUG		p1: [1]
+    Tree.               equal     DEBUG		p2: [1]
+    Tree.               equal     DEBUG		e1: <Element c at 208b0f0>
+    Tree.               equal     DEBUG		e2: <Element c at 2087d20>
+    Tree.               equal     DEBUG		p1: [1, 1]
+    Tree.               equal     DEBUG		p2: [1, 1]
+    Tree.               equal     DEBUG		e1: <Element e at 208b060>
+    Tree.               equal     DEBUG		e2: <Element e at 2087d50>
+    Tree.               equal     DEBUG		p1: [1, 2]
+    Tree.               equal     DEBUG		p2: [1, 2]
+    Tree.               equal     DEBUG		e1: <Element g at 208b120>
+    Tree.               equal     DEBUG		e2: <Element g at 2087c90>
+    Tree.               equal     DEBUG		p1: [1, 2, 1]
+    Tree.               equal     DEBUG		p2: [1, 2, 1]
+    Tree.               equal     DEBUG		e1: <Element d at 208b330>
+    Tree.               equal     DEBUG		e2: <Element d at 2087c60>
+    Tree.               equal     DEBUG		p1: [1, 2, 1, 1]
+    Tree.               equal     DEBUG		p2: [1, 2, 1, 1]
+    Tree.               equal     DEBUG		e1: <Element g at 208b1e0>
+    Tree.               equal     DEBUG		e2: <Element g at 2087d80>
+    Tree.               equal     DEBUG		p1: [1, 2, 2]
+    Tree.               equal     DEBUG		p2: [1, 2, 2]
+    Tree.               equal     DEBUG		e1: <Element e at 208b360>
+    Tree.               equal     DEBUG		e2: <Element e at 2087de0>
+    Tree.               equal     DEBUG		p1: [1, 3]
+    Tree.               equal     DEBUG		p2: [1, 3]
+    Tree.               equal     DEBUG		e1: <Element f at 208b2a0>
+    Tree.               equal     DEBUG		e2: <Element f at 2087e40>
+    Tree.               equal     DEBUG		p1: [1, 3, 1]
+    Tree.               equal     DEBUG		p2: [1, 3, 1]
+    Tree.               equal     DEBUG		e1: <Element g at 208b300>
+    Tree.               equal     DEBUG		e2: <Element g at 2087ea0>
+    Tree.               equal     DEBUG		p1: [1, 3, 1, 1]
+    Tree.               equal     DEBUG		p2: [1, 3, 1, 1]
+    Tree.               equal     DEBUG		e1: <Element f at 208b270>
+    Tree.               equal     DEBUG		e2: <Element f at 2087f00>
+    Tree.               equal     DEBUG		p1: [1, 3, 2]
+    Tree.               equal     DEBUG		p2: [1, 3, 2]
+    Tree.               equal     DEBUG		tree1 iteration finished
+    Tree.               equal     DEBUG		tree2 iteration finished, return True
+test_Tre.test_ComplexTrees_Un     DEBUG		
+test_Tre.test_ComplexTrees_Un     DEBUG		
+    Tree.               equal     DEBUG		e1: <Element c at 208b420>
+    Tree.               equal     DEBUG		e2: <Element c at 2087930>
+    Tree.               equal     DEBUG		p1: [1]
+    Tree.               equal     DEBUG		p2: [1]
+    Tree.               equal     DEBUG		e1: <Element c at 208b510>
+    Tree.               equal     DEBUG		e2: <Element c at 2087d20>
+    Tree.               equal     DEBUG		p1: [1, 1]
+    Tree.               equal     DEBUG		p2: [1, 1]
+    Tree.               equal     DEBUG		e1: <Element e at 208b480>
+    Tree.               equal     DEBUG		e2: <Element e at 2087d50>
+    Tree.               equal     DEBUG		p1: [1, 2]
+    Tree.               equal     DEBUG		p2: [1, 2]
+    Tree.               equal     DEBUG		e1: <Element g at 208b540>
+    Tree.               equal     DEBUG		e2: <Element g at 2087c90>
+    Tree.               equal     DEBUG		p1: [1, 2, 1]
+    Tree.               equal     DEBUG		p2: [1, 2, 1]
+    Tree.               equal     DEBUG		e1: <Element d at 208b690>
+    Tree.               equal     DEBUG		e2: <Element d at 2087c60>
+    Tree.               equal     DEBUG		p1: [1, 2, 1, 1]
+    Tree.               equal     DEBUG		p2: [1, 2, 1, 1]
+    Tree.               equal     DEBUG		e1: <Element g at 208b5a0>
+    Tree.               equal     DEBUG		e2: <Element g at 2087d80>
+    Tree.               equal     DEBUG		p1: [1, 2, 2]
+    Tree.               equal     DEBUG		p2: [1, 2, 2]
+    Tree.               equal     DEBUG		e1: <Element e at 208b660>
+    Tree.               equal     DEBUG		e2: <Element e at 2087de0>
+    Tree.               equal     DEBUG		p1: [1, 3]
+    Tree.               equal     DEBUG		p2: [1, 3]
+    Tree.               equal     DEBUG		e1: <Element f at 208b630>
+    Tree.               equal     DEBUG		e2: <Element f at 2087e40>
+    Tree.               equal     DEBUG		p1: [1, 3, 1]
+    Tree.               equal     DEBUG		p2: [1, 3, 1]
+    Tree.               equal     DEBUG		e1: <Element g at 208b600>
+    Tree.               equal     DEBUG		e2: <Element g at 2087ea0>
+    Tree.               equal     DEBUG		p1: [1, 3, 1, 1]
+    Tree.               equal     DEBUG		p2: [1, 3, 1, 1]
+    Tree.               equal     DEBUG		e1: <Element f at 208b5d0>
+    Tree.               equal     DEBUG		e2: <Element f at 2087f00>
+    Tree.               equal     DEBUG		p1: [1, 3, 2]
+    Tree.               equal     DEBUG		p2: [1, 3, 2]
+    Tree.               equal     DEBUG		tree1 iteration finished
+    Tree.               equal     DEBUG		tree2 iteration finished, return True
 test_Tre.      test_JustRoots     DEBUG		
 test_Tre.      test_JustRoots     DEBUG		
 test_Tre.      test_JustRoots     DEBUG		starting TreeGroup.Tree.test_Tree
-    Tree.                 add     DEBUG		result: b'<c/>'
-    Tree.               equal     DEBUG		ordering1: [[1]]
-    Tree.               equal     DEBUG		ordering2: [[1]]
-    Tree.                 add     DEBUG		result: b'<c/>'
-    Tree.               equal     DEBUG		ordering1: [[1]]
-    Tree.               equal     DEBUG		ordering2: [[1]]
+    Tree.               equal     DEBUG		e1: <Element c at 208b750>
+    Tree.               equal     DEBUG		e2: <Element c at 208b6f0>
+    Tree.               equal     DEBUG		p1: [1]
+    Tree.               equal     DEBUG		p2: [1]
+    Tree.               equal     DEBUG		tree1 iteration finished
+    Tree.               equal     DEBUG		tree2 iteration finished, return True
+    Tree.               equal     DEBUG		e1: <Element c at 208b810>
+    Tree.               equal     DEBUG		e2: <Element c at 208b6f0>
+    Tree.               equal     DEBUG		p1: [1]
+    Tree.               equal     DEBUG		p2: [1]
+    Tree.               equal     DEBUG		tree1 iteration finished
+    Tree.               equal     DEBUG		tree2 iteration finished, return True
 test_Tre.      test_JustRoots     DEBUG		
 test_Tre.      test_JustRoots     DEBUG		
-    Tree.                 add     DEBUG		result: b'<c/>'
-    Tree.               equal     DEBUG		ordering1: [[1]]
-    Tree.               equal     DEBUG		ordering2: [[1]]
+    Tree.               equal     DEBUG		e1: <Element c at 208b930>
+    Tree.               equal     DEBUG		e2: <Element c at 208b6f0>
+    Tree.               equal     DEBUG		p1: [1]
+    Tree.               equal     DEBUG		p2: [1]
+    Tree.               equal     DEBUG		tree1 iteration finished
+    Tree.               equal     DEBUG		tree2 iteration finished, return True
 test_Tre.   test_RootWithText     DEBUG		
 test_Tre.   test_RootWithText     DEBUG		
 test_Tre.   test_RootWithText     DEBUG		starting test_TreesWithText
-    Tree.                 add     DEBUG		result: b'<dita lang="en"><head lang="en" profile="profile">\n        <title lang="en">Sample XHTML Basic document</title>\n    </head>\n    <body id="body" class="body" title="body" lang="en">\n        <title id="title" class="title" title="document title" lang="en">Sample XHTML Basic document</title>\n        <title id="ToC">Contents</title>\n    </body>\n</dita>'
-    Tree.               equal     DEBUG		ordering1: [[1], [1, 1], [1, 1, 1], [1, 2], [1, 2, 1], [1, 2, 2]]
-    Tree.               equal     DEBUG		ordering2: [[1], [1, 1], [1, 1, 1], [1, 2], [1, 2, 1], [1, 2, 2]]
+    Tree.               equal     DEBUG		e1: <Element dita at 208b9f0>
+    Tree.               equal     DEBUG		e2: <Element dita at 208b990>
+    Tree.               equal     DEBUG		p1: [1]
+    Tree.               equal     DEBUG		p2: [1]
+    Tree.               equal     DEBUG		e1: <Element head at 208bb40>
+    Tree.               equal     DEBUG		e2: <Element head at 208bab0>
+    Tree.               equal     DEBUG		p1: [1, 1]
+    Tree.               equal     DEBUG		p2: [1, 1]
+    Tree.               equal     DEBUG		e1: <Element title at 208bb10>
+    Tree.               equal     DEBUG		e2: <Element title at 208bae0>
+    Tree.               equal     DEBUG		p1: [1, 1, 1]
+    Tree.               equal     DEBUG		p2: [1, 1, 1]
+    Tree.               equal     DEBUG		e1: <Element body at 208ba80>
+    Tree.               equal     DEBUG		e2: <Element body at 208bb70>
+    Tree.               equal     DEBUG		p1: [1, 2]
+    Tree.               equal     DEBUG		p2: [1, 2]
+    Tree.               equal     DEBUG		e1: <Element title at 208bba0>
+    Tree.               equal     DEBUG		e2: <Element title at 208bbd0>
+    Tree.               equal     DEBUG		p1: [1, 2, 1]
+    Tree.               equal     DEBUG		p2: [1, 2, 1]
+    Tree.               equal     DEBUG		e1: <Element title at 208bc00>
+    Tree.               equal     DEBUG		e2: <Element title at 208bc30>
+    Tree.               equal     DEBUG		p1: [1, 2, 2]
+    Tree.               equal     DEBUG		p2: [1, 2, 2]
+    Tree.               equal     DEBUG		tree1 iteration finished
+    Tree.               equal     DEBUG		tree2 iteration finished, return True
 test_Tre.   test_RootWithText     DEBUG		
 test_Tre.   test_RootWithText     DEBUG		
-    Tree.                 add     DEBUG		result: b'<dita lang="en"><head lang="en" profile="profile">\n        <title lang="en">Sample XHTML Basic document</title>\n    </head>\n    <body id="body" class="body" title="body" lang="en">\n        <title id="title" class="title" title="document title" lang="en">Sample XHTML Basic document</title>\n        <title id="ToC">Contents</title>\n    </body>\n</dita>'
-    Tree.               equal     DEBUG		ordering1: [[1]]
-    Tree.               equal     DEBUG		ordering2: [[1], [1, 1], [1, 1, 1], [1, 2], [1, 2, 1], [1, 2, 2]]
+    Tree.               equal     DEBUG		e1: <Element dita at 208bcf0>
+    Tree.               equal     DEBUG		e2: <Element dita at 208b990>
+    Tree.               equal     DEBUG		p1: [1]
+    Tree.               equal     DEBUG		p2: [1]
+    Tree.               equal     DEBUG		e1: <Element head at 208bea0>
+    Tree.               equal     DEBUG		e2: <Element head at 208bab0>
+    Tree.               equal     DEBUG		p1: [1, 1]
+    Tree.               equal     DEBUG		p2: [1, 1]
+    Tree.               equal     DEBUG		e1: <Element title at 208bed0>
+    Tree.               equal     DEBUG		e2: <Element title at 208bae0>
+    Tree.               equal     DEBUG		p1: [1, 1, 1]
+    Tree.               equal     DEBUG		p2: [1, 1, 1]
+    Tree.               equal     DEBUG		e1: <Element body at 208be40>
+    Tree.               equal     DEBUG		e2: <Element body at 208bb70>
+    Tree.               equal     DEBUG		p1: [1, 2]
+    Tree.               equal     DEBUG		p2: [1, 2]
+    Tree.               equal     DEBUG		e1: <Element title at 208bde0>
+    Tree.               equal     DEBUG		e2: <Element title at 208bbd0>
+    Tree.               equal     DEBUG		p1: [1, 2, 1]
+    Tree.               equal     DEBUG		p2: [1, 2, 1]
+    Tree.               equal     DEBUG		e1: <Element title at 208be70>
+    Tree.               equal     DEBUG		e2: <Element title at 208bc30>
+    Tree.               equal     DEBUG		p1: [1, 2, 2]
+    Tree.               equal     DEBUG		p2: [1, 2, 2]
+    Tree.               equal     DEBUG		tree1 iteration finished
+    Tree.               equal     DEBUG		tree2 iteration finished, return True
 test_Tre.test_SimpleTrees_Equ     DEBUG		
 test_Tre.test_SimpleTrees_Equ     DEBUG		
 test_Tre.test_SimpleTrees_Equ     DEBUG		starting TreeGroup.Tree.test_Tree
-    Tree.                 add     DEBUG		result: b'<e><g id="2"/></e>'
-    Tree.               equal     DEBUG		ordering1: [[1], [1, 1]]
-    Tree.               equal     DEBUG		ordering2: [[1], [1, 1]]
-    Tree.                 add     DEBUG		result: b'<e><g id="2"/></e>'
-    Tree.               equal     DEBUG		ordering1: [[1], [1, 1]]
-    Tree.               equal     DEBUG		ordering2: [[1], [1, 1]]
+    Tree.               equal     DEBUG		e1: <Element e at 208bf90>
+    Tree.               equal     DEBUG		e2: <Element e at 208bf30>
+    Tree.               equal     DEBUG		p1: [1]
+    Tree.               equal     DEBUG		p2: [1]
+    Tree.               equal     DEBUG		e1: <Element g at 208e090>
+    Tree.               equal     DEBUG		e2: <Element g at 208e0c0>
+    Tree.               equal     DEBUG		p1: [1, 1]
+    Tree.               equal     DEBUG		p2: [1, 1]
+    Tree.               equal     DEBUG		tree1 iteration finished
+    Tree.               equal     DEBUG		tree2 iteration finished, return True
+    Tree.               equal     DEBUG		e1: <Element e at 208e120>
+    Tree.               equal     DEBUG		e2: <Element e at 208bf30>
+    Tree.               equal     DEBUG		p1: [1]
+    Tree.               equal     DEBUG		p2: [1]
+    Tree.               equal     DEBUG		e1: <Element g at 208e1e0>
+    Tree.               equal     DEBUG		e2: <Element g at 208e0c0>
+    Tree.               equal     DEBUG		p1: [1, 1]
+    Tree.               equal     DEBUG		p2: [1, 1]
+    Tree.               equal     DEBUG		tree1 iteration finished
+    Tree.               equal     DEBUG		tree2 iteration finished, return True
 test_Tre.test_SimpleTrees_Equ     DEBUG		
 test_Tre.test_SimpleTrees_Equ     DEBUG		
-    Tree.                 add     DEBUG		result: b'<e><g id="2"/></e>'
-    Tree.               equal     DEBUG		ordering1: [[1], [1, 1]]
-    Tree.               equal     DEBUG		ordering2: [[1], [1, 1]]
+    Tree.               equal     DEBUG		e1: <Element e at 208e2a0>
+    Tree.               equal     DEBUG		e2: <Element e at 208bf30>
+    Tree.               equal     DEBUG		p1: [1]
+    Tree.               equal     DEBUG		p2: [1]
+    Tree.               equal     DEBUG		e1: <Element g at 208e300>
+    Tree.               equal     DEBUG		e2: <Element g at 208e0c0>
+    Tree.               equal     DEBUG		p1: [1, 1]
+    Tree.               equal     DEBUG		p2: [1, 1]
+    Tree.               equal     DEBUG		tree1 iteration finished
+    Tree.               equal     DEBUG		tree2 iteration finished, return True
 test_Tre.test_SimpleTrees_Une     DEBUG		
 test_Tre.test_SimpleTrees_Une     DEBUG		
 test_Tre.test_SimpleTrees_Une     DEBUG		starting TreeGroup.Tree.test_Tree
-    Tree.                 add     DEBUG		result: b'<b><d id="2"/><g id="1"/>\n</b>'
-    Tree.               equal     DEBUG		ordering1: [[1], [1, 1]]
-    Tree.               equal     DEBUG		ordering2: [[1], [1, 1], [1, 2]]
+    Tree.               equal     DEBUG		e1: <Element b at 208e3c0>
+    Tree.               equal     DEBUG		e2: <Element b at 208e360>
+    Tree.               equal     DEBUG		p1: [1]
+    Tree.               equal     DEBUG		p2: [1]
+    Tree.               equal     DEBUG		e1: <Element d at 208e450>
+    Tree.               equal     DEBUG		e2: <Element d at 208e510>
+    Tree.               equal     DEBUG		p1: [1, 1]
+    Tree.               equal     DEBUG		p2: [1, 1]
+    Tree.               equal     DEBUG		e1: <Element g at 208e4e0>
+    Tree.               equal     DEBUG		e2: <Element g at 208e540>
+    Tree.               equal     DEBUG		p1: [1, 2]
+    Tree.               equal     DEBUG		p2: [1, 2]
+    Tree.               equal     DEBUG		tree1 iteration finished
+    Tree.               equal     DEBUG		tree2 iteration finished, return True
+    Tree.               equal     DEBUG		e1: <Element b at 208e5a0>
+    Tree.               equal     DEBUG		e2: <Element b at 208e360>
+    Tree.               equal     DEBUG		p1: [1]
+    Tree.               equal     DEBUG		p2: [1]
+    Tree.               equal     DEBUG		e1: <Element d at 208e630>
+    Tree.               equal     DEBUG		e2: <Element d at 208e510>
+    Tree.               equal     DEBUG		p1: [1, 1]
+    Tree.               equal     DEBUG		p2: [1, 1]
+    Tree.               equal     DEBUG		e1: <Element g at 208e6f0>
+    Tree.               equal     DEBUG		e2: <Element g at 208e540>
+    Tree.               equal     DEBUG		p1: [1, 2]
+    Tree.               equal     DEBUG		p2: [1, 2]
+    Tree.               equal     DEBUG		tree1 iteration finished
+    Tree.               equal     DEBUG		tree2 iteration finished, return True
+test_Tre.test_SimpleTrees_Une     DEBUG		
+test_Tre.test_SimpleTrees_Une     DEBUG		
+    Tree.               equal     DEBUG		e1: <Element b at 208e780>
+    Tree.               equal     DEBUG		e2: <Element b at 208e360>
+    Tree.               equal     DEBUG		p1: [1]
+    Tree.               equal     DEBUG		p2: [1]
+    Tree.               equal     DEBUG		e1: <Element d at 208e7b0>
+    Tree.               equal     DEBUG		e2: <Element d at 208e510>
+    Tree.               equal     DEBUG		p1: [1, 1]
+    Tree.               equal     DEBUG		p2: [1, 1]
+    Tree.               equal     DEBUG		e1: <Element g at 208e810>
+    Tree.               equal     DEBUG		e2: <Element g at 208e540>
+    Tree.               equal     DEBUG		p1: [1, 2]
+    Tree.               equal     DEBUG		p2: [1, 2]
+    Tree.               equal     DEBUG		tree1 iteration finished
+    Tree.               equal     DEBUG		tree2 iteration finished, return True
 test_Tre.       test_Subtrees     DEBUG		
 test_Tre.       test_Subtrees     DEBUG		
 test_Tre.       test_Subtrees     DEBUG		starting test_Subtrees
+    Tree.               equal     DEBUG		e1: <Element _ at 208e960>
+    Tree.               equal     DEBUG		e2: <Element _ at 208e870>
+    Tree.               equal     DEBUG		p1: [1]
+    Tree.               equal     DEBUG		p2: [1]
+    Tree.               equal     DEBUG		e1: <Element c at 208e9c0>
+    Tree.               equal     DEBUG		e2: <Element c at 208eae0>
+    Tree.               equal     DEBUG		p1: [1, 1]
+    Tree.               equal     DEBUG		p2: [1, 1]
+    Tree.               equal     DEBUG		e1: <Element d at 208eab0>
+    Tree.               equal     DEBUG		e2: <Element d at 208ea80>
+    Tree.               equal     DEBUG		p1: [1, 1, 1]
+    Tree.               equal     DEBUG		p2: [1, 1, 1]
+    Tree.               equal     DEBUG		e1: <Element c at 208eb10>
+    Tree.               equal     DEBUG		e2: <Element c at 208eb40>
+    Tree.               equal     DEBUG		p1: [1, 2]
+    Tree.               equal     DEBUG		p2: [1, 2]
+    Tree.               equal     DEBUG		tree1 iteration finished
+    Tree.               equal     DEBUG		tree2 iteration finished, return True
+test_Tre.       test_Subtrees     DEBUG		
+test_Tre.       test_Subtrees     DEBUG		
+    Tree.               equal     DEBUG		e1: <Element _ at 208e930>
+    Tree.               equal     DEBUG		e2: <Element _ at 208e870>
+    Tree.               equal     DEBUG		p1: [1]
+    Tree.               equal     DEBUG		p2: [1]
+    Tree.               equal     DEBUG		e1: <Element c at 208ec30>
+    Tree.               equal     DEBUG		e2: <Element c at 208eae0>
+    Tree.               equal     DEBUG		p1: [1, 1]
+    Tree.               equal     DEBUG		p2: [1, 1]
+    Tree.               equal     DEBUG		e1: <Element d at 208ecc0>
+    Tree.               equal     DEBUG		e2: <Element d at 208ea80>
+    Tree.               equal     DEBUG		p1: [1, 1, 1]
+    Tree.               equal     DEBUG		p2: [1, 1, 1]
+    Tree.               equal     DEBUG		e1: <Element c at 208ec60>
+    Tree.               equal     DEBUG		e2: <Element c at 208eb40>
+    Tree.               equal     DEBUG		p1: [1, 2]
+    Tree.               equal     DEBUG		p2: [1, 2]
+    Tree.               equal     DEBUG		tree1 iteration finished
+    Tree.               equal     DEBUG		tree2 iteration finished, return True
 test_Tre.  test_TreeToSubtree     DEBUG		
 test_Tre.  test_TreeToSubtree     DEBUG		
 test_Tre.  test_TreeToSubtree     DEBUG		starting test_TreeToSubtree
-    Tree.                 add     DEBUG		result: b'<_ id="a"><b id="9"><g id="X"/></b><h id="1"><f id="7">\n            <g id="8"/>\n        </f>\n        <f id="8"/>\n    </h></_>'
-    Tree.               equal     DEBUG		ordering1: [[1], [1, 1], [1, 1, 1], [1, 2], [2], [2, 1], [2, 1, 1], [2, 2]]
-    Tree.               equal     DEBUG		ordering2: [[1], [1, 1], [1, 1, 1], [1, 2], [1, 2, 1], [1, 2, 1, 1], [1, 2, 2]]
+    Tree.               equal     DEBUG		e1: <Element _ at 208edb0>
+    Tree.               equal     DEBUG		e2: <Element _ at 208eba0>
+    Tree.               equal     DEBUG		p1: [1]
+    Tree.               equal     DEBUG		p2: [1]
+    Tree.               equal     DEBUG		e1: <Element b at 208ee10>
+    Tree.               equal     DEBUG		e2: <Element b at 208efc0>
+    Tree.               equal     DEBUG		p1: [1, 1]
+    Tree.               equal     DEBUG		p2: [1, 1]
+    Tree.               equal     DEBUG		e1: <Element g at 208ee40>
+    Tree.               equal     DEBUG		e2: <Element g at 208ef60>
+    Tree.               equal     DEBUG		p1: [1, 1, 1]
+    Tree.               equal     DEBUG		p2: [1, 1, 1]
+    Tree.               equal     DEBUG		e1: <Element h at 208eed0>
+    Tree.               equal     DEBUG		e2: <Element h at 2092060>
+    Tree.               equal     DEBUG		p1: [1, 2]
+    Tree.               equal     DEBUG		p2: [1, 2]
+    Tree.               equal     DEBUG		e1: <Element f at 2092030>
+    Tree.               equal     DEBUG		e2: <Element f at 2092090>
+    Tree.               equal     DEBUG		p1: [1, 2, 1]
+    Tree.               equal     DEBUG		p2: [1, 2, 1]
+    Tree.               equal     DEBUG		e1: <Element g at 20920c0>
+    Tree.               equal     DEBUG		e2: <Element g at 20920f0>
+    Tree.               equal     DEBUG		p1: [1, 2, 1, 1]
+    Tree.               equal     DEBUG		p2: [1, 2, 1, 1]
+    Tree.               equal     DEBUG		e1: <Element f at 2092120>
+    Tree.               equal     DEBUG		e2: <Element f at 2092150>
+    Tree.               equal     DEBUG		p1: [1, 2, 2]
+    Tree.               equal     DEBUG		p2: [1, 2, 2]
+    Tree.               equal     DEBUG		tree1 iteration finished
+    Tree.               equal     DEBUG		tree2 iteration finished, return True
+test_Tre.  test_TreeToSubtree     DEBUG		
+test_Tre.  test_TreeToSubtree     DEBUG		
+    Tree.               equal     DEBUG		e1: <Element _ at 20921b0>
+    Tree.               equal     DEBUG		e2: <Element _ at 208eba0>
+    Tree.               equal     DEBUG		p1: [1]
+    Tree.               equal     DEBUG		p2: [1]
+    Tree.               equal     DEBUG		e1: <Element b at 208ef60>
+    Tree.               equal     DEBUG		e2: <Element b at 208eea0>
+    Tree.               equal     DEBUG		p1: [1, 1]
+    Tree.               equal     DEBUG		p2: [1, 1]
+    Tree.               equal     DEBUG		e1: <Element g at 208ef90>
+    Tree.               equal     DEBUG		e2: <Element g at 208eed0>
+    Tree.               equal     DEBUG		p1: [1, 1, 1]
+    Tree.               equal     DEBUG		p2: [1, 1, 1]
+    Tree.               equal     DEBUG		e1: <Element h at 208ef30>
+    Tree.               equal     DEBUG		e2: <Element h at 208ef00>
+    Tree.               equal     DEBUG		p1: [1, 2]
+    Tree.               equal     DEBUG		p2: [1, 2]
+    Tree.               equal     DEBUG		e1: <Element f at 208ee40>
+    Tree.               equal     DEBUG		e2: <Element f at 208ee70>
+    Tree.               equal     DEBUG		p1: [1, 2, 1]
+    Tree.               equal     DEBUG		p2: [1, 2, 1]
+    Tree.               equal     DEBUG		e1: <Element g at 208ee10>
+    Tree.               equal     DEBUG		e2: <Element g at 208ede0>
+    Tree.               equal     DEBUG		p1: [1, 2, 1, 1]
+    Tree.               equal     DEBUG		p2: [1, 2, 1, 1]
+    Tree.               equal     DEBUG		e1: <Element f at 208edb0>
+    Tree.               equal     DEBUG		e2: <Element f at 208ed20>
+    Tree.               equal     DEBUG		p1: [1, 2, 2]
+    Tree.               equal     DEBUG		p2: [1, 2, 2]
+    Tree.               equal     DEBUG		tree1 iteration finished
+    Tree.               equal     DEBUG		tree2 iteration finished, return True
 test_Tre.  test_TreesWithText     DEBUG		
 test_Tre.  test_TreesWithText     DEBUG		
 test_Tre.  test_TreesWithText     DEBUG		starting test_TreesWithText
-    Tree.                 add     DEBUG		result: b'<c><Z id="9"><c id="3">nSYKDI)KqiD<d/></c><c/>\n    </Z><a id="6"><a id="7">nSYKDI)KqiF<b id="8"/>nSYKDI)KqiH</a><a id="8">File14Text4</a></a></c>'
-    Tree.               equal     DEBUG		ordering1: [[1], [1, 1], [1, 1, 1], [1, 2], [1, 2, 1], [1, 2, 1, 1], [1, 2, 2]]
-    Tree.               equal     DEBUG		ordering2: [[1], [1, 1], [1, 1, 1], [1, 1, 1, 1], [1, 1, 2], [1, 2], [1, 2, 1], [1, 2, 1, 1], [1, 2, 2]]
-    Tree.               equal     DEBUG		ordering1: [[1], [1, 1], [1, 2], [1, 3], [1, 3, 1], [1, 3, 1, 1]]
-    Tree.               equal     DEBUG		ordering2: [[1], [1, 1], [1, 2], [1, 3], [1, 3, 1], [1, 3, 1, 1]]
-    Tree.               equal     DEBUG		ordering1: [[1], [1, 1], [1, 2], [1, 3], [1, 3, 1], [1, 3, 1, 1]]
-    Tree.               equal     DEBUG		ordering2: [[1], [1, 1], [1, 2], [1, 3], [1, 3, 1], [1, 3, 1, 1]]
-    Tree.               equal     DEBUG		ordering1: [[1], [1, 1], [1, 1, 1], [1, 2], [1, 2, 1], [1, 2, 2], [1, 2, 3], [1, 2, 3, 1], [1, 2, 3, 1, 1]]
-    Tree.               equal     DEBUG		ordering2: [[1], [1, 1], [1, 1, 1], [1, 2], [1, 2, 1], [1, 2, 2], [1, 2, 3], [1, 2, 3, 1], [1, 2, 3, 1, 1]]
-    Tree.               equal     DEBUG		ordering1: [[1], [1, 1], [1, 1, 1], [1, 2], [1, 2, 1], [1, 2, 2], [1, 2, 3], [1, 2, 3, 1], [1, 2, 3, 1, 1]]
-    Tree.               equal     DEBUG		ordering2: [[1], [1, 1], [1, 1, 1], [1, 2], [1, 2, 1], [1, 2, 2], [1, 2, 3], [1, 2, 3, 1], [1, 2, 3, 1, 1]]
-    Tree.               equal     DEBUG		ordering1: [[1], [1, 1], [1, 1, 1], [1, 2], [1, 2, 1], [1, 2, 2], [1, 2, 3], [1, 2, 3, 1], [1, 2, 3, 1, 1]]
-    Tree.               equal     DEBUG		ordering2: [[1]]
-    Tree.               equal     DEBUG		ordering1: [[1], [1, 1], [1, 1, 1], [1, 2], [1, 2, 1], [1, 2, 2], [1, 2, 3], [1, 2, 3, 1], [1, 2, 3, 1, 1]]
-    Tree.               equal     DEBUG		ordering2: [[1]]
-    Tree.               equal     DEBUG		ordering1: [[1], [1, 1], [1, 1, 1], [1, 2], [1, 2, 1], [1, 2, 2], [1, 2, 3], [1, 2, 3, 1], [1, 2, 3, 1, 1]]
-    Tree.               equal     DEBUG		ordering2: [[1], [1, 1], [1, 2]]
-    Tree.               equal     DEBUG		ordering1: [[1], [1, 1], [1, 1, 1], [1, 2], [1, 2, 1], [1, 2, 2], [1, 2, 3], [1, 2, 3, 1], [1, 2, 3, 1, 1]]
-    Tree.               equal     DEBUG		ordering2: [[1], [1, 1], [1, 2]]
-    Tree.               equal     DEBUG		ordering1: [[1], [1, 1], [1, 1, 1], [1, 2], [1, 2, 1], [1, 2, 2], [1, 2, 3], [1, 2, 3, 1], [1, 2, 3, 1, 1]]
-    Tree.               equal     DEBUG		ordering2: [[1], [1, 1], [1, 1, 1], [1, 2], [1, 2, 1], [1, 2, 2], [1, 2, 3], [1, 2, 3, 1], [1, 2, 3, 1, 1]]
-    Tree.               equal     DEBUG		ordering1: [[1], [1, 1], [1, 1, 1], [1, 2], [1, 2, 1], [1, 2, 2], [1, 2, 3], [1, 2, 3, 1], [1, 2, 3, 1, 1]]
-    Tree.               equal     DEBUG		ordering2: [[1], [1, 1], [1, 1, 1], [1, 2], [1, 2, 1], [1, 2, 2], [1, 2, 3], [1, 2, 3, 1], [1, 2, 3, 1, 1]]
-    Tree.               equal     DEBUG		ordering1: [[1], [1, 1], [1, 1, 1], [1, 2], [1, 2, 1], [1, 2, 2], [1, 2, 3], [1, 2, 3, 1], [1, 2, 3, 1, 1]]
-    Tree.               equal     DEBUG		ordering2: [[1], [1, 1], [1, 1, 1], [1, 2], [1, 2, 1], [1, 2, 2], [1, 2, 3], [1, 2, 3, 1], [1, 2, 3, 1, 1]]
-    Tree.               equal     DEBUG		ordering1: [[1], [1, 1], [1, 1, 1], [1, 2], [1, 2, 1], [1, 2, 2], [1, 2, 3], [1, 2, 3, 1], [1, 2, 3, 1, 1]]
-    Tree.               equal     DEBUG		ordering2: [[1], [1, 1], [1, 1, 1], [1, 2], [1, 2, 1], [1, 2, 2], [1, 2, 3], [1, 2, 3, 1], [1, 2, 3, 1, 1]]
-    Tree.               equal     DEBUG		ordering1: [[1], [1, 1], [1, 1, 1], [1, 2], [1, 2, 1], [1, 2, 2], [1, 2, 3], [1, 2, 3, 1], [1, 2, 3, 1, 1]]
-    Tree.               equal     DEBUG		ordering2: [[1], [1, 1], [1, 1, 1], [1, 2], [1, 2, 1], [1, 2, 2], [1, 2, 3], [1, 2, 3, 1], [1, 2, 3, 1, 1]]
-    Tree.               equal     DEBUG		ordering1: [[1], [1, 1], [1, 1, 1], [1, 2], [1, 2, 1], [1, 2, 2], [1, 2, 3], [1, 2, 3, 1], [1, 2, 3, 1, 1]]
-    Tree.               equal     DEBUG		ordering2: [[1], [1, 1], [1, 1, 1], [1, 2], [1, 2, 1], [1, 2, 2], [1, 2, 3], [1, 2, 3, 1], [1, 2, 3, 1, 1]]
-    Tree.               equal     DEBUG		ordering1: [[1], [1, 1], [2], [2, 1], [2, 2], [2, 3], [2, 3, 1], [2, 3, 1, 1]]
-    Tree.               equal     DEBUG		ordering2: [[1], [1, 1], [1, 2], [1, 3], [1, 3, 1], [1, 3, 1, 1]]
-    Tree.               equal     DEBUG		ordering1: [[1], [1, 1], [2], [2, 1], [2, 2], [2, 3], [2, 3, 1], [2, 3, 1, 1]]
-    Tree.               equal     DEBUG		ordering2: [[1], [1, 1], [1, 2], [1, 3], [1, 3, 1], [1, 3, 1, 1]]
+    Tree.               equal     DEBUG		e1: <Element c at 208ec30>
+    Tree.               equal     DEBUG		e2: <Element c at 208e8d0>
+    Tree.               equal     DEBUG		p1: [1]
+    Tree.               equal     DEBUG		p2: [1]
+    Tree.               equal     DEBUG		e1: <Element Z at 208eb10>
+    Tree.               equal     DEBUG		e2: <Element Z at 208eae0>
+    Tree.               equal     DEBUG		p1: [1, 1]
+    Tree.               equal     DEBUG		p2: [1, 1]
+    Tree.               equal     DEBUG		e1: <Element c at 208e930>
+    Tree.               equal     DEBUG		e2: <Element c at 208e960>
+    Tree.               equal     DEBUG		p1: [1, 1, 1]
+    Tree.               equal     DEBUG		p2: [1, 1, 1]
+    Tree.               equal     DEBUG		e1: <Element d at 208e870>
+    Tree.               equal     DEBUG		e2: <Element d at 208e810>
+    Tree.               equal     DEBUG		p1: [1, 1, 1, 1]
+    Tree.               equal     DEBUG		p2: [1, 1, 1, 1]
+    Tree.               equal     DEBUG		e1: <Element c at 208e750>
+    Tree.               equal     DEBUG		e2: <Element c at 208e7b0>
+    Tree.               equal     DEBUG		p1: [1, 1, 2]
+    Tree.               equal     DEBUG		p2: [1, 1, 2]
+    Tree.               equal     DEBUG		e1: <Element a at 208ea80>
+    Tree.               equal     DEBUG		e2: <Element a at 208e7e0>
+    Tree.               equal     DEBUG		p1: [1, 2]
+    Tree.               equal     DEBUG		p2: [1, 2]
+    Tree.               equal     DEBUG		e1: <Element a at 208e900>
+    Tree.               equal     DEBUG		e2: <Element a at 208e6c0>
+    Tree.               equal     DEBUG		p1: [1, 2, 1]
+    Tree.               equal     DEBUG		p2: [1, 2, 1]
+    Tree.               equal     DEBUG		e1: <Element b at 208e9c0>
+    Tree.               equal     DEBUG		e2: <Element b at 208e780>
+    Tree.               equal     DEBUG		p1: [1, 2, 1, 1]
+    Tree.               equal     DEBUG		p2: [1, 2, 1, 1]
+    Tree.               equal     DEBUG		e1: <Element a at 208e990>
+    Tree.               equal     DEBUG		e2: <Element a at 208e720>
+    Tree.               equal     DEBUG		p1: [1, 2, 2]
+    Tree.               equal     DEBUG		p2: [1, 2, 2]
+    Tree.               equal     DEBUG		tree1 iteration finished
+    Tree.               equal     DEBUG		tree2 iteration finished, return True
+test_Tre.  test_TreesWithText     DEBUG		
+test_Tre.  test_TreesWithText     DEBUG		
+    Tree.               equal     DEBUG		e1: <Element c at 208e5d0>
+    Tree.               equal     DEBUG		e2: <Element c at 208e8d0>
+    Tree.               equal     DEBUG		p1: [1]
+    Tree.               equal     DEBUG		p2: [1]
+    Tree.               equal     DEBUG		e1: <Element Z at 208e660>
+    Tree.               equal     DEBUG		e2: <Element Z at 208eae0>
+    Tree.               equal     DEBUG		p1: [1, 1]
+    Tree.               equal     DEBUG		p2: [1, 1]
+    Tree.               equal     DEBUG		e1: <Element c at 208e5a0>
+    Tree.               equal     DEBUG		e2: <Element c at 208e960>
+    Tree.               equal     DEBUG		p1: [1, 1, 1]
+    Tree.               equal     DEBUG		p2: [1, 1, 1]
+    Tree.               equal     DEBUG		e1: <Element d at 208e420>
+    Tree.               equal     DEBUG		e2: <Element d at 208e810>
+    Tree.               equal     DEBUG		p1: [1, 1, 1, 1]
+    Tree.               equal     DEBUG		p2: [1, 1, 1, 1]
+    Tree.               equal     DEBUG		e1: <Element c at 208e480>
+    Tree.               equal     DEBUG		e2: <Element c at 208e7b0>
+    Tree.               equal     DEBUG		p1: [1, 1, 2]
+    Tree.               equal     DEBUG		p2: [1, 1, 2]
+    Tree.               equal     DEBUG		e1: <Element a at 208e330>
+    Tree.               equal     DEBUG		e2: <Element a at 208e7e0>
+    Tree.               equal     DEBUG		p1: [1, 2]
+    Tree.               equal     DEBUG		p2: [1, 2]
+    Tree.               equal     DEBUG		e1: <Element a at 208e390>
+    Tree.               equal     DEBUG		e2: <Element a at 208e6c0>
+    Tree.               equal     DEBUG		p1: [1, 2, 1]
+    Tree.               equal     DEBUG		p2: [1, 2, 1]
+    Tree.               equal     DEBUG		e1: <Element b at 208e4b0>
+    Tree.               equal     DEBUG		e2: <Element b at 208e780>
+    Tree.               equal     DEBUG		p1: [1, 2, 1, 1]
+    Tree.               equal     DEBUG		p2: [1, 2, 1, 1]
+    Tree.               equal     DEBUG		e1: <Element a at 208e450>
+    Tree.               equal     DEBUG		e2: <Element a at 208e720>
+    Tree.               equal     DEBUG		p1: [1, 2, 2]
+    Tree.               equal     DEBUG		p2: [1, 2, 2]
+    Tree.               equal     DEBUG		tree1 iteration finished
+    Tree.               equal     DEBUG		tree2 iteration finished, return True
+    Tree.               equal     DEBUG		e1: <Element node at 208e2d0>
+    Tree.               equal     DEBUG		e2: <Element node at 208e300>
+    Tree.               equal     DEBUG		p1: [1]
+    Tree.               equal     DEBUG		p2: [1]
+    Tree.               equal     DEBUG		e1: <Element child1 at 208e210>
+    Tree.               equal     DEBUG		e2: <Element child1 at 208e2a0>
+    Tree.               equal     DEBUG		p1: [1, 1]
+    Tree.               equal     DEBUG		p2: [1, 1]
+    Tree.               equal     DEBUG		e1: <Element child2 at 208e240>
+    Tree.               equal     DEBUG		e2: <Element child2 at 208e1e0>
+    Tree.               equal     DEBUG		p1: [1, 2]
+    Tree.               equal     DEBUG		p2: [1, 2]
+    Tree.               equal     DEBUG		e1: <Element child3 at 208e0f0>
+    Tree.               equal     DEBUG		e2: <Element child3 at 208e1b0>
+    Tree.               equal     DEBUG		p1: [1, 3]
+    Tree.               equal     DEBUG		p2: [1, 3]
+    Tree.               equal     DEBUG		e1: <Element grandchild at 208e150>
+    Tree.               equal     DEBUG		e2: <Element grandchild at 208e180>
+    Tree.               equal     DEBUG		p1: [1, 3, 1]
+    Tree.               equal     DEBUG		p2: [1, 3, 1]
+    Tree.               equal     DEBUG		e1: <Element newborn at 208e120>
+    Tree.               equal     DEBUG		e2: <Element newborn at 208e0c0>
+    Tree.               equal     DEBUG		p1: [1, 3, 1, 1]
+    Tree.               equal     DEBUG		p2: [1, 3, 1, 1]
+    Tree.               equal     DEBUG		tree1 iteration finished
+    Tree.               equal     DEBUG		tree2 iteration finished, return True
+    Tree.               equal     DEBUG		e1: <Element node at 208e2d0>
+    Tree.               equal     DEBUG		e2: <Element node at 208e300>
+    Tree.               equal     DEBUG		p1: [1]
+    Tree.               equal     DEBUG		p2: [1]
+    Tree.               equal     DEBUG		e1: <Element child1 at 208e210>
+    Tree.               equal     DEBUG		e2: <Element child1 at 208e2a0>
+    Tree.               equal     DEBUG		p1: [1, 1]
+    Tree.               equal     DEBUG		p2: [1, 1]
+    Tree.               equal     DEBUG		e1: <Element child2 at 208e240>
+    Tree.               equal     DEBUG		e2: <Element child2 at 208e1e0>
+    Tree.               equal     DEBUG		p1: [1, 2]
+    Tree.               equal     DEBUG		p2: [1, 2]
+    Tree.               equal     DEBUG		e1: <Element child3 at 208e0f0>
+    Tree.               equal     DEBUG		e2: <Element child3 at 208e1b0>
+    Tree.               equal     DEBUG		p1: [1, 3]
+    Tree.               equal     DEBUG		p2: [1, 3]
+    Tree.               equal     DEBUG		e1: <Element grandchild at 208e150>
+    Tree.               equal     DEBUG		e2: <Element grandchild at 208e180>
+    Tree.               equal     DEBUG		p1: [1, 3, 1]
+    Tree.               equal     DEBUG		p2: [1, 3, 1]
+    Tree.               equal     DEBUG		e1: <Element newborn at 208e120>
+    Tree.               equal     DEBUG		e2: <Element newborn at 208e0c0>
+    Tree.               equal     DEBUG		p1: [1, 3, 1, 1]
+    Tree.               equal     DEBUG		p2: [1, 3, 1, 1]
+    Tree.               equal     DEBUG		tree1 iteration finished
+    Tree.               equal     DEBUG		tree2 iteration finished, return True
+    Tree.               equal     DEBUG		e1: <Element xml at 202d3f0>
+    Tree.               equal     DEBUG		e2: <Element xml at 207b600>
+    Tree.               equal     DEBUG		p1: [1]
+    Tree.               equal     DEBUG		p2: [1]
+    Tree.               equal     DEBUG		e1: <Element node at 207b660>
+    Tree.               equal     DEBUG		e2: <Element node at 207b360>
+    Tree.               equal     DEBUG		e1 != e2, return False
+    Tree.               equal     DEBUG		e1: <Element xml at 202d3f0>
+    Tree.               equal     DEBUG		e2: <Element xml at 207b600>
+    Tree.               equal     DEBUG		p1: [1]
+    Tree.               equal     DEBUG		p2: [1]
+    Tree.               equal     DEBUG		e1: <Element node at 207b660>
+    Tree.               equal     DEBUG		e2: <Element node at 207b360>
+    Tree.               equal     DEBUG		e1 != e2, return False
+    Tree.               equal     DEBUG		e1: <Element xml at 207b540>
+    Tree.               equal     DEBUG		e2: <Element xml at 207b2d0>
+    Tree.               equal     DEBUG		p1: [1]
+    Tree.               equal     DEBUG		p2: [1]
+    Tree.               equal     DEBUG		e1: <Element node at 207b3c0>
+    Tree.               equal     DEBUG		no e2, return False
+    Tree.               equal     DEBUG		e1: <Element xml at 207b540>
+    Tree.               equal     DEBUG		e2: <Element xml at 207b2d0>
+    Tree.               equal     DEBUG		p1: [1]
+    Tree.               equal     DEBUG		p2: [1]
+    Tree.               equal     DEBUG		e1: <Element node at 207b3c0>
+    Tree.               equal     DEBUG		no e2, return False
+    Tree.               equal     DEBUG		e1: <Element xml at 207b300>
+    Tree.               equal     DEBUG		e2: <Element xml at 207b330>
+    Tree.               equal     DEBUG		p1: [1]
+    Tree.               equal     DEBUG		p2: [1]
+    Tree.               equal     DEBUG		e1: <Element node at 207b3f0>
+    Tree.               equal     DEBUG		e2: <Element node at 207b450>
+    Tree.               equal     DEBUG		p1: [1, 1]
+    Tree.               equal     DEBUG		p2: [1, 1]
+    Tree.               equal     DEBUG		e1: <Element child at 207b480>
+    Tree.               equal     DEBUG		e2: <Element node at 207b240>
+    Tree.               equal     DEBUG		e1 != e2, return False
+    Tree.               equal     DEBUG		e1: <Element xml at 207b300>
+    Tree.               equal     DEBUG		e2: <Element xml at 207b330>
+    Tree.               equal     DEBUG		p1: [1]
+    Tree.               equal     DEBUG		p2: [1]
+    Tree.               equal     DEBUG		e1: <Element node at 207b3f0>
+    Tree.               equal     DEBUG		e2: <Element node at 207b450>
+    Tree.               equal     DEBUG		p1: [1, 1]
+    Tree.               equal     DEBUG		p2: [1, 1]
+    Tree.               equal     DEBUG		e1: <Element child at 207b480>
+    Tree.               equal     DEBUG		e2: <Element node at 207b240>
+    Tree.               equal     DEBUG		e1 != e2, return False
+    Tree.               equal     DEBUG		e1: <Element xml at 207b4b0>
+    Tree.               equal     DEBUG		e2: <Element xml at 207b570>
+    Tree.               equal     DEBUG		p1: [1]
+    Tree.               equal     DEBUG		p2: [1]
+    Tree.               equal     DEBUG		e1: <Element node at 207b5a0>
+    Tree.               equal     DEBUG		e2: <Element a at 207b630>
+    Tree.               equal     DEBUG		e1 != e2, return False
+    Tree.               equal     DEBUG		e1: <Element xml at 207b4b0>
+    Tree.               equal     DEBUG		e2: <Element xml at 207b570>
+    Tree.               equal     DEBUG		p1: [1]
+    Tree.               equal     DEBUG		p2: [1]
+    Tree.               equal     DEBUG		e1: <Element node at 207b5a0>
+    Tree.               equal     DEBUG		e2: <Element a at 207b630>
+    Tree.               equal     DEBUG		e1 != e2, return False
+    Tree.               equal     DEBUG		e1: <Element xml at 207b5d0>
+    Tree.               equal     DEBUG		e2: <Element xml at 207b6c0>
+    Tree.               equal     DEBUG		p1: [1]
+    Tree.               equal     DEBUG		p2: [1]
+    Tree.               equal     DEBUG		e1: <Element node at 207b8d0>
+    Tree.               equal     DEBUG		e2: <Element node at 207b7e0>
+    Tree.               equal     DEBUG		p1: [1, 1]
+    Tree.               equal     DEBUG		p2: [1, 1]
+    Tree.               equal     DEBUG		e1: <Element child at 207b750>
+    Tree.               equal     DEBUG		e2: <Element child at 207b720>
+    Tree.               equal     DEBUG		p1: [1, 1, 1]
+    Tree.               equal     DEBUG		p2: [1, 1, 1]
+    Tree.               equal     DEBUG		e1: <Element node at 207b780>
+    Tree.               equal     DEBUG		e2: <Element node at 207b7b0>
+    Tree.               equal     DEBUG		p1: [1, 2]
+    Tree.               equal     DEBUG		p2: [1, 2]
+    Tree.               equal     DEBUG		e1: <Element child1 at 207b870>
+    Tree.               equal     DEBUG		e2: <Element child1 at 207b840>
+    Tree.               equal     DEBUG		p1: [1, 2, 1]
+    Tree.               equal     DEBUG		p2: [1, 2, 1]
+    Tree.               equal     DEBUG		e1: <Element child2 at 207bb40>
+    Tree.               equal     DEBUG		e2: <Element child2 at 207b900>
+    Tree.               equal     DEBUG		p1: [1, 2, 2]
+    Tree.               equal     DEBUG		p2: [1, 2, 2]
+    Tree.               equal     DEBUG		e1: <Element child3 at 207b8a0>
+    Tree.               equal     DEBUG		e2: <Element child3 at 207b6f0>
+    Tree.               equal     DEBUG		p1: [1, 2, 3]
+    Tree.               equal     DEBUG		p2: [1, 2, 3]
+    Tree.               equal     DEBUG		e1: <Element grandchild at 207bae0>
+    Tree.               equal     DEBUG		e2: <Element grandchild at 207b810>
+    Tree.               equal     DEBUG		p1: [1, 2, 3, 1]
+    Tree.               equal     DEBUG		p2: [1, 2, 3, 1]
+    Tree.               equal     DEBUG		e1: <Element newborn at 207ba50>
+    Tree.               equal     DEBUG		e2: <Element newborn at 207ba80>
+    Tree.               equal     DEBUG		p1: [1, 2, 3, 1, 1]
+    Tree.               equal     DEBUG		p2: [1, 2, 3, 1, 1]
+    Tree.               equal     DEBUG		tree1 iteration finished
+    Tree.               equal     DEBUG		tree2 iteration finished, return True
+    Tree.               equal     DEBUG		e1: <Element xml at 207b5d0>
+    Tree.               equal     DEBUG		e2: <Element xml at 207b6c0>
+    Tree.               equal     DEBUG		p1: [1]
+    Tree.               equal     DEBUG		p2: [1]
+    Tree.               equal     DEBUG		e1: <Element node at 207b8d0>
+    Tree.               equal     DEBUG		e2: <Element node at 207b7e0>
+    Tree.               equal     DEBUG		p1: [1, 1]
+    Tree.               equal     DEBUG		p2: [1, 1]
+    Tree.               equal     DEBUG		e1: <Element child at 207b750>
+    Tree.               equal     DEBUG		e2: <Element child at 207b720>
+    Tree.               equal     DEBUG		p1: [1, 1, 1]
+    Tree.               equal     DEBUG		p2: [1, 1, 1]
+    Tree.               equal     DEBUG		e1: <Element node at 207b780>
+    Tree.               equal     DEBUG		e2: <Element node at 207b7b0>
+    Tree.               equal     DEBUG		p1: [1, 2]
+    Tree.               equal     DEBUG		p2: [1, 2]
+    Tree.               equal     DEBUG		e1: <Element child1 at 207b870>
+    Tree.               equal     DEBUG		e2: <Element child1 at 207b840>
+    Tree.               equal     DEBUG		p1: [1, 2, 1]
+    Tree.               equal     DEBUG		p2: [1, 2, 1]
+    Tree.               equal     DEBUG		e1: <Element child2 at 207bb40>
+    Tree.               equal     DEBUG		e2: <Element child2 at 207b900>
+    Tree.               equal     DEBUG		p1: [1, 2, 2]
+    Tree.               equal     DEBUG		p2: [1, 2, 2]
+    Tree.               equal     DEBUG		e1: <Element child3 at 207b8a0>
+    Tree.               equal     DEBUG		e2: <Element child3 at 207b6f0>
+    Tree.               equal     DEBUG		p1: [1, 2, 3]
+    Tree.               equal     DEBUG		p2: [1, 2, 3]
+    Tree.               equal     DEBUG		e1: <Element grandchild at 207bae0>
+    Tree.               equal     DEBUG		e2: <Element grandchild at 207b810>
+    Tree.               equal     DEBUG		p1: [1, 2, 3, 1]
+    Tree.               equal     DEBUG		p2: [1, 2, 3, 1]
+    Tree.               equal     DEBUG		e1: <Element newborn at 207ba50>
+    Tree.               equal     DEBUG		e2: <Element newborn at 207ba80>
+    Tree.               equal     DEBUG		p1: [1, 2, 3, 1, 1]
+    Tree.               equal     DEBUG		p2: [1, 2, 3, 1, 1]
+    Tree.               equal     DEBUG		tree1 iteration finished
+    Tree.               equal     DEBUG		tree2 iteration finished, return True
+    Tree.               equal     DEBUG		e1: <Element xml at 207b9c0>
+    Tree.               equal     DEBUG		e2: <Element xml at 207bb10>
+    Tree.               equal     DEBUG		p1: [1]
+    Tree.               equal     DEBUG		p2: [1]
+    Tree.               equal     DEBUG		e1: <Element node at 207bb70>
+    Tree.               equal     DEBUG		e2: <Element node at 207bd80>
+    Tree.               equal     DEBUG		p1: [1, 1]
+    Tree.               equal     DEBUG		p2: [1, 1]
+    Tree.               equal     DEBUG		e1: <Element child at 207bba0>
+    Tree.               equal     DEBUG		e2: <Element child at 207bf00>
+    Tree.               equal     DEBUG		p1: [1, 1, 1]
+    Tree.               equal     DEBUG		p2: [1, 1, 1]
+    Tree.               equal     DEBUG		e1: <Element node at 207b9f0>
+    Tree.               equal     DEBUG		e2: <Element node at 207bbd0>
+    Tree.               equal     DEBUG		p1: [1, 2]
+    Tree.               equal     DEBUG		p2: [1, 2]
+    Tree.               equal     DEBUG		e1: <Element child1 at 207b990>
+    Tree.               equal     DEBUG		e2: <Element child1 at 207bc30>
+    Tree.               equal     DEBUG		p1: [1, 2, 1]
+    Tree.               equal     DEBUG		p2: [1, 2, 1]
+    Tree.               equal     DEBUG		e1: <Element child2 at 207bc00>
+    Tree.               equal     DEBUG		e2: <Element child2 at 207bcc0>
+    Tree.               equal     DEBUG		p1: [1, 2, 2]
+    Tree.               equal     DEBUG		p2: [1, 2, 2]
+    Tree.               equal     DEBUG		e1: <Element child3 at 207bcf0>
+    Tree.               equal     DEBUG		e2: <Element child3 at 207bea0>
+    Tree.               equal     DEBUG		p1: [1, 2, 3]
+    Tree.               equal     DEBUG		p2: [1, 2, 3]
+    Tree.               equal     DEBUG		e1: <Element grandchild at 207bd50>
+    Tree.               equal     DEBUG		e2: <Element grandchild at 207be10>
+    Tree.               equal     DEBUG		p1: [1, 2, 3, 1]
+    Tree.               equal     DEBUG		p2: [1, 2, 3, 1]
+    Tree.               equal     DEBUG		e1: <Element newborn at 207be40>
+    Tree.               equal     DEBUG		e2: <Element newborn at 207bde0>
+    Tree.               equal     DEBUG		p1: [1, 2, 3, 1, 1]
+    Tree.               equal     DEBUG		p2: [1, 2, 3, 1, 1]
+    Tree.               equal     DEBUG		tree1 iteration finished
+    Tree.               equal     DEBUG		tree2 iteration finished, return True
+    Tree.               equal     DEBUG		e1: <Element xml at 207b9c0>
+    Tree.               equal     DEBUG		e2: <Element xml at 207bb10>
+    Tree.               equal     DEBUG		p1: [1]
+    Tree.               equal     DEBUG		p2: [1]
+    Tree.               equal     DEBUG		e1: <Element node at 207bb70>
+    Tree.               equal     DEBUG		e2: <Element node at 207bd80>
+    Tree.               equal     DEBUG		p1: [1, 1]
+    Tree.               equal     DEBUG		p2: [1, 1]
+    Tree.               equal     DEBUG		e1: <Element child at 207bba0>
+    Tree.               equal     DEBUG		e2: <Element child at 207bf00>
+    Tree.               equal     DEBUG		p1: [1, 1, 1]
+    Tree.               equal     DEBUG		p2: [1, 1, 1]
+    Tree.               equal     DEBUG		e1: <Element node at 207b9f0>
+    Tree.               equal     DEBUG		e2: <Element node at 207bbd0>
+    Tree.               equal     DEBUG		p1: [1, 2]
+    Tree.               equal     DEBUG		p2: [1, 2]
+    Tree.               equal     DEBUG		e1: <Element child1 at 207b990>
+    Tree.               equal     DEBUG		e2: <Element child1 at 207bc30>
+    Tree.               equal     DEBUG		p1: [1, 2, 1]
+    Tree.               equal     DEBUG		p2: [1, 2, 1]
+    Tree.               equal     DEBUG		e1: <Element child2 at 207bc00>
+    Tree.               equal     DEBUG		e2: <Element child2 at 207bcc0>
+    Tree.               equal     DEBUG		p1: [1, 2, 2]
+    Tree.               equal     DEBUG		p2: [1, 2, 2]
+    Tree.               equal     DEBUG		e1: <Element child3 at 207bcf0>
+    Tree.               equal     DEBUG		e2: <Element child3 at 207bea0>
+    Tree.               equal     DEBUG		p1: [1, 2, 3]
+    Tree.               equal     DEBUG		p2: [1, 2, 3]
+    Tree.               equal     DEBUG		e1: <Element grandchild at 207bd50>
+    Tree.               equal     DEBUG		e2: <Element grandchild at 207be10>
+    Tree.               equal     DEBUG		p1: [1, 2, 3, 1]
+    Tree.               equal     DEBUG		p2: [1, 2, 3, 1]
+    Tree.               equal     DEBUG		e1: <Element newborn at 207be40>
+    Tree.               equal     DEBUG		e2: <Element newborn at 207bde0>
+    Tree.               equal     DEBUG		p1: [1, 2, 3, 1, 1]
+    Tree.               equal     DEBUG		p2: [1, 2, 3, 1, 1]
+    Tree.               equal     DEBUG		tree1 iteration finished
+    Tree.               equal     DEBUG		tree2 iteration finished, return True
+    Tree.               equal     DEBUG		e1: <Element node at 207bf60>
+    Tree.               equal     DEBUG		e2: <Element node at 207bf30>
+    Tree.               equal     DEBUG		e1 != e2, return False
+    Tree.               equal     DEBUG		e1: <Element node at 207bf60>
+    Tree.               equal     DEBUG		e2: <Element node at 207bf30>
+    Tree.               equal     DEBUG		e1 != e2, return False
 test_Tre.    test_ComplexTree     DEBUG		
 test_Tre.    test_ComplexTree     DEBUG		
 test_Tre.    test_ComplexTree     DEBUG		starting TreeGroup.Tree.test_Tree
-    Tree.               equal     DEBUG		ordering1: [[1], [1, 1], [1, 2], [1, 3], [1, 3, 1], [1, 3, 1, 1], [1, 3, 2]]
-    Tree.               equal     DEBUG		ordering2: [[1], [1, 1], [1, 2], [1, 3], [1, 3, 1], [1, 3, 1, 1], [1, 3, 2]]
+    Tree.               equal     DEBUG		e1: <Element Z at 2092660>
+    Tree.               equal     DEBUG		e2: <Element Z at 2092600>
+    Tree.               equal     DEBUG		p1: [1]
+    Tree.               equal     DEBUG		p2: [1]
+    Tree.               equal     DEBUG		e1: <Element _ at 2092690>
+    Tree.               equal     DEBUG		e2: <Element _ at 20927b0>
+    Tree.               equal     DEBUG		p1: [1, 1]
+    Tree.               equal     DEBUG		p2: [1, 1]
+    Tree.               equal     DEBUG		e1: <Element Y at 20926c0>
+    Tree.               equal     DEBUG		e2: <Element Y at 20927e0>
+    Tree.               equal     DEBUG		p1: [1, 2]
+    Tree.               equal     DEBUG		p2: [1, 2]
+    Tree.               equal     DEBUG		e1: <Element Y at 20926f0>
+    Tree.               equal     DEBUG		e2: <Element Y at 2092810>
+    Tree.               equal     DEBUG		p1: [1, 3]
+    Tree.               equal     DEBUG		p2: [1, 3]
+    Tree.               equal     DEBUG		e1: <Element X at 2092720>
+    Tree.               equal     DEBUG		e2: <Element X at 2092840>
+    Tree.               equal     DEBUG		p1: [1, 3, 1]
+    Tree.               equal     DEBUG		p2: [1, 3, 1]
+    Tree.               equal     DEBUG		e1: <Element W at 2092750>
+    Tree.               equal     DEBUG		e2: <Element W at 2092870>
+    Tree.               equal     DEBUG		p1: [1, 3, 1, 1]
+    Tree.               equal     DEBUG		p2: [1, 3, 1, 1]
+    Tree.               equal     DEBUG		e1: <Element X at 2092780>
+    Tree.               equal     DEBUG		e2: <Element X at 20928a0>
+    Tree.               equal     DEBUG		p1: [1, 3, 2]
+    Tree.               equal     DEBUG		p2: [1, 3, 2]
+    Tree.               equal     DEBUG		tree1 iteration finished
+    Tree.               equal     DEBUG		tree2 iteration finished, return True
 test_Tre.test_InverseAddition     DEBUG		
 test_Tre.test_InverseAddition     DEBUG		
 test_Tre.test_InverseAddition     DEBUG		starting TreeGroup.Tree.test_Tree
-    Tree.                 add     DEBUG		result: b'<_></_>'
-    Tree.               equal     DEBUG		ordering1: [[1], [1, 1], [1, 2], [1, 3], [1, 3, 1], [1, 3, 1, 1], [1, 3, 2]]
-    Tree.               equal     DEBUG		ordering2: [[1]]
+    Tree.               equal     DEBUG		e1: <Element _ at 2092960>
+    Tree.               equal     DEBUG		e2: <Element _ at 2092900>
+    Tree.               equal     DEBUG		p1: [1]
+    Tree.               equal     DEBUG		p2: [1]
+    Tree.               equal     DEBUG		tree1 iteration finished
+    Tree.               equal     DEBUG		tree2 iteration finished, return True
 test_Tre.     test_SimpleTree     DEBUG		
 test_Tre.     test_SimpleTree     DEBUG		
 test_Tre.     test_SimpleTree     DEBUG		starting TreeGroup.Tree.test_Tree
-    Tree.               equal     DEBUG		ordering1: [[1], [1, 1]]
-    Tree.               equal     DEBUG		ordering2: [[1], [1, 1]]
+    Tree.               equal     DEBUG		e1: <Element Z at 2092cc0>
+    Tree.               equal     DEBUG		e2: <Element Z at 2092c60>
+    Tree.               equal     DEBUG		p1: [1]
+    Tree.               equal     DEBUG		p2: [1]
+    Tree.               equal     DEBUG		e1: <Element Y at 2092cf0>
+    Tree.               equal     DEBUG		e2: <Element Y at 2092d20>
+    Tree.               equal     DEBUG		p1: [1, 1]
+    Tree.               equal     DEBUG		p2: [1, 1]
+    Tree.               equal     DEBUG		tree1 iteration finished
+    Tree.               equal     DEBUG		tree2 iteration finished, return True
 test_Tre.        test_Subtree     DEBUG		
 test_Tre.        test_Subtree     DEBUG		
 test_Tre.        test_Subtree     DEBUG		starting TreeGroup.Tree.test_Tree
-    Tree.               equal     DEBUG		ordering1: [[1], [1, 1], [1, 1, 1], [1, 2]]
-    Tree.               equal     DEBUG		ordering2: [[1], [1, 1], [1, 1, 1], [1, 2]]
+    Tree.               equal     DEBUG		e1: <Element Y at 2092e10>
+    Tree.               equal     DEBUG		e2: <Element Y at 2092d80>
+    Tree.               equal     DEBUG		p1: [1]
+    Tree.               equal     DEBUG		p2: [1]
+    Tree.               equal     DEBUG		e1: <Element X at 2092e40>
+    Tree.               equal     DEBUG		e2: <Element X at 2092ed0>
+    Tree.               equal     DEBUG		p1: [1, 1]
+    Tree.               equal     DEBUG		p2: [1, 1]
+    Tree.               equal     DEBUG		e1: <Element W at 2092e70>
+    Tree.               equal     DEBUG		e2: <Element W at 2092f00>
+    Tree.               equal     DEBUG		p1: [1, 1, 1]
+    Tree.               equal     DEBUG		p2: [1, 1, 1]
+    Tree.               equal     DEBUG		e1: <Element X at 2092ea0>
+    Tree.               equal     DEBUG		e2: <Element X at 2092f30>
+    Tree.               equal     DEBUG		p1: [1, 2]
+    Tree.               equal     DEBUG		p2: [1, 2]
+    Tree.               equal     DEBUG		tree1 iteration finished
+    Tree.               equal     DEBUG		tree2 iteration finished, return True
 test_Tre.       test_UnitTree     DEBUG		
 test_Tre.       test_UnitTree     DEBUG		
 test_Tre.       test_UnitTree     DEBUG		starting TreeGroup.Tree.test_Tree
-    Tree.               equal     DEBUG		ordering1: [[1]]
-    Tree.               equal     DEBUG		ordering2: [[1]]
-    Tree.                 add     DEBUG		result: b'<Z/>'
-    Tree.                 add     DEBUG		result: b'<J><_/><Z><Z></Z></Z><ULITLLWNVZHFIV/></J>'
-    Tree.                 add     DEBUG		result: b'<_/>'
+    Tree.               equal     DEBUG		e1: <Element _ at 2092fc0>
+    Tree.               equal     DEBUG		e2: <Element _ at 2092f60>
+    Tree.               equal     DEBUG		p1: [1]
+    Tree.               equal     DEBUG		p2: [1]
+    Tree.               equal     DEBUG		tree1 iteration finished
+    Tree.               equal     DEBUG		tree2 iteration finished, return True
