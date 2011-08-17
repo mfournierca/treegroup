@@ -31,10 +31,14 @@ class Neighbor:
         #used for debugging. 
         self._id = None
         self._operandType = None
-        self._targetElementStr = None
+        self._targetElement = None
         
-        #generations determines how many steps from the start this neighbor is
+        #generations stores how many generations from the start this neighbor is
         self._generation = None
+        
+        #stepnumber stores the number of iterations the algorithm has gone through to 
+        #get to this neighbor. 
+        self._stepnumber = None
         
         
         #metric reduction factor
@@ -134,11 +138,11 @@ class Neighbor:
         return self._operandType
     
     
-    def setTargetElementStr(self, t):
-        self._targetElementStr = t
+    def setTargetElement(self, t):
+        self._targetElement = t
         
-    def getTargetElementStr(self):
-        return self._targetElementStr
+    def getTargetElement(self):
+        return self._targetElement
     
     
     def setGeneration(self, g):
@@ -146,6 +150,13 @@ class Neighbor:
         
     def getGeneration(self):
         return self._generation
+    
+    
+    def setStepNumber(self, s):
+        self._stepnumber = s
+        
+    def getStepNumber(self):
+        return self._stepnumber
     
     
     def setCost(self, filterscore, metric, manualscore):
@@ -282,12 +293,12 @@ def findNeighbors_FirstValidationError(t, validationerrors=False, ignore_filter=
             renameOperand = renameGenerator.generateOperand(errorParser.targetElement, tag)
             renameNeighbor = Neighbor(Tree.Tree.add(copy.deepcopy(renameOperand.getTree()), t.getTree()))
             renameNeighbor.setOperand(renameOperand.getTree())
-            renameNeighbor.setOperandType('rename')
-            renameNeighbor.setTargetElementStr(str(errorParser.targetElement))
+            renameNeighbor.setTargetElement(errorParser.targetElement)
             renameNeighbor.setCost(filteredscores[tag], 
                                    metricWrapper(t.getTree(), renameNeighbor.getTree(), treeSize),
                                    getManualCost(renameNeighbor, 'rename', tag)
                                    )
+            renameNeighbor.setOperandType('rename %s' % tag)
             log.info("generated rename neighbor: %s\trename to: %s\tcost: %s" % (str(renameNeighbor), tag, str(renameNeighbor.getCost())))
             neighbors.append(renameNeighbor)
         
@@ -295,12 +306,12 @@ def findNeighbors_FirstValidationError(t, validationerrors=False, ignore_filter=
             wrapOperand = wrapGenerator.generateOperand(errorParser.targetElement, tag)
             wrapNeighbor = Neighbor(Tree.Tree.add(copy.deepcopy(wrapOperand.getTree()), t.getTree()))
             wrapNeighbor.setOperand(wrapOperand.getTree())
-            wrapNeighbor.setOperandType('wrap')
-            wrapNeighbor.setTargetElementStr(str(errorParser.targetElement))
+            wrapNeighbor.setTargetElement(errorParser.targetElement)
             wrapNeighbor.setCost(filteredscores[tag], 
                                metricWrapper(t.getTree(), wrapNeighbor.getTree(), treeSize),
                                getManualCost(wrapNeighbor, 'wrap', tag)
                                )
+            wrapNeighbor.setOperandType('wrap %s' % tag)
             log.info("generated wrap neighbor: %s\twrap in: %s\tcost: %s" % (str(wrapNeighbor), tag, str(wrapNeighbor.getCost())))
             neighbors.append(wrapNeighbor)
             
@@ -311,12 +322,12 @@ def findNeighbors_FirstValidationError(t, validationerrors=False, ignore_filter=
             else:
                 insertBeforeNeighbor = Neighbor(Tree.Tree.add(copy.deepcopy(insertBeforeOperand.getTree()), t.getTree()))
                 insertBeforeNeighbor.setOperand(insertBeforeOperand.getTree())
-                insertBeforeNeighbor.setOperandType('insertBefore')
-                insertBeforeNeighbor.setTargetElementStr(str(errorParser.targetElement))
+                insertBeforeNeighbor.setTargetElement(errorParser.targetElement)
                 insertBeforeNeighbor.setCost(filteredscores[tag],
                                              metricWrapper(t.getTree(), insertBeforeNeighbor.getTree(), treeSize),
                                              getManualCost(insertBeforeNeighbor, 'insertBefore', tag),
                                              )
+                insertBeforeNeighbor.setOperandType('insertBefore %s' % tag)
                 log.info("generated inserBefore neighbor: %s\tnew element: %s\tcost: %s" % (str(insertBeforeNeighbor), tag, str(insertBeforeNeighbor.getCost())))
                 neighbors.append(insertBeforeNeighbor)
             
@@ -330,7 +341,7 @@ def findNeighbors_FirstValidationError(t, validationerrors=False, ignore_filter=
             unwrapNeighbor = Neighbor(Tree.Tree.add(copy.deepcopy(unwrapOperand.getTree()), t.getTree()))
             unwrapNeighbor.setOperand(unwrapOperand.getTree())
             unwrapNeighbor.setOperandType('unwrap')
-            unwrapNeighbor.setTargetElementStr(str(errorParser.targetElement))
+            unwrapNeighbor.setTargetElement(errorParser.targetElement)
             unwrapNeighbor.setCost(0.5,
                                  metricWrapper(t.getTree(), unwrapNeighbor.getTree(), treeSize),
                                  getManualCost(unwrapNeighbor, 'unwrap', tag),
@@ -348,7 +359,7 @@ def findNeighbors_FirstValidationError(t, validationerrors=False, ignore_filter=
             appendBeforeNeighbor = Neighbor(Tree.Tree.add(copy.deepcopy(appendBeforeOperand.getTree()), t.getTree()))
             appendBeforeNeighbor.setOperand(appendBeforeOperand.getTree())
             appendBeforeNeighbor.setOperandType('appendBefore')
-            appendBeforeNeighbor.setTargetElementStr(str(errorParser.targetElement))
+            appendBeforeNeighbor.setTargetElement(errorParser.targetElement)
             appendBeforeNeighbor.setCost(0.5,
                                          metricWrapper(t.getTree(), unwrapNeighbor.getTree(), treeSize),
                                          getManualCost(appendBeforeNeighbor, 'appendBefore', tag),
@@ -376,12 +387,12 @@ def findNeighbors_FirstValidationError(t, validationerrors=False, ignore_filter=
                 continue
             renameAttributeNeighbor = Neighbor(Tree.Tree.add(copy.deepcopy(renameAttributeOperand.getTree()), t.getTree()))
             renameAttributeNeighbor.setOperand(renameAttributeOperand.getTree())
-            renameAttributeNeighbor.setOperandType('renameAttribute')
-            renameAttributeNeighbor.setTargetElementStr(str(errorParser.targetElement))
+            renameAttributeNeighbor.setTargetElement(errorParser.targetElement)
             renameAttributeNeighbor.setCost(0.5,
                                          metricWrapper(t.getTree(), renameAttributeNeighbor.getTree(), treeSize),
                                          getManualCost(renameAttributeNeighbor, 'renameAttribute', None),
                                          )
+            renameAttributeNeighbor.setOperandType('renameAttribute %s' % attributeName)
             log.info("generated rename attribute neighbor: %s\trename to: %s\tcost: %s" % (str(renameAttributeNeighbor), attributeName, str(renameAttributeNeighbor.getCost())))
             neighbors.append(renameAttributeNeighbor)
 
@@ -391,12 +402,12 @@ def findNeighbors_FirstValidationError(t, validationerrors=False, ignore_filter=
             addAttributeOperand = addAttributeGenerator.generateOperand(errorParser.targetElement, attributeName)
             addAttributeNeighbor = Neighbor(Tree.Tree.add(copy.deepcopy(addAttributeOperand.getTree()), t.getTree()))
             addAttributeNeighbor.setOperand(addAttributeOperand.getTree())
-            addAttributeNeighbor.setOperandType('addAttribute')
-            addAttributeNeighbor.setTargetElementStr(str(errorParser.targetElement))
+            addAttributeNeighbor.setTargetElement(errorParser.targetElement)
             addAttributeNeighbor.setCost(0.5,
                                          metricWrapper(t.getTree(), addAttributeNeighbor.getTree(), treeSize),
                                          getManualCost(addAttributeNeighbor, 'addAttribute', None),
                                          )
+            addAttributeNeighbor.setOperandType('addAttribute %s' % attributeName)
             log.info("generated add attribute neighbor: %s\tadd attr: %s\tcost: %s" % (str(addAttributeNeighbor), attributeName, str(addAttributeNeighbor.getCost())))
             neighbors.append(addAttributeNeighbor)
 
@@ -428,12 +439,12 @@ def findNeighbors_FirstValidationError(t, validationerrors=False, ignore_filter=
                 continue
             wrapTextNeighbor = Neighbor(Tree.Tree.add(copy.deepcopy(wrapTextOperand.getTree()), t.getTree()))
             wrapTextNeighbor.setOperand(wrapTextOperand.getTree())
-            wrapTextNeighbor.setOperandType('wrapText')
-            wrapTextNeighbor.setTargetElementStr(str(errorParser.targetElement))
+            wrapTextNeighbor.setTargetElement(errorParser.targetElement)
             wrapTextNeighbor.setCost(filteredscores[tag],
                                      metricWrapper(t.getTree(), wrapTextNeighbor.getTree(), treeSize),
                                      getManualCost(wrapTextNeighbor, 'wrapText', tag),
                                      )
+            wrapTextNeighbor.setOperandType('wrapText %s' % tag)
             log.info("generated wrap text neighbor: %s\twrap in: %s\tcost: %s" % (str(wrapTextNeighbor), tag, str(wrapTextNeighbor.getCost())))
             neighbors.append(wrapTextNeighbor)
 
@@ -458,12 +469,12 @@ def findNeighbors_FirstValidationError(t, validationerrors=False, ignore_filter=
                 continue
             wrapTailNeighbor = Neighbor(Tree.Tree.add(copy.deepcopy(wrapTailOperand.getTree()), t.getTree()))
             wrapTailNeighbor.setOperand(wrapTailNeighbor.getTree())
-            wrapTailNeighbor.setOperandType('wrapTail')
-            wrapTailNeighbor.setTargetElementStr(str(errorParser.targetElement))
+            wrapTailNeighbor.setTargetElement(errorParser.targetElement)
             wrapTailNeighbor.setCost(filteredscores[tag],
                                      metricWrapper(t.getTree(), wrapTailNeighbor.getTree(), treeSize),
                                      getManualCost(wrapTailNeighbor, 'wrapText', tag),
                                      )
+            wrapTailNeighbor.setOperandType('wrapTail %s' % tag)
             log.info("generated wrap tail neighbor: %s\twrap in: %s\tcost: %s" % (str(wrapTailNeighbor), tag, str(wrapTailNeighbor.getCost())))
             neighbors.append(wrapTailNeighbor)
 

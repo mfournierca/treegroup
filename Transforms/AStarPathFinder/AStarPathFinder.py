@@ -48,33 +48,40 @@ class AStarPathFinder:
         self.start.setHScore(0)
         self.start.setFScore(0)
         self.start.setGeneration(1)
+        self.start.setStepNumber(0)
+        
         self._openset = set([self.start])
         
         self._closedset = set()
         
         self.validationerrors = False
         
+        #step number is used to keep track of the process. 
+        self.stepnumber = 0
+        
         
         #
         #variables below are used to try and speed up the pathfinder, or increase performance. 
         #
         
-        #step number is used to keep track of the process. 
-        self.stepnumber = 0
-        
         #beam width. -1 means infinite width
-        self.beamwidth = 3
+        self.beamwidth = 5
         
         #no backtracking
         self.bactracking = True
         
         #keep generations determines how many generations of neighbors are kept 
         #in the open set. -1 means infinite generations. 
-        self.keepgenerations = 10
+        self.keepgenerations = -1
+        
+        #keep stepnumbers determines how many steps behind the current neigbor the algorithm is allowed to 
+        #step back. This controls the amount of backtracking. The allowed steps are within the range 
+        #current step number - keep step numbers -> current step number
+        self.keepstepnumbers = 5
         
         #filter f score is used to remove all elements from the open set whose fscores
         #at least self.filterfscore above the current best fscore. -1 means keep everything
-        self.filterfscore = 50
+        self.filterfscore = -1
         
         
         
@@ -152,7 +159,7 @@ class AStarPathFinder:
         
         
         #implement beamwidth
-        if self.beamwidth > 0:
+        if self.beamwidth >= 0:
             neighbors.sort(key=lambda x: x.getCost())
             neighbors = neighbors[:self.beamwidth]
             self.log.info("reduced number of neighbors to beamwidth: %s" % str(neighbors))
@@ -160,7 +167,7 @@ class AStarPathFinder:
         
         #implement keep generations
         discard = []
-        if self.keepgenerations > 0:
+        if self.keepgenerations >= 0:
             for n in self._openset:
                 if n.getGeneration() < t.getGeneration() - self.keepgenerations:
                     discard.append(n)
@@ -171,9 +178,19 @@ class AStarPathFinder:
             self.log.info('reduced openset for %i generations, removed %i neighbors' % (self.keepgenerations, len(discard)))
         
         
+        #implement keepstepnumbers
+        discard = []
+        if self.keepstepnumbers >= 0:
+            for n in self._openset:
+                if n.getStepNumber() < t.getStepNumber() - self.keepstepnumbers:
+                    discard.append(n)
+            for n in discard:
+                n.setFScore(n.getFScore() * 1000)
+                
+            
         #implement filterfscore
         discard = []
-        if self.filterfscore > 0:
+        if self.filterfscore >= 0:
             for n in self._openset:
                 if n.getFScore() > t.getFScore() + self.filterfscore:
                     discard.append(n)
@@ -183,6 +200,8 @@ class AStarPathFinder:
                 n.setFScore(n.getFScore() * 1000)
             self.log.info('filtered fscore to %s, removed %i neighbors' % (str(self.filterfscore), len(discard)))    
                     
+        
+        
         
         self.log.info('')
         for n in neighbors: 
@@ -209,6 +228,9 @@ class AStarPathFinder:
             
             #set Generation
             n.setGeneration(t.getGeneration() + 1)
+            
+            #set stepnumber
+            n.setStepNumber(self.stepnumber)
             
                                 
             #A* algo requires that the gscore be:
@@ -341,7 +363,7 @@ class AStarPathFinder:
         infotree.append(operandType)
         
         targetElement = lxml.etree.Element('targetElement')
-        targetElement.text = str(t.getTargetElementStr())
+        targetElement.text = str(t.getTargetElement())
         infotree.append(targetElement)
         
         gscore = lxml.etree.Element('gscore')
@@ -373,17 +395,21 @@ class AStarPathFinder:
             e.set('camefrom', str(t.getCameFrom().getId()))
         except AttributeError:
             e.set('camefrom', 'None')
-        e.set('id', str(self.stepnumber))
+        e.set('stepnumber', str(self.stepnumber))
         e.set('fscore', str(t.getFScore()))
         e.set('hscore', str(t.getHScore()))
         e.set('operandType', str(t.getOperandType()))
         e.set('generation', str(t.getGeneration()))
+        try:
+            e.set('target', str(t.getTargetElement().tag))
+        except AttributeError:
+            e.set('target', 'None')
         
         if e.get('camefrom') == 'None':
             parent = self.debugPathTree
         else:
             try:
-                parent = self.debugPathTree.xpath('//*[@id="%s"]' % str(t.getCameFrom().getId()))[0]
+                parent = self.debugPathTree.xpath('//*[@stepnumber="%s"]' % str(t.getCameFrom().getStepNumber()))[0]
             except IndexError:
                 log.error('invalid path: //*[@id="%s"]' % str(t.getCameFrom().getId()))
                 raise 

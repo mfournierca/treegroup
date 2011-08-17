@@ -22,6 +22,7 @@ class test_processNeighbors(unittest.TestCase):
         t.setGScore(0)
         t.setGeneration(0)
         t.setFScore(0)
+        t.setStepNumber(0)
         pathfinder.processNeighbors(t)
         
         #check open set, should only contain one entry

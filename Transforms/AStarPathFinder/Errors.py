@@ -495,11 +495,15 @@ class ElementPatternParser:
         #if this is the root, it should be dita. 
         #The xpath below should match at least once, and the target element should be the first match
         element = self.tree.xpath('//%s/%s' % (match.group(2), match.group(1)))[0]
-        if (self.tree.getroot() is element.getparent()) and (not element.getparent().tag in ['dita', 'topic', 'task']):
+        try:
+            root = self.tree.getroot()
+        except AttributeError:
+            root = self.tree
+        if (root is element.getparent()) and (not element.getparent().tag in ['dita', 'topic', 'task']):
             parentTag = None
             expectedTags = ['dita']
             actualTags = [match.group(2)]
-        elif not (self.tree.getroot() is element.getparent()):
+        elif not (root is element.getparent()):
             parentTag = match.group(2)
             actualTags = [match.group(1)]
             if parentTag == 'topic':
