@@ -124,11 +124,11 @@ class Neighbor:
         return self._operand
     
     
-    def setId(self, i):
-        self._id = i
-        
-    def getId(self):
-        return self._id
+#    def setId(self, i):
+#        self._id = i
+#        
+#    def getId(self):
+#        return self._id
     
     
     def setOperandType(self, t):

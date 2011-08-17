@@ -323,7 +323,7 @@ class AStarPathFinder:
 
 
     def _writeDebugInfo(self, t):
-        t.setId(self.stepnumber)
+#        t.setId(self.stepnumber)
         
         stepdir = os.path.join(self.tempdir, str(self.stepnumber))
         os.mkdir(stepdir)
@@ -345,7 +345,7 @@ class AStarPathFinder:
         
         camefrom = lxml.etree.Element('camefrom')
         try:
-            camefrom.text = str(t.getCameFrom().getId())
+            camefrom.text = str(t.getCameFrom().getStepNumber())
         except AttributeError:
             camefrom.text = 'None'
         infotree.append(camefrom)
@@ -392,7 +392,7 @@ class AStarPathFinder:
         
         e = lxml.etree.Element('neighbor')
         try:
-            e.set('camefrom', str(t.getCameFrom().getId()))
+            e.set('camefrom', str(t.getCameFrom().getStepNumber()))
         except AttributeError:
             e.set('camefrom', 'None')
         e.set('stepnumber', str(self.stepnumber))
