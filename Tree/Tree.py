@@ -224,7 +224,7 @@ def equal(tree1, tree2):
     """Return True if the trees are equal, False otherwise"""
     #determine if trees are equal, without using the orderings. This function should be faster 
     #that the old ones.     
-#    log = logging.getLogger()
+    log = logging.getLogger()
     
     #check that correct object is passed. 
     #In lxml, ElementTrees are distinct from Elements in that ElementTrees have doc information
@@ -238,44 +238,78 @@ def equal(tree1, tree2):
     
     tree1iterator = tree1.iter()
     tree2iterator = tree2.iter()
-    while True:
-        try: 
-            e1 = tree1iterator.__next__()
-        except StopIteration:
-            break
-#        log.debug('e1: %s' % str(e1))
+    p1 = []
+    p2 = []
+    stack1 = []
+    stack2 = []
+    index = 0
+#    while True:
+#        try: 
+#            e1 = tree1iterator.__next__()
+#        except StopIteration:
+#            break
+    for e1 in tree1iterator:
+        log.debug('e1: %s' % str(e1))
         
         try:
             e2 = tree2iterator.__next__()
         except StopIteration: 
-#            log.debug('no e2, return False')
+            log.debug('no e2, return False')
             return False
-#        log.debug('e2: %s' % str(e2))
+        log.debug('e2: %s' % str(e2))
         
         if not Element.Element.equal(e1, e2): 
-#            log.debug('e1 != e2, return False')
+            log.debug('e1 != e2, return False')
             return False
         
-        p1 = Element.Element.position(e1, root=tree1)
-        p2 = Element.Element.position(e2, root=tree2)
-#        log.debug('p1: %s' % str(p1))
-#        log.debug('p2: %s' % str(p2))
+#        p1 = Element.Element.position(e1, root=tree1)
+#        p2 = Element.Element.position(e2, root=tree2)
+        
+        #get position 1 and position 2, compare. 
+        if (p1 == []) and (index != 0):
+            log.warning('p1 == [], e1 is not root')
+            raise TypeError
+        elif index == 0:
+            stack1 = [e1]
+            p1 = [1]
+        else:
+            parent1index = stack1.index(e1.getparent())
+            p1 = p1[:parent1index + 1]
+            p1.append(e1.getparent().index(e1) + 1)
+            stack1 = stack1[:parent1index + 1]
+            stack1.append(e1)
+                    
+        if (p2 == []) and (index != 0):
+            log.warning('p2 == [], e2 is not root')
+            raise TypeError
+        elif index == 0:
+            stack2 = [e2]
+            p2 = [1]
+        else:
+            parent2index = stack2.index(e2.getparent())
+            p2 = p2[:parent2index + 1]
+            p2.append(e2.getparent().index(e2) + 1)
+            stack2 = stack2[:parent2index + 1]
+            stack2.append(e2)
+
+        log.debug('p1: %s' % str(p1))
+        log.debug('p2: %s' % str(p2))
         if p1 != p2: 
-#            log.debug('p1 != p2, return False')
+            log.debug('p1 != p2, return False')
             return False
-#    log.debug('tree1 iteration finished')
+    log.debug('tree1 iteration finished')
     
     try:
         e2 = tree2iterator.__next__()
     except StopIteration:
-#        log.debug('tree2 iteration finished, return True')
+        log.debug('tree2 iteration finished, return True')
         return True
     
     if e2 is not None: 
-#        log.debug('tree2 iteration not finished, return False')
+        log.debug('tree2 iteration not finished, return False')
         return False
     
-#    log.debug('return True')
+    log.debug('return True')
     return True
 
 

@@ -151,7 +151,14 @@ class test_equal(unittest.TestCase):
         result = Tree.equal(self.testtree.getroot()[0], comparetree.getroot())
         self.assertIs(result, False, "equal() failed: expected %s, got %s" % (str(False), str(result)))
         
-
+    def test_NotEqual_UnequalRoots(self):      
+        tree1 = lxml.etree.fromstring("""<a><b/></a>""")
+        tree2 = lxml.etree.fromstring("""<c><b/></c>""")  
+        result = Tree.equal(tree1, tree2)
+        self.assertIs(result, False, "equal() failed: expected %s, got %s" % (str(False), str(result)))
+        
+        
+        
 
 
 

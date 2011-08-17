@@ -81,7 +81,7 @@ class AStarPathFinder:
         
         #filter f score is used to remove all elements from the open set whose fscores
         #at least self.filterfscore above the current best fscore. -1 means keep everything
-        self.filterfscore = -1
+        self.filterfscore = 50
         
         
         
