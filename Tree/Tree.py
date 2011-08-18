@@ -249,17 +249,17 @@ def equal(tree1, tree2):
 #        except StopIteration:
 #            break
     for e1 in tree1iterator:
-        log.debug('e1: %s' % str(e1))
+        #log.debug('e1: %s' % str(e1))
         
         try:
             e2 = tree2iterator.__next__()
         except StopIteration: 
-            log.debug('no e2, return False')
+            #log.debug('no e2, return False')
             return False
-        log.debug('e2: %s' % str(e2))
+        #log.debug('e2: %s' % str(e2))
         
         if not Element.Element.equal(e1, e2): 
-            log.debug('e1 != e2, return False')
+            #log.debug('e1 != e2, return False')
             return False
         
 #        p1 = Element.Element.position(e1, root=tree1)
@@ -292,24 +292,24 @@ def equal(tree1, tree2):
             stack2 = stack2[:parent2index + 1]
             stack2.append(e2)
 
-        log.debug('p1: %s' % str(p1))
-        log.debug('p2: %s' % str(p2))
+        #log.debug('p1: %s' % str(p1))
+        #log.debug('p2: %s' % str(p2))
         if p1 != p2: 
-            log.debug('p1 != p2, return False')
+            #log.debug('p1 != p2, return False')
             return False
-    log.debug('tree1 iteration finished')
+    #log.debug('tree1 iteration finished')
     
     try:
         e2 = tree2iterator.__next__()
     except StopIteration:
-        log.debug('tree2 iteration finished, return True')
+        #log.debug('tree2 iteration finished, return True')
         return True
     
     if e2 is not None: 
-        log.debug('tree2 iteration not finished, return False')
+        #log.debug('tree2 iteration not finished, return False')
         return False
     
-    log.debug('return True')
+    #log.debug('return True')
     return True
 
 
@@ -332,7 +332,7 @@ def equal_old(tree1, tree2):
     
     ordering1 = ordering(tree1)
     ordering2 = ordering(tree2)
-#    log.debug("ordering1: %s" % str(ordering1))
+#    #log.debug("ordering1: %s" % str(ordering1))
 #    log.debug("ordering2: %s" % str(ordering2))
     
     if not len(ordering1) == len(ordering2):

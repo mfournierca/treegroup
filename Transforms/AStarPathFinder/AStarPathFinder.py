@@ -294,6 +294,7 @@ class AStarPathFinder:
                 return c
         return False
 
+
     def _addToClosedSet(self, x):
         self._closedset.add(x)
     
