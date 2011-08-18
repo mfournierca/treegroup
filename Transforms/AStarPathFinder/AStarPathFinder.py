@@ -65,19 +65,19 @@ class AStarPathFinder:
         #
         
         #beam width. -1 means infinite width
-        self.beamwidth = 5
+        self.beamwidth = 3
         
         #no backtracking
         self.bactracking = True
         
         #keep generations determines how many generations of neighbors are kept 
         #in the open set. -1 means infinite generations. 
-        self.keepgenerations = -1
+        self.keepgenerations = 5
         
         #keep stepnumbers determines how many steps behind the current neigbor the algorithm is allowed to 
         #step back. This controls the amount of backtracking. The allowed steps are within the range 
         #current step number - keep step numbers -> current step number
-        self.keepstepnumbers = 5
+        self.keepstepnumbers = 10
         
         #filter f score is used to remove all elements from the open set whose fscores
         #at least self.filterfscore above the current best fscore. -1 means keep everything
@@ -535,6 +535,8 @@ if __name__ == "__main__":
     else:
         #perform transformation
         result = pathfinder.findPath()
+    
+    del pathfinder
     
     if result is False:
         log.info("Transformation failed")
