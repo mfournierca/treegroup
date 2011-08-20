@@ -94,7 +94,7 @@ class test_equal(unittest.TestCase):
         self.assertTrue(result, "equal() failed: expected %s, got %s" % (str(True), str(result)))
         
     
-    def test_NotEqual_NoChildrenOfRoot(self):
+    def test_NotEqual_1_NoChildrenOfRoot(self):
         comparetree = lxml.etree.parse(os.path.join(self.testfilesdir, 'TreeTestFile_notequal1.xml'))
         result = Tree.equal(self.testtree, comparetree)
         self.assertIs(result, False, "equal() failed: expected %s, got %s" % (str(False), str(result)))
@@ -103,7 +103,7 @@ class test_equal(unittest.TestCase):
         self.assertIs(result, False, "equal() failed: expected %s, got %s" % (str(False), str(result)))
         
         
-    def test_NotEqual_NotNested(self):
+    def test_NotEqual_2_NotNested(self):
         comparetree = lxml.etree.parse(os.path.join(self.testfilesdir, 'TreeTestFile_notequal2.xml'))
         result = Tree.equal(self.testtree, comparetree)
         self.assertIs(result, False, "equal() failed: expected %s, got %s" % (str(False), str(result)))
@@ -111,7 +111,7 @@ class test_equal(unittest.TestCase):
         result = Tree.equal(self.testtree.getroot(), comparetree.getroot())
         self.assertIs(result, False, "equal() failed: expected %s, got %s" % (str(False), str(result)))
     
-    def test_NotEqual_IdsDiffer(self):
+    def test_NotEqual_3_IdsDiffer(self):
         comparetree = lxml.etree.parse(os.path.join(self.testfilesdir, 'TreeTestFile_notequal3.xml'))
         result = Tree.equal(self.testtree, comparetree)
         self.assertIs(result, False, "equal() failed: expected %s, got %s" % (str(False), str(result)))
@@ -119,7 +119,7 @@ class test_equal(unittest.TestCase):
         result = Tree.equal(self.testtree.getroot(), comparetree.getroot())
         self.assertIs(result, False, "equal() failed: expected %s, got %s" % (str(False), str(result)))
     
-    def test_NotEqual_TagsDiffer(self):
+    def test_NotEqual_4_TagsDiffer(self):
         comparetree = lxml.etree.parse(os.path.join(self.testfilesdir, 'TreeTestFile_notequal4.xml'))
         result = Tree.equal(self.testtree, comparetree)
         self.assertIs(result, False, "equal() failed: expected %s, got %s" % (str(False), str(result)))
@@ -141,7 +141,7 @@ class test_equal(unittest.TestCase):
         result = Tree.equal(self.testtree.getroot()[1], comparetree.getroot())
         self.assertIs(result, True, "equal() failed: expected %s, got %s" % (str(True), str(result)))
         
-    def test_UnequalSubtrees(self):
+    def test_NotEqual_5_UnequalSubtrees(self):
         #TreeTestFile_equal2.xml is a subtree of TreeTestFile_reference.xml, ie self.testtree
         #The matching subtree is at self.testtree.getroot()[1]. This test, however, uses [0]
         comparetree = lxml.etree.parse(os.path.join(self.testfilesdir, 'TreeTestFile_equal2.xml'))
@@ -151,12 +151,32 @@ class test_equal(unittest.TestCase):
         result = Tree.equal(self.testtree.getroot()[0], comparetree.getroot())
         self.assertIs(result, False, "equal() failed: expected %s, got %s" % (str(False), str(result)))
         
-    def test_NotEqual_UnequalRoots(self):      
+    def test_NotEqual_6_UnequalRoots(self):      
         tree1 = lxml.etree.fromstring("""<a><b/></a>""")
         tree2 = lxml.etree.fromstring("""<c><b/></c>""")  
         result = Tree.equal(tree1, tree2)
         self.assertIs(result, False, "equal() failed: expected %s, got %s" % (str(False), str(result)))
         
+    def test_NotEqual_7_ElementAfter(self):      
+        tree1 = lxml.etree.fromstring("""<dita>
+                                             <topic id="id-1">
+                                                  <title/>
+                                                  <body></body>
+                                                  <p>Text</p>
+                                              </topic>
+                                        </dita>
+                                        """)
+        tree2 = lxml.etree.fromstring("""<dita>
+                                             <topic id="id-1">
+                                                  <title/>
+                                                  <body>
+                                                      <p>Text</p>
+                                                  </body>
+                                              </topic>
+                                        </dita>
+                                        """)  
+        result = Tree.equal(tree1, tree2)
+        self.assertIs(result, False, "equal() failed: expected %s, got %s" % (str(False), str(result)))
         
         
 
