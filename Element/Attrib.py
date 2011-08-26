@@ -30,7 +30,8 @@ attrdomain = ['_'] + [i for i in map(chr, range(97, 123))] + [i for i in map(chr
 def _cleankeys(attr):
     deletekeys = []
     for key in attr.keys():
-        if attr[key] == attrdomain[0] or attr[key] == '': deletekeys.append(key)
+        if (attr[key] == attrdomain[0]) or (attr[key] == '') or (attr[key] is False) or (attr[key] is None): 
+            deletekeys.append(key)
     for key in deletekeys:
         del attr[key]
     
@@ -50,7 +51,7 @@ def _addattribs(attrib1, attrib2):
             result[key] = String._addstrings(result[key], attrib2[key], attrdomain)
     
     _cleankeys(result)        
-        
+    log.debug('result: %s' % str(result))
     return result
 
 

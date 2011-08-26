@@ -1,6 +1,6 @@
 """This file defines the Node objects functions."""
 
-import lxml.etree, logging
+import lxml.etree, logging, sys
 
 from . import Tag, Attrib, Text
 
@@ -92,8 +92,14 @@ def add(element1, element2):
     for i in element1.attrib:
         del element1.attrib[i]
     for key in newattribs.keys():
-        element1.set(key, newattribs[key])
-    
+        try:
+            element1.set(key, newattribs[key])
+        except TypeError:
+            log = logging.getLogger()
+            log.error('TypeError: %s' % str(sys.exc_info()[1]))
+            log.error('key = %s\tnewattribs[key] = %s' % (str(key), str(newattribs[key])))
+            raise
+        
     return element1
 
 

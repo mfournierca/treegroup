@@ -53,10 +53,23 @@ def add(tree1, tree2):
     if isinstance(tree1, lxml.etree._ProcessingInstruction):
         self.log.error('%s is ProcessingInstruction' % str(tree1))
         raise TypeError
+    elif isinstance(tree1, lxml.etree._Entity):
+        self.log.derror('%s is Entity, cannot add' % str(tree1))
+        raise TypeError
+    elif isinstance(tree1, lxml.etree._Comment):
+        self.log.debug('%s is comment, cannot process' % str(tree1))
+        raise TypeError
     elif isinstance(tree2, lxml.etree._ProcessingInstruction):
         self.log.error("%s is ProcessingInstruction, cannot add" % str(tree2))
         raise TypeError
+    elif isinstance(tree2, lxml.etree._Entity):
+        self.log.error('%s is Entity, cannot process' % str(tree2))
+        raise TypeError
+    elif isinstance(tree2, lxml.etree._Comment):
+        self.log.error('%s is Comment, cannot process' % str(tree2))
+        raise TypeError
     
+              
     #get orderings
     ordering1 = ordering(tree1)
     ordering2 = ordering(tree2)

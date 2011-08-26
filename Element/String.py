@@ -12,7 +12,7 @@ import logging
 def _addstrings(string1, string2, stringdomain):
     """Add two strings and return the result. The addition must be the operation 
     used by a cyclic group over the stringdomain"""
-    
+    log = logging.getLogger()
     if string1 == '' or string2 == '':
         return False
     
@@ -30,7 +30,7 @@ def _addstrings(string1, string2, stringdomain):
         result += _addchars(string1[index], string2[index], stringdomain)
         
     result = cleanstring(result, stringdomain)
-        
+    log.debug('result: %s' % result)
     #add the corresponding character in string 2
     return result
 
@@ -76,7 +76,7 @@ def _characterinverse(char1, stringdomain):
     except ValueError:
         log = logging.getLogger()
         log.error('character "%s" not found in string domain' % char1)
-        return None
+        raise
     return stringdomain[(len(stringdomain) - index) % len(stringdomain)]
     
 
