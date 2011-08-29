@@ -30,7 +30,7 @@ def _addstrings(string1, string2, stringdomain):
         result += _addchars(string1[index], string2[index], stringdomain)
         
     result = cleanstring(result, stringdomain)
-    log.debug('result: %s' % result)
+#    log.debug('result: %s' % result)
     #add the corresponding character in string 2
     return result
 

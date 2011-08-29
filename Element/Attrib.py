@@ -51,7 +51,7 @@ def _addattribs(attrib1, attrib2):
             result[key] = String._addstrings(result[key], attrib2[key], attrdomain)
     
     _cleankeys(result)        
-    log.debug('result: %s' % str(result))
+#    log.debug('result: %s' % str(result))
     return result
 
 
