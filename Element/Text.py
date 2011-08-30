@@ -16,6 +16,12 @@ from . import String
 textdomain = [' '] + [i for i in map(chr, range(33, 127))] #[i for i in map(chr, range(97, 123))] + ['-', '_'] + [i for i in map(chr, range(65, 91))]
 
 
+def getTextDomain():
+    return textdomain
+
+
+
+
 def _addtext(text1, text2):
     """Add two strings and return the result. The addition must be the operation 
     used by a cyclic group over the textdomain"""
