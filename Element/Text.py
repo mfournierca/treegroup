@@ -13,7 +13,7 @@ from . import String
 #The unit characted is the first element in the domain, ie textdomain[0]. For 
 #text strings, this is whitespace, unlike the tags, where the unit is '_'
 
-textdomain = [' '] + [i for i in map(chr, range(33, 127))] #[i for i in map(chr, range(97, 123))] + ['-', '_'] + [i for i in map(chr, range(65, 91))]
+textdomain = [' '] + ['\t'] + [i for i in map(chr, range(33, 127))] #[i for i in map(chr, range(97, 123))] + ['-', '_'] + [i for i in map(chr, range(65, 91))]
 
 
 def getTextDomain():

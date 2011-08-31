@@ -191,6 +191,7 @@ class test_add(unittest.TestCase):
         self.assertTrue(Element.equal(element1, expected), 'add() failed: expected %s, got %s'\
                          % (lxml.etree.tostring(expected), lxml.etree.tostring(element1)))
         
+        
     def test_AddingElementsWithTextAndTail(self):
         element1 = self.testtree.getroot()[17]
         element2 = self.testtree.getroot()[18]
@@ -279,8 +280,8 @@ class test_invert(unittest.TestCase):
         Element.invert(element1)
         
         expected = lxml.etree.Element('Z')
-        expected.text = '>=<;'
-        expected.tail = ':987'
+        expected.text = '=<;:'
+        expected.tail = '9876'
         
         self.assertTrue(Element.equal(element1, expected), 'inverse() failed: expected %s, got %s'\
                          % (lxml.etree.tostring(expected), lxml.etree.tostring(element1)))

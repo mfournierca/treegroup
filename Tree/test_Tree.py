@@ -759,12 +759,13 @@ class test_add(unittest.TestCase):
         expectedtree = lxml.etree.fromstring("""
                                             <c>
                                                 <Z id="9">
-                                                    <c id="3">lSYKBG)KqiB<d/></c>
+                                                    <c id="3">mSYKCH)KqiC<d/></c>
                                                     <c/>
                                                 </Z>
                                                 <a id="6">
-                                                <a id="7">lSYKBG)KqiD<b id="8"/>lSYKBG)KqiF</a>
-                                                <a id="8">File14Text4</a></a>
+                                                    <a id="7">mSYKCH)KqiE<b id="8"/>mSYKCH)KqiG</a>
+                                                    <a id="8">File14Text4</a>
+                                                </a>
                                             </c>
                                             """)
 
