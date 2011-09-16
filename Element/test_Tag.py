@@ -77,26 +77,54 @@ class test_addtags(unittest.TestCase):
     def test_MixedTagsDifferentLengths(self):
         tag1 = 'abcdeZ'
         tag2 = 'abcde'
-        expected = 'bdfhjZ' 
+        expected = 'acegid' 
         result = Tag._addtags(tag1, tag2)
         self.assertEqual(expected, result, "_addtags returned '%s', expected '%s'" % (result, expected))
                 
-    def test_MixedTagsProducesATrailingBlank(self):
+    def test_MixedTagsProducesATrailingUnit(self):
         tag1 = 'abcdeZ'
         tag2 = 'abcdea'
+        expected = 'bdfhj_' 
+        result = Tag._addtags(tag1, tag2)
+        self.assertEqual(expected, result, "_addtags returned '%s', expected '%s'" % (result, expected))
+        
+    def test_MixedTagsProducesLeadingUnit(self):
+        tag1 = 'aabcde'
+        tag2 = 'Zabcde'
         expected = 'bdfhj' 
         result = Tag._addtags(tag1, tag2)
         self.assertEqual(expected, result, "_addtags returned '%s', expected '%s'" % (result, expected))
         
-    def test_MixedTagsProducesLeadingBlank(self):
-        tag1 = 'aabcde'
-        tag2 = 'Zabcde'
-        expected = self.unitchar + 'bdfhj' 
+    def test_MixedTagsProducesHyphen(self):
+        tag1 = 'a'
+        tag2 = 'z'
+        expected = '_-'
+        result = Tag._addtags(tag1, tag2)
+        self.assertEqual(expected, result, "_addtags returned '%s', expected '%s'" % (result, expected))
+        
+    def test_MixedLongTagsProducesHyphen(self):
+        tag1 = 'aa'
+        tag2 = 'za'
+        expected = '_-b'
+        result = Tag._addtags(tag1, tag2)
+        self.assertEqual(expected, result, "_addtags returned '%s', expected '%s'" % (result, expected))
+        
+    def test_Digit(self):
+        tag1 = 'a'
+        tag2 = '1'
+        expected = '_2'
         result = Tag._addtags(tag1, tag2)
         self.assertEqual(expected, result, "_addtags returned '%s', expected '%s'" % (result, expected))
         
         
-
+    def test_LeadingDigitLetter(self):
+        tag1 = '1a'
+        tag2 = 'aa'
+        expected = '_2b'
+        result = Tag._addtags(tag1, tag2)
+        self.assertEqual(expected, result, "_addtags returned '%s', expected '%s'" % (result, expected))
+        
+    
 
 
 
