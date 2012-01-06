@@ -30,40 +30,56 @@ def invert(element1):
     return element1
         
     
-def equal(element1, element2):
-    """Return True if two elements are equal, false if they are not"""
+def equal(element1, element2, ignoreattrs=False):
+    """Return True if two elements are equal, false if they are not. 
+    
+    The ignoreattrs option, when True, causes this function to ignore
+    element attributes when checking equality. Added as a requirement for 
+    another project (Similar Content), should find a cleaner way of 
+    achieving the same result. """
     
     log = logging.getLogger()
     
+    #tags
+    tag1 = Tag._cleantag(element1.tag)
+    tag2 = Tag._cleantag(element2.tag)
+    if tag1 != tag2:
+        return False
+    
+    #attrs
     attrib1 = element1.attrib
     Attrib._cleankeys(attrib1)
-    tag1 = Tag._cleantag(element1.tag)
+    attrib2 = element2.attrib
+    Attrib._cleankeys(attrib2) 
+    if (attrib1 != attrib2) and (not ignoreattrs):
+        return False
+    
+    #text
     try:
         text1 = element1.text.rstrip()
     except AttributeError: 
         text1 = ''
     try:
-        tail1 = element1.tail.rstrip()
-    except AttributeError:
-        tail1 = ''
-    
-    attrib2 = element2.attrib
-    Attrib._cleankeys(attrib2) 
-    tag2 = Tag._cleantag(element2.tag)
-    try:
         text2 = element2.text.rstrip()
     except AttributeError:
         text2 = ''
+    
+    if text1 != text2:
+        return False
+    
+    #tail
+    try:
+        tail1 = element1.tail.rstrip()
+    except AttributeError:
+        tail1 = ''
     try:
         tail2 = element2.tail.rstrip()
     except:
         tail2 = ''
-    
-    if (tag1 == tag2) and (attrib1 == attrib2) and (text1 == text2) and (tail1 == tail2): 
-        return True
-    else:
+    if tail1 != tail2:
         return False
-
+    
+    return True
 
 
 

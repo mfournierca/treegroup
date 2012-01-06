@@ -27,7 +27,13 @@ class test_equal(unittest.TestCase):
         element2 = self.testtree.getroot()[6]
         result = Element.equal(element1, element2)
         self.assertFalse(result, "equal() returned %s, expected False" % str(result))
-    
+
+    def test_SimpleUnequal_AttribDiffer_IgnoreAttrs(self):
+        element1 = self.testtree.getroot()[5]
+        element2 = self.testtree.getroot()[6]
+        result = Element.equal(element1, element2, ignoreattrs=True)
+        self.assertTrue(result, "equal() returned %s, expected True" % str(result))
+            
     def test_SimpleUnequal_TagsDiffer(self):
         element1 = self.testtree.getroot()[7]
         element2 = self.testtree.getroot()[8]

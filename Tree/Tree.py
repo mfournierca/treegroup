@@ -233,8 +233,15 @@ def add(tree1, tree2):
 
 
 
-def equal(tree1, tree2):
-    """Return True if the trees are equal, False otherwise"""
+def equal(tree1, tree2, ignoreattrs=False):
+    """Return True if the trees are equal, False otherwise.
+    
+    
+    The ignoreattrs option, when True, causes this function to ignore
+    element attributes when checking equality. Added as a requirement for 
+    another project (Similar Content), should find a cleaner way of 
+    achieving the same result. """
+    
     #determine if trees are equal, without using the orderings. This function should be faster 
     #that the old ones.     
     log = logging.getLogger()
@@ -266,7 +273,7 @@ def equal(tree1, tree2):
             return False
         #log.debug('e2: %s' % str(e2))
         
-        if not Element.Element.equal(e1, e2): 
+        if not Element.Element.equal(e1, e2, ignoreattrs=ignoreattrs): 
             #log.debug('e1 != e2, return False')
             return False
         
