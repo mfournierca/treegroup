@@ -4,7 +4,7 @@ import lxml.etree, copy
 
 from . import Tree    
 
-import Element.Element
+from . import Element
 
 
 class test_metric(unittest.TestCase):
@@ -250,7 +250,7 @@ class test_ordering(unittest.TestCase):
         
         for index, p in enumerate(self.treeOrdering):
             result = Tree.getNode(self.testtree, p)
-            self.assertTrue(Element.Element.equal(result, expectednodes[index]), 'ordering returned a list with incorrect node position at index %i: expected %s %s, got %s %s,' \
+            self.assertTrue(Element.equal(result, expectednodes[index]), 'ordering returned a list with incorrect node position at index %i: expected %s %s, got %s %s,' \
                             % (index, expectednodes[index].tag, str(expectednodes[index].attrib), result.tag, str(result.attrib)))
 
 
@@ -266,7 +266,7 @@ class test_ordering(unittest.TestCase):
         
         for index, p in enumerate(self.subtreeOrdering):
             result = Tree.getNode(self.testtree.getroot()[1], p)
-            self.assertTrue(Element.Element.equal(result, expectednodes[index]), 'ordering returned a list with incorrect node position at index %i: expected %s %s, got %s %s,' \
+            self.assertTrue(Element.equal(result, expectednodes[index]), 'ordering returned a list with incorrect node position at index %i: expected %s %s, got %s %s,' \
                             % (index, expectednodes[index].tag, str(expectednodes[index].attrib), result.tag, str(result.attrib)))
 
 
@@ -286,7 +286,7 @@ class test_getNode(unittest.TestCase):
         result = Tree.getNode(self.testtree, position)
         expected = lxml.etree.Element('xml')
         
-        self.assertTrue(Element.Element.equal(result, expected), 'getNode() returned the wrong node: expected %s %s, got %s %s' \
+        self.assertTrue(Element.equal(result, expected), 'getNode() returned the wrong node: expected %s %s, got %s %s' \
                         % (expected.tag, str(expected.attrib), result.tag, str(result.attrib)))
     
     
@@ -295,7 +295,7 @@ class test_getNode(unittest.TestCase):
         result = Tree.getNode(self.testtree, position)
         expected = lxml.etree.Element('node', {'id': '1'})
         
-        self.assertTrue(Element.Element.equal(result, expected), 'getNode() returned the wrong node: expected %s %s, got %s %s' \
+        self.assertTrue(Element.equal(result, expected), 'getNode() returned the wrong node: expected %s %s, got %s %s' \
                         % (expected.tag, str(expected.attrib), result.tag, str(result.attrib)))
     
     
@@ -304,7 +304,7 @@ class test_getNode(unittest.TestCase):
         result = Tree.getNode(self.testtree, position)
         expected = lxml.etree.Element('newborn', {'id': '8'})
         
-        self.assertTrue(Element.Element.equal(result, expected), 'getNode() returned the wrong node: expected %s %s, got %s %s' \
+        self.assertTrue(Element.equal(result, expected), 'getNode() returned the wrong node: expected %s %s, got %s %s' \
                         % (expected.tag, str(expected.attrib), result.tag, str(result.attrib)))
     
     
@@ -313,7 +313,7 @@ class test_getNode(unittest.TestCase):
         result = Tree.getNode(self.testtree, position)
         expected = lxml.etree.Element('child2', {'id': '5'})
         
-        self.assertTrue(Element.Element.equal(result, expected), 'getNode() returned the wrong node: expected %s %s, got %s %s' \
+        self.assertTrue(Element.equal(result, expected), 'getNode() returned the wrong node: expected %s %s, got %s %s' \
                         % (expected.tag, str(expected.attrib), result.tag, str(result.attrib)))
         
         
@@ -322,7 +322,7 @@ class test_getNode(unittest.TestCase):
         result = Tree.getNode(self.testtree, position)
         expected = lxml.etree.Element('node', {'id': '3'})
         
-        self.assertTrue(Element.Element.equal(result, expected), 'getNode() returned the wrong node: expected %s %s, got %s %s' \
+        self.assertTrue(Element.equal(result, expected), 'getNode() returned the wrong node: expected %s %s, got %s %s' \
                         % (expected.tag, str(expected.attrib), result.tag, str(result.attrib)))
     
     
@@ -331,7 +331,7 @@ class test_getNode(unittest.TestCase):
         result = Tree.getNode(self.testtree.getroot()[1], position)
         expected = lxml.etree.Element('newborn', {'id': '8'})
         
-        self.assertTrue(Element.Element.equal(expected, result), 'getNode() returned the wrong node: expected %s %s, got %s %s' \
+        self.assertTrue(Element.equal(expected, result), 'getNode() returned the wrong node: expected %s %s, got %s %s' \
                         % (expected.tag, str(expected.attrib), result.tag, str(result.attrib)))
     
     
@@ -340,7 +340,7 @@ class test_getNode(unittest.TestCase):
         result = Tree.getNode(self.testtree.getroot()[1], position)
         expected = lxml.etree.Element('node', {'id': '3'})
         
-        self.assertTrue(Element.Element.equal(expected, result), 'getNode() returned the wrong node: expected %s %s, got %s %s' \
+        self.assertTrue(Element.equal(expected, result), 'getNode() returned the wrong node: expected %s %s, got %s %s' \
                         % (expected.tag, str(expected.attrib), result.tag, str(result.attrib)))
         
     

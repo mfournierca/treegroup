@@ -1,0 +1,10 @@
+Operatio.      updatePosition     DEBUG		found startElement: -1 []
+Operatio.      updatePosition     DEBUG			branch 1
+Operatio.      updatePosition     DEBUG			result: 0 [0]
+Operatio.      updatePosition     DEBUG		found startElement: 0 [0]
+Operatio.      updatePosition     DEBUG			branch 1
+Operatio.      updatePosition     DEBUG			result: 1 [0, 0]
+Operatio.      updatePosition     DEBUG		found endElement: 1 [0, 0]
+Operatio.      updatePosition     DEBUG			result: 0 [0, 1]
+Operatio.      updatePosition     DEBUG		found endElement: 0 [0, 1]
+Operatio.      updatePosition     DEBUG			result: -1 [1]

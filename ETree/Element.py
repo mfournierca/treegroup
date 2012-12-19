@@ -2,7 +2,9 @@
 
 import lxml.etree, logging, sys
 
-from . import Tag, Attrib, Text
+import TreeGroup.Common.Tag as Tag
+import TreeGroup.Common.Attrib as Attrib
+import TreeGroup.Common.Text as Text
 
 def invert(element1):
     """Invert the element, modify in place and return it.

@@ -2,8 +2,8 @@ import lxml.etree
 import copy, logging, re, sys, os.path
 
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), '..'))
-import Element.Element
-
+#import TreeGroup.Etree.Element as Element
+from . import Element
 
 
 
@@ -27,7 +27,7 @@ def invert(tree):
     else:
         iterateover = tree.getroot()
     for element in iterateover.iter():
-        Element.Element.invert(element)
+        Element.invert(element)
 
     return tree
 
@@ -111,7 +111,7 @@ def add(tree1, tree2):
                 
             parent1.append(node3)
             
-            position3 = Element.Element.position(node3, root=tree1)
+            position3 = Element.position(node3, root=tree1)
             #log.debug('\tposition3: %s' % str(position3))
             
             if position3 != position2:
@@ -139,7 +139,7 @@ def add(tree1, tree2):
                 position1 = ordering1[newindex]
                 node1 = getNode(tree1, position1)
                 #log.debug('\tnode1: %s\tnode2: %s' % (str(node1), str(node2)))
-                Element.Element.add(node1, node2) 
+                Element.add(node1, node2) 
             else:
                 node3 = lxml.etree.Element(node2.tag, node2.attrib)
                 node3.text = node2.text
@@ -151,7 +151,7 @@ def add(tree1, tree2):
                     
                 parent1.append(node3)
                 
-                position3 = Element.Element.position(node3, root=tree1)
+                position3 = Element.position(node3, root=tree1)
                 #log.debug('\tposition3: %s' % str(position3))
                 
                 if position3 != position2:
@@ -171,7 +171,7 @@ def add(tree1, tree2):
             position1 = ordering1[index]
             node1 = getNode(tree1, position1)
             #log.debug('\tnode1: %s\tnode2: %s' % (str(node1), str(node2)))
-            Element.Element.add(node1, node2) 
+            Element.add(node1, node2) 
         
         
         else:
@@ -273,12 +273,12 @@ def equal(tree1, tree2, ignoreattrs=False):
             return False
         #log.debug('e2: %s' % str(e2))
         
-        if not Element.Element.equal(e1, e2, ignoreattrs=ignoreattrs): 
+        if not Element.equal(e1, e2, ignoreattrs=ignoreattrs): 
             #log.debug('e1 != e2, return False')
             return False
         
-#        p1 = Element.Element.position(e1, root=tree1)
-#        p2 = Element.Element.position(e2, root=tree2)
+#        p1 = Element.position(e1, root=tree1)
+#        p2 = Element.position(e2, root=tree2)
         
         #get position 1 and position 2, compare. 
         if (p1 == []) and (index != 0):
@@ -360,7 +360,7 @@ def equal_old(tree1, tree2):
         p2 = ordering2[index]
         if not p1 == p2:
             return False        
-        if not Element.Element.equal(getNode(tree1, p1), getNode(tree2, p2)):
+        if not Element.equal(getNode(tree1, p1), getNode(tree2, p2)):
             return False
     
     return True
@@ -468,7 +468,7 @@ def ordering_etree(tree):
     """Build the ordering of the tree by iterating over the elements in the tree"""
 #    #this can be made much more effecient by using a stack and 
 #    #building each position while iterating, instead of calling 
-#    #Element.Element.position each time, which iterates over the 
+#    #Element.position each time, which iterates over the 
 #    #tree for each element. 
 #    result = [] 
 #    
@@ -478,7 +478,7 @@ def ordering_etree(tree):
 #        root = tree
 #    
 #    for i in root.iter():
-#        result.append(Element.Element.position(i, root=root))
+#        result.append(Element.position(i, root=root))
 #    return result
 
     log = logging.getLogger()
@@ -532,7 +532,7 @@ def ordering(tree):
 #        startingposition = [1]
 #    elif isinstance(tree, lxml.etree._Element):
 #        url = tree.getroottree().docinfo.URL
-#        startingposition = Element.Element.position(tree)
+#        startingposition = Element.position(tree)
 #        
 #    if url:
 #        file = urllib.parse.unquote(url, encoding='utf-8')
