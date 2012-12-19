@@ -7,8 +7,8 @@ from . import Tag
 
 
 
-class test_addtags(unittest.TestCase):
-    """Test the Tag._addtags() function"""
+class testaddTags(unittest.TestCase):
+    """Test the Tag.addTags() function"""
         
     def setUp(self):
         """set up data used in the tests, called before each test function execution"""
@@ -22,107 +22,107 @@ class test_addtags(unittest.TestCase):
         tag1 = 'a'
         tag2 = 'a'
         expected = 'b' 
-        result = Tag._addtags(tag1, tag2)
-        self.assertEqual(expected, result, "_addtags returned %s, expected %s" % (result, expected))
+        result = Tag.addTags(tag1, tag2)
+        self.assertEqual(expected, result, "addTags returned %s, expected %s" % (result, expected))
     
     def test_OneTagBlank(self):
         tag1 = self.unitchar
         tag2 = 'a'
         expected = 'a' 
-        result = Tag._addtags(tag1, tag2)
-        self.assertEqual(expected, result, "_addtags returned %s, expected %s" % (result, expected))
+        result = Tag.addTags(tag1, tag2)
+        self.assertEqual(expected, result, "addTags returned %s, expected %s" % (result, expected))
     
     def test_ShouldCycle(self):
         tag1 = 'Z'
         tag2 = 'b'
         expected = 'a' 
-        result = Tag._addtags(tag1, tag2)
-        self.assertEqual(expected, result, "_addtags returned %s, expected %s" % (result, expected))
+        result = Tag.addTags(tag1, tag2)
+        self.assertEqual(expected, result, "addTags returned %s, expected %s" % (result, expected))
     
     def test_ShouldCycleToBlank(self):
         tag1 = 'Z'
         tag2 = 'a'
         expected = self.unitchar 
-        result = Tag._addtags(tag1, tag2)
-        self.assertEqual(expected, result, "_addtags returned '%s', expected '%s'" % (result, expected))
+        result = Tag.addTags(tag1, tag2)
+        self.assertEqual(expected, result, "addTags returned '%s', expected '%s'" % (result, expected))
 
     def test_NoTag_ShouldFail(self):
         tag1 = ''
         tag2 = 'b'
         expected = 'a' 
-        result = Tag._addtags(tag1, tag2)
-        self.assertFalse(result, '_addtags() should return False, got %s' % str(result))
+        result = Tag.addTags(tag1, tag2)
+        self.assertFalse(result, 'addTags() should return False, got %s' % str(result))
 
     def test_BlankNoChange(self):
         tag1 = self.unitchar
         tag2 = self.unitchar
         expected = self.unitchar 
-        result = Tag._addtags(tag1, tag2)
-        self.assertEqual(expected, result, "_addtags returned '%s', expected '%s'" % (result, expected))
+        result = Tag.addTags(tag1, tag2)
+        self.assertEqual(expected, result, "addTags returned '%s', expected '%s'" % (result, expected))
         
     def test_LongTags(self):
         tag1 = 'aaaaa'
         tag2 = 'aaaaa'
         expected = 'bbbbb' 
-        result = Tag._addtags(tag1, tag2)
-        self.assertEqual(expected, result, "_addtags returned '%s', expected '%s'" % (result, expected))
+        result = Tag.addTags(tag1, tag2)
+        self.assertEqual(expected, result, "addTags returned '%s', expected '%s'" % (result, expected))
         
     def test_MixedTags(self):
         tag1 = 'abcde'
         tag2 = 'abcde'
         expected = 'bdfhj' 
-        result = Tag._addtags(tag1, tag2)
-        self.assertEqual(expected, result, "_addtags returned '%s', expected '%s'" % (result, expected))
+        result = Tag.addTags(tag1, tag2)
+        self.assertEqual(expected, result, "addTags returned '%s', expected '%s'" % (result, expected))
         
     def test_MixedTagsDifferentLengths(self):
         tag1 = 'abcdeZ'
         tag2 = 'abcde'
         expected = 'acegid' 
-        result = Tag._addtags(tag1, tag2)
-        self.assertEqual(expected, result, "_addtags returned '%s', expected '%s'" % (result, expected))
+        result = Tag.addTags(tag1, tag2)
+        self.assertEqual(expected, result, "addTags returned '%s', expected '%s'" % (result, expected))
                 
     def test_MixedTagsProducesATrailingUnit(self):
         tag1 = 'abcdeZ'
         tag2 = 'abcdea'
         expected = 'bdfhj_' 
-        result = Tag._addtags(tag1, tag2)
-        self.assertEqual(expected, result, "_addtags returned '%s', expected '%s'" % (result, expected))
+        result = Tag.addTags(tag1, tag2)
+        self.assertEqual(expected, result, "addTags returned '%s', expected '%s'" % (result, expected))
         
     def test_MixedTagsProducesLeadingUnit(self):
         tag1 = 'aabcde'
         tag2 = 'Zabcde'
         expected = 'bdfhj' 
-        result = Tag._addtags(tag1, tag2)
-        self.assertEqual(expected, result, "_addtags returned '%s', expected '%s'" % (result, expected))
+        result = Tag.addTags(tag1, tag2)
+        self.assertEqual(expected, result, "addTags returned '%s', expected '%s'" % (result, expected))
         
     def test_MixedTagsProducesHyphen(self):
         tag1 = 'a'
         tag2 = 'z'
         expected = '_-'
-        result = Tag._addtags(tag1, tag2)
-        self.assertEqual(expected, result, "_addtags returned '%s', expected '%s'" % (result, expected))
+        result = Tag.addTags(tag1, tag2)
+        self.assertEqual(expected, result, "addTags returned '%s', expected '%s'" % (result, expected))
         
     def test_MixedLongTagsProducesHyphen(self):
         tag1 = 'aa'
         tag2 = 'za'
         expected = '_-b'
-        result = Tag._addtags(tag1, tag2)
-        self.assertEqual(expected, result, "_addtags returned '%s', expected '%s'" % (result, expected))
+        result = Tag.addTags(tag1, tag2)
+        self.assertEqual(expected, result, "addTags returned '%s', expected '%s'" % (result, expected))
         
     def test_Digit(self):
         tag1 = 'a'
         tag2 = '1'
         expected = '_2'
-        result = Tag._addtags(tag1, tag2)
-        self.assertEqual(expected, result, "_addtags returned '%s', expected '%s'" % (result, expected))
+        result = Tag.addTags(tag1, tag2)
+        self.assertEqual(expected, result, "addTags returned '%s', expected '%s'" % (result, expected))
         
         
     def test_LeadingDigitLetter(self):
         tag1 = '1a'
         tag2 = 'aa'
         expected = '_2b'
-        result = Tag._addtags(tag1, tag2)
-        self.assertEqual(expected, result, "_addtags returned '%s', expected '%s'" % (result, expected))
+        result = Tag.addTags(tag1, tag2)
+        self.assertEqual(expected, result, "addTags returned '%s', expected '%s'" % (result, expected))
         
     
 
@@ -130,8 +130,8 @@ class test_addtags(unittest.TestCase):
 
 
 
-class test_taginverse(unittest.TestCase):
-    """Test the Node._taginverse() function"""
+class testtagInverse(unittest.TestCase):
+    """Test the Node.tagInverse() function"""
         
     def setUp(self):
         """set up data used in the tests, called before each test function execution"""
@@ -140,20 +140,20 @@ class test_taginverse(unittest.TestCase):
     def test_SingleChar(self):
         tag = 'a'
         expected = 'Z'
-        result = Tag._taginverse(tag)
-        self.assertEqual(result, expected, "_taginverse() returned %s, expected %s" % (result, expected))
+        result = Tag.tagInverse(tag)
+        self.assertEqual(result, expected, "tagInverse() returned %s, expected %s" % (result, expected))
     
     def test_LongString(self):
         tag = 'abcdef'
         expected = 'ZYXWVU'
-        result = Tag._taginverse(tag)
-        self.assertEqual(result, expected, "_taginverse() returned %s, expected %s" % (result, expected))
+        result = Tag.tagInverse(tag)
+        self.assertEqual(result, expected, "tagInverse() returned %s, expected %s" % (result, expected))
     
     def test_InverseAddition(self):
         tag = 'abcdef'
-        inverse = Tag._taginverse(tag)
+        inverse = Tag.tagInverse(tag)
         expected = self.unitchar
-        result = Tag._addtags(tag, inverse)
+        result = Tag.addTags(tag, inverse)
         self.assertEqual(expected, result, "inverse() returned a tag that is not the inverse")
         
         

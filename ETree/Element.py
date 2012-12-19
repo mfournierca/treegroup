@@ -19,11 +19,11 @@ def invert(element1):
         
     """
     
-#    inverted = lxml.etree.Element(Tag._taginverse(element1.tag), )
-    element1.tag = Tag._taginverse(element1.tag) 
-    element1.text = Text._textinverse(element1.text)
-    element1.tail = Text._textinverse(element1.tail)
-    newattribs = Attrib._attribinverse(dict(element1.attrib))
+#    inverted = lxml.etree.Element(Tag.tagInverse(element1.tag), )
+    element1.tag = Tag.tagInverse(element1.tag) 
+    element1.text = Text.textInverse(element1.text)
+    element1.tail = Text.textInverse(element1.tail)
+    newattribs = Attrib.attribInverse(dict(element1.attrib))
     for i in element1.attrib:
         del element1.attrib[i]
     for j in newattribs:
@@ -50,9 +50,9 @@ def equal(element1, element2, ignoreattrs=False):
     
     #attrs
     attrib1 = element1.attrib
-    Attrib._cleankeys(attrib1)
+    Attrib.cleanKeys(attrib1)
     attrib2 = element2.attrib
-    Attrib._cleankeys(attrib2) 
+    Attrib.cleanKeys(attrib2) 
     if (attrib1 != attrib2) and (not ignoreattrs):
         return False
     
@@ -98,14 +98,14 @@ def add(element1, element2):
     
         add(node1, invert(add(node2, node3)))"""
     
-    newtag = Tag._addtags(element1.tag, element2.tag)
+    newtag = Tag.addTags(element1.tag, element2.tag)
     
     #have to wrap the attributes in dict() to avoid a bus error
-    newattribs = Attrib._addattribs(dict(element1.attrib), dict(element2.attrib))
+    newattribs = Attrib.addAttribs(dict(element1.attrib), dict(element2.attrib))
     
     element1.tag = newtag
-    element1.text = Text._addtext(element1.text, element2.text)
-    element1.tail = Text._addtext(element1.tail, element2.tail)
+    element1.text = Text.addText(element1.text, element2.text)
+    element1.tail = Text.addText(element1.tail, element2.tail)
     
     for i in element1.attrib:
         del element1.attrib[i]

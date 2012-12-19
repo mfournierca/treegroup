@@ -22,7 +22,7 @@ def getTextDomain():
 
 
 
-def _addtext(text1, text2):
+def addText(text1, text2):
     """Add two strings and return the result. The addition must be the operation 
     used by a cyclic group over the textdomain"""
     if text1 is None and text2 is None:
@@ -63,7 +63,7 @@ def _addtext(text1, text2):
 
 
  
-def _textinverse(text1):
+def textInverse(text1):
     """Return the inverse of the text. This function closely follows string._stringinverse(), 
     but deals with whitespace that we do not want to invert in document text. Also deals with
     receiving None, which can happen with document text but not, for example, element tags."""

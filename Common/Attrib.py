@@ -27,7 +27,7 @@ import copy, logging
 #significant in some context. 
 attrdomain = ['_'] + [i for i in map(chr, range(97, 123))] + [i for i in map(chr, range(32, 48))] + [i for i in map(chr, range(58, 65))] + ['\\'] + [i for i in map(chr, range(65, 91))] + [i for i in map(chr, range(48, 58))] 
 
-def _cleankeys(attr):
+def cleanKeys(attr):
     deletekeys = []
     for key in attr.keys():
         if (attr[key] == attrdomain[0]) or (attr[key] == '') or (attr[key] is False) or (attr[key] is None): 
@@ -37,7 +37,7 @@ def _cleankeys(attr):
     
     
     
-def _addattribs(attrib1, attrib2):
+def addAttribs(attrib1, attrib2):
     """Add two attribute dictionaries and return the result"""
     log = logging.getLogger()
     #log.debug('adding attributes: %s\t%s' % (str(attrib1), str(attrib2)))
@@ -50,16 +50,16 @@ def _addattribs(attrib1, attrib2):
             #log.debug('result key: %s\tvalue: %s' % (key, result[key]))
             result[key] = String._addstrings(result[key], attrib2[key], attrdomain)
     
-    _cleankeys(result)        
+    cleanKeys(result)        
 #    log.debug('result: %s' % str(result))
     return result
 
 
 
-def _attribinverse(attrib):
+def attribInverse(attrib):
     """Return the inverse of the attributes"""
     result = {}
-    _cleankeys(attrib)
+    cleanKeys(attrib)
     for key in attrib.keys():
         result[key] = String._stringinverse(attrib[key], attrdomain)
     return result    

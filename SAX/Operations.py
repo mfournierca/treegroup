@@ -366,11 +366,15 @@ def equal(string1, string2):
 def addEvents(event1, event2):
     """Add the two events and return a new event. Raise ValueError if the event
     types do not match."""    
+    import TreeGroup.Common.Attrib as Attrib
+    import TreeGroup.Common.Tag as Tag
+    
     if not type(event1) == type(event2):
         print("%s != %s" % (type(event1), type(event2)))
         raise ValueError
     
     if type(event1).__name__ == "StartElementEvent":
+        #newevent = StartElementEvent(Tag.addtags
         pass
     
     if type(event1).__name__ == "EndElementEvent":

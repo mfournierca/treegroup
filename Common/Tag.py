@@ -35,7 +35,7 @@ tagdomain = ['_'] + [i for i in map(chr, range(97, 123))] + ['-'] + [i for i in 
 
 
 
-def _addtags(tag1, tag2):
+def addTags(tag1, tag2):
     """Add two tags and return the result. The addition must be the operation 
     used by a cyclic group over the tagdomain"""
     import logging
@@ -69,7 +69,7 @@ def _addtags(tag1, tag2):
 
 
  
-def _taginverse(tag1):
+def tagInverse(tag1):
     """Return the inverse of the tag"""
      
     result = String._stringinverse(tag1, tagdomain)
