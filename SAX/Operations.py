@@ -16,72 +16,78 @@ import TreeGroup.SAX.Operations
 
 
 class SAXIteratorEvent:
-    def __init__(self, type=None, **kwargs):
-        self._type = type
-        self.values = {}
-        for key in kwargs.keys():
-            if isinstance(kwargs[key], xml.sax.xmlreader.AttributesImpl):
-                #set the attributes to a dict - that's what they are, but
-                #having the type be xml.sax.xmlreader.AttributesImpl makes 
-                #checking equality, adding and inverting harder. 
-                self.set(key, dict(kwargs[key]))
-            else:
-                self.set(key, kwargs[key])
+    def __init__(self):
+        pass
     
-    def getType(self):
-        return self._type
-    
-    def set(self, key, value):
-        self.values[key] = value
-        
-    def get(self, key):
-        return self.values[key]
-    
-    def __str__(self):
-        s = "%s" % self.__class__
-        for k in self.values.keys():
-            if isinstance(self.values[k], xml.sax.xmlreader.AttributesImpl):
-                s += " %s: '%s'" % (k, str(dict(self.values[k])))
-            else:
-                s += " %s: '%s'" % (k, str(self.values[k]))
-        return s
+    def getEventName(self):
+        return type(self).__name__
     
     def __eq__(self, o):
-        if not isinstance(o, TreeGroup.SAX.Operations.SAXIteratorEvent):
-            print('wrong type')
-            return False
-        
-        if not self.values == o.values:
-            print('wrong values: %s\t %s' % (str(self.values), str(o.values)))
-            return False
-        
-        return True
+        raise NotImplementedError
     
     def __ne__(self, o):
         return not self.__eq__(o)
     
+    def toString(self):
+        raise NotImplementedError
     
     
     
 class StartDocumentEvent(SAXIteratorEvent):
     def __init__(self):
-        super(StartDocumentEvent, self).__init__(type="startDocument")
+        super(StartDocumentEvent, self).__init__()
+    
         
 class EndDocumentEvent(SAXIteratorEvent):
     def __init__(self):
-        super(EndDocumentEvent, self).__init__(type="endDocument")
-        
+        super(EndDocumentEvent, self).__init__()
+    
+    
 class StartElementEvent(SAXIteratorEvent):
-    def __init__(self, name=None, attr=None):
-        super(StartElementEvent, self).__init__(type="startElement", name=name, attr=attr)
+    def __init__(self, tag=None, attr=None):
+        super(StartElementEvent, self).__init__()
+        self.tag = tag
+        self.attr = dict(attr)
         
+    def toString(self):
+        return "<%s%s>" % (self.tag, ' '.join([" %s=\"%s\"" % (k, self.attr[k]) for k in self.attr.keys()]))
+            
+    def __eq__(self, o):
+        if type(self) == type(o) and self.tag == o.tag and self.attr == o.attr:
+            return True
+        else:
+            return False
+        
+        
+            
 class EndElementEvent(SAXIteratorEvent):
-    def __init__(self, name=None):
-        super(EndElementEvent, self).__init__(type="endElement", name=name)
+    def __init__(self, tag=None):
+        super(EndElementEvent, self).__init__()
+        self.tag = tag
+        
+    def toString(self):
+        return "</%s>" % self.tag
+    
+    def __eq__(self, o):
+        if type(self) == type(o) and self.tag == o.tag:
+            return True
+        else:
+            return False
+        
+        
     
 class CharactersEvent(SAXIteratorEvent):
     def __init__(self, content=None):
-        super(CharactersEvent, self).__init__(type="characters", content=content)
+        super(CharactersEvent, self).__init__()
+        self.content = content
+
+    def toString(self):
+        return self.content
+
+    def __eq__(self, o):
+        if type(self) == type(o) and self.content == o.content:
+            return True
+
 
 
 
@@ -95,11 +101,11 @@ class SAXIterateContentHandler(xml.sax.handler.ContentHandler):
     def endDocument(self):
         pass
                 
-    def startElement(self, name, attr):
-        self.list.append(StartElementEvent(name=name, attr=attr))
+    def startElement(self, tag, attr):
+        self.list.append(StartElementEvent(tag=tag, attr=attr))
             
-    def endElement(self, name): 
-        self.list.append(EndElementEvent(name=name))
+    def endElement(self, tag): 
+        self.list.append(EndElementEvent(tag=tag))
 
     def characters(self, content):
         self.list.append(CharactersEvent(content=content))
@@ -196,8 +202,8 @@ class SAXIterator():
         last = 0
         current = 1
         while current < len(self.list):
-            if self.list[last].getType() == "characters" and self.list[current].getType() == "characters":
-                self.list[last].set("content", self.list[last].get('content') + self.list[current].get('content'))
+            if self.list[last].getEventName() == "CharactersEvent" and self.list[current].getEventName() == "CharactersEvent":
+                self.list[last].content = self.list[last].content + self.list[current].content
                 self.list.pop(current) #important, pop current not last, otherwise new content is lost. 
             last += 1
             current += 1
@@ -216,7 +222,7 @@ class SAXIterator():
         #if the last element in the list is characters, feed more content in
         #until the last element is something else. This avoid problems with the
         #parser not taking all character data all at once
-        while self.list[-1].getType() == "characters":
+        while self.list[-1].getEventName() == "CharactersEvent":
             self.feedParser()
     
         #pop the first item off the list and return it
@@ -267,12 +273,9 @@ class Ordering:
     
         log = logging.getLogger()
     
-        if event.getType() == "startElement":
+        if event.getEventName() == "StartElementEvent":
             #this lengthens the position, lengthens the index.
-            log.debug('found startElement: %s %s' % (str(self.index), str(self._position)))
-            
             if self.index + 1 == len(self._position):
-                log.debug('\tbranch 1')
                 self._position.append(0)
                 self.index += 1
             
@@ -280,7 +283,6 @@ class Ordering:
                 #if index is less then the length of position, 
                 #it means that this start elemenet has preceding siblings, 
                 #so add to the end of position
-                log.debug('\tbranch 2')
                 self._position[self.index + 1] += 1
                 self.index += 1
                 
@@ -288,13 +290,13 @@ class Ordering:
                 #index should never be greater than the length of _position
                 raise ValueError
             
-        if event.getType() == "endElement":
-            log.debug('found endElement: %s %s' % (str(self.index), str(self._position)))
+        elif event.getEventName() == "EndElementEvent":
             self._position = self._position[:self.index + 1]
             self._position[self.index] += 1
             self.index -= 1  
         
-        log.debug('\tresult: %s %s' % (str(self.index), str(self._position)))
+        else:
+            raise ValueError
         
     def getOrdering(self):
         return self._ordering
@@ -345,52 +347,64 @@ def equal(string1, string2):
     iterator1 = SAXIterator(string1)
     iterator2 = SAXIterator(string2)
     
-    events1 = []
-    for e in iterator1: events1.append(e)
-    
-    events2 = []
-    for e in iterator2: events2.append(e)
-    
-    if len(events1) != len(events2):
-        return False
-    
-    for i, e in enumerate(events1):
-        if e != events2[i]:
-            print('%s != %s' % (str(e), str(events2[i])))
+    for event1 in iterator1:
+        try:
+            event2 = iterator2.next()
+        except: 
             return False
         
+        if event1 != event2:
+            return False
+
     return True
+    
     
     
 
 def addEvents(event1, event2):
-    """Add the two events and return a new event. Raise ValueError if the event
+    """Add the two events and return a new event. Raise TypeError if the event
     types do not match."""    
     import TreeGroup.Common.Attrib as Attrib
     import TreeGroup.Common.Tag as Tag
+    import TreeGroup.Common.Text as Text
     
     if not type(event1) == type(event2):
         print("%s != %s" % (type(event1), type(event2)))
-        raise ValueError
+        raise TypeError
     
-    if type(event1).__name__ == "StartElementEvent":
-        #newevent = StartElementEvent(Tag.addtags
-        pass
+    if event1.getEventName() == "StartElementEvent":
+        newevent = StartElementEvent(Tag.addTags(event1.tag, event2.tag), Attrib.addAttribs(event1.attr, event2.attr))
+        return newevent
     
-    if type(event1).__name__ == "EndElementEvent":
-        pass
+    elif event1.getEventName() == "EndElementEvent":
+        newevent = EndElementEvent(Tag.addTags(event1.tag, event2.tag))
+        return newevent
     
+    elif event1.getEventName() == "CharactersEvent":
+        newevent = CharactersEvent(Text.addText(event1.content, event2.content))
+        return newevent
     
+    else:
+        raise TypeError("Invalid event type: %s" % str(event1))
+
+
 
 
 def add(string1, string2):
     """Given two trees defined by string1 and string2, add them together and return the result"""
+    
+    log = logging.getLogger()
+    
     iterator1 = SAXEventAndOrderingIterator(string1)
     iterator2 = SAXEventAndOrderingIterator(string2)
     
     result = ""
     
     while True:
+        
+        #this method relies on the two iterators being in the same position 
+        #at the start of every iteration through this loop. 
+        
         try:
             event1, position1 = iterator1.next()
         except StopIteration:
@@ -400,17 +414,55 @@ def add(string1, string2):
         except StopIteration:
             event2, position2 = None, None
         
-        #if positions are the same and event types are the same, add and continue
-        if position1 == position2:
-            new = addEvents(event1, event2)
-            
-        #if positions are the same and event types are not add appropriately. IE, element should be added after text (?)
+        if event1 == None and event2 == None:
+            break
+        elif event1 == None and event2 != None:
+            raise ValueError
+        elif event1 != None and event2 == None:
+            raise ValueError
         
+        log.debug('')
+        log.debug('position1: %s event1: %s' % (str(position1), event1.toString()))
+        log.debug('position2: %s event2: %s' % (str(position2), event2.toString()))
+        
+        #if positions are the same and event types are the same, add and continue
+        if position1 == position2 and type(event1) == type(event2):
+            newevent = addEvents(event1, event2)
+            
+        #if positions are different, iterate over the lower event until the other positions is reached. 
+        if position1 != position2:
+            #figure out which one is before the other . . . should be the one with the longer position, deeper in the tree
+            #will the positions always be of different lengths at this point? Yes - the iterators start at the same position
+            #at the start of the loop. If after next()ing the iterators the positions are different, they must be of different
+            #length because there are only three ways to go in the tree: down, sideways or up, each of which results in a position
+            #of a different length. Since the positions started out the same, then only the last index will be different
+            if len(position1) > len(position2):
+                move = iterator1
+                hold = iterator2
+            elif len(position1) < len(position2):
+                move = iterator2
+                hold = iterator1
+            else:
+                raise ValueError
+            
+            while move.getCurrentPosition() != hold.getCurrentPosition():
+                log.debug('\tposition: %s event: %s' % (str(move.getCurrentPosition()), move.getCurrentEvent().toString()))
+                result += move.getCurrentEvent().toString()
+                #should never encounter StopIteration here
+                e, p = move.next()
+            
+            newevent = addEvents(e, hold.getCurrentEvent())
+            
         #if positions are not equal, start with closest to root position, and call __next__ while adding (appending?) to result
         #until other position is reached or parser stops. If other position is reached, add nodes and continue
         
         #if parser stopped, call __next__ on other tree while adding to result. 
         
+        result += newevent.toString()
+    
+    log.debug('')
+    log.debug("result: %s" % result)
+    return result
         
         
         

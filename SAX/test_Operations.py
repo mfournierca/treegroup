@@ -5,6 +5,12 @@ import lxml.etree, copy
 import TreeGroup.SAX.Operations as Operations
 
 
+#test join characters
+#test all trees in ETree.Tree tests
+#test iterator on large trees
+#raise errors if something other than element or character found
+#test ordering on large tree
+#test ordering even and odd numbers for startElement and endElement
 
 class test_SAXIterator(unittest.TestCase):
     def setUp(self):
@@ -15,17 +21,17 @@ class test_SAXIterator(unittest.TestCase):
         tree ="<xml><a/></xml>"
         expected = [
                     #"<class 'TreeGroup.SAX.Operations.StartDocumentEvent'>", 
-                    "<class 'TreeGroup.SAX.Operations.StartElementEvent'> name: 'xml' attr: '{}'", 
-                    "<class 'TreeGroup.SAX.Operations.StartElementEvent'> name: 'a' attr: '{}'", 
-                    "<class 'TreeGroup.SAX.Operations.EndElementEvent'> name: 'a'", 
-                    "<class 'TreeGroup.SAX.Operations.EndElementEvent'> name: 'xml'",
+                    "<xml>", 
+                    "<a>", 
+                    "</a>", 
+                    "</xml>",
                     #"<class 'TreeGroup.SAX.Operations.EndDocumentEvent'>", 
                     ]
         
         parser = Operations.SAXIterator(tree)
         result = []
         for e in parser:
-            result.append(str(e))
+            result.append(e.toString())
             
         self.assertEqual(result, expected, "Expected: \n%s\nGot:\n%s\n" % (str(expected), str(result)))
         
@@ -77,15 +83,34 @@ class test_Add(unittest.TestCase):
     def setUp(self):
         self.testfilesdir = os.path.join(os.path.dirname(__file__), '..', 'testfiles', 'SAX', 'Operations', 'Add')
         
-#    def test_SimpleXML(self):
-#        tree1 = "<a><b id='1'/></a>"
-#        tree1 = "<d><e id='a'/></d>"
-#        
-#        expected = '<e><g id="2"/></e>'
-#        
-#        result = Operations.add(tree1, tree2)
-#        self.assertTrue(Operations.equal(result, expected), "Expected:\n%s\nGot:\n%s\n" % (expected, result))
+    def test_SimpleXML1(self):
+        tree1 = "<a><b id='1'/></a>"
+        tree2 = "<d><e id='a'/></d>"
         
+        expected = '<e><g id="2"/></e>'
+        
+        result = Operations.add(tree1, tree2)
+        self.assertTrue(Operations.equal(result, expected), "Expected:\n%s\nGot:\n%s\n" % (expected, result))
+        
+        
+    def test_SimpleXML2_DifferentSiblings(self):
+        tree1 = "<a><b id='1'/></a>"
+        tree2 = "<d><e id='a'/><a/></d>"
+        
+        expected = '<e><g id="2"/><a/></e>'
+        
+        result = Operations.add(tree1, tree2)
+        self.assertTrue(Operations.equal(result, expected), "Expected:\n%s\nGot:\n%s\n" % (expected, result))
+        
+        
+    def test_SimpleXML3_DifferentChildren(self):
+        tree1 = "<a><b id='1'/></a>"
+        tree2 = "<d><e id='a'><a/></e></d>"
+        
+        expected = '<e><g id="2"><a/></g></e>'
+        
+        result = Operations.add(tree1, tree2)
+        self.assertTrue(Operations.equal(result, expected), "Expected:\n%s\nGot:\n%s\n" % (expected, result))
         
         
         
