@@ -15,18 +15,18 @@ import nose, logging, os, os.path
 log = logging.getLogger()
 log.setLevel(logging.DEBUG)
  
-warninghandler = logging.StreamHandler(sys.stdout)
-warninghandler.setLevel(logging.WARNING)
-warningformatter = logging.Formatter("%(module)8.8s.%(funcName)20.20s%(levelname)10.10s\t%(message)s")
-warninghandler.setFormatter(warningformatter)
-log.addHandler(warninghandler)
-
-debughandler = logging.FileHandler(os.path.basename(__file__).replace('.py', '-debug.txt'), 'w', encoding='utf-8')
-#debughandler = logging.StreamHandler(sys.stdout)
-debughandler.setLevel(logging.DEBUG)
-debugformatter = logging.Formatter("%(module)8.8s.%(funcName)20.20s%(levelname)10.10s\t\t%(message)s")
-debughandler.setFormatter(debugformatter)
-log.addHandler(debughandler)
+#warninghandler = logging.StreamHandler(sys.stdout)
+#warninghandler.setLevel(logging.WARNING)
+#warningformatter = logging.Formatter("%(module)8.8s.%(funcName)20.20s%(levelname)10.10s\t%(message)s")
+#warninghandler.setFormatter(warningformatter)
+#log.addHandler(warninghandler)
+#
+#debughandler = logging.FileHandler(os.path.basename(__file__).replace('.py', '-debug.txt'), 'w', encoding='utf-8')
+##debughandler = logging.StreamHandler(sys.stdout)
+#debughandler.setLevel(logging.DEBUG)
+#debugformatter = logging.Formatter("%(module)8.8s.%(funcName)20.20s%(levelname)10.10s\t\t%(message)s")
+#debughandler.setFormatter(debugformatter)
+#log.addHandler(debughandler)
 
 
 nose.main()

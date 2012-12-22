@@ -41,7 +41,7 @@ class test_SAXIterator(unittest.TestCase):
         
 class test_Ordering(unittest.TestCase):
     def setUp(self):
-        self.testfilesdir = os.path.join(os.path.dirname(__file__), '..', 'testfiles', 'SAX', 'Operations', 'Position')
+        self.testfilesdir = os.path.join(os.path.dirname(__file__), '..', 'testfiles', 'SAX', 'Operations', 'Ordering')
         
     def test_SimpleXML(self):
         tree = "<xml><a/></xml>"
@@ -54,6 +54,33 @@ class test_Ordering(unittest.TestCase):
         
         self.assertEqual(expected, ordering.getOrdering(), "Expected: \n%s\nGot:\n%s\n" % (str(expected), str(ordering.getOrdering())))
         
+    def test_2(self):
+        testfile = os.path.join(self.testfilesdir, 'test1', 'test1.xml')
+        string = ''.join(open(testfile, 'r'))
+        ordering = Operations.getOrdering(string)
+        
+        expected = [
+                     [0],
+                     [0, 0],
+                     [0, 0, 0],
+                     [0, 0, 1],
+                     [0, 1],
+                     [0, 2],
+                     [0, 2, 0],
+                     [0, 2, 1], 
+                     [0, 2, 2], 
+                     [0, 2, 3],
+                     [0, 2, 4],
+                     [0, 2, 4, 0],
+                     [0, 2, 4, 0, 0],
+                     [0, 2, 4, 0, 1],
+                     [0, 2, 4, 1],
+                     [0, 2, 5], 
+                     [0, 3],
+                     [1]
+                    ]  
+        
+        self.assertEqual(ordering, expected, "expected: \n%s\nGot: \n%s\n" % (str(expected), str(ordering)))
         
         
         
@@ -113,7 +140,67 @@ class test_Add(unittest.TestCase):
         self.assertTrue(Operations.equal(result, expected), "Expected:\n%s\nGot:\n%s\n" % (expected, result))
         
         
+    def test_SimpleXML4_Text(self):
+        tree1 = "<a>a</a>"
+        tree2 = "<d>a</d>"
         
+        expected = '<e>C</e>'
+        
+        result = Operations.add(tree1, tree2)
+        self.assertTrue(Operations.equal(result, expected), "Expected:\n%s\nGot:\n%s\n" % (expected, result))
+        
+        
+    def test_SimpleXML4_TextLeading(self):
+        tree1 = "<a>a<a/></a>"
+        tree2 = "<d>a<a/></d>"
+        
+        expected = '<e>C<b/></e>'
+        
+        result = Operations.add(tree1, tree2)
+        self.assertTrue(Operations.equal(result, expected), "Expected:\n%s\nGot:\n%s\n" % (expected, result))
+        
+        
+    def test_SimpleXML4_TextTrailing(self):
+        tree1 = "<a><a/>a</a>"
+        tree2 = "<d><a/>a</d>"
+        
+        expected = '<e><b/>C</e>'
+        
+        result = Operations.add(tree1, tree2)
+        self.assertTrue(Operations.equal(result, expected), "Expected:\n%s\nGot:\n%s\n" % (expected, result))
+        
+        
+    def test_SimpleXML4_TextLeadingAndTrailing(self):
+        tree1 = "<a>a<a/>a</a>"
+        tree2 = "<d>a<a/>a</d>"
+        
+        expected = '<e>C<b/>C</e>'
+        
+        result = Operations.add(tree1, tree2)
+        self.assertTrue(Operations.equal(result, expected), "Expected:\n%s\nGot:\n%s\n" % (expected, result))
+        
+    
+    def test_DifferentStructureXML1_Text(self):
+        tree1 = "<a><a>a</a>a</a>"
+        tree2 = "<d>a</d>"
+        
+        expected = '<e>a<a>a</a>a</e>'
+        
+        result = Operations.add(tree1, tree2)
+        self.assertTrue(Operations.equal(result, expected), "Expected:\n%s\nGot:\n%s\n" % (expected, result))
+        
+    def test_SimpleTrees_EqualStructures(self):
+    
+        expectedtree  = ''.join(open(os.path.join(self.testfilesdir, 'test1', 'expected_add1.xml'), 'r'))
+        
+        tree1 = ''.join(open(os.path.join(self.testfilesdir, 'test1', 'TreeTestFile_add1.xml'), 'r'))
+        tree2 = ''.join(open(os.path.join(self.testfilesdir, 'test1', 'TreeTestFile_add2.xml'), 'r'))
+        result = Operations.add(tree1, tree2)
+        self.assertTrue(Operations.equal(result, expectedtree), "Expected: \n%s\nGot: \n%s\n" % (expectedtree, result))
+                   
+        #test commutativity    
+        result = Operations.add(tree2, tree1)
+        self.assertTrue(Operations.equal(result, expectedtree), "Expected: \n%s\nGot: \n%s\n" % (expectedtree, result))
         
         
         

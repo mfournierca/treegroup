@@ -44,56 +44,42 @@ class EndDocumentEvent(SAXIteratorEvent):
     
     
 class StartElementEvent(SAXIteratorEvent):
-    def __init__(self, tag=None, attr=None):
+    def __init__(self, tag, attr={}, text=''):
         super(StartElementEvent, self).__init__()
         self.tag = tag
         self.attr = dict(attr)
+        self.text = text
         
     def toString(self):
-        return "<%s%s>" % (self.tag, ' '.join([" %s=\"%s\"" % (k, self.attr[k]) for k in self.attr.keys()]))
+        return "<%s%s>%s" % (self.tag, ''.join([" %s=\"%s\"" % (k, self.attr[k]) for k in self.attr.keys()]), self.text)
             
     def __eq__(self, o):
-        if type(self) == type(o) and self.tag == o.tag and self.attr == o.attr:
+        if type(self) == type(o) and self.tag == o.tag and self.attr == o.attr and self.text == o.text:
             return True
         else:
             return False
-        
         
             
 class EndElementEvent(SAXIteratorEvent):
-    def __init__(self, tag=None):
+    def __init__(self, tag, text=''):
         super(EndElementEvent, self).__init__()
         self.tag = tag
+        self.text = text
         
     def toString(self):
-        return "</%s>" % self.tag
+        return "</%s>%s" % (self.tag, self.text)
     
     def __eq__(self, o):
-        if type(self) == type(o) and self.tag == o.tag:
+        if type(self) == type(o) and self.tag == o.tag and self.text == o.text:
             return True
         else:
             return False
         
-        
-    
-class CharactersEvent(SAXIteratorEvent):
-    def __init__(self, content=None):
-        super(CharactersEvent, self).__init__()
-        self.content = content
-
-    def toString(self):
-        return self.content
-
-    def __eq__(self, o):
-        if type(self) == type(o) and self.content == o.content:
-            return True
-
-
 
 
 class SAXIterateContentHandler(xml.sax.handler.ContentHandler):
     def __init__(self, list):
-        self.list = list
+        self._list = list
 
     def startDocument(self):
         pass
@@ -102,21 +88,24 @@ class SAXIterateContentHandler(xml.sax.handler.ContentHandler):
         pass
                 
     def startElement(self, tag, attr):
-        self.list.append(StartElementEvent(tag=tag, attr=attr))
+        self._list.append(StartElementEvent(tag=tag, attr=attr))
             
     def endElement(self, tag): 
-        self.list.append(EndElementEvent(tag=tag))
+        self._list.append(EndElementEvent(tag=tag))
 
     def characters(self, content):
-        self.list.append(CharactersEvent(content=content))
+        #in the add() function below, if we include characters as a separate event then it makes the operation
+        #much harder - we have to think about how to handle characters in the same position as opening and 
+        #closing tags, etc. If we include the characters as part of the elements however, so they do 
+        #not have a position or event associated with them, then it makes if much easier to operate on. 
+        #So for all the character events, we move their text into the previous event, whether it be
+        #an opening tag, closing tag, etc. 
+        self._list[-1].text += content
             
     
-#    #not sure if we should keep this one or not. 
-#    def ignorableWhitespace(self, whitespace):
-#        self.list.append({
-#                          "type": "ignorableWhitespace",
-#                          "whitespace": whitespace
-#                          })
+    #not sure if we should keep this one or not. 
+    def ignorableWhitespace(self, whitespace):\
+        pass
 
             
     #should raise errors when any of the following are encountered
@@ -124,20 +113,20 @@ class SAXIterateContentHandler(xml.sax.handler.ContentHandler):
     #above.         
     
 #    def startPrefixMapping(self, prefix, uri):
-#        self.list.append({
+#        self._list.append({
 #                          "type": "startPrefixMapping",
 #                          "prefix": prefix,
 #                          "uri": uri,
 #                          })
 #                    
 #    def endPrefixMapping(self, prefix):
-#        self.list.append({
+#        self._list.append({
 #                          "type": "endPrefixMapping",
 #                          "prefix": prefix,
 #                          })
 #            
 #    def startElementNS(self, name, qname, attrs):
-#        self.list.append({
+#        self._list.append({
 #                          "type": "startElementNS",
 #                          "name": name,
 #                          "qname": qname,
@@ -145,21 +134,21 @@ class SAXIterateContentHandler(xml.sax.handler.ContentHandler):
 #                          })
 #            
 #    def endElementNS(self, name, qname):
-#        self.list.append({
+#        self._list.append({
 #                          "type": "endElementNS",
 #                          "name": name,
 #                          "qname": qname,
 #                          })
 #            
 #    def processingInstruction(self, target, data):
-#        self.list.append({
+#        self._list.append({
 #                          "type": "processingInstruction",
 #                          "target": target,
 #                          "data": data,
 #                          })
 #    
 #    def skippedEntity(self, name):
-#        self.list.append({
+#        self._list.append({
 #                          "type": "skippedEntity",
 #                          "name": name,
 #                          })
@@ -172,61 +161,56 @@ class SAXIterateContentHandler(xml.sax.handler.ContentHandler):
     
 class SAXIterator():
     def __init__(self, string):
+        self.log = logging.getLogger()
+        
+        self._list = []
+        self.parser = xml.sax.make_parser()
+        self.parser.setContentHandler(SAXIterateContentHandler(self._list))
+        
+        #it would be good to have some sort of iterative parser using the parser.feed()
+        #method to avoid loading all events in memory (ie self._list) at once. However, 
+        #because of the way the content handler handles character events (it appends the
+        #character data to the text attribute of the last seen event), it requires that 
+        #there always be at least one event available to append character data to. So 
+        #using the feed() method gets complicated - we've got to make sure there's always at 
+        #least one element in the list. Would have to come up with something that always keeps
+        #an event in the list until the endDocument event is found. 
+        
+        #skip this problem for now and do it the easy way. The command below
+        #causes the parser to run, which causes the content handler to fill up self._list
+        #with all the events in the tree. This is an obvious
+        #place to implement a speed up / memory usage fix.
+        xml.sax.parseString(string.encode('utf-8'), SAXIterateContentHandler(self._list))
+        
+    def setUpFeed(self, string):
         self.stringlist = string.split('\n')
         self.stringindex = 0
         
-        self.list = []
-        self.parser = xml.sax.make_parser()
-        self.parser.setContentHandler(SAXIterateContentHandler(self.list))
-        
-        
     def feedParser(self):
+        #NOT CURRENTLY IN USE
         #nice and simple. We can modify this so that memory is no wasted on the stringlist,
         #and we only work with the string. 
         #does using feed mean that the endDocument event is never created / handled?
-        try:
-            self.parser.feed(self.stringlist[self.stringindex])
-        except IndexError:
-            #can't raise StopIteration here because that would cause any remaining content
-            #in self.list to not be processed. StopIteration is raised in next()
-            pass  
-        self.stringindex += 1
-        self.joinCharacters()
-        
-            
-    def joinCharacters(self):
-        #the sax parser does not necessarily trigger one event for one contiguous string of characters
-        #in a document. there may be an element that contains one string that triggers two parsing 
-        #events, and therefore two entries in self.list. This is not what we want because it will 
-        #make the addition of string much more complicated. This function fixes this. 
-        last = 0
-        current = 1
-        while current < len(self.list):
-            if self.list[last].getEventName() == "CharactersEvent" and self.list[current].getEventName() == "CharactersEvent":
-                self.list[last].content = self.list[last].content + self.list[current].content
-                self.list.pop(current) #important, pop current not last, otherwise new content is lost. 
-            last += 1
-            current += 1
-            
+        #the use case for this function is in next(), whenever self._list is empty, 
+        #feed some more content in. 
+        while len(self._list) == 0:
+            try:
+                self.log.debug('feeding %i: %s' % (self.stringindex, str(self.stringlist[self.stringindex])))
+                self.parser.feed(self.stringlist[self.stringindex])
+            except IndexError:
+                #can't raise StopIteration here because that would cause any remaining content
+                #in self._list to not be processed. StopIteration is raised in next()
+                self.log.debug('feeding %i: IndexError' % self.stringindex)
+                return False
+            self.stringindex += 1
+        return True
+    
         
     def next(self):
-        #if there is no new content and the list is empty, raise StopIteration
-        if len(self.list) == 0 and self.stringindex >= len(self.stringlist):
-            raise StopIteration
-        
-        #if list is empty, feed new content into the sax parser, which 
-        #causes the SAXIterateContentHandler to populate the list
-        if len(self.list) == 0:
-            self.feedParser()
-        
-        #if the last element in the list is characters, feed more content in
-        #until the last element is something else. This avoid problems with the
-        #parser not taking all character data all at once
-        while self.list[-1].getEventName() == "CharactersEvent":
-            self.feedParser()
-    
-        #pop the first item off the list and return it
-        return self.list.pop(0)
+        try:
+            return self._list.pop(0)
+        except IndexError:
+            raise StopIteration    
         
     def __next__(self):
         return self.next()
@@ -323,14 +307,22 @@ class SAXEventAndOrderingIterator:
     #it again
     
     def __init__(self, string):
+        self.log = logging.getLogger()
         self._iterator = SAXIterator(string)
         self._ordering = Ordering()
         self._currentevent = None
+        
+    def __iter__(self):
+        return self
+    
+    def __next__(self):
+        return self.next()
         
     def next(self):
         """go to the next iteration in the SAXIterator"""
         self._currentevent = self._iterator.next()
         self._ordering.updateOrdering(self._currentevent)
+        self.log.debug('%s %s' % (str(self.getCurrentEvent()), str(self.getCurrentPosition())))
         return self.getCurrentEvent(), self.getCurrentPosition()
     
     def getCurrentEvent(self):
@@ -339,7 +331,13 @@ class SAXEventAndOrderingIterator:
     def getCurrentPosition(self):
         return self._ordering.getCurrentPosition() 
 
-
+    def getCurrentOrdering(self):
+        return self._ordering.getOrdering()
+    
+    
+    
+    
+    
 
 
 def equal(string1, string2):
@@ -360,6 +358,8 @@ def equal(string1, string2):
     
     
     
+    
+    
 
 def addEvents(event1, event2):
     """Add the two events and return a new event. Raise TypeError if the event
@@ -373,19 +373,27 @@ def addEvents(event1, event2):
         raise TypeError
     
     if event1.getEventName() == "StartElementEvent":
-        newevent = StartElementEvent(Tag.addTags(event1.tag, event2.tag), Attrib.addAttribs(event1.attr, event2.attr))
+        newevent = StartElementEvent(Tag.addTags(event1.tag, event2.tag), Attrib.addAttribs(event1.attr, event2.attr), Text.addText(event1.text, event2.text))
         return newevent
     
     elif event1.getEventName() == "EndElementEvent":
-        newevent = EndElementEvent(Tag.addTags(event1.tag, event2.tag))
-        return newevent
-    
-    elif event1.getEventName() == "CharactersEvent":
-        newevent = CharactersEvent(Text.addText(event1.content, event2.content))
+        newevent = EndElementEvent(Tag.addTags(event1.tag, event2.tag), Text.addText(event1.text, event2.text))
         return newevent
     
     else:
         raise TypeError("Invalid event type: %s" % str(event1))
+
+
+
+
+
+def getOrdering(tree):
+    """just a convenience function initially built for unit tests"""
+    iterator = SAXEventAndOrderingIterator(tree)
+    for i in iterator:
+        pass
+    return iterator.getCurrentOrdering()
+
 
 
 
