@@ -10,6 +10,13 @@ from . import String
 #added character by character, and since every character is a member of a cyclic
 #group, the text as a whole forms a group. 
 
+#newlines are ignored here, or converted to the unit character. This is because newlines are 
+#not significant in xml anyway, and make checking equality harder as they are often caused
+#by line wrap functions in editors and therefore have nothing to do with the actual content. 
+#there should be some standards compliant way of dealing with this . . . 
+#should we require that every character we can encounter be part of the group? For consistency? 
+#it should be safe to completely ignore newlines, if we are consistent. 
+
 #The unit characted is the first element in the domain, ie textdomain[0]. For 
 #text strings, this is whitespace, unlike the tags, where the unit is '_'
 
@@ -20,6 +27,8 @@ def getTextDomain():
     return textdomain
 
 
+def equal(text1, text2):
+    return String.equal(text1.replace('\n', ''), text2.replace('/n', ''), textdomain)
 
 
 def addText(text1, text2):
@@ -32,8 +41,8 @@ def addText(text1, text2):
     if text2 is None: 
         text2 = ''
     
-    #whitespace is sometimes significant
-#    #we are not interested in trailing whitespace. 
+    #whitespace is sometimes significantWe don't want to remove whitespace, 
+    #it is significant in some contexts in some documentation
 #    text1 = text1.rstrip()
 #    text2 = text2.rstrip()
     
@@ -67,19 +76,25 @@ def textInverse(text1):
     """Return the inverse of the text. This function closely follows string._stringinverse(), 
     but deals with whitespace that we do not want to invert in document text. Also deals with
     receiving None, which can happen with document text but not, for example, element tags."""
+    log = logging.getLogger()
+    
     if text1 is None: 
         return None
-    log = logging.getLogger()
+    
+    if text1 == '':
+        text1 = textdomain[0]
+
 #    log.debug('inverting: "%s"' % text1)
 
-    #whitespace is significant sometimes. 
+    #whitespace is significant sometimes. We don't want to remove whitespace, 
+    #it is significant in some contexts in some documentation
 #    text1 = text1.rstrip()
 #    log.debug('rstrip: "%s"' % text1)
     
     result = ''
     for i in text1:
         if i == '\n':
-            result += i
+            result += textdomain[0]
         else:
             result += String._characterinverse(i, textdomain)
 #        log.debug('"%s"' % result)

@@ -9,12 +9,23 @@ import logging
 
 #the unit of the group is the first element in the domain, ie stringdomain[0]
 
+
+def equal(string1, string2, stringdomain):
+    if cleanstring(string1, stringdomain) == cleanstring(string2, stringdomain):
+        return True
+    else:
+        return False
+    
+
 def _addstrings(string1, string2, stringdomain):
     """Add two strings and return the result. The addition must be the operation 
     used by a cyclic group over the stringdomain"""
     log = logging.getLogger()
-    if string1 == '' or string2 == '':
-        return False
+    
+    #why do this? empty strings can be viewed as unit strings, consistent 
+    #with the treatment below. 
+#    if string1 == '' or string2 == '':
+#        return False
     
     #first make them the same length
     if len(string1) == len(string2):
@@ -84,7 +95,7 @@ def _characterinverse(char1, stringdomain):
 
 def cleanstring(string1, stringdomain):
     result = string1[:]
-    while result.endswith(stringdomain[0]) and len(result) > 1:
+    while result.endswith(stringdomain[0]) and len(result) > 0:
         result = result[:-1]
     return result
     

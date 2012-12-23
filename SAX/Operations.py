@@ -2,6 +2,10 @@ import xml.sax, xml.sax.handler, xml.sax.xmlreader, logging, copy
 
 import TreeGroup.SAX.Operations
 
+import TreeGroup.Common.Tag as Tag
+import TreeGroup.Common.Text as Text
+import TreeGroup.Common.Attrib as Attrib
+
 #you've got to be careful - to have a coherent algebra, every element
 #must be able to act on every other. In the Tree functions, this is accomplished
 #by viewing the tree as a non-cyclic graph of nodes, each nodes having the same 
@@ -54,7 +58,7 @@ class StartElementEvent(SAXIteratorEvent):
         return "<%s%s>%s" % (self.tag, ''.join([" %s=\"%s\"" % (k, self.attr[k]) for k in self.attr.keys()]), self.text)
             
     def __eq__(self, o):
-        if type(self) == type(o) and self.tag == o.tag and self.attr == o.attr and self.text == o.text:
+        if type(self) == type(o) and Tag.equal(self.tag, o.tag) and Attrib.equal(self.attr, o.attr) and Text.equal(self.text, o.text):
             return True
         else:
             return False
@@ -70,7 +74,7 @@ class EndElementEvent(SAXIteratorEvent):
         return "</%s>%s" % (self.tag, self.text)
     
     def __eq__(self, o):
-        if type(self) == type(o) and self.tag == o.tag and self.text == o.text:
+        if type(self) == type(o) and Tag.equal(self.tag, o.tag) and Text.equal(self.text, o.text):
             return True
         else:
             return False
@@ -100,7 +104,8 @@ class SAXIterateContentHandler(xml.sax.handler.ContentHandler):
         #not have a position or event associated with them, then it makes if much easier to operate on. 
         #So for all the character events, we move their text into the previous event, whether it be
         #an opening tag, closing tag, etc. 
-        self._list[-1].text += content
+        #also ignore leading / trailing whitepsace and newlines
+        self._list[-1].text += content.strip()
             
     
     #not sure if we should keep this one or not. 

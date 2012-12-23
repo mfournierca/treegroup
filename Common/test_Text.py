@@ -57,7 +57,7 @@ class testtextInverse(unittest.TestCase):
     
     def test_invertCharacter(self):
         c = ' '
-        expected = '~'
+        expected = ' ' #equivalent to ''
         
         result = Text.textInverse(c)
-        self.assertEqual(c, result, 'textInverse returned "%s", expected "%s"' % (result, expected))
+        self.assertTrue(Text.equal(c, result), 'textInverse returned "%s", expected "%s"' % (result, expected))

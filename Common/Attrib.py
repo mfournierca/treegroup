@@ -37,6 +37,11 @@ def cleanKeys(attr):
     
     
     
+def equal(attrib1, attrib2):
+    return attrib1 == attrib2    
+
+    
+    
 def addAttribs(attrib1, attrib2):
     """Add two attribute dictionaries and return the result"""
     log = logging.getLogger()

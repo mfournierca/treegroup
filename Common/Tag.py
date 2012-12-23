@@ -34,6 +34,12 @@ tagdomain = ['_'] + [i for i in map(chr, range(97, 123))] + ['-'] + [i for i in 
 #arithmetic to remain consistent, and to work around this little quirk of lxml. 
 
 
+def equal(tag1, tag2):
+    if _cleantag(tag1) == _cleantag(tag2):
+        return True
+    else:
+        return False
+
 
 def addTags(tag1, tag2):
     """Add two tags and return the result. The addition must be the operation 
@@ -73,12 +79,11 @@ def tagInverse(tag1):
     """Return the inverse of the tag"""
      
     result = String._stringinverse(tag1, tagdomain)
-    result = _cleantag(result)
-    return result
-
-
-
-
+    #no empty tags allowed as explained above, lxml does not allow it. 
+    if result == '': result = tagdomain[0]
+    
+    return _cleantag(result)
+    
 
 
 

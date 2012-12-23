@@ -189,6 +189,7 @@ class test_Add(unittest.TestCase):
         result = Operations.add(tree1, tree2)
         self.assertTrue(Operations.equal(result, expected), "Expected:\n%s\nGot:\n%s\n" % (expected, result))
         
+        
     def test_SimpleTrees_EqualStructures(self):
     
         expectedtree  = ''.join(open(os.path.join(self.testfilesdir, 'test1', 'expected_add1.xml'), 'r'))
@@ -203,4 +204,130 @@ class test_Add(unittest.TestCase):
         self.assertTrue(Operations.equal(result, expectedtree), "Expected: \n%s\nGot: \n%s\n" % (expectedtree, result))
         
         
+    def test_ComplexTrees_EqualStructures(self):
+        expectedtree = ''.join(open(os.path.join(self.testfilesdir, 'test2', 'expected.xml')))
+        
+        tree1 = ''.join(open(os.path.join(self.testfilesdir, 'test2', 'TreeTestFile_add3.xml')))
+        tree2 = ''.join(open(os.path.join(self.testfilesdir, 'test2', 'TreeTestFile_add4.xml')))
+                        
+        result = Operations.add(tree1, tree2)
+        self.assertTrue(Operations.equal(result, expectedtree), "Add failed, created incorrect tree")
+        
+        #test commutativity    
+        result = Operations.add(tree2, tree1)
+        self.assertTrue(Operations.equal(result, expectedtree), "Add failed, created incorrect tree")
+        
+        
+        
+    def test_AddUnit(self):
+        expectedtree = ''.join(open(os.path.join(self.testfilesdir, 'test3', 'expected.xml'), 'r'))
+        
+        tree1 = ''.join(open(os.path.join(self.testfilesdir, 'test3', 'TreeTestFile_add3.xml')))
+        tree2 = ''.join(open(os.path.join(self.testfilesdir, 'test3', 'TreeTestFile_unit.xml')))
+        result = Operations.add(tree1, tree2)
+        self.assertTrue(Operations.equal(result, expectedtree), "Add failed, created incorrect tree")
+ 
+        #test commutativity
+        result = Operations.add(tree2, tree1)
+        self.assertTrue(Operations.equal(result, expectedtree), "Add failed, created incorrect tree")
+ 
+ 
+
+    def test_SimpleTrees_UnequalStructures(self):
+        expectedtree = ''.join(open(os.path.join(self.testfilesdir, 'test4', 'expected.xml')))
+        
+        tree1 = ''.join(open(os.path.join(self.testfilesdir, 'test4', 'TreeTestFile_add5.xml')))
+        tree2 = ''.join(open(os.path.join(self.testfilesdir, 'test4', 'TreeTestFile_add6.xml')))
+        result = Operations.add(tree1, tree2)
+        self.assertTrue(Operations.equal(result, expectedtree), "Add failed, created incorrect tree")
+        
+        #test commutativity    
+        result = Operations.add(tree2, tree1)
+        self.assertTrue(Operations.equal(result, expectedtree), "Add failed, created incorrect tree")
+        
+        
+        
+    def test_ComplexTrees_UnequalStructures(self):
+        expectedtree = ''.join(open(os.path.join(self.testfilesdir, 'test5', 'expected.xml')))
+        
+        tree1 = ''.join(open(os.path.join(self.testfilesdir, 'test5', 'TreeTestFile_add7.xml')))
+        tree2 = ''.join(open(os.path.join(self.testfilesdir, 'test5', 'TreeTestFile_add8.xml')))
+        result = Operations.add(tree1, tree2)
+        self.assertTrue(Operations.equal(result, expectedtree), "Expected %s, got %s" % (expectedtree, result))
+        
+        #test commutativity     
+        result = Operations.add(tree2, tree1)
+        self.assertTrue(Operations.equal(result, expectedtree), "Expected %s, \ngot %s" % (expectedtree, result))
+        
+        
+    def test_ComplexTrees_SeveralUnitsInOperand(self):
+        expectedtree = ''.join(open(os.path.join(self.testfilesdir, 'test6', 'expected.xml')))
+        
+        tree1 = ''.join(open(os.path.join(self.testfilesdir, 'test6', 'TreeTestFile_add9.xml')))
+        tree2 = ''.join(open(os.path.join(self.testfilesdir, 'test6', 'TreeTestFile_add10.xml')))
+        result = Operations.add(tree1, tree2)
+        self.assertTrue(Operations.equal(result, expectedtree), "Expected %s, got %s" % (expectedtree, result))
+                        
+        #test commutativity     
+        result = Operations.add(tree2, tree1)
+        self.assertTrue(Operations.equal(result, expectedtree), "Expected %s, got %s" % (expectedtree, result))
+    
+
+    def test_ComplexTrees_TrailingUnitsInResult(self):
+        expectedtree = ''.join(open(os.path.join(self.testfilesdir, 'test7', 'expected.xml')))
+        
+        tree1 = ''.join(open(os.path.join(self.testfilesdir, 'test7', 'TreeTestFile_add11.xml')))
+        tree2 = ''.join(open(os.path.join(self.testfilesdir, 'test7', 'TreeTestFile_add12.xml')))
+        result = Operations.add(tree1, tree2)
+        self.assertTrue(Operations.equal(result, expectedtree), "Expected %s, got %s" % (expectedtree, result))
+        
+        #test commutativity)
+        result = Operations.add(tree2, tree1)
+        self.assertTrue(Operations.equal(result, expectedtree), "Expected %s, \ngot %s" % (expectedtree, result))
+
+            
+    def test_TreesWithText(self):
+        expectedtree = ''.join(open(os.path.join(self.testfilesdir, 'test8', 'expected.xml')))
+
+        tree1 = ''.join(open(os.path.join(self.testfilesdir, 'test8', 'TreeTestFile_add13.xml')))
+        tree2 = ''.join(open(os.path.join(self.testfilesdir, 'test8', 'TreeTestFile_add14.xml')))
+        result = Operations.add(tree1, tree2)
+        self.assertTrue(Operations.equal(result, expectedtree), "Expected \n%s \ngot \n%s" % (expectedtree, result))
+            
+        #test commutativity
+        result = Operations.add(tree2, tree1)
+        self.assertTrue(Operations.equal(result, expectedtree), "Expected \n%s\ngot \n%s" % (expectedtree, result))
+            
+            
+    def test_RootWithText(self):
+        expectedtree = ''.join(open(os.path.join(self.testfilesdir, 'test9', 'expected.xml')))
+                                                
+        tree1 = ''.join(open(os.path.join(self.testfilesdir, 'test9', 'TreeTestFile_add15.xml')))
+        tree2 = ''.join(open(os.path.join(self.testfilesdir, 'test9', 'TreeTestFile_add16.xml')))
+        result = Operations.add(tree1, tree2)
+        self.assertTrue(Operations.equal(result, expectedtree), "Expected \n%s \ngot \n%s" % (expectedtree, result))
+            
+        #test commutativity
+        result = Operations.add(tree2, tree1)
+        self.assertTrue(Operations.equal(result, expectedtree), "Expected \n%s \ngot \n%s" % (expectedtree, result))
+            
+    
+    def test_JustRoots(self):
+        expectedtree = ''.join(open(os.path.join(self.testfilesdir, 'test10', 'expected.xml')))
+        
+        tree1 = ''.join(open(os.path.join(self.testfilesdir, 'test10', 'TreeTestFile_add17.xml')))
+        tree2 = ''.join(open(os.path.join(self.testfilesdir, 'test10', 'TreeTestFile_add18.xml')))
+        result = Operations.add(tree1, tree2)
+        self.assertTrue(Operations.equal(result, expectedtree), "Expected \n%s \ngot \n%s" % (expectedtree, result))
+         
+        #test commutativity     
+        result = Operations.add(tree2, tree1)
+        self.assertTrue(Operations.equal(result, expectedtree), "Expected \n%s \ngot \n%s" % (expectedtree, result))
+                     
+        
+        
+        
+        
+        
+ 
         
