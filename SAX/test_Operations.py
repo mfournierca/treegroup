@@ -11,6 +11,9 @@ import TreeGroup.SAX.Operations as Operations
 #raise errors if something other than element or character found
 #test ordering on large tree
 #test ordering even and odd numbers for startElement and endElement
+#test trees of different sizes
+#test leading units in result
+
 
 class test_SAXIterator(unittest.TestCase):
     def setUp(self):

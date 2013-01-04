@@ -27,6 +27,14 @@ import copy, logging
 #significant in some context. 
 attrdomain = ['_'] + [i for i in map(chr, range(97, 123))] + [i for i in map(chr, range(32, 48))] + [i for i in map(chr, range(58, 65))] + ['\\'] + [i for i in map(chr, range(65, 91))] + [i for i in map(chr, range(48, 58))] 
 
+
+def isUnitAttrib(a):
+    if dict(a) == {}:
+        return True
+    else:
+        return False
+    
+    
 def cleanKeys(attr):
     deletekeys = []
     for key in attr.keys():

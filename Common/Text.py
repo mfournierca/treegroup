@@ -23,6 +23,13 @@ from . import String
 textdomain = [' '] + ['\t', '‘', '’', '“', '”'] + [i for i in map(chr, range(33, 127))] #[i for i in map(chr, range(97, 123))] + ['-', '_'] + [i for i in map(chr, range(65, 91))]
 
 
+def isUnitText(text):
+    if text == textdomain[0]:
+        return True
+    else:
+        return False
+    
+    
 def getTextDomain():
     return textdomain
 

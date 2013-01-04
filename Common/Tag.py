@@ -34,6 +34,14 @@ tagdomain = ['_'] + [i for i in map(chr, range(97, 123))] + ['-'] + [i for i in 
 #arithmetic to remain consistent, and to work around this little quirk of lxml. 
 
 
+
+def isUnitTag(tag):
+    if tag == tagdomain[0]:
+        return True
+    else:
+        return False
+    
+
 def equal(tag1, tag2):
     if _cleantag(tag1) == _cleantag(tag2):
         return True

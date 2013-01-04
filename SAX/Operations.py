@@ -340,6 +340,19 @@ class SAXEventAndOrderingIterator:
         return self._ordering.getOrdering()
     
     
+
+
+
+
+def getOrdering(tree):
+    """just a convenience function initially built for unit tests"""
+    iterator = SAXEventAndOrderingIterator(tree)
+    for i in iterator:
+        pass
+    return iterator.getCurrentOrdering()
+
+
+
     
     
     
@@ -390,15 +403,21 @@ def addEvents(event1, event2):
 
 
 
-
-
-def getOrdering(tree):
-    """just a convenience function initially built for unit tests"""
-    iterator = SAXEventAndOrderingIterator(tree)
-    for i in iterator:
-        pass
-    return iterator.getCurrentOrdering()
-
+def isUnitEvent(event):
+    if event.getEventName() == "StartElementEvent":
+        if Tag.isUnitTag(event.tag) and Attrib.isUnitAttrib(event.attr) and Text.isUnitText(event.text):
+            return True
+        else:
+            return False
+    
+    elif event.getEventName() == "EndElementEvent":
+        if Tag.isUnitTag(event.tag) and Text.isUnitText(event.text):
+            return True
+        else:
+            return False
+    
+    else:
+        raise TypeError("Invalid event type: %s" % str(event1))
 
 
 
@@ -408,10 +427,17 @@ def add(string1, string2):
     
     log = logging.getLogger()
     
+    #iterators will go over the two input trees and get events and positions
     iterator1 = SAXEventAndOrderingIterator(string1)
     iterator2 = SAXEventAndOrderingIterator(string2)
     
+    #result is the string that will be returned
     result = ""
+    
+    #buffer is used for removing trailing units
+    buffer = []
+    bufferordering = Ordering()
+    positionlist = []
     
     while True:
         
@@ -443,7 +469,7 @@ def add(string1, string2):
             newevent = addEvents(event1, event2)
             
         #if positions are different, iterate over the lower event until the other positions is reached. 
-        if position1 != position2:
+        elif position1 != position2:
             #figure out which one is before the other . . . should be the one with the longer position, deeper in the tree
             #will the positions always be of different lengths at this point? Yes - the iterators start at the same position
             #at the start of the loop. If after next()ing the iterators the positions are different, they must be of different
@@ -466,12 +492,43 @@ def add(string1, string2):
             
             newevent = addEvents(e, hold.getCurrentEvent())
             
-        #if positions are not equal, start with closest to root position, and call __next__ while adding (appending?) to result
-        #until other position is reached or parser stops. If other position is reached, add nodes and continue
+        else:
+            raise ValueError
         
-        #if parser stopped, call __next__ on other tree while adding to result. 
+        #manipulate the buffer and the output to remove trailing units
+        bufferordering.updateOrdering(newevent)
+        positionlist.append(bufferordering.getCurrentPosition())
         
-        result += newevent.toString()
+        if len(positionlist) <= 1:
+            #if newevent is the first, write it.
+            for e in buffer: 
+                result += e.toString()
+            result += newevent.toString()
+            
+        elif len(positionlist[-1]) == len(positionlist[-2]):
+            if not isUnitEvent(newevent):
+                #if we are on the same level, write buffer if this event is not the unit
+                for e in buffer: 
+                    result += e[0].toString()
+                result += newevent.toString()
+            else:
+                #if this is the unit, save it in the buffer
+                buffer.append((newevent, bufferordering.getCurrentPosition()))
+                
+        elif len(positionlist[-1]) > len(positionlist[-2]):
+            #if we move down, write
+            for e in buffer: 
+                result += e.toString()
+            result += newevent.toString()
+            
+        elif len(positionlist[-1]) < len(positionlist[-2]):
+            #if we move up, discard the buffer (?)  
+            result += newevent.toString()
+            
+        else:
+            #should never happen
+            result += newevent.toString()
+            
     
     log.debug('')
     log.debug("result: %s" % result)
